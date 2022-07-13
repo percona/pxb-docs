@@ -16,7 +16,7 @@ For checking the backup consistency you can use either the original server where
 Using pt-table-checksum
 =========================
 
-This tool is part of the |Percona Toolkit|. It performs an online replication consistency check by executing checksum queries on the source, which produces different results on replicas that are inconsistent with the source.
+This tool is part of the *Percona Toolkit*. It performs an online replication consistency check by executing checksum queries on the source, which produces different results on replicas that are inconsistent with the source.
 
 After you confirmed that replication has been set up successfully, you can `install <http://www.percona.com/doc/percona-toolkit/installation.html>`_ or download *pt-table-checksum*. This example shows downloading the latest version of *pt-table-checksum*: :: 
 
@@ -68,6 +68,6 @@ If we run the *pt-table-checksum* now difference should be spotted ::
     04-30T11:38:09      0      0        0       1       0   0.054 mysql.time_zone_transition_type
     04-30T11:38:09      1      0        8       1       0   0.064 mysql.user
 
-This output shows that source and the replica aren't in consistent state and that the difference is in the ``mysql.user`` table.
+This output shows that source and the replica are not in a consistent state and that the difference is in the ``mysql.user`` table.
 
 More information on different options that pt-table-checksum provides can be found in the *pt-table-checksum* `documentation <http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html>`_.

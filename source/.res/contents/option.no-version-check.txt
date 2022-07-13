@@ -1,0 +1,19 @@
+.. option:: --no-version-check
+
+   This option disables the version check. If you do not pass this option, the
+   automatic version check is enabled implicitly when |program| runs
+   in the ``--backup`` mode. To disable the version check, explicitly pass
+   the ``--no-version-check`` option when invoking |program|.
+
+   When the automatic version check is enabled,|program| performs a
+   version check against the server on the backup stage after creating a server
+   connection. |program| sends the following information to the server:
+
+   - MySQL flavour and version
+   - Operating system name
+   - Percona Toolkit version
+   - Perl version
+
+   Each piece of information has a unique identifier which is an MD5 hash value
+   that Percona Toolkit uses to obtain statistics about how it is used. This value is
+   a random UUID; no client information is either collected or stored.

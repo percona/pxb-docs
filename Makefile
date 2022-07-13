@@ -40,22 +40,21 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 ext:
-		@echo "Downloading Percona documentation utils from repository..."
-		@mkdir -p $(BUILDDIR) && wget -O - $(UTILS_REPO) | tar xz -C $(BUILDDIR) && cp -r $(BUILDDIR)/$(UTILS_DIR)/sphinx/ext source
+	@echo "Downloading Percona documentation utils from repository..."
+	@mkdir -p $(BUILDDIR) && wget -O - $(UTILS_REPO) | tar xz -C $(BUILDDIR) && cp -r $(BUILDDIR)/$(UTILS_DIR)/sphinx/ext source
 
-material:
-		$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) -c source/conf-material $(BUILDDIR)/html
-		@echo
-		@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+netlify:
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) -c source/conf-netlify $(BUILDDIR)/html
+	@echo
+	@echo "Netlify build finished. The HTML pages are in $(BUILDDIR)/html."
 
 html: ext
 	@echo "Downloading percona-theme ..."
-	@wget -O percona-theme.tar.gz https://www.percona.com/docs/theme-1-4/percona-server/5.6
+	@wget -O percona-theme-1-4.tar.gz https://www.percona.com/docs/theme-1-4/percona-server/5.6
 	@echo "Extracting theme."
-	@tar -mzxf percona-theme.tar.gz
+	@tar -mzxf percona-theme-1-4.tar.gz
 	@rm -rf source/percona-theme
 	@mv percona-theme-1-4 source/percona-theme
-	@rm percona-theme.tar.gz
 	@echo "Building html doc"
 
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
@@ -166,3 +165,4 @@ livehtml:
 
 livethtml:
 	sphinx-autobuild -D html_theme=alabaster -D html_theme_path='' $(ALLSPHINXOPTS) $(BUILDDIR) $(O)
+

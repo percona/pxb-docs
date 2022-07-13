@@ -4,57 +4,43 @@
 The xbcloud Binary
 ================================================================================
 
-The purpose of |xbcloud| is to download from the cloud and upload to the cloud the full or part of an |xbstream| archive. |xbcloud| will not overwrite the backup with the same name. |xbcloud| accepts input via a pipe from |xbstream| so that it can be
-invoked as a pipeline with |xtrabackup| to stream directly to the cloud without
+The purpose of *xbcloud* is to download and upload full or part of xbstream
+archive from/to the cloud. *xbcloud* will not overwrite the backup with the same
+name. *xbcloud* accepts input via a pipe from xbstream so that it can be
+invoked as a pipeline with *xtrabackup* to stream directly to the cloud without
 needing a local storage.
 
-.. note::
-
-   In a Bash shell, the ``$?`` parameter returns the exit code from the last binary. If you use pipes, the ``${PIPESTATUS[x]}`` array parameter returns the exit codes for each binary in the pipe string. 
-
-   .. code-block::
-
-      $ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
-       ...
-      $ ${PIPESTATUS[x]}
-      0 0 
-      $ true | false
-      $ echo $?
-      1
-
-      # with PIPESTATUS
-      $ true | false
-      $ echo ${PIPESTATUS[0]} ${PIPESTATUS[1]}
-      0 1
-
-The *xbcloud* binary stores each chunk as a separate object with a name
+*xbcloud* stores each chunk as a separate object with a name
 ``backup_name/database/table.ibd.NNNNNNNNNNNNNNNNNNNN``, where ``NNN...`` is a
-0-padded serial number of chunk within a file. Size of chunk produced by
-|xtrabackup| and |xbstream| changed to 10M.
+0-padded serial number of chunk within file. Size of chunk produced by
+*xtrabackup* and xbstream changed to 10M.
 
-|xbcloud| has three essential operations: *put*, *get*, and *delete*. With these
+*xbcloud* has three essential operations: *put*, *get*, and *delete*. With these
 operations, backups are created, stored, retrieved, restored, and
-deleted. |xbcloud| operations clearly map to similar operations within the AWS
-Amazon Amazon S3 API.
+deleted. *xbcloud* operations clearly map to similar operations within the AWS
+S3 API.
 
-The :ref:`xbcloud_exbackoff` feature was implemented in Percona XtraBackup 8.0.26-18. Suppose a chunk fails to upload or download. In that case, this feature adds an exponential backoff, or sleep, time and then retries the upload or download, which increases the chances of completing a backup or a restore operation. 
+Version specific information
+================================================================================
+
+- 2.4.21 - Added s3-storage-class and google-storage-class
+- 2.4.14 - Added the support of *Amazon S3*, MinIO and Google Cloud Storage storage types.
+- 2.3.1-beta1 - Implemented ability to store *xbcloud* parameters in a
+  `.cnf` file
+- 2.3.1-beta1 - Implemented support different :ref:`authentication options
+  <swift_auth>` for Swift
+- 2.3.1-beta1 - Implemented support for partial download of the cloud backups
+- 2.3.1-beta1 - `xbcloud --swift-url` option has been renamed to
+  `xbcloud --swift-auth-url`
+- 2.3.0-alpha1 - Initial implementation
 
 Supported Cloud Storage Types
 ================================================================================
 
-The following cloud storage types are supported:
-
-* OpenStack Object Storage (Swift) - see :ref:`xbcloud_swift`
-
-* Amazon Simple Storage (S3) - see :ref:`xbcloud_s3`
-
-* Azure Cloud Storage - see :ref:`xbcloud_azure`
-
-* Google Cloud Storage (gcs) - see :ref:`xbcloud_gcs`
-
-* MinIO - see :ref:`xbcloud_minio`
-
-In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, |xbcloud| supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.
+In addition to Swift, which has been the only option for storing backups in a
+cloud storage until *Percona XtraBackup* 2.4.14, *xbcloud* supports *Amazon S3*,
+MinIO, and Google Cloud Storage. Other *Amazon S3* compatible storages, such
+as Wasabi or Digital Ocean Spaces, are also supported.
 
 .. seealso::
 
@@ -74,56 +60,132 @@ In addition to OpenStack Object Storage (Swift), which has been the only option 
 Usage
 ================================================================================
 
-The following sample command creates a full backup: 
+.. code-block:: bash
+
+   $ xtrabackup --backup --stream=xbstream --target-dir=/tmp | xbcloud \
+   put [options] <name>
+
+Creating a full backup with Swift
+================================================================================
+
+The following example shows how to make a full backup and upload it to Swift.
 
 .. code-block:: bash
 
-   xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ --extra-lsndirk=/storage/backups/| xbcloud \
-   put [options] full_backup
+   $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+   xbcloud put --storage=swift \
+   --swift-container=test \
+   --swift-user=test:tester \
+   --swift-auth-url=http://192.168.8.80:8080/ \
+   --swift-key=testing \
+   --parallel=10 \
+   full_backup
 
-An incremental backup only includes the changes since the last backup. The last backup can be either a full or incremental backup. 
+Creating a full backup with *Amazon S3*
+================================================================================
 
-The following sample command creates an incremental backup:
+.. code-block:: bash
 
-.. sourcecode:: bash
+   $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+   xbcloud put --storage=s3 \
+   --s3-endpoint='s3.amazonaws.com' \
+   --s3-access-key='YOUR-ACCESSKEYID' \
+   --s3-secret-key='YOUR-SECRETACCESSKEY' \
+   --s3-bucket='mysql_backups'
+   --parallel=10 \
+   $(date -I)-full_backup
 
-   xtrabackup --backup --stream=xbstream --incremental-basedir=/storage/backups \
-   --target-dir=/storage/inc-backup | xbcloud  put [options] inc_backup
+The following options are available when using *Amazon S3*:
 
-To prepare an incremental backup, you must first download the full backup with the following command:
+.. list-table::
+   :header-rows: 1
 
-.. sourcecode:: bash
+   * - Option
+     - Details
+   * - --s3-access-key
+     - Use to supply the AWS access key ID
+   * - --s3-secret-key
+     - Use to supply the AWS secret access key
+   * - --s3-bucket
+     - Use supply the AWS bucket name
+   * - --s3-region
+     - Use to specify the AWS region. The default value is **us-east-1**
+   * - --s3-api-version = <AUTO|2|4>
+     - Select the signing algorithm. The default value is AUTO. In this case, *xbcloud* will probe.
+   * - --s3-bucket-lookup = <AUTO|PATH|DNS>
+     - Specify whether to use **bucket.endpoint.com** or *endpoint.com/bucket**
+       style requests. The default value is AUTO. In this case, *xbcloud* will probe.
+   * - --s3-storage-class=<name>
+     - Specify the `S3 storage class <https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html>`_. The name options are the following: 
+     
+       * STANDARD
+       * STANDARD_IA
+       * GLACIER
+       
+       .. note:: 
 
-   xtrabackup get [options] full_backup | xbstream -xv -C /tmp/full-backup
+           If you use the GLACIER storage class, the object must be `restored to S3 <https://docs.aws.amazon.com/AmazonS3/latest/dev/restoring-objects.html>`_ before restoring the backup.
 
-You must prepare the full backup:
-
-.. sourcecode:: bash
-
-   xtrabackup --prepare --apply-log-only --target-dir=/tmp/full-backup
-
-After the full backup has been prepared, download the incremental backup:
-
-.. sourcecode:: bash
-
-   xbcloud get [options] inc_backup | xbstream -xv -C /tmp/inc-backup
-
-The downloaded backup is prepared by running the following command:
-
-.. sourcecode:: bash
-
-   xtrabackup --prepare --target-dir=/tmp/full-backup --incremental-dir=/tmp/inc-backup
-   
-You do not need the full backup to restore only a specific database. You can specify only the tables to be restored:
-
-.. sourcecode:: bash
-
-   xbcloud get [options] ibdata1 sakila/payment.ibd /tmp/partial/partial.xbs
-
-   xbstream -xv -C /tmp/partial < /tmp/partial/partial.xbs
+       Also supports using custom S3 implementations such as MinIO or CephRadosGW.
 
 
+Creating a full backup with MinIO
+================================================================================
 
+.. code-block:: bash
+
+   $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+   xbcloud put --storage=s3 \
+   --s3-endpoint='play.minio.io:9000' \
+   --s3-access-key='YOUR-ACCESSKEYID' \
+   --s3-secret-key='YOUR-SECRETACCESSKEY' \
+   --s3-bucket='mysql_backups'
+   --parallel=10 \
+   $(date -I)-full_backup
+
+Creating a full backup with Google Cloud Storage
+================================================================================
+
+The support for Google Cloud Storage is implemented using the interoperability
+mode. This mode was especially designed to interact with cloud services
+compatible with *Amazon S3*.
+
+.. seealso::
+
+   Cloud Storage Interoperability
+      https://cloud.google.com/storage/docs/interoperability
+
+.. code-block:: bash
+		
+   $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+   xbcloud put --storage=google \
+   --google-endpoint=`storage.googleapis.com` \
+   --google-access-key='YOUR-ACCESSKEYID' \
+   --google-secret-key='YOUR-SECRETACCESSKEY' \
+   --google-bucket='mysql_backups'
+   --parallel=10 \
+   $(date -I)-full_backup
+
+The following options are available when using Google Cloud Storage:
+
+- --google-access-key = <ACCESS KEY ID>
+- --google-secret-key = <SECRET ACCESS KEY>
+- --google-bucket = <BUCKET NAME>
+- --google-storage-class=name
+
+.. note::
+
+    The Google storage class name options are the following:
+    
+    * STANDARD
+    * NEARLINE
+    * COLDLINE
+    * ARCHIVE
+    
+    .. seealso::
+    
+     `Google storage classes <https://cloud.google.com/storage/docs/storage-classes>`_
+    
 Supplying parameters
 ================================================================================
 
@@ -134,7 +196,7 @@ Configuration files
 --------------------------------------------------------------------------------
 
 The parameters the values of which do not change frequently can be stored in
-:file:`my.cnf` or in a custom configuration file. The following example is a
+`my.cnf` or in a custom configuration file. The following example is a
 template of configuration options under the ``[xbcloud]`` group:
 
 .. code-block:: text
@@ -151,14 +213,44 @@ template of configuration options under the ``[xbcloud]`` group:
 .. note::
 
    If you explicitly use a parameter on the command line and in a configuration
-   file, |xbcloud| uses the the value provided on the command line.
+   file, *xbcloud* uses the the value provided on the command line.
 
 Environment variables
 --------------------------------------------------------------------------------
 
-If you explicitly use a parameter on the command line, in a configuration
-file, and the corresponding environment variable contains a value, |xbcloud|
-uses the the value provided on the command line or in the configuration file.
+The following environment variables are recognized. *xbcloud* maps them
+automatically to corresponding parameters applicable to the selected storage.
+
+- AWS_ACCESS_KEY_ID (or ACCESS_KEY_ID)
+- AWS_SECRET_ACCESS_KEY (or SECRET_ACCESS_KEY)
+- AWS_DEFAULT_REGION (or DEFAULT_REGION)
+- AWS_ENDPOINT (or ENDPOINT)
+- AWS_CA_BUNDLE
+
+.. note::
+
+   If you explicitly use a parameter on the command line, in a configuration
+   file, and the corresponding environment variable contains a value, *xbcloud*
+   uses the the value provided on the command line or in the configuration file.
+
+OpenStack environment variables are also recognized and mapped automatically to
+corresponding **swift** parameters (``--storage=swift``).
+
+.. hlist::
+   :columns: 2
+
+   - OS_AUTH_URL
+   - OS_TENANT_NAME
+   - OS_TENANT_ID
+   - OS_USERNAME
+   - OS_PASSWORD
+   - OS_USER_DOMAIN
+   - OS_USER_DOMAIN_ID
+   - OS_PROJECT_DOMAIN
+   - OS_PROJECT_DOMAIN_ID
+   - OS_REGION_NAME
+   - OS_STORAGE_URL
+   - OS_CACERT
 
 Shortcuts
 --------------------------------------------------------------------------------
@@ -189,7 +281,7 @@ configuration files and environment variables.
 Additional parameters
 --------------------------------------------------------------------------------
 
-|xbcloud| accepts additional parameters that you can use with any storage
+*xbcloud* accepts additional parameters that you can use with any storage
 type. The ``--md5`` parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the ``backup_name.md5``
 pattern.
@@ -203,7 +295,7 @@ pattern.
 You may use the ``--header`` parameter to pass an additional HTTP
 header with the server side encryption while specifying a customer key.
 
-.. admonition:: Example of using ``--header`` for AES256 encryption
+.. admonition:: Example of using --header for AES256 encryption
 
    .. code-block:: bash
 
@@ -217,9 +309,35 @@ header with the server side encryption while specifying a customer key.
 The ``--header`` parameter is also useful to set the access control list (ACL)
 permissions: ``--header="x-amz-acl: bucket-owner-full-control``
 
+Restoring with Swift
+================================================================================
 
+.. code-block:: bash
 
+   $ xbcloud get [options] <name> [<list-of-files>] | xbstream -x
 
+The following example shows how to fetch and restore the backup from Swift:
+
+.. code-block:: bash
+
+   $ xbcloud get --storage=swift \
+   --swift-container=test \
+   --swift-user=test:tester \
+   --swift-auth-url=http://192.168.8.80:8080/ \
+   --swift-key=testing \
+   full_backup | xbstream -xv -C /tmp/downloaded_full
+
+   $ xtrabackup --prepare --target-dir=/tmp/downloaded_full
+   $ xtrabackup --copy-back --target-dir=/tmp/downloaded_full
+
+Restoring with *Amazon S3*
+================================================================================
+
+.. code-block:: bash
+
+   $ xbcloud get s3://operator-testing/bak22 \
+   --s3-endpoint=https://storage.googleapis.com/ \
+   --parallel=10 2>download.log | xbstream -x -C restore --parallel=8
 
 Incremental backups
 ================================================================================
@@ -229,7 +347,7 @@ be based:
 
 .. code-block:: bash
 
-   xtrabackup --backup --stream=xbstream --extra-lsndir=/storage/backups/ \
+   $ xtrabackup --backup --stream=xbstream --extra-lsndir=/storage/backups/ \
    --target-dir=/storage/backups/ | xbcloud put \
    --storage=swift --swift-container=test_backup \
    --swift-auth-version=2.0 --swift-user=admin \
@@ -268,8 +386,7 @@ Once you download the full backup it should be prepared:
 
    $ xtrabackup --prepare --apply-log-only --target-dir=/storage/downloaded_full
 
-After the full backup has been prepared you can download the incremental
-backup:
+After the full backup has been prepared you can download the incremental backup:
 
 .. code-block:: bash
 
@@ -292,8 +409,8 @@ Once the incremental backup has been downloaded you can prepare it by running:
 Partial download of the cloud backup
 --------------------------------------------------------------------------------
 
-If you do not want to download the entire backup to restore the specific
-database you can specify only the tables you want to restore:
+If you don't want to download the entire backup to restore the specific database
+you can specify only tables you want to restore:
 
 .. code-block:: bash
 
@@ -303,14 +420,117 @@ database you can specify only the tables you want to restore:
    --swift-auth-url=http://127.0.0.1:35357/ full_backup \
    ibdata1 sakila/payment.ibd \
    > /storage/partial/partial.xbs
- 
+
    $ xbstream -xv -C /storage/partial < /storage/partial/partial.xbs
- 
 
+This command will download just ``ibdata1`` and ``sakila/payment.ibd`` table
+from the full backup.
 
+Command-line options
+================================================================================
 
+*xbcloud* has the following command line options:
 
+.. program:: xbcloud
 
+.. option:: --storage=[swift*Amazon S3*google]
 
+   Cloud storage option. *xbcloud* supports Swift, MinIO, and AWS S3.
+   The default value is ``swift``.
 
+.. option:: --swift-auth-url
 
+   URL of Swift cluster.
+
+.. option:: --swift-url
+
+   Renamed to `xbcloud --swift-auth-url`
+
+.. option:: --swift-storage-url
+
+   xbcloud will try to get object-store URL for given region (if any specified)
+   from the keystone response. One can override that URL by passing
+   --swift-storage-url=URL argument.
+
+.. option:: --swift-user
+
+   Swift username (X-Auth-User, specific to Swift)
+
+.. option:: --swift-key
+
+   Swift key/password (X-Auth-Key, specific to Swift)
+
+.. option:: --swift-container
+
+   Container to backup into (specific to Swift)
+
+.. option:: --parallel=N
+
+   Maximum number of concurrent upload/download requests. Default is ``1``.
+
+.. option:: --cacert
+
+   Path to the file with CA certificates
+
+.. option:: --insecure
+
+   Do not verify servers certificate
+
+.. _swift_auth:
+
+Swift authentication options
+--------------------------------------------------------------------------------
+
+Swift specification describe several `authentication options
+<http://docs.openstack.org/developer/swift/overview_auth.html>`_. *xbcloud* can
+authenticate against keystone with API version 2 and 3.
+
+.. option:: --swift-auth-version
+
+   Specifies the swift authentication version. Possible values are: ``1.0`` -
+   TempAuth, ``2.0`` - Keystone v2.0, and ``3`` - Keystone v3. Default value is
+   ``1.0``.
+
+For v2 additional options are:
+
+.. option:: --swift-tenant
+
+   Swift tenant name.
+
+.. option:: --swift-tenant-id
+
+   Swift tenant ID.
+
+.. option:: --swift-region
+
+   Swift endpoint region.
+
+.. option:: --swift-password
+
+   Swift password for the user.
+
+For v3 additional options are:
+
+.. option:: --swift-user-id
+
+   Swift user ID.
+
+.. option:: --swift-project
+
+   Swift project name.
+
+.. option:: --swift-project-id
+
+   Swift project ID.
+
+.. option:: --swift-domain
+
+   Swift domain name.
+
+.. option:: --swift-domain-id
+
+   Swift domain ID.
+
+.. Google Cloud Storage replace:: Google Cloud Storage
+.. *Amazon S3* replace:: Amazon S3
+.. MinIO replace:: MinIO

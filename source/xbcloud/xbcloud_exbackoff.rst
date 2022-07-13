@@ -4,7 +4,7 @@
 Exponential Backoff 
 ==========================================
 
-This feature was implemented in :ref:`PXB-8.0.26-18.0` in the xbcloud binary.
+This feature was implemented in :ref:`PXB-2.4.24` in the xbcloud binary.
 
 Exponential backoff increases the chances for the completion of a backup or a restore operation. For example, a chunk upload or download may fail if you have an unstable network connection or other network issues. This feature adds an exponential backoff, or sleep, time and then retries the upload or download.
 
@@ -62,8 +62,8 @@ The following is an example of a verbose output:
 
 .. sourcecode:: bash
 
-    210701 14:34:23 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-    210701 14:34:23 /work/pxb/ins/8.0/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
+    210701 14:34:23 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+    210701 14:34:23 /work/pxb/ins/2.4/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
 
 Example
 --------
@@ -77,29 +77,28 @@ The following text is an example of the exponential backoff used with the comman
 
 .. sourcecode:: bash
 
-    210702 10:07:05 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-    210702 10:07:05 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [1]
+    210702 10:07:05 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+    210702 10:07:05 /work/pxb/ins/2.4/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [1]
     . . .
-    210702 10:07:23 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-    210702 10:07:23 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [2]
+    210702 10:07:23 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+    210702 10:07:23 /work/pxb/ins/2.4/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [2]
     . . .
-    210702 10:07:52 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-    210702 10:07:52 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [3]
+    210702 10:07:52 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
+    210702 10:07:52 /work/pxb/ins/2.4/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [3]
     . . .
-    210702 10:08:47 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-    210702 10:08:47 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [4]
+    210702 10:08:47 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
+    210702 10:08:47 /work/pxb/ins/2.4/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [4]
     . . .
-    210702 10:10:12 /work/pxb/ins/8.0/bin/xbcloud: successfully uploaded chunk: backup3/xtrabackup_logfile.00000000000000000006, size: 8388660
+    210702 10:10:12 /work/pxb/ins/2.4/bin/xbcloud: successfully uploaded chunk: backup3/xtrabackup_logfile.00000000000000000006, size: 8388660
 
 The following list details the example output:
 
-    [1.] Chunk ``xtrabackup_logfile.00000000000000000006`` fails to upload _ the first time and slept for 2384 milliseconds.
+    [1.] Chunk ``xtrabackup_logfile.00000000000000000006`` fails to upload the first time and slept for 2384 milliseconds.
 
     [2.] The same chunk fails for the second time and the time is increased to 4387 milliseconds. 
 
     [3.] The same chunk fails for the third time and the time is increased to 8691 milliseconds.
 
-    [4.] The same chunk fails for the fourth time. The ``max-backoff`` parameter has been reached. All retries sleep the same amount of time after reaching the parameter.
+    [4.] The same chunk fails for the fourth time. The ``max-backoff``=10000, which defines the maximum sleep time as 10000. Any retry sleeps the same amount of time after reaching the parameter.
 
     [5.] The same chunk is successfully uploaded.
-
