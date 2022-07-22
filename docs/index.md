@@ -16,11 +16,13 @@ environment, *Percona XtraBackup* is designed to make backups a seamless
 procedure without disrupting the performance of the server in a production
 environment. [Commercial support contracts are available](https://www.percona.com/mysql-support/).
 
-!!! important
+**_Important_** 
 
-    Percona XtraBackup 2.4 does not support making backups of databases created in *MySQL 8.0*, *Percona Server for MySQL 8.0*, or *Percona XtraDB Cluster 8.0*.
-    
-    Use `Percona XtraBackup 8.0 <https://www.percona.com/downloads/Percona-XtraBackup-LATEST/#>`__ for making backups of databases in *MySQL 8.0*, *Percona Server for MySQL 8.0*, and *Percona XtraDB Cluster 8.0*.
+Percona XtraBackup 2.4 does not support making backups of databases 
+created in *MySQL 8.0*, *Percona Server for MySQL 8.0*, or *Percona 
+XtraDB Cluster 8.0*. Use **[Percona XtraBackup 8.0](https://www.percona.com/downloads/Percona-XtraBackup-LATEST/#)** for those databases.
+
+
 
 ## Introduction
 
