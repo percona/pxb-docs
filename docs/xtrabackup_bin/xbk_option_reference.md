@@ -33,7 +33,7 @@ If a missing privilege is not required for the current operation
 but may be necessary for some other XtraBackup operation,
 the process is not aborted, and a warning is printed.
 
-```bash
+```text
 xtrabackup: Error: missing required privilege LOCK TABLES on *.*
 xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
 ```
@@ -160,7 +160,7 @@ beginning of a backup provided the status variable
 `innodb_buffer_pool_dump_status` reports that the dump has been
 completed.
 
-```bash
+```shell
 $ xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
 ```
 
@@ -348,7 +348,7 @@ embedded InnoDB in the same configuration as your current server. You
 normally do not need to specify these explicitly. These options have the
 same behavior that they have in InnoDB or XtraDB. They are as follows:
 
-```default
+```text
 --innodb-adaptive-hash-index
 --innodb-additional-mem-pool-size
 --innodb-autoextend-increment
@@ -516,7 +516,7 @@ Use this variable to increase the xbcloud/xbstream chunk size from the default v
 
 **NOTE**: When you use encryption, to adjust the xbcloud/xbstream chunk size, adjust both the `--encrypt-chunk-size` and `--read-buffer-size` variables.
 
-```mysql
+```sql
 $ xtrabackup ... --read-buffer-size=1G | xbcloud put ...
 ```
 

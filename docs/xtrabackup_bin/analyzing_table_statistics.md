@@ -12,7 +12,7 @@ of the database including correctly sized log files, so you need to execute with
 
 The result of running on a backup might look like the following:
 
-```default
+```text
 <INDEX STATISTICS>
   table: test/table1, index: PRIMARY, space id: 12, root page 3
   estimated statistics in dictionary:
@@ -67,7 +67,7 @@ footers.
 The following script can be used to summarize and tabulate the output of the
 statistics information:
 
-```default
+```text
 tabulate-xtrabackup-stats.pl
 
 #!/usr/bin/env perl
@@ -128,7 +128,7 @@ foreach my $t ( sort keys %tbl_stats ) {
 The output of the above Perl script, when run against the sample shown in the
 previously mentioned blog post, will appear as follows:
 
-```default
+```text
           TABLE           INDEX TOT_PAGES FREE_PAGES   PCT_FULL
 art.link_out104                    832383      38561      86.8%
 art.link_out104         PRIMARY    498304         49      91.9%

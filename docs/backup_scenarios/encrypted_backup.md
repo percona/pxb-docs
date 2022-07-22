@@ -21,13 +21,13 @@ Both `xtrabackup --encrypt-key` option  and
 `xtrabackup --encrypt-key-file` option can be used to specify the
 encryption key. Encryption key can be generated with command like:
 
-```bash
+```shell
 $ openssl rand -base64 24
 ```
 
 Example output of that command should look like this:
 
-```default
+```text
 GCHFLrDFVx6UAsRb88uLVbAVWbK+Yzfs
 ```
 
@@ -38,7 +38,7 @@ This value then can be used as the encryption key
 Example of the xtrabackup command using the `xtrabackup --encrypt-key`
 should look like this:
 
-```bash
+```shell
 $ xtrabackup --backup --target-dir=/data/backups --encrypt=AES256 \
 --encrypt-key="GCHFLrDFVx6UAsRb88uLVbAVWbK+Yzfs"
 ```
@@ -48,7 +48,7 @@ $ xtrabackup --backup --target-dir=/data/backups --encrypt=AES256 \
 Example of the xtrabackup command using the
 `xtrabackup --encrypt-key-file` should look like this:
 
-```bash
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/ --encrypt=AES256 \
 --encrypt-key-file=/data/backups/keyfile
 ```
@@ -73,7 +73,7 @@ bytes) of the working encryption buffer for each encryption thread (default is
 *Percona XtraBackup* `xtrabackup --decrypt` option has been implemented
 that can be used to decrypt the backups:
 
-```bash
+```shell
 $ xtrabackup --decrypt=AES256 --encrypt-key="GCHFLrDFVx6UAsRb88uLVbAVWbK+Yzfs"\
 --target-dir=/data/backups/
 ```
@@ -82,7 +82,7 @@ $ xtrabackup --decrypt=AES256 --encrypt-key="GCHFLrDFVx6UAsRb88uLVbAVWbK+Yzfs"\
 files. In *Percona XtraBackup* 2.4.6 `xtrabackup --remove-original`
 option has been implemented that you can use to remove the encrypted files once they’ve been decrypted. To remove the files once they’re decrypted you should run:
 
-```bash
+```shell
 $ xtrabackup --decrypt=AES256 --encrypt-key="GCHFLrDFVx6UAsRb88uLVbAVWbK+Yzfs"\
 --target-dir=/data/backups/ --remove-original
 ```
@@ -97,7 +97,7 @@ When the files have been decrypted backup can be prepared.
 
 After the backups have been decrypted, they can be prepared the same way as the standard full backups with the `xtrabackup --prepare` option:
 
-```bash
+```shell
 $ xtrabackup --prepare --target-dir=/data/backups/
 ```
 
@@ -106,7 +106,7 @@ $ xtrabackup --prepare --target-dir=/data/backups/
 xtrabackup has a `xtrabackup --copy-back` option, which performs the
 restoration of a backup to the server’s datadir:
 
-```bash
+```shell
 $ xtrabackup --copy-back --target-dir=/data/backups/
 ```
 
@@ -114,7 +114,7 @@ It will copy all the data-related files back to the server’s `datadir`,
 determined by the server’s `my.cnf` configuration file. You should check
 the last line of the output for a success message:
 
-```default
+```text
 170214 12:37:01 completed OK!
 ```
 

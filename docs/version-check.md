@@ -50,7 +50,7 @@ submitted for the first time.
 
 As a result, the content of the sent query is as follows:
 
-```default
+```text
 85624f3fb5d2af8816178ea1493ed41a;DBD::mysql;4.044
 c2b6d625ef3409164cbf8af4985c48d3;MySQL;MySQL Community Server (GPL) 5.7.22-log
 85624f3fb5d2af8816178ea1493ed41a;OS;Manjaro Linux
@@ -67,7 +67,7 @@ from a Percona product which supports it. Here is a simple example which shows
 running [pt-diskstats](https://www.percona.com/doc/percona-toolkit/LATEST/pt-diskstats.html) tool
 from the Percona Toolkit with *version checking* turned off:
 
-```default
+```shell
 pt-diskstats --no-version-check
 ```
 
@@ -77,7 +77,7 @@ Disabling *version checking* permanently can be done by placing
 in case of Percona Toolkit [this can be done](https://www.percona.com/doc/percona-toolkit/LATEST/configuration_files.html)
 in a global configuration file `/etc/percona-toolkit/percona-toolkit.conf`:
 
-```default
+```text
 # Disable Version Check for all tools:
 no-version-check
 ```
@@ -85,7 +85,7 @@ no-version-check
 In case of Percona XtraBackup this can be done [in its configuration file](https://www.percona.com/doc/percona-xtrabackup/2.4/using_xtrabackup/configuring.htm)
 in a similar way:
 
-```default
+```text
 [xtrabackup]
 no-version-check
 ```

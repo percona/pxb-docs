@@ -8,14 +8,14 @@ can be compressed or decompressed with xbstream.
 In order to make a compressed backup you’ll need to use the xtrabackup –compress
 option:
 
-```bash
+```shell
 $ xtrabackup --backup --compress --target-dir=/data/compressed/
 ```
 
 The `xtrabackup --compress` uses the `qpress` tool that you can install via
 the `percona-release` package configuration tool as follows:
 
-```bash
+```shell
 $ sudo percona-release enable tools
 $ sudo apt update
 $ sudo apt install qpress
@@ -29,14 +29,14 @@ If you want to speed up the compression you can use the parallel compression,
 which can be enabled with xtrabackup –compress-threads option.
 Following example will use four threads for compression:
 
-```bash
+```shell
 $ xtrabackup --backup --compress --compress-threads=4 \
 --target-dir=/data/compressed/
 ```
 
 Output should look like this
 
-```default
+```text
 ...
 170223 13:00:38 [01] Compressing ./test/sbtest1.frm to /tmp/compressed/test/sbtest1.frm.qp
 170223 13:00:38 [01]        ...done
@@ -55,7 +55,7 @@ Before you can prepare the backup you must uncompress all the files.
 *Percona XtraBackup* has implemented `xtrabackup --decompress` option
 that can be used to decompress the backup.
 
-```bash
+```shell
 $ xtrabackup --decompress --target-dir=/data/compressed/
 ```
 
@@ -72,13 +72,13 @@ they are not copied or moved to the datadir if
 When the files are uncompressed you can prepare the backup with the
 `xtrabackup --prepare` option:
 
-```bash
+```shell
 $ xtrabackup --prepare --target-dir=/data/compressed/
 ```
 
 Check for a confirmation message:
 
-```default
+```text
 InnoDB: Starting shutdown...
 InnoDB: Shutdown completed; log sequence number 9293846
 170223 13:39:31 completed OK!
@@ -91,21 +91,21 @@ Now the files in `/data/compressed/` are ready to be used by the server.
 xtrabackup has a `xtrabackup --copy-back` option, which performs the
 restoration of a backup to the server’s datadir:
 
-```bash
+```shell
 $ xtrabackup --copy-back --target-dir=/data/backups/
 ```
 
 The option copies all the data-related files back to the server’s `datadir`,
 determined by the server’s `my.cnf` configuration file. Check the last line of the output for a success message:
 
-```default
+```text
 170223 13:49:13 completed OK!
 ```
 
 Verify the file permissions after copying the data back. You may need
 to adjust the permissions. For example, the following command changes the owner of the file location:
 
-```bash
+```shell
 $ chown -R mysql:mysql /var/lib/mysql
 ```
 

@@ -10,7 +10,7 @@ operating system error 17, `file exists`.
 
 To start the backup process run:
 
-```bash
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/
 ```
 
@@ -55,8 +55,11 @@ After the backup is finished, the target directory will contain files such as
 the following, assuming you have a single InnoDB table `test.tbl1` and
 you are using MySQL’s `innodb_file_per_table` option:
 
-```bash
+```shell
 $ ls -lh /data/backups/
+```
+The results are as follows:
+```text
 total 182M
 drwx------  7 root root 4.0K Sep  6 10:19 .
 drwxrwxrwt 11 root root 4.0K Sep  6 11:05 ..
@@ -103,7 +106,7 @@ copied data files, using the copied log file. The `prepare` step is very
 simple to use: you simply run `xtrabackup --prepare` option and tell it
 which directory to prepare, for example, to prepare the previously taken backup run:
 
-```bash
+```shell
 $ xtrabackup --prepare --target-dir=/data/backups/
 ```
 
@@ -118,7 +121,7 @@ InnoDB: Shutdown completed; log sequence number 137345046
 All following prepares will not change the already prepared data files, you’ll
 see that output says:
 
-```console
+```text
 xtrabackup: This target seems to be already prepared.
 xtrabackup: notice: xtrabackup_logfile was already used to '--prepare'.
 ```
@@ -137,7 +140,7 @@ Backup validity is not guaranteed if prepare process was interrupted.
 
     Backup needs to be prepared before it can be restored.
 
-```bash
+```shell
 $ xtrabackup --copy-back --target-dir=/data/backups/
 ```
 
@@ -153,7 +156,7 @@ If you don’t want to use any of the above options, you can additionally use
 Example of the `rsync` command that can be used to restore the backup
 can look like this:
 
-```bash
+```shell
 $ rsync -avrP /data/backup/ /var/lib/mysql/
 ```
 
@@ -164,7 +167,7 @@ As files’ attributes will be preserved, in most cases you will need to change
 the files’ ownership to `mysql` before starting the database server, as they
 will be owned by the user who created the backup:
 
-```bash
+```shell
 $ chown -R mysql:mysql /var/lib/mysql
 ```
 
@@ -174,7 +177,7 @@ Data is now restored and you can start the server.
 
     When `relay-log-info-repository=TABLE` is enabled, the instance recovered from the backup has errors in the error log, like the following:
 
-    ```bash
+    ```text
     2019-08-09 12:40:02 69297 [ERROR] Failed to open the relay log '/data/mysql-relay-bin.004349' (relay_log_pos 5534092)
     ```
 

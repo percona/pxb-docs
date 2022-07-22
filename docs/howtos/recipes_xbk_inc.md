@@ -8,8 +8,8 @@ Backup all the InnoDB data and log files - located in `/var/lib/mysql/` -
 
 Making an incremental backup requires a full backup as a base:
 
-```default
-xtrabackup --backup --target-dir=/data/backups/mysql/
+```shell
+$ xtrabackup --backup --target-dir=/data/backups/mysql/
 ```
 
 It is important that you **do not run** the `xtrabackup --prepare` command yet.
@@ -18,15 +18,15 @@ It is important that you **do not run** the `xtrabackup --prepare` command yet.
 
 Suppose the full backup is on Monday, and you will create an incremental one on Tuesday:
 
-```default
-xtrabackup --backup --target-dir=/data/backups/inc/tue/ \
+```shell
+$ xtrabackup --backup --target-dir=/data/backups/inc/tue/ \
       --incremental-basedir=/data/backups/mysql/
 ```
 
 and the same policy is applied on Wednesday:
 
-```default
-xtrabackup --backup --target-dir=/data/backups/inc/wed/ \
+```shell
+$ xtrabackup --backup --target-dir=/data/backups/inc/wed/ \
        --incremental-basedir=/data/backups/inc/tue/
 ```
 
@@ -34,16 +34,16 @@ xtrabackup --backup --target-dir=/data/backups/inc/wed/ \
 
 Prepare the base backup (Monday’s backup):
 
-```default
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/
+```shell
+$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/
 ```
 
 ## Roll forward the base data to the first increment
 
 Roll Monday’s data forward to the state on Tuesday:
 
-```default
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
+```shell
+$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
    --incremental-dir=/data/backups/inc/tue/
 ```
 
@@ -51,8 +51,8 @@ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
 
 Roll forward again to the state on Wednesday:
 
-```default
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
+```shell
+$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
    --incremental-dir=/data/backups/inc/wed/
 ```
 
@@ -60,8 +60,8 @@ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
 
 Create the new logs by preparing it:
 
-```default
-xtrabackup --prepare --target-dir=/data/backups/mysql/
+```shell
+$ xtrabackup --prepare --target-dir=/data/backups/mysql/
 ```
 
 ## Notes

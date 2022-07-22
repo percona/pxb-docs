@@ -14,7 +14,7 @@ To use the streaming feature, you must use the `innobackupex --stream`,
 providing the format of the stream (`tar` or `xbstream` ) and where to store
 the temporary files:
 
-```default
+```shell
 $ innobackupex --stream=tar /tmp
 ```
 
@@ -40,25 +40,25 @@ be uncompressed.
 
 Store the complete backup directly to a single file:
 
-```default
+```shell
 $ innobackupex --stream=xbstream /root/backup/ > /root/backup/backup.xbstream
 ```
 
 To stream and compress the backup:
 
-```default
+```shell
 $ innobackupex --stream=xbstream --compress /root/backup/ > /root/backup/backup.xbstream
 ```
 
 To unpack the backup to the /root/backup/ directory:
 
-```default
+```shell
 $ xbstream -x <  backup.xbstream -C /root/backup/
 ```
 
 To send the compressed backup to another host and unpack it:
 
-```bash
+```shell
 $ innobackupex --compress --stream=xbstream /root/backup/ | ssh user@otherhost "xbstream -x -C /root/backup/"
 ```
 
@@ -66,13 +66,13 @@ $ innobackupex --compress --stream=xbstream /root/backup/ | ssh user@otherhost "
 
 Store the complete backup directly to a tar archive:
 
-```bash
+```shell
 $ innobackupex --stream=tar /root/backup/ > /root/backup/out.tar
 ```
 
 To send the tar archive to another host:
 
-```bash
+```shell
 $ innobackupex --stream=tar ./ | ssh user@destination \ "cat - > /data/backups/backup.tar"
 ```
 
@@ -81,15 +81,13 @@ $ innobackupex --stream=tar ./ | ssh user@destination \ "cat - > /data/backups/b
     To extract *Percona XtraBackup*’s archive you **must** use tar with `-i` option:
 
 
-```default
-.. code-block:: bash
+
+```shell
+ $ tar -xizf backup.tar.gz
 ```
-
-> $ tar -xizf backup.tar.gz
-
 Compress with your preferred compression tool:
 
-```bash
+```shell
 $ innobackupex --stream=tar ./ | gzip - > backup.tar.gz
 $ innobackupex --stream=tar ./ | bzip2 - > backup.tar.bz2
 ```

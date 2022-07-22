@@ -85,7 +85,7 @@ Running the *innobackupex* with the following options will cause *innobackupex*
 to spend no longer than 3 minutes waiting for all queries older than 40 seconds
 to complete.
 
-```bash
+```shell
 $ innobackupex --ftwrl-wait-threshold=40 --ftwrl-wait-query-type=all --ftwrl-wait-timeout=180 --kill-long-queries-timeout=20 --kill-long-query-type=all /data/backups/
 ```
 

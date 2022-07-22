@@ -19,13 +19,13 @@ To make an encrypted backup following options need to be specified (options
 Both `innobackupex --encrypt-key` option and `innobackupex --encrypt-key-file` option can be used to specify the encryption key. Encryption
 key can be generated with a command like:
 
-```default
+```shell
 $ openssl rand -base64 24
 ```
 
 Example output of that command should look like this:
 
-```default
+```text
 GCHFLrDFVx6UAsRb88uLVbAVWbK+Yzfs
 ```
 
@@ -36,7 +36,7 @@ This value then can be used as the encryption key
 Example of the innobackupex command using the innobackupex
 –encrypt-key should look like this
 
-```default
+```shell
 $ innobackupex --encrypt=AES256 --encrypt-key="GCHFLrDFVx6UAsRb88uLVbAVWbK+Yzfs" /data/backups
 ```
 
@@ -44,7 +44,7 @@ $ innobackupex --encrypt=AES256 --encrypt-key="GCHFLrDFVx6UAsRb88uLVbAVWbK+Yzfs"
 
 Example of the innobackupex command using the `innobackupex --encrypt-key-file` should look like this:
 
-```default
+```shell
 $ innobackupex --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile /data/backups
 ```
 
@@ -71,14 +71,14 @@ encryption buffer for each encryption thread (default is 64K).
 Backups can be decrypted with [The xbcrypt binary](../xbcrypt/xbcrypt.md#xbcrypt). The following one-liner can be
 used to encrypt the whole folder:
 
-```default
+```shell
 $ for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 < $i > $(dirname $i)/$(basename $i .xbcrypt) && rm $i; done
 ```
 
 *Percona XtraBackup* `innobackupex --decrypt` option has been
 implemented that can be used to decrypt the backups:
 
-```default
+```shell
 $ innobackupex --decrypt=AES256 --encrypt-key="GCHFLrDFVx6UAsRb88uLVbAVWbK+Yzfs" /data/backups/2015-03-18_08-31-35/
 ```
 
@@ -97,7 +97,7 @@ When the files have been decrypted backup can be prepared.
 After the backups have been decrypted, they can be prepared the same way as the
 standard full backups with the `innobackupex --apply-log` option:
 
-```default
+```shell
 $ innobackupex --apply-log /data/backups/2015-03-18_08-31-35/
 ```
 
@@ -109,7 +109,7 @@ $ innobackupex --apply-log /data/backups/2015-03-18_08-31-35/
 
 innobackupex has a `innobackupex --copy-back` option, which performs the restoration of a backup to the server’s `datadir`
 
-```default
+```shell
 $ innobackupex --copy-back /path/to/BACKUP-DIR
 ```
 
@@ -117,11 +117,11 @@ It will copy all the data-related files back to the server’s `datadir`,
 determined by the server’s `my.cnf` configuration file. You should check
 the last line of the output for a success message:
 
-```default
+```text
 innobackupex: Finished copying back files.
 150318 11:08:13  innobackupex: completed OK!
 ```
 
 ## Other Reading
 
-* [The Libgcrypt Reference Manual](http://www.gnupg.org/documentation/manuals/gcrypt/)
+* [The Libgcrypt Reference Manual](https://www.gnupg.org/documentation/manuals/gcrypt/)

@@ -18,14 +18,14 @@ Exporting is done in the preparation stage, not at the moment of creating the
 backup. Once a full backup is created, prepare it with the
 `innobackupex --export` option:
 
-```bash
+```shell
 $ innobackupex --apply-log --export /path/to/backup
 ```
 
 This will create for each *InnoDB* with its own tablespace a file with
 `.exp` extension. An output of this procedure would contain:
 
-```default
+```text
 ..
 xtrabackup: export option is specified.
 xtrabackup: export metadata of table 'mydatabase/mytable' to file
@@ -35,8 +35,13 @@ xtrabackup: export metadata of table 'mydatabase/mytable' to file
 
 Now you should see a `.exp` file in the target directory:
 
-```default
+```shell
 $ find /data/backups/mysql/ -name export_test.*
+```
+
+The result should be similar to the following:
+
+```text
 /data/backups/mysql/test/export_test.exp
 /data/backups/mysql/test/export_test.ibd
 /data/backups/mysql/test/export_test.cfg
@@ -60,13 +65,13 @@ Each `.exp` (or `.cfg`)  file will be used for importing that table.
 To import a table to other server, first create a new table with the same
 structure as the one that will be imported at that server:
 
-```default
+```sql
 OTHERSERVER|mysql> CREATE TABLE mytable (...) ENGINE=InnoDB;
 ```
 
 then discard its tablespace:
 
-```default
+```sql
 OTHERSERVER|mysql> ALTER TABLE mydatabase.mytable DISCARD TABLESPACE;
 ```
 
@@ -74,13 +79,13 @@ Next, copy `mytable.ibd` and `mytable.exp` ( or `mytable.cfg`
 if importing to *MySQL* 5.6) files to database’s home, and import its
 tablespace:
 
-```default
+```sql
 OTHERSERVER|mysql> ALTER TABLE mydatabase.mytable IMPORT TABLESPACE;
 ```
 
 Set the owner and group of the files:
 
-```bash
+```shell
 $ chown -R mysql:mysql /datadir/db_name/table_name.*
 ```
 

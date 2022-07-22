@@ -1,6 +1,6 @@
 # The innobackupex Option Reference
 
-This page documents all of the command-line options for the `innobackupex`.
+This page documents all the command-line options for the `innobackupex`.
 
 ## Options
 

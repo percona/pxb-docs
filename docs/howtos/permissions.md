@@ -8,8 +8,13 @@ By `privileges` we refer to the abilities of a database user to perform differen
 
 There are many ways for checking the permission on a file or directory. For example, `ls -ls /path/to/file` or `stat /path/to/file | grep Access` will do the job:
 
-```default
+```shell
 $ stat /etc/mysql | grep Access
+```
+
+You should see results similar to the following:
+
+```text
 Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
 Access: 2011-05-12 21:19:07.129850437 -0300
 $ ls -ld /etc/mysql/my.cnf
@@ -18,8 +23,12 @@ $ ls -ld /etc/mysql/my.cnf
 
 As in this example, `my.cnf` is owned by `root` and not writable for anyone else. Assuming that you do not have `root` ‘s password, you can check what permissions you have on this types of files with `sudo -l`:
 
-```default
+```shell
 $ sudo -l
+```
+You should see results similar to the following:
+
+```text
 Password:
 You may run the following commands on this host:
 (root) /usr/bin/
@@ -40,20 +49,22 @@ There are other ways for managing permissions, such as using *PolicyKit*, *Exten
 
 To query the privileges that your database user has been granted, at a console of the server execute:
 
-```default
+```sql
 mysql> SHOW GRANTS;
 ```
 
 or for a particular user with:
 
-```default
+```sql
 mysql> SHOW GRANTS FOR 'db-user'@'host';
 ```
 
-It will display the privileges using the same format as for the [GRANT statement](http://dev.mysql.com/doc/refman/5.1/en/show-grants.html).
+It will display the privileges using the same format as for the 
+[SHOW-GRANT 
+statement](http://dev.mysql.com/doc/refman/5.7/en/show-grants.html).
 
 Note that privileges may vary across versions of the server. To list the exact list of privileges that your server support (and a brief description of them) execute:
 
-```default
+```sql
 mysql> SHOW PRIVILEGES;
 ```

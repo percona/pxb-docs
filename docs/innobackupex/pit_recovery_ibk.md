@@ -6,13 +6,13 @@ Note that the binary log contains the operations that modified the database from
 
 For taking the snapshot, we will use *innobackupex* for a full backup:
 
-```default
+```shell
 $ innobackupex /path/to/backup --no-timestamp
 ```
 
 (the `innobackupex --no-timestamp` option is for convenience in this example) and we will prepare it to be ready for restoration:
 
-```default
+```shell
 $ innobackupex --apply-log /path/to/backup
 ```
 
@@ -22,8 +22,12 @@ Now, suppose that time has passed, and you want to restore the database to a cer
 
 To find out what is the situation of binary logging in the server, execute the following queries:
 
-```default
+```sql
 mysql> SHOW BINARY LOGS;
+```
+The result is similar to the following:
+
+```text
 +------------------+-----------+
 | Log_name         | File_size |
 +------------------+-----------+
@@ -36,8 +40,12 @@ mysql> SHOW BINARY LOGS;
 
 and
 
-```default
+```sql
 mysql> SHOW MASTER STATUS;
+```
+The result is similar to the following:
+```text
+
 +------------------+----------+--------------+------------------+
 | File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
 +------------------+----------+--------------+------------------+
@@ -49,20 +57,24 @@ The first query will tell you which files contain the binary log and the second 
 
 To find out the position of the snapshot taken, see the `xtrabackup_binlog_info` at the backup’s directory:
 
-```default
+```shell
 $ cat /path/to/backup/xtrabackup_binlog_info
+```
+The result is similar to the following:
+
+```text
 mysql-bin.000003      57
 ```
 
 This will tell you which file was used at moment of the backup for the binary log and its position. That position will be the effective one when you restore the backup:
 
-```default
+```shell
 $ innobackupex --copy-back /path/to/backup
 ```
 
 As the restoration will not affect the binary log files (you may need to adjust file permissions, see [Restoring a Full Backup with innobackupex](restoring_a_backup_ibk.md)), the next step is extracting the queries from the binary log with `mysqlbinlog` starting from the position of the snapshot and redirecting it to a file
 
-```default
+```shell
 $ mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 \
     --start-position=57 > mybinlog.sql
 ```
@@ -71,7 +83,7 @@ Note that if you have multiple files for the binary log, as in the example, you 
 
 Inspect the file with the queries to determine which position or date corresponds to the point-in-time wanted. Once determined, pipe it to the server. Assuming the point is `11-12-25 01:00:00`:
 
-```default
+```shell
 $ mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 \
     --start-position=57 --stop-datetime="11-12-25 01:00:00" * mysql -u root -p
 ```

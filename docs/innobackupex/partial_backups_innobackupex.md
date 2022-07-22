@@ -27,7 +27,7 @@ qualified table name, including the database name, in the form
 
 For example,
 
-```default
+```shell
 $ innobackupex --include='^mydatabase[.]mytable' /path/to/backup
 ```
 
@@ -45,7 +45,7 @@ names, one per line, in the `databasename.tablename` format.
 
 For example,
 
-```default
+```shell
 $ echo "mydatabase.mytable" > /tmp/tables.txt
 $ innobackupex --tables-file=/tmp/tables.txt /path/to/backup
 ```
@@ -65,7 +65,7 @@ backup - in the `databasename[.tablename]` form.
 
 For example,
 
-```default
+```shell
 $ innobackupex --databases="mydatabase.mytable mysql" /path/to/backup
 ```
 
@@ -82,7 +82,7 @@ For preparing partial backups, the procedure is analogous to [restoring
 individual tables](restoring_individual_tables_ibk.md) : apply the logs and use
 the `innobackupex --export` option:
 
-```default
+```shell
 $ innobackupex --apply-log --export /path/to/partial/backup
 ```
 
@@ -92,7 +92,7 @@ files besides the `.frm` files. *innobackupex* will use *xtrabackup* to
 remove the missing tables (those who weren’t selected in the partial backup)
 from the data dictionary in order to avoid future warnings or errors:
 
-```default
+```text
 111225  0:54:06  InnoDB: Error: table 'mydatabase/mytablenotincludedinpartialb'
 InnoDB: in InnoDB data dictionary has tablespace id 6,
 InnoDB: but tablespace with that id or name does not exist. It will be removed from data dictionary.
@@ -101,7 +101,7 @@ InnoDB: but tablespace with that id or name does not exist. It will be removed f
 You should also see the notification of the creation of a file needed for
 importing (.exp file) for each table included in the partial backup:
 
-```default
+```text
 xtrabackup: export option is specified.
 xtrabackup: export metadata of table 'employees/departments' to file `.//departments.exp` (2 indexes)
 xtrabackup:     name=PRIMARY, id.low=80, page=3
@@ -114,7 +114,7 @@ create the `.exp` files.
 
 Finally, check for the confirmation message in the output:
 
-```default
+```text
 111225 00:54:18  innobackupex: completed OK!
 ```
 
@@ -126,6 +126,6 @@ It can also be done by copying back the prepared backup to a “clean”
 `datadir` (in that case, make sure to include the `mysql`
 database). System database can be created with:
 
-```default
+```shell
 $ sudo mysql_install_db --user=mysql
 ```

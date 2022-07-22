@@ -12,7 +12,7 @@ If the data is stored on a single file, this option will have no effect.
 
 To use this feature, simply add the option to a local backup, for example:
 
-```default
+```shell
 $ innobackupex --parallel=4 /path/to/backup
 ```
 
@@ -20,7 +20,7 @@ By using the *xbstream* in streaming backups you can additionally speed up the c
 
 To use this feature, simply add the option to a local backup, for example
 
-```default
+```shell
 $ innobackupex --stream=xbstream --compress --compress-threads=4 ./ > backup.xbstream
 ```
 
