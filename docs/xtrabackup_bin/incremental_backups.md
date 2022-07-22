@@ -40,14 +40,14 @@ backup’s target directory. This file contains a line showing the `to_lsn`,
 which is the database’s `LSN` at the end of the backup. [Create the
 full backup](../backup_scenarios/full_backup.md#creating-a-backup) with a command such as the following:
 
-```default
+```shell
 xtrabackup --backup --target-dir=/data/backups/base --datadir=/var/lib/mysql/
 ```
 
 If you look at the `xtrabackup_checkpoints` file, you should see some
 contents similar to the following:
 
-```default
+```text
 backup_type = full-backuped
 from_lsn = 0
 to_lsn = 1291135
@@ -56,8 +56,8 @@ to_lsn = 1291135
 Now that you have a full backup, you can make an incremental backup based on
 it. Use a command such as the following:
 
-```default
-xtrabackup --backup --target-dir=/data/backups/inc1 \
+```shell
+$ xtrabackup --backup --target-dir=/data/backups/inc1 \
 --incremental-basedir=/data/backups/base --datadir=/var/lib/mysql/
 ```
 
@@ -67,7 +67,7 @@ changes since the `LSN 1291135`. If you examine the
 `xtrabackup_checkpoints` file in this directory, you should see something
 similar to the following:
 
-```default
+```text
 backup_type = incremental
 from_lsn = 1291135
 to_lsn = 1291340
@@ -76,8 +76,8 @@ to_lsn = 1291340
 The meaning should be self-evident. It’s now possible to use this directory as
 the base for yet another incremental backup:
 
-```default
-xtrabackup --backup --target-dir=/data/backups/inc2 \
+```shell
+$ xtrabackup --backup --target-dir=/data/backups/inc2 \
 --incremental-basedir=/data/backups/inc1 --datadir=/var/lib/mysql/
 ```
 
@@ -100,7 +100,7 @@ option to prevent the rollback phase.
 Beginning with the full backup you created, you can prepare it, and then apply
 the incremental differences to it. Recall that you have the following backups:
 
-```default
+```text
 /data/backups/base
 /data/backups/inc1
 /data/backups/inc2
@@ -109,13 +109,13 @@ the incremental differences to it. Recall that you have the following backups:
 To prepare the base backup, you need to run xtrabackup –prepare as
 usual, but prevent the rollback phase:
 
-```default
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
+```shell
+$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
 ```
 
 The output should end with some text such as the following:
 
-```default
+```text
 101107 20:49:43  InnoDB: Shutdown completed; log sequence number 1291135
 ```
 
@@ -131,8 +131,8 @@ start. It will notify you that the database was not shut down normally.
 To apply the first incremental backup to the full backup, you should use the
 following command:
 
-```default
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+```text
+$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
 
@@ -142,7 +142,7 @@ applies the redo log as usual to the result. The final data is in
 `/data/backups/base`, not in the incremental directory. You should see
 some output such as the following:
 
-```default
+```text
 incremental backup from 1291135 is enabled.
 xtrabackup: cd to /data/backups/base/
 xtrabackup: This target seems to be already prepared.
@@ -162,8 +162,8 @@ Preparing the second incremental backup is a similar process: apply the deltas
 to the (modified) base backup, and you will roll its data forward in time to the
 point of the second incremental backup:
 
-```default
-xtrabackup --prepare --target-dir=/data/backups/base \
+```shell
+$ xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2
 ```
 

@@ -31,13 +31,13 @@ You can install the yum repository for percona-release
 by running the following command as a `root` user or with
 `sudo`:
 
-```bash
+```shell
 $ yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 ```
 
 You should see some output such as the following:
 
-```bash
+```text
 Retrieving https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 Preparing...                ########################################### [100%]
    1:percona-release        ########################################### [100%]
@@ -47,7 +47,7 @@ Preparing...                ########################################### [100%]
 
     *RHEL*/*Centos* 5 doesn’t support installing the packages directly from the remote location so you’ll need to download the package first and install it manually with rpm:
 
-```bash
+```shell
 $ wget https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 $ rpm -ivH percona-release-latest.noarch.rpm
 ```
@@ -57,13 +57,13 @@ $ rpm -ivH percona-release-latest.noarch.rpm
 Make sure packages are now available from the repository, by executing the
 following command:
 
-```bash
-yum list | grep percona
+```shell
+$ yum list | grep percona
 ```
 
 You should see output similar to the following:
 
-```bash
+```text
 ...
 percona-xtrabackup-20.x86_64               2.0.8-587.rhel5             percona-release-x86_64
 percona-xtrabackup-20-debuginfo.x86_64     2.0.8-587.rhel5             percona-release-x86_64
@@ -117,14 +117,14 @@ Download the packages of the desired series for your architecture from the
 example will download *Percona XtraBackup* 2.4.4 release package for
 *CentOS* 7:
 
-```bash
+```shell
 $ wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.4/\
 binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.4-1.el7.x86_64.rpm
 ```
 
 Now you can install *Percona XtraBackup* by running:
 
-```bash
+```shell
 $ yum localinstall percona-xtrabackup-24-2.4.4-1.el7.x86_64.rpm
 ```
 
@@ -139,6 +139,6 @@ installed packages.
 
 Remove the packages
 
-```bash
+```shell
 yum remove percona-xtrabackup
 ```

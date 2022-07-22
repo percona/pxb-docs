@@ -3,7 +3,7 @@
 For convenience, *innobackupex* has a `innobackupex --copy-back` option,
 which performs the restoration of a backup to the server’s `datadir`:
 
-```bash
+```shell
 $ innobackupex --copy-back /path/to/BACKUP-DIR
 ```
 
@@ -11,7 +11,7 @@ It will copy all the data-related files back to the server’s `datadir`,
 determined by the server’s `my.cnf` configuration file. You should check
 the last line of the output for a success message:
 
-```default
+```text
 innobackupex: Finished copying back files.
 
 111225 01:08:13  innobackupex: completed OK!
@@ -25,7 +25,7 @@ As files’ attributes will be preserved, in most cases you will need to change
 the files’ ownership to `mysql` before starting the database server, as they
 will be owned by the user who created the backup:
 
-```bash
+```shell
 $ chown -R mysql:mysql /var/lib/mysql
 ```
 

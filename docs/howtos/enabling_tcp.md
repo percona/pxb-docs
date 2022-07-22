@@ -4,8 +4,11 @@ Most of the Linux distributions do not enable by default to accept TCP/IP connec
 
 You can check it with `netstat` on a shell:
 
-```default
+```shell
 $ netstat -lnp | grep mysql
+```
+You should see results similar to the following:
+```text
 tcp         0        0 0.0.0.0:3306 0.0.0.0:* LISTEN 2480/mysqld
 unix 2 [ ACC ] STREAM LISTENING 8101 2480/mysqld /tmp/mysql.sock
 ```

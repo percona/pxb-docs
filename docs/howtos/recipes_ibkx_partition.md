@@ -28,7 +28,7 @@ qualified tablename, including the database name, in the form
 For example, this will back up the partition `p4` from the table `name`
 located in the database `imdb`:
 
-```default
+```shell
 $ innobackupex --include='^imdb[.]name#P#p4' /mnt/backup/
 ```
 
@@ -37,7 +37,7 @@ innobackupex creates, but only the data files related to the tables matched.
 
 Output of the innobackupex will list the skipped tables
 
-```default
+```text
 ...
 [01] Skipping ./imdb/person_info.ibd
 [01] Skipping ./imdb/name#P#p5.ibd
@@ -59,17 +59,17 @@ For preparing partial backups, the procedure is analogous to [restoring
 individual tables](../innobackupex/restoring_individual_tables_ibk.md) : apply the
 logs and use `innobackupex --export`:
 
-```bash
+```shell
 $ innobackupex --apply-log --export /mnt/backup/2012-08-28_10-29-09
 ```
 
-You may see warnings in the output about tables that don’t exists. This is
+You may see warnings in the output about tables that don’t exist. This is
 because *InnoDB*-based engines stores its data dictionary inside the tablespace
 files besides the `.frm` files. innobackupex will use xtrabackup to
 remove the missing tables (those that haven’t been selected in the partial
 backup) from the data dictionary in order to avoid future warnings or errors:
 
-```default
+```text
 InnoDB: in InnoDB data dictionary has tablespace id 51,
 InnoDB: but tablespace with that id or name does not exist. It will be removed from data dictionary.
 120828 10:25:28  InnoDB: Waiting for the background threads to start
@@ -82,7 +82,7 @@ xtrabackup:     name=PRIMARY, id.low=73, page=3
 You should also see the notification of the creation of a file needed for
 importing (`.exp` file) for each table included in the partial backup:
 
-```default
+```text
 xtrabackup: export option is specified.
 xtrabackup: export metadata of table 'imdb/name#P#p4' to file `./imdb/name#P#p4.exp` (1 indexes)
 xtrabackup:     name=PRIMARY, id.low=73, page=3
@@ -94,7 +94,7 @@ files.
 
 Finally, check the for the confirmation message in the output:
 
-```default
+```text
 120828 19:25:38  innobackupex: completed OK!
 ```
 
@@ -109,10 +109,7 @@ server.
 
 First step is to create new table in which data will be restored
 
-```default
-.. code-block:: mysql
-```
-
+```sql
 > mysql> CREATE TABLE name_p4 (
 > id int(11) NOT NULL AUTO_INCREMENT,
 > name text NOT NULL,
@@ -123,18 +120,19 @@ First step is to create new table in which data will be restored
 > surname_pcode varchar(5) DEFAULT NULL,
 > PRIMARY KEY (id)
 > ) ENGINE=InnoDB AUTO_INCREMENT=2812744 DEFAULT CHARSET=utf8
+```
 
 To restore the partition from the backup tablespace needs to be discarded for
 that table:
 
-```mysql
+```sql
 mysql>  ALTER TABLE name_p4 DISCARD TABLESPACE;
 ```
 
 The next step is to copy the `.exp` and `ibd` files from the backup to *MySQL*
 data directory:
 
-```bash
+```shell
 $ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.exp /var/lib/mysql/imdb/name_p4.exp
 $ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 ```
@@ -145,13 +143,13 @@ $ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name
 
 If you are running the *Percona Server for MySQL* make sure that variable `innodb_import_table_from_xtrabackup` is enabled:
 
-```mysql
+```sql
 mysql> SET GLOBAL innodb_import_table_from_xtrabackup=1;
 ```
 
 The last step is to import the tablespace:
 
-```mysql
+```sql
 mysql>  ALTER TABLE name_p4 IMPORT TABLESPACE;
 ```
 
@@ -170,7 +168,7 @@ tables through `ALTER TABLE` … `EXCHANGE PARTITION` command.
 When importing an entire partitioned table, first import all (sub)partitions as
 independent tables:
 
-```mysql
+```sql
 mysql> CREATE TABLE `name_p4` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `name` text NOT NULL,
@@ -186,27 +184,27 @@ PRIMARY KEY (`id`)
 To restore the partition from the backup tablespace needs to be discarded for
 that table:
 
-```mysql
+```sql
 mysql>  ALTER TABLE name_p4 DISCARD TABLESPACE;
 ```
 
 The next step is to copy the `.cfg` and `.ibd` files from the backup to *MySQL* data directory:
 
-```bash
+```shell
 $ cp /mnt/backup/2013-07-18_10-29-09/imdb/name#P#p4.cfg /var/lib/mysql/imdb/name_p4.cfg
 $ cp /mnt/backup/2013-07-18_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 ```
 
 The last step is to import the tablespace:
 
-```mysql
+```sql
 mysql>  ALTER TABLE name_p4 IMPORT TABLESPACE;
 ```
 
 We can now create the empty partitioned table with exactly the same schema as
 the table being imported:
 
-```mysql
+```sql
 mysql> CREATE TABLE name2 LIKE name;
 ```
 
@@ -214,7 +212,7 @@ Then swap empty partitions from the newly created table with individual tables
 corresponding to partitions that have been exported/imported on the previous
 steps:
 
-```mysql
+```sql
 mysql> ALTER TABLE name2 EXCHANGE PARTITION p4 WITH TABLE name_p4;
 ```
 

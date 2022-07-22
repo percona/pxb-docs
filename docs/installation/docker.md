@@ -10,7 +10,7 @@ configurations where each program runs in a separate container. You may run
 Create a Docker container based on a Docker image. Docker images for Percona XtraBackup
 are hosted publicly on Docker Hub at `percona/percona-xtrabackup`.
 
-```bash
+```shell
 $ sudo docker create ... percona/percona-xtrabackup --name xtrabackup ...
 ```
 
@@ -53,7 +53,7 @@ intend to use with Percona XtraBackup.
       * [Installing on a host machine](https://www.percona.com/doc/percona-server/5.7/installation.html)
       * [Running in a Docker container](https://www.percona.com/doc/percona-server/5.7/installation/docker.html)
 
-```bash
+```shell
 $ sudo docker run -d --name percona-server-mysql-5.7 \
 -e MYSQL_ROOT_PASSWORD=root percona/percona-server:5.7
 ```
@@ -70,7 +70,7 @@ creates a Docker container and makes it available for starting later.
 Docker downloads the Percona XtraBackup image from the Docker Hub. If it
 is not the first time you use the selected image, Docker uses the image available locally.
 
-```bash
+```shell
 $ sudo docker create --name percona-xtrabackup-2.4 --volumes-from percona-server-mysql-5.7 \
 percona/percona-xtrabackup:2.4  \
 xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup \
@@ -85,7 +85,7 @@ indend to use the same data as the *percona-server-mysql* container.
 
 Run the container with exactly the same parameters that were used when the container was created:
 
-```bash
+```shell
 $ sudo docker start -ai percona-xtrabackup-2.4
 ```
 
@@ -94,7 +94,7 @@ input/output streams, and opens an interactive shell.
 
 The **docker run** is a shortcut command that creates a Docker container and then immediately runs it.
 
-```bash
+```shell
 $ sudo docker run --name percona-xtrabackup-2.4 --volumes-from percona-server-mysql-5.7 \
 percona/percona-xtrabackup:2.4
 xtrabackup --backup --data-dir=/var/lib/mysql --target-dir=/backup --user=root --password=mysql

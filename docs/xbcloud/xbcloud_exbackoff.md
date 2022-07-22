@@ -52,7 +52,7 @@ The error handling is enhanced when using the `--verbose` output. This output sp
 
 The following is an example of a verbose output:
 
-```bash
+```text
 210701 14:34:23 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
 210701 14:34:23 /work/pxb/ins/2.4/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
 ```
@@ -61,13 +61,13 @@ The following is an example of a verbose output:
 
 The following example adjusts the maximum number of retries and the maximum time between retries.
 
-```bash
+```text
 xbcloud [options] --max-retries=5 --max-backoff=10000
 ```
 
 The following text is an example of the exponential backoff used with the command:
 
-```bash
+```text
 210702 10:07:05 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
 210702 10:07:05 /work/pxb/ins/2.4/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [1]
 . . .

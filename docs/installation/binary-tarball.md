@@ -13,8 +13,11 @@ After you have downloaded the binary tarballs, extract the tarball in the file l
 
 Fetch and extract the correct binary tarball. For example, the following downloads the full tarball for version 2.4.24:
 
-```bash
+```shell
 $ wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.24/binary/tarball/percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz
+```
+The result may be similar to the following:
+```text
   --2022-04-13 14:34:45--  https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.24/binary/tarball/percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz
   Resolving downloads.percona.com (downloads.percona.com)... 162.220.4.221, 162.220.4.222, 74.121.199.231
   Connecting to downloads.percona.com (downloads.percona.com)|162.220.4.221|:443... connected.
@@ -25,7 +28,9 @@ $ wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-Xt
   percona-xtrabackup-2.4.24-Linux-x86_64 100%[==========================================================================>]  72.73M  5.29MB/s    in 20s
 
   2022-04-13 14:35:05 (3.61 MB/s) - ‘percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz’ saved [76263220/76263220]
-
+```
+Uncompress the file:
+```shell
 $ tar xvf percona-xtrabackup-2.4.21-Linux-x86_64.glibc2.12.tar.gz
 ```
 

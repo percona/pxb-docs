@@ -4,13 +4,13 @@ Many Linux distributions only install the ssh client by default. If you don’t 
 
 Using apt, run the following:
 
- ```default
+ ```shell
  $ sudo apt install openssh-server
  ```
 
 Using Red Hat Linux or a derivative, use the following:
 
- ```default
+ ```shell
  $ sudo yum install openssh-server
  ```
 

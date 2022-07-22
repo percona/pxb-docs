@@ -18,4 +18,5 @@ Here are some examples of using the `xbstream` option for streaming:
 |Checksumming the backup during the streaming|On the destination host:<br />`$ nc -l 9999 | tee >(sha1sum > destination_checksum) > /data/backups/backup.xbstream`<br /><br />On the source host:<br />`$ xtrabackup --backup --stream=xbstream ./ | tee >(sha1sum > source_checksum) | nc desthost 9999`<br /><br />Compare the checksums on the source host:<br />`$ cat source_checksum 65e4f916a49c1f216e0887ce54cf59bf3934dbad`<br /><br />Compare the checksums on the destination host:<br />`$ cat destination_checksum 65e4f916a49c1f216e0887ce54cf59bf3934dbad`|
 |Parallel compression with parallel copying backup|`$ xtrabackup --backup --compress --compress-threads=8 --stream=xbstream --parallel=4 ./ > backup.xbstream`|
 
-[^1]: Install from the [official site](http://www.ivarch.com/programs/quickref/pv.shtml) or from the distribution package (``apt install pv``).
+[^1]: Install from the [official site](https://www.ivarch.
+com/programs/quickref/pv.shtml) or from the distribution package (``apt install pv``).

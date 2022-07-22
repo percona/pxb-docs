@@ -52,7 +52,7 @@ To prevent creating corrupted backups when running DDL operations,
 Percona XtraBackup aborts if it detects that redo logging is disabled.
 In this case, the following error is printed:
 
-```default
+```text
 [FATAL] InnoDB: An optimized (without redo logging) DDL operation has been performed. All modified pages may not have been flushed to the disk yet.
 Percona XtraBackup will not be able to take a consistent backup. Retry the backup operation.
 ```

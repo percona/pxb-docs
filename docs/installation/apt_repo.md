@@ -27,7 +27,7 @@ with the *percona-release* package configuration tool.
 
 1. Download a deb package for *percona-release* the repository packages from Percona web:
 
-```bash
+```shell
 $ wget https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_all.deb
 ```
 
@@ -35,7 +35,7 @@ $ wget https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_al
 2. Install the downloaded package with `dpkg`. To do that, run the
 following commands as root or with `sudo`:
 
-```bash
+```shell
 $ sudo dpkg -i percona-release_latest.$(lsb_release -sc)_all.deb
 ```
 
@@ -52,13 +52,13 @@ repository: `percona-release enable-only tools`.
 
 4. After that you can install the `percona-xtrabackup-24` package:
 
-```bash
+```shell
 $ sudo apt install percona-xtrabackup-24
 ```
 
 5. In order to make compressed backups, install the `qpress` package:
 
-```bash
+```shell
 $ sudo apt install qpress
 ```
 
@@ -85,14 +85,14 @@ Download the packages of the desired series for your architecture from the
 example downloads the *Percona XtraBackup* 2.4.20 release package for *Debian*
 9.0:
 
-```bash
+```shell
 $ wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.20/\
 binary/debian/stretch/x86_64/percona-xtrabackup-24_2.4.20-1.stretch_amd64.deb
 ```
 
 Now you can install *Percona XtraBackup* by running:
 
-```bash
+```shell
 $ sudo dpkg -i percona-xtrabackup-24_2.4.20-1.stretch_amd64.deb
 ```
 
@@ -116,20 +116,24 @@ deb http://ftp.de.debian.org/debian buster-backports main
 
 2. Refresh the `apt` sources:
 
-```bash
+```shell
 sudo apt update
 ```
 
 3. Install the version from `buster-backports`:
 
-```bash
+```shell
 $ sudo apt install curl/buster-backports
 ```
 
 4. Verify the version number:
 
-```bash
+```shell
 $ curl --version
+```
+The result is similar to the following;
+
+```text
 curl 7.74.0 (x86_64-pc-linux-gnu) libcurl/7.74.0
 ```
 
@@ -141,6 +145,6 @@ packages.
 
 1. Remove the packages
 
-```bash
+```shell
 $ sudo apt remove percona-xtrabackup-24
 ```

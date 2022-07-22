@@ -30,14 +30,14 @@ tablename, including the database name, in the form `databasename.tablename`.
 To back up only tables in the `test` database, you can use the
 following command:
 
-```bash
+```shell
 $ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 --tables="^test[.].*"
 ```
 
 To back up only the table `test.t1`, you can use the following command:
 
-```bash
+```text
 $ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 --tables="^test[.]t1"
 ```
@@ -50,7 +50,7 @@ file will be backed up. Names are matched exactly, case-sensitive, with no
 pattern or regular expression matching. The table names must be fully qualified,
 in `databasename.tablename` format.
 
-```bash
+```shell
 $ echo "mydatabase.mytable" > /tmp/tables.txt
 $ xtrabackup --backup --tables-file=/tmp/tables.txt
 ```
@@ -67,7 +67,7 @@ the databases using `xtrabackup --copy-back`.
 
     Tables processed during the –prepare step may also be added to the backup even if they are not explicitly listed by the parameter if they were created after the backup started.
 
-```bash
+```shell
 $ xtrabackup --databases='mysql sys performance_schema ...'
 ```
 
@@ -92,7 +92,7 @@ warnings to be printed to the log file.
 An example of the error message you will see during the prepare phase
 follows.
 
-```default
+```text
 InnoDB: Reading tablespace information from the .ibd files...
 101107 22:31:30  InnoDB: Error: table 'test1/t'
 InnoDB: in InnoDB data dictionary has tablespace id 6,

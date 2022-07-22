@@ -6,13 +6,13 @@ To prepare a backup with *innobackupex* you have to use the
 `innobackupex --apply-log` option and full path to the backup directory as an
 argument:
 
-```default
+```shell
 $ innobackupex --apply-log /path/to/BACKUP-DIR
 ```
 
 and check the last line of the output for a confirmation on the process:
 
-```default
+```text
 150806 01:01:57  InnoDB: Shutdown completed; log sequence number 1609228
 150806 01:01:57  innobackupex: completed OK!
 ```
@@ -46,6 +46,6 @@ the free or available `RAM` on your system, it defaults to `100MB`. In
 general, the more memory available to the process, the better. The amount of
 memory used in the process can be specified by multiples of bytes:
 
-```default
+```shell
 $ innobackupex --apply-log --use-memory=4G /path/to/BACKUP-DIR
 ```

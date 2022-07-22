@@ -7,7 +7,7 @@ individual .ibd files. A table that is not contained in its own `.ibd` file cann
 
 Let’s see how to export and import the following table:
 
-```mysql
+```sql
 CREATE TABLE export_test (
   a int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -19,7 +19,7 @@ This table should have been created in `innodb_file_per_table` mode, so
 after taking a backup as usual with `xtrabackup --backup`, the
 `.ibd` file should exist in the target directory:
 
-```bash
+```shell
 $ find /data/backups/mysql/ -name export_test.*
 /data/backups/mysql/test/export_test.ibd
 ```
@@ -27,7 +27,7 @@ $ find /data/backups/mysql/ -name export_test.*
 when you prepare the backup, add the extra parameter
 `xtrabackup --export` to the command. Here is an example:
 
-```bash
+```shell
 $ xtrabackup --prepare --export --target-dir=/data/backups/mysql/
 ```
 
@@ -35,15 +35,19 @@ $ xtrabackup --prepare --export --target-dir=/data/backups/mysql/
 
     If you’re trying to restore [encrypted InnoDB tablespace](../advanced/encrypted_innodb_tablespace_backups.md#encrypted-innodb-tablespace-backups) table you must specify the keyring file as well: 
    
-    ```bash
+    ```shell
     xtrabackup --prepare --export --target-dir=/tmp/table \
     --keyring-file-data=/var/lib/mysql-keyring/keyring
     ```
 
 Now you should see a .exp file in the target directory:
 
-```bash
+```shell
 $ find /data/backups/mysql/ -name export_test.*
+```
+The result is similar to the following:
+
+```text
 /data/backups/mysql/test/export_test.exp
 /data/backups/mysql/test/export_test.ibd
 /data/backups/mysql/test/export_test.cfg
