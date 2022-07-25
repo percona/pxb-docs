@@ -35,7 +35,7 @@ The parameter checks for the following scenarios:
 Explicitly adding the `--no-server-version-check` parameter, like the
 example, overrides the parameter and the backup proceeds.
 
-```
+```shell
 $ xtrabackup --backup --no-server-version-check --target-dir=$mysql/backup1
 ```
 

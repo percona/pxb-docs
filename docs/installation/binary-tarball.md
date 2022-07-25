@@ -23,6 +23,6 @@ tarball for that operating system. You can download the packages together or sep
 The following command is an example of downloading the full tarball for 
 Linux/Generic:
 
-``` bash
+```shell
 $ wget https://downloads.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0.23-16/binary/tarball/percona-xtrabackup-8.0.23-16-Linux-x86_64.glibc2.17.tar.gz
 ```

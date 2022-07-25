@@ -12,7 +12,7 @@ To use the streaming feature, you must use the `--stream`,
 providing the format of the stream (`xbstream` ) and where to store
 the temporary files:
 
-```
+```shell
 $ xtrabackup --stream=xbstream --target-dir=/tmp
 ```
 
@@ -66,13 +66,13 @@ were both compressed and encrypted, they must be decrypted before they are uncom
 
                    | On the destination host:
 
-```
+```shell
 $ nc -l 9999 | cat - > /data/backups/backup.xbstream
 ```
 
 On the source host:
 
-```
+```shell
 $ xtrabackup --backup --stream=xbstream ./ | nc desthost 9999
 ```
 
@@ -91,34 +91,43 @@ $ xtrabackup --backup --stream=xbstream ./ | nc desthost 9999
 
                      | On the destination host:
 
-```
+```shell
 $ nc -l 9999 | tee >(sha1sum > destination_checksum) > /data/backups/backup.xbstream
 ```
 
 On the source host:
 
-```
+```shell
 $ xtrabackup --backup --stream=xbstream ./ | tee >(sha1sum > source_checksum) | nc desthost 9999
 ```
 
 Compare the checksums on the source host:
 
-```
+```shell
 $ cat source_checksum
+```
+
+The result should look like the following:
+
+```text
 65e4f916a49c1f216e0887ce54cf59bf3934dbad  -
 ```
 
 Compare the checksums on the destination host:
 
-```
+```shell
 $ cat destination_checksum
+```
+
+The result should look like the following:
+
+```text
 65e4f916a49c1f216e0887ce54cf59bf3934dbad  -
 ```
 
- |
-| Parallel compression with parallel copying backup
+Parallel compression with parallel copying backup
 
-                 | `xtrabackup --backup --compress --compress-threads=8 --stream=xbstream --parallel=4 --target-dir=./ > backup.xbstream`
+                  <code>$ xtrabackup --backup --compress --compress-threads=8 --stream=xbstream --parallel=4 --target-dir=./ > backup.xbstream </code>
 
                                                                                                                                                                                                                                                                                                                                                         |
 ### Footnotes

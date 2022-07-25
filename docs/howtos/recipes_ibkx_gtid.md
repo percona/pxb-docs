@@ -14,7 +14,7 @@ replica.
 The following command takes a backup and saves it in
 the `/data/backups/$TIMESTAMP` folder:
 
-```
+```shell
 $ xtrabackup --backup --target-dirs=/data/backups/
 ```
 
@@ -22,14 +22,18 @@ In the destination folder, there will be a file with the name
 `xtrabackup_binlog_info`. This file contains both binary log coordinates
 and the `GTID` information.
 
-```
+```shell
 $ cat xtrabackup_binlog_info
+```
+The result could look like this:
+
+```text
 mysql-bin.000002    1232        c777888a-b6df-11e2-a604-080027635ef5:1-4
 ```
 
 That information is also printed by xtrabackup after taking the backup:
 
-```
+```text
 xtrabackup: MySQL binlog position: filename 'mysql-bin.000002', position 1232, GTID of the last change 'c777888a-b6df-11e2-a604-080027635ef5:1-4'
 ```
 
@@ -37,7 +41,7 @@ xtrabackup: MySQL binlog position: filename 'mysql-bin.000002', position 1232, G
 
 The backup will be prepared with the following command on the Source:
 
-```
+```shell
 $ xtrabackup --prepare --target-dir=/data/backup
 ```
 
@@ -54,14 +58,14 @@ server. If you are synchronizing the data directly to the already running
 replica’s data
 directory it is advised to stop the *MySQL* server there.
 
-```
+```shell
 $ rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewSlave:/path/to/mysql/
 ```
 
 After you copy the data over, make sure *MySQL* has proper permissions to
 access them.
 
-```
+```shell
 $ chown mysql:mysql /path/to/mysql/datadir
 ```
 
@@ -72,7 +76,7 @@ Set the `gtid_purged` variable to the `GTID` from
 source node and, finally, start the replica. Run the following commands on
 the replica if you are using a version before 8.0.22:
 
-```
+```sql
 # Using the mysql shell
  > SET SESSION wsrep_on = 0;
  > RESET MASTER;
@@ -92,7 +96,7 @@ are using version 8.0.21 or earlier, use `START SLAVE`.
 
 If you are using a version 8.0.23 or later, run the following commands:
 
-```
+```sql
 # Using the mysql shell
  > SET SESSION wsrep_on = 0;
  > RESET MASTER;
@@ -121,8 +125,12 @@ if
 
 The following command returns the replica status:
 
+```sql
+mysql> SHOW REPLICA STATUS\G
 ```
-SHOW REPLICA STATUS\G
+The results should be similar to the following:
+
+```text
 [..]
 Slave_IO_Running: Yes
 Slave_SQL_Running: Yes

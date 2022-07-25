@@ -48,14 +48,14 @@ the backup’s target directory. This file contains a line showing the
 `to_lsn`, which is the database’s LSN at the end of the backup.
 Create the full backup with a following command:
 
-```
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/base
 ```
 
 If you look at the `xtrabackup_checkpoints` file, you should see similar
 content depending on your LSN nuber:
 
-```
+```text
 backup_type = full-backuped
 from_lsn = 0
 to_lsn = 1626007
@@ -68,7 +68,7 @@ Now that you have a full backup, you can make an incremental backup based
 on
 it. Use the following command:
 
-```
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/inc1 \
 --incremental-basedir=/data/backups/base
 ```
@@ -79,7 +79,7 @@ changes since the `LSN 1626007`. If you examine the
 `xtrabackup_checkpoints` file in this directory, you should see similar
 content to the following:
 
-```
+```shell
 backup_type = incremental
 from_lsn = 1626007
 to_lsn = 4124244
@@ -97,14 +97,14 @@ It’s now possible to use this directory as the base for yet another
 incremental
 backup:
 
-```
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/inc2 \
 --incremental-basedir=/data/backups/inc1
 ```
 
 This folder also contains the `xtrabackup_checkpoints`:
 
-```
+```shell
 backup_type = incremental
 from_lsn = 4124244
 to_lsn = 6938371
@@ -147,7 +147,7 @@ apply
 the incremental differences to it. Recall that you have the following
 backups:
 
-```
+```text
 /data/backups/base
 /data/backups/inc1
 /data/backups/inc2
@@ -156,13 +156,13 @@ backups:
 To prepare the base backup, you need to run `--prepare` as
 usual, but prevent the rollback phase:
 
-```
+```shell
 $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
 ```
 
 The output should end with text similar to the following:
 
-```
+```text
 InnoDB: Shutdown completed; log sequence number 1626007
 161011 12:41:04 completed OK!
 ```
@@ -181,7 +181,7 @@ down normally.
 To apply the first incremental backup to the full backup, run the following
 command:
 
-```
+```shell
 $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
@@ -192,7 +192,7 @@ applies the redo log as usual to the result. The final data is in
 `/data/backups/base`, not in the incremental directory. You should see
 an output similar to:
 
-```
+```text
 incremental backup from 1626007 is enabled.
 xtrabackup: cd to /data/backups/base
 xtrabackup: This target seems to be already prepared with --apply-log-only.
@@ -222,7 +222,7 @@ to the (modified) base backup, and you will roll its data forward in time
 to
 the point of the second incremental backup:
 
-```
+```shell
 $ xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2
 ```

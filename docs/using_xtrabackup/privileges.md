@@ -30,7 +30,7 @@ performed - and the database user has adequate privileges.
 The database user used to connect to the server and its password are specified
 by the `--user` and `--password` option:
 
-```
+```bash
 $ xtrabackup --user=DVADER --password=14MY0URF4TH3R --backup \
 --target-dir=/data/bkps/
 ```

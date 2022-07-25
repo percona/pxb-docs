@@ -25,13 +25,13 @@ If the partition 0 is not backed up, Percona XtraBackup cannot generate a .cfg f
 For example, this operation takes a back-up of the partition `p4` from 
 the table `name` located in the database `imdb`:
 
-```
-xtrabackup --tables=^imdb[.]name#p#p4 --backup
+```shell
+$ xtrabackup --tables=^imdb[.]name#p#p4 --backup
 ```
 
 If partition 0 is not backed up, the following errors may occur:
 
-```
+```text
 xtrabackup: export option not specified
 xtrabackup: error: cannot find dictionary record of table imdb/name#p#p4
 ```
@@ -45,8 +45,8 @@ created even if they are empty.
 For preparing partial backups, the procedure is analogous to restoring
 individual tables apply the logs and use xtrabackup –export:
 
-```
-xtrabackup --apply-log --export /mnt/backup/2012-08-28_10-29-09
+```shell
+$ xtrabackup --apply-log --export /mnt/backup/2012-08-28_10-29-09
 ```
 
 You may see warnings in the output about tables that do not exist. This is
@@ -61,8 +61,8 @@ server.
 
 First step is to create new table in which data will be restored.
 
-```
-CREATE TABLE `name_p4` (
+```sql
+mysql> CREATE TABLE `name_p4` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `name` text NOT NULL,
 `imdb_index` varchar(12) DEFAULT NULL,
@@ -80,13 +80,13 @@ The file is located in the table schema directory and is used for schema verific
 To restore the partition from the backup, the tablespace must be discarded for
 that table:
 
-```
-ALTER TABLE name_p4 DISCARD TABLESPACE;
+```sql
+mysql> ALTER TABLE name_p4 DISCARD TABLESPACE;
 ```
 
 The next step is to copy the .exp and ibd files from the backup to the MySQL data directory:
 
-```
+```shell
 cp /mnt/backup/2012-08-28_10-29-09/imdb/name#p#p4.exp /var/lib/mysql/imdb/name_p4.exp
 cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 ```
@@ -95,6 +95,6 @@ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p
 
 The last step is to import the tablespace:
 
-```
-ALTER TABLE name_p4 IMPORT TABLESPACE;
+```sql
+mysql> ALTER TABLE name_p4 IMPORT TABLESPACE;
 ```

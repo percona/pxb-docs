@@ -18,13 +18,13 @@ To start using the page tracking functionality, do the following steps:
 
 1. Install the mysqlbackup component and enable it on the server:
 
-> ```
+> ```sql
 > $ INSTALL COMPONENT "file://component_mysqlbackup";
 > ```
 
 1. Check whether the mysqlbackup component is installed successfully:
 
-> ```
+> ```sql
 > SELECT COUNT(1) FROM mysql.component WHERE component_urn='file://component_mysqlbackup';
 > ```
 
@@ -51,14 +51,14 @@ The option has the following benefits:
 
 An example of creating a full backup using the `--page-tracking` option.
 
-> ```
+> ```shell
 > $> xtrabackup --backup --target-dir=$FULL_BACK --page-tracking
 > ```
 
 An example of creating an incremental backup using the `--page-tracking`
 option.
 
-> ```
+> ```shell
 > $> xtrabackup --backup --target-dir=$INC_BACKUP  
 > --incremental-basedir=$FULL_BACKUP --page-tracking
 > ```
@@ -70,7 +70,7 @@ pages using page tracking.
 XtraBackup may have a delay. The following is an example of the message you
 can receive:
 
-```
+```text
 xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
 to reach to page tracking start lsn 21353759
 ```
@@ -84,7 +84,7 @@ is more than the checkpoint LSN of the server.
 After the mysqlbackup component is loaded and active on the server, you can
 start page tracking manually with the following option:
 
-> ```
+> ```sql
 > $ SELECT mysqlbackup_page_track_set(true);
 > ```
 
@@ -93,7 +93,7 @@ start page tracking manually with the following option:
 Check the LSN value starting from which changed pages are tracked with the
 following option:
 
-> ```
+> ```sql
 > $ SELECT mysqlbackup_page_track_get_start_lsn();
 > ```
 
@@ -101,7 +101,7 @@ following option:
 
 To stop page tracking, use the following command:
 
-> ```
+> ```sql
 > $ SELECT mysqlbackup_page_track_set(false);
 > ```
 
@@ -116,7 +116,7 @@ grow until you stop the page tracking explicitly.
 If you purge the page tracking data, you should create a full backup
 afterward. To purge the page tracking data, do the following steps:
 
-> ```
+> ```sql
 > $ SELECT mysqlbackup_page_track_set(false);
 > $ SELECT mysqlbackup_page_track_purge_up_to(9223372036854775807);
 > /* Specify the LSN up to which you want to purge page tracking data. /
@@ -136,6 +136,6 @@ in [PS-8032](https://jira.percona.com/browse/PS-8032) .
 If you need to uninstall the mysqlbackup component, use the following
 option:
 
-> ```
+> ```sql
 > $ UNINSTALL COMPONENT "file://component_mysqlbackup"
 > ```

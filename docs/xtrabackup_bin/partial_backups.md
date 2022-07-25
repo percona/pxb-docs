@@ -55,14 +55,14 @@ value is a regular expression that is matched against the fully-qualified databa
 To back up only tables in the `test` database, use the following
 command:
 
-```
+```shell
 $ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 --tables="^test[.].*"
 ```
 
 To back up only the `test.t1` table, use the following command:
 
-```
+```shell
 $ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 --tables="^test[.]t1"
 ```
@@ -75,7 +75,7 @@ will be backed up. Names are matched exactly, case-sensitive, with no pattern or
 regular expression matching. The table names must be fully-qualified in
 `databasename.tablename` format.
 
-```
+```shell
 $ echo "mydatabase.mytable" > /tmp/tables.txt
 $ xtrabackup --backup --tables-file=/tmp/tables.txt
 ```
@@ -93,7 +93,7 @@ the databases using xtrabackup –copy-back.
 even if they are not explicitly listed by the parameter if they were created
 after the backup started.
 
-```
+```shell
 $ xtrabackup --databases='mysql sys performance_schema test ...'
 ```
 
@@ -111,7 +111,7 @@ after the backup started.
 The procedure is analogous to restoring individual tables : apply the logs and use the
 –export option:
 
-```
+```shell
 $ xtrabackup --prepare --export --target-dir=/path/to/partial/backup
 ```
 
@@ -135,13 +135,13 @@ It can also be done by copying back the prepared backup to a “clean”
 datadir (in that case, make sure to include the `mysql`
 database) to the datadir you are moving the backup to. A system database can be created with the following:
 
-```
+```shell
 $ sudo mysql --initialize --user=mysql
 ```
 
 Once you start the server, you may see mysql complaining about missing tablespaces:
 
-```
+```text
 2021-07-19T12:42:11.077200Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name 'test1/t1', file './d2/test1.ibd' is missing!
 2021-07-19T12:42:11.077300Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name 'test1/t1', file './d2/test1.ibd' is missing!
 ```
@@ -150,13 +150,17 @@ In order to clean the orphan database from the data dictionary, you must manuall
 
 Example of creating the missing database:
 
-```
+```shell
 $ mkdir /var/lib/mysql/test1/d2
 ```
 
 Example of dropping the database from the server:
 
-```
+```sql
 mysql> DROP DATABASE d2;
+```
+The result should be something like the following: 
+
+```text
 Query OK, 2 rows affected (0.5 sec)
 ```

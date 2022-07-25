@@ -4,7 +4,7 @@ The source code is available from the [*Percona XtraBackup GitHub* project](http
 code is by using the **git clone** command. Then, switch to the release
 branch that you want to install, such as **8.0**.
 
-``` bash
+```shell
 $ git clone https://github.com/percona/percona-xtrabackup.git
 $ cd percona-xtrabackup
 $ git checkout 8.0
@@ -28,7 +28,7 @@ in your distribution as a separate package `cmake3`. For more information, see [
 
 ### Debian or Ubuntu using `apt`
 
-```
+```shell
 sudo apt install bison pkg-config cmake devscripts debconf \
 debhelper automake bison ca-certificates \
 libcurl4-openssl-dev cmake debhelper libaio-dev \
@@ -40,7 +40,7 @@ qpress liblz4-tool liblz4-1 liblz4-dev vim-common
 
 To install the man pages, install the python3-sphinx package first:
 
-```
+```shell
 $ sudo apt install python3-sphinx
 ```
 
@@ -53,7 +53,7 @@ install and enable [the Developer Toolset](https://developers.redhat.com/product
 compiler and development tools.  Then, install `cmake` and other
 dependencies:
 
-```
+```shell
 $ sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
 bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel \
 vim-common
@@ -61,7 +61,7 @@ vim-common
 
 To install the man pages, install the python3-sphinx package first:
 
-```
+```shell
 $ sudo yum install python3-sphinx
 ```
 
@@ -74,7 +74,7 @@ be used to compile the source code).
 
 1. Change to the directory where you cloned the Percona XtraBackup repository
 
-```
+```shell
 $ cd percona-xtrabackup
 ```
 
@@ -82,7 +82,7 @@ $ cd percona-xtrabackup
 2. Create a directory to store the compiled files and then change to that
 directory:
 
-```
+```shell
 $ mkdir build
 $ cd build
 ```
@@ -96,7 +96,7 @@ same.
 for every distribution. If you installed the `python-sphinx` package you
 need to remove the `-DWITH_MAN_PAGES=OFF` from previous command.
 
-```
+```shell
 $ cmake -DWITH_BOOST=PATH-TO-BOOST-LIBRARY -DDOWNLOAD_BOOST=ON \
 -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF -B ..
 ```
@@ -126,7 +126,7 @@ Step 2: Generating the build pipeline).
 
 2. Run the `make` command. This command may take a long time to complete.
 
-```
+```shell
 $ make
 ```
 
@@ -137,7 +137,7 @@ and tests to default location on the target system: `/usr/local/xtrabackup`.
 
 Run `make install` to install *Percona XtraBackup* to the default location.
 
-```
+```shell
 $ sudo make install
 ```
 
@@ -147,7 +147,7 @@ You may use the `DESTDIR` parameter with `make install` to install *Percona
 XtraBackup* to another location. Make sure that the effective user is able to
 write to the destination you choose.
 
-```
+```shell
 $ sudo make DESTDIR=<DIR_NAME> install
 ```
 
@@ -167,14 +167,14 @@ installation directory to be `/usr/local/xtrabackup`.
 After *Percona XtraBackup* is installed on your system, you may run it by using
 the full path to the `xtrabackup` command:
 
-```
+```shell
 $ /usr/local/xtrabackup/bin/xtrabackup
 ```
 
 Update your PATH environment variable if you would like to use the command on
 the command line directly.
 
-```
+```shell
 $# Setting $PATH on the command line
 $ PATH=$PATH:/usr/local/xtrabackup/bin/xtrabackup
 

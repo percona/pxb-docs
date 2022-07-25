@@ -2,7 +2,7 @@
 
 ## Creating a full backup with Amazon S3
 
-```
+```shell
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=s3 \
 --s3-endpoint='s3.amazonaws.com' \

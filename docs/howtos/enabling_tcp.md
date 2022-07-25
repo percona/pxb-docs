@@ -5,7 +5,7 @@ connections from outside in their MySQL or Percona Server packages.
 
 You can check it with `netstat` on a shell:
 
-```
+```shell
 $ netstat -lnp | grep mysql
 tcp         0        0 0.0.0.0:3306 0.0.0.0:* LISTEN 2480/mysqld
 unix 2 [ ACC ] STREAM LISTENING 8101 2480/mysqld /tmp/mysql.sock

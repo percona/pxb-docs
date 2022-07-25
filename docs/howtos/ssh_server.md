@@ -6,13 +6,13 @@ by using your distribution’s packaging system:
 
 Using apt, run the following:
 
-``` bash
+```shell
    $ sudo apt install openssh-server
 ```
 
 Using Red Hat Linux or a derivative, use the following:
 
-```bash
+```shell
   $ sudo yum install openssh-server
 ```
 

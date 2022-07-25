@@ -17,7 +17,7 @@ system error 17, `file exists`.
 
 To start the backup process run:
 
-```
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/
 ```
 
@@ -33,7 +33,7 @@ scanning the log in the background, and a file copying thread working on
 the
 `ibdata1` file:
 
-```
+```text
 160906 10:19:17 Finished backing up non-InnoDB tables and files
 160906 10:19:17 Executing FLUSH NO_WRITE_TO_BINLOG ENGINE LOGS...
 xtrabackup: The latest check point (for incremental): '62988944'
@@ -54,7 +54,7 @@ The last thing you should see is something like the following, where the
 value
 of the `<LSN>` will be a number that depends on your system:
 
-```
+```shell
 $ xtrabackup: Transaction log of lsn (<SLN>) to (<LSN>) was copied.
 ```
 
@@ -70,8 +70,13 @@ as
 the following, assuming you have a single InnoDB table `test.tbl1` and you
 are using MySQL’s innodb_file_per_table option:
 
-```
+```shell
 $ ls -lh /data/backups/
+```
+
+The result should look like this:
+
+```text
 total 182M
 drwx------  7 root root 4.0K Sep  6 10:19 .
 drwxrwxrwt 11 root root 4.0K Sep  6 11:05 ..
@@ -139,7 +144,7 @@ and tell it which directory to prepare, for example, to prepare the
 previously
 taken backup run:
 
-```
+```shell
 $ xtrabackup --prepare --target-dir=/data/backups/
 ```
 
@@ -147,7 +152,7 @@ When this finishes, you should see an `InnoDB shutdown` with a message such
 as the following, where again the value of LSN will depend on your
 system:
 
-```
+```text
 InnoDB: Shutdown completed; log sequence number 137345046
 160906 11:21:01 completed OK!
 ```
@@ -156,7 +161,7 @@ All following prepares will not change the already prepared data files,
 you’ll
 see that output says:
 
-```
+```text
 xtrabackup: This target seems to be already prepared.
 xtrabackup: notice: xtrabackup_logfile was already used to '--prepare'.
 ```
@@ -180,7 +185,7 @@ restored.
 For convenience, *xtrabackup* binary has the `--copy-back`
 option to copy the backup to the datadir of the server:
 
-```
+```shell
 $ xtrabackup --copy-back --target-dir=/data/backups/
 ```
 
@@ -199,7 +204,7 @@ performed. You cannot restore to a datadir of a running mysqld instance
 Example of the **rsync** command that can be used to restore the backup
 can look like this:
 
-```
+```shell
 $ rsync -avrP /data/backup/ /var/lib/mysql/
 ```
 
@@ -212,7 +217,7 @@ the files’ ownership to `mysql` before starting the database server, as
 they
 will be owned by the user who created the backup:
 
-```
+```shell
 $ chown -R mysql:mysql /var/lib/mysql
 ```
 

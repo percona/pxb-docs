@@ -8,7 +8,7 @@ You can find the binary log position corresponding to a backup after the backup 
 
 The output is similar to the following during the backup stage:
 
-```
+```text
 210715 14:14:59 Backup created in directory '/backup/'
 MySQL binlog position: filename 'binlog.000002', position '156'
 . . .
