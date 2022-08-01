@@ -582,7 +582,7 @@ File path the server’s public RSA key in PEM format.
 ### --skip-tables-compatibility-check
 This option disables the engine compatibility warning.
 
-!!! seealso
+!!! admonition "See also"
 
     `--tables-compatibility-check`
 
@@ -744,7 +744,7 @@ This option prints *xtrabackup* version and exits.
 ### --xtrabackup-plugin-dir=DIRNAME
 The absolute path to the directory that contains the `keyring` plugin.
 
-!!! seealso
+!!! admonition "See also"
 
     Percona Server for MySQL Documentation: keyring_vault plugin with Data at Rest Encryption
     https://www.percona.com/doc/percona-server/5.7/security/data-at-rest-encryption.html

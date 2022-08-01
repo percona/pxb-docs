@@ -19,7 +19,7 @@ XtraBackup* from source. These might vary from system to system.
 
     In order to build *Percona XtraBackup* v8.0 from source, you need to use `cmake` version 3. In your distribution, it may be available either as a separate package ``cmake3`` or as ``cmake``. To check which version is installed, run ``cmake --version`` and if it does report a version 3, install ``cmake3`` for your system.
 
-!!! seealso
+!!! admonition "See also"
 
     https://cmake.org/
 
@@ -64,22 +64,21 @@ At this step, you have `cmake` run the commands in the `CMakeList.txt`
 file to generate the build pipeline, i.e. a native build environment that will
 be used to compile the source code).
 
-* Change to the directory where you cloned the Percona XtraBackup repository
+1. Change to the directory where you cloned the Percona XtraBackup repository
 
-```bash
-$ cd percona-xtrabackup
-```
+    ```bash
+    $ cd percona-xtrabackup
+    ```
 
-* Create a directory to store the compiled files and then change to that
+2. Create a directory to store the compiled files and then change to that
 directory:
 
-```bash
-$ mkdir build
-$ cd build
-```
+    ```bash
+    $ mkdir build
+    $ cd build
+    ```
 
-* Run `cmake` or `cmake3`. In either case, the options you need to use are the
-same.
+3. Run `cmake` or `cmake3`. In either case, the options you need to use are the same.
 
 !!! note
 
@@ -120,13 +119,13 @@ To compile the source code in your build directory, use the `make` command.
 
     The computer where you intend to compile *Percona XtraBackup* 8.0 must have at least 2G of RAM available.
 
-* Change to the `build` directory (created at [Step 2: Generating the build pipeline](compiling_xtrabackup.md#pxb-source-code-installing-build-pipe-line-generating)).
+1. Change to the `build` directory (created at [Step 2: Generating the build pipeline](compiling_xtrabackup.md#pxb-source-code-installing-build-pipe-line-generating)).
 
-* Run the `make` command. This command may take a long time to complete.
+2. Run the `make` command. This command may take a long time to complete.
 
-```bash
-$ make
-```
+    ```bash
+    $ make
+    ```
 
 ## Step 3: Installing on the target system
 
@@ -157,7 +156,7 @@ destinations that you can adjust for your system.
 By default, this parameter is set to `STANDALONE`, which implies the
 installation directory to be /usr/local/xtrabackup.
 
-!!! seealso
+!!! admonition "See also"
 
     [MySQL Documentation: -DINSTALL_LAYOUT](https://dev.mysql.com/doc/refman/8.0/en/source-configuration-options.html#option_cmake_install_layout)
 
@@ -184,7 +183,7 @@ $ xtrabackup
 Alternatively, you may consider placing a soft link (using `ln -s`) to one of
 the locations listed in your `PATH` environment variable.
 
-!!! seealso
+!!! admonition "See also"
 
     ``man ln``
 
