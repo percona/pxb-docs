@@ -13,7 +13,6 @@ reducing the warm up time. It restores the buffer pool state from
 `ib_buffer_pool` and backs it up automatically.
 
 
-
 ![image](../_static/lru_dump.png)
 
 If the buffer restore option is enabled in `my.cnf` buffer pool will be in

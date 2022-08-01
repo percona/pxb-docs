@@ -5,9 +5,10 @@ record, can cause older versions of **Percona XtraBackup** to fail. To
 ensure that you can back up and restore your data, use a **Percona
 XtraBackup** version that is equal to or above your source server version.
 
-**See also**
+!!! admonition "See also"
+   
+    [How XtraBackup works](https://docs.percona.com/percona-xtrabackup/8.0/how_xtrabackup_works.html)
 
-[How XtraBackup works](https://docs.percona.com/percona-xtrabackup/8.0/how_xtrabackup_works.html)
 
 *Percona XtraBackup* 8.0.21 adds the `--no-server-version-check` option.
 Before the backup starts, XtraBackup compares the source system version to
@@ -25,12 +26,10 @@ The parameter checks for the following scenarios:
 * The source system is less than the PXB version, the backup proceeds
 
 
-* The source system is greater than the PXB version, and the parameter is
-  not overridden, the backup is stopped and returns an error message
+* The source system is greater than the PXB version, and the parameter is not overridden, the backup is stopped and returns an error message
 
 
-* The source system is greater than the PXB version, and the parameter is
-  overridden, the backup proceeds
+* The source system is greater than the PXB version, and the parameter is  overridden, the backup proceeds
 
 Explicitly adding the `--no-server-version-check` parameter, like the
 example, overrides the parameter and the backup proceeds.

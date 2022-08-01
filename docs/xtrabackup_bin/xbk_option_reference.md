@@ -121,7 +121,6 @@ xtrabackup: Error: missing required privilege LOCK TABLES on *.*
 xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
 ```
 
-
 ### --close-files()
 Do not keep files opened. When *xtrabackup* opens tablespace it normally
 doesn’t close its file handle in order to handle the DDL operations

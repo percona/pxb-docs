@@ -28,13 +28,14 @@ command. Here is an example:
 $ xtrabackup --prepare --export --target-dir=/data/backups/mysql/
 ```
 
-**NOTE**: If you restore an encrypted InnoDB tablespace table, add the
-keyring file:
+!!! note
+   
+    If you restore an encrypted InnoDB tablespace table, add the  keyring file:
 
-```
-$ xtrabackup --prepare --export --target-dir=/tmp/table \
---keyring-file-data=/var/lib/mysql-keyring/keyring
-```
+    ```
+    $ xtrabackup --prepare --export --target-dir=/tmp/table \
+    --keyring-file-data=/var/lib/mysql-keyring/keyring
+    ```
 
 Now you should see an .exp file in the target directory:
 
@@ -50,12 +51,14 @@ These three files are the only files required to import the table into a server 
 Tablespace Encryption](http://dev.mysql.com/doc/refman/5.7/en/innodb-tablespace-encryption.html)
 adds an additional .cfp file which contains the transfer key and an encrypted tablespace key.
 
-**NOTE**: The .cfg metadata file contains an *InnoDB* dictionary dump in a special format. This format is different from the .exp one which is
-used in *XtraDB* for the same purpose. A .cfg\` file is not required to import a tablespace to *MySQL* 8.0 or Percona
-Server for MySQL 8.0.
+!!! note
+   
+    The .cfg metadata file contains an *InnoDB* dictionary dump in a special format. This format is different from the .exp one which is
+    used in *XtraDB* for the same purpose. A .cfg\` file is not required to import a tablespace to *MySQL* 8.0 or Percona
+    Server for MySQL 8.0.
 
-A tablespace is imported successfully even if the table is from
-another server, but *InnoDB* performs a schema validation if the corresponding .cfg file is located in the same directory.
+    A tablespace is imported successfully even if the table is from
+    another server, but *InnoDB* performs a schema validation if the corresponding .cfg file is located in the same directory.
 
 ## Importing the Table
 
@@ -65,14 +68,10 @@ option enabled, or *MySQL* 8.0, create a table with the same
 structure, and then perform the following steps:
 
 
-1. Run the `ALTER TABLE test.export_test DISCARD TABLESPACE;`
-command. If you see the following error, enable
-innodb_file_per_table and create the table again.
-
+1. Run the `ALTER TABLE test.export_test DISCARD TABLESPACE;` command. If you see the following error, enable innodb_file_per_table and create the table again.
 
 2. Copy the exported files to the `test/` subdirectory of the destination server’s data directory
 
-
 3. Run `ALTER TABLE test.export_test IMPORT TABLESPACE;`
 
-The table is imported, and you can run a `SELECT` to see the imported data.
+   The table is imported, and you can run a `SELECT` to see the imported data.

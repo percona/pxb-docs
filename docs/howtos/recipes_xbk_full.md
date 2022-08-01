@@ -28,8 +28,10 @@ $ xtrabackup --prepare --target-dir=/data/backup/mysql/
   is
   the purpose of the second preparation).
 
-**NOTE**: You might want to set the `--use-memory` option to a value close
-to the size of your buffer pool, if you are on a dedicated server that has
-enough free memory. The [xtrabackup Option reference](https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/xbk_option_reference.html#xbk-option-reference) contains more details.
+!!! note
+   
+    You might want to set the `--use-memory` option to a value close to the size of your buffer pool, if you are on a dedicated server that has enough free memory. The [xtrabackup Option reference](https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/xbk_option_reference.html#xbk-option-reference) contains more details. 
+    
+    Review [Full Backups](https://docs.percona.com/percona-xtrabackup/latest/backup_scenarios/full_backup.html#creating-a-backup) for a more detailed explanation.
 
-Review [Full Backups](https://docs.percona.com/percona-xtrabackup/latest/backup_scenarios/full_backup.html#creating-a-backup) for a more detailed explanation.
+

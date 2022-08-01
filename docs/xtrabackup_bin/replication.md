@@ -27,5 +27,8 @@ the backup finishes.
 
 Using this option is always recommended when taking backups from a replica server.
 
-**WARNING**: Make sure your replica is a true replica of the source before using it as a
-source for backup. A good tool to validate a replica is [pt-table-checksum](http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html).
+!!! warning
+   
+    Make sure your replica is a true replica of the source before using it as a
+    source for backup. A good tool to validate a replica is [pt-table-checksum](http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html).
+

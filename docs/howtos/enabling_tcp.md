@@ -13,12 +13,10 @@ unix 2 [ ACC ] STREAM LISTENING 8101 2480/mysqld /tmp/mysql.sock
 
 You should check two things:
 
-* there is a line starting with `tcp` (the server is indeed accepting TCP
-  connections)
+* there is a line starting with `tcp` (the server is indeed accepting TCP connections)
 
 
-* the first address (`0.0.0.0:3306` in this example) is different
-  from `127.0.0.1:3306` (the bind address is not localhost’s).
+* the first address (`0.0.0.0:3306` in this example) is different from `127.0.0.1:3306` (the bind address is not localhost’s).
 
 In the first case, the first place to look is the `my.cnf` file. If you
 find the option `skip-networking`, comment it out or just delete it. Also

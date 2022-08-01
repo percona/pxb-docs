@@ -7,9 +7,10 @@ interoperability
 mode. This mode was especially designed to interact with cloud services
 compatible with Amazon S3.
 
-**See also**
+!!! admonition "See also"
+   
+    [Cloud Storage Interoperability](https://cloud.google.com/storage/docs/interoperability)
 
-[Cloud Storage Interoperability](https://cloud.google.com/storage/docs/interoperability)
 ```
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=google \
@@ -34,20 +35,21 @@ The following options are available when using Google Cloud Storage:
 
 * –google-storage-class=name
 
-**NOTE**: The Google storage class name options are the following:
+!!! note
+   
+    The Google storage class name options are the following:
 
-* STANDARD
+    * STANDARD
+
+    * NEARLINE
+
+    * COLDLINE
+
+    * ARCHIVE
+
+!!! admonition "See also"
+   
+    [Google storage classes - the default Google storage class depends on 
+    the storage class of the bucket](https://cloud.google.com/storage/docs/changing-default-storage-class)
 
 
-* NEARLINE
-
-
-* COLDLINE
-
-
-* ARCHIVE
-
-**See also**
-
-[Google storage classes - the default Google storage class depends on 
-the storage class of the bucket](https://cloud.google.com/storage/docs/changing-default-storage-class)

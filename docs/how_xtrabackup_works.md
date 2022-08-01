@@ -33,10 +33,11 @@ Locking is only done for *MyISAM* and other non-InnoDB tables
 logs. *Percona XtraBackup* uses this automatically to copy non-InnoDB data to
 avoid blocking DML queries that modify *InnoDB* tables.
 
-**_Important_** - The `BACKUP_ADMIN` privilege is required to query the 
-`performance_schema_log_status` for either `LOCK 
-INSTANCE FOR 
-BACKUP` or `LOCK TABLES FOR BACKUP`.
+!!! important
+   
+    The `BACKUP_ADMIN` privilege is required to query the 
+    `performance_schema_log_status` for either `LOCK 
+    INSTANCE FOR BACKUP` or `LOCK TABLES FOR BACKUP`.
 
 *xtrabackup* tries to avoid backup locks and `FLUSH TABLES WITH READ LOCK`
 when the instance contains only InnoDB tables. In this case, *xtrabackup*
@@ -46,7 +47,9 @@ started with the `--slave-info`. The `log_status` table in Percona
 Server for MySQL 8.0 is extended to include the relay log coordinates, so no locks are
 needed even with the `--slave-info` option.
 
-**_See also_** [*MySQL* Documentation: LOCK INSTANCE FOR BACKUP](https://dev.mysql.com/doc/refman/8.0/en/lock-instance-for-backup.html)
+!!! admonition "See also"
+
+    [*MySQL* Documentation: LOCK INSTANCE FOR BACKUP](https://dev.mysql.com/doc/refman/8.0/en/lock-instance-for-backup.html)
 
 When backup locks are supported by the server, *xtrabackup* first copies
 *InnoDB* data, runs the `LOCK TABLES FOR BACKUP` and then copies the *MyISAM*
