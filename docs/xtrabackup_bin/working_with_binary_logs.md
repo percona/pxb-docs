@@ -15,7 +15,10 @@ MySQL binlog position: filename 'binlog.000002', position '156'
 210715 14:15:00 completed OK!
 ```
 
-**NOTE**: As of Percona XtraBackup 8.0.26-18.0, xtrabackup no longer creates the `xtrabackup_binlog_pos_innodb` file. This change is because MySQL and Percona Server no longer update the binary log information on global transaction system section of `ibdata`. You should rely on `xtrabackup_binlog_info` regardless of the storage engine in use.
+!!! note
+   
+    As of Percona XtraBackup 8.0.26-18.0, xtrabackup no longer creates the `xtrabackup_binlog_pos_innodb` file. This change is because MySQL and Percona Server no longer update the binary log information on global transaction system section of `ibdata`. You should rely on `xtrabackup_binlog_info` regardless of the storage engine in use.
+
 
 ## Point-In-Time Recovery
 

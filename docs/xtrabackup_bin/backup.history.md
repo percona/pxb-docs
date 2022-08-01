@@ -33,9 +33,11 @@ and `--incremental-history-name` options. If no valid LSN can be found
 (no record by that UUID or missing `to_lsn`), *xtrabackup* will return
 with an error.
 
-**NOTE**: Backup that’s currently being performed will **NOT** exist in the
-xtrabackup_history table within the resulting backup set as the record will
-not be added to that table until after the backup has been taken.
+!!! note
+   
+    Backup that’s currently being performed will **NOT** exist in the
+    xtrabackup_history table within the resulting backup set as the record will
+    not be added to that table until after the backup has been taken.
 
 If you want access to backup history outside of your backup set in the case of
 some catastrophic event, you will need to either perform a `mysqldump`,

@@ -35,11 +35,9 @@ version of *pt-table-checksum*:
 $ wget percona.com/get/pt-table-checksum
 ```
 
-**NOTE**: In order for pt-table-checksum to work
-correctly `libdbd-mysql-perl` will need to be installed on *Debian/Ubuntu*
-systems or `perl-DBD-MySQL` on *RHEL/CentOS*. If you installed the *
-percona-toolkit* package from the Percona repositories package manager
-should install those libraries automatically.
+!!! note
+   
+    In order for pt-table-checksum to work correctly `libdbd-mysql-perl` will need to be installed on *Debian/Ubuntu* systems or `perl-DBD-MySQL` on *RHEL/CentOS*. If you installed the *percona-toolkit* package from the Percona repositories package manager should install those libraries automatically.
 
 After this command has been run, *pt-table-checksum* will be downloaded to
 your current working directory.
@@ -101,5 +99,4 @@ and that the difference is in the `mysql.user` table.
 
 More information on different options that pt-table-checksum provides can
 be found in the *
-pt-table-checksum* [documentation](http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html)
-.
+pt-table-checksum* [documentation](http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html).

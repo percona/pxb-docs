@@ -49,9 +49,11 @@ of the checked system unique ID followed by the software name and version.  The
 ID is generated either at installation or when the *version checking* query is
 submitted for the first time.
 
-**NOTE**: Prior to version 3.0.7 of *Percona Toolkit*, the system ID was calculated as an MD5 hash
-of a hostname, and starting from *Percona Toolkit* 3.0.7 it is generated as an MD5 hash of
-a random number. *Percona XtraBackup* continues to use hostname-based MD5 hash.
+!!! note
+ 
+    Prior to version 3.0.7 of *Percona Toolkit*, the system ID was calculated as an MD5 hash
+    of a hostname, and starting from *Percona Toolkit* 3.0.7 it is generated as an MD5 hash of
+    a random number. *Percona XtraBackup* continues to use hostname-based MD5 hash.
 
 As a result, the content of the sent query is as follows:
 

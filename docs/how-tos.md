@@ -42,29 +42,25 @@ be specified in order to make it quicker and more practical.
 
 `HOST`
 
-> A system with a *MySQL*-based server installed, configured and running. We
-> will assume the following about this system:
+A system with a *MySQL*-based server installed, configured and running. We
+will assume the following about this system:
 
-> > 
-> > * the MySQL server is able to communicate with others by the
-> > standard TCP/IP port;
+* the MySQL server is able to communicate with others by the
+standard TCP/IP port;
 
+* an SSH server is installed and configured - see here if it is not;
 
-> > * an SSH server is installed and configured - see here if it is not;
+* you have a user account in the system with the appropriate
+permissions and
 
-
-> > * you have a user account in the system with the appropriate
-> > permissions and
-
-
-> > * you have a MySQL’s user account with appropriate Connection and Privileges Needed.
+* you have a MySQL’s user account with appropriate Connection and Privileges Needed.
 
 `USER`
 
-    An user account in the system with shell access and appropriate permissions
-    for the task. A guide for checking them is here.
+An user account in the system with shell access and appropriate permissions
+for the task. A guide for checking them is here.
 
 `DB-USER`
 
-    An user account in the database server with appropriate privileges for the
-    task. A guide for checking them is here.
+An user account in the database server with appropriate privileges for the
+task. A guide for checking them is here.

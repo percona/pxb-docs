@@ -6,8 +6,8 @@ overwrite the backup with the same name. *xbcloud* accepts input via a pipe from
 invoked as a pipeline with *xtrabackup* to stream directly to the cloud without
 needing a local storage.
 
-    **NOTE**: 
-
+!!! note
+   
     In a Bash shell, the `$?` parameter returns the exit code
     from the last binary. If you use pipes, the
     ${PIPESTATUS[x]} array parameter returns the exit code for each 
@@ -15,7 +15,7 @@ needing a local storage.
 
     ```
     $ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
-     ...
+    ...
     $ ${PIPESTATUS[x]}
     0 0
     $ true | false
@@ -27,6 +27,7 @@ needing a local storage.
     $ echo ${PIPESTATUS[0]} ${PIPESTATUS[1]}
     0 1
     ```
+
 
 The *xbcloud* binary stores each chunk as a separate object with a name
 `backup_name/database/table.ibd.NNNNNNNNNNNNNNNNNNNN`, where `NNN...` is a
@@ -61,19 +62,19 @@ The following cloud storage types are supported:
 
 In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, *xbcloud* supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.
 
-**See also**
+!!! admonition "See also"
+   
+    [OpenStack Object Storage("Swift")](https://wiki.openstack.org/wiki/Swift)
 
-[OpenStack Object Storage("Swift")](https://wiki.openstack.org/wiki/Swift)
+    [Amazon Simple Storage Service](https://aws.amazon.com/s3/)
 
-[Amazon Simple Storage Service](https://aws.amazon.com/s3/)
+    [MinIO](https://min.io/)
 
-[MinIO](https://min.io/)
+    [Google Cloud Storage](https://cloud.google.com/storage/)
 
-[Google Cloud Storage](https://cloud.google.com/storage/)
+    [Wasabi](https://wasabi.com/)
 
-[Wasabi](https://wasabi.com/)
-
-[Digital Ocean Spaces](https://www.digitalocean.com/products/spaces)
+    [Digital Ocean Spaces](https://www.digitalocean.com/products/spaces)
 
 ## Usage
 
@@ -147,8 +148,9 @@ s3-bucket-lookup=path
 s3-api-version=4
 ```
 
-**NOTE**: If you explicitly use a parameter on the command line and in a configuration
-file, *xbcloud* uses the value provided on the command line.
+!!! note
+   
+    If you explicitly use a parameter on the command line and in a configuration file, *xbcloud* uses the value provided on the command line.
 
 ### Environment variables
 
@@ -162,23 +164,23 @@ For all operations (put, get, and delete), you can use a shortcut to specify the
 storage type, bucket name, and backup name as one parameter instead of using
 three distinct parameters (–storage, –s3-bucket, and backup name per se).
 
-**Note** 
+!!! note
+   
+    Use the following format: ``storage-type://bucket-name/backup-name``
 
-Use the following format: ``storage-type://bucket-name/backup-name``
+    In this example **s3** refers to a storage type, **operator-testing** 
+    is a bucket name, and **bak22** is the backup name. 
 
-In this example **s3** refers to a storage type, **operator-testing** 
-is a bucket name, and **bak22** is the backup name. 
+    ``` bash
+    $ xbcloud get s3://operator-testing/bak22 ...
+    ```
+    
+    This shortcut expands as follows:
 
-``` bash
+    ```shell
+    $ xbcloud get --storage=s3 --s3-bucket=operator-testing bak22 ...
+    ```
 
-$ xbcloud get s3://operator-testing/bak22 ...
-
-```
-This shortcut expands as follows:
-
-```shell
-$ xbcloud get --storage=s3 --s3-bucket=operator-testing bak22 ...
-```
 You can supply the mandatory parameters on the command line,
 configuration files, and in environment variables.
 
@@ -198,20 +200,19 @@ $ xtrabackup --backup --stream=xbstream \
 You may use the `--header` parameter to pass an additional HTTP
 header with the server side encryption while specifying a customer key.
 
+!!! note
+   
+    An example of using the ``--header`` for AES256 encryption.
 
-**Note**
+    ```shell
+    $ xtrabackup --backup --stream=xbstream --parallel=4 | \
+    xbcloud put s3://operator-testing/bak-enc/ \
+    --header="X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256" \
+    --header="X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey=" \
+    --header="X-Amz-Server-Side-Encryption-Customer-Key-MD5: CuStoMerKeyMd5==" \
+    --parallel=8
+    ``` 
 
-An example of using the ``--header`` for AES256 encryption.
-
-```shell
-
-$ xtrabackup --backup --stream=xbstream --parallel=4 | \
-xbcloud put s3://operator-testing/bak-enc/ \
---header="X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256" \
---header="X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey=" \
---header="X-Amz-Server-Side-Encryption-Customer-Key-MD5: CuStoMerKeyMd5==" \
---parallel=8
-```
 The `--header` parameter is also useful to set the access control list (ACL)
 permissions: `--header="x-amz-acl: bucket-owner-full-control`
 

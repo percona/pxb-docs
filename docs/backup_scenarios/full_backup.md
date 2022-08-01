@@ -30,8 +30,7 @@ files being copied, as well as the log file thread repeatedly scanning the
 log
 files and copying from it. Here is an example that shows the log thread
 scanning the log in the background, and a file copying thread working on
-the
-`ibdata1` file:
+the `ibdata1` file:
 
 ```
 160906 10:19:17 Finished backing up non-InnoDB tables and files
@@ -58,12 +57,9 @@ of the `<LSN>` will be a number that depends on your system:
 $ xtrabackup: Transaction log of lsn (<SLN>) to (<LSN>) was copied.
 ```
 
-**NOTE**: Log copying thread checks the transactional log every second to
-see if there
-were any new log records written that need to be copied, but there is a
-chance that the log copying thread might not be able to keep up with the
-amount of writes that go to the transactional logs, and will hit an error
-when the log records are overwritten before they could be read.
+!!! note
+   
+    Log copying thread checks the transactional log every second to see if there were any new log records written that need to be copied, but there is a chance that the log copying thread might not be able to keep up with the amount of writes that go to the transactional logs, and will hit an error when the log records are overwritten before they could be read.
 
 After the backup is finished, the target directory will contain files such
 as
@@ -166,16 +162,15 @@ backup
 because it may cause data files corruption and backup will become unusable.
 Backup validity is not guaranteed if prepare process was interrupted.
 
-**NOTE**: If you intend the backup to be the basis for further incremental
-backups, you
-should use the `--apply-log-only` option when preparing
-the backup, or you will not be able to apply incremental backups to it. See
-the documentation on preparing incremental backups for more details.
+!!! note
+   
+    If you intend the backup to be the basis for further incremental backups, you should use the `--apply-log-only` option when preparing the backup, or you will not be able to apply incremental backups to it. See the documentation on preparing incremental backups for more details.
 
 ## Restoring a Backup
 
-**WARNING**: Backup needs to be prepared before it can be
-restored.
+!!! warning
+   
+    Backup needs to be prepared before it can be restored.
 
 For convenience, *xtrabackup* binary has the `--copy-back`
 option to copy the backup to the datadir of the server:
@@ -191,10 +186,9 @@ the datadir.
 If you don’t want to use any of the above options, you can additionally use
 **rsync** or **cp** to restore the files.
 
-**NOTE**: The datadir must be empty before restoring the backup. Also, it’s
-important to note that MySQL server needs to be shut down before restore is
-performed. You cannot restore to a datadir of a running mysqld instance
-(except when importing a partial backup).
+!!! note
+   
+    The datadir must be empty before restoring the backup. Also, it’s important to note that MySQL server needs to be shut down before restore is performed. You cannot restore to a datadir of a running mysqld instance (except when importing a partial backup).
 
 Example of the **rsync** command that can be used to restore the backup
 can look like this:

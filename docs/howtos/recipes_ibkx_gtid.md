@@ -107,15 +107,12 @@ If you are using a version 8.0.23 or later, run the following commands:
 ```
 
 If you are using version 8.0.23 or later,
-use [CHANGE_REPLICATION_SOURCE_TO and the appropriate options](https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html)
-. `CHANGE_MASTER_TO` is deprecated as of that release.
+use [CHANGE_REPLICATION_SOURCE_TO and the appropriate options](https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html). `CHANGE_MASTER_TO` is deprecated as of that release.
 
-**NOTE**: The example above is applicable to Percona XtraDB Cluster.
-The `wsrep_on` variable
-is set to 0 before resetting the source (`RESET MASTER`). The
-reason is that Percona XtraDB Cluster will not allow resetting the source
-if
-`wsrep_on=1`.
+!!! note
+   
+    The example above is applicable to Percona XtraDB Cluster.
+    The `wsrep_on` variable is set to 0 before resetting the source (`RESET MASTER`). The reason is that Percona XtraDB Cluster will not allow resetting the source if `wsrep_on=1`.
 
 ## STEP 5: Check the replication status
 
@@ -131,15 +128,13 @@ Retrieved_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:5
 Executed_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:1-5
 ```
 
-**NOTE**: The
-command [SHOW SLAVE STATUS](https://dev.mysql.com/doc/refman/8.0/en/show-slave-status.html)
-is deprecated.
-Use [SHOW REPLICA STATUS](https://dev.mysql.com/doc/refman/8.0/en/show-replica-status.html)
-.
+!!! note
+   
+    The command [SHOW SLAVE STATUS](https://dev.mysql.com/doc/refman/8.0/en/show-slave-status.html) is deprecated. Use [SHOW REPLICA STATUS](https://dev.mysql.com/doc/refman/8.0/en/show-replica-status.html).
+
 
 We can see that the replica has retrieved a new transaction with number 5,
-so
-transactions from 1 to 5 are already on this slave.
+so transactions from 1 to 5 are already on this slave.
 
 We have created a new replica in our `GTID` based replication
 environment.

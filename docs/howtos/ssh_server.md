@@ -7,13 +7,13 @@ by using your distribution’s packaging system:
 Using apt, run the following:
 
 ``` bash
-   $ sudo apt install openssh-server
+$ sudo apt install openssh-server
 ```
 
 Using Red Hat Linux or a derivative, use the following:
 
 ```bash
-  $ sudo yum install openssh-server
+$ sudo yum install openssh-server
 ```
 
 Review your distribution’s documentation on how to configure the server.

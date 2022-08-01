@@ -90,11 +90,11 @@ space_id = 0
 `--slave-info` option):</br></br>
 
   `xtrabackup_slave_info`</br>
-     The `CHANGE MASTER` statement needed for setting up a replica.
+   The `CHANGE MASTER` statement needed for setting up a replica.
 
 
 * Information related to the *Galera* and *Percona XtraDB Cluster* (if 
   using the `--galera-info` option):</br></br>
 
   `xtrabackup_galera_info`</br>
-Contains the values of `wsrep_local_state_uuid` and`wsrep_last_committed` status variables
+   Contains the values of `wsrep_local_state_uuid` and`wsrep_last_committed` status variables

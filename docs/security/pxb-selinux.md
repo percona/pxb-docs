@@ -11,15 +11,11 @@ $ ls -Z /usr/bin | grep xtrabackup
 
 The SELinux context is the following:
 
-
 * user (root)
-
 
 * role (object_r)
 
-
 * type (bin_t)
-
 
 * level (s0)
 
@@ -45,23 +41,23 @@ The first option opens the entire system to read and write. Select the second op
 
 To work with policies, you must install the SELinux tools. To find which package provides the `semanage` command and install the package. The following is an example on CentOS 7.
 
-> ```
-> $ yum provides *bin/semanage
-> ...
-> policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
-> ...
-> $ sudo yum install -y policycoreutils-python
-> ```
+```
+$ yum provides *bin/semanage
+...
+policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
+...
+$ sudo yum install -y policycoreutils-python
+```
 
 The following is an example on CentOS 8:
 
-> ```
-> $ yum provides *bin/semanage
-> ...
-> policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python utilities
-> ...
-> $ sudo yum install -y policycoreutils-python-utils
-> ```
+```
+$ yum provides *bin/semanage
+...
+policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python utilities
+...
+$ sudo yum install -y policycoreutils-python-utils
+```
 
 ## Create a policy
 
@@ -71,46 +67,52 @@ Use ps -efZ | grep xtrabackup to verify the service is not confined by SELinux.
 
 Create the `xtrabackup.fc` file and add content. This file defines the security contexts.
 
-> ```
-> /usr/bin/xtrabackup    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
-> /usr/bin/xbcrypt    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
-> /usr/bin/xbstream    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
-> /usr/bin/xbcloud    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
-> /backups(/.*)?       system_u:object_r:xtrabackup_data_t:s0
-> ```
+```
+/usr/bin/xtrabackup    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
+/usr/bin/xbcrypt    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
+/usr/bin/xbstream    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
+/usr/bin/xbcloud    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
+/backups(/.*)?       system_u:object_r:xtrabackup_data_t:s0
+```
 
-**NOTE**: If you are using the `/backups` directory you must have the last line. If you are storing the backups in the user’s home directory, you can omit this line.
+!!! note
+ 
+    If you are using the `/backups` directory you must have the last line. If you are storing the backups in the user’s home directory, you can omit this line.
 
 Download the `xtrabackup.te` file from the following location:
 
 [https://github.com/percona/percona-xtrabackup/tree/8.0/packaging/percona/selinx](https://github.com/percona/percona-xtrabackup/tree/8.0/packaging/percona/selinx)
 
-**NOTE**: In the file, the sections in bold should be modified for your system. The fc file can also be downloaded from the same location.
+!!! note
+ 
+    In the file, the sections in bold should be modified for your system. The fc file can also be downloaded from the same location.
 
 Complile the policy module:
 
-> ```
-> $ make -f /usr/share/selinux/devel/Makefile xtrabackup.pp
-> ```
+```
+$ make -f /usr/share/selinux/devel/Makefile xtrabackup.pp
+```
 
 Install the module:
 
-> ```
-> $ semodule -i xtrabackup.pp
-> ```
+```
+$ semodule -i xtrabackup.pp
+```
 
 Tag the PXB binaries with the proper SELinux tags, such as `xtrabackup_exec_t`.
 
-> ```
-> $ restorecon -v /usr/bin/*
-> ```
+```
+$ restorecon -v /usr/bin/*
+```
 
 If you store your backups at `/backups`, restore the tag in that location:
 
-> ```
-> $ restorecon -v /backups
-> ```
+```
+$ restorecon -v /backups
+```
 
-**NOTE**: Remember to add the standard Linux DAC permissions for this directory.
+!!! note
+ 
+    Remember to add the standard Linux DAC permissions for this directory.
 
 Perform the backup in the standard way.
