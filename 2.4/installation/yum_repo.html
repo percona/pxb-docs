@@ -1222,9 +1222,9 @@ binaries in <code>percona-xtrabackup-24</code>.</p>
 <p>The <code>percona-xtrabackup</code> package contains the older version of the
 <em>Percona XtraBackup</em>.</p>
 <h2 id="installing-percona-xtrabackup-from-percona-yum-repository">Installing <em>Percona XtraBackup</em> from Percona <code>yum</code> repository<a class="headerlink" href="#installing-percona-xtrabackup-from-percona-yum-repository" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Install the <code>percona-release</code> configuration tool</li>
-</ul>
+<ol>
+<li>
+<p>Install the <code>percona-release</code> configuration tool</p>
 <p>You can install the yum repository for percona-release
 by running the following command as a <code>root</code> user or with
 <code>sudo</code>:</p>
@@ -1242,9 +1242,9 @@ Preparing...                <span class="c1">###################################
 <div class="highlight"><pre><span></span><code>$ wget https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 $ rpm -ivH percona-release-latest.noarch.rpm
 </code></pre></div>
-<ul>
-<li>Testing the repository</li>
-</ul>
+</li>
+<li>
+<p>Testing the repository</p>
 <p>Make sure packages are now available from the repository, by executing the
 following command:</p>
 <div class="highlight"><pre><span></span><code>yum list <span class="p">|</span> grep percona
@@ -1264,19 +1264,21 @@ percona-xtrabackup-test-21.x86_64          <span class="m">2</span>.1.9-746.rhel
 percona-xtrabackup-test-22.x86_64          <span class="m">2</span>.2.13-1.el5                percona-release-x86_64
 ...
 </code></pre></div>
-<ul>
-<li>Enable the repository: <code>percona-release enable-only tools release</code></li>
-</ul>
+</li>
+<li>
+<p>Enable the repository: <code>percona-release enable-only tools release</code></p>
 <p>If <em>Percona XtraBackup</em> is intented to be used in combination with
 the upstream MySQL Server, you only need to enable the <code>tools</code>
 repository: <code>percona-release enable-only tools</code>.</p>
-<ul>
-<li>Install <em>Percona XtraBackup</em> by running:  <code>yum install percona-xtrabackup-24</code></li>
-</ul>
+</li>
+<li>
+<p>Install <em>Percona XtraBackup</em> by running:  <code>yum install percona-xtrabackup-24</code></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>In order to sucessfully install <em>Percona XtraBackup</em> on CentOS prior to version 7, the <code>libev</code> package needs to be installed first. This package <code>libev</code> package can be installed from the <a href="https://fedoraproject.org/wiki/EPEL">EPEL</a> repositories.</p>
 </div>
+</li>
+</ol>
 <h2 id="percona-yum-testing-repository">Percona <code>yum</code> Testing Repository<a class="headerlink" href="#percona-yum-testing-repository" title="Permanent link">&para;</a></h2>
 <p>Percona offers pre-release builds from our testing repository. To subscribe to
 the testing repository, you’ll need to enable the testing repository in
@@ -1286,14 +1288,17 @@ the testing repository, you’ll need to enable the testing repository in
 and experimental - in this case it is the second section that requires
 updating). <strong>NOTE:</strong> You’ll need to install the Percona repository first (ref
 above) if this hasn’t been done already.</p>
-<ul>
-<li>To be able to make compressed backups, install the <code>qpress</code> package:</li>
-</ul>
-<p>$ yum install qpress</p>
-<div class="admonition seealso">
-<p class="admonition-title">Seealso</p>
+<ol>
+<li>
+<p>To be able to make compressed backups, install the <code>qpress</code> package:</p>
+<div class="highlight"><pre><span></span><code>$ yum install qpress
+</code></pre></div>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
 <p><a href="../backup_scenarios/compressed_backup.html#compressed-backup">Compressed Backup</a></p>
 </div>
+</li>
+</ol>
 <h2 id="installing-percona-xtrabackup-using-downloaded-rpm-packages">Installing <em>Percona XtraBackup</em> using downloaded rpm packages<a class="headerlink" href="#installing-percona-xtrabackup-using-downloaded-rpm-packages" title="Permanent link">&para;</a></h2>
 <p>Download the packages of the desired series for your architecture from the
 <a href="https://www.percona.com/downloads/XtraBackup/">download page</a>. Following
@@ -1336,7 +1341,7 @@ installed packages.</p>
   <small>
     
       Last update:
-      2022-07-22
+      2022-08-01
     
   </small>
 </div>

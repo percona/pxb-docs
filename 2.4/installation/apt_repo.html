@@ -1247,36 +1247,38 @@ binaries in <code>percona-xtrabackup-24</code>.</p>
 <h2 id="installing-percona-xtrabackup-via-percona-release">Installing <em>Percona XtraBackup</em> via <em>percona-release</em><a class="headerlink" href="#installing-percona-xtrabackup-via-percona-release" title="Permanent link">&para;</a></h2>
 <p><em>Percona XtraBackup</em>, like many other <em>Percona</em> products, is installed
 with the <em>percona-release</em> package configuration tool.</p>
-<ul>
-<li>Download a deb package for <em>percona-release</em> the repository packages from Percona web:</li>
-</ul>
+<ol>
+<li>
+<p>Download a deb package for <em>percona-release</em> the repository packages from Percona web:</p>
 <div class="highlight"><pre><span></span><code>$ wget https://repo.percona.com/apt/percona-release_latest.<span class="k">$(</span>lsb_release -sc<span class="k">)</span>_all.deb
 </code></pre></div>
-<ul>
-<li>Install the downloaded package with <code>dpkg</code>. To do that, run the
-following commands as root or with <code>sudo</code>:</li>
-</ul>
+</li>
+<li>
+<p>Install the downloaded package with <code>dpkg</code>. To do that, run the
+following commands as root or with <code>sudo</code>:</p>
 <div class="highlight"><pre><span></span><code>$ sudo dpkg -i percona-release_latest.<span class="k">$(</span>lsb_release -sc<span class="k">)</span>_all.deb
 </code></pre></div>
 <p>Once you install this package the Percona repositories should be added. You
 can check the repository setup in the
 /etc/apt/sources.list.d/percona-release.list file.</p>
-<ul>
-<li>Enable the repository: <code>percona-release enable-only tools release</code></li>
-</ul>
+</li>
+<li>
+<p>Enable the repository: <code>percona-release enable-only tools release</code></p>
 <p>If <em>Percona XtraBackup</em> is intended to be used in combination with
 the upstream MySQL Server, you enable only the <code>tools</code>
 repository: <code>percona-release enable-only tools</code>.</p>
-<ul>
-<li>After that you can install the <code>percona-xtrabackup-24</code> package:</li>
-</ul>
+</li>
+<li>
+<p>After that you can install the <code>percona-xtrabackup-24</code> package:</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install percona-xtrabackup-24
 </code></pre></div>
-<ul>
-<li>In order to make compressed backups, install the <code>qpress</code> package:</li>
-</ul>
+</li>
+<li>
+<p>In order to make compressed backups, install the <code>qpress</code> package:</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install qpress
 </code></pre></div>
+</li>
+</ol>
 <h3 id="apt-pinning-the-packages">Apt-Pinning the packages<a class="headerlink" href="#apt-pinning-the-packages" title="Permanent link">&para;</a></h3>
 <p>In some cases you might need to “pin” the selected packages to avoid the
 upgrades from the distribution repositories. You’ll need to make a new file
@@ -1307,35 +1309,39 @@ binary/debian/stretch/x86_64/percona-xtrabackup-24_2.4.20-1.stretch_amd64.deb
 <p>The default curl version, 7.64.0, in Debian 10 has known issues when attempting to reuse an already closed connection. This issue directly affects <code>xbcloud</code> and users may see intermittent backup failures.</p>
 <p>For more details, see <a href="https://github.com/curl/curl/issues/3750">curl #3750</a> or <a href="https://github.com/curl/curl/pull/3763">curl #3763</a>.</p>
 <p>Follow these steps to upgrade curl to version 7.74.0:</p>
-<ul>
-<li>Edit the <code>/etc/apt/sources.list</code> to add the following:</li>
-</ul>
+<ol>
+<li>
+<p>Edit the <code>/etc/apt/sources.list</code> to add the following:</p>
 <div class="highlight"><pre><span></span><code>deb http://ftp.de.debian.org/debian buster-backports main
 </code></pre></div>
-<ul>
-<li>Refresh the <code>apt</code> sources:</li>
-</ul>
+</li>
+<li>
+<p>Refresh the <code>apt</code> sources:</p>
 <div class="highlight"><pre><span></span><code>sudo apt update
 </code></pre></div>
-<ul>
-<li>Install the version from <code>buster-backports</code>:</li>
-</ul>
+</li>
+<li>
+<p>Install the version from <code>buster-backports</code>:</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install curl/buster-backports
 </code></pre></div>
-<ul>
-<li>Verify the version number:</li>
-</ul>
+</li>
+<li>
+<p>Verify the version number:</p>
 <div class="highlight"><pre><span></span><code>$ curl --version
 curl <span class="m">7</span>.74.0 <span class="o">(</span>x86_64-pc-linux-gnu<span class="o">)</span> libcurl/7.74.0
 </code></pre></div>
+</li>
+</ol>
 <h2 id="uninstalling-percona-xtrabackup">Uninstalling <em>Percona XtraBackup</em><a class="headerlink" href="#uninstalling-percona-xtrabackup" title="Permanent link">&para;</a></h2>
 <p>To uninstall <em>Percona XtraBackup</em> you’ll need to remove all the installed
 packages.</p>
-<ul>
-<li>Remove the packages</li>
-</ul>
+<ol>
+<li>
+<p>Remove the packages</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt remove percona-xtrabackup-24
 </code></pre></div>
+</li>
+</ol>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1357,7 +1363,7 @@ packages.</p>
   <small>
     
       Last update:
-      2022-07-22
+      2022-08-01
     
   </small>
 </div>

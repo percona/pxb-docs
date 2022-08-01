@@ -1783,22 +1783,15 @@ S3 API.</p>
 <h2 id="supported-cloud-storage-types">Supported Cloud Storage Types<a class="headerlink" href="#supported-cloud-storage-types" title="Permanent link">&para;</a></h2>
 <p>Swift was the only option for storing backups in cloud storage until <em>Percona XtraBackup 2.4.14</em>. 
 Currently, the xbcloud binary supports <a href="#creating-a-full-backup-with-amazon-s3">Amazon S3</a>, <a href="xbcloud_azure.html#xbcloud-azure">Azure</a>, <a href="#creating-a-full-backup-with-minio">MinIO</a> and <a href="#creating-a-full-backup-with-google-cloud-storage">Google Cloud Storage</a>. Amazon S3-compatible cloud storage types, such as Wasabi and Digital Ocean Spaces, are also supported.</p>
-<div class="admonition seealso">
-<p class="admonition-title">Seealso</p>
-<p>OpenStack Object Storage (&ldquo;Swift&rdquo;)
-https://wiki.openstack.org/wiki/Swift</p>
-<p>Amazon Simple Storage Service
-https://aws.amazon.com/s3/</p>
-<p>Azure Cloud Storage
-https://azure.microsoft.com/en-gb/product-categories/storage/</p>
-<p>MinIO
-https://min.io/</p>
-<p>Google Cloud Storage
-https://cloud.google.com/storage/</p>
-<p>Wasabi
-https://wasabi.com/</p>
-<p>Digital Ocean Spaces
-https://www.digitalocean.com/products/spaces/</p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
+<p><a href="https://wiki.openstack.org/wiki/Swift">OpenStack Object Storage (&ldquo;Swift&rdquo;)</a></p>
+<p><a href="https://aws.amazon.com/s3/">Amazon Simple Storage Service</a></p>
+<p><a href="https://azure.microsoft.com/en-gb/product-categories/storage/">Azure Cloud Storage</a></p>
+<p><a href="https://min.io/">MinIO</a></p>
+<p><a href="https://cloud.google.com/storage/">Google Cloud Storage</a></p>
+<p><a href="https://wasabi.com/">Wasabi</a></p>
+<p><a href="https://www.digitalocean.com/products/spaces/">Digital Ocean Spaces</a></p>
 </div>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --target-dir<span class="o">=</span>/tmp <span class="p">|</span> xbcloud <span class="se">\</span>
@@ -1878,8 +1871,8 @@ xbcloud put --storage<span class="o">=</span>s3 <span class="se">\</span>
 <p>The support for Google Cloud Storage is implemented using the interoperability
 mode. This mode was especially designed to interact with cloud services
 compatible with <em>Amazon S3</em>.</p>
-<div class="admonition seealso">
-<p class="admonition-title">Seealso</p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
 <p>Cloud Storage Interoperability
   https://cloud.google.com/storage/docs/interoperability</p>
 </div>
@@ -2170,7 +2163,7 @@ TempAuth, <code>2.0</code> - Keystone v2.0, and <code>3</code> - Keystone v3. De
   <small>
     
       Last update:
-      2022-07-19
+      2022-08-01
     
   </small>
 </div>

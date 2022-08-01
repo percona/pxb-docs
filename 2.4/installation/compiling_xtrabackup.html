@@ -1312,8 +1312,8 @@ XtraBackup</em> from source. These might vary from system to system.</p>
 <p class="admonition-title">Important</p>
 <p>In order to build <em>Percona XtraBackup</em> v8.0 from source, you need to use <code>cmake</code> version 3. In your distribution, it may be available either as a separate package <code>cmake3</code> or as <code>cmake</code>. To check which version is installed, run <code>cmake --version</code> and if it does report a version 3, install <code>cmake3</code> for your system.</p>
 </div>
-<div class="admonition seealso">
-<p class="admonition-title">Seealso</p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
 <p>https://cmake.org/</p>
 </div>
 <h3 id="debian-or-ubuntu-using-apt">Debian or Ubuntu using <code>apt</code><a class="headerlink" href="#debian-or-ubuntu-using-apt" title="Permanent link">&para;</a></h3>
@@ -1342,22 +1342,23 @@ vim-common
 <p>At this step, you have <code>cmake</code> run the commands in the <code>CMakeList.txt</code>
 file to generate the build pipeline, i.e. a native build environment that will
 be used to compile the source code).</p>
-<ul>
-<li>Change to the directory where you cloned the Percona XtraBackup repository</li>
-</ul>
+<ol>
+<li>
+<p>Change to the directory where you cloned the Percona XtraBackup repository</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> percona-xtrabackup
 </code></pre></div>
-<ul>
-<li>Create a directory to store the compiled files and then change to that
-directory:</li>
-</ul>
+</li>
+<li>
+<p>Create a directory to store the compiled files and then change to that
+directory:</p>
 <div class="highlight"><pre><span></span><code>$ mkdir build
 $ <span class="nb">cd</span> build
 </code></pre></div>
-<ul>
-<li>Run <code>cmake</code> or <code>cmake3</code>. In either case, the options you need to use are the
-same.</li>
-</ul>
+</li>
+<li>
+<p>Run <code>cmake</code> or <code>cmake3</code>. In either case, the options you need to use are the same.</p>
+</li>
+</ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You can build <em>Percona XtraBackup</em> with man pages but this requires <code>python-sphinx</code> package which isn’t available from that main repositories for every distribution. If you installed the <code>python-sphinx</code> package you need to remove the <code>-DWITH_MAN_PAGES=OFF</code> from previous command. </p>
@@ -1384,16 +1385,16 @@ same.</li>
 <p class="admonition-title">Important</p>
 <p>The computer where you intend to compile <em>Percona XtraBackup</em> 8.0 must have at least 2G of RAM available.</p>
 </div>
-<ul>
+<ol>
 <li>
 <p>Change to the <code>build</code> directory (created at <a href="compiling_xtrabackup.html#pxb-source-code-installing-build-pipe-line-generating">Step 2: Generating the build pipeline</a>).</p>
 </li>
 <li>
 <p>Run the <code>make</code> command. This command may take a long time to complete.</p>
-</li>
-</ul>
 <div class="highlight"><pre><span></span><code>$ make
 </code></pre></div>
+</li>
+</ol>
 <h2 id="step-3-installing-on-the-target-system">Step 3: Installing on the target system<a class="headerlink" href="#step-3-installing-on-the-target-system" title="Permanent link">&para;</a></h2>
 <p>The following command installs all <em>Percona XtraBackup</em> binaries <em>xtrabackup</em>
 and tests to default location on the target system: <code>/usr/local/xtrabackup</code>.</p>
@@ -1412,8 +1413,8 @@ the installation directory, this parameter controls a number of other
 destinations that you can adjust for your system.</p>
 <p>By default, this parameter is set to <code>STANDALONE</code>, which implies the
 installation directory to be /usr/local/xtrabackup.</p>
-<div class="admonition seealso">
-<p class="admonition-title">Seealso</p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
 <p><a href="https://dev.mysql.com/doc/refman/8.0/en/source-configuration-options.html#option_cmake_install_layout">MySQL Documentation: -DINSTALL_LAYOUT</a></p>
 </div>
 <h2 id="step-4-running">Step 4: Running<a class="headerlink" href="#step-4-running" title="Permanent link">&para;</a></h2>
@@ -1431,8 +1432,8 @@ $ xtrabackup
 </code></pre></div>
 <p>Alternatively, you may consider placing a soft link (using <code>ln -s</code>) to one of
 the locations listed in your <code>PATH</code> environment variable.</p>
-<div class="admonition seealso">
-<p class="admonition-title">Seealso</p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
 <p><code>man ln</code></p>
 </div>
 <p>To view the documentation with <code>man</code>, update the <code>MANPATH</code> variable.</p>
@@ -1457,7 +1458,7 @@ the locations listed in your <code>PATH</code> environment variable.</p>
   <small>
     
       Last update:
-      2022-07-22
+      2022-08-01
     
   </small>
 </div>
