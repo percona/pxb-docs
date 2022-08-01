@@ -1546,11 +1546,10 @@ or download <em>pt-table-checksum</em>. This example shows downloading the lates
 version of <em>pt-table-checksum</em>:</p>
 <div class="highlight"><pre><span></span><code>$ wget percona.com/get/pt-table-checksum
 </code></pre></div>
-<p><strong>NOTE</strong>: In order for pt-table-checksum to work
-correctly <code>libdbd-mysql-perl</code> will need to be installed on <em>Debian/Ubuntu</em>
-systems or <code>perl-DBD-MySQL</code> on <em>RHEL/CentOS</em>. If you installed the *
-percona-toolkit* package from the Percona repositories package manager
-should install those libraries automatically.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In order for pt-table-checksum to work correctly <code>libdbd-mysql-perl</code> will need to be installed on <em>Debian/Ubuntu</em> systems or <code>perl-DBD-MySQL</code> on <em>RHEL/CentOS</em>. If you installed the <em>percona-toolkit</em> package from the Percona repositories package manager should install those libraries automatically.</p>
+</div>
 <p>After this command has been run, <em>pt-table-checksum</em> will be downloaded to
 your current working directory.</p>
 <p>Running the <em>pt-table-checksum</em> on the source will create <code>percona</code>
@@ -1599,8 +1598,7 @@ Checksumming exampledb.user_info:  86% 00:24 remain
 and that the difference is in the <code>mysql.user</code> table.</p>
 <p>More information on different options that pt-table-checksum provides can
 be found in the *
-pt-table-checksum* <a href="http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html">documentation</a>
-.</p>
+pt-table-checksum* <a href="http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html">documentation</a>.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1622,7 +1620,7 @@ pt-table-checksum* <a href="http://www.percona.com/doc/percona-toolkit/2.2/pt-ta
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

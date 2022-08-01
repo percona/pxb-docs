@@ -1621,15 +1621,14 @@ databases. With <em>Percona XtraBackup</em>, you can achieve the following benef
 <p><em>Percona XtraBackup</em> makes <em>MySQL</em> hot backups for all versions of Percona
 Server for MySQL, and <em>MySQL</em>. It performs streaming, compressed, and incremental <em>MySQL</em>
 backups.</p>
-<p><strong><em>Important</em></strong></p>
-<blockquote>
-<p><strong>Percona XtraBackup</strong> 2.4 supports <em>MySQL</em> and <em>Percona Server for 
-MySQL</em> 
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Percona XtraBackup</strong> 2.4 supports <em>MySQL</em> and <em>Percona Server for MySQL</em> 
 5.6 and 5.7 databases. Due to changes in the MySQL redo log and data 
 dictionary formats, the <strong>Percona XtraBackup</strong> 8.0.x versions are only 
 compatible with <em>MySQL</em> 8.0.x, <em>Percona Server for MySQL</em> 8.0.x, and 
 compatible versions.</p>
-</blockquote>
+</div>
 <p>Percona’s enterprise-grade commercial <a href="http://www.percona.com/mysql-support/">MySQL Support</a> contracts include support for <em>Percona
 XtraBackup</em>. We recommend support for critical production deployments. Percona XtraDB Backup supports encryption.</p>
 <h3 id="supported-storage-engines">Supported storage engines<a class="headerlink" href="#supported-storage-engines" title="Permanent link">&para;</a></h3>
@@ -1639,15 +1638,20 @@ engines. Fast incremental backups are supported for Percona Server with the Xtra
 <p>In addition, it can back up the following storage engines by briefly
 pausing writes at the end of the backup: MyISAM and Merge, including partitioned tables, triggers, and database
 options. The InnoDB tables are still locked while copying non-InnoDB data.</p>
-<p><strong><em>Version Updates</em></strong></p>
+<div class="admonition admonition">
+<p class="admonition-title">Version updates</p>
 <p>Version 8.0.6 and later supports the MyRocks storage engine. 
 An incremental backup on the MyRocks storage engine does not 
 determine if an earlier full or incremental backup 
 contains the same files. <strong>Percona XtraBackup</strong> copies all 
 MyRocks files each time it takes a backup.
 <strong>Percona 
-XtraBackup</strong> does not support the TokuDB storage engine. </p>
-<p><em>See Also</em> <a href="https://docs.percona.com/percona-server/latest/tokudb/toku_backup.html">Percona TokuBackup</a> </p>
+XtraBackup</strong> does not support the TokuDB storage engine.</p>
+</div>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
+<p><a href="https://docs.percona.com/percona-server/latest/tokudb/toku_backup.html">Percona TokuBackup</a></p>
+</div>
 <h2 id="what-are-the-features-of-percona-xtrabackup">What are the features of Percona XtraBackup?<a class="headerlink" href="#what-are-the-features-of-percona-xtrabackup" title="Permanent link">&para;</a></h2>
 <p>Here is a short list of the Percona XtraBackup features. See the documentation
 for more.</p>
@@ -1683,8 +1687,10 @@ for more.</p>
 <p>Backup locks is a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> available in Percona Server. Percona XtraBackup uses them automatically to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 </li>
 </ul>
-<p><strong><em>See also</em></strong>
-<a href="https://docs.percona.com/percona-xtrabackup/8.0/how_xtrabackup_works.html#how-xtrabackup-works">How Percona XtraBackup works</a></p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
+<p><a href="https://docs.percona.com/percona-xtrabackup/8.0/how_xtrabackup_works.html#how-xtrabackup-works">How Percona XtraBackup works</a></p>
+</div>
 <h3 id="additional-information">Additional information<a class="headerlink" href="#additional-information" title="Permanent link">&para;</a></h3>
 <p>The <em>InnoDB</em> tables are locked while copying non-<em>InnoDB</em> data.</p>
 
@@ -1708,7 +1714,7 @@ for more.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

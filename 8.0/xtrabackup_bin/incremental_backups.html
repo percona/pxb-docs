@@ -1573,7 +1573,10 @@ changed since the last full backup. You can perform many incremental backups
 between each full backup, so you can set up a backup process such as a full
 backup once a week and an incremental backup every day, or full backups every
 day and incremental backups every hour.</p>
-<p><strong>NOTE</strong>: Incremental backups on the MyRocks storage engine do not determine if an earlier full backup or incremental backup contains the same files. <strong>Percona XtraBackup</strong> copies all of the MyRocks files each time it takes a backup.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Incremental backups on the MyRocks storage engine do not determine if an earlier full backup or incremental backup contains the same files. <strong>Percona XtraBackup</strong> copies all of the MyRocks files each time it takes a backup.</p>
+</div>
 <p>Incremental backups work because each InnoDB page (usually 16kb in size)
 contains a log sequence number, or LSN. The LSN is the system
 version number for the entire database. Each page’s LSN shows how
@@ -1640,10 +1643,13 @@ transactions that were uncommitted at the time of your backup may be in
 progress, and it is likely that they will be committed in the next incremental
 backup. You should use the <code>--apply-log-only</code> option to prevent the
 rollback phase.</p>
-<p><strong>NOTE</strong>: If you do not use the <code>--apply-log-only</code> option to prevent the
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you do not use the <code>--apply-log-only</code> option to prevent the
 rollback phase, then your incremental backups will be useless. After
 transactions have been rolled back, further incremental backups cannot be
 applied.</p>
+</div>
 <p>Beginning with the full backup you created, you can prepare it, and then apply
 the incremental differences to it. Recall that you have the following backups:</p>
 <div class="highlight"><pre><span></span><code>/data/backups/base
@@ -1693,11 +1699,14 @@ point of the second incremental backup:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2
 </code></pre></div>
-<p><strong>NOTE</strong>: <code>--apply-log-only</code> should be used when merging all incrementals
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>--apply-log-only</code> should be used when merging all incrementals
 except the last one. That’s why the previous line doesn’t contain the
 <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> was
 used on the last step, backup would still be consistent but in that case
 server would perform the rollback phase.</p>
+</div>
 <p>If you wish to avoid the notice that <em>InnoDB</em> was not shut down normally, when
 you applied the desired deltas to the base backup, you can run
 <code>--prepare</code> again without disabling the rollback phase.</p>
@@ -1745,7 +1754,7 @@ $ ssh user@hostname &quot; cat - | xbstream -x -C &gt; /backup-dir/&quot;
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

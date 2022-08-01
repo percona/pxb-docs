@@ -1612,8 +1612,10 @@ the <code>percona-release</code> package configuration tool as follows:</p>
 $ sudo apt update
 $ sudo apt install qpress
 </code></pre></div>
-<p><strong>NOTE</strong>: Enable the
-repository: <code>percona-release enable-only tools release</code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Enable the repository: <code>percona-release enable-only tools release</code>.</p>
+</div>
 <p>If <em>Percona XtraBackup</em> is intended to be used in combination with
 the upstream MySQL Server, you only need to enable the <code>tools</code>
 repository: <code>percona-release enable-only tools</code>.</p>
@@ -1642,9 +1644,10 @@ xtrabackup: Transaction log of lsn (9291934) to (9291934) was copied.
 that can be used to decompress the backup.</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --decompress --target-dir=/data/compressed/
 </code></pre></div>
-<p><strong>NOTE</strong>: <code>--parallel</code> can be used with
-<code>--decompress</code> option to decompress multiple files
-simultaneously.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>--parallel</code> can be used with <code>--decompress</code> option to decompress multiple files simultaneously. </p>
+</div>
 <p><em>Percona XtraBackup</em> does not automatically remove the compressed files. In
 order to clean up the backup directory you should use
 <code>--remove-original</code> option. Even if they’re not removed
@@ -1698,7 +1701,7 @@ the server.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

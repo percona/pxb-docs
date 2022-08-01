@@ -1583,37 +1583,35 @@ straightforward procedure. In order to keep it simple, here is a list of
 the
 things you need to follow the steps without hassles:</p>
 <p><code>Source</code></p>
-<div class="highlight"><pre><span></span><code>A system with a *MySQL*-based server installed, configured and running. This
-system will be called `Source`, as it is where your data is stored and
-the one to be replicated. We will assume the following about this system:
-
-
-* the *MySQL* server is able to communicate with others by the standard TCP/IP port;
-
-
-* the *SSH* server is installed and configured;
-
-
-* you have a user account in the system with the appropriate permissions;
-
-
-* you have a MySQL’s user account with appropriate privileges.
-
-
-* server has binlogs enabled and server-id set up to 1.
-</code></pre></div>
+<p>A system with a <em>MySQL</em>-based server installed, configured and running. This
+system will be called <code>Source</code>, as it is where your data is stored and the one to be replicated. We will assume the following about this system:</p>
+<ul>
+<li>
+<p>the <em>MySQL</em> server is able to communicate with others by the standard TCP/IP port;</p>
+</li>
+<li>
+<p>the <em>SSH</em> server is installed and configured;</p>
+</li>
+<li>
+<p>you have a user account in the system with the appropriate permissions;</p>
+</li>
+<li>
+<p>you have a MySQL’s user account with appropriate privileges.</p>
+</li>
+<li>
+<p>server has binlogs enabled and server-id set up to 1.</p>
+</li>
+</ul>
 <p><code>Replica</code></p>
-<div class="highlight"><pre><span></span><code>Another system, with a *MySQL*-based server installed on it. We
-will refer to this machine as `Replica` and we will assume the same things
-we did about `Source`, except that the server-id on `Replica` is 2.
-</code></pre></div>
+<p>Another system, with a <em>MySQL</em>-based server installed on it. We
+will refer to this machine as <code>Replica</code> and we will assume the same things
+we did about <code>Source</code>, except that the server-id on <code>Replica</code> is 2.</p>
 <p><code>Percona XtraBackup</code></p>
-<div class="highlight"><pre><span></span><code>The backup tool we will use. It should be installed in both computers for convenience.
-</code></pre></div>
-<p><strong>NOTE</strong>: It is not recommended to mix MySQL variants (Percona Server,
-MySQL) in your
-replication setup. This may produce incorrect <code>xtrabackup_slave_info</code>
-file when adding a new replica.</p>
+<p>The backup tool we will use. It should be installed in both computers for convenience.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is not recommended to mix MySQL variants (Percona Server, MySQL) in your replication setup. This may produce incorrect <code>xtrabackup_slave_info</code> file when adding a new replica. </p>
+</div>
 <h2 id="version-updates">Version updates<a class="headerlink" href="#version-updates" title="Permanent link">&para;</a></h2>
 <p>The 8.0.23 version deprecates the <code>CHANGE_MASTER_TO</code> command. In that 
 version and later, use
@@ -1832,7 +1830,7 @@ server is replicating the <code>Source</code>.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

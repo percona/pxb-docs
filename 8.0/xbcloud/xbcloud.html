@@ -1713,16 +1713,14 @@ the cloud the full or part of an <em>xbstream</em> archive. <em>xbcloud</em> wil
 overwrite the backup with the same name. <em>xbcloud</em> accepts input via a pipe from <em>xbstream</em> so that it can be
 invoked as a pipeline with <em>xtrabackup</em> to stream directly to the cloud without
 needing a local storage.</p>
-<div class="highlight"><pre><span></span><code>**NOTE**:
-
-In a Bash shell, the `$?` parameter returns the exit code
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In a Bash shell, the <code>$?</code> parameter returns the exit code
 from the last binary. If you use pipes, the
 ${PIPESTATUS[x]} array parameter returns the exit code for each 
-binary in the pipe string.
-
-```
-$ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
- ...
+binary in the pipe string.</p>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
+...
 $ ${PIPESTATUS[x]}
 0 0
 $ true | false
@@ -1733,8 +1731,8 @@ $ echo $?
 $ true | false
 $ echo ${PIPESTATUS[0]} ${PIPESTATUS[1]}
 0 1
-```
 </code></pre></div>
+</div>
 <p>The <em>xbcloud</em> binary stores each chunk as a separate object with a name
 <code>backup_name/database/table.ibd.NNNNNNNNNNNNNNNNNNNN</code>, where <code>NNN...</code> is a
 0-padded serial number of chunk within a file. Size of chunk produced by
@@ -1764,13 +1762,15 @@ the AWS Amazon S3 API.</p>
 </li>
 </ul>
 <p>In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, <em>xbcloud</em> supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.</p>
-<p><strong>See also</strong></p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
 <p><a href="https://wiki.openstack.org/wiki/Swift">OpenStack Object Storage(&ldquo;Swift&rdquo;)</a></p>
 <p><a href="https://aws.amazon.com/s3/">Amazon Simple Storage Service</a></p>
 <p><a href="https://min.io/">MinIO</a></p>
 <p><a href="https://cloud.google.com/storage/">Google Cloud Storage</a></p>
 <p><a href="https://wasabi.com/">Wasabi</a></p>
 <p><a href="https://www.digitalocean.com/products/spaces">Digital Ocean Spaces</a></p>
+</div>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>The following sample command creates a full backup:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ --extra-lsndirk=/storage/backups/| xbcloud \
@@ -1814,8 +1814,10 @@ s3-bucket=backupsx
 s3-bucket-lookup=path
 s3-api-version=4
 </code></pre></div>
-<p><strong>NOTE</strong>: If you explicitly use a parameter on the command line and in a configuration
-file, <em>xbcloud</em> uses the value provided on the command line.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you explicitly use a parameter on the command line and in a configuration file, <em>xbcloud</em> uses the value provided on the command line.</p>
+</div>
 <h3 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
 <p>If you explicitly use a parameter on the command line, in a configuration
 file, and the corresponding environment variable contains a value, <em>xbcloud</em>
@@ -1824,16 +1826,18 @@ uses the value provided on the command line or in the configuration file.</p>
 <p>For all operations (put, get, and delete), you can use a shortcut to specify the
 storage type, bucket name, and backup name as one parameter instead of using
 three distinct parameters (–storage, –s3-bucket, and backup name per se).</p>
-<p><strong>Note</strong> </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>Use the following format: <code>storage-type://bucket-name/backup-name</code></p>
 <p>In this example <strong>s3</strong> refers to a storage type, <strong>operator-testing</strong> 
 is a bucket name, and <strong>bak22</strong> is the backup name. </p>
-<p><div class="highlight"><pre><span></span><code>$ xbcloud get s3://operator-testing/bak22 ...
+<div class="highlight"><pre><span></span><code>$ xbcloud get s3://operator-testing/bak22 ...
 </code></pre></div>
-This shortcut expands as follows:</p>
-<p><div class="highlight"><pre><span></span><code>$ xbcloud get --storage<span class="o">=</span>s3 --s3-bucket<span class="o">=</span>operator-testing bak22 ...
+<p>This shortcut expands as follows:</p>
+<div class="highlight"><pre><span></span><code>$ xbcloud get --storage<span class="o">=</span>s3 --s3-bucket<span class="o">=</span>operator-testing bak22 ...
 </code></pre></div>
-You can supply the mandatory parameters on the command line,
+</div>
+<p>You can supply the mandatory parameters on the command line,
 configuration files, and in environment variables.</p>
 <h3 id="additional-parameters">Additional parameters<a class="headerlink" href="#additional-parameters" title="Permanent link">&para;</a></h3>
 <p><em>xbcloud</em> accepts additional parameters that you can use with any storage
@@ -1846,16 +1850,18 @@ pattern.</p>
 </code></pre></div>
 <p>You may use the <code>--header</code> parameter to pass an additional HTTP
 header with the server side encryption while specifying a customer key.</p>
-<p><strong>Note</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>An example of using the <code>--header</code> for AES256 encryption.</p>
-<p><div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --parallel<span class="o">=</span><span class="m">4</span> <span class="p">|</span> <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --parallel<span class="o">=</span><span class="m">4</span> <span class="p">|</span> <span class="se">\</span>
 xbcloud put s3://operator-testing/bak-enc/ <span class="se">\</span>
 --header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256&quot;</span> <span class="se">\</span>
 --header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey=&quot;</span> <span class="se">\</span>
 --header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Key-MD5: CuStoMerKeyMd5==&quot;</span> <span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-The <code>--header</code> parameter is also useful to set the access control list (ACL)
+</div>
+<p>The <code>--header</code> parameter is also useful to set the access control list (ACL)
 permissions: <code>--header="x-amz-acl: bucket-owner-full-control</code></p>
 <h2 id="incremental-backups">Incremental backups<a class="headerlink" href="#incremental-backups" title="Permanent link">&para;</a></h2>
 <p>First, you need to make the full backup on which the incremental one is going to
@@ -1936,7 +1942,7 @@ $ xbstream -xv -C /storage/partial &lt; /storage/partial/partial.xbs
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

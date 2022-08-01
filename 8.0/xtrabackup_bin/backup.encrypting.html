@@ -1666,10 +1666,10 @@ i.e. just one of them needs to be provided):</p>
 <p><code>--encrypt</code></p>
 </li>
 <li>
-<p>:option:` –encrypt-key`</p>
+<p><code>--encrypt-key</code></p>
 </li>
 <li>
-<p>:option:` –encrypt-key-file`</p>
+<p><code>--encrypt-key-file</code></p>
 </li>
 </ul>
 <p>Both the <code>--encrypt-key</code> option and
@@ -1689,11 +1689,14 @@ look like this:</p>
 <p>Use the <code>--encrypt-key-file</code> option as follows:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 </code></pre></div>
-<p><strong>NOTE</strong>: Depending on the text editor that you use to make the <code>KEYFILE</code>,
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on the text editor that you use to make the <code>KEYFILE</code>,
 the editor can automatically insert the CRLF (end of line)
 character. This will cause the key size to grow and thus making it
 invalid. The suggested way to create the file is by using the
 command line: <code>echo -n “U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=” &gt; /data/backups/keyfile</code>.</p>
+</div>
 <h2 id="optimizing-the-encryption-process">Optimizing the encryption process<a class="headerlink" href="#optimizing-the-encryption-process" title="Permanent link">&para;</a></h2>
 <p>Two new options are available for encrypted backups that can be used to speed up
 the encryption process. These are <code>--encrypt-threads</code> and
@@ -1713,8 +1716,10 @@ used to decrypt the backups:</p>
 <p><em>Percona XtraBackup</em> doesn’t automatically remove the encrypted files. In order
 to clean up the backup directory users should remove the <code>\*.xbcrypt</code>
 files.</p>
-<p><strong>NOTE</strong>: <code>--parallel</code> can be used with <code>--decrypt</code> option to decrypt
-multiple files simultaneously.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>--parallel</code> can be used with <code>--decrypt</code> option to decrypt multiple files simultaneously.</p>
+</div>
 <p>When the files are decrypted, the backup can be prepared.</p>
 <h2 id="preparing-encrypted-backups">Preparing Encrypted Backups<a class="headerlink" href="#preparing-encrypted-backups" title="Permanent link">&para;</a></h2>
 <p>After the backups have been decrypted, they can be prepared in the same way as
@@ -1752,7 +1757,7 @@ the last line of the output for a success message:</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

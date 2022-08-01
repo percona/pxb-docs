@@ -1633,24 +1633,22 @@ in a separate Docker container.</p>
 <p>To set up a database server on a host machine or in Docker
 container, follow the documentation of the supported product that you
 intend to use with <em>Percona XtraBackup</em>.</p>
-<p><strong>See also:</strong></p>
-<blockquote>
-<p><a href="https://docs.docker.com/storage/volumes/">Docker volumes as 
-container persistent data storage</a></p>
-<p><a href="https://docs.docker.com/config/containers/start-containers-automatically">More 
-information about containers</a></p>
-</blockquote>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
+<p><a href="https://docs.docker.com/storage/volumes/">Docker volumes as container persistent data storage</a> </p>
+<p><a href="https://docs.docker.com/config/containers/start-containers-automatically">More information about containers</a></p>
+</div>
 <div class="highlight"><pre><span></span><code>$ sudo docker run -d --name percona-server-mysql <span class="se">\</span>
 -e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root percona/percona-server:8.0
 </code></pre></div>
 <p>As soon as Percona Server for MySQL runs, add some data to it. Now, you are
 ready to make backups with Percona XtraBackup.</p>
-<p><strong>Important</strong></p>
-<blockquote>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <p>When running Percona XtraBackup from a container and connecting to a 
 MySQLserver container, we recommend using the –user root option in the 
 Docker command.</p>
-</blockquote>
+</div>
 <h2 id="creating-a-docker-container-from-percona-xtrabackup-image">Creating a Docker container from Percona XtraBackup image<a class="headerlink" href="#creating-a-docker-container-from-percona-xtrabackup-image" title="Permanent link">&para;</a></h2>
 <p>You can create a Docker container based on Percona XtraBackup image with
 either <code>docker create</code> or the <code>docker run</code> command. <code>docker create</code>
@@ -1705,7 +1703,7 @@ xtrabackup --backup --data-dir=/var/lib/mysql --target-dir=/backup --user=root -
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

@@ -1622,15 +1622,21 @@
 </li>
 </ul>
 <p>Release the lock with <code>UNLOCK TABLES</code>.</p>
-<p><strong>NOTE</strong>: <code>FLUSH TABLES WITH READ LOCK</code> does not prevent inserting rows into the log tables.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>FLUSH TABLES WITH READ LOCK</code> does not prevent inserting rows into the log tables.</p>
+</div>
 <p>To ensure consistent backups, use the <code>FLUSH TABLES WITH READ LOCK</code> option before taking a non-InnoDB file backup. The option does not affect long-running queries.</p>
 <p>Long-running queries with <code>FLUSH TABLES WITH READ LOCK</code> enabled can leave the server in a read-only mode until the queries finish. Killing the <code>FLUSH TABLES WITH READ LOCK</code> does not help if the database is in either the <code>Waiting for table flush</code> or <code>Waiting for master to send event</code> state. To return to normal operation, you must kill any long-running queries.</p>
-<p><strong>NOTE</strong>: All described in this section has no effect when backup locks are
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All described in this section has no effect when backup locks are
 used. <em>Percona XtraBackup</em> will use <a href="https://www.percona.com/doc/percona-server/5.6/management/backup_locks.html#backup-locks">Backup locks</a>
 where available as a lightweight alternative to <code>FLUSH TABLES WITH READ
 LOCK</code>. This feature is available in <em>Percona Server for MySQL</em> 5.6+.
 <em>Percona XtraBackup</em> uses this automatically to copy non-InnoDB data to avoid blocking
 DML queries that modify InnoDB tables.</p>
+</div>
 <p>In order to prevent this from happening two things have been implemented:</p>
 <ul>
 <li>
@@ -1732,7 +1738,7 @@ READ LOCK</code>.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

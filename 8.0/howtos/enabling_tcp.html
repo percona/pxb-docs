@@ -1520,12 +1520,10 @@ unix 2 [ ACC ] STREAM LISTENING 8101 2480/mysqld /tmp/mysql.sock
 <p>You should check two things:</p>
 <ul>
 <li>
-<p>there is a line starting with <code>tcp</code> (the server is indeed accepting TCP
-  connections)</p>
+<p>there is a line starting with <code>tcp</code> (the server is indeed accepting TCP connections)</p>
 </li>
 <li>
-<p>the first address (<code>0.0.0.0:3306</code> in this example) is different
-  from <code>127.0.0.1:3306</code> (the bind address is not localhost’s).</p>
+<p>the first address (<code>0.0.0.0:3306</code> in this example) is different from <code>127.0.0.1:3306</code> (the bind address is not localhost’s).</p>
 </li>
 </ul>
 <p>In the first case, the first place to look is the <code>my.cnf</code> file. If you
@@ -1563,7 +1561,7 @@ with the world through TCP/IP.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

@@ -1422,8 +1422,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around" class="md-nav__link">
-    Are you aware of any web-based backup management tools (commercial or not) built around *
+  <a href="#are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around-percona-xtrabackup" class="md-nav__link">
+    Are you aware of any web-based backup management tools (commercial or not) built around Percona XtraBackup?
   </a>
   
 </li>
@@ -1576,8 +1576,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around" class="md-nav__link">
-    Are you aware of any web-based backup management tools (commercial or not) built around *
+  <a href="#are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around-percona-xtrabackup" class="md-nav__link">
+    Are you aware of any web-based backup management tools (commercial or not) built around Percona XtraBackup?
   </a>
   
 </li>
@@ -1661,8 +1661,7 @@ see <a href="https://www.percona.com/blog/2020/04/28/percona-xtrabackup-8-x-and-
 <h2 id="why-will-innobackupex-not-run-in-percona-xtrabackup-80">Why will <code>innobackupex</code> not run in <em>Percona XtraBackup</em> 8.0?<a class="headerlink" href="#why-will-innobackupex-not-run-in-percona-xtrabackup-80" title="Permanent link">&para;</a></h2>
 <p><strong>innobackupex</strong> has been removed from <em>Percona XtraBackup</em>
 8.0 in favor of <strong>xtrabackup</strong>.</p>
-<h2 id="are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around">Are you aware of any web-based backup management tools (commercial or not) built around *<a class="headerlink" href="#are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around" title="Permanent link">&para;</a></h2>
-<p>Percona XtraBackup*?</p>
+<h2 id="are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around-percona-xtrabackup">Are you aware of any web-based backup management tools (commercial or not) built around <em>Percona XtraBackup</em>?<a class="headerlink" href="#are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around-percona-xtrabackup" title="Permanent link">&para;</a></h2>
 <p><a href="http://www.zmanda.com/zrm-mysql-enterprise.html">Zmanda Recovery Manager</a>
 is
 a commercial tool that uses <em>Percona XtraBackup</em> for Non-Blocking Backups:</p>
@@ -1709,9 +1708,12 @@ In this case, the following error is printed:</p>
 <div class="highlight"><pre><span></span><code>[FATAL] InnoDB: An optimized (without redo logging) DDL operation has been performed. All modified pages may not have been flushed to the disk yet.
 Percona XtraBackup will not be able to take a consistent backup. Retry the backup operation.
 </code></pre></div>
-<p><strong>NOTE</strong>: Redo logging is disabled during
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Redo logging is disabled during
 a <a href="https://dev.mysql.com/doc/refman/8.0/en/sorted-index-builds.html">sorted index build</a>. To avoid this error,
 Percona XtraBackup can use metadata locks on tables while they are copied:</p>
+</div>
 <ul>
 <li>
 <p>To block all DDL operations, use the <code>--lock-ddl</code> option
@@ -1725,9 +1727,12 @@ Percona XtraBackup can use metadata locks on tables while they are copied:</p>
   using the <code>--lock-ddl-per-table</code> option.</p>
 </li>
 </ul>
-<p><strong>NOTE</strong>: As of <em>Percona XtraBackup</em> 8.0.15, the –lock-ddl-per-table option
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As of <em>Percona XtraBackup</em> 8.0.15, the –lock-ddl-per-table option
 is deprecated.
-Use the –lock-ddl option.</p>
+Use the <code>--lock-ddl</code> option.</p>
+</div>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1749,7 +1754,7 @@ Use the –lock-ddl option.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

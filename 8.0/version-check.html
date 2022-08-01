@@ -1684,9 +1684,12 @@ identified as running in the environment.</p>
 of the checked system unique ID followed by the software name and version.  The
 ID is generated either at installation or when the <em>version checking</em> query is
 submitted for the first time.</p>
-<p><strong>NOTE</strong>: Prior to version 3.0.7 of <em>Percona Toolkit</em>, the system ID was calculated as an MD5 hash
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Prior to version 3.0.7 of <em>Percona Toolkit</em>, the system ID was calculated as an MD5 hash
 of a hostname, and starting from <em>Percona Toolkit</em> 3.0.7 it is generated as an MD5 hash of
 a random number. <em>Percona XtraBackup</em> continues to use hostname-based MD5 hash.</p>
+</div>
 <p>As a result, the content of the sent query is as follows:</p>
 <div class="highlight"><pre><span></span><code>85624f3fb5d2af8816178ea1493ed41a;DBD::mysql;4.044
 c2b6d625ef3409164cbf8af4985c48d3;MySQL;MySQL Community Server (GPL) 5.7.22-log
@@ -1750,7 +1753,7 @@ operational problems with Percona Toolkit.</p>
   <small>
     
       Last update:
-      2022-07-26
+      2022-08-01
     
   </small>
 </div>

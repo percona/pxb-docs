@@ -1514,8 +1514,10 @@
 record, can cause older versions of <strong>Percona XtraBackup</strong> to fail. To
 ensure that you can back up and restore your data, use a <strong>Percona
 XtraBackup</strong> version that is equal to or above your source server version.</p>
-<p><strong>See also</strong></p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
 <p><a href="https://docs.percona.com/percona-xtrabackup/8.0/how_xtrabackup_works.html">How XtraBackup works</a></p>
+</div>
 <p><em>Percona XtraBackup</em> 8.0.21 adds the <code>--no-server-version-check</code> option.
 Before the backup starts, XtraBackup compares the source system version to
 the <em>Percona XtraBackup</em> version. If the source system version is greater
@@ -1531,12 +1533,10 @@ backup due to source system changes.</p>
 <p>The source system is less than the PXB version, the backup proceeds</p>
 </li>
 <li>
-<p>The source system is greater than the PXB version, and the parameter is
-  not overridden, the backup is stopped and returns an error message</p>
+<p>The source system is greater than the PXB version, and the parameter is not overridden, the backup is stopped and returns an error message</p>
 </li>
 <li>
-<p>The source system is greater than the PXB version, and the parameter is
-  overridden, the backup proceeds</p>
+<p>The source system is greater than the PXB version, and the parameter is  overridden, the backup proceeds</p>
 </li>
 </ul>
 <p>Explicitly adding the <code>--no-server-version-check</code> parameter, like the
@@ -1576,7 +1576,7 @@ example, overrides the parameter and the backup proceeds.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

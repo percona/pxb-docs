@@ -1563,8 +1563,10 @@
 interoperability
 mode. This mode was especially designed to interact with cloud services
 compatible with Amazon S3.</p>
-<p><strong>See also</strong></p>
-<p><a href="https://cloud.google.com/storage/docs/interoperability">Cloud Storage Interoperability</a>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
+<p><a href="https://cloud.google.com/storage/docs/interoperability">Cloud Storage Interoperability</a></p>
+</div>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=google \
 --google-endpoint=`storage.googleapis.com` \
@@ -1573,7 +1575,7 @@ xbcloud put --storage=google \
 --google-bucket=&#39;mysql_backups&#39;
 --parallel=10 \
 $(date -I)-full_backup
-</code></pre></div></p>
+</code></pre></div>
 <p>The following options are available when using Google Cloud Storage:</p>
 <ul>
 <li>
@@ -1589,7 +1591,9 @@ $(date -I)-full_backup
 <p>–google-storage-class=name</p>
 </li>
 </ul>
-<p><strong>NOTE</strong>: The Google storage class name options are the following:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Google storage class name options are the following:</p>
 <ul>
 <li>
 <p>STANDARD</p>
@@ -1604,9 +1608,12 @@ $(date -I)-full_backup
 <p>ARCHIVE</p>
 </li>
 </ul>
-<p><strong>See also</strong></p>
+</div>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
 <p><a href="https://cloud.google.com/storage/docs/changing-default-storage-class">Google storage classes - the default Google storage class depends on 
 the storage class of the bucket</a></p>
+</div>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1628,7 +1635,7 @@ the storage class of the bucket</a></p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

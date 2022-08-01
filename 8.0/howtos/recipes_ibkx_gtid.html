@@ -1617,14 +1617,12 @@ are using version 8.0.21 or earlier, use <code>START SLAVE</code>.</p>
  &gt; START REPLICA;
 </code></pre></div>
 <p>If you are using version 8.0.23 or later,
-use <a href="https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO and the appropriate options</a>
-. <code>CHANGE_MASTER_TO</code> is deprecated as of that release.</p>
-<p><strong>NOTE</strong>: The example above is applicable to Percona XtraDB Cluster.
-The <code>wsrep_on</code> variable
-is set to 0 before resetting the source (<code>RESET MASTER</code>). The
-reason is that Percona XtraDB Cluster will not allow resetting the source
-if
-<code>wsrep_on=1</code>.</p>
+use <a href="https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO and the appropriate options</a>. <code>CHANGE_MASTER_TO</code> is deprecated as of that release.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The example above is applicable to Percona XtraDB Cluster.
+The <code>wsrep_on</code> variable is set to 0 before resetting the source (<code>RESET MASTER</code>). The reason is that Percona XtraDB Cluster will not allow resetting the source if <code>wsrep_on=1</code>.</p>
+</div>
 <h2 id="step-5-check-the-replication-status">STEP 5: Check the replication status<a class="headerlink" href="#step-5-check-the-replication-status" title="Permanent link">&para;</a></h2>
 <p>The following command returns the replica status:</p>
 <div class="highlight"><pre><span></span><code>SHOW REPLICA STATUS\G
@@ -1635,14 +1633,12 @@ Slave_SQL_Running: Yes
 Retrieved_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:5
 Executed_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:1-5
 </code></pre></div>
-<p><strong>NOTE</strong>: The
-command <a href="https://dev.mysql.com/doc/refman/8.0/en/show-slave-status.html">SHOW SLAVE STATUS</a>
-is deprecated.
-Use <a href="https://dev.mysql.com/doc/refman/8.0/en/show-replica-status.html">SHOW REPLICA STATUS</a>
-.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command <a href="https://dev.mysql.com/doc/refman/8.0/en/show-slave-status.html">SHOW SLAVE STATUS</a> is deprecated. Use <a href="https://dev.mysql.com/doc/refman/8.0/en/show-replica-status.html">SHOW REPLICA STATUS</a>.</p>
+</div>
 <p>We can see that the replica has retrieved a new transaction with number 5,
-so
-transactions from 1 to 5 are already on this slave.</p>
+so transactions from 1 to 5 are already on this slave.</p>
 <p>We have created a new replica in our <code>GTID</code> based replication
 environment.</p>
 
@@ -1666,7 +1662,7 @@ environment.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

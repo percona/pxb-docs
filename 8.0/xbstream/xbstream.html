@@ -1520,7 +1520,6 @@ ability to stream multiple files concurrently (so it is possible to use
 streaming in the xbstream format together with the –parallel option) and more
 compact data storage.</p>
 <p>This utility has a tar-like interface:</p>
-<blockquote>
 <ul>
 <li>
 <p>with the <code>-x</code> option it extracts files from the stream read from its
@@ -1558,7 +1557,6 @@ because they are mutually exclusive. This option has been implemented in
 <em>Percona XtraBackup</em> 2.4.7.</p>
 </li>
 </ul>
-</blockquote>
 <p>The utility also tries to minimize its impact on the OS page cache by using the
 appropriate <code>posix_fadvise()</code> calls when available.</p>
 <p>When compression is enabled with <em>xtrabackup</em> all data is being compressed,
@@ -1572,8 +1570,7 @@ entire backup to restore a single table as with <code>tar.gz</code>.</p>
 <code>--decompress</code> option. You may control the number of threads
 used for decompressing by passing the <code>--decompress-threads</code>
 option.</p>
-<p>Also, files can be decompressed using the <strong>qpress</strong> tool that can be downloaded from
-<a href="http://www.quicklz.com/">quicklz.com</a>. Qpress supports multi-threaded 
+<p>Also, files can be decompressed using the <strong>qpress</strong> tool that can be downloaded from <a href="http://www.quicklz.com/">quicklz.com</a>. Qpress supports multi-threaded 
 decompression.</p>
 
                 
@@ -1596,7 +1593,7 @@ decompression.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

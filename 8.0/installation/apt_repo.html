@@ -1633,8 +1633,7 @@ repositories and
 the <a href="https://www.percona.com/downloads/XtraBackup/">download page</a>.</p>
 <p>Specific information on the supported platforms, products, and versions is
 described
-in <a href="https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql">Percona Release Lifecycle Overview</a>
-.</p>
+in <a href="https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql">Percona Release Lifecycle Overview</a>.</p>
 <h2 id="whats-in-each-deb-package">What’s in each DEB package?<a class="headerlink" href="#whats-in-each-deb-package" title="Permanent link">&para;</a></h2>
 <p>The <code>percona-xtrabackup-80</code> package contains the latest <em>Percona
 XtraBackup</em>
@@ -1649,41 +1648,43 @@ binaries in <code>percona-xtrabackup-80</code>.</p>
 <p><em>Percona XtraBackup</em>, like many other <em>Percona</em> products, is installed
 with the <em>percona-release</em> package configuration tool.</p>
 <ol>
-<li>Download a deb package for <em>percona-release</em> the repository packages
-   from Percona web:</li>
-</ol>
+<li>
+<p>Download a deb package for <em>percona-release</em> the repository packages
+    from Percona web:</p>
 <div class="highlight"><pre><span></span><code>$ wget https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_all.deb
 </code></pre></div>
-<ol>
-<li>Install the downloaded package with <strong>dpkg</strong>. To do that, run the
-   following commands as root or with <strong>
-   sudo</strong>: <code>dpkg -i percona-release_latest.$(lsb_release -sc)_all.deb</code></li>
-</ol>
+</li>
+<li>
+<p>Install the downloaded package with <strong>dpkg</strong>. To do that, run the
+    following commands as root or with <strong>sudo</strong>: <code>dpkg -i percona-release_latest.$(lsb_release -sc)_all.deb</code></p>
 <p>Once you install this package the Percona repositories should be added. You
 can check the repository setup in the
 <code>/etc/apt/sources.list.d/percona-release.list</code> file.</p>
-<ol>
-<li>Enable the repository: <code>percona-release enable-only tools release</code></li>
-</ol>
+</li>
+<li>
+<p>Enable the repository: <code>percona-release enable-only tools release</code></p>
 <p>If <em>Percona XtraBackup</em> is intended to be used in combination with
 the upstream MySQL Server, you only need to enable the <code>tools</code>
 repository: <code>percona-release enable-only tools</code>.</p>
-<ol>
+</li>
 <li>
 <p>Remember to update the local cache: <code>apt update</code></p>
 </li>
 <li>
 <p>After that you can install the <code>percona-xtrabackup-80</code> package:</p>
-</li>
-</ol>
 <div class="highlight"><pre><span></span><code>$ sudo apt install percona-xtrabackup-80
 </code></pre></div>
-<ol>
-<li>In order to make compressed backups, install the <code>qpress</code> package:</li>
-</ol>
+</li>
+<li>
+<p>In order to make compressed backups, install the <code>qpress</code> package:</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install qpress
 </code></pre></div>
-<p><strong>NOTE</strong>: For AppArmor profile information, see <a href="https://docs.percona.com/percona-xtrabackup/8.0/security/pxb-apparmor.html">Working with AppArmor</a>.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For AppArmor profile information, see <a href="https://docs.percona.com/percona-xtrabackup/8.0/security/pxb-apparmor.html">Working with AppArmor</a>.</p>
+</div>
 <h2 id="apt-pinning-the-packages">Apt-Pinning the packages<a class="headerlink" href="#apt-pinning-the-packages" title="Permanent link">&para;</a></h2>
 <p>In some cases you might need to “pin” the selected packages to avoid the
 upgrades from the distribution repositories. Make a new file
@@ -1697,8 +1698,7 @@ Pin-Priority: 1001
 <a href="http://wiki.debian.org/AptPreferences">debian wiki</a>.</p>
 <h2 id="installing-percona-xtrabackup-using-downloaded-deb-packages">Installing <em>Percona XtraBackup</em> using downloaded deb packages<a class="headerlink" href="#installing-percona-xtrabackup-using-downloaded-deb-packages" title="Permanent link">&para;</a></h2>
 <p>Download the packages of the desired series for your architecture
-from <a href="https://www.percona.com/downloads/XtraBackup/">Download Percona XtraBackup 8.0</a>
-. The following
+from <a href="https://www.percona.com/downloads/XtraBackup/">Download Percona XtraBackup 8.0</a>. The following
 example downloads <em>Percona XtraBackup</em> 8.0.26-18 release package for Ubuntu
 20.04:</p>
 <div class="highlight"><pre><span></span><code>$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0.26-18/binary/debian/focal/x86_64/percona-xtrabackup-80_8.0.26-18-1.focal_amd64.deb
@@ -1706,8 +1706,11 @@ example downloads <em>Percona XtraBackup</em> 8.0.26-18 release package for Ubun
 <p>Install <em>Percona XtraBackup</em> by running:</p>
 <div class="highlight"><pre><span></span><code>$ sudo dpkg -i percona-xtrabackup-80_8.0.26-18-1.focal_amd64.deb
 </code></pre></div>
-<p><strong>NOTE</strong>: When installing packages manually like this, resolve all the
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When installing packages manually like this, resolve all the
 dependencies and install missing packages yourself.</p>
+</div>
 <h2 id="update-the-curl-utility-in-debian-10">Update the Curl utility in Debian 10<a class="headerlink" href="#update-the-curl-utility-in-debian-10" title="Permanent link">&para;</a></h2>
 <p>The default curl version, 7.64.0, in Debian 10 has known issues when
 attempting to reuse an already closed connection. This issue directly
@@ -1717,34 +1720,38 @@ see <a href="https://github.com/curl/curl/issues/3750">curl #3750</a>
 or <a href="https://github.com/curl/curl/pull/3763">curl #3763</a>.</p>
 <p>Follow these steps to upgrade curl to version 7.74.0:</p>
 <ol>
-<li>Edit the <code>/etc/apt/sources.list</code> to add the following:</li>
-</ol>
+<li>
+<p>Edit the <code>/etc/apt/sources.list</code> to add the following:</p>
 <div class="highlight"><pre><span></span><code>deb http://ftp.de.debian.org/debian buster-backports main
 </code></pre></div>
-<ol>
-<li>Refresh the <code>apt</code> sources:</li>
-</ol>
+</li>
+<li>
+<p>Refresh the <code>apt</code> sources:</p>
 <div class="highlight"><pre><span></span><code>sudo apt update
 </code></pre></div>
-<ol>
-<li>Install the version from <code>buster-backports</code>:</li>
-</ol>
+</li>
+<li>
+<p>Install the version from <code>buster-backports</code>:</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt install curl/buster-backports
 </code></pre></div>
-<ol>
-<li>Verify the version number:</li>
-</ol>
+</li>
+<li>
+<p>Verify the version number:</p>
 <div class="highlight"><pre><span></span><code>$ curl --version
 curl 7.74.0 (x86_64-pc-linux-gnu) libcurl/7.74.0
 </code></pre></div>
+</li>
+</ol>
 <h2 id="uninstalling-percona-xtrabackup">Uninstalling <em>Percona XtraBackup</em><a class="headerlink" href="#uninstalling-percona-xtrabackup" title="Permanent link">&para;</a></h2>
 <p>To uninstall <em>Percona XtraBackup</em>, remove all the installed
 packages.</p>
 <ol>
-<li>Remove the packages</li>
-</ol>
+<li>
+<p>Remove the packages</p>
 <div class="highlight"><pre><span></span><code>$ sudo apt remove percona-xtrabackup-80
 </code></pre></div>
+</li>
+</ol>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1766,7 +1773,7 @@ packages.</p>
   <small>
     
       Last update:
-      2022-07-26
+      2022-08-01
     
   </small>
 </div>

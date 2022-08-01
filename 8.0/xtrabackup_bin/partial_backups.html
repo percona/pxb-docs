@@ -1656,7 +1656,9 @@ partial backups:</p>
 <p>providing a list of databases</p>
 </li>
 </ol>
-<p><strong>WARNING</strong>: Do not copy back the prepared backup.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not copy back the prepared backup.</p>
 <p>Restoring partial backups should be done by importing the tables,
 not by using the –copy-back option. It is not
 recommended to run incremental backups after running a partial
@@ -1665,10 +1667,14 @@ backup.</p>
 copying back the files, this may lead to database
 inconsistencies in many cases and it is not a recommended way to
 do it.</p>
+</div>
 <p>For the purposes of this manual page, we will assume that there is a database
 named <code>test</code> which contains tables named <code>t1</code> and <code>t2</code>.</p>
-<p><strong>WARNING</strong>: If any of the matched or listed tables is deleted during the backup,
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If any of the matched or listed tables is deleted during the backup,
 <em>xtrabackup</em> will fail.</p>
+</div>
 <h2 id="creating-partial-backups">Creating Partial Backups<a class="headerlink" href="#creating-partial-backups" title="Permanent link">&para;</a></h2>
 <p>There are multiple ways of specifying which part of the whole data is backed up:</p>
 <ul>
@@ -1712,17 +1718,23 @@ and tables to backup in the <code>databasename[.tablename]</code> format. In add
 this list, make sure to specify the <code>mysql</code>, <code>sys</code>, and</p>
 <p><code>performance_schema</code> databases. These databases are required when restoring
 the databases using xtrabackup –copy-back.</p>
-<p><strong>NOTE</strong>: Tables processed during the –prepare step may also be added to the backup
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Tables processed during the –prepare step may also be added to the backup
 even if they are not explicitly listed by the parameter if they were created
 after the backup started.</p>
+</div>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --databases=&#39;mysql sys performance_schema test ...&#39;
 </code></pre></div>
 <h2 id="the-databases-file-option">The <code>--databases-file</code> Option<a class="headerlink" href="#the-databases-file-option" title="Permanent link">&para;</a></h2>
 <p>The –databases-file option specifies a file that can contain multiple
 databases and tables in the <code>databasename[.tablename]</code> format, one element name per line in the file. Names are matched exactly, case-sensitive, with no pattern or regular expression matching.</p>
-<p><strong>NOTE</strong>: Tables processed during the –prepare step may also be added to the backup
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Tables processed during the –prepare step may also be added to the backup
 even if they are not explicitly listed by the parameter if they were created
 after the backup started.</p>
+</div>
 <h2 id="preparing-partial-backups">Preparing Partial Backups<a class="headerlink" href="#preparing-partial-backups" title="Permanent link">&para;</a></h2>
 <p>The procedure is analogous to restoring individual tables : apply the logs and use the
 –export option:</p>
@@ -1735,10 +1747,8 @@ files don’t exist. They were not copied into the backup directory. These table
 will be removed from the data dictionary, and when you restore the backup and
 start InnoDB, they will no longer exist and will not cause any errors or
 warnings to be printed to the log file.</p>
-<blockquote>
 <p>Could not find any file associated with the tablespace ID: 5</p>
 <p>Use –innodb-directories to find the tablespace files. If that fails then use –innodb-force-recovery=1 to ignore this and to permanently lose all changes to the missing tablespace(s).</p>
-</blockquote>
 <h2 id="restoring-partial-backups">Restoring Partial Backups<a class="headerlink" href="#restoring-partial-backups" title="Permanent link">&para;</a></h2>
 <p>Restoring should be done by restoring individual tables in the partial backup to the server.</p>
 <p>It can also be done by copying back the prepared backup to a “clean”
@@ -1779,7 +1789,7 @@ Query OK, 2 rows affected (0.5 sec)
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

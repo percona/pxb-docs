@@ -1653,9 +1653,12 @@ options to connect to the server:</p>
 </table>
 <p>These options are passed to the <strong>mysql</strong> child process without
 alteration, see <code>mysql --help</code> for details.</p>
-<p><strong>NOTE</strong>: In case of multiple server instances, the correct connection parameters
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case of multiple server instances, the correct connection parameters
 (port, socket, host) must be specified in order for <em>xtrabackup</em> to talk to
 the correct server.</p>
+</div>
 <h2 id="permissions-and-privileges-needed">Permissions and Privileges Needed<a class="headerlink" href="#permissions-and-privileges-needed" title="Permanent link">&para;</a></h2>
 <p>Once connected to the server, in order to perform a backup you will need
 <code>READ</code> and <code>EXECUTE</code> permissions at a filesystem level in the
@@ -1746,7 +1749,7 @@ to full backups would be:</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

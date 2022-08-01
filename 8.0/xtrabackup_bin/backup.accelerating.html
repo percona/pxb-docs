@@ -1563,7 +1563,10 @@ where available as a lightweight alternative to <code>FLUSH TABLES WITH READ
 LOCK</code>. This feature is available in <em>Percona Server for MySQL</em> 5.6+. <em>Percona XtraBackup</em>
 uses this automatically to copy non-InnoDB data to avoid blocking DML queries
 that modify InnoDB tables.</p>
-<p><strong>NOTE</strong>: This option cannot be used together with the <code>--stream</code> option.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This option cannot be used together with the <code>--stream</code> option.</p>
+</div>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1585,7 +1588,7 @@ that modify InnoDB tables.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

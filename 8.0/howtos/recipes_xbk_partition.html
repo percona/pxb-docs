@@ -1578,8 +1578,11 @@ server.</p>
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2812744 DEFAULT CHARSET=utf8
 </code></pre></div>
-<p><strong>NOTE</strong>: Generate a <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-table-import.html">.cfg metadata file</a> by running <code>FLUSH TABLES ... FOR EXPORT</code>. The command can only be run on a table, not on the individual table partitions.
-The file is located in the table schema directory and is used for schema verification when importing the tablespace.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Generate a <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-table-import.html">.cfg metadata file</a> by running <code>FLUSH TABLES ... FOR EXPORT</code>. The command can only be run on a table, not on the individual table partitions.
+The file is located in the table schema directory and is used for schema verification when importing the tablespace. </p>
+</div>
 <p>To restore the partition from the backup, the tablespace must be discarded for
 that table:</p>
 <div class="highlight"><pre><span></span><code>ALTER TABLE name_p4 DISCARD TABLESPACE;
@@ -1588,7 +1591,10 @@ that table:</p>
 <div class="highlight"><pre><span></span><code>cp /mnt/backup/2012-08-28_10-29-09/imdb/name#p#p4.exp /var/lib/mysql/imdb/name_p4.exp
 cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 </code></pre></div>
-<p><strong>NOTE</strong>: Make sure that the copied files can be accessed by the user running MySQL.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure that the copied files can be accessed by the user running MySQL. </p>
+</div>
 <p>The last step is to import the tablespace:</p>
 <div class="highlight"><pre><span></span><code>ALTER TABLE name_p4 IMPORT TABLESPACE;
 </code></pre></div>
@@ -1613,7 +1619,7 @@ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

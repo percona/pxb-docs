@@ -1553,9 +1553,12 @@ and <code>--incremental-history-name</code> options. If no valid LSN can be foun
 with an error.</p>
 </li>
 </ul>
-<p><strong>NOTE</strong>: Backup that’s currently being performed will <strong>NOT</strong> exist in the
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Backup that’s currently being performed will <strong>NOT</strong> exist in the
 xtrabackup_history table within the resulting backup set as the record will
 not be added to that table until after the backup has been taken.</p>
+</div>
 <p>If you want access to backup history outside of your backup set in the case of
 some catastrophic event, you will need to either perform a <code>mysqldump</code>,
 partial backup or <code>SELECT</code> * on the history table after <em>xtrabackup</em>
@@ -1697,7 +1700,7 @@ a configuration file in order to be effective.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

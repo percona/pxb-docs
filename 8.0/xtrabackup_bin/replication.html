@@ -1540,8 +1540,11 @@ does not become zero after <code>--safe-slave-backup-timeout</code>
 seconds (defaults to 300 seconds). The replication SQL thread will be restarted when
 the backup finishes.</p>
 <p>Using this option is always recommended when taking backups from a replica server.</p>
-<p><strong>WARNING</strong>: Make sure your replica is a true replica of the source before using it as a
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure your replica is a true replica of the source before using it as a
 source for backup. A good tool to validate a replica is <a href="http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html">pt-table-checksum</a>.</p>
+</div>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1563,7 +1566,7 @@ source for backup. A good tool to validate a replica is <a href="http://www.perc
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

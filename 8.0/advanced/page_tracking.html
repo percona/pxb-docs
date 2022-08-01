@@ -1670,82 +1670,62 @@ tracking feature can improve the speed of incremental backups.</p>
 <ol>
 <li>Install the mysqlbackup component and enable it on the server:</li>
 </ol>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ INSTALL COMPONENT &quot;file://component_mysqlbackup&quot;;
 </code></pre></div>
-</blockquote>
 <ol>
 <li>Check whether the mysqlbackup component is installed successfully:</li>
 </ol>
-<blockquote>
 <div class="highlight"><pre><span></span><code>SELECT COUNT(1) FROM mysql.component WHERE component_urn=&#39;file://component_mysqlbackup&#39;;
 </code></pre></div>
-</blockquote>
 <h2 id="using-page-tracking">Using page tracking<a class="headerlink" href="#using-page-tracking" title="Permanent link">&para;</a></h2>
 <p>You can enable the page tracking functionality for the full and incremental
 backups with the <code>--page-tracking</code> option.</p>
 <p>The option has the following benefits:</p>
 <ul>
 <li>
-<p>Resets page tracking to the start of the backup. This reset allows the
-  next incremental backup to use page tracking.</p>
+<p>Resets page tracking to the start of the backup. This reset allows the next incremental backup to use page tracking.</p>
 </li>
 <li>
-<p>Allows the use of page tracking for an incremental backup if the page
-  tracking data is available from the backup’s start checkpoint LSN.</p>
+<p>Allows the use of page tracking for an incremental backup if the page tracking data is available from the backup’s start checkpoint LSN.</p>
 </li>
 </ul>
-<blockquote>
-<p><strong>NOTE</strong>: Percona XtraBackup processes a list of all the tracked pages in
-memory. If Percona XtraBackup does not have enough available memory to
-process this list, Percona XtraBackup throws an
-error and exits. For example, if an incremental backup uses 200GB, Percona
-XtraBackup can additionally use about 100MB of memory to store the page
-tracking data.</p>
-</blockquote>
+<p>!!! note</p>
+<div class="highlight"><pre><span></span><code>  Percona XtraBackup processes a list of all the tracked pages in memory. If Percona XtraBackup does not have enough available memory to process this list, Percona XtraBackup throws an error and exits. For example, if an incremental backup uses 200GB, Percona XtraBackup can additionally use about 100MB of memory to store the page tracking data.
+</code></pre></div>
 <p>An example of creating a full backup using the <code>--page-tracking</code> option.</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$&gt; xtrabackup --backup --target-dir=$FULL_BACK --page-tracking
 </code></pre></div>
-</blockquote>
 <p>An example of creating an incremental backup using the <code>--page-tracking</code>
 option.</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$&gt; xtrabackup --backup --target-dir=$INC_BACKUP  
 --incremental-basedir=$FULL_BACKUP --page-tracking
 </code></pre></div>
-</blockquote>
 <p>After enabling the functionality, the next incremental backup finds changed
 pages using page tracking.</p>
-<p><strong>NOTE</strong>: For the very first full backup using page tracking, Percona
-XtraBackup may have a delay. The following is an example of the message you
-can receive:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the very first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message you can receive:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
 to reach to page tracking start lsn 21353759
 </code></pre></div>
+</div>
 <p>You can avoid this delay by enabling page tracking before creating the
 first backup. Thus, you ensure that page tracking log sequence number (LSN)
 is more than the checkpoint LSN of the server.</p>
 <h2 id="start-page-tracking-manually">Start page tracking manually<a class="headerlink" href="#start-page-tracking-manually" title="Permanent link">&para;</a></h2>
 <p>After the mysqlbackup component is loaded and active on the server, you can
 start page tracking manually with the following option:</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ SELECT mysqlbackup_page_track_set(true);
 </code></pre></div>
-</blockquote>
 <h2 id="check-the-lsn-value">Check the LSN value<a class="headerlink" href="#check-the-lsn-value" title="Permanent link">&para;</a></h2>
 <p>Check the LSN value starting from which changed pages are tracked with the
 following option:</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ SELECT mysqlbackup_page_track_get_start_lsn();
 </code></pre></div>
-</blockquote>
 <h2 id="stop-page-tracking">Stop page tracking<a class="headerlink" href="#stop-page-tracking" title="Permanent link">&para;</a></h2>
 <p>To stop page tracking, use the following command:</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ SELECT mysqlbackup_page_track_set(false);
 </code></pre></div>
-</blockquote>
 <h2 id="purge-page-tracking-data">Purge page tracking data<a class="headerlink" href="#purge-page-tracking-data" title="Permanent link">&para;</a></h2>
 <p>When you start page tracking, it creates a file under the server’s datadir
 to collect data about changed pages. This file grows until you stop the
@@ -1754,14 +1734,12 @@ creates a new file but also keeps the old one. The old file continues to
 grow until you stop the page tracking explicitly.</p>
 <p>If you purge the page tracking data, you should create a full backup
 afterward. To purge the page tracking data, do the following steps:</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ SELECT mysqlbackup_page_track_set(false);
 $ SELECT mysqlbackup_page_track_purge_up_to(9223372036854775807);
 /* Specify the LSN up to which you want to purge page tracking data. /
 9223372036854775807 is the highest possible LSN which purges all page tracking files.*/
 $ SELECT mysqlbackup_page_track_set(true);
 </code></pre></div>
-</blockquote>
 <h2 id="known-issue">Known issue<a class="headerlink" href="#known-issue" title="Permanent link">&para;</a></h2>
 <p>If the index is built in place using an exclusive algorithm and then is
 added to a table after the last LSN checkpoint, you may get a bad
@@ -1770,10 +1748,8 @@ in <a href="https://jira.percona.com/browse/PS-8032">PS-8032</a> .</p>
 <h2 id="uninstall-the-mysqlbackup-component">Uninstall the mysqlbackup component<a class="headerlink" href="#uninstall-the-mysqlbackup-component" title="Permanent link">&para;</a></h2>
 <p>If you need to uninstall the mysqlbackup component, use the following
 option:</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ UNINSTALL COMPONENT &quot;file://component_mysqlbackup&quot;
 </code></pre></div>
-</blockquote>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1795,7 +1771,7 @@ option:</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

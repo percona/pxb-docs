@@ -1855,8 +1855,7 @@ the tablespace key. The master encryption key is stored in a keyring.
 <p>Percona XtraBackup 8.0.25-17 adds support for the <code>keyring_file</code> component,
 which is part of the component-based infrastructure MySQL which extends the
 server capabilities. The component is stored in the <code>plugin</code> directory.</p>
-<p>See
-a <a href="https://dev.mysql.com/doc/refman/8.0/en/keyring-component-plugin-comparison.html">comparison of keyring components and keyring plugins</a>
+<p>See a <a href="https://dev.mysql.com/doc/refman/8.0/en/keyring-component-plugin-comparison.html">comparison of keyring components and keyring plugins</a>
 for more information.</p>
 <p>Percona XtraBackup 8.0.27-19 adds support for the Key Management
 Interoperability Protocol (KMIP) which enables the communication between
@@ -1880,8 +1879,10 @@ message confirms the action:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
 160401 10:25:51 completed OK!
 </code></pre></div>
-<p><strong>WARNING</strong>: <em>xtrabackup</em> does not copy the keyring file into the backup
-directory. To prepare the backup, you must copy the keyring file manually.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>xtrabackup</em> does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.</p>
+</div>
 <h3 id="prepare-the-backup-with-the-keyring_file-plugin">Prepare the backup with the <code>keyring_file</code> plugin<a class="headerlink" href="#prepare-the-backup-with-the-keyring_file-plugin" title="Permanent link">&para;</a></h3>
 <p>To prepare the backup specify the keyring-file-data.</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backup \
@@ -1916,9 +1917,10 @@ command line:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-vault-config=/etc/vault.cnf
 </code></pre></div>
-<p><strong>NOTE</strong>: Please
-look <a href="https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin">using the keyring vault plugin</a>
-for a description of keyring vault plugin settings.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please look <a href="https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin">using the keyring vault plugin</a> for a description of keyring vault plugin settings.</p>
+</div>
 <p>After <em>xtrabackup</em> completes the action, the following confirmation message
 appears:</p>
 <div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
@@ -1961,8 +1963,10 @@ appears:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
 160401 10:25:51 completed OK!
 </code></pre></div>
-<p><strong>WARNING</strong>: <em>xtrabackup</em> does not copy the keyring file into the backup
-directory. To prepare the backup, you must copy the keyring file manually.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>xtrabackup</em> does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.</p>
+</div>
 <h3 id="prepare-the-backup-with-the-keyring_file-component">Prepare the backup with the <code>keyring_file</code> component<a class="headerlink" href="#prepare-the-backup-with-the-keyring_file-component" title="Permanent link">&para;</a></h3>
 <p><em>xtrabackup</em> reads the keyring_file component configuration
 from <code>xtrabackup_component_keyring_file.cnf</code>. You must specify the
@@ -1973,10 +1977,10 @@ keyring-file-data:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup --prepare --target-dir=/data/backup \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p><strong>NOTE</strong>: <em>xtrabackup</em> attempts to
-read <code>xtrabackup_component_keyring_file.cnf</code>. You can assign another
-keyring file component configuration by passing
-the <code>--component-keyring-file-config</code> option.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>xtrabackup</em> attempts to read <code>xtrabackup_component_keyring_file.cnf</code>. You can assign another keyring file component configuration by passing the <code>--component-keyring-file-config</code> option.</p>
+</div>
 <p>After <em>xtrabackup</em> completes preparing the backup, the following
 confirmation message appears:</p>
 <div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
@@ -1989,8 +1993,10 @@ to take and prepare the backup.</p>
 <p>The process of taking incremental backups with InnoDB tablespace encryption
 is
 similar to taking the Incremental Backups with unencrypted tablespace.</p>
-<p><strong>NOTE</strong>: The <code>keyring-file</code> component should not used in production or for
-regulatory compliance.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>keyring-file</code> component should not used in production or for regulatory compliance.</p>
+</div>
 <h2 id="create-an-incremental-backup">Create an incremental backup<a class="headerlink" href="#create-an-incremental-backup" title="Permanent link">&para;</a></h2>
 <p>To make an incremental backup, begin with a full backup. The <em>xtrabackup</em>
 binary
@@ -2001,14 +2007,10 @@ backup with the following command:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p><strong>WARNING</strong>: <em>xtrabackup</em> will not copy the keyring file into the backup
-directory. In order to
-prepare the backup, you must make a copy of the keyring file yourself. If
-you
-try to restore the backup after the keyring has been changed you’ll see
-errors
-like <code>ERROR 3185 (HY000): Can't find master key from keyring, please check
-keyring plugin is loaded.</code> when trying to access an encrypted table.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>xtrabackup</em> will not copy the keyring file into the backup directory. In order to prepare the backup, you must make a copy of the keyring file yourself. If you try to restore the backup after the keyring has been changed you’ll see errors like <code>ERROR 3185 (HY000): Can't find master key from keyring, please check keyring plugin is loaded.</code> when trying to access an encrypted table.</p>
+</div>
 <p>If you look at the <code>xtrabackup_checkpoints</code> file, you should see
 contents similar to the following:</p>
 <div class="highlight"><pre><span></span><code>backup_type = full-backuped
@@ -2024,8 +2026,10 @@ on it. Use a command such as the following:</p>
 --incremental-basedir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p><strong>WARNING</strong>: <em>xtrabackup</em> does not copy the keyring file into the backup
-directory. To prepare the backup, you must copy the keyring file manually.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>xtrabackup</em> does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.</p>
+</div>
 <p>If the
 keyring has not been rotated you can use the same as the one you’ve
 backed-up
@@ -2064,10 +2068,10 @@ progress, and it’s likely that they will be committed in the next
 incremental
 backup. You should use the <code>--apply-log-only</code> option to prevent the
 rollback phase.</p>
-<p><strong>WARNING</strong>: If you do not use the <code>--apply-log-only</code> option to prevent the
-rollback phase, then your incremental backups are useless. After
-transactions have been rolled back, further incremental backups cannot be
-applied.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you do not use the <code>--apply-log-only</code> option to prevent the rollback phase, then your incremental backups are useless. After transactions have been rolled back, further incremental backups cannot be applied.</p>
+</div>
 <p>Beginning with the full backup you created, you can prepare it and then
 apply
 the incremental differences to it. Recall that you have the following
@@ -2093,13 +2097,10 @@ following command:</p>
 --incremental-dir=/data/backups/inc1 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p><strong>WARNING</strong>: The backup should be prepared with the keyring file and type
-that was used when backup was being
-taken. This means that if the keyring has been rotated, or you have 
-upgraded
-from a plugin to a component between the base and
-incremental backup that you must use the keyring that was in use when
-the first incremental backup has been taken.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The backup should be prepared with the keyring file and type that was used when backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup that you must use the keyring that was in use when the first incremental backup has been taken.</p>
+</div>
 <p>Preparing the second incremental backup is a similar process: apply the
 deltas
 to the (modified) base backup, and you will roll its data forward in 
@@ -2108,14 +2109,10 @@ time to the point of the second incremental backup:</p>
 --incremental-dir=/data/backups/inc2 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p><strong>NOTE</strong>: <code>--apply-log-only</code> should be used when merging all
-incremental backups except the last one. That’s why the previous line 
-does not
-contain
-the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code>
-was used on the last step, backup would still be consistent but in that
-case
-server would perform the rollback phase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>--apply-log-only</code> should be used when merging all incremental backups except the last one. That’s why the previous line does not contain the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> was used on the last step, backup would still be consistent but in that case  server would perform the rollback phase.</p>
+</div>
 <p>The backup is now prepared and can be restored with <code>--copy-back</code> option.
 In
 case the keyring has been rotated you’ll need to restore the keyring which
@@ -2143,8 +2140,7 @@ that contains encrypted InnoDB tablespaces.</p>
 <p>Fetches the necessary keys from the KMIP server</p>
 </li>
 <li>
-<p>Stores the KMIP server configuration settings in  the 
-   <code>xtrabackup_component_keyring_kmip.cnf</code> file in the backup directory</p>
+<p>Stores the KMIP server configuration settings in  the <code>xtrabackup_component_keyring_kmip.cnf</code> file in the backup directory</p>
 </li>
 </ol>
 <p>When preparing the backup, Percona XtraBackup connects to the KMIP server
@@ -2268,7 +2264,7 @@ purged.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

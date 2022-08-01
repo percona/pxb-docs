@@ -1586,10 +1586,12 @@ statement.</p>
 <strong>after</strong> <em>Percona XtraBackup</em> finishes backing up all InnoDB/XtraDB data and
 logs. <em>Percona XtraBackup</em> uses this automatically to copy non-InnoDB data to
 avoid blocking DML queries that modify <em>InnoDB</em> tables.</p>
-<p><strong><em>Important</em></strong> - The <code>BACKUP_ADMIN</code> privilege is required to query the 
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code>BACKUP_ADMIN</code> privilege is required to query the 
 <code>performance_schema_log_status</code> for either <code>LOCK 
-INSTANCE FOR 
-BACKUP</code> or <code>LOCK TABLES FOR BACKUP</code>.</p>
+INSTANCE FOR BACKUP</code> or <code>LOCK TABLES FOR BACKUP</code>.</p>
+</div>
 <p><em>xtrabackup</em> tries to avoid backup locks and <code>FLUSH TABLES WITH READ LOCK</code>
 when the instance contains only InnoDB tables. In this case, <em>xtrabackup</em>
 obtains binary log coordinates from <code>performance_schema.log_status</code>. <code>FLUSH
@@ -1597,7 +1599,10 @@ TABLES WITH READ LOCK</code> is still required in MySQL 8.0 when xtrabackup is
 started with the <code>--slave-info</code>. The <code>log_status</code> table in Percona
 Server for MySQL 8.0 is extended to include the relay log coordinates, so no locks are
 needed even with the <code>--slave-info</code> option.</p>
-<p><strong><em>See also</em></strong> <a href="https://dev.mysql.com/doc/refman/8.0/en/lock-instance-for-backup.html"><em>MySQL</em> Documentation: LOCK INSTANCE FOR BACKUP</a></p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/lock-instance-for-backup.html"><em>MySQL</em> Documentation: LOCK INSTANCE FOR BACKUP</a></p>
+</div>
 <p>When backup locks are supported by the server, <em>xtrabackup</em> first copies
 <em>InnoDB</em> data, runs the <code>LOCK TABLES FOR BACKUP</code> and then copies the <em>MyISAM</em>
 tables. Once this is done, the backup of the files will
@@ -1670,7 +1675,7 @@ both data files and their backup copies.</p>
   <small>
     
       Last update:
-      2022-07-26
+      2022-08-01
     
   </small>
 </div>

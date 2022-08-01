@@ -1567,10 +1567,10 @@ for <code>\*.lz4</code> files:</p>
 <div class="highlight"><pre><span></span><code>130802 02:51:02  xtrabackup: completed OK!
 </code></pre></div>
 <p>Now the files in <code>/data/backup/</code> is ready to be used by the server.</p>
-<p><strong>NOTE</strong>: <em>Percona XtraBackup</em> does not automatically remove the compressed
-files. In
-order to clean up the backup directory users should remove the <code>\*.qp</code>
-files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Percona XtraBackup</em> does not automatically remove the compressed files. In order to clean up the backup directory users should remove the <code>\*.qp</code> files.</p>
+</div>
 <h2 id="restoring-the-backup">Restoring the backup<a class="headerlink" href="#restoring-the-backup" title="Permanent link">&para;</a></h2>
 <p>Once the backup has been prepared you can use the <code>--copy-back</code> to
 restore the backup.</p>
@@ -1611,7 +1611,7 @@ ready to start the server.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

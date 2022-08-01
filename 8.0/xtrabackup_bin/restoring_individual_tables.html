@@ -1537,11 +1537,13 @@ after taking a backup as usual with the –backup option, the
 command. Here is an example:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --export --target-dir=/data/backups/mysql/
 </code></pre></div>
-<p><strong>NOTE</strong>: If you restore an encrypted InnoDB tablespace table, add the
-keyring file:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you restore an encrypted InnoDB tablespace table, add the  keyring file:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --export --target-dir=/tmp/table \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
+</div>
 <p>Now you should see an .exp file in the target directory:</p>
 <div class="highlight"><pre><span></span><code>$ find /data/backups/mysql/ -name export_test.*
 /data/backups/mysql/test/export_test.exp
@@ -1552,11 +1554,14 @@ keyring file:</p>
 <em>Percona Server for MySQL</em> with <em>XtraDB</em> or <em>MySQL</em> 8.0. In case the server uses <a href="http://dev.mysql.com/doc/refman/5.7/en/innodb-tablespace-encryption.html">InnoDB
 Tablespace Encryption</a>
 adds an additional .cfp file which contains the transfer key and an encrypted tablespace key.</p>
-<p><strong>NOTE</strong>: The .cfg metadata file contains an <em>InnoDB</em> dictionary dump in a special format. This format is different from the .exp one which is
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The .cfg metadata file contains an <em>InnoDB</em> dictionary dump in a special format. This format is different from the .exp one which is
 used in <em>XtraDB</em> for the same purpose. A .cfg` file is not required to import a tablespace to <em>MySQL</em> 8.0 or Percona
 Server for MySQL 8.0.</p>
 <p>A tablespace is imported successfully even if the table is from
 another server, but <em>InnoDB</em> performs a schema validation if the corresponding .cfg file is located in the same directory.</p>
+</div>
 <h2 id="importing-the-table">Importing the Table<a class="headerlink" href="#importing-the-table" title="Permanent link">&para;</a></h2>
 <p>On the destination server running <em>Percona Server for MySQL</em> with <em>XtraDB</em> and
 <a href="http://www.percona.com/doc/percona-server/8.0/management/innodb_expand_import.html#innodb_import_table_from_xtrabackup">innodb_import_table_from_xtrabackup</a>
@@ -1564,9 +1569,7 @@ option enabled, or <em>MySQL</em> 8.0, create a table with the same
 structure, and then perform the following steps:</p>
 <ol>
 <li>
-<p>Run the <code>ALTER TABLE test.export_test DISCARD TABLESPACE;</code>
-command. If you see the following error, enable
-innodb_file_per_table and create the table again.</p>
+<p>Run the <code>ALTER TABLE test.export_test DISCARD TABLESPACE;</code> command. If you see the following error, enable innodb_file_per_table and create the table again.</p>
 </li>
 <li>
 <p>Copy the exported files to the <code>test/</code> subdirectory of the destination server’s data directory</p>
@@ -1597,7 +1600,7 @@ innodb_file_per_table and create the table again.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

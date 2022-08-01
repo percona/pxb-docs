@@ -1622,60 +1622,55 @@
 <p>The first option opens the entire system to read and write. Select the second option to harden your security.</p>
 <h2 id="install-selinux-tools">Install SELinux tools<a class="headerlink" href="#install-selinux-tools" title="Permanent link">&para;</a></h2>
 <p>To work with policies, you must install the SELinux tools. To find which package provides the <code>semanage</code> command and install the package. The following is an example on CentOS 7.</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ yum provides *bin/semanage
 ...
 policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
 ...
 $ sudo yum install -y policycoreutils-python
 </code></pre></div>
-</blockquote>
 <p>The following is an example on CentOS 8:</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ yum provides *bin/semanage
 ...
 policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python utilities
 ...
 $ sudo yum install -y policycoreutils-python-utils
 </code></pre></div>
-</blockquote>
 <h2 id="create-a-policy">Create a policy<a class="headerlink" href="#create-a-policy" title="Permanent link">&para;</a></h2>
 <p>Use a modular approach to create an SELinux policy. Create a policy module to manage XtraBackup. You must create a <code>.te</code> file for type enforcement, and an optional <code>.fc</code> file for the file contexts.</p>
 <p>Use ps -efZ | grep xtrabackup to verify the service is not confined by SELinux.</p>
 <p>Create the <code>xtrabackup.fc</code> file and add content. This file defines the security contexts.</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>/usr/bin/xtrabackup    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbcrypt    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbstream    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbcloud    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /backups(/.*)?       system_u:object_r:xtrabackup_data_t:s0
 </code></pre></div>
-</blockquote>
-<p><strong>NOTE</strong>: If you are using the <code>/backups</code> directory you must have the last line. If you are storing the backups in the user’s home directory, you can omit this line.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are using the <code>/backups</code> directory you must have the last line. If you are storing the backups in the user’s home directory, you can omit this line.</p>
+</div>
 <p>Download the <code>xtrabackup.te</code> file from the following location:</p>
 <p><a href="https://github.com/percona/percona-xtrabackup/tree/8.0/packaging/percona/selinx">https://github.com/percona/percona-xtrabackup/tree/8.0/packaging/percona/selinx</a></p>
-<p><strong>NOTE</strong>: In the file, the sections in bold should be modified for your system. The fc file can also be downloaded from the same location.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the file, the sections in bold should be modified for your system. The fc file can also be downloaded from the same location.</p>
+</div>
 <p>Complile the policy module:</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ make -f /usr/share/selinux/devel/Makefile xtrabackup.pp
 </code></pre></div>
-</blockquote>
 <p>Install the module:</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ semodule -i xtrabackup.pp
 </code></pre></div>
-</blockquote>
 <p>Tag the PXB binaries with the proper SELinux tags, such as <code>xtrabackup_exec_t</code>.</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ restorecon -v /usr/bin/*
 </code></pre></div>
-</blockquote>
 <p>If you store your backups at <code>/backups</code>, restore the tag in that location:</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>$ restorecon -v /backups
 </code></pre></div>
-</blockquote>
-<p><strong>NOTE</strong>: Remember to add the standard Linux DAC permissions for this directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember to add the standard Linux DAC permissions for this directory.</p>
+</div>
 <p>Perform the backup in the standard way.</p>
 
                 
@@ -1698,7 +1693,7 @@ $ sudo yum install -y policycoreutils-python-utils
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

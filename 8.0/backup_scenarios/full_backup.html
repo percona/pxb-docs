@@ -1609,8 +1609,7 @@ files being copied, as well as the log file thread repeatedly scanning the
 log
 files and copying from it. Here is an example that shows the log thread
 scanning the log in the background, and a file copying thread working on
-the
-<code>ibdata1</code> file:</p>
+the <code>ibdata1</code> file:</p>
 <div class="highlight"><pre><span></span><code>160906 10:19:17 Finished backing up non-InnoDB tables and files
 160906 10:19:17 Executing FLUSH NO_WRITE_TO_BINLOG ENGINE LOGS...
 xtrabackup: The latest check point (for incremental): &#39;62988944&#39;
@@ -1631,12 +1630,10 @@ value
 of the <code>&lt;LSN&gt;</code> will be a number that depends on your system:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup: Transaction log of lsn (&lt;SLN&gt;) to (&lt;LSN&gt;) was copied.
 </code></pre></div>
-<p><strong>NOTE</strong>: Log copying thread checks the transactional log every second to
-see if there
-were any new log records written that need to be copied, but there is a
-chance that the log copying thread might not be able to keep up with the
-amount of writes that go to the transactional logs, and will hit an error
-when the log records are overwritten before they could be read.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Log copying thread checks the transactional log every second to see if there were any new log records written that need to be copied, but there is a chance that the log copying thread might not be able to keep up with the amount of writes that go to the transactional logs, and will hit an error when the log records are overwritten before they could be read.</p>
+</div>
 <p>After the backup is finished, the target directory will contain files such
 as
 the following, assuming you have a single InnoDB table <code>test.tbl1</code> and you
@@ -1717,14 +1714,15 @@ xtrabackup: notice: xtrabackup_logfile was already used to &#39;--prepare&#39;.
 backup
 because it may cause data files corruption and backup will become unusable.
 Backup validity is not guaranteed if prepare process was interrupted.</p>
-<p><strong>NOTE</strong>: If you intend the backup to be the basis for further incremental
-backups, you
-should use the <code>--apply-log-only</code> option when preparing
-the backup, or you will not be able to apply incremental backups to it. See
-the documentation on preparing incremental backups for more details.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you intend the backup to be the basis for further incremental backups, you should use the <code>--apply-log-only</code> option when preparing the backup, or you will not be able to apply incremental backups to it. See the documentation on preparing incremental backups for more details.</p>
+</div>
 <h2 id="restoring-a-backup">Restoring a Backup<a class="headerlink" href="#restoring-a-backup" title="Permanent link">&para;</a></h2>
-<p><strong>WARNING</strong>: Backup needs to be prepared before it can be
-restored.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Backup needs to be prepared before it can be restored.</p>
+</div>
 <p>For convenience, <em>xtrabackup</em> binary has the <code>--copy-back</code>
 option to copy the backup to the datadir of the server:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backups/
@@ -1734,10 +1732,10 @@ option to copy the backup to the datadir of the server:</p>
 the datadir.</p>
 <p>If you don’t want to use any of the above options, you can additionally use
 <strong>rsync</strong> or <strong>cp</strong> to restore the files.</p>
-<p><strong>NOTE</strong>: The datadir must be empty before restoring the backup. Also, it’s
-important to note that MySQL server needs to be shut down before restore is
-performed. You cannot restore to a datadir of a running mysqld instance
-(except when importing a partial backup).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The datadir must be empty before restoring the backup. Also, it’s important to note that MySQL server needs to be shut down before restore is performed. You cannot restore to a datadir of a running mysqld instance (except when importing a partial backup).</p>
+</div>
 <p>Example of the <strong>rsync</strong> command that can be used to restore the backup
 can look like this:</p>
 <div class="highlight"><pre><span></span><code>$ rsync -avrP /data/backup/ /var/lib/mysql/
@@ -1773,7 +1771,7 @@ will be owned by the user who created the backup:</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>

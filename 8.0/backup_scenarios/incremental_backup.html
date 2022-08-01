@@ -1575,10 +1575,10 @@
 <p><em>xtrabackup</em> supports incremental backups, which means that they can copy
 only
 all the data that has changed since the last backup.</p>
-<p><strong>NOTE</strong>: Incremental backups on the MyRocks storage engine do not
-determine if an earlier full backup or incremental backup contains the same
-files. <strong>Percona XtraBackup</strong> copies all the MyRocks files each time it
-takes a backup.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Incremental backups on the MyRocks storage engine do not determine if an earlier full backup or incremental backup contains the same files. <strong>Percona XtraBackup</strong> copies all the MyRocks files each time it takes a backup.</p>
+</div>
 <p>You can perform many incremental backups between each full backup, so you
 can
 set up a backup process such as a full backup once a week and an
@@ -1660,10 +1660,10 @@ last_lsn = 7110572
 compact = 0
 recover_binlog_info = 1
 </code></pre></div>
-<p><strong>NOTE</strong>: In this case you can see that there is a difference between
-the <code>to_lsn</code>
-(last checkpoint LSN) and <code>last_lsn</code> (last copied LSN), this means that
-there was some traffic on the server during the backup process.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this case you can see that there is a difference between the <code>to_lsn</code> (last checkpoint LSN) and <code>last_lsn</code> (last copied LSN), this means that there was some traffic on the server during the backup process.</p>
+</div>
 <h2 id="preparing-the-incremental-backups">Preparing the Incremental Backups<a class="headerlink" href="#preparing-the-incremental-backups" title="Permanent link">&para;</a></h2>
 <p>The <code>--prepare</code> step for incremental backups is not the same
 as for full backups. In full backups, two types of operations are performed
@@ -1679,12 +1679,10 @@ your backup may be in progress, and it’s likely that they will be committed
 in
 the next incremental backup. You should use the
 <code>--apply-log-only</code> option to prevent the rollback phase.</p>
-<p><strong>WARNING</strong>: <strong>If you do not use the</strong> <code>--apply-log-only</code> <strong>option to
-prevent the rollback phase, then your incremental backups will be useless</strong>
-.
-After transactions have been rolled back, further incremental backups
-cannot
-be applied.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>If you do not use the</strong> <code>--apply-log-only</code> <strong>option to prevent the rollback phase, then your incremental backups will be useless</strong>. After transactions have been rolled back, further incremental backups cannot be applied.</p>
+</div>
 <p>Beginning with the full backup you created, you can prepare it, and then
 apply
 the incremental differences to it. Recall that you have the following
@@ -1703,13 +1701,10 @@ usual, but prevent the rollback phase:</p>
 </code></pre></div>
 <p>The log sequence number should match the <code>to_lsn</code> of the base backup, which
 you saw previously.</p>
-<p><strong>NOTE</strong>: This backup is actually safe to restore as-is
-now, even though the rollback phase has been skipped. If you restore it and
-start <em>MySQL</em>, <em>InnoDB</em> will detect that the rollback phase was not
-performed, and it will do that in the background, as it usually does for a
-crash recovery upon start. It will notify you that the database was not
-shut
-down normally.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This backup is actually safe to restore as-is now, even though the rollback phase has been skipped. If you restore it and start <em>MySQL</em>, <em>InnoDB</em> will detect that the rollback phase was not performed, and it will do that in the background, as it usually does for a crash recovery upon start. It will notify you that the database was not shut down normally.</p>
+</div>
 <p>To apply the first incremental backup to the full backup, run the following
 command:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
@@ -1735,11 +1730,10 @@ the
 first incremental backup. If you restore the files from
 <code>/data/backups/base</code>, you should see the state of the database as of the
 first incremental backup.</p>
-<p><strong>WARNING</strong>: <em>Percona XtraBackup</em> does not support using the same
-incremental backup directory to prepare
-two copies of backup. Do not run <code>--prepare</code> with the same
-incremental backup directory (the value of –incremental-dir) more than
-once.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>Percona XtraBackup</em> does not support using the same incremental backup directory to prepare two copies of backup. Do not run <code>--prepare</code> with the same incremental backup directory (the value of –incremental-dir) more than once.</p>
+</div>
 <p>Preparing the second incremental backup is a similar process: apply the
 deltas
 to the (modified) base backup, and you will roll its data forward in time
@@ -1748,14 +1742,10 @@ the point of the second incremental backup:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2
 </code></pre></div>
-<p><strong>NOTE</strong>: <code>--apply-log-only</code> should be used when merging the 
-incremental backups
-except
-the last one. That’s why the previous line does not contain the
-<code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> was
-used on the last step, backup would still be consistent but in that case
-server
-would perform the rollback phase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>--apply-log-only</code> should be used when merging the incremental backups except the last one. That’s why the previous line does not contain the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> was used on the last step, backup would still be consistent but in that case server would perform the rollback phase.</p>
+</div>
 <p>Once prepared incremental backups are the same as the full backups, and 
 they
 can be restored in the same
@@ -1781,7 +1771,7 @@ way.</p>
   <small>
     
       Last update:
-      2022-07-21
+      2022-08-01
     
   </small>
 </div>
