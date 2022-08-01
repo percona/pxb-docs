@@ -25,40 +25,40 @@ The `percona-xtrabackup` package contains the older version of the
 with the *percona-release* package configuration tool.
 
 
-* Download a deb package for *percona-release* the repository packages from Percona web:
+1. Download a deb package for *percona-release* the repository packages from Percona web:
 
-```bash
-$ wget https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_all.deb
-```
+    ```bash
+    $ wget https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_all.deb
+    ```
 
-* Install the downloaded package with `dpkg`. To do that, run the
+2. Install the downloaded package with `dpkg`. To do that, run the
 following commands as root or with `sudo`:
 
-```bash
-$ sudo dpkg -i percona-release_latest.$(lsb_release -sc)_all.deb
-```
+    ```bash
+    $ sudo dpkg -i percona-release_latest.$(lsb_release -sc)_all.deb
+    ```
 
-Once you install this package the Percona repositories should be added. You
-can check the repository setup in the
-/etc/apt/sources.list.d/percona-release.list file.
+    Once you install this package the Percona repositories should be added. You
+    can check the repository setup in the
+    /etc/apt/sources.list.d/percona-release.list file.
 
-* Enable the repository: `percona-release enable-only tools release`
+3. Enable the repository: `percona-release enable-only tools release`
 
-If *Percona XtraBackup* is intended to be used in combination with
-the upstream MySQL Server, you enable only the `tools`
-repository: `percona-release enable-only tools`.
+    If *Percona XtraBackup* is intended to be used in combination with
+    the upstream MySQL Server, you enable only the `tools`
+    repository: `percona-release enable-only tools`.
 
-* After that you can install the `percona-xtrabackup-24` package:
+4. After that you can install the `percona-xtrabackup-24` package:
 
-```bash
-$ sudo apt install percona-xtrabackup-24
-```
+    ```bash
+    $ sudo apt install percona-xtrabackup-24
+    ```
 
-* In order to make compressed backups, install the `qpress` package:
+5. In order to make compressed backups, install the `qpress` package:
 
-```bash
-$ sudo apt install qpress
-```
+    ```bash
+    $ sudo apt install qpress
+    ```
 
 ### Apt-Pinning the packages
 
@@ -106,38 +106,38 @@ For more details, see [curl #3750](https://github.com/curl/curl/issues/3750) or 
 
 Follow these steps to upgrade curl to version 7.74.0:
 
-* Edit the `/etc/apt/sources.list` to add the following:
+1. Edit the `/etc/apt/sources.list` to add the following:
 
-```text
-deb http://ftp.de.debian.org/debian buster-backports main
-```
+    ```text
+    deb http://ftp.de.debian.org/debian buster-backports main
+    ```
 
-* Refresh the `apt` sources:
+2. Refresh the `apt` sources:
 
-```bash
-sudo apt update
-```
+    ```bash
+    sudo apt update
+    ```
 
-* Install the version from `buster-backports`:
+3. Install the version from `buster-backports`:
 
-```bash
-$ sudo apt install curl/buster-backports
-```
+    ```bash
+    $ sudo apt install curl/buster-backports
+    ```
 
-* Verify the version number:
+4. Verify the version number:
 
-```bash
-$ curl --version
-curl 7.74.0 (x86_64-pc-linux-gnu) libcurl/7.74.0
-```
+    ```bash
+    $ curl --version
+    curl 7.74.0 (x86_64-pc-linux-gnu) libcurl/7.74.0
+    ```
 
 ## Uninstalling *Percona XtraBackup*
 
 To uninstall *Percona XtraBackup* you’ll need to remove all the installed
 packages.
 
-* Remove the packages
+1. Remove the packages
 
-```bash
-$ sudo apt remove percona-xtrabackup-24
-```
+    ```bash
+    $ sudo apt remove percona-xtrabackup-24
+    ```

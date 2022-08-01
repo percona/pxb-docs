@@ -490,7 +490,7 @@ This option limits the number of chunks copied per second. The chunk size is
 *10 MB*. To limit the bandwidth to *10 MB/s*, set the option to *1*:
 `--throttle=1`.
 
-!!! seealso
+!!! admonition "See also"
 
     More information about how to throttle a backup [Throttling Backups](../advanced/throttling_backups.md#throttling-backups).
 
