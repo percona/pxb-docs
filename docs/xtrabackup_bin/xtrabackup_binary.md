@@ -19,10 +19,10 @@ less commonly used modes, `--stats` and `--print-param`.
 ## Other Types of Backups
 
 
-* Incremental Backups
+* [Incremental Backups](incremental_backups.md)
 
 
-* Partial Backups
+* [Partial Backups](partial_backups.md)
 
 
 ## Advanced Features
@@ -32,49 +32,49 @@ duplicate of a section in source/advanced:
 
 throttling_backups -->
 
-* Analyzing Table Statistics
+* [Analyzing Table Statistics](analyzing_table_statistics.md)
 
 
-* Working with Binary Logs
+* [Working with Binary Logs](working_with_binary_logs.md)
 
 
-* Restoring Individual Tables
+* [Restoring Individual Tables](restoring_individual_tables.md)
 
 
-* LRU dump backup
+* [LRU dump backup](lru_dump.md)
 
 
-* Streaming Backups
+* [Streaming Backups](backup.streaming.md)
 
 
-* Encrypting Backups
+* [Encrypting Backups](backup.encrypting.md)
 
 
-* `FLUSH TABLES WITH READ LOCK` option
+* [`FLUSH TABLES WITH READ LOCK` option](flush-tables-with-read-lock.md)
 
 
-* Accelerating the backup process
+* [Accelerating the backup process](backup.accelerating.md)
 
 
-* Point-In-Time recovery
+* [Point-In-Time recovery](point-in-time-recovery.md)
 
 
-* Making Backups in Replication Environments
+* [Making Backups in Replication Environments](replication.md)
 
 
-* Store backup history on the server
+* [Store backup history on the server](backup.history.md)
 
 
 ## Implementation
 
 
-* Implementation Details
+* [Implementation Details](implementation_details.md)
 
 
-* *xtrabackup* Exit Codes
+* [*xtrabackup* Exit Codes](xtrabackup_exit_codes.md)
 
 
 ## References
 
 
-* The **xtrabackup** Option Reference
+* [The **xtrabackup** Option Reference](xbk_option_reference.md)

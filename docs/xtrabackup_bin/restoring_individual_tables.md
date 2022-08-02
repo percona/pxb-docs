@@ -74,4 +74,4 @@ structure, and then perform the following steps:
 
 3. Run `ALTER TABLE test.export_test IMPORT TABLESPACE;`
 
-   The table is imported, and you can run a `SELECT` to see the imported data.
+    The table is imported, and you can run a `SELECT` to see the imported data.

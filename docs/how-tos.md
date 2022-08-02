@@ -3,34 +3,33 @@
 ## Recipes for *xtrabackup*
 
 
-* [Making a Full Backup](https://docs.percona.com/percona-xtrabackup/8.0/backup_scenarios/full_backup.html)
+* [Making a Full Backup](backup_scenarios/full_backup.md)
 
 
-* [Making an Incremental Backup](https://docs.percona.com/percona-xtrabackup/8.0/backup_scenarios/incremental_backup.html)
+* [Making an Incremental Backup](backup_scenarios/incremental_backup.md)
 
 
-* [Make a Streaming Backup
-](https://docs.percona.com/percona-xtrabackup/8.0/howtos/recipes_xbk_stream.html)
+* [Make a Streaming Backup](howtos/recipes_xbk_stream.md)
 
-* [Making a Compressed Backup](https://docs.percona.com/percona-xtrabackup/8.0/backup_scenarios/compressed_backup.html)
+* [Making a Compressed Backup](backup_scenarios/compressed_backup.md)
 
 
-* [Backing Up and Restoring Individual Partitions](https://docs.percona.com/percona-xtrabackup/8.0/howtos/recipes_xbk_partition.html)
+* [Backing Up and Restoring Individual Partitions](howtos/recipes_xbk_partition.md)
 
 
 ## How-Tos
 
 
-* [Privileges and Permissions for Users](https://docs.percona.com/percona-xtrabackup/8.0/howtos/permissions.html)
+* [Privileges and Permissions for Users](howtos/permissions.md)
 
 
-* [How to set up a replica for replication in 6 simple steps with Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/8.0/howtos/setting_up_replication.html)
+* [How to set up a replica for replication in 6 simple steps with Percona XtraBackup](howtos/setting_up_replication.md)
 
 
-* [Verifying Backups with replication and pt-checksum](https://docs.percona.com/percona-xtrabackup/8.0/howtos/backup_verification.html)
+* [Verifying Backups with replication and pt-checksum](howtos/backup_verification.md)
 
 
-* [How to create a new (or repair a broken) GTID-based Replica](https://docs.percona.com/percona-xtrabackup/8.0/howtos/recipes_ibkx_gtid.html)
+* [How to create a new (or repair a broken) GTID-based Replica](howtos/recipes_ibkx_gtid.md)
 
 
 ## Assumptions in this section
