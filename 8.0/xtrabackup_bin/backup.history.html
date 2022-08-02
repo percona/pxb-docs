@@ -1568,105 +1568,92 @@ completes and store the results with you backup set.</p>
 <p>This table contains the information about the previous server
 backups. Information about the backups will only be written if the backup was
 taken with <code>--history</code> option.</p>
-<p>| Column Name</p>
-<p>| Description</p>
-<p>|
-| ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| uuid</p>
-<div class="highlight"><pre><span></span><code>                                                          | Unique backup id
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-</code></pre></div>
-<p>| name</p>
-<div class="highlight"><pre><span></span><code>                                                          | User provided name of backup series. There may be multiple entries with the same name used to identify related backups in a series.
-
-                                                                                                                                                                                                                                                                                                                                     |
-</code></pre></div>
-<p>| tool_name</p>
-<div class="highlight"><pre><span></span><code>                                                     | Name of tool used to take backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-</code></pre></div>
-<p>| tool_command</p>
-<div class="highlight"><pre><span></span><code>                                                  | Exact command line given to the tool with –password and –encryption_key obfuscated
-
-                                                                                                                                                                                                                                                                                                                                                                                      |
-</code></pre></div>
-<p>| tool_version</p>
-<div class="highlight"><pre><span></span><code>                                                  | Version of tool used to take backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-</code></pre></div>
-<p>| ibbackup_version</p>
-<div class="highlight"><pre><span></span><code>                                              | Version of the xtrabackup binary used to take backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                    |
-</code></pre></div>
-<p>| server_version</p>
-<div class="highlight"><pre><span></span><code>                                                | Server version on which backup was taken
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                |
-</code></pre></div>
-<p>| start_time</p>
-<div class="highlight"><pre><span></span><code>                                                    | Time at the start of the backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-</code></pre></div>
-<p>| end_time</p>
-<div class="highlight"><pre><span></span><code>                                                      | Time at the end of the backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-</code></pre></div>
-<p>| lock_time</p>
-<div class="highlight"><pre><span></span><code>                                                     | Amount of time, in seconds, spent calling and holding locks for `FLUSH TABLES WITH READ LOCK`
-
-                                                                                                                                                                                                                                                                                                                                                                             |
-</code></pre></div>
-<p>| binlog_pos</p>
-<div class="highlight"><pre><span></span><code>                                                    | Binlog file and position at end of `FLUSH TABLES WITH READ LOCK`
-
-                                                                                                                                                                                                                                                                                                                                                                                                          |
-</code></pre></div>
-<p>| innodb_from_lsn</p>
-<div class="highlight"><pre><span></span><code>                                               | LSN at beginning of backup which can be used to determine prior backups
-
-                                                                                                                                                                                                                                                                                                                                                                                                 |
-</code></pre></div>
-<p>| innodb_to_lsn</p>
-<div class="highlight"><pre><span></span><code>                                                 | LSN at end of backup which can be used as the starting lsn for the next incremental
-
-                                                                                                                                                                                                                                                                                                                                                                                     |
-</code></pre></div>
-<p>| partial</p>
-<div class="highlight"><pre><span></span><code>                                                       | Is this a partial backup, if `N` that means that it’s the full backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                     |
-</code></pre></div>
-<p>| incremental</p>
-<div class="highlight"><pre><span></span><code>                                                   | Is this an incremental backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-</code></pre></div>
-<p>| format</p>
-<div class="highlight"><pre><span></span><code>                                                        | Description of result format (`xbstream`)
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-</code></pre></div>
-<p>| compact</p>
-<div class="highlight"><pre><span></span><code>                                                       | Is this a compact backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-</code></pre></div>
-<p>| compressed</p>
-<div class="highlight"><pre><span></span><code>                                                    | Is this a compressed backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-</code></pre></div>
-<p>| encrypted</p>
-<div class="highlight"><pre><span></span><code>                                                     | Is this an encrypted backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uuid</td>
+<td>Unique backup id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>User provided name of backup series. There may be multiple entries with the same name used to identify related backups in a series.</td>
+</tr>
+<tr>
+<td>tool_name</td>
+<td>Name of tool used to take backup</td>
+</tr>
+<tr>
+<td>tool_command</td>
+<td>Exact command line given to the tool with &ndash;password and &ndash;encryption_key obfuscated</td>
+</tr>
+<tr>
+<td>tool_version</td>
+<td>Version of tool used to take backup</td>
+</tr>
+<tr>
+<td>ibbackup_version</td>
+<td>Version of the xtrabackup binary used to take backup</td>
+</tr>
+<tr>
+<td>server_version</td>
+<td>Server version on which backup was taken</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>Time at the start of the backup</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>Time at the end of the backup</td>
+</tr>
+<tr>
+<td>lock_time</td>
+<td>Amount of time, in seconds, spent calling and holding locks for <code>FLUSH TABLES WITH READ LOCK</code></td>
+</tr>
+<tr>
+<td>binlog_pos</td>
+<td>Binlog file and position at end of <code>FLUSH TABLES WITH READ LOCK</code></td>
+</tr>
+<tr>
+<td>innodb_from_lsn</td>
+<td>LSN at beginning of backup which can be used to determine prior backups</td>
+</tr>
+<tr>
+<td>innodb_to_lsn</td>
+<td>LSN at end of backup which can be used as the starting lsn for the next incremental</td>
+</tr>
+<tr>
+<td>partial</td>
+<td>Is this a partial backup, if <code>N</code> that means that it&rsquo;s the full backup</td>
+</tr>
+<tr>
+<td>incremental</td>
+<td>Is this an incremental backup</td>
+</tr>
+<tr>
+<td>format</td>
+<td>Description of result format (<code>xbstream</code>)</td>
+</tr>
+<tr>
+<td>compact</td>
+<td>Is this a compact backup</td>
+</tr>
+<tr>
+<td>compressed</td>
+<td>Is this a compressed backup</td>
+</tr>
+<tr>
+<td>encrypted</td>
+<td>Is this an encrypted backup</td>
+</tr>
+</tbody>
+</table>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
@@ -1700,7 +1687,7 @@ a configuration file in order to be effective.</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-08-02
     
   </small>
 </div>

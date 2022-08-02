@@ -1668,15 +1668,17 @@ tracking feature can improve the speed of incremental backups.</p>
 <h2 id="install-the-component">Install the component<a class="headerlink" href="#install-the-component" title="Permanent link">&para;</a></h2>
 <p>To start using the page tracking functionality, do the following steps:</p>
 <ol>
-<li>Install the mysqlbackup component and enable it on the server:</li>
-</ol>
+<li>
+<p>Install the mysqlbackup component and enable it on the server:</p>
 <div class="highlight"><pre><span></span><code>$ INSTALL COMPONENT &quot;file://component_mysqlbackup&quot;;
 </code></pre></div>
-<ol>
-<li>Check whether the mysqlbackup component is installed successfully:</li>
-</ol>
+</li>
+<li>
+<p>Check whether the mysqlbackup component is installed successfully:</p>
 <div class="highlight"><pre><span></span><code>SELECT COUNT(1) FROM mysql.component WHERE component_urn=&#39;file://component_mysqlbackup&#39;;
 </code></pre></div>
+</li>
+</ol>
 <h2 id="using-page-tracking">Using page tracking<a class="headerlink" href="#using-page-tracking" title="Permanent link">&para;</a></h2>
 <p>You can enable the page tracking functionality for the full and incremental
 backups with the <code>--page-tracking</code> option.</p>
@@ -1771,7 +1773,7 @@ option:</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-08-02
     
   </small>
 </div>
