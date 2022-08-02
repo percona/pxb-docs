@@ -18,15 +18,15 @@ To start using the page tracking functionality, do the following steps:
 
 1. Install the mysqlbackup component and enable it on the server:
 
-   ```
-   $ INSTALL COMPONENT "file://component_mysqlbackup";
-   ```
+    ```
+    $ INSTALL COMPONENT "file://component_mysqlbackup";
+    ```
 
 2. Check whether the mysqlbackup component is installed successfully:
 
-   ```
-   SELECT COUNT(1) FROM mysql.component WHERE component_urn='file://component_mysqlbackup';
-   ```
+    ```
+    SELECT COUNT(1) FROM mysql.component WHERE component_urn='file://component_mysqlbackup';
+    ```
 
 ## Using page tracking
 
@@ -39,7 +39,7 @@ The option has the following benefits:
 
 * Allows the use of page tracking for an incremental backup if the page tracking data is available from the backup’s start checkpoint LSN.
 
-  !!! note
+   !!! note
    
       Percona XtraBackup processes a list of all the tracked pages in memory. If Percona XtraBackup does not have enough available memory to process this list, Percona XtraBackup throws an error and exits. For example, if an incremental backup uses 200GB, Percona XtraBackup can additionally use about 100MB of memory to store the page tracking data.
 

@@ -969,5 +969,3 @@ This option prints *xtrabackup* version and exits.
 
 ### --xtrabackup-plugin-dir(=DIRNAME)
 The absolute path to the directory that contains the `keyring` plugin.
-
-<!-- *xtrabackup* replace:: :program:`xtrabackup` -->
