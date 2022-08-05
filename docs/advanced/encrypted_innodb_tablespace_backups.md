@@ -433,7 +433,7 @@ case:
 
 ```
 $ xtrabackup --backup --user=root -p --target-dir=/data/backup \
---transition-key=MySecetKey
+--transition-key=MySecretKey
 ```
 
 If `--transition-key` is specified without a value, *xtrabackup* will ask
@@ -449,7 +449,7 @@ the `ps` command output.
 The same passphrase should be specified for the prepare command:
 
 ```
-$ xtrabackup --backup --target-dir=/data/backup \
+$ xtrabackup --prepare --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
 
@@ -465,7 +465,7 @@ example for `keyring_file` plugin or component:
 
 ```
 $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
---transition-key=MySecetKey --generate-new-master-key \
+--transition-key=MySecretKey --generate-new-master-key \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
@@ -473,7 +473,7 @@ In case of `keyring_vault`, it will look like this:
 
 ```
 $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
---transition-key=MySecetKey --generate-new-master-key \
+--transition-key=MySecretKey --generate-new-master-key \
 --keyring-vault-config=/etc/vault.cnf
 ```
 
