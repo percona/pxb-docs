@@ -28,9 +28,9 @@ innobackupex --apply-log --redo-only $FULLBACKUP \
  --use-memory=1G --user=USER --password=PASSWORD
 ```
 
-The `innobackupex --use-memory` option is not necessary, it will speed
-up the process if it is used (provided that the amount of RAM given is
-available).
+!!! note
+
+    In the ``prepare`` phase, the `--use-memory` parameter speeds up the process if the amount of RAM assigned to the option is available. Use the parameter only in the `prepare` phase. In the other phases the parameter makes the application lazy allocate this memory (reserve) but does not affect database pages.
 
 If everything went fine, you should see an output similar to:
 

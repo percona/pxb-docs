@@ -237,7 +237,10 @@ On the `Replica`, apply the logs:
 ```console
 $ xtrabackup --prepare --use-memory=2G --target-dir=/path/to/backupdir/
 ```
+!!! note
 
+    In the ``prepare`` phase, the `--use-memory` parameter speeds up the process if the amount of RAM assigned to the option is available. Use the parameter only in the `prepare` phase. In the other phases the parameter makes the application lazy allocate this memory (reserve) but does not affect database pages.
+    
 Copy the directory from the `Replica` to the `NewReplica` (**NOTE**: Make sure
 mysqld is shut down on the `NewReplica` before you copy the contents the snapshot
 into its `datadir`.):
