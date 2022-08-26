@@ -2445,7 +2445,7 @@ that are being backed up.</p>
 <p>The following example illustrates how the backup can be created in this
 case:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --backup --user=root -p --target-dir=/data/backup \
---transition-key=MySecetKey
+--transition-key=MySecretKey
 </code></pre></div>
 <p>If <code>--transition-key</code> is specified without a value, <em>xtrabackup</em> will ask
 for
@@ -2455,7 +2455,7 @@ visible in
 the <code>ps</code> command output.</p>
 <h3 id="prepare-a-backup-with-a-passphrase">Prepare a backup with a passphrase<a class="headerlink" href="#prepare-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The same passphrase should be specified for the prepare command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backup \
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backup \
 --transition-key=MySecretKey
 </code></pre></div>
 <p>There are no <code>--keyring-vault...</code>,``–keyring-file…``,
@@ -2466,12 +2466,12 @@ because <em>xtrabackup</em> does not talk to the keyring in this case.</p>
 the
 example for <code>keyring_file</code> plugin or component:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
---transition-key=MySecetKey --generate-new-master-key \
+--transition-key=MySecretKey --generate-new-master-key \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>In case of <code>keyring_vault</code>, it will look like this:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
---transition-key=MySecetKey --generate-new-master-key \
+--transition-key=MySecretKey --generate-new-master-key \
 --keyring-vault-config=/etc/vault.cnf
 </code></pre></div>
 <p><em>xtrabackup</em> will generate a new master key, store it in the target keyring
@@ -2544,7 +2544,7 @@ purged.</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-08-05
     
   </small>
 </div>
