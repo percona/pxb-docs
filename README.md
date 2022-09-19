@@ -10,7 +10,7 @@ Percona XtraBackup 8.0 can back up data from InnoDB, XtraDB, MyISAM, and MyRocks
 
 Percona XtraBackup 2.4 can back up data from InnoDB, XtraDB, and MyISAM tables on MySQL 5.7 servers, as well as Percona Server for MySQL with XtraDB.
 
-For more information about the Percona XtraBackup components and how to use this product, see the [Percona XtraBackup documentation](https://www.percona.com/doc/percona-xtrabackup).
+For more information about the Percona XtraBackup components and how to use this product, see the [Percona XtraBackup documentation](https://docs.percona.com/percona-xtrabackup/).
 
 ## Installation
 
@@ -18,7 +18,7 @@ You can install Percona XtraBackup using the following methods:
 - from the Percona repository 
 - Build from the [source code](https://github.com/percona/percona-xtrabackup)
 
-The installation instructions in the official documentation are [here](https://www.percona.com/doc/percona-xtrabackup/8.0/installation.html).
+You can find the installation instructions in the [official documentation](https://docs.percona.com/percona-xtrabackup/) in the Installation section.
 
 ## Submit a bug report or a feature request
 
@@ -37,7 +37,7 @@ Percona is dedicated to **keeping open source open**. Whenever possible, we stri
 
 ## How to get involved
 
-We encourage contributions and are always looking for new members that are as dedicated to serving the community as we are. The [Contributing Guide](https://github.com/percona/percona-xtrabackup/blob/8.0/storage/innobase/xtrabackup/doc/source/contributing.md) contains how you can contribute.
+We encourage contributions and are always looking for new members that are as dedicated to serving the community as we are. The [Contributing Guide](https://github.com/percona/pxb-docs/blob/8.0/contributing.md) contains how you can contribute.
 
 ## Contact
 
