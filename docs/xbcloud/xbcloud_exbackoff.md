@@ -82,7 +82,7 @@ Each cloud provider may return a different CURL error or an HTTP error,
 depending on the issue. Add new errors by setting the following
 variables `--curl-retriable-errors` or `--http-retriable-errors` on the
 command line or in `my.cnf` or in a custom configuration file under
-the [xbcloud] section.
+the [xbcloud] section. You can add multiple errors using a comma-separated list of codes.
 
 The error handling is enhanced when using the `--verbose` output. This
 output specifies which error caused xbcloud to fail and what parameter a
@@ -90,7 +90,7 @@ user must add to retry on this error.
 
 The following is an example of a verbose output:
 
-```
+```text
 210701 14:34:23 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
 210701 14:34:23 /work/pxb/ins/8.0/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
 ```
@@ -100,42 +100,36 @@ The following is an example of a verbose output:
 The following example adjusts the maximum number of retries and the maximum
 time between retries.
 
-```
+```text
 xbcloud [options] --max-retries=5 --max-backoff=10000
 ```
 
-The following text is an example of the exponential backoff used with the
-command:
+The following list describes the process using `--max-backoff=10000`:
 
-```
+* The chunk `xtrabackup_logfile.00000000000000000006` fails to upload the first time and sleeps for 2384 milliseconds.
+
+* The same chunk fails for the second time and the sleep time is increased to 4387 milliseconds.
+
+* The same chunk fails for the third time and the sleep time is increased to 8691 milliseconds.
+
+* The same chunk fails for the fourth time. The `max-backoff` parameter has been reached. All retries sleep the same amount of time after reaching the parameter.
+
+* The same chunk is successfully uploaded.
+
+An example of the output for this setting:
+
+```text
 210702 10:07:05 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-210702 10:07:05 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [1]
+210702 10:07:05 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
 210702 10:07:23 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-210702 10:07:23 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [2]
+210702 10:07:23 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
 210702 10:07:52 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-210702 10:07:52 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [3]
+210702 10:07:52 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
 210702 10:08:47 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-210702 10:08:47 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [4]
+210702 10:08:47 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
 210702 10:10:12 /work/pxb/ins/8.0/bin/xbcloud: successfully uploaded chunk: backup3/xtrabackup_logfile.00000000000000000006, size: 8388660
 ```
-
-The following list details the example output:
-
-[1.] Chunk `xtrabackup_logfile.00000000000000000006` fails to upload _
-the first time and slept for 2384 milliseconds.
-
-[2.] The same chunk fails for the second time and the time is increased
-to 4387 milliseconds.
-
-[3.] The same chunk fails for the third time and the time is increased to
-8691 milliseconds.
-
-[4.] The same chunk fails for the fourth time. The `max-backoff`
-parameter has been reached. All retries sleep the same amount of time after
-reaching the parameter.
-
-[5.] The same chunk is successfully uploaded.
