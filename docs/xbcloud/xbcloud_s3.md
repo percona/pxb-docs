@@ -26,7 +26,7 @@ The following options are available when using Amazon S3:
 | –s3-storage-class=<name>                                                                                                                                                                                                                                         | Specify the [S3 storage class](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html). The default storage class depends on the provider. The name options are the following:<ul><li>STANDARD</li><li>STANDARD_IA</li><li>GLACIER</li></ul> **NOTE** If you use the GLACIER storage class, the object must be [restored to S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects.html) before restoring the backup. Also supports using custom S3 implementations such as MinIO or CephRadosGW. |                                                                                                                                                                                                                                                      |
 ## Permissions setup
 
-Following the principle of "least-privilege", these are the minimum permissions needed for xbcloud to write backups to S3.
+Following the principle of "least-privilege", these are the minimum bucket permissions needed for xbcloud to write backups to S3: ***LIST/PUT/GET/DELETE***.
 
 The following example shows the policy definition for writing to the `xbcloud-testing` bucket on the AWS S3 storage.
 
