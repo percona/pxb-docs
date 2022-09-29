@@ -31,7 +31,7 @@ in your distribution as a separate package `cmake3`. For more information, see [
 
 ```
 sudo apt install bison pkg-config cmake devscripts debconf \
-debhelper automake bison ca-certificates \
+debhelper automake bison ca-certificates libprocps-dev\
 libcurl4-openssl-dev cmake debhelper libaio-dev \
 libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev \
 lsb-release python-docutils build-essential rsync \
@@ -57,7 +57,7 @@ dependencies:
 ```
 $ sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
 bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel \
-vim-common
+vim-common procps-ng-devel
 ```
 
 To install the man pages, install the python3-sphinx package first:
