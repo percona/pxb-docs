@@ -338,10 +338,12 @@ See the **xtrabackup** documentation for more details.
 
 
 ### --encrypt-chunk-size(=#)
+
 This option specifies the size of the internal working buffer for each
 encryption thread, measured in bytes. It is passed directly to the
-xtrabackup child process. See the **xtrabackup** documentation for more details.
+xtrabackup child process.
 
+To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-buffer-size) and `--encrypt-chunk-size`.
 
 ### --export()
 Create files necessary for exporting tables. See Restoring Individual
@@ -686,8 +688,8 @@ copying the data files back to their original locations to restore them.
 
 
 ### --read-buffer-size()
-Set the datafile read buffer size, given value is scaled up to page size. Default
-is 10Mb.
+
+Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use `--read-buffer-size` and [`--encrypt-chunk-size`](#encrypt-chunk-size).
 
 
 ### --rebuild-indexes()
@@ -913,8 +915,9 @@ Directory where temp tablespace files live, this path can be absolute.
 
 ### --throttle(=#)
 This option limits the number of chunks copied per second. The chunk size is
-*10 MB*. To limit the bandwidth to *10 MB/s*, set the option to *1*:
-–throttle=1.
+*10 MB*. 
+
+To limit the bandwidth to *10 MB/s*, set the option to *1*.
 
 
 ### --tls-ciphersuites()
