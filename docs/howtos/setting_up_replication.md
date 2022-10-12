@@ -64,13 +64,13 @@ later, use `START REPLICA` instead.
 
 At the  `Source`, issue the following to a shell:
 
-```
+```shell
 $ xtrabackup --backup --user=yourDBuser --password=MaGiCdB1 --target-dir=/path/to/backupdir
 ```
 
 After this is finished you should get:
 
-```
+```shell
 xtrabackup: completed OK!
 ```
 
@@ -84,7 +84,7 @@ and do a hot backup of all your data in it
 In order for snapshot to be consistent you need to prepare the data on the
 source:
 
-```
+```shell
 $ xtrabackup --user=yourDBuser --password=MaGiCdB1 \
             --prepare --target-dir=/path/to/backupdir
 ```
@@ -103,7 +103,7 @@ If you want to skip writing the username and password
 every time you want to access *MySQL*,
 you can set it up in `.mylogin.cnf` as follows:
 
-```
+```text
 mysql_config_editor set --login-path=client --host=localhost --user=root --password
 ```
 
@@ -118,7 +118,7 @@ On the Source, use rsync or scp to copy the data from the Source to the
 Replica. If you are syncing the data directly to replica’s data directory,
 we recommend that you stop the `mysqld` there.
 
-```
+```shell
 $ rsync -avpP -e ssh /path/to/backupdir Replica:/path/to/mysql/
 ```
 
@@ -127,20 +127,20 @@ installed *MySQL* datadir (**NOTE**: Make sure mysqld is shut down before
 you move the contents of its datadir, or move the snapshot into its
 datadir.). Run the following commands on the Replica:
 
-```
+```shell
 $ mv /path/to/mysql/datadir /path/to/mysql/datadir_bak
 ```
 
 and move the snapshot from the `Source` in its place:
 
-```
+```shell
 $ xtrabackup --move-back --target-dir=/path/to/mysql/backupdir
 ```
 
 After you copy data over, make sure the Replica *MySQL* has the proper
 permissions to access them.
 
-```
+```shell
 $ chown mysql:mysql /path/to/mysql/datadir
 ```
 
@@ -153,7 +153,7 @@ been applied.
 On the source, run the following command to add the appropriate grant. This
 grant allows the replica to be able to connect to source:
 
-```
+```sql
 > GRANT REPLICATION SLAVE ON *.*  TO 'repl'@'$replicaip'
 IDENTIFIED BY '$replicapass';
 ```
@@ -163,13 +163,13 @@ connect to the `Source`. Run the following command on the Replica to test
 that you can run the mysql client on `Replica`, connect to the `Source`,
 and authenticate.
 
-```
+```sql
 $ mysql --host=Source --user=repl --password=$replicapass
 ```
 
 Verify the privileges.
 
-```
+```sql
 mysql> SHOW GRANTS;
 ```
 
@@ -177,13 +177,13 @@ mysql> SHOW GRANTS;
 
 Copy the `my.cnf` file from the `Source` to the `Replica`:
 
-```
+```shell
 $ scp user@Source:/etc/mysql/my.cnf /etc/mysql/my.cnf
 ```
 
 and change the following options in /etc/mysql/my.cnf:
 
-```
+```text
 server-id=2
 ```
 
@@ -264,7 +264,7 @@ we will add a `NewReplica` to the plot.
 
 At the `Replica`, do a full backup:
 
-```
+```shell
 $ xtrabackup --user=yourDBuser --password=MaGiCiGaM \
    --backup --slave-info --target-dir=/path/to/backupdir
 ```
@@ -274,9 +274,13 @@ called `xtrabackup_slave_info`.
 
 Apply the logs:
 
-```
+```shell
 $ xtrabackup --prepare --use-memory=2G --target-dir=/path/to/backupdir/
 ```
+
+!!! note
+
+    In the ``prepare`` phase, the `--use-memory` parameter speeds up the process if the amount of RAM assigned to the option is available. Use the parameter only in the `prepare` phase. In the other phases the parameter makes the application lazy allocate this memory (reserve) but does not affect database pages.
 
 Copy the directory from the `Replica` to the `NewReplica` (**NOTE**: Make
 sure mysqld is shut down on the `NewReplica` before you copy the contents

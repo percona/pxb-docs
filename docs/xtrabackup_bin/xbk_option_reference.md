@@ -943,14 +943,8 @@ specified for the `--prepare` command.
 
 
 ### --use-memory()
-This option affects how much memory is allocated for preparing a backup with
-`--prepare`, or analyzing statistics with
-`--stats`. Its purpose is similar
-to innodb_buffer_pool_size. It does not do the same thing as the
-similarly named option in Oracle’s InnoDB Hot Backup tool.
-The default value is 100MB, and if you have enough available memory, 1GB to
-2GB is a good recommended value. Multiples are supported providing the unit
-(e.g. 1MB, 1M, 1GB, 1G).
+
+This option affects how much memory is allocated and is similar to `innodb_buffer_pool_size`. This option is only relevant in the `--prepare` phase or when analyzing statistics with `--stats`. The default value is 100MB. The recommended value is between 1GB to 2GB. Multiple values are supported if you provide the unit (for example, 1MB, 1M, 1GB, 1G).
 
 
 ### --user(=USERNAME)
