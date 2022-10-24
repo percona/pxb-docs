@@ -1,31 +1,19 @@
 # Incremental Backups
 
 *xtrabackup* supports incremental backups. It copies only the data that has
-changed since the last full backup. You can perform many incremental backups
-between each full backup, so you can set up a backup process such as a full
+changed since the last full backup. You can perform multiple incremental backups
+between each full backup. You can set up a backup process with a full
 backup once a week and an incremental backup every day, or full backups every
 day and incremental backups every hour.
 
 !!! note
-   
+
     Incremental backups on the MyRocks storage engine do not determine if an earlier full backup or incremental backup contains the same files. **Percona XtraBackup** copies all of the MyRocks files each time it takes a backup.
 
-Incremental backups work because each InnoDB page (usually 16kb in size)
-contains a log sequence number, or LSN. The LSN is the system
-version number for the entire database. Each page’s LSN shows how
-recently it was changed. An incremental backup copies each page whose
-LSN is newer than the previous incremental or full backup’s
-LSN. There are two algorithms in use to find the set of such pages to be
-copied. The first one, available with all the server types and versions, is to
-check the page LSN directly by reading all the data pages. The second
-one, available with *Percona Server for MySQL*, is to enable the [changed page tracking](http://www.percona.com/doc/percona-server/5.5/management/changed_page_tracking.html)
-feature on the server, which will note the pages as they are being changed. This
-information will be then written out in a compact separate so-called bitmap
-file. The *xtrabackup* binary will use that file to read only the data pages it
-needs for the incremental backup, potentially saving many read requests. The
-latter algorithm is enabled by default if the *xtrabackup* binary finds the
-bitmap file. It is possible to specify `--incremental-force-scan` to
-read all the pages even if the bitmap data is available.
+The write-ahead log (WAL) is immutable and append-only. All writes to the WAL are sequential. Every record has a unique, uniformly increasing log sequence number (LSN) which is assigned to page changes. Each page contains a Page LSN that shows the most recent update to that page. An incremental backup copies each page whose
+LSN is newer than the previous incremental or the full backup’s
+LSN. An incremental backup copies each page whose LSN is newer than the
+previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.
 
 Incremental backups do not actually compare the data files to the previous
 backup’s data files. In fact, you can use `--incremental-lsn` to perform
@@ -34,6 +22,12 @@ LSN. Incremental backups simply read the pages and compare their
 LSN to the last backup’s LSN. You still need a full backup to
 recover the incremental changes, however; without a full backup to act as a
 base, the incremental backups are useless.
+
+### Using the changed page tracking algorithm 
+
+*Percona XtraBackup* 8.0.30 removes the algorithm that used the [changed page tracking](https://docs.percona.com/percona-server/8.0/management/changed_page_tracking.html) feature in *Percona Server for MySQL*. *Percona Server for MySQL* 8.0.27 deprecated the changed page tracking feature.
+
+With PXB 8.0.27 or earlier, another algorithm enabled the *Percona Server for MySQL* changed page tracking feature. The algorithm generates a bitmap file. The *xtrabackup* binary uses that bitmap file to read only those pages needed for the incremental backup. This method potentially saves resources. The backup enables the algorithm by default if the *xtrabackup* binary discovers the bitmap file. You can override the algorithm with `--incremental-force-scan` which forces a read of all pages even if the bitmap file is available.
 
 ## Creating an Incremental Backup
 

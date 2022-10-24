@@ -456,8 +456,7 @@ backup.
 
 ### --incremental-force-scan()
 When creating an incremental backup, force a full scan of the data pages in
-the instance being backuped even if the complete changed page bitmap data is
-available.
+that instance.
 
 
 ### --incremental-history-name(=name)
