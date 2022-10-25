@@ -57,10 +57,16 @@ with the *percona-release* package configuration tool.
     $ sudo apt install percona-xtrabackup-80
     ```
 
-6. In order to make compressed backups, install the `qpress` package:
+6. To make compressed backups, install the `qpress` package:
 
     ```
     $ sudo apt install qpress
+    ```
+
+7. To decompress backups made using `ZSTD` compression algorithm, install the `zstd` package:
+    
+    ```
+    $ sudo apt install zstd
     ```
 
 !!! note

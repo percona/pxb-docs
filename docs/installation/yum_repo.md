@@ -1,4 +1,4 @@
-# Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+# Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
 
 Ready-to-use packages are available from the *Percona XtraBackup* software
 repositories and the [download page](https://www.percona.com/downloads/XtraBackup/). The Percona yum repository supports popular *RPM*-based operating systems, including the *Amazon
@@ -20,7 +20,7 @@ GA binaries and associated files.
 | `percona-xtrabackup-test-80`| The test suite for *Percona XtraBackup*|
 | `percona-xtrabackup` | The older version of the *Percona XtraBackup*  |
 
-## Installing *Percona XtraBackup* from Percona `yum` repository
+## Install *Percona XtraBackup* from Percona `yum` repository
 
 
 1. Install the Percona yum repository by running the following command as the   `root` user or with **sudo**: `yum install https://repo.percona.com/yum/ percona-release-latest.noarch.rpm`
@@ -39,10 +39,16 @@ GA binaries and associated files.
         installing *Percona XtraBackup* on CentOS 6. For this operating system, the
         `libev` package is available from the [EPEL](https://fedoraproject.org/wiki/EPEL) repositories.
 
-4. To be able to make compressed backups, install the `qpress` package:
+4. To make compressed backups, install the `qpress` package:
     
     ```
     $ yum install qpress
+    ```
+
+5. To decompress backups made using `ZSTD` compression algorithm, install the `zstd` package:
+    
+    ```
+    $ yum install zstd
     ```
 
 ## Installing *Percona XtraBackup* using downloaded rpm packages
