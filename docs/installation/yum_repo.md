@@ -23,7 +23,7 @@ GA binaries and associated files.
 ## Installing *Percona XtraBackup* from Percona `yum` repository
 
 
-1. Install the Percona yum repository by running the following command as the   `root` user or with **sudo**: `yum install https://repo.percona.com/yum/ percona-release-latest.noarch.rpm`
+1. Install the Percona yum repository by running the following command as the   `root` user or with **sudo**: `yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm`
 
 2. Enable the repository: `percona-release enable-only tools release`
 
