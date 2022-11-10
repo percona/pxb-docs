@@ -36,7 +36,7 @@ the backup’s target directory. This file contains a line showing the
 `to_lsn`, which is the database’s `LSN` at the end of the backup.
 [Create the full backup](full_backup.md#full-backup) with a following command:
 
-```bash
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/base
 ```
 
@@ -54,7 +54,7 @@ recover_binlog_info = 1
 
 Now that you have a full backup, you can make an incremental backup based on it. Use the following command:
 
-```bash
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/inc1 \
 --incremental-basedir=/data/backups/base
 ```
@@ -79,7 +79,7 @@ backup.
 
 It’s now possible to use this directory as the base for yet another incremental backup:
 
-```bash
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/inc2 \
 --incremental-basedir=/data/backups/inc1
 ```
@@ -110,7 +110,7 @@ as for full backups. In full backups, two types of operations are performed to m
 
 Beginning with the full backup you created, you can prepare it, and then apply the incremental differences to it. Recall that you have the following backups:
 
-```bash
+```text
 /data/backups/base
 /data/backups/inc1
 /data/backups/inc2
@@ -119,7 +119,7 @@ Beginning with the full backup you created, you can prepare it, and then apply t
 To prepare the base backup, you need to run xtrabackup –prepare as
 usual, but prevent the rollback phase:
 
-```bash
+```shell
 $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
 ```
 
@@ -140,7 +140,7 @@ you saw previously.
 To apply the first incremental backup to the full backup, run the following
 command:
 
-```bash
+```shell
 $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
@@ -151,7 +151,7 @@ applies the redo log as usual to the result. The final data is in
 `/data/backups/base`, not in the incremental directory. You should see
 an output similar to:
 
-```bash
+```text
 incremental backup from 1626007 is enabled.
 xtrabackup: cd to /data/backups/base
 xtrabackup: This target seems to be already prepared with --apply-log-only.
@@ -173,7 +173,7 @@ first incremental backup.
 
 Preparing the second incremental backup is a similar process: apply the deltas to the (modified) base backup, and you will roll its data forward in time to the point of the second incremental backup:
 
-```bash
+```shell
 $ xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2
 ```

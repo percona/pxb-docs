@@ -32,7 +32,7 @@ privileges.
 The database user used to connect to the server and its password are specified
 by the `xtrabackup --user` and `xtrabackup –password` option:
 
-```bash
+```shell
 $ xtrabackup --user=DVADER --password=14MY0URF4TH3R --backup \
   --target-dir=/data/bkps/
 $ innobackupex --user=DBUSER --password=SECRET /path/to/backup/dir/
@@ -108,7 +108,7 @@ The explanation of when these are used can be found in
 An SQL example of creating a database user with the minimum privileges required
 to full backups would be:
 
-```mysql
+```sql
 mysql> CREATE USER 'bkpuser'@'localhost' IDENTIFIED BY 's3cret';
 mysql> GRANT RELOAD, LOCK TABLES, PROCESS, REPLICATION CLIENT ON *.* TO
        'bkpuser'@'localhost';

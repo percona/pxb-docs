@@ -10,7 +10,7 @@ needing a local storage.
 
     In a Bash shell, the `$?` parameter returns the exit code from the last binary. If you use pipes the `${PIPESTATUS[x]}` array parameter returns the exit codes for each binary in the pipe string.
    
-    ```default
+    ```shell
     $ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
 
     > true | false
@@ -82,7 +82,7 @@ Currently, the xbcloud binary supports [Amazon S3](#creating-a-full-backup-with-
 
 ## Usage
 
-```bash
+```shell
 $ xtrabackup --backup --stream=xbstream --target-dir=/tmp | xbcloud \
 put [options] <name>
 ```
@@ -91,7 +91,7 @@ put [options] <name>
 
 The following example shows how to make a full backup and upload it to Swift.
 
-```bash
+```shell
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=swift \
 --swift-container=test \
@@ -104,7 +104,7 @@ full_backup
 
 ## Creating a full backup with *Amazon S3*
 
-```bash
+```shell
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=s3 \
 --s3-endpoint='s3.amazonaws.com' \
@@ -129,7 +129,7 @@ The following options are available when using *Amazon S3*:
 
 ## Creating a full backup with MinIO
 
-```bash
+```shell
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=s3 \
 --s3-endpoint='play.minio.io:9000' \
@@ -151,7 +151,7 @@ compatible with *Amazon S3*.
     Cloud Storage Interoperability
       https://cloud.google.com/storage/docs/interoperability
 
-```bash
+```shell
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=google \
 --google-endpoint=`storage.googleapis.com` \
@@ -257,14 +257,14 @@ three distinct parameters (--storage, --s3-bucket, and backup name per se).
 
 Use the following format: ``storage-type://bucket-name/backup-name``
 
-```bash
+```shell
 $ xbcloud get s3://operator-testing/bak22 ...
 ```
 
 In this example, **s3** refers to a storage type, **operator-testing** is a
 bucket name, and **bak22** is the backup name. This shortcut expands as follows:
 
-```bash
+```shell
 $ xbcloud get --storage=s3 --s3-bucket=operator-testing bak22 ...
 ```
 
@@ -278,7 +278,7 @@ type. The `--md5` parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the `backup_name.md5`
 pattern.
 
-```bash
+```shell
 $ xtrabackup --backup --stream=xbstream \
 --parallel=8 2>backup.log | xbcloud put s3://operator-testing/bak22 \
 --parallel=8 --md5 2>upload.log
@@ -289,7 +289,7 @@ header with the server side encryption while specifying a customer key.
 
 **Example of using --header for AES256 encryption**
 
-```bash
+```shell
 $ xtrabackup --backup --stream=xbstream --parallel=4 | \
 xbcloud put s3://operator-testing/bak-enc/ \
 --header="X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256" \
@@ -303,13 +303,13 @@ permissions: `--header="x-amz-acl: bucket-owner-full-control`
 
 ## Restoring with Swift
 
-```bash
-$ xbcloud get [options] <name> [<list-of-files>] | xbstream -x
+```text
+xbcloud get [options] <name> [<list-of-files>] | xbstream -x
 ```
 
 The following example shows how to fetch and restore the backup from Swift:
 
-```bash
+```shell
 $ xbcloud get --storage=swift \
 --swift-container=test \
 --swift-user=test:tester \
@@ -323,7 +323,7 @@ $ xtrabackup --copy-back --target-dir=/tmp/downloaded_full
 
 ## Restoring with *Amazon S3*
 
-```bash
+```shell
 $ xbcloud get s3://operator-testing/bak22 \
 --s3-endpoint=https://storage.googleapis.com/ \
 --parallel=10 2>download.log | xbstream -x -C restore --parallel=8
@@ -333,7 +333,7 @@ $ xbcloud get s3://operator-testing/bak22 \
 
 First, make the full backup which is the base for an incremental backup:
 
-```bash
+```shell
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/storage/backups/ \
 --target-dir=/storage/backups/ | xbcloud put \
 --storage=swift --swift-container=test_backup \
@@ -345,7 +345,7 @@ full_backup
 
 Then make the incremental backup:
 
-```bash
+```shell
 $ xtrabackup --backup --incremental-basedir=/storage/backups \
 --stream=xbstream --target-dir=/storage/inc_backup | xbcloud put \
 --storage=swift --swift-container=test_backup \
@@ -359,7 +359,7 @@ inc_backup
 
 To prepare a backup, download the full backup:
 
-```bash
+```shell
 $ xbcloud get --swift-container=test_backup \
 --swift-auth-version=2.0 --swift-user=admin \
 --swift-tenant=admin --swift-password=xoxoxoxo \
@@ -369,13 +369,13 @@ full_backup | xbstream -xv -C /storage/downloaded_full
 
 Prepare the downloaded full backup:
 
-```bash
+```shell
 $ xtrabackup --prepare --apply-log-only --target-dir=/storage/downloaded_full
 ```
 
 After the full backup has been prepared, download the incremental backup:
 
-```bash
+```shell
 $ xbcloud get --swift-container=test_backup \
 --swift-auth-version=2.0 --swift-user=admin \
 --swift-tenant=admin --swift-password=xoxoxoxo \
@@ -385,7 +385,7 @@ inc_backup | xbstream -xv -C /storage/downloaded_inc
 
 Prepare the incremental backup:
 
-```bash
+```shell
 $ xtrabackup --prepare --apply-log-only \
 --target-dir=/storage/downloaded_full \
 --incremental-dir=/storage/downloaded_inc
@@ -398,7 +398,7 @@ $ xtrabackup --prepare --target-dir=/storage/downloaded_full
 If you don't want to download the entire backup to restore a database
 you can restore only specific tables:
 
-```bash
+```shell
 $ xbcloud get --swift-container=test_backup
 --swift-auth-version=2.0 --swift-user=admin \
 --swift-tenant=admin --swift-password=xoxoxoxo \

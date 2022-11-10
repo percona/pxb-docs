@@ -24,26 +24,26 @@ All of the available options for **xbcloud**, such as parallel, max-retries, and
 
 ## Examples
 
-An example of an **xbcloud** backup.
+An example of a **xbcloud** backup.
 
-```bash
+```shell
 $ xtrabackup --backup --stream=xbstream --target-dir= $TARGET_DIR | xbcloud put backup_name --azure-storage-account=pxbtesting --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure
 ```
 
 An example of restoring a backup from **xbcloud**.
 
-```bash
+```shell
 $ xbcloud get backup_name  --azure-storage-account=pxbtesting --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure --parallel=10 2>download.log | xbstream -x -C restore
 ```
 
 An example of deleting a backup from **xbcloud**.
 
-```bash
+```shell
 $ xbcloud delete backup_name --azure-storage-account=pxbtesting --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure
 ```
 
 An example of using a shortcut restore.
 
-```bash
+```shell
 $ xbcloud get azure://operator-testing/bak22 ...
 ```

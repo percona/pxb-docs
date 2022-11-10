@@ -17,7 +17,7 @@ the prepared backup corresponds.
 
 You will also see output similar to the following during the `prepare` stage:
 
-```default
+```text
 InnoDB: Last MySQL binlog file position 0 3252710, file name ./mysql-bin.000001
 ... snip ...
 [notice (again)]

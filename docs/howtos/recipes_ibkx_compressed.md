@@ -2,7 +2,7 @@
 
 In order to make a compressed backup you’ll need to use `innobackupex --compress`
 
-```default
+```shell
 $ innobackupex --compress /data/backup
 ```
 
@@ -10,13 +10,13 @@ If you want to speed up the compression you can use the parallel compression,
 which can be enabled with `innobackupex --compress-threads`
 option. Following example will use four threads for compression:
 
-```default
+```shell
 $ innobackupex --compress --compress-threads=4 /data/backup
 ```
 
 Output should look like this
 
-```default
+```text
 ...
 [01] Compressing ./imdb/comp_cast_type.ibd to /data/backup/2013-08-01_11-24-04/./imdb/comp_cast_type.ibd.qp
 [01]        ...done
@@ -30,17 +30,17 @@ Output should look like this
 
 Before you can prepare the backup you’ll need to uncompress all the files with
 [qpress](http://www.quicklz.com/) (which is available from [Percona Software
-repositories](http://www.percona.com/doc/percona-xtrabackup/2.1/installation.html#using-percona-software-repositories)).
+repositories](https://docs.percona.com/percona-xtrabackup/2.4/installation.html#using-percona-software-repositories)).
 You can use following one-liner to uncompress all the files:
 
-```default
+```shell
 $ for bf in `find . -iname "*\.qp"`; do qpress -d $bf $(dirname $bf) && rm $bf; done
 ```
 
 In *Percona XtraBackup* 2.1.4 new `innobackupex --decompress` option has
 been implemented that can be used to decompress the backup:
 
-```default
+```shell
 $ innobackupex --decompress /data/backup/2013-08-01_11-24-04/
 ```
 
@@ -51,13 +51,13 @@ $ innobackupex --decompress /data/backup/2013-08-01_11-24-04/
 When the files are uncompressed you can prepare the backup with
 innobackupex –apply-log:
 
-```default
+```shell
 $ innobackupex --apply-log /data/backup/2013-08-01_11-24-04/
 ```
 
 You should check for a confirmation message:
 
-```default
+```text
 130802 02:51:02  innobackupex: completed OK!
 ```
 
@@ -72,7 +72,7 @@ by the server.
 
 Once the backup has been prepared you can use the `innobackupex --copy-back` to restore the backup.
 
-```default
+```shell
 $ innobackupex --copy-back /data/backups/2013-08-01_11-24-04/
 ```
 
@@ -81,14 +81,14 @@ This will copy the prepared data back to its original location as defined by the
 
 After the confirmation message:
 
-```default
+```text
 130802 02:58:44  innobackupex: completed OK!
 ```
 
 you should check the file permissions after copying the data back. You may need
 to adjust them with something like:
 
-```default
+```shell
 $ chown -R mysql:mysql /var/lib/mysql
 ```
 

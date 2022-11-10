@@ -11,17 +11,24 @@ replica.
 
 The following command takes a backup and saves it in the /data/backups/$TIMESTAMP folder:
 
-```bash
+```shell
 $ innobackupex /data/backups/
 ```
 
 In the destination folder, there will be a file with the name
 `xtrabackup_binlog_info`. This file contains both binary log coordinates and the `GTID` information.
 
-```bash
+```shell
 $ cat xtrabackup_binlog_info
-mysql-bin.000002    1232        c777888a-b6df-11e2-a604-080027635ef5:1-4
 ```
+
+The results should be similar to the following:
+
+```text
+mysql-bin.000002    1232     c777888a-b6df-11e2-a604-080027635ef5:1-4
+```
+
+
 
 That information is also printed by innobackupex after taking the backup:
 
@@ -33,7 +40,7 @@ innobackupex: MySQL binlog position: filename 'mysql-bin.000002', position 1232,
 
 The backup will be prepared with the following command:
 
-```console
+```shell
 TheMaster$ innobackupex --apply-log /data/backups/$TIMESTAMP/
 ```
 
@@ -48,13 +55,13 @@ Use `rsync` or `scp` to copy the data to the destination
 server. If you are synchronizing the data directly to the already running replica’s data
 directory it is advised to stop the *MySQL* server there.
 
-```bash
+```shell
 $ rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewSlave:/path/to/mysql/
 ```
 
 After you copy the data over, make sure *MySQL* has proper permissions to access them.
 
-```bash
+```shell
 $ chown mysql:mysql /path/to/mysql/datadir
 ```
 
@@ -64,7 +71,7 @@ Set the gtid_purged variable to the `GTID` from
 `xtrabackup_binlog_info`. Then, update the information about the
 source node and, finally, start the replica.
 
-```text
+```sql
 # Using the mysql shell
 NewSlave > SET SESSION wsrep_on = 0;
 NewSlave > RESET MASTER;
@@ -86,15 +93,20 @@ NewSlave > START SLAVE;
 
 Following command will show the replica status:
 
-```text
+```shell
 NewSlave > SHOW SLAVE STATUS\G
-         [..]
-         Slave_IO_Running: Yes
-         Slave_SQL_Running: Yes
-         [...]
-         Retrieved_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:5
-         Executed_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:1-5
 ```
+The results should be similar to as follows:
+
+```text
+
+Slave_IO_Running: Yes
+Slave_SQL_Running: Yes
+[...]
+Retrieved_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:5
+Executed_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:1-5
+```
+
 
 We can see that the replica has retrieved a new transaction with number 5, so
 transactions from 1 to 5 are already on this replica.
