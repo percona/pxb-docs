@@ -25,6 +25,12 @@ does not become zero after `--safe-slave-backup-timeout`
 seconds (defaults to 300 seconds). The replication SQL thread will be restarted when
 the backup finishes.
 
+!!! note
+
+    Prior to *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
+
+    As of *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
+
 Using this option is always recommended when taking backups from a replica server.
 
 !!! warning

@@ -529,11 +529,11 @@ Issue `LOCK TABLES FOR BACKUP` if it is supported by server (otherwise use
 `LOCK INSTANCE FOR BACKUP`) at the beginning of the backup to block all DDL
 operations.
 
-**NOTE**: Prior to *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread
-after the InnoDB tables and before the non-InnoDB tables are backed up.
+!!! note
 
-As of *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup option stops the SQL
-replica thread before copying the InnoDB files.
+    Prior to *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
+
+    As of *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
 
 
 ### --lock-ddl-per-table()
@@ -747,7 +747,13 @@ will fail if `Slave_open_temp_tables` does not become zero after
 `--safe-slave-backup-timeout` seconds. The replication SQL
 thread will be restarted when the backup finishes. This option is
 implemented in order to deal with [replicating temporary tables](https://dev.mysql.com/doc/refman/5.7/en/replication-features-temptables.html)
-and isn’t neccessary with Row-Based-Replication.
+and isn’t necessary with Row-Based-Replication.
+
+!!! note
+
+    Prior to *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
+
+    As of *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
 
 
 ### --safe-slave-backup-timeout(=SECONDS)
