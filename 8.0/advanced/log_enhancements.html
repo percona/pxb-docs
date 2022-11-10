@@ -1863,9 +1863,10 @@ Notice in the following examples the variance in the log statements:</p>
 <ul>
 <li>The backup log statement header has the name of the module, <code>xtrabackup</code>, which generated the statement but no timestamp:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>xtrabackup: recognized client arguments: --parallel=4 --target-dir=/data/backups/ --backup=1
-
-./bin/xtrabackup version 8.0.27-19 based on MySQL server 8.0.27 Linux (x86_64) (revision id: b0f75188ca3)
+<p><div class="highlight"><pre><span></span><code> $ xtrabackup: recognized client arguments: --parallel<span class="o">=</span><span class="m">4</span> --target-dir<span class="o">=</span>/data/backups/ --backup<span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+The result should be similar to the following:</p>
+<div class="highlight"><pre><span></span><code>./bin/xtrabackup version 8.0.27-19 based on MySQL server 8.0.27 Linux (x86_64) (revision id: b0f75188ca3)
 </code></pre></div>
 <ul>
 <li>The copy-back log statement has a timestamp but no module name. The
@@ -1948,7 +1949,7 @@ or review the log to diagnose issues.</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>

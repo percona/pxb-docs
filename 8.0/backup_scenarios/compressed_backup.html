@@ -1901,11 +1901,11 @@ can be compressed or decompressed with <em>xbstream</em>.</p>
 <h2 id="creating-compressed-backups">Creating Compressed Backups<a class="headerlink" href="#creating-compressed-backups" title="Permanent link">&para;</a></h2>
 <p>In order to make a compressed backup you’ll need to use the <code>--compress</code>
 option:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --compress --target-dir=/data/compressed/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --compress --target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
 <p>The <code>--compress</code> uses the <code>qpress</code> tool that you can install via
 the <code>percona-release</code> package configuration tool as follows:</p>
-<div class="highlight"><pre><span></span><code>$ sudo percona-release enable tools
+<div class="highlight"><pre><span></span><code>$ sudo percona-release <span class="nb">enable</span> tools
 $ sudo apt update
 $ sudo apt install qpress
 </code></pre></div>
@@ -1920,11 +1920,11 @@ repository: <code>percona-release enable-only tools</code>.</p>
 compression,
 which can be enabled with <code>--compress-threads</code> option.
 Following example will use four threads for compression:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --compress --compress-threads=4 \
---target-dir=/data/compressed/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --compress --compress-threads<span class="o">=</span><span class="m">4</span> <span class="se">\</span>
+--target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
 <p>Output should look like this</p>
-<div class="highlight"><pre><span></span><code>...
+<div class="highlight"><pre><span></span><code>...text
 170223 13:00:38 [01] Compressing ./test/sbtest1.frm to /tmp/compressed/test/sbtest1.frm.qp
 170223 13:00:38 [01]        ...done
 170223 13:00:38 [01] Compressing ./test/sbtest2.frm to /tmp/compressed/test/sbtest2.frm.qp
@@ -1939,7 +1939,7 @@ xtrabackup: Transaction log of lsn (9291934) to (9291934) was copied.
 <p>Before you can prepare the backup you’ll need to uncompress all the files.
 <em>Percona XtraBackup</em> has implemented <code>--decompress</code> option
 that can be used to decompress the backup.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --decompress --target-dir=/data/compressed/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --decompress --target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1952,7 +1952,7 @@ these files will not be copied/moved over to the datadir if
 <code>--copy-back</code> or <code>--move-back</code> are used.</p>
 <p>When the files are uncompressed you can prepare the backup with the
 <code>--prepare</code> option:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/compressed/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
 <p>You should check for a confirmation message:</p>
 <div class="highlight"><pre><span></span><code>InnoDB: Starting shutdown...
@@ -1963,7 +1963,7 @@ InnoDB: Shutdown completed; log sequence number 9293846
 <h3 id="restoring-the-backup">Restoring the backup<a class="headerlink" href="#restoring-the-backup" title="Permanent link">&para;</a></h3>
 <p><em>xtrabackup</em> has a <code>--copy-back</code> option, which performs the
 restoration of a backup to the server’s datadir:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backups/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <p>It will copy all the data-related files back to the server’s datadir,
 determined by the server’s <code>my.cnf</code> configuration file. You should check
@@ -1998,7 +1998,7 @@ the server.</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>
