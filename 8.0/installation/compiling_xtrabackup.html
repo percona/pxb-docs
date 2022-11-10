@@ -18,7 +18,7 @@
         <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/8.0/8.0/installation/compiling_xtrabackup.html">
       
       <link rel="icon" href="../_static/percona_favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.7">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.9">
     
     
       
@@ -29,7 +29,7 @@
       <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.08040f6c.min.css">
         
       
       
@@ -83,7 +83,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="percona-light" data-md-color-primary="" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="percona-light" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     
@@ -2013,7 +2013,7 @@ in your distribution as a separate package <code>cmake3</code>. For more informa
 <div class="highlight"><pre><span></span><code>sudo apt install bison pkg-config cmake devscripts debconf \
 debhelper automake bison ca-certificates \
 libcurl4-openssl-dev cmake debhelper libaio-dev \
-libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev \
+libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev \
 lsb-release python-docutils build-essential rsync \
 libdbd-mysql-perl libnuma1 socat librtmp-dev libtinfo5 \
 qpress liblz4-tool liblz4-1 liblz4-dev vim-common
@@ -2029,7 +2029,7 @@ install and enable <a href="https://developers.redhat.com/products/developertool
 compiler and development tools.  Then, install <code>cmake</code> and other
 dependencies:</p>
 <div class="highlight"><pre><span></span><code>$ sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
-bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel \
+bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel procps-ng-devel \
 vim-common
 </code></pre></div>
 <p>To install the man pages, install the python3-sphinx package first:</p>
@@ -2076,28 +2076,24 @@ need to remove the <code>-DWITH_MAN_PAGES=OFF</code> from previous command.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>DWITH_BOOST</code></td>
+<td><code>-DWITH_BOOST</code></td>
 <td>For the <code>-DWITH_BOOST</code> parameter, specify the name of a directory to download the boost library to. This directory is created automatically in your current directory.</td>
 </tr>
 <tr>
-<td><code>-B</code> (build</td>
-<td><strong>Percona XtraBackup</strong> is configured to forbid generating the build pipeline for make in the same directory where you store your sources. The <code>-B</code> parameter refers to the directory that contains the source code. In this example, we use the relative path to the parent directory (..)</td>
-</tr>
-<tr>
 <td><code>-DWITH_MAN_PAGES</code></td>
-<td>To build Percona XtraBackup man pages, use ON or remove this parameter from the command line (it is ON by default). To install the man pages, install the python3-sphinx package first.</td>
+<td>To build <strong>Percona XtraBackup</strong> man pages, use <code>ON</code> or remove this parameter from the command line (it is <code>ON</code> by default). To install the man pages, install the python3-sphinx package first. See also <a href="#step-2-compiling-the-source-code">## Step 2: Compiling the source code</a></td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td><code>-B</code> (&ndash;build)</td>
+<td><strong>Percona XtraBackup</strong> is configured to forbid generating the build pipeline for make in the same directory where you store your sources. The <code>-B</code> parameter refers to the directory that contains the source code. In this example, we use the relative path to the parent directory (..).</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>CMake Error at CMakeLists.txt:367 (MESSAGE): Please do not build in-source. Out-of source builds are highly recommended: you can have multiple builds for the same source, and there is an easy way to do cleanup, simply remove the build directory (note that ‘make clean’ or ‘make distclean’ does not work)</p>
+<p>CMake Error at CMakeLists.txt:367 (MESSAGE): Please do not build in-source. Out-of source builds are highly recommended: you can have multiple builds for the same source, and there is an easy way to do cleanup, simply remove the build directory (note that ‘make clean’ or ‘make distclean’ does <code>not</code> work)</p>
+<p>You <code>can</code> force in-source build by invoking cmake with <code>-DFORCE_INSOURCE_BUILD=1</code>.</p>
 </div>
-<p>You can force in-source build by invoking cmake with -DFORCE_INSOURCE_BUILD=1</p>
 <h2 id="step-2-compiling-the-source-code">Step 2: Compiling the source code<a class="headerlink" href="#step-2-compiling-the-source-code" title="Permanent link">&para;</a></h2>
 <p>To compile the source code in your <code>build</code> directory, use the <code>make</code> command.</p>
 <ol>
@@ -2170,7 +2166,7 @@ the locations listed in your <code>PATH</code> environment variable.</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-09
     
   </small>
 </div>
@@ -2258,7 +2254,7 @@ the locations listed in your <code>PATH</code> environment variable.</p>
     <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      <script src="../assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
