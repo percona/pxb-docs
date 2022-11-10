@@ -1930,7 +1930,7 @@ max-retries, and others, can be used. For more information, see the
 <a href="https://docs.percona.com/percona-xtrabackup/latest/xbcloud/xbcloud.html#xbcloud-binary">xbcloud Binary</a>.</p>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <p>An example of an <strong>xbcloud</strong> backup.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --target-dir<span class="o">=</span> <span class="nv">$TARGET_DIR</span> <span class="p">|</span> 
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream  <span class="p">|</span> 
 xbcloud put backup_name --azure-storage-account<span class="o">=</span>pxbtesting --azure-access-key<span class="o">=</span><span class="nv">$AZURE_KEY</span> --azure-container-name<span class="o">=</span><span class="nb">test</span> --storage<span class="o">=</span>azure
 </code></pre></div>
 <p>An example of restoring a backup from <strong>xbcloud</strong>.</p>
@@ -1965,7 +1965,7 @@ xbcloud put backup_name --azure-storage-account<span class="o">=</span>pxbtestin
   <small>
     
       Last update:
-      2022-07-21
+      2022-09-13
     
   </small>
 </div>
