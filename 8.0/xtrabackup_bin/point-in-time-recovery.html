@@ -1813,8 +1813,8 @@
 a point in the past. You need a full datadir as a base, and then you can
 apply a series of operations from the binary log to make the data match what it
 was at the point in time you want.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/path/to/backup
-$ xtrabackup --prepare --target-dir<span class="o">=</span>/path/to/backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/path/to/backup
+$ xtrabackup --prepare --target-dir=/path/to/backup
 </code></pre></div>
 <p>For more details on these procedures, see Creating a backup and Preparing a backup.</p>
 <p>Now, suppose that some time has passed, and you want to restore the database to a
@@ -1822,10 +1822,8 @@ certain point in the past, having in mind that there is the constraint of the
 point where the snapshot was taken.</p>
 <p>To find out what is the situation of binary logging in the server, execute the
 following queries:</p>
-<p><div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="nb">BINARY</span><span class="w"> </span><span class="n">LOGS</span><span class="p">;</span><span class="w"></span>
-</code></pre></div>
-The result should be similar to the following:</p>
-<div class="highlight"><pre><span></span><code>+------------------+-----------+
+<div class="highlight"><pre><span></span><code>mysql&gt; SHOW BINARY LOGS;
++------------------+-----------+
 | Log_name         | File_size |
 +------------------+-----------+
 | mysql-bin.000001 |       126 |
@@ -1835,10 +1833,8 @@ The result should be similar to the following:</p>
 +------------------+-----------+
 </code></pre></div>
 <p>and</p>
-<p><div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="n">STATUS</span><span class="p">;</span><span class="w"></span>
-</code></pre></div>
-The results should be similar to the following:</p>
-<div class="highlight"><pre><span></span><code>+------------------+----------+--------------+------------------+
+<div class="highlight"><pre><span></span><code>mysql&gt; SHOW MASTER STATUS;
++------------------+----------+--------------+------------------+
 | File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
 +------------------+----------+--------------+------------------+
 | mysql-bin.000004 |      497 |              |                  |
@@ -1851,30 +1847,28 @@ position within it. Those files are stored usually in the datadir
 <code>--log-bin=</code> option).</p>
 <p>To find out the position of the snapshot taken, see the
 <code>xtrabackup_binlog_info</code> at the backup’s directory:</p>
-<p><div class="highlight"><pre><span></span><code>$ cat /path/to/backup/xtrabackup_binlog_info
-</code></pre></div>
-The result should be similar to the following:</p>
-<div class="highlight"><pre><span></span><code>mysql-bin.000003      57
+<div class="highlight"><pre><span></span><code>$ cat /path/to/backup/xtrabackup_binlog_info
+mysql-bin.000003      57
 </code></pre></div>
 <p>This will tell you which file was used at moment of the backup for the binary
 log and its position. That position will be the effective one when you restore
 the backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/path/to/backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/path/to/backup
 </code></pre></div>
 <p>As the restoration will not affect the binary log files (you may need to adjust
 file permissions, see Restoring a Backup), the next step is
 extracting the queries from the binary log with <strong>mysqlbinlog</strong> starting
 from the position of the snapshot and redirecting it to a file</p>
-<div class="highlight"><pre><span></span><code>$ mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 <span class="se">\</span>
-    --start-position<span class="o">=</span><span class="m">57</span> &gt; mybinlog.sql
+<div class="highlight"><pre><span></span><code>$ mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 \
+    --start-position=57 &gt; mybinlog.sql
 </code></pre></div>
 <p>Note that if you have multiple files for the binary log, as in the example, you
 have to extract the queries with one process, as shown above.</p>
 <p>Inspect the file with the queries to determine which position or date
 corresponds to the point-in-time wanted. Once determined, pipe it to the
 server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
-<div class="highlight"><pre><span></span><code>$ mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 <span class="se">\</span>
-    --start-position<span class="o">=</span><span class="m">57</span> --stop-datetime<span class="o">=</span><span class="s2">&quot;11-12-25 01:00:00&quot;</span> <span class="p">|</span> mysql -u root -p
+<div class="highlight"><pre><span></span><code>$ mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 \
+    --start-position=57 --stop-datetime=&quot;11-12-25 01:00:00&quot; | mysql -u root -p
 </code></pre></div>
 <p>and the database will be rolled forward up to that Point-In-Time.</p>
 
@@ -1898,7 +1892,7 @@ server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-07-21
     
   </small>
 </div>

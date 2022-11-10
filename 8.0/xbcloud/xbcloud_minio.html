@@ -1856,14 +1856,14 @@
                 <!-- Markdown content -->
                 <h1 id="using-the-xbcloud-binary-with-minio">Using the xbcloud binary with MinIO<a class="headerlink" href="#using-the-xbcloud-binary-with-minio" title="Permanent link">&para;</a></h1>
 <h2 id="creating-a-full-backup-with-minio">Creating a full backup with MinIO<a class="headerlink" href="#creating-a-full-backup-with-minio" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --extra-lsndir<span class="o">=</span>/tmp --target-dir<span class="o">=</span>/tmp <span class="p">|</span> <span class="se">\</span>
-xbcloud put --storage<span class="o">=</span>s3 <span class="se">\</span>
---s3-endpoint<span class="o">=</span><span class="s1">&#39;play.minio.io:9000&#39;</span> <span class="se">\</span>
---s3-access-key<span class="o">=</span><span class="s1">&#39;YOUR-ACCESSKEYID&#39;</span> <span class="se">\</span>
---s3-secret-key<span class="o">=</span><span class="s1">&#39;YOUR-SECRETACCESSKEY&#39;</span> <span class="se">\</span>
---s3-bucket<span class="o">=</span><span class="s1">&#39;mysql_backups&#39;</span>
---parallel<span class="o">=</span><span class="m">10</span> <span class="se">\</span>
-<span class="k">$(</span>date -I<span class="k">)</span>-full_backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+xbcloud put --storage=s3 \
+--s3-endpoint=&#39;play.minio.io:9000&#39; \
+--s3-access-key=&#39;YOUR-ACCESSKEYID&#39; \
+--s3-secret-key=&#39;YOUR-SECRETACCESSKEY&#39; \
+--s3-bucket=&#39;mysql_backups&#39;
+--parallel=10 \
+$(date -I)-full_backup
 </code></pre></div>
 
                 
@@ -1886,7 +1886,7 @@ xbcloud put --storage<span class="o">=</span>s3 <span class="se">\</span>
   <small>
     
       Last update:
-      2022-11-10
+      2022-07-21
     
   </small>
 </div>

@@ -1864,14 +1864,14 @@ compatible with Amazon S3.</p>
 <p class="admonition-title">See also</p>
 <p><a href="https://cloud.google.com/storage/docs/interoperability">Cloud Storage Interoperability</a></p>
 </div>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --extra-lsndir<span class="o">=</span>/tmp --target-dir<span class="o">=</span>/tmp <span class="p">|</span> <span class="se">\</span>
-xbcloud put --storage<span class="o">=</span>google <span class="se">\</span>
---google-endpoint<span class="o">=</span><span class="sb">`</span>storage.googleapis.com<span class="sb">`</span> <span class="se">\</span>
---google-access-key<span class="o">=</span><span class="s1">&#39;YOUR-ACCESSKEYID&#39;</span> <span class="se">\</span>
---google-secret-key<span class="o">=</span><span class="s1">&#39;YOUR-SECRETACCESSKEY&#39;</span> <span class="se">\</span>
---google-bucket<span class="o">=</span><span class="s1">&#39;mysql_backups&#39;</span>
---parallel<span class="o">=</span><span class="m">10</span> <span class="se">\</span>
-<span class="k">$(</span>date -I<span class="k">)</span>-full_backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+xbcloud put --storage=google \
+--google-endpoint=`storage.googleapis.com` \
+--google-access-key=&#39;YOUR-ACCESSKEYID&#39; \
+--google-secret-key=&#39;YOUR-SECRETACCESSKEY&#39; \
+--google-bucket=&#39;mysql_backups&#39;
+--parallel=10 \
+$(date -I)-full_backup
 </code></pre></div>
 <p>The following options are available when using Google Cloud Storage:</p>
 <ul>
@@ -1932,7 +1932,7 @@ the storage class of the bucket</a></p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>

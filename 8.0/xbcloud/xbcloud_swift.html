@@ -2177,13 +2177,13 @@
                 <h1 id="using-the-xbcloud-binary-with-swift">Using the xbcloud Binary with Swift<a class="headerlink" href="#using-the-xbcloud-binary-with-swift" title="Permanent link">&para;</a></h1>
 <h2 id="creating-a-full-backup-with-swift">Creating a full backup with Swift<a class="headerlink" href="#creating-a-full-backup-with-swift" title="Permanent link">&para;</a></h2>
 <p>The following example shows how to make a full backup and upload it to Swift.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --extra-lsndir<span class="o">=</span>/tmp --target-dir<span class="o">=</span>/tmp <span class="p">|</span> <span class="se">\</span>
-xbcloud put --storage<span class="o">=</span>swift <span class="se">\</span>
---swift-container<span class="o">=</span><span class="nb">test</span> <span class="se">\</span>
---swift-user<span class="o">=</span>test:tester <span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://192.168.8.80:8080/ <span class="se">\</span>
---swift-key<span class="o">=</span>testing <span class="se">\</span>
---parallel<span class="o">=</span><span class="m">10</span> <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+xbcloud put --storage=swift \
+--swift-container=test \
+--swift-user=test:tester \
+--swift-auth-url=http://192.168.8.80:8080/ \
+--swift-key=testing \
+--parallel=10 \
 full_backup
 </code></pre></div>
 <p>The following OpenStack environment variables are also recognized and mapped automatically to the corresponding <strong>swift</strong> parameters (<code>--storage=swift</code>):</p>
@@ -2312,7 +2312,7 @@ TempAuth, <code>2.0</code> - Keystone v2.0, and <code>3</code> - Keystone v3. De
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>

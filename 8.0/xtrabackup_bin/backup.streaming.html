@@ -1819,7 +1819,7 @@ be automatically encrypted.</p>
 <p>To use the streaming feature, you must use the <code>--stream</code>,
 providing the format of the stream (<code>xbstream</code> ) and where to store
 the temporary files:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --stream<span class="o">=</span>xbstream --target-dir<span class="o">=</span>/tmp
+<div class="highlight"><pre><span></span><code>$ xtrabackup --stream=xbstream --target-dir=/tmp
 </code></pre></div>
 <p><em>xtrabackup</em> uses <em>xbstream</em> to stream all of the data files to <code>STDOUT</code>, in a
 special <code>xbstream</code> format. After it finishes streaming all of the data files
@@ -1907,7 +1907,7 @@ restoration. Streaming mode does not prepare the backup.</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-02
     
   </small>
 </div>

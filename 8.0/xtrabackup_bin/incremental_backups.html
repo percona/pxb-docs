@@ -1903,7 +1903,7 @@ base, the incremental backups are useless.</p>
 backup’s target directory. This file contains a line showing the <code>to_lsn</code>,
 which is the database’s LSN at the end of the backup. Create the
 full backup with a command such as the following:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/base --datadir<span class="o">=</span>/var/lib/mysql/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backups/base --datadir=/var/lib/mysql/
 </code></pre></div>
 <p>If you look at the <code>xtrabackup_checkpoints</code> file, you should see contents
 similar to the following:</p>
@@ -1913,8 +1913,8 @@ to_lsn = 1291135
 </code></pre></div>
 <p>Now that you have a full backup, you can make an incremental backup based on
 it. Use a command such as the following:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/base --datadir<span class="o">=</span>/var/lib/mysql/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backups/inc1 \
+--incremental-basedir=/data/backups/base --datadir=/var/lib/mysql/
 </code></pre></div>
 <p>The <code>/data/backups/inc1/</code> directory should now contain delta files, such
 as <code>ibdata1.delta</code> and <code>test/table1.ibd.delta</code>. These represent the
@@ -1927,8 +1927,8 @@ to_lsn = 1291340
 </code></pre></div>
 <p>The meaning should be self-evident. It’s now possible to use this directory as
 the base for yet another incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc2 <span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/inc1 --datadir<span class="o">=</span>/var/lib/mysql/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backups/inc2 \
+--incremental-basedir=/data/backups/inc1 --datadir=/var/lib/mysql/
 </code></pre></div>
 <h2 id="preparing-the-incremental-backups">Preparing the Incremental Backups<a class="headerlink" href="#preparing-the-incremental-backups" title="Permanent link">&para;</a></h2>
 <p>The <code>--prepare</code> step for incremental backups is not the same as for
@@ -1955,7 +1955,7 @@ the incremental differences to it. Recall that you have the following backups:</
 </code></pre></div>
 <p>To prepare the base backup, you need to run <code>--prepare</code> as usual, but
 prevent the rollback phase:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
 </code></pre></div>
 <p>The output should end with some text such as the following:</p>
 <div class="highlight"><pre><span></span><code>101107 20:49:43  InnoDB: Shutdown completed; log sequence number 1291135
@@ -1969,8 +1969,8 @@ will do that in the background, as it usually does for a crash recovery upon
 start. It will notify you that the database was not shut down normally.</p>
 <p>To apply the first incremental backup to the full backup, you should use the
 following command:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc1
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+--incremental-dir=/data/backups/inc1
 </code></pre></div>
 <p>This applies the delta files to the files in <code>/data/backups/base</code>, which
 rolls them forward in time to the time of the incremental backup. It then
@@ -1993,8 +1993,8 @@ first incremental backup.</p>
 <p>Preparing the second incremental backup is a similar process: apply the deltas
 to the (modified) base backup, and you will roll its data forward in time to the
 point of the second incremental backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc2
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --target-dir=/data/backups/base \
+--incremental-dir=/data/backups/inc2
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2018,10 +2018,10 @@ Restoring a Backup.</p>
 option. Currently backups are packed in custom <strong>xbstream</strong> format. With this
 feature, you need to take a BASE backup as well.</p>
 <h3 id="making-a-base-backup">Making a base backup<a class="headerlink" href="#making-a-base-backup" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backups
 </code></pre></div>
 <h3 id="taking-a-local-backup">Taking a local backup<a class="headerlink" href="#taking-a-local-backup" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --incremental-lsn<span class="o">=</span>LSN-number --stream<span class="o">=</span>xbstream --target-dir<span class="o">=</span>./ &gt; incremental.xbstream
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --incremental-lsn=LSN-number --stream=xbstream --target-dir=./ &gt; incremental.xbstream
 </code></pre></div>
 <h3 id="unpacking-the-backup">Unpacking the backup<a class="headerlink" href="#unpacking-the-backup" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>$ xbstream -x &lt; incremental.xbstream
@@ -2051,7 +2051,7 @@ $ ssh user@hostname &quot; cat - | xbstream -x -C &gt; /backup-dir/&quot;
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>

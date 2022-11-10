@@ -1820,16 +1820,16 @@
 <p>In order to make a compressed backup, use the <code>--compress</code> option along
 with the <code>--backup</code> and <code>--target-dir</code> options. By default
 <code>--compress</code> uses the <code>quicklz</code> compression algorithm.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --compress --target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --compress --target-dir=/data/backup
 </code></pre></div>
 <p>You can also use the <code>lz4</code> compression algorithm by setting :
 option:<code>--compress</code> to <code>lz4</code>.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --compress<span class="o">=</span>lz4 --target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
 </code></pre></div>
 <p>If you want to speed up the compression you can use the parallel
 compression, which can be enabled with <code>--compress-threads</code>
 option. The following example uses four threads for compression.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --compress --compress-threads<span class="o">=</span><span class="m">4</span> --target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --compress --compress-threads=4 --target-dir=/data/backup
 </code></pre></div>
 <p>Output should look like this</p>
 <div class="highlight"><pre><span></span><code>...
@@ -1847,18 +1847,18 @@ from <a href="http://www.percona.com/doc/percona-xtrabackup/8.0/installation.htm
 repositories</a>)
 .
 You can use the following one-liner to uncompress all the files:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="k">for</span> bf <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s2">&quot;*\.qp&quot;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> qpress -d <span class="nv">$bf</span> <span class="k">$(</span>dirname <span class="nv">$bf</span><span class="k">)</span> <span class="o">&amp;&amp;</span> rm <span class="nv">$bf</span><span class="p">;</span> <span class="k">done</span>
+<div class="highlight"><pre><span></span><code>$ for bf in `find . -iname &quot;*\.qp&quot;`; do qpress -d $bf $(dirname $bf) &amp;&amp; rm $bf; done
 </code></pre></div>
 <p>If you used the <code>lz4</code> compression algorithm change this script to search
 for <code>\*.lz4</code> files:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="k">for</span> bf <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s2">&quot;*\.lz4&quot;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> lz4 -d <span class="nv">$bf</span> <span class="k">$(</span>dirname <span class="nv">$bf</span><span class="k">)</span> <span class="o">&amp;&amp;</span> rm <span class="nv">$bf</span><span class="p">;</span> <span class="k">done</span>
+<div class="highlight"><pre><span></span><code>$ for bf in `find . -iname &quot;*\.lz4&quot;`; do lz4 -d $bf $(dirname $bf) &amp;&amp; rm $bf; done
 </code></pre></div>
 <p>You can decompress the backup by using the <code>--decompress</code> option:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --decompress --target-dir<span class="o">=</span>/data/backup/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --decompress --target-dir=/data/backup/
 </code></pre></div>
 <p>When the files are uncompressed you can prepare the backup with the
 <code>--apply-log-only</code> option:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --apply-log-only --target-dir<span class="o">=</span>/data/backup/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --apply-log-only --target-dir=/data/backup/
 </code></pre></div>
 <p>You should check for a confirmation message:</p>
 <div class="highlight"><pre><span></span><code>130802 02:51:02  xtrabackup: completed OK!
@@ -1871,7 +1871,7 @@ for <code>\*.lz4</code> files:</p>
 <h2 id="restoring-the-backup">Restoring the backup<a class="headerlink" href="#restoring-the-backup" title="Permanent link">&para;</a></h2>
 <p>Once the backup has been prepared you can use the <code>--copy-back</code> to
 restore the backup.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backup/
 </code></pre></div>
 <p>This will copy the prepared data back to its original location as defined
 by the
@@ -1908,7 +1908,7 @@ ready to start the server.</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>

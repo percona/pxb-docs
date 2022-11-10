@@ -1834,14 +1834,14 @@ should consider tuning the filesystem also to obtain the maximum performance
 (e.g. checking fragmentation).</p>
 <p>If the data is stored on a single file, this option will have no effect.</p>
 <p>To use this feature, simply add the option to a local backup, for example:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --parallel<span class="o">=</span><span class="m">4</span> --target-dir<span class="o">=</span>/path/to/backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --parallel=4 --target-dir=/path/to/backup
 </code></pre></div>
 <p>By using the <em>xbstream</em> in streaming backups, you can additionally speed up the
 compression process with the <code>--compress-threads</code> option. This option
 specifies the number of threads created by <em>xtrabackup</em> for for parallel data
 compression. The default value for this option is 1.</p>
 <p>To use this feature, simply add the option to a local backup, for example:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --compress --compress-threads<span class="o">=</span><span class="m">4</span> --target-dir<span class="o">=</span>./ &gt; backup.xbstream
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream=xbstream --compress --compress-threads=4 --target-dir=./ &gt; backup.xbstream
 </code></pre></div>
 <p>Before applying logs, compressed files will need to be uncompressed.</p>
 <h3 id="the-rsync-option">The <code>--rsync</code> Option<a class="headerlink" href="#the-rsync-option" title="Permanent link">&para;</a></h3>
@@ -1885,7 +1885,7 @@ that modify InnoDB tables.</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>

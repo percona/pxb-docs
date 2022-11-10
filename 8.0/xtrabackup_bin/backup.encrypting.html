@@ -1980,11 +1980,11 @@ encryption key. An encryption key can be generated with a command like
 <h3 id="the-encrypt-key-option">The <code>--encrypt-key</code> Option<a class="headerlink" href="#the-encrypt-key-option" title="Permanent link">&para;</a></h3>
 <p>Example of the <em>xtrabackup</em> command using the <code>--encrypt-key</code> should
 look like this:</p>
-<div class="highlight"><pre><span></span><code>$  xtrabackup --backup --encrypt<span class="o">=</span>AES256 --encrypt-key<span class="o">=</span><span class="s2">&quot;U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=&quot;</span> --target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>$  xtrabackup --backup --encrypt=AES256 --encrypt-key=&quot;U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=&quot; --target-dir=/data/backup
 </code></pre></div>
 <h3 id="the-encrypt-key-file-option">The <code>--encrypt-key-file</code> Option<a class="headerlink" href="#the-encrypt-key-file-option" title="Permanent link">&para;</a></h3>
 <p>Use the <code>--encrypt-key-file</code> option as follows:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --encrypt<span class="o">=</span>AES256 --encrypt-key-file<span class="o">=</span>/data/backups/keyfile --target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2004,11 +2004,11 @@ working encryption buffer for each encryption thread (default is 64K).</p>
 <h2 id="decrypting-encrypted-backups">Decrypting Encrypted Backups<a class="headerlink" href="#decrypting-encrypted-backups" title="Permanent link">&para;</a></h2>
 <p>Backups can be decrypted with The xbcrypt binary. The following one-liner can be
 used to encrypt the whole folder:</p>
-<div class="highlight"><pre><span></span><code>$ <span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s2">&quot;*\.xbcrypt&quot;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> xbcrypt -d --encrypt-key-file<span class="o">=</span>/root/secret_key --encrypt-algo<span class="o">=</span>AES256 &lt; <span class="nv">$i</span> &gt; <span class="k">$(</span>dirname <span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename <span class="nv">$i</span> .xbcrypt<span class="k">)</span> <span class="o">&amp;&amp;</span> rm <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span>
+<div class="highlight"><pre><span></span><code>$ for i in `find . -iname &quot;*\.xbcrypt&quot;`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 &lt; $i &gt; $(dirname $i)/$(basename $i .xbcrypt) &amp;&amp; rm $i; done
 </code></pre></div>
 <p><em>Percona XtraBackup</em> <code>--decrypt</code> option has been implemented that can be
 used to decrypt the backups:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --decrypt<span class="o">=</span>AES256 --encrypt-key<span class="o">=</span><span class="s2">&quot;U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=&quot;</span> --target-dir<span class="o">=</span>/data/backup/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --decrypt=AES256 --encrypt-key=&quot;U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=&quot; --target-dir=/data/backup/
 </code></pre></div>
 <p><em>Percona XtraBackup</em> doesn’t automatically remove the encrypted files. In order
 to clean up the backup directory users should remove the <code>\*.xbcrypt</code>
@@ -2021,12 +2021,12 @@ files.</p>
 <h2 id="preparing-encrypted-backups">Preparing Encrypted Backups<a class="headerlink" href="#preparing-encrypted-backups" title="Permanent link">&para;</a></h2>
 <p>After the backups have been decrypted, they can be prepared in the same way as
 the standard full backups with the <code>--prepare</code> option:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backup/
 </code></pre></div>
 <h2 id="restoring-encrypted-backups">Restoring Encrypted Backups<a class="headerlink" href="#restoring-encrypted-backups" title="Permanent link">&para;</a></h2>
 <p><em>xtrabackup</em> offers the <code>--copy-back</code> option to restore a backup to the
 server’s datadir:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backup/
 </code></pre></div>
 <p>It will copy all the data-related files back to the server’s datadir,
 determined by the server’s <code>my.cnf</code> configuration file. You should check
@@ -2054,7 +2054,7 @@ the last line of the output for a success message:</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>

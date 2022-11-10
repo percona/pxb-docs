@@ -1896,7 +1896,7 @@ exist and is empty, <em>xtrabackup</em> will succeed.</p>
 <p><em>xtrabackup</em> will not overwrite existing files, it will fail with operating
 system error 17, <code>file exists</code>.</p>
 <p>To start the backup process run:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backups/
 </code></pre></div>
 <p>This will store the backup at <code>/data/backups/</code>. If you specify a
 relative path, the target directory will be relative to the current
@@ -1925,7 +1925,7 @@ xtrabackup: Transaction log of lsn (26970807) to (137343534) was copied.
 <p>The last thing you should see is something like the following, where the
 value
 of the <code>&lt;LSN&gt;</code> will be a number that depends on your system:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup: Transaction log of lsn <span class="o">(</span>&lt;SLN&gt;<span class="o">)</span> to <span class="o">(</span>&lt;LSN&gt;<span class="o">)</span> was copied.
+<div class="highlight"><pre><span></span><code>$ xtrabackup: Transaction log of lsn (&lt;SLN&gt;) to (&lt;LSN&gt;) was copied.
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1936,9 +1936,7 @@ as
 the following, assuming you have a single InnoDB table <code>test.tbl1</code> and you
 are using MySQL’s innodb_file_per_table option:</p>
 <div class="highlight"><pre><span></span><code>$ ls -lh /data/backups/
-</code></pre></div>
-<p>The result should look like this:</p>
-<div class="highlight"><pre><span></span><code>total 182M
+total 182M
 drwx------  7 root root 4.0K Sep  6 10:19 .
 drwxrwxrwt 11 root root 4.0K Sep  6 11:05 ..
 -rw-r-----  1 root root  387 Sep  6 10:19 backup-my.cnf
@@ -1995,7 +1993,7 @@ simple to use: you simply run <em>xtrabackup</em> with the <code>--prepare</code
 and tell it which directory to prepare, for example, to prepare the
 previously
 taken backup run:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backups/
 </code></pre></div>
 <p>When this finishes, you should see an <code>InnoDB shutdown</code> with a message such
 as the following, where again the value of LSN will depend on your
@@ -2024,7 +2022,7 @@ Backup validity is not guaranteed if prepare process was interrupted.</p>
 </div>
 <p>For convenience, <em>xtrabackup</em> binary has the <code>--copy-back</code>
 option to copy the backup to the datadir of the server:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backups/
 </code></pre></div>
 <p>If you don’t want to save your backup, you can use the
 <code>--move-back</code> option which will move the backed up data to
@@ -2070,7 +2068,7 @@ will be owned by the user who created the backup:</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>

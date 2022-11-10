@@ -1842,7 +1842,7 @@ qualified database name and table name, in the form of
 <p>If the partition 0 is not backed up, Percona XtraBackup cannot generate a .cfg file. MySQL 8.0 stores the table metadata in partition 0.</p>
 <p>For example, this operation takes a back-up of the partition <code>p4</code> from 
 the table <code>name</code> located in the database <code>imdb</code>:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --tables<span class="o">=</span>^imdb<span class="o">[</span>.<span class="o">]</span>name#p#p4 --backup
+<div class="highlight"><pre><span></span><code>xtrabackup --tables=^imdb[.]name#p#p4 --backup
 </code></pre></div>
 <p>If partition 0 is not backed up, the following errors may occur:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup: export option not specified
@@ -1854,7 +1854,7 @@ created even if they are empty.</p>
 <h2 id="preparing-the-backup">Preparing the backup<a class="headerlink" href="#preparing-the-backup" title="Permanent link">&para;</a></h2>
 <p>For preparing partial backups, the procedure is analogous to restoring
 individual tables apply the logs and use xtrabackup –export:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --apply-log --export /mnt/backup/2012-08-28_10-29-09
+<div class="highlight"><pre><span></span><code>xtrabackup --apply-log --export /mnt/backup/2012-08-28_10-29-09
 </code></pre></div>
 <p>You may see warnings in the output about tables that do not exist. This is
 because <em>InnoDB</em>-based engines stores its data dictionary inside the tablespace
@@ -1864,16 +1864,16 @@ backup) from the data dictionary in order to avoid future warnings or errors.</p
 <p>Restoring should be done by importing the tables in the partial backup to the
 server.</p>
 <p>First step is to create new table in which data will be restored.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">name_p4</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w"></span>
-<span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="o">`</span><span class="n">imdb_index</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="o">`</span><span class="n">imdb_id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="o">`</span><span class="n">name_pcode_cf</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="o">`</span><span class="n">name_pcode_nf</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="o">`</span><span class="n">surname_pcode</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"></span>
-<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">2812744</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>CREATE TABLE `name_p4` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` text NOT NULL,
+`imdb_index` varchar(12) DEFAULT NULL,
+`imdb_id` int(11) DEFAULT NULL,
+`name_pcode_cf` varchar(5) DEFAULT NULL,
+`name_pcode_nf` varchar(5) DEFAULT NULL,
+`surname_pcode` varchar(5) DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2812744 DEFAULT CHARSET=utf8
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1882,7 +1882,7 @@ The file is located in the table schema directory and is used for schema verific
 </div>
 <p>To restore the partition from the backup, the tablespace must be discarded for
 that table:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="n">DISCARD</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>ALTER TABLE name_p4 DISCARD TABLESPACE;
 </code></pre></div>
 <p>The next step is to copy the .exp and ibd files from the backup to the MySQL data directory:</p>
 <div class="highlight"><pre><span></span><code>cp /mnt/backup/2012-08-28_10-29-09/imdb/name#p#p4.exp /var/lib/mysql/imdb/name_p4.exp
@@ -1893,7 +1893,7 @@ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p
 <p>Make sure that the copied files can be accessed by the user running MySQL. </p>
 </div>
 <p>The last step is to import the tablespace:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="n">IMPORT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>ALTER TABLE name_p4 IMPORT TABLESPACE;
 </code></pre></div>
 
                 
@@ -1916,7 +1916,7 @@ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>

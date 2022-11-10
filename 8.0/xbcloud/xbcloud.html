@@ -2070,31 +2070,30 @@ the AWS Amazon S3 API.</p>
 </div>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>The following sample command creates a full backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --target-dir<span class="o">=</span>/storage/backups/ --extra-lsndirk<span class="o">=</span>/storage/backups/<span class="p">|</span> xbcloud <span class="se">\</span>
-put <span class="o">[</span>options<span class="o">]</span> full_backup
+<div class="highlight"><pre><span></span><code>xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ --extra-lsndirk=/storage/backups/| xbcloud \
+put [options] full_backup
 </code></pre></div>
 <p>An incremental backup only includes the changes since the last backup. The last backup can be either a full or incremental backup.</p>
 <p>The following sample command creates an incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --incremental-basedir<span class="o">=</span>/storage/backups <span class="se">\</span>
---target-dir<span class="o">=</span>/storage/inc-backup <span class="p">|</span> xbcloud  put <span class="o">[</span>options<span class="o">]</span> inc_backup
+<div class="highlight"><pre><span></span><code>xtrabackup --backup --stream=xbstream --incremental-basedir=/storage/backups \
+--target-dir=/storage/inc-backup | xbcloud  put [options] inc_backup
 </code></pre></div>
 <p>To prepare an incremental backup, you must first download the full backup with the following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup get <span class="o">[</span>options<span class="o">]</span> full_backup <span class="p">|</span> xbstream -xv -C /tmp/full-backup
+<div class="highlight"><pre><span></span><code>xtrabackup get [options] full_backup | xbstream -xv -C /tmp/full-backup
 </code></pre></div>
 <p>You must prepare the full backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/tmp/full-backup
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --apply-log-only --target-dir=/tmp/full-backup
 </code></pre></div>
 <p>After the full backup has been prepared, download the incremental backup:</p>
 <div class="highlight"><pre><span></span><code>xbcloud get [options] inc_backup | xbstream -xv -C /tmp/inc-backup
 </code></pre></div>
 <p>The downloaded backup is prepared by running the following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/tmp/full-backup --incremental-dir<span class="o">=</span>/tmp/inc-backup
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --target-dir=/tmp/full-backup --incremental-dir=/tmp/inc-backup
 </code></pre></div>
 <p>You do not need the full backup to restore only a specific database. You can specify only the tables to be restored:</p>
-<p><div class="highlight"><pre><span></span><code>xbcloud get [options] ibdata1 sakila/payment.ibd /tmp/partial/partial.xbs
-</code></pre></div>
-An example of the code: </p>
-<div class="highlight"><pre><span></span><code>xbstream -xv -C /tmp/partial &lt; /tmp/partial/partial.xbs
+<div class="highlight"><pre><span></span><code>xbcloud get [options] ibdata1 sakila/payment.ibd /tmp/partial/partial.xbs
+
+xbstream -xv -C /tmp/partial &lt; /tmp/partial/partial.xbs
 </code></pre></div>
 <h2 id="supplying-parameters">Supplying parameters<a class="headerlink" href="#supplying-parameters" title="Permanent link">&para;</a></h2>
 <p>Each storage type has mandatory parameters that you can supply on the command
@@ -2142,12 +2141,14 @@ configuration files, and in environment variables.</p>
 type. The <code>--md5</code> parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the <code>backup_name.md5</code>
 pattern.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream <span class="se">\</span>
---parallel<span class="o">=</span><span class="m">8</span> <span class="m">2</span>&gt;backup.log <span class="p">|</span> xbcloud put s3://operator-testing/bak22 <span class="se">\</span>
---parallel<span class="o">=</span><span class="m">8</span> --md5 <span class="m">2</span>&gt;upload.log
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream=xbstream \
+--parallel=8 2&gt;backup.log | xbcloud put s3://operator-testing/bak22 \
+--parallel=8 --md5 2&gt;upload.log
 </code></pre></div>
 <p>You may use the <code>--header</code> parameter to pass an additional HTTP
 header with the server side encryption while specifying a customer key.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>An example of using the <code>--header</code> for AES256 encryption.</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --parallel<span class="o">=</span><span class="m">4</span> <span class="p">|</span> <span class="se">\</span>
 xbcloud put s3://operator-testing/bak-enc/ <span class="se">\</span>
@@ -2156,62 +2157,63 @@ xbcloud put s3://operator-testing/bak-enc/ <span class="se">\</span>
 --header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Key-MD5: CuStoMerKeyMd5==&quot;</span> <span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
+</div>
 <p>The <code>--header</code> parameter is also useful to set the access control list (ACL)
 permissions: <code>--header="x-amz-acl: bucket-owner-full-control</code></p>
 <h2 id="incremental-backups">Incremental backups<a class="headerlink" href="#incremental-backups" title="Permanent link">&para;</a></h2>
 <p>First, you need to make the full backup on which the incremental one is going to
 be based:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --extra-lsndir<span class="o">=</span>/storage/backups/ <span class="se">\</span>
---target-dir<span class="o">=</span>/storage/backups/ <span class="p">|</span> xbcloud put <span class="se">\</span>
---storage<span class="o">=</span>swift --swift-container<span class="o">=</span>test_backup <span class="se">\</span>
---swift-auth-version<span class="o">=</span><span class="m">2</span>.0 --swift-user<span class="o">=</span>admin <span class="se">\</span>
---swift-tenant<span class="o">=</span>admin --swift-password<span class="o">=</span>xoxoxoxo <span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/ --parallel<span class="o">=</span><span class="m">10</span> <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup --backup --stream=xbstream --extra-lsndir=/storage/backups/ \
+--target-dir=/storage/backups/ | xbcloud put \
+--storage=swift --swift-container=test_backup \
+--swift-auth-version=2.0 --swift-user=admin \
+--swift-tenant=admin --swift-password=xoxoxoxo \
+--swift-auth-url=http://127.0.0.1:35357/ --parallel=10 \
 full_backup
 </code></pre></div>
 <p>Then you can make the incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --incremental-basedir<span class="o">=</span>/storage/backups <span class="se">\</span>
---stream<span class="o">=</span>xbstream --target-dir<span class="o">=</span>/storage/inc_backup <span class="p">|</span> xbcloud put <span class="se">\</span>
---storage<span class="o">=</span>swift --swift-container<span class="o">=</span>test_backup <span class="se">\</span>
---swift-auth-version<span class="o">=</span><span class="m">2</span>.0 --swift-user<span class="o">=</span>admin <span class="se">\</span>
---swift-tenant<span class="o">=</span>admin --swift-password<span class="o">=</span>xoxoxoxo <span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/ --parallel<span class="o">=</span><span class="m">10</span> <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --incremental-basedir=/storage/backups \
+--stream=xbstream --target-dir=/storage/inc_backup | xbcloud put \
+--storage=swift --swift-container=test_backup \
+--swift-auth-version=2.0 --swift-user=admin \
+--swift-tenant=admin --swift-password=xoxoxoxo \
+--swift-auth-url=http://127.0.0.1:35357/ --parallel=10 \
 inc_backup
 </code></pre></div>
 <h3 id="preparing-incremental-backups">Preparing incremental backups<a class="headerlink" href="#preparing-incremental-backups" title="Permanent link">&para;</a></h3>
 <p>To prepare a backup you first need to download the full backup:</p>
-<div class="highlight"><pre><span></span><code>$ xbcloud get --swift-container<span class="o">=</span>test_backup <span class="se">\</span>
---swift-auth-version<span class="o">=</span><span class="m">2</span>.0 --swift-user<span class="o">=</span>admin <span class="se">\</span>
---swift-tenant<span class="o">=</span>admin --swift-password<span class="o">=</span>xoxoxoxo <span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/ --parallel<span class="o">=</span><span class="m">10</span> <span class="se">\</span>
-full_backup <span class="p">|</span> xbstream -xv -C /storage/downloaded_full
+<div class="highlight"><pre><span></span><code>$ xbcloud get --swift-container=test_backup \
+--swift-auth-version=2.0 --swift-user=admin \
+--swift-tenant=admin --swift-password=xoxoxoxo \
+--swift-auth-url=http://127.0.0.1:35357/ --parallel=10 \
+full_backup | xbstream -xv -C /storage/downloaded_full
 </code></pre></div>
 <p>Once you download the full backup it should be prepared:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/storage/downloaded_full
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir=/storage/downloaded_full
 </code></pre></div>
 <p>After the full backup has been prepared you can download the incremental
 backup:</p>
-<div class="highlight"><pre><span></span><code>$ xbcloud get --swift-container<span class="o">=</span>test_backup <span class="se">\</span>
---swift-auth-version<span class="o">=</span><span class="m">2</span>.0 --swift-user<span class="o">=</span>admin <span class="se">\</span>
---swift-tenant<span class="o">=</span>admin --swift-password<span class="o">=</span>xoxoxoxo <span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/ --parallel<span class="o">=</span><span class="m">10</span> <span class="se">\</span>
-inc_backup <span class="p">|</span> xbstream -xv -C /storage/downloaded_inc
+<div class="highlight"><pre><span></span><code>$ xbcloud get --swift-container=test_backup \
+--swift-auth-version=2.0 --swift-user=admin \
+--swift-tenant=admin --swift-password=xoxoxoxo \
+--swift-auth-url=http://127.0.0.1:35357/ --parallel=10 \
+inc_backup | xbstream -xv -C /storage/downloaded_inc
 </code></pre></div>
 <p>Once the incremental backup has been downloaded you can prepare it by running:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only <span class="se">\</span>
---target-dir<span class="o">=</span>/storage/downloaded_full <span class="se">\</span>
---incremental-dir<span class="o">=</span>/storage/downloaded_inc
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only \
+--target-dir=/storage/downloaded_full \
+--incremental-dir=/storage/downloaded_inc
 
-$ xtrabackup --prepare --target-dir<span class="o">=</span>/storage/downloaded_full
+$ xtrabackup --prepare --target-dir=/storage/downloaded_full
 </code></pre></div>
 <h3 id="partial-download-of-the-cloud-backup">Partial download of the cloud backup<a class="headerlink" href="#partial-download-of-the-cloud-backup" title="Permanent link">&para;</a></h3>
 <p>If you do not want to download the entire backup to restore the specific
 database you can specify only the tables you want to restore:</p>
-<div class="highlight"><pre><span></span><code>$ xbcloud get --swift-container<span class="o">=</span>test_backup
---swift-auth-version<span class="o">=</span><span class="m">2</span>.0 --swift-user<span class="o">=</span>admin <span class="se">\</span>
---swift-tenant<span class="o">=</span>admin --swift-password<span class="o">=</span>xoxoxoxo <span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/ full_backup <span class="se">\</span>
-ibdata1 sakila/payment.ibd <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$ xbcloud get --swift-container=test_backup
+--swift-auth-version=2.0 --swift-user=admin \
+--swift-tenant=admin --swift-password=xoxoxoxo \
+--swift-auth-url=http://127.0.0.1:35357/ full_backup \
+ibdata1 sakila/payment.ibd \
 &gt; /storage/partial/partial.xbs
 
 $ xbstream -xv -C /storage/partial &lt; /storage/partial/partial.xbs
@@ -2237,7 +2239,7 @@ $ xbstream -xv -C /storage/partial &lt; /storage/partial/partial.xbs
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>

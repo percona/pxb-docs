@@ -2167,8 +2167,8 @@ preview</em> quality.</p>
 <p>In order to back up and prepare a database containing encrypted InnoDB<br />
 tablespaces, specify the path to a keyring file as the value of the
 <code>--keyring-file-data</code> option.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup/ --user<span class="o">=</span>root <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backup/ --user=root \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>After <em>xtrabackup</em> takes the backup, the following
 message confirms the action:</p>
@@ -2181,8 +2181,8 @@ message confirms the action:</p>
 </div>
 <h3 id="prepare-the-backup-with-the-keyring_file-plugin">Prepare the backup with the <code>keyring_file</code> plugin<a class="headerlink" href="#prepare-the-backup-with-the-keyring_file-plugin" title="Permanent link">&para;</a></h3>
 <p>To prepare the backup specify the keyring-file-data.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backup \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>After <em>xtrabackup</em> takes the backup, the following message confirms
 the action:</p>
@@ -2198,7 +2198,7 @@ described <a href="https://www.percona.
 com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin">here</a>.</p>
 <h3 id="create-a-backup-with-the-keyring_vault-plugin">Create a backup with the <code>keyring_vault</code> plugin<a class="headerlink" href="#create-a-backup-with-the-keyring_vault-plugin" title="Permanent link">&para;</a></h3>
 <p>The following command creates a backup in the <code>/data/backup</code> directory:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup --user<span class="o">=</span>root
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backup --user=root
 </code></pre></div>
 <p>After <em>xtrabackup</em> completes the action, the following confirmation message
 appears:</p>
@@ -2210,8 +2210,8 @@ appears:</p>
 <em>xtrabackup</em> does not communicate with the <em>MySQL</em> server or read the
 default <code>my.cnf</code> configuration file. Specify the keyring settings in the
 command line:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
---keyring-vault-config<span class="o">=</span>/etc/vault.cnf
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backup \
+--keyring-vault-config=/etc/vault.cnf
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2224,7 +2224,7 @@ appears:</p>
 </code></pre></div>
 <p>The backup is now prepared and can be restored with the <code>--copy-back</code>
 option:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql
 </code></pre></div>
 <h2 id="use-the-keyring_file-component">Use the <code>keyring_file</code> component<a class="headerlink" href="#use-the-keyring_file-component" title="Permanent link">&para;</a></h2>
 <p>A component is not loaded with the <code>--early_plugin_load</code> option. The 
@@ -2234,14 +2234,14 @@ installation</a> for more
 information.</p>
 <p>An example of a manifest and a configuration file follows:</p>
 <p>An example of <code>./bin/mysqld.my</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file://component_keyring_file&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>{
+   &quot;components&quot;: &quot;file://component_keyring_file&quot;
+}
 </code></pre></div>
 <p>An example of <code>/lib/plugin/component_keyring_file.cnf</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql-keyring/keyring_file&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;read_only&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>{
+   &quot;path&quot;: &quot;/var/lib/mysql-keyring/keyring_file&quot;, &quot;read_only&quot;: false
+}
 </code></pre></div>
 <p>For more information,
 see <a href="https://dev.mysql.com/doc/refman/8.0/en/keyring-component-installation.html">Keyring Component Installation</a>
@@ -2252,7 +2252,7 @@ to view the attributes and status of the installed keyring component
 when in use.</p>
 <p>The component has no special requirements for backing up a database that
 contains encrypted InnoDB tablespaces.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup --user<span class="o">=</span>root
+<div class="highlight"><pre><span></span><code>xtrabackup --backup --target-dir=/data/backup --user=root
 </code></pre></div>
 <p>After <em>xtrabackup</em> completes the action, the following confirmation message
 appears:</p>
@@ -2270,8 +2270,8 @@ keyring_file data path if the <code>keyring-file-data</code> is not located in t
 attribute <code>PATH</code> from the xtrabackup_component_keyring_file.cnf.</p>
 <p>The following is an example of adding the location for the
 keyring-file-data:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --target-dir=/data/backup \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2300,8 +2300,8 @@ writes a file called <code>xtrabackup_checkpoints</code> into the backup’s tar
 directory. This file contains a line showing the <code>to_lsn</code>, which is the
 database’s LSN at the end of the backup. First you need to create a full
 backup with the following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backups/base \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2318,9 +2318,9 @@ recover_binlog_info = 1
 </code></pre></div>
 <p>Now that you have a full backup, you can make an incremental backup based
 on it. Use a command such as the following:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/base <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backups/inc1 \
+--incremental-basedir=/data/backups/base \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2345,9 +2345,9 @@ compact = 0
 recover_binlog_info = 1
 </code></pre></div>
 <p>Use this directory as the base for yet another incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc2 <span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir=/data/backups/inc2 \
+--incremental-basedir=/data/backups/inc1 \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <h3 id="prepare-incremental-backups">Prepare incremental backups<a class="headerlink" href="#prepare-incremental-backups" title="Permanent link">&para;</a></h3>
 <p>The <code>--prepare</code> step for incremental backups is not the same as for
@@ -2378,8 +2378,8 @@ backups:</p>
 </code></pre></div>
 <p>To prepare the base backup, you need to run <code>--prepare</code> as usual, but
 prevent the rollback phase:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>The output should end with some text such as the following:</p>
 <div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 7666643
@@ -2389,9 +2389,9 @@ InnoDB: Number of pools: 1
 <p>To apply the first incremental backup to the full backup, you should use
 the
 following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+--incremental-dir=/data/backups/inc1 \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2401,9 +2401,9 @@ following command:</p>
 deltas
 to the (modified) base backup, and you will roll its data forward in 
 time to the point of the second incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc2 <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backups/base \
+--incremental-dir=/data/backups/inc2 \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2460,8 +2460,8 @@ that are being backed up.</p>
 <h3 id="create-a-backup-with-a-passphrase">Create a backup with a passphrase<a class="headerlink" href="#create-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The following example illustrates how the backup can be created in this
 case:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --user<span class="o">=</span>root -p --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --user=root -p --target-dir=/data/backup \
+--transition-key=MySecretKey
 </code></pre></div>
 <p>If <code>--transition-key</code> is specified without a value, <em>xtrabackup</em> will ask
 for
@@ -2471,8 +2471,8 @@ visible in
 the <code>ps</code> command output.</p>
 <h3 id="prepare-a-backup-with-a-passphrase">Prepare a backup with a passphrase<a class="headerlink" href="#prepare-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The same passphrase should be specified for the prepare command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backup \
+--transition-key=MySecretKey
 </code></pre></div>
 <p>There are no <code>--keyring-vault...</code>,``–keyring-file…``,
 or <code>--component-keyring-file-config</code> options here,
@@ -2481,14 +2481,14 @@ because <em>xtrabackup</em> does not talk to the keyring in this case.</p>
 <p>When restoring a backup you will need to generate a new master key. Here is
 the
 example for <code>keyring_file</code> plugin or component:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey --generate-new-master-key <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
+--transition-key=MySecretKey --generate-new-master-key \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>In case of <code>keyring_vault</code>, it will look like this:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey --generate-new-master-key <span class="se">\</span>
---keyring-vault-config<span class="o">=</span>/etc/vault.cnf
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
+--transition-key=MySecretKey --generate-new-master-key \
+--keyring-vault-config=/etc/vault.cnf
 </code></pre></div>
 <p><em>xtrabackup</em> will generate a new master key, store it in the target keyring
 vault server and re-encrypt the tablespace keys using this key.</p>
@@ -2504,7 +2504,7 @@ purged.</p>
 <ul>
 <li>Backup</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --user<span class="o">=</span>root -p --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --user=root -p --target-dir=/data/backup \
 --generate-transition-key
 </code></pre></div>
 <ul>
@@ -2513,14 +2513,14 @@ purged.</p>
 <ul>
 <li><code>keyring_file</code> variant:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backup \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <ul>
 <li><code>keyring_vault</code> variant:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
---keyring-vault-config<span class="o">=</span>/etc/vault.cnf
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir=/data/backup \
+--keyring-vault-config=/etc/vault.cnf
 </code></pre></div>
 </li>
 <li>
@@ -2528,14 +2528,14 @@ purged.</p>
 </li>
 <li>
 <p><code>keyring_file</code> variant:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
---generate-new-master-key --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
+--generate-new-master-key --keyring-file-data=/var/lib/mysql-keyring/keyring
 </code></pre></div>
 </li>
 <li>
 <p><code>keyring_vault</code> variant:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
---generate-new-master-key --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
+--generate-new-master-key --keyring-vault-config=/etc/vault.cnf
 </code></pre></div>
 </li>
 </ul>
@@ -2560,7 +2560,7 @@ purged.</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-10-12
     
   </small>
 </div>

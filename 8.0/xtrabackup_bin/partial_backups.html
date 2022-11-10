@@ -1993,12 +1993,12 @@ named <code>test</code> which contains tables named <code>t1</code> and <code>t2
 value is a regular expression that is matched against the fully-qualified database name and table name using the <code>databasename.tablename</code> format.</p>
 <p>To back up only tables in the <code>test</code> database, use the following
 command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --datadir<span class="o">=</span>/var/lib/mysql --target-dir<span class="o">=</span>/data/backups/ <span class="se">\</span>
---tables<span class="o">=</span><span class="s2">&quot;^test[.].*&quot;</span>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
+--tables=&quot;^test[.].*&quot;
 </code></pre></div>
 <p>To back up only the <code>test.t1</code> table, use the following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --datadir<span class="o">=</span>/var/lib/mysql --target-dir<span class="o">=</span>/data/backups/ <span class="se">\</span>
---tables<span class="o">=</span><span class="s2">&quot;^test[.]t1&quot;</span>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
+--tables=&quot;^test[.]t1&quot;
 </code></pre></div>
 <h2 id="the-tables-file-option">The –tables-file Option<a class="headerlink" href="#the-tables-file-option" title="Permanent link">&para;</a></h2>
 <p>The <code>--tables-file</code> option specifies a file that can contain multiple table
@@ -2006,8 +2006,8 @@ names, one table name per line in the file. Only the tables named in the file
 will be backed up. Names are matched exactly, case-sensitive, with no pattern or
 regular expression matching. The table names must be fully-qualified in
 <code>databasename.tablename</code> format.</p>
-<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;mydatabase.mytable&quot;</span> &gt; /tmp/tables.txt
-$ xtrabackup --backup --tables-file<span class="o">=</span>/tmp/tables.txt
+<div class="highlight"><pre><span></span><code>$ echo &quot;mydatabase.mytable&quot; &gt; /tmp/tables.txt
+$ xtrabackup --backup --tables-file=/tmp/tables.txt
 </code></pre></div>
 <h2 id="the-databases-and-databases-file-options">The –databases and –databases-file options<a class="headerlink" href="#the-databases-and-databases-file-options" title="Permanent link">&para;</a></h2>
 <p>The ` –databases` option accepts a space-separated list of the databases
@@ -2021,7 +2021,7 @@ the databases using xtrabackup –copy-back.</p>
 even if they are not explicitly listed by the parameter if they were created
 after the backup started.</p>
 </div>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --databases<span class="o">=</span><span class="s1">&#39;mysql sys performance_schema test ...&#39;</span>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --databases=&#39;mysql sys performance_schema test ...&#39;
 </code></pre></div>
 <h2 id="the-databases-file-option">The <code>--databases-file</code> Option<a class="headerlink" href="#the-databases-file-option" title="Permanent link">&para;</a></h2>
 <p>The –databases-file option specifies a file that can contain multiple
@@ -2035,7 +2035,7 @@ after the backup started.</p>
 <h2 id="preparing-partial-backups">Preparing Partial Backups<a class="headerlink" href="#preparing-partial-backups" title="Permanent link">&para;</a></h2>
 <p>The procedure is analogous to restoring individual tables : apply the logs and use the
 –export option:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --export --target-dir<span class="o">=</span>/path/to/partial/backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --export --target-dir=/path/to/partial/backup
 </code></pre></div>
 <p>When you use the –prepare option on a partial backup, you
 will see warnings about tables that don’t exist. This is because these tables
@@ -2051,7 +2051,7 @@ warnings to be printed to the log file.</p>
 <p>It can also be done by copying back the prepared backup to a “clean”
 datadir (in that case, make sure to include the <code>mysql</code>
 database) to the datadir you are moving the backup to. A system database can be created with the following:</p>
-<div class="highlight"><pre><span></span><code>$ sudo mysql --initialize --user<span class="o">=</span>mysql
+<div class="highlight"><pre><span></span><code>$ sudo mysql --initialize --user=mysql
 </code></pre></div>
 <p>Once you start the server, you may see mysql complaining about missing tablespaces:</p>
 <div class="highlight"><pre><span></span><code>2021-07-19T12:42:11.077200Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name &#39;test1/t1&#39;, file &#39;./d2/test1.ibd&#39; is missing!
@@ -2062,10 +2062,8 @@ database) to the datadir you are moving the backup to. A system database can be 
 <div class="highlight"><pre><span></span><code>$ mkdir /var/lib/mysql/test1/d2
 </code></pre></div>
 <p>Example of dropping the database from the server:</p>
-<p><div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">d2</span><span class="p">;</span><span class="w"></span>
-</code></pre></div>
-The result should be something like the following: </p>
-<div class="highlight"><pre><span></span><code>Query OK, 2 rows affected (0.5 sec)
+<div class="highlight"><pre><span></span><code>mysql&gt; DROP DATABASE d2;
+Query OK, 2 rows affected (0.5 sec)
 </code></pre></div>
 
                 
@@ -2088,7 +2086,7 @@ The result should be something like the following: </p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>

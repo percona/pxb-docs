@@ -1901,11 +1901,11 @@ them again, which is not the case. Caching such large files can place pressure
 on the operating system’s virtual memory and cause other processes, such as the
 database server, to be swapped out. The <code>xtrabackup</code> tool avoids this with the
 following hint on both the source and destination files:</p>
-<div class="highlight"><pre><span></span><code>posix_fadvise<span class="o">(</span>file, <span class="m">0</span>, <span class="m">0</span>, POSIX_FADV_DONTNEED<span class="o">)</span>
+<div class="highlight"><pre><span></span><code>posix_fadvise(file, 0, 0, POSIX_FADV_DONTNEED)
 </code></pre></div>
 <p>In addition, xtrabackup asks the operating system to perform more aggressive
 read-ahead optimizations on the source files:</p>
-<div class="highlight"><pre><span></span><code>posix_fadvise<span class="o">(</span>file, <span class="m">0</span>, <span class="m">0</span>, POSIX_FADV_SEQUENTIAL<span class="o">)</span>
+<div class="highlight"><pre><span></span><code>posix_fadvise(file, 0, 0, POSIX_FADV_SEQUENTIAL)
 </code></pre></div>
 <h2 id="copying-data-files">Copying Data Files<a class="headerlink" href="#copying-data-files" title="Permanent link">&para;</a></h2>
 <p>When copying the data files to the target directory, <em>xtrabackup</em> reads and
@@ -1940,7 +1940,7 @@ buffer.</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-07-21
     
   </small>
 </div>

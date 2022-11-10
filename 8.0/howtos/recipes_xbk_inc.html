@@ -1858,36 +1858,36 @@
 use.</p>
 <h2 id="create-one-full-backup">Create one full backup<a class="headerlink" href="#create-one-full-backup" title="Permanent link">&para;</a></h2>
 <p>Making an incremental backup requires a full backup as a base:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/mysql/
+<div class="highlight"><pre><span></span><code>xtrabackup --backup --target-dir=/data/backups/mysql/
 </code></pre></div>
 <p>It is important that you <strong>do not run</strong> the <code>--prepare</code> command yet.</p>
 <h2 id="create-two-incremental-backups">Create two incremental backups<a class="headerlink" href="#create-two-incremental-backups" title="Permanent link">&para;</a></h2>
 <p>Suppose the full backup is on Monday, and you will create an incremental
 one on Tuesday:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc/tue/ <span class="se">\</span>
-      --incremental-basedir<span class="o">=</span>/data/backups/mysql/
+<div class="highlight"><pre><span></span><code>xtrabackup --backup --target-dir=/data/backups/inc/tue/ \
+      --incremental-basedir=/data/backups/mysql/
 </code></pre></div>
 <p>and the same policy is applied on Wednesday:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc/wed/ <span class="se">\</span>
-       --incremental-basedir<span class="o">=</span>/data/backups/inc/tue/
+<div class="highlight"><pre><span></span><code>xtrabackup --backup --target-dir=/data/backups/inc/wed/ \
+       --incremental-basedir=/data/backups/inc/tue/
 </code></pre></div>
 <h2 id="prepare-the-base-backup">Prepare the base backup<a class="headerlink" href="#prepare-the-base-backup" title="Permanent link">&para;</a></h2>
 <p>Prepare the base backup (Monday’s backup):</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/mysql/
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/
 </code></pre></div>
 <h2 id="roll-forward-the-base-data-to-the-first-increment">Roll forward the base data to the first increment<a class="headerlink" href="#roll-forward-the-base-data-to-the-first-increment" title="Permanent link">&para;</a></h2>
 <p>Roll Monday’s data forward to the state on Tuesday:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/mysql/ <span class="se">\</span>
-   --incremental-dir<span class="o">=</span>/data/backups/inc/tue/
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
+   --incremental-dir=/data/backups/inc/tue/
 </code></pre></div>
 <h2 id="roll-forward-again-to-the-second-increment">Roll forward again to the second increment<a class="headerlink" href="#roll-forward-again-to-the-second-increment" title="Permanent link">&para;</a></h2>
 <p>Roll forward again to the state on Wednesday:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/mysql/ <span class="se">\</span>
-   --incremental-dir<span class="o">=</span>/data/backups/inc/wed/
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
+   --incremental-dir=/data/backups/inc/wed/
 </code></pre></div>
 <h2 id="prepare-the-whole-backup-to-be-ready-to-use">Prepare the whole backup to be ready to use<a class="headerlink" href="#prepare-the-whole-backup-to-be-ready-to-use" title="Permanent link">&para;</a></h2>
 <p>Create the new logs by preparing it:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/mysql/
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --target-dir=/data/backups/mysql/
 </code></pre></div>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1919,7 +1919,7 @@ one on Tuesday:</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-08-01
     
   </small>
 </div>
