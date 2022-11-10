@@ -22,7 +22,6 @@ The default values are the following:
 
 * –max-backoff = 300000 (5 minutes)
 
-
 * –max-retries = 10
 
 You can adjust the number of retries by adding the `--max-retries`

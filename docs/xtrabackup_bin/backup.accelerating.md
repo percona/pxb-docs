@@ -23,7 +23,7 @@ If the data is stored on a single file, this option will have no effect.
 
 To use this feature, simply add the option to a local backup, for example:
 
-```
+```shell
 $ xtrabackup --backup --parallel=4 --target-dir=/path/to/backup
 ```
 
@@ -34,7 +34,7 @@ compression. The default value for this option is 1.
 
 To use this feature, simply add the option to a local backup, for example:
 
-```
+```shell
 $ xtrabackup --backup --stream=xbstream --compress --compress-threads=4 --target-dir=./ > backup.xbstream
 ```
 

@@ -23,14 +23,14 @@ on the operating system’s virtual memory and cause other processes, such as th
 database server, to be swapped out. The `xtrabackup` tool avoids this with the
 following hint on both the source and destination files:
 
-```
+```shell
 posix_fadvise(file, 0, 0, POSIX_FADV_DONTNEED)
 ```
 
 In addition, xtrabackup asks the operating system to perform more aggressive
 read-ahead optimizations on the source files:
 
-```
+```shell
 posix_fadvise(file, 0, 0, POSIX_FADV_SEQUENTIAL)
 ```
 
