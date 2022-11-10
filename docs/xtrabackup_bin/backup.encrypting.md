@@ -26,7 +26,7 @@ encryption key. An encryption key can be generated with a command like
 
 Example output of that command should look like this:
 
-```
+```text
 U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=
 ```
 
@@ -37,7 +37,7 @@ This value then can be used as the encryption key
 Example of the *xtrabackup* command using the `--encrypt-key` should
 look like this:
 
-```
+```shell
 $  xtrabackup --backup --encrypt=AES256 --encrypt-key="U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=" --target-dir=/data/backup
 ```
 
@@ -45,7 +45,7 @@ $  xtrabackup --backup --encrypt=AES256 --encrypt-key="U2FsdGVkX19VPN7VM+lwNI0fe
 
 Use the `--encrypt-key-file` option as follows:
 
-```
+```shell
 $ xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 ```
 
@@ -71,14 +71,14 @@ working encryption buffer for each encryption thread (default is 64K).
 Backups can be decrypted with The xbcrypt binary. The following one-liner can be
 used to encrypt the whole folder:
 
-```
+```shell
 $ for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 < $i > $(dirname $i)/$(basename $i .xbcrypt) && rm $i; done
 ```
 
 *Percona XtraBackup* `--decrypt` option has been implemented that can be
 used to decrypt the backups:
 
-```
+```shell
 $ xtrabackup --decrypt=AES256 --encrypt-key="U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=" --target-dir=/data/backup/
 ```
 
@@ -97,7 +97,7 @@ When the files are decrypted, the backup can be prepared.
 After the backups have been decrypted, they can be prepared in the same way as
 the standard full backups with the `--prepare` option:
 
-```
+```shell
 $ xtrabackup --prepare --target-dir=/data/backup/
 ```
 
@@ -106,7 +106,7 @@ $ xtrabackup --prepare --target-dir=/data/backup/
 *xtrabackup* offers the `--copy-back` option to restore a backup to the
 server’s datadir:
 
-```
+```shell
 $ xtrabackup --copy-back --target-dir=/data/backup/
 ```
 
@@ -114,6 +114,6 @@ It will copy all the data-related files back to the server’s datadir,
 determined by the server’s `my.cnf` configuration file. You should check
 the last line of the output for a success message:
 
-```
+```text
 150318 11:08:13  xtrabackup: completed OK!
 ```
