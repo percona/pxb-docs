@@ -1887,7 +1887,8 @@
 <div class="highlight"><pre><span></span><code>$ sudo mv usr.sbin.xtrabackup /etc/apparmor.d/
 </code></pre></div>
 <p>Install the profile with the following command:</p>
-<p><code>$ sudo apparmor_parser -r -T -W /etc/apparmor.d/usr.sbin.xtrabackup</code></p>
+<p><code>shell
+$ sudo apparmor_parser -r -T -W /etc/apparmor.d/usr.sbin.xtrabackup</code></p>
 <p>Run the backup as usual.</p>
 <p>No additional AppArmor-related actions are required to restore a backup.</p>
 
@@ -1911,7 +1912,7 @@
   <small>
     
       Last update:
-      2022-07-21
+      2022-11-10
     
   </small>
 </div>

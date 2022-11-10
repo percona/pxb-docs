@@ -1915,38 +1915,46 @@ GA binaries and associated files.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>percona-xtrabackup-80-debuginfo</code></td>
-<td>The debug symbols for binaries in <code>percona-xtrabackup-80</code></td>
+<td>percona-xtrabackup-80-debuginfo</td>
+<td>The debug symbols for binaries in percona-xtrabackup-80</td>
 </tr>
 <tr>
-<td><code>percona-xtrabackup-test-80</code></td>
-<td>The test suite for <em>Percona XtraBackup</em></td>
+<td>percona-xtrabackup-test-80</td>
+<td>The test suite for Percona XtraBackup</td>
 </tr>
 <tr>
-<td><code>percona-xtrabackup</code></td>
-<td>The older version of the <em>Percona XtraBackup</em></td>
+<td>percona-xtrabackup</td>
+<td>The older version of the Percona XtraBackup</td>
 </tr>
 </tbody>
 </table>
 <h2 id="installing-percona-xtrabackup-from-percona-yum-repository">Installing <em>Percona XtraBackup</em> from Percona <code>yum</code> repository<a class="headerlink" href="#installing-percona-xtrabackup-from-percona-yum-repository" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Install the Percona yum repository by running the following command as the   <code>root</code> user or with <strong>sudo</strong>: <code>yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm</code></p>
+<p>Install the Percona yum repository by running the following command as the <code>root</code> user or with <strong>sudo</strong>: </p>
+<div class="highlight"><pre><span></span><code>$ sudo yum install <span class="se">\</span>
+https://repo.percona.com/yum/percona-release-latest.<span class="se">\</span>
+noarch.rpm
+</code></pre></div>
 </li>
 <li>
-<p>Enable the repository: <code>percona-release enable-only tools release</code></p>
-<p>If <em>Percona XtraBackup</em> is intented to be used in combination with
+<p>Enable the repository: </p>
+<div class="highlight"><pre><span></span><code>$ sudo percona-release enable-only tools release
+</code></pre></div>
+<p>If <em>Percona XtraBackup</em> is intended to be used in combination with
 the upstream MySQL Server, you only need to enable the <code>tools</code>
-repository: <code>percona-release enable-only tools</code>.</p>
+repository: </p>
+<div class="highlight"><pre><span></span><code>$ sudo percona-release enable-only tools
+</code></pre></div>
 </li>
 <li>
-<p>Install <em>Percona XtraBackup</em> by running:  <code>yum install percona-xtrabackup-80</code></p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<p>Install <em>Percona XtraBackup</em> by running:</p>
+<div class="highlight"><pre><span></span><code>$ sudo yum install percona-xtrabackup-80
+</code></pre></div>
+<p><strong><em>Warning</em></strong></p>
 <p>Make sure that you have the <code>libev</code> package installed before
 installing <em>Percona XtraBackup</em> on CentOS 6. For this operating system, the
 <code>libev</code> package is available from the <a href="https://fedoraproject.org/wiki/EPEL">EPEL</a> repositories.</p>
-</div>
 </li>
 <li>
 <p>To be able to make compressed backups, install the <code>qpress</code> package:</p>
@@ -1957,8 +1965,7 @@ installing <em>Percona XtraBackup</em> on CentOS 6. For this operating system, t
 <h2 id="installing-percona-xtrabackup-using-downloaded-rpm-packages">Installing <em>Percona XtraBackup</em> using downloaded rpm packages<a class="headerlink" href="#installing-percona-xtrabackup-using-downloaded-rpm-packages" title="Permanent link">&para;</a></h2>
 <p>Download the packages of the desired series for your architecture from the
 <a href="https://www.percona.com/downloads/XtraBackup/">download page</a>. The following
-example downloads <em>Percona XtraBackup</em> 8.0.4 release package for <em>CentOS</em>
-7:</p>
+example downloads <em>Percona XtraBackup</em> 8.0.4 release package for <em>CentOS</em> 7:</p>
 <div class="highlight"><pre><span></span><code>$ wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-8.0.4/binary/redhat/7/x86_64/percona-xtrabackup-80-8.0.4-1.el7.x86_64.rpm
 </code></pre></div>
 <p>Now you can install <em>Percona XtraBackup</em> by running <code>yum localinstall</code>:</p>
@@ -1971,7 +1978,9 @@ resolve all the dependencies and install missing packages yourself.</p>
 </div>
 <h2 id="uninstalling-percona-xtrabackup">Uninstalling <em>Percona XtraBackup</em><a class="headerlink" href="#uninstalling-percona-xtrabackup" title="Permanent link">&para;</a></h2>
 <p>To completely uninstall <em>Percona XtraBackup</em> you’ll need to remove all the
-installed packages: <code>yum remove percona-xtrabackup</code></p>
+installed packages: </p>
+<div class="highlight"><pre><span></span><code>yum remove percona-xtrabackup
+</code></pre></div>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1993,7 +2002,7 @@ installed packages: <code>yum remove percona-xtrabackup</code></p>
   <small>
     
       Last update:
-      2022-11-04
+      2022-11-10
     
   </small>
 </div>

@@ -1826,8 +1826,10 @@ different kinds of actions on the database server.</p>
 <p>There are many ways for checking the permission on a file or directory. For
 example, <code>ls -ls /path/to/file</code> or <code>stat /path/to/file | grep Access</code> will
 do the job:</p>
-<div class="highlight"><pre><span></span><code>$ stat /etc/mysql | grep Access
-Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
+<p><div class="highlight"><pre><span></span><code>$ stat /etc/mysql <span class="p">|</span> grep Access
+</code></pre></div>
+The result could look like this:</p>
+<div class="highlight"><pre><span></span><code>Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
 Access: 2011-05-12 21:19:07.129850437 -0300
 $ ls -ld /etc/mysql/my.cnf
 -rw-r--r-- 1 root root 4703 Apr  5 06:26 /etc/mysql/my.cnf
@@ -1835,8 +1837,10 @@ $ ls -ld /etc/mysql/my.cnf
 <p>As in this example, <code>my.cnf</code> is owned by <code>root</code> and not writable for anyone
 else. Assuming that you do not have <code>root</code>‘s password, you can check what
 permissions you have on these types of files with <code>sudo -l</code>:</p>
-<div class="highlight"><pre><span></span><code>$ sudo -l
-Password:
+<p><div class="highlight"><pre><span></span><code>$ sudo -l
+</code></pre></div>
+The results could look like this:</p>
+<div class="highlight"><pre><span></span><code>Password:
 You may run the following commands on this host:
 (root) /usr/bin/
 (root) NOPASSWD: /etc/init.d/mysqld
@@ -1857,17 +1861,17 @@ access. You should check them in that case.</p>
 <h2 id="at-a-database-server-level">At a database server level<a class="headerlink" href="#at-a-database-server-level" title="Permanent link">&para;</a></h2>
 <p>To query the privileges that your database user has been granted, at a
 console of the server execute:</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; SHOW GRANTS;
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>or for a particular user with:</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; SHOW GRANTS FOR &#39;db-user&#39;@&#39;host&#39;;
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="s1">&#39;db-user&#39;</span><span class="o">@</span><span class="s1">&#39;host&#39;</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>It will display the privileges using the same format as for
 the <a href="http://dev.mysql.com/doc/refman/8.0/en/show-grants.html">GRANT statement</a>.</p>
 <p>Note that privileges may vary across versions of the server. To list the
 exact list of privileges that your server support (and a brief description
 of them) execute:</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; SHOW PRIVILEGES;
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 
                 
@@ -1890,7 +1894,7 @@ of them) execute:</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>

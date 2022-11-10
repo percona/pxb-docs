@@ -1930,11 +1930,13 @@ in a separate Docker container.</p>
 <p>To set up a database server on a host machine or in Docker
 container, follow the documentation of the supported product that you
 intend to use with <em>Percona XtraBackup</em>.</p>
-<div class="admonition admonition">
-<p class="admonition-title">See also</p>
-<p><a href="https://docs.docker.com/storage/volumes/">Docker volumes as container persistent data storage</a> </p>
-<p><a href="https://docs.docker.com/config/containers/start-containers-automatically">More information about containers</a></p>
-</div>
+<p><strong>See also:</strong></p>
+<blockquote>
+<p><a href="https://docs.docker.com/storage/volumes/">Docker volumes as 
+container persistent data storage</a></p>
+<p><a href="https://docs.docker.com/config/containers/start-containers-automatically">More 
+information about containers</a></p>
+</blockquote>
 <div class="highlight"><pre><span></span><code>$ sudo docker run -d --name percona-server-mysql <span class="se">\</span>
 -e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root percona/percona-server:8.0
 </code></pre></div>
@@ -1953,10 +1955,10 @@ creates a Docker container and makes it available for starting later.</p>
 <p>Docker downloads the Percona XtraBackup image from the Docker Hub. If it
 is not the first time you use the selected image, Docker uses the image
 available locally.</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker create --name percona-xtrabackup --volumes-from percona-server-mysql \
-percona/percona-xtrabackup  \
-xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup \
---user=root --password=mysql
+<div class="highlight"><pre><span></span><code>$ sudo docker create --name percona-xtrabackup --volumes-from percona-server-mysql <span class="se">\</span>
+percona/percona-xtrabackup  <span class="se">\</span>
+xtrabackup --backup --datadir<span class="o">=</span>/var/lib/mysql/ --target-dir<span class="o">=</span>/backup <span class="se">\</span>
+--user<span class="o">=</span>root --password<span class="o">=</span>mysql
 </code></pre></div>
 <p>With parameter name you give a meaningful name to your new Docker container
 so
@@ -1972,13 +1974,10 @@ container was created:</p>
 input/output streams, and opens an interactive shell.</p>
 <p>The <code>docker run</code> is a shortcut command that creates a Docker container and
 then immediately runs it.</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker run --name percona-xtrabackup --volumes-from percona-server-mysql \
+<div class="highlight"><pre><span></span><code>$ sudo docker run --name percona-xtrabackup --volumes-from percona-server-mysql <span class="se">\</span>
 percona/percona-xtrabackup
-xtrabackup --backup --data-dir=/var/lib/mysql --target-dir=/backup --user=root --password=mysql
+xtrabackup --backup --data-dir<span class="o">=</span>/var/lib/mysql --target-dir<span class="o">=</span>/backup --user<span class="o">=</span>root --password<span class="o">=</span>mysql
 </code></pre></div>
-<!-- Company names (e.g. Percona, Oracle), product names (e.g. MySQL, Ubuntu) -->
-<!-- Commands formatted with *command* role -->
-<!-- Parameters, options, and configuration variables -->
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -2000,7 +1999,7 @@ xtrabackup --backup --data-dir=/var/lib/mysql --target-dir=/backup --user=root -
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>

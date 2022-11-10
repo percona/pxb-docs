@@ -1853,7 +1853,9 @@ your current working directory.</p>
 database with the <code>checksums</code> table which will be replicated to the
 replicas as well. Example of the <em>pt-table-checksum</em> will look like this:</p>
 <div class="highlight"><pre><span></span><code>$ ./pt-table-checksum
-    TS ERRORS  DIFFS     ROWS  CHUNKS SKIPPED    TIME TABLE
+</code></pre></div>
+<p>The results are similar to the following:</p>
+<div class="highlight"><pre><span></span><code>    TS ERRORS  DIFFS     ROWS  CHUNKS SKIPPED    TIME TABLE
     04-30T11:31:50      0      0   633135       8       0   5.400 exampledb.aka_name
 04-30T11:31:52      0      0   290859       1       0   2.692 exampledb.aka_title
 Checksumming exampledb.user_info:  16% 02:27 remain
@@ -1873,11 +1875,13 @@ consistent with the current setup.</p>
 difference and point to the table that does not match. Following example
 shows adding new user on the backed up replica in order to simulate the
 inconsistent backup:</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; grant usage on exampledb.* to exampledb@localhost identified by &#39;thisisnewpassword&#39;;
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">grant</span><span class="w"> </span><span class="k">usage</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">exampledb</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">exampledb</span><span class="o">@</span><span class="n">localhost</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;thisisnewpassword&#39;</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>If we run the <em>pt-table-checksum</em> now difference should be spotted</p>
 <div class="highlight"><pre><span></span><code>$ ./pt-table-checksum
-TS ERRORS  DIFFS     ROWS  CHUNKS SKIPPED    TIME TABLE
+</code></pre></div>
+<p>The results are similar to the following:</p>
+<div class="highlight"><pre><span></span><code>TS ERRORS  DIFFS     ROWS  CHUNKS SKIPPED    TIME TABLE
 04-30T11:31:50      0      0   633135       8       0   5.400 exampledb.aka_name
 04-30T11:31:52      0      0   290859       1       0   2.692 exampledb.aka_title
 Checksumming exampledb.user_info:  16% 02:27 remain
@@ -1917,7 +1921,7 @@ pt-table-checksum* <a href="http://www.percona.com/doc/percona-toolkit/2.2/pt-ta
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>

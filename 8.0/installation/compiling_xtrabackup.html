@@ -2024,12 +2024,12 @@ version is not <code>3</code>, install <code>cmake3</code>.</p>
 <p>This <code>cmake</code> version may be available 
 in your distribution as a separate package <code>cmake3</code>. For more information, see <a href="https://cmake.org/">cmake.org</a></p>
 <h3 id="debian-or-ubuntu-using-apt">Debian or Ubuntu using <code>apt</code><a class="headerlink" href="#debian-or-ubuntu-using-apt" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>sudo apt install bison pkg-config cmake devscripts debconf \
-debhelper automake bison ca-certificates \
-libcurl4-openssl-dev cmake debhelper libaio-dev \
-libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev \
-lsb-release python-docutils build-essential rsync \
-libdbd-mysql-perl libnuma1 socat librtmp-dev libtinfo5 \
+<div class="highlight"><pre><span></span><code>sudo apt install bison pkg-config cmake devscripts debconf <span class="se">\</span>
+debhelper automake bison ca-certificates libprocps-dev<span class="se">\</span>
+libcurl4-openssl-dev cmake debhelper libaio-dev <span class="se">\</span>
+libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev <span class="se">\</span>
+lsb-release python-docutils build-essential rsync <span class="se">\</span>
+libdbd-mysql-perl libnuma1 socat librtmp-dev libtinfo5 <span class="se">\</span>
 qpress liblz4-tool liblz4-1 liblz4-dev vim-common
 </code></pre></div>
 <p>To install the man pages, install the python3-sphinx package first:</p>
@@ -2042,9 +2042,9 @@ install and enable <a href="https://developers.redhat.com/products/developertool
 <code>RPM</code>-based distributions to make sure that you use the latest GCC
 compiler and development tools.  Then, install <code>cmake</code> and other
 dependencies:</p>
-<div class="highlight"><pre><span></span><code>$ sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
-bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel procps-ng-devel \
-vim-common
+<div class="highlight"><pre><span></span><code>$ sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf <span class="se">\</span>
+bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel <span class="se">\</span>
+vim-common procps-ng-devel
 </code></pre></div>
 <p>To install the man pages, install the python3-sphinx package first:</p>
 <div class="highlight"><pre><span></span><code>$ sudo yum install python3-sphinx
@@ -2056,13 +2056,14 @@ be used to compile the source code).</p>
 <ol>
 <li>
 <p>Change to the directory where you cloned the Percona XtraBackup repository</p>
-<div class="highlight"><pre><span></span><code>$ cd percona-xtrabackup
+<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> percona-xtrabackup
 </code></pre></div>
 </li>
 <li>
-<p>Create a directory to store the compiled files and then change to that directory:</p>
+<p>Create a directory to store the compiled files and then change to that
+directory:</p>
 <div class="highlight"><pre><span></span><code>$ mkdir build
-$ cd build
+$ <span class="nb">cd</span> build
 </code></pre></div>
 </li>
 <li>
@@ -2077,8 +2078,8 @@ same.</p>
 for every distribution. If you installed the <code>python-sphinx</code> package you
 need to remove the <code>-DWITH_MAN_PAGES=OFF</code> from previous command.</p>
 </div>
-<div class="highlight"><pre><span></span><code>$ cmake -DWITH_BOOST=PATH-TO-BOOST-LIBRARY -DDOWNLOAD_BOOST=ON \
--DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF -B ..
+<div class="highlight"><pre><span></span><code>$ cmake -DWITH_BOOST<span class="o">=</span>PATH-TO-BOOST-LIBRARY -DDOWNLOAD_BOOST<span class="o">=</span>ON <span class="se">\</span>
+-DBUILD_CONFIG<span class="o">=</span>xtrabackup_release -DWITH_MAN_PAGES<span class="o">=</span>OFF -B ..
 </code></pre></div>
 <h3 id="parameter-information">Parameter Information<a class="headerlink" href="#parameter-information" title="Permanent link">&para;</a></h3>
 <table>
@@ -2130,7 +2131,7 @@ and tests to default location on the target system: <code>/usr/local/xtrabackup<
 <p>You may use the <code>DESTDIR</code> parameter with <code>make install</code> to install <em>Percona
 XtraBackup</em> to another location. Make sure that the effective user is able to
 write to the destination you choose.</p>
-<div class="highlight"><pre><span></span><code>$ sudo make DESTDIR=&lt;DIR_NAME&gt; install
+<div class="highlight"><pre><span></span><code>$ sudo make <span class="nv">DESTDIR</span><span class="o">=</span>&lt;DIR_NAME&gt; install
 </code></pre></div>
 <p>In fact, the destination directory is determined by the installation layout
 (<code>-DINSTALL_LAYOUT</code>) that <code>cmake</code> applies (see
@@ -2150,10 +2151,10 @@ the full path to the <code>xtrabackup</code> command:</p>
 </code></pre></div>
 <p>Update your PATH environment variable if you would like to use the command on
 the command line directly.</p>
-<div class="highlight"><pre><span></span><code>$# Setting $PATH on the command line
-$ PATH=$PATH:/usr/local/xtrabackup/bin/xtrabackup
+<div class="highlight"><pre><span></span><code><span class="nv">$#</span> Setting <span class="nv">$PATH</span> on the <span class="nb">command</span> line
+$ <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/xtrabackup/bin/xtrabackup
 
-$# Run xtrabackup directly
+<span class="nv">$#</span> Run xtrabackup directly
 $ xtrabackup
 </code></pre></div>
 <p>Alternatively, you may consider placing a soft link (using <code>ln -s</code>) to one of
@@ -2180,7 +2181,7 @@ the locations listed in your <code>PATH</code> environment variable.</p>
   <small>
     
       Last update:
-      2022-11-09
+      2022-11-10
     
   </small>
 </div>
