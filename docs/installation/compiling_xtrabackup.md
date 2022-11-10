@@ -33,7 +33,7 @@ in your distribution as a separate package `cmake3`. For more information, see [
 sudo apt install bison pkg-config cmake devscripts debconf \
 debhelper automake bison ca-certificates \
 libcurl4-openssl-dev cmake debhelper libaio-dev \
-libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev \
+libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev \
 lsb-release python-docutils build-essential rsync \
 libdbd-mysql-perl libnuma1 socat librtmp-dev libtinfo5 \
 qpress liblz4-tool liblz4-1 liblz4-dev vim-common
@@ -56,7 +56,7 @@ dependencies:
 
 ```
 $ sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
-bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel \
+bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel procps-ng-devel \
 vim-common
 ```
 
@@ -103,18 +103,17 @@ $ cmake -DWITH_BOOST=PATH-TO-BOOST-LIBRARY -DDOWNLOAD_BOOST=ON \
 
 ### Parameter Information
 
-| **Parameter**      | **Description**                                                                                                                                                                                                                                                                            |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `DWITH_BOOST`      | For the `-DWITH_BOOST` parameter, specify the name of a directory to download the boost library to. This directory is created automatically in your current directory.                                                                                                                     |
-| `-B` (build        | **Percona XtraBackup** is configured to forbid generating the build pipeline for make in the same directory where you store your sources. The `-B` parameter refers to the directory that contains the source code. In this example, we use the relative path to the parent directory (..) |
-| `-DWITH_MAN_PAGES` | To build Percona XtraBackup man pages, use ON or remove this parameter from the command line (it is ON by default). To install the man pages, install the python3-sphinx package first.   |
-|
+| **Parameter** | **Description** |
+|---------------|-----------------|
+| `-DWITH_BOOST` | For the `-DWITH_BOOST` parameter, specify the name of a directory to download the boost library to. This directory is created automatically in your current directory. |
+| `-DWITH_MAN_PAGES` | To build **Percona XtraBackup** man pages, use `ON` or remove this parameter from the command line (it is `ON` by default). To install the man pages, install the python3-sphinx package first. See also [## Step 2: Compiling the source code](#step-2-compiling-the-source-code)  |
+| `-B` (--build)| **Percona XtraBackup** is configured to forbid generating the build pipeline for make in the same directory where you store your sources. The `-B` parameter refers to the directory that contains the source code. In this example, we use the relative path to the parent directory (..). |
 
 !!! important
  
-    CMake Error at CMakeLists.txt:367 (MESSAGE): Please do not build in-source. Out-of source builds are highly recommended: you can have multiple builds for the same source, and there is an easy way to do cleanup, simply remove the build directory (note that ‘make clean’ or ‘make distclean’ does not work)
-
-You can force in-source build by invoking cmake with -DFORCE_INSOURCE_BUILD=1
+    CMake Error at CMakeLists.txt:367 (MESSAGE): Please do not build in-source. Out-of source builds are highly recommended: you can have multiple builds for the same source, and there is an easy way to do cleanup, simply remove the build directory (note that ‘make clean’ or ‘make distclean’ does `not` work)
+    
+    You `can` force in-source build by invoking cmake with `-DFORCE_INSOURCE_BUILD=1`.
 
 ## Step 2: Compiling the source code
 
