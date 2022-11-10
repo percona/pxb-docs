@@ -24,7 +24,39 @@ The following options are available when using Amazon S3:
 | –s3-api-version = <AUTO&vert;2                                               &vert;4>                                                                                                                                                                            | Select the signing algorithm. The default value is AUTO. In this case, xbcloud will probe.                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | –s3-bucket-lookup = <AUTO                                                             &vert;PATH &vert;DNS>                                                                                                                                                      | Specify whether to use bucket.endpoint.com or endpoint.com/bucket*style requests. The default value is AUTO. In this case, xbcloud will probe.                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                      |
 | –s3-storage-class=<name>                                                                                                                                                                                                                                         | Specify the [S3 storage class](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html). The default storage class depends on the provider. The name options are the following:<ul><li>STANDARD</li><li>STANDARD_IA</li><li>GLACIER</li></ul> **NOTE** If you use the GLACIER storage class, the object must be [restored to S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects.html) before restoring the backup. Also supports using custom S3 implementations such as MinIO or CephRadosGW. |                                                                                                                                                                                                                                                      |
+## Permissions setup
 
+Following the principle of "least-privilege", these are the minimum bucket permissions needed for xbcloud to write backups to S3: ***LIST/PUT/GET/DELETE***.
+
+The following example shows the policy definition for writing to the `xbcloud-testing` bucket on the AWS S3 storage.
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::xbcloud-testing"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:GetObject",
+                "s3:GetObjectAcl",
+                "s3:DeleteObject"
+            ],
+            "Resource": "arn:aws:s3:::xbcloud-testing/*"
+        }
+    ]
+}
+```
+  
+  
 ## Environment variables
 
 The following environment variables are recognized. xbcloud maps them
