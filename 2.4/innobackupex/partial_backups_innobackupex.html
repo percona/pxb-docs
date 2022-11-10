@@ -1580,7 +1580,7 @@ databases (<code>innobackupex --databases</code>).</p>
 qualified table name, including the database name, in the form
 <code>databasename.tablename</code>.</p>
 <p>For example,</p>
-<div class="highlight"><pre><span></span><code>$ innobackupex --include=&#39;^mydatabase[.]mytable&#39; /path/to/backup
+<div class="highlight"><pre><span></span><code>$ innobackupex --include<span class="o">=</span><span class="s1">&#39;^mydatabase[.]mytable&#39;</span> /path/to/backup
 </code></pre></div>
 <p>The command above will create a timestamped directory with the usual files that
 <em>innobackupex</em> creates, but only the data files related to the tables matched.</p>
@@ -1591,8 +1591,8 @@ created even if they are empty.</p>
 <p>The text file provided (the path) to this option can contain multiple table
 names, one per line, in the <code>databasename.tablename</code> format.</p>
 <p>For example,</p>
-<div class="highlight"><pre><span></span><code>$ echo &quot;mydatabase.mytable&quot; &gt; /tmp/tables.txt
-$ innobackupex --tables-file=/tmp/tables.txt /path/to/backup
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s2">&quot;mydatabase.mytable&quot;</span> &gt; /tmp/tables.txt
+$ innobackupex --tables-file<span class="o">=</span>/tmp/tables.txt /path/to/backup
 </code></pre></div>
 <p>The command above will create a timestamped directory with the usual files that
 <em>innobackupex</em> creates, but only containing the data-files related to the tables
@@ -1604,7 +1604,7 @@ of the selected tables will be created.</p>
 <p>This option accepts either a space-separated list of the databases and tables to
 backup - in the <code>databasename[.tablename]</code> form.</p>
 <p>For example,</p>
-<div class="highlight"><pre><span></span><code>$ innobackupex --databases=&quot;mydatabase.mytable mysql&quot; /path/to/backup
+<div class="highlight"><pre><span></span><code>$ innobackupex --databases<span class="o">=</span><span class="s2">&quot;mydatabase.mytable mysql&quot;</span> /path/to/backup
 </code></pre></div>
 <p>The command above will create a timestamped directory with the usual files that
 <em>innobackupex</em> creates, but only containing the datafiles related to
@@ -1644,7 +1644,7 @@ create the <code>.exp</code> files.</p>
 <p>It can also be done by copying back the prepared backup to a “clean”
 <code>datadir</code> (in that case, make sure to include the <code>mysql</code>
 database). System database can be created with:</p>
-<div class="highlight"><pre><span></span><code>$ sudo mysql_install_db --user=mysql
+<div class="highlight"><pre><span></span><code>$ sudo mysql_install_db --user<span class="o">=</span>mysql
 </code></pre></div>
 
                 
@@ -1667,7 +1667,7 @@ database). System database can be created with:</p>
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

@@ -1532,8 +1532,8 @@ need to be <em>XtraDB</em> or <em>MySQL</em> 5.7 but the destination must be. Th
 individual .ibd files. A table that is not contained in its own <code>.ibd</code> file cannot be exported.</p>
 <p>Let’s see how to export and import the following table:</p>
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">export_test</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="no">NULL</span><span class="w"></span>
-<span class="p">)</span><span class="w"> </span><span class="k">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <h2 id="exporting-the-table">Exporting the Table<a class="headerlink" href="#exporting-the-table" title="Permanent link">&para;</a></h2>
 <p>This table should have been created in <code>innodb_file_per_table</code> mode, so
@@ -1554,8 +1554,10 @@ after taking a backup as usual with <code>xtrabackup --backup</code>, the
 </code></pre></div>
 </div>
 <p>Now you should see a .exp file in the target directory:</p>
-<div class="highlight"><pre><span></span><code>$ find /data/backups/mysql/ -name export_test.*
-/data/backups/mysql/test/export_test.exp
+<p><div class="highlight"><pre><span></span><code>$ find /data/backups/mysql/ -name export_test.*
+</code></pre></div>
+The result is similar to the following:</p>
+<div class="highlight"><pre><span></span><code>/data/backups/mysql/test/export_test.exp
 /data/backups/mysql/test/export_test.ibd
 /data/backups/mysql/test/export_test.cfg
 </code></pre></div>
@@ -1613,7 +1615,7 @@ and see the imported data.</p>
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

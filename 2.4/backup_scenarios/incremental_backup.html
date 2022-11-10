@@ -1686,15 +1686,15 @@ rolls them forward in time to the time of the incremental backup. It then
 applies the redo log as usual to the result. The final data is in
 <code>/data/backups/base</code>, not in the incremental directory. You should see
 an output similar to:</p>
-<div class="highlight"><pre><span></span><code>incremental backup from <span class="m">1626007</span> is enabled.
-xtrabackup: <span class="nb">cd</span> to /data/backups/base
+<div class="highlight"><pre><span></span><code>incremental backup from 1626007 is enabled.
+xtrabackup: cd to /data/backups/base
 xtrabackup: This target seems to be already prepared with --apply-log-only.
-xtrabackup: xtrabackup_logfile detected: <span class="nv">size</span><span class="o">=</span><span class="m">2097152</span>, <span class="nv">start_lsn</span><span class="o">=(</span><span class="m">4124244</span><span class="o">)</span>
+xtrabackup: xtrabackup_logfile detected: size=2097152, start_lsn=(4124244)
 ...
-xtrabackup: page size <span class="k">for</span> /tmp/backups/inc1/ibdata1.delta is <span class="m">16384</span> bytes
+xtrabackup: page size for /tmp/backups/inc1/ibdata1.delta is 16384 bytes
 Applying /tmp/backups/inc1/ibdata1.delta to ./ibdata1...
 ...
-<span class="m">161011</span> <span class="m">12</span>:45:56 completed OK!
+161011 12:45:56 completed OK!
 </code></pre></div>
 <p>Again, the LSN should match what you saw from your earlier inspection of the first incremental backup. If you restore the files from
 <code>/data/backups/base</code>, you should see the state of the database as of the
@@ -1733,7 +1733,7 @@ first incremental backup.</p>
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

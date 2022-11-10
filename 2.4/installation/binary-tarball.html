@@ -1541,20 +1541,23 @@
 </tbody>
 </table>
 <p>Fetch and extract the correct binary tarball. For example, the following downloads the full tarball for version 2.4.24:</p>
-<div class="highlight"><pre><span></span><code>$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.24/binary/tarball/percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz
-  --2022-04-13 <span class="m">14</span>:34:45--  https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.24/binary/tarball/percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz
-  Resolving downloads.percona.com <span class="o">(</span>downloads.percona.com<span class="o">)</span>... <span class="m">162</span>.220.4.221, <span class="m">162</span>.220.4.222, <span class="m">74</span>.121.199.231
-  Connecting to downloads.percona.com <span class="o">(</span>downloads.percona.com<span class="o">)</span><span class="p">|</span><span class="m">162</span>.220.4.221<span class="p">|</span>:443... connected.
-  HTTP request sent, awaiting response... <span class="m">200</span> OK
-  Length: <span class="m">76263220</span> <span class="o">(</span>73M<span class="o">)</span> <span class="o">[</span>application/x-gzip<span class="o">]</span>
+<p><div class="highlight"><pre><span></span><code>$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.24/binary/tarball/percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz
+</code></pre></div>
+The result may be similar to the following:
+<div class="highlight"><pre><span></span><code>  --2022-04-13 14:34:45--  https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.24/binary/tarball/percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz
+  Resolving downloads.percona.com (downloads.percona.com)... 162.220.4.221, 162.220.4.222, 74.121.199.231
+  Connecting to downloads.percona.com (downloads.percona.com)|162.220.4.221|:443... connected.
+  HTTP request sent, awaiting response... 200 OK
+  Length: 76263220 (73M) [application/x-gzip]
   Saving to: ‘percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz’
 
-  percona-xtrabackup-2.4.24-Linux-x86_64 <span class="m">100</span>%<span class="o">[==========================================================================</span>&gt;<span class="o">]</span>  <span class="m">72</span>.73M  <span class="m">5</span>.29MB/s    <span class="k">in</span> 20s
+  percona-xtrabackup-2.4.24-Linux-x86_64 100%[==========================================================================&gt;]  72.73M  5.29MB/s    in 20s
 
-  <span class="m">2022</span>-04-13 <span class="m">14</span>:35:05 <span class="o">(</span><span class="m">3</span>.61 MB/s<span class="o">)</span> - ‘percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz’ saved <span class="o">[</span><span class="m">76263220</span>/76263220<span class="o">]</span>
-
-$ tar xvf percona-xtrabackup-2.4.21-Linux-x86_64.glibc2.12.tar.gz
+  2022-04-13 14:35:05 (3.61 MB/s) - ‘percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz’ saved [76263220/76263220]
 </code></pre></div>
+Uncompress the file:
+<div class="highlight"><pre><span></span><code>$ tar xvf percona-xtrabackup-2.4.21-Linux-x86_64.glibc2.12.tar.gz
+</code></pre></div></p>
 <p>An installation from a binary tarball requires doing certain tasks manually, such as configuring settings, and policies, that a repository package installation performs automatically.</p>
 
                 
@@ -1577,7 +1580,7 @@ $ tar xvf percona-xtrabackup-2.4.21-Linux-x86_64.glibc2.12.tar.gz
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

@@ -3578,7 +3578,7 @@ on the command-line.</p>
 default is 10MB.</p>
 <p>Use this variable to increase the xbcloud/xbstream chunk size from the default value of 10MB.</p>
 <p><strong>NOTE</strong>: When you use encryption, to adjust the xbcloud/xbstream chunk size, adjust both the <code>--encrypt-chunk-size</code> and <code>--read-buffer-size</code> variables.</p>
-<div class="highlight"><pre><span></span><code><span class="n">$</span><span class="w"> </span><span class="n">xtrabackup</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="o">--</span><span class="k">read</span><span class="o">-</span><span class="n">buffer</span><span class="o">-</span><span class="n">size</span><span class="o">=</span><span class="n">1G</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">xbcloud</span><span class="w"> </span><span class="n">put</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="w"> </span><span class="n">xtrabackup</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="c1">--read-buffer-size=1G | xbcloud put ...</span>
 </code></pre></div>
 <h3 id="-rebuild-indexes">&ndash;rebuild-indexes<a class="headerlink" href="#-rebuild-indexes" title="Permanent link">&para;</a></h3>
 <p>Rebuild secondary indexes in InnoDB tables after applying the log. Only use
@@ -3791,7 +3791,7 @@ https://dev.mysql.com/doc/refman/5.7/en/keyring-file-plugin.html</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>

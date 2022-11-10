@@ -1572,8 +1572,8 @@ following command:</p>
 --tables<span class="o">=</span><span class="s2">&quot;^test[.].*&quot;</span>
 </code></pre></div>
 <p>To back up only the table <code>test.t1</code>, you can use the following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --datadir<span class="o">=</span>/var/lib/mysql --target-dir<span class="o">=</span>/data/backups/ <span class="se">\</span>
---tables<span class="o">=</span><span class="s2">&quot;^test[.]t1&quot;</span>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
+--tables=&quot;^test[.]t1&quot;
 </code></pre></div>
 <h2 id="using-xtrabackup-tables-file">Using <code>xtrabackup --tables-file</code><a class="headerlink" href="#using-xtrabackup-tables-file" title="Permanent link">&para;</a></h2>
 <p><code>xtrabackup --tables-file</code> specifies a file that can contain multiple
@@ -1639,7 +1639,7 @@ InnoDB: but tablespace with that id or name does not exist. It will be removed f
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

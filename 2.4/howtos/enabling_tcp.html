@@ -1506,10 +1506,12 @@
                 <h1 id="enabling-the-server-to-communicate-via-tcpip">Enabling the server to communicate via TCP/IP<a class="headerlink" href="#enabling-the-server-to-communicate-via-tcpip" title="Permanent link">&para;</a></h1>
 <p>Most of the Linux distributions do not enable by default to accept TCP/IP connections from outside in their MySQL or Percona Server packages.</p>
 <p>You can check it with <code>netstat</code> on a shell:</p>
-<div class="highlight"><pre><span></span><code>$ netstat -lnp | grep mysql
-tcp         0        0 0.0.0.0:3306 0.0.0.0:* LISTEN 2480/mysqld
-unix 2 [ ACC ] STREAM LISTENING 8101 2480/mysqld /tmp/mysql.sock
+<p><div class="highlight"><pre><span></span><code>$ netstat -lnp <span class="p">|</span> grep mysql
 </code></pre></div>
+You should see results similar to the following:
+<div class="highlight"><pre><span></span><code>tcp         0        0 0.0.0.0:3306 0.0.0.0:* LISTEN 2480/mysqld
+unix 2 [ ACC ] STREAM LISTENING 8101 2480/mysqld /tmp/mysql.sock
+</code></pre></div></p>
 <p>You should check two things:</p>
 <ul>
 <li>
@@ -1543,7 +1545,7 @@ unix 2 [ ACC ] STREAM LISTENING 8101 2480/mysqld /tmp/mysql.sock
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

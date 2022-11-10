@@ -1553,7 +1553,9 @@ xtrabackup: export metadata of table &#39;mydatabase/mytable&#39; to file
 </code></pre></div>
 <p>Now you should see a <code>.exp</code> file in the target directory:</p>
 <div class="highlight"><pre><span></span><code>$ find /data/backups/mysql/ -name export_test.*
-/data/backups/mysql/test/export_test.exp
+</code></pre></div>
+<p>The result should be similar to the following:</p>
+<div class="highlight"><pre><span></span><code>/data/backups/mysql/test/export_test.exp
 /data/backups/mysql/test/export_test.ibd
 /data/backups/mysql/test/export_test.cfg
 </code></pre></div>
@@ -1571,15 +1573,15 @@ xtrabackup: export metadata of table &#39;mydatabase/mytable&#39; to file
 <h2 id="importing-tables">Importing tables<a class="headerlink" href="#importing-tables" title="Permanent link">&para;</a></h2>
 <p>To import a table to other server, first create a new table with the same
 structure as the one that will be imported at that server:</p>
-<div class="highlight"><pre><span></span><code>OTHERSERVER|mysql&gt; CREATE TABLE mytable (...) ENGINE=InnoDB;
+<div class="highlight"><pre><span></span><code><span class="n">OTHERSERVER</span><span class="o">|</span><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">mytable</span><span class="w"> </span><span class="p">(...)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>then discard its tablespace:</p>
-<div class="highlight"><pre><span></span><code>OTHERSERVER|mysql&gt; ALTER TABLE mydatabase.mytable DISCARD TABLESPACE;
+<div class="highlight"><pre><span></span><code><span class="n">OTHERSERVER</span><span class="o">|</span><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">mydatabase</span><span class="p">.</span><span class="n">mytable</span><span class="w"> </span><span class="n">DISCARD</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Next, copy <code>mytable.ibd</code> and <code>mytable.exp</code> ( or <code>mytable.cfg</code>
 if importing to <em>MySQL</em> 5.6) files to database’s home, and import its
 tablespace:</p>
-<div class="highlight"><pre><span></span><code>OTHERSERVER|mysql&gt; ALTER TABLE mydatabase.mytable IMPORT TABLESPACE;
+<div class="highlight"><pre><span></span><code><span class="n">OTHERSERVER</span><span class="o">|</span><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">mydatabase</span><span class="p">.</span><span class="n">mytable</span><span class="w"> </span><span class="n">IMPORT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Set the owner and group of the files:</p>
 <div class="highlight"><pre><span></span><code>$ chown -R mysql:mysql /datadir/db_name/table_name.*
@@ -1606,7 +1608,7 @@ tablespace:</p>
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

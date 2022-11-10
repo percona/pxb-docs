@@ -1505,20 +1505,20 @@
                 <!-- Markdown content -->
                 <h1 id="making-an-incremental-backup">Making an Incremental Backup<a class="headerlink" href="#making-an-incremental-backup" title="Permanent link">&para;</a></h1>
 <p>Every incremental backup starts with a full one, which we will call the <em>base backup</em>:</p>
-<div class="highlight"><pre><span></span><code>innobackupex --user=USER --password=PASSWORD /path/to/backup/dir/
+<div class="highlight"><pre><span></span><code>$ innobackupex --user<span class="o">=</span>USER --password<span class="o">=</span>PASSWORD /path/to/backup/dir/
 </code></pre></div>
 <p>Note that the full backup will be in a timestamped subdirectory of <code>/path/to/backup/dir/</code> (e.g., <code>/path/to/backup/dir/2011-12-24_23-01-00/</code>).</p>
 <p>Assuming that variable <code>$FULLBACKUP</code> contains /path/to/backup/dir/2011-5-23_23-01-18, let’s do an incremental backup an hour later:</p>
-<div class="highlight"><pre><span></span><code>innobackupex --incremental /path/to/inc/dir \
-  --incremental-basedir=$FULLBACKUP --user=USER --password=PASSWORD
+<div class="highlight"><pre><span></span><code>innobackupex --incremental /path/to/inc/dir <span class="se">\</span>
+  --incremental-basedir<span class="o">=</span><span class="nv">$FULLBACKUP</span> --user<span class="o">=</span>USER --password<span class="o">=</span>PASSWORD
 </code></pre></div>
 <p>Now, the incremental backup should be in
 <code>/path/to/inc/dir/2011-12-25_00-01-00/</code>. Let’s call
 <code>$INCREMENTALBACKUP=2011-5-23_23-50-10</code>.</p>
-<p>Preparing incremental backups is a bit different than full ones:</p>
+<p>Preparing incremental backups is a bit different from full ones:</p>
 <p>First you have to replay the committed transactions on each backup,</p>
-<div class="highlight"><pre><span></span><code>innobackupex --apply-log --redo-only $FULLBACKUP \
- --use-memory=1G --user=USER --password=PASSWORD
+<div class="highlight"><pre><span></span><code>$ innobackupex --apply-log --redo-only <span class="nv">$FULLBACKUP</span> <span class="se">\</span>
+ --use-memory<span class="o">=</span>1G --user<span class="o">=</span>USER --password<span class="o">=</span>PASSWORD
 </code></pre></div>
 <p>The <code>innobackupex --use-memory</code> option is not necessary, it will speed
 up the process if it is used (provided that the amount of RAM given is
@@ -1527,9 +1527,9 @@ available).</p>
 <div class="highlight"><pre><span></span><code>111225 01:10:12 InnoDB: Shutdown completed; log sequence number 91514213
 </code></pre></div>
 <p>Now apply the incremental backup to the base backup, by issuing:</p>
-<div class="highlight"><pre><span></span><code>innobackupex --apply-log --redo-only $FULLBACKUP
- --incremental-dir=$INCREMENTALBACKUP
- --use-memory=1G --user=DVADER --password=D4RKS1D3
+<div class="highlight"><pre><span></span><code>$ innobackupex --apply-log --redo-only <span class="nv">$FULLBACKUP</span>
+ --incremental-dir<span class="o">=</span><span class="nv">$INCREMENTALBACKUP</span>
+ --use-memory<span class="o">=</span>1G --user<span class="o">=</span>DVADER --password<span class="o">=</span>D4RKS1D3
 </code></pre></div>
 <p>Note the <code>$INCREMENTALBACKUP</code>.</p>
 <p><em>The final data will be in the base backup directory</em>, not in the incremental one. In this example, <code>/path/to/backup/dir/2011-12-24_23-01-00</code> or <code>$FULLBACKUP</code>.</p>
@@ -1555,7 +1555,7 @@ to_lsn = 1291340
 </code></pre></div>
 <p>Now your backup is ready to be used immediately after restoring it. This
 preparation step is optional, as if you restore it without doing it, the
-database server will assume that a crash occurred and will begin to rollback the
+database server will assume that a crash occurred and will begin to roll back the
 uncommitted transaction (causing some downtime which can be avoided).</p>
 
                 
@@ -1578,7 +1578,7 @@ uncommitted transaction (causing some downtime which can be avoided).</p>
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

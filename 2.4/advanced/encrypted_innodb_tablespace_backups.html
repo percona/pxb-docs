@@ -1933,8 +1933,8 @@ creation command:</p>
 </code></pre></div>
 <p>After xtrabackup is finished taking the backup you should see the following
 message:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn <span class="o">(</span><span class="m">5696709</span><span class="o">)</span> to <span class="o">(</span><span class="m">5696718</span><span class="o">)</span> was copied.
-<span class="m">160401</span> <span class="m">10</span>:25:51 completed OK!
+<div class="highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
+160401 10:25:51 completed OK!
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1944,13 +1944,13 @@ message:</p>
 <p>In order to prepare the backup you’ll need to specify the keyring-file-data
 (server-id is stored in <code>backup-my.cnf</code> file, so it can be omitted when
 preparing the backup, regardless of the <em>MySQL</em> version used).</p>
-<div class="highlight"><pre><span></span><code>xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>After xtrabackup is finished preparing the backup you should see the following
 message:</p>
-<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed<span class="p">;</span> log sequence number <span class="m">5697064</span>
-<span class="m">160401</span> <span class="m">10</span>:34:28 completed OK!
+<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
+160401 10:34:28 completed OK!
 </code></pre></div>
 <p>Backup is now prepared and can be restored with xtrabackup –copy-back
 option. In case the keyring has been rotated you’ll need to restore the keyring
@@ -1965,8 +1965,8 @@ described <a href="https://www.percona.com/doc/percona-server/LATEST/security/us
 </code></pre></div>
 <p>After xtrabackup completes taking the backup you should see the following
 message:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn <span class="o">(</span><span class="m">5696709</span><span class="o">)</span> to <span class="o">(</span><span class="m">5696718</span><span class="o">)</span> was copied.
-<span class="m">160401</span> <span class="m">10</span>:25:51 completed OK!
+<div class="highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
+160401 10:25:51 completed OK!
 </code></pre></div>
 <h3 id="preparing-the-backup">Preparing the Backup<a class="headerlink" href="#preparing-the-backup" title="Permanent link">&para;</a></h3>
 <p>In order to prepare the backup xtrabackup will need an access to the keyring.
@@ -1982,12 +1982,12 @@ settings via the command line:</p>
 </div>
 <p>After xtrabackup completes preparing the backup you should see the following
 message:</p>
-<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed<span class="p">;</span> log sequence number <span class="m">5697064</span>
-<span class="m">160401</span> <span class="m">10</span>:34:28 completed OK!
+<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
+160401 10:34:28 completed OK!
 </code></pre></div>
 <p>The backup is now prepared and can be restored with <code>xtrabackup
 --copy-back</code> option:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql
+<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql
 </code></pre></div>
 <h2 id="incremental-encrypted-innodb-tablespace-backups-with-keyring_file">Incremental Encrypted InnoDB Tablespace Backups with <code>keyring_file</code><a class="headerlink" href="#incremental-encrypted-innodb-tablespace-backups-with-keyring_file" title="Permanent link">&para;</a></h2>
 <p>The process of taking incremental backups with InnoDB tablespace encryption is
@@ -2059,9 +2059,9 @@ usual, but prevent the rollback phase:</p>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>The output should end with some text such as the following:</p>
-<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed<span class="p">;</span> log sequence number <span class="m">7666643</span>
-InnoDB: Number of pools: <span class="m">1</span>
-<span class="m">160401</span> <span class="m">12</span>:31:11 completed OK!
+<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 7666643
+InnoDB: Number of pools: 1
+160401 12:31:11 completed OK!
 </code></pre></div>
 <p>To apply the first incremental backup to the full backup, you should use the following command:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
@@ -2119,7 +2119,7 @@ example for <code>keyring_file</code>:</p>
 server and re-encrypt tablespace keys using this key.</p>
 <h2 id="making-the-backup-with-a-stored-transition-key">Making the Backup with a Stored Transition Key<a class="headerlink" href="#making-the-backup-with-a-stored-transition-key" title="Permanent link">&para;</a></h2>
 <p>Finally, there is an option to store transition key in the keyring. In this case
-xtrabackup will need an access to the same keyring file or vault server during
+xtrabackup will need access to the same keyring file or vault server during
 prepare and copy-back, but does not depend on whether the server keys have been
 purged.</p>
 <p>The three stages of the backup process are the following:</p>
@@ -2166,7 +2166,7 @@ purged.</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>

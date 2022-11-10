@@ -1550,8 +1550,8 @@
 <p>Now the files in <code>/data/backups/2010-03-13_02-42-44</code> is ready to be used by the server.</p>
 <h2 id="restore-the-backup">Restore the Backup<a class="headerlink" href="#restore-the-backup" title="Permanent link">&para;</a></h2>
 <p>To restore the already-prepared backup, first stop the server and then use the <code>innobackupex --copy-back</code> function of innobackupex:</p>
-<div class="highlight"><pre><span></span><code>innobackupex --copy-back /data/backups/2010-03-13_02-42-44/
-## Use chmod to correct the permissions, if necessary!
+<div class="highlight"><pre><span></span><code>$ innobackupex --copy-back /data/backups/2010-03-13_02-42-44/
+<span class="c1">## Use chmod to correct the permissions, if necessary!</span>
 </code></pre></div>
 <p>This will copy the prepared data back to its original location as defined by the <code>datadir</code> in your <code>my.cnf</code>.</p>
 <div class="admonition note">
@@ -1586,7 +1586,7 @@
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

@@ -1646,8 +1646,8 @@ by running the following command as a <code>root</code> user or with
 </code></pre></div>
 <p>You should see some output such as the following:</p>
 <div class="highlight"><pre><span></span><code>Retrieving https://repo.percona.com/yum/percona-release-latest.noarch.rpm
-Preparing...                <span class="c1">########################################### [100%]</span>
-   <span class="m">1</span>:percona-release        <span class="c1">########################################### [100%]</span>
+Preparing...                ########################################### [100%]
+   1:percona-release        ########################################### [100%]
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1661,21 +1661,21 @@ $ rpm -ivH percona-release-latest.noarch.rpm
 <p>Testing the repository</p>
 <p>Make sure packages are now available from the repository, by executing the
 following command:</p>
-<div class="highlight"><pre><span></span><code>yum list <span class="p">|</span> grep percona
+<div class="highlight"><pre><span></span><code>$ yum list <span class="p">|</span> grep percona
 </code></pre></div>
 <p>You should see output similar to the following:</p>
 <div class="highlight"><pre><span></span><code>...
-percona-xtrabackup-20.x86_64               <span class="m">2</span>.0.8-587.rhel5             percona-release-x86_64
-percona-xtrabackup-20-debuginfo.x86_64     <span class="m">2</span>.0.8-587.rhel5             percona-release-x86_64
-percona-xtrabackup-20-test.x86_64          <span class="m">2</span>.0.8-587.rhel5             percona-release-x86_64
-percona-xtrabackup-21.x86_64               <span class="m">2</span>.1.9-746.rhel5             percona-release-x86_64
-percona-xtrabackup-21-debuginfo.x86_64     <span class="m">2</span>.1.9-746.rhel5             percona-release-x86_64
-percona-xtrabackup-22.x86_64               <span class="m">2</span>.2.13-1.el5                percona-release-x86_64
-percona-xtrabackup-22-debuginfo.x86_64     <span class="m">2</span>.2.13-1.el5                percona-release-x86_64
-percona-xtrabackup-debuginfo.x86_64        <span class="m">2</span>.3.5-1.el5                 percona-release-x86_64
-percona-xtrabackup-test.x86_64             <span class="m">2</span>.3.5-1.el5                 percona-release-x86_64
-percona-xtrabackup-test-21.x86_64          <span class="m">2</span>.1.9-746.rhel5             percona-release-x86_64
-percona-xtrabackup-test-22.x86_64          <span class="m">2</span>.2.13-1.el5                percona-release-x86_64
+percona-xtrabackup-20.x86_64               2.0.8-587.rhel5             percona-release-x86_64
+percona-xtrabackup-20-debuginfo.x86_64     2.0.8-587.rhel5             percona-release-x86_64
+percona-xtrabackup-20-test.x86_64          2.0.8-587.rhel5             percona-release-x86_64
+percona-xtrabackup-21.x86_64               2.1.9-746.rhel5             percona-release-x86_64
+percona-xtrabackup-21-debuginfo.x86_64     2.1.9-746.rhel5             percona-release-x86_64
+percona-xtrabackup-22.x86_64               2.2.13-1.el5                percona-release-x86_64
+percona-xtrabackup-22-debuginfo.x86_64     2.2.13-1.el5                percona-release-x86_64
+percona-xtrabackup-debuginfo.x86_64        2.3.5-1.el5                 percona-release-x86_64
+percona-xtrabackup-test.x86_64             2.3.5-1.el5                 percona-release-x86_64
+percona-xtrabackup-test-21.x86_64          2.1.9-746.rhel5             percona-release-x86_64
+percona-xtrabackup-test-22.x86_64          2.2.13-1.el5                percona-release-x86_64
 ...
 </code></pre></div>
 </li>
@@ -1755,7 +1755,7 @@ installed packages.</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>

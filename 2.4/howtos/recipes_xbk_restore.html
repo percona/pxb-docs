@@ -1504,9 +1504,10 @@
 
                 <!-- Markdown content -->
                 <h1 id="restoring-the-backup">Restoring the Backup<a class="headerlink" href="#restoring-the-backup" title="Permanent link">&para;</a></h1>
-<p>Because <code>xtrabackup</code> doesn’t copy <em>MyISAM</em> files, <code>.frm</code> files, and the rest of the database, you might need to back those up separately. To restore the InnoDB data, simply do something like the following after preparing:</p>
-<div class="highlight"><pre><span></span><code>cd /data/backups/mysql/
-rsync -rvt --exclude &#39;xtrabackup_checkpoints&#39; --exclude &#39;xtrabackup_logfile&#39; \
+<p>Because <code>xtrabackup</code> does not copy <em>MyISAM</em> files, <code>.frm</code> files, and 
+the rest of the database, you might need to back those up separately. To restore the InnoDB data, simply do something like the following after preparing:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /data/backups/mysql/
+rsync -rvt --exclude <span class="s1">&#39;xtrabackup_checkpoints&#39;</span> --exclude <span class="s1">&#39;xtrabackup_logfile&#39;</span> <span class="se">\</span>
    ./ /var/lib/mysql
 chown -R mysql:mysql /var/lib/mysql/
 </code></pre></div>
@@ -1531,7 +1532,7 @@ chown -R mysql:mysql /var/lib/mysql/
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

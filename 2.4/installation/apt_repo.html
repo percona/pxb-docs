@@ -1668,8 +1668,7 @@ with the <em>percona-release</em> package configuration tool.</p>
 </code></pre></div>
 </li>
 <li>
-<p>Install the downloaded package with <code>dpkg</code>. To do that, run the
-following commands as root or with <code>sudo</code>:</p>
+<p>Install the downloaded package with <code>dpkg</code>. To do that, run the following commands as root or with <code>sudo</code>:</p>
 <div class="highlight"><pre><span></span><code>$ sudo dpkg -i percona-release_latest.<span class="k">$(</span>lsb_release -sc<span class="k">)</span>_all.deb
 </code></pre></div>
 <p>Once you install this package the Percona repositories should be added. You
@@ -1741,8 +1740,10 @@ binary/debian/stretch/x86_64/percona-xtrabackup-24_2.4.20-1.stretch_amd64.deb
 </li>
 <li>
 <p>Verify the version number:</p>
-<div class="highlight"><pre><span></span><code>$ curl --version
-curl <span class="m">7</span>.74.0 <span class="o">(</span>x86_64-pc-linux-gnu<span class="o">)</span> libcurl/7.74.0
+<p><div class="highlight"><pre><span></span><code>$ curl --version
+</code></pre></div>
+The result is similar to the following;</p>
+<div class="highlight"><pre><span></span><code>curl 7.74.0 (x86_64-pc-linux-gnu) libcurl/7.74.0
 </code></pre></div>
 </li>
 </ol>
@@ -1777,7 +1778,7 @@ packages.</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>

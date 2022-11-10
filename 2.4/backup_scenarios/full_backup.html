@@ -1634,21 +1634,23 @@ of the <code>&lt;LSN&gt;</code> will be a number that depends on your system:</p
 <p>After the backup is finished, the target directory will contain files such as
 the following, assuming you have a single InnoDB table <code>test.tbl1</code> and
 you are using MySQL’s <code>innodb_file_per_table</code> option:</p>
-<div class="highlight"><pre><span></span><code>$ ls -lh /data/backups/
-total 182M
-drwx------  <span class="m">7</span> root root <span class="m">4</span>.0K Sep  <span class="m">6</span> <span class="m">10</span>:19 .
-drwxrwxrwt <span class="m">11</span> root root <span class="m">4</span>.0K Sep  <span class="m">6</span> <span class="m">11</span>:05 ..
--rw-r-----  <span class="m">1</span> root root  <span class="m">387</span> Sep  <span class="m">6</span> <span class="m">10</span>:19 backup-my.cnf
--rw-r-----  <span class="m">1</span> root root  76M Sep  <span class="m">6</span> <span class="m">10</span>:19 ibdata1
-drwx------  <span class="m">2</span> root root <span class="m">4</span>.0K Sep  <span class="m">6</span> <span class="m">10</span>:19 mysql
-drwx------  <span class="m">2</span> root root <span class="m">4</span>.0K Sep  <span class="m">6</span> <span class="m">10</span>:19 performance_schema
-drwx------  <span class="m">2</span> root root <span class="m">4</span>.0K Sep  <span class="m">6</span> <span class="m">10</span>:19 sbtest
-drwx------  <span class="m">2</span> root root <span class="m">4</span>.0K Sep  <span class="m">6</span> <span class="m">10</span>:19 <span class="nb">test</span>
-drwx------  <span class="m">2</span> root root <span class="m">4</span>.0K Sep  <span class="m">6</span> <span class="m">10</span>:19 world2
--rw-r-----  <span class="m">1</span> root root  <span class="m">116</span> Sep  <span class="m">6</span> <span class="m">10</span>:19 xtrabackup_checkpoints
--rw-r-----  <span class="m">1</span> root root  <span class="m">433</span> Sep  <span class="m">6</span> <span class="m">10</span>:19 xtrabackup_info
--rw-r-----  <span class="m">1</span> root root 106M Sep  <span class="m">6</span> <span class="m">10</span>:19 xtrabackup_logfile
+<p><div class="highlight"><pre><span></span><code>$ ls -lh /data/backups/
 </code></pre></div>
+The results are as follows:
+<div class="highlight"><pre><span></span><code>total 182M
+drwx------  7 root root 4.0K Sep  6 10:19 .
+drwxrwxrwt 11 root root 4.0K Sep  6 11:05 ..
+-rw-r-----  1 root root  387 Sep  6 10:19 backup-my.cnf
+-rw-r-----  1 root root  76M Sep  6 10:19 ibdata1
+drwx------  2 root root 4.0K Sep  6 10:19 mysql
+drwx------  2 root root 4.0K Sep  6 10:19 performance_schema
+drwx------  2 root root 4.0K Sep  6 10:19 sbtest
+drwx------  2 root root 4.0K Sep  6 10:19 test
+drwx------  2 root root 4.0K Sep  6 10:19 world2
+-rw-r-----  1 root root  116 Sep  6 10:19 xtrabackup_checkpoints
+-rw-r-----  1 root root  433 Sep  6 10:19 xtrabackup_info
+-rw-r-----  1 root root 106M Sep  6 10:19 xtrabackup_logfile
+</code></pre></div></p>
 <p>The backup can take a long time, depending on how large the database is. It is
 safe to cancel at any time, because it does not modify the database.</p>
 <p>The next step is getting your backup ready to be restored.</p>
@@ -1682,8 +1684,8 @@ the following, where again the value of <code>LSN</code> will depend on your sys
 </code></pre></div>
 <p>All following prepares will not change the already prepared data files, you’ll
 see that output says:</p>
-<div class="highlight"><pre><span></span><code><span class="go">xtrabackup: This target seems to be already prepared.</span>
-<span class="go">xtrabackup: notice: xtrabackup_logfile was already used to &#39;--prepare&#39;.</span>
+<div class="highlight"><pre><span></span><code>xtrabackup: This target seems to be already prepared.
+xtrabackup: notice: xtrabackup_logfile was already used to &#39;--prepare&#39;.
 </code></pre></div>
 <p>It is not recommended to interrupt xtrabackup process while preparing backup
 because it may cause data files corruption and backup will become unusable.
@@ -1721,7 +1723,7 @@ will be owned by the user who created the backup:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When <code>relay-log-info-repository=TABLE</code> is enabled, the instance recovered from the backup has errors in the error log, like the following:</p>
-<div class="highlight"><pre><span></span><code><span class="m">2019</span>-08-09 <span class="m">12</span>:40:02 <span class="m">69297</span> <span class="o">[</span>ERROR<span class="o">]</span> Failed to open the relay log <span class="s1">&#39;/data/mysql-relay-bin.004349&#39;</span> <span class="o">(</span>relay_log_pos <span class="m">5534092</span><span class="o">)</span>
+<div class="highlight"><pre><span></span><code>2019-08-09 12:40:02 69297 [ERROR] Failed to open the relay log &#39;/data/mysql-relay-bin.004349&#39; (relay_log_pos 5534092)
 </code></pre></div>
 <p>To avoid these types of issues, enable <code>relay_log_recovery</code> or execute <code>RESET SLAVE</code> prior to <code>CHANGE MASTER TO</code>.</p>
 <p>The relay log information was backed up, but a new relay log has been created, which creates a mismatch during the restore.</p>
@@ -1747,7 +1749,7 @@ will be owned by the user who created the backup:</p>
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

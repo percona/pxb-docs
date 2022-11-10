@@ -1532,11 +1532,11 @@
 <p>As this feature is implemented <strong>at a file level</strong>, concurrent file transfer can sometimes increase I/O throughput when doing a backup on highly fragmented data files, due to the overlap of a greater number of random read requests. You should consider tuning the filesystem also to obtain the maximum performance (e.g. checking fragmentation).</p>
 <p>If the data is stored on a single file, this option will have no effect.</p>
 <p>To use this feature, simply add the option to a local backup, for example:</p>
-<div class="highlight"><pre><span></span><code>$ innobackupex --parallel=4 /path/to/backup
+<div class="highlight"><pre><span></span><code>$ innobackupex --parallel<span class="o">=</span><span class="m">4</span> /path/to/backup
 </code></pre></div>
 <p>By using the <em>xbstream</em> in streaming backups you can additionally speed up the compression process by using the <code>innobackupex --compress-threads</code> option. This option specifies the number of threads created by <em>xtrabackup</em> for  for parallel data compression. The default value for this option is 1.</p>
 <p>To use this feature, simply add the option to a local backup, for example</p>
-<div class="highlight"><pre><span></span><code>$ innobackupex --stream=xbstream --compress --compress-threads=4 ./ &gt; backup.xbstream
+<div class="highlight"><pre><span></span><code>$ innobackupex --stream<span class="o">=</span>xbstream --compress --compress-threads<span class="o">=</span><span class="m">4</span> ./ &gt; backup.xbstream
 </code></pre></div>
 <p>Before applying logs, compressed files will need to be uncompressed.</p>
 <h2 id="accelerating-with-innobackupex-rsync">Accelerating with <code>innobackupex --rsync</code><a class="headerlink" href="#accelerating-with-innobackupex-rsync" title="Permanent link">&para;</a></h2>
@@ -1566,7 +1566,7 @@
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

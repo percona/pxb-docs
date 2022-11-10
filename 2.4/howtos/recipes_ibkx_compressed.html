@@ -1532,7 +1532,7 @@
 <p>If you want to speed up the compression you can use the parallel compression,
 which can be enabled with <code>innobackupex --compress-threads</code>
 option. Following example will use four threads for compression:</p>
-<div class="highlight"><pre><span></span><code>$ innobackupex --compress --compress-threads=4 /data/backup
+<div class="highlight"><pre><span></span><code>$ innobackupex --compress --compress-threads<span class="o">=</span><span class="m">4</span> /data/backup
 </code></pre></div>
 <p>Output should look like this</p>
 <div class="highlight"><pre><span></span><code>...
@@ -1545,10 +1545,10 @@ option. Following example will use four threads for compression:</p>
 </code></pre></div>
 <h2 id="preparing-the-backup">Preparing the backup<a class="headerlink" href="#preparing-the-backup" title="Permanent link">&para;</a></h2>
 <p>Before you can prepare the backup you’ll need to uncompress all the files with
-<a href="http://www.quicklz.com/">qpress</a> (which is available from <a href="http://www.percona.com/doc/percona-xtrabackup/2.1/installation.html#using-percona-software-repositories">Percona Software
+<a href="http://www.quicklz.com/">qpress</a> (which is available from <a href="https://docs.percona.com/percona-xtrabackup/2.4/installation.html#using-percona-software-repositories">Percona Software
 repositories</a>).
 You can use following one-liner to uncompress all the files:</p>
-<div class="highlight"><pre><span></span><code>$ for bf in `find . -iname &quot;*\.qp&quot;`; do qpress -d $bf $(dirname $bf) &amp;&amp; rm $bf; done
+<div class="highlight"><pre><span></span><code>$ <span class="k">for</span> bf <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s2">&quot;*\.qp&quot;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> qpress -d <span class="nv">$bf</span> <span class="k">$(</span>dirname <span class="nv">$bf</span><span class="k">)</span> <span class="o">&amp;&amp;</span> rm <span class="nv">$bf</span><span class="p">;</span> <span class="k">done</span>
 </code></pre></div>
 <p>In <em>Percona XtraBackup</em> 2.1.4 new <code>innobackupex --decompress</code> option has
 been implemented that can be used to decompress the backup:</p>
@@ -1607,7 +1607,7 @@ server.</p>
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

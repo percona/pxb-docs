@@ -1636,27 +1636,27 @@
 <p>Each cloud provider may return a different CURL error or an HTTP error, depending on the issue. Add new errors by setting the following variables <code>--curl-retriable-errors</code> or <code>--http-retriable-errors</code> on the command line or in <code>my.cnf</code> or in a custom configuration file under the [xbcloud] section.</p>
 <p>The error handling is enhanced when using the <code>--verbose</code> output. This output specifies which error caused xbcloud to fail and what parameter a user must add to retry on this error.</p>
 <p>The following is an example of a verbose output:</p>
-<div class="highlight"><pre><span></span><code><span class="m">210701</span> <span class="m">14</span>:34:23 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing <span class="o">(</span>no headers, no data<span class="o">)</span>
-<span class="m">210701</span> <span class="m">14</span>:34:23 /work/pxb/ins/2.4/bin/xbcloud: Curl error <span class="o">(</span><span class="m">52</span><span class="o">)</span> Server returned nothing <span class="o">(</span>no headers, no data<span class="o">)</span> is not configured as retriable. You can allow it by adding --curl-retriable-errors<span class="o">=</span><span class="m">52</span> parameter
+<div class="highlight"><pre><span></span><code>210701 14:34:23 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+210701 14:34:23 /work/pxb/ins/2.4/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
 </code></pre></div>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>The following example adjusts the maximum number of retries and the maximum time between retries.</p>
-<div class="highlight"><pre><span></span><code>xbcloud <span class="o">[</span>options<span class="o">]</span> --max-retries<span class="o">=</span><span class="m">5</span> --max-backoff<span class="o">=</span><span class="m">10000</span>
+<div class="highlight"><pre><span></span><code>xbcloud [options] --max-retries=5 --max-backoff=10000
 </code></pre></div>
 <p>The following text is an example of the exponential backoff used with the command:</p>
-<div class="highlight"><pre><span></span><code><span class="m">210702</span> <span class="m">10</span>:07:05 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing <span class="o">(</span>no headers, no data<span class="o">)</span>
-<span class="m">210702</span> <span class="m">10</span>:07:05 /work/pxb/ins/2.4/bin/xbcloud: Sleeping <span class="k">for</span> <span class="m">2384</span> ms before retrying backup3/xtrabackup_logfile.00000000000000000006 <span class="o">[</span><span class="m">1</span><span class="o">]</span>
+<div class="highlight"><pre><span></span><code>210702 10:07:05 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+210702 10:07:05 /work/pxb/ins/2.4/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [1]
 . . .
-<span class="m">210702</span> <span class="m">10</span>:07:23 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing <span class="o">(</span>no headers, no data<span class="o">)</span>
-<span class="m">210702</span> <span class="m">10</span>:07:23 /work/pxb/ins/2.4/bin/xbcloud: Sleeping <span class="k">for</span> <span class="m">4387</span> ms before retrying backup3/xtrabackup_logfile.00000000000000000006 <span class="o">[</span><span class="m">2</span><span class="o">]</span>
+210702 10:07:23 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+210702 10:07:23 /work/pxb/ins/2.4/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [2]
 . . .
-<span class="m">210702</span> <span class="m">10</span>:07:52 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-<span class="m">210702</span> <span class="m">10</span>:07:52 /work/pxb/ins/2.4/bin/xbcloud: Sleeping <span class="k">for</span> <span class="m">8691</span> ms before retrying backup3/xtrabackup_logfile.00000000000000000006 <span class="o">[</span><span class="m">3</span><span class="o">]</span>
+210702 10:07:52 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
+210702 10:07:52 /work/pxb/ins/2.4/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [3]
 . . .
-<span class="m">210702</span> <span class="m">10</span>:08:47 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-<span class="m">210702</span> <span class="m">10</span>:08:47 /work/pxb/ins/2.4/bin/xbcloud: Sleeping <span class="k">for</span> <span class="m">10000</span> ms before retrying backup3/xtrabackup_logfile.00000000000000000006 <span class="o">[</span><span class="m">4</span><span class="o">]</span>
+210702 10:08:47 /work/pxb/ins/2.4/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
+210702 10:08:47 /work/pxb/ins/2.4/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [4]
 . . .
-<span class="m">210702</span> <span class="m">10</span>:10:12 /work/pxb/ins/2.4/bin/xbcloud: successfully uploaded chunk: backup3/xtrabackup_logfile.00000000000000000006, size: <span class="m">8388660</span>
+210702 10:10:12 /work/pxb/ins/2.4/bin/xbcloud: successfully uploaded chunk: backup3/xtrabackup_logfile.00000000000000000006, size: 8388660
 </code></pre></div>
 <p>The following list details the example output:</p>
 <p>[1.] Chunk <code>xtrabackup_logfile.00000000000000000006</code> fails to upload the first time and slept for 2384 milliseconds.</p>
@@ -1685,7 +1685,7 @@
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

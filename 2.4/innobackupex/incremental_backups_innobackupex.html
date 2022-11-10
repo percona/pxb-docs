@@ -1621,7 +1621,7 @@ recover_binlog_info = 1
 </code></pre></div>
 <p>Creating another incremental backup the next day will be analogous, but this
 time the previous incremental one will be base:</p>
-<div class="highlight"><pre><span></span><code>$ innobackupex --incremental /data/backups --incremental-basedir=INCREMENTAL-DIR-1
+<div class="highlight"><pre><span></span><code>$ innobackupex --incremental /data/backups --incremental-basedir<span class="o">=</span>INCREMENTAL-DIR-1
 </code></pre></div>
 <p>Yielding (in this example) <code>/data/backups/2013-04-02_23-01-18</code>. We will
 use <code>INCREMENTAL-DIR-2</code> instead for simplicity.</p>
@@ -1662,14 +1662,15 @@ this on an incremental one, you won’t be able to add data from that moment and
 the remaining increments.</p>
 <p>Having this in mind, the procedure is very straight-forward using the
 <code>innobackupex --redo-only</code> option, starting with the base backup:</p>
-<div class="highlight"><pre><span></span><code>innobackupex --apply-log --redo-only BASE-DIR
+<div class="highlight"><pre><span></span><code>$ innobackupex --apply-log --redo-only BASE-DIR
 </code></pre></div>
 <p>You should see an output similar to:</p>
 <div class="highlight"><pre><span></span><code>160103 22:00:12 InnoDB: Shutdown completed; log sequence number 4124244
 160103 22:00:12 innobackupex: completed OK!
 </code></pre></div>
 <p>Then, the first incremental backup can be applied to the base backup, by issuing:</p>
-<div class="highlight"><pre><span></span><code>innobackupex --apply-log --redo-only BASE-DIR --incremental-dir=INCREMENTAL-DIR-1
+<div class="highlight"><pre><span></span><code>$ innobackupex --apply-log --redo-only BASE-DIR 
+--incremental-dir<span class="o">=</span>INCREMENTAL-DIR-1
 </code></pre></div>
 <p>You should see an output similar to the previous one but with corresponding <em>LSN</em>:</p>
 <div class="highlight"><pre><span></span><code>160103 22:08:43 InnoDB: Shutdown completed; log sequence number 6938371
@@ -1691,7 +1692,8 @@ backup directory, <code>BASE-DIR</code>.</p>
 </div>
 <p>You can use this procedure to add more increments to the base, as long as you do
 it in the chronological order that the backups were done. If you merge the
-incrementals in the wrong order, the backup will be useless. If you have doubts
+incremental backups in the wrong order, the backup will be useless. If you 
+have doubts
 about the order that they must be applied, you can check the file
 <code>xtrabackup_checkpoints</code> at the directory of each one, as shown in the
 beginning of this section.</p>
@@ -1757,7 +1759,7 @@ ssh user@hostname <span class="s2">&quot; cat - | xbstream -x -C &gt; /backup-di
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>

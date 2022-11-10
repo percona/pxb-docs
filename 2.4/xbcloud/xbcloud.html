@@ -2140,16 +2140,16 @@ needing a local storage.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In a Bash shell, the <code>$?</code> parameter returns the exit code from the last binary. If you use pipes the <code>${PIPESTATUS[x]}</code> array parameter returns the exit codes for each binary in the pipe string.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --target-dir<span class="o">=</span>/storage/backups/ <span class="p">|</span> xbcloud put <span class="o">[</span>options<span class="o">]</span> full_backup
 
-&gt; true | false
-&gt; echo $?
-&gt; 1
+&gt; <span class="nb">true</span> <span class="p">|</span> <span class="nb">false</span>
+&gt; <span class="nb">echo</span> <span class="nv">$?</span>
+&gt; <span class="m">1</span>
 
-# with PIPESTATUS
-&gt; true | false
-&gt; echo ${PIPESTATUS[0]} ${PIPESTATUS[1]}
-&gt; 0 1
+<span class="c1"># with PIPESTATUS</span>
+&gt; <span class="nb">true</span> <span class="p">|</span> <span class="nb">false</span>
+&gt; <span class="nb">echo</span> <span class="si">${</span><span class="nv">PIPESTATUS</span><span class="p">[0]</span><span class="si">}</span> <span class="si">${</span><span class="nv">PIPESTATUS</span><span class="p">[1]</span><span class="si">}</span>
+&gt; <span class="m">0</span> <span class="m">1</span>
 </code></pre></div>
 </div>
 <p>The <em>xbcloud</em> binary stores each chunk as a separate object with a name
@@ -2429,7 +2429,7 @@ xbcloud put s3://operator-testing/bak-enc/ <span class="se">\</span>
 <p>The <code>--header</code> parameter is also useful to set the access control list (ACL)
 permissions: <code>--header="x-amz-acl: bucket-owner-full-control</code></p>
 <h2 id="restoring-with-swift">Restoring with Swift<a class="headerlink" href="#restoring-with-swift" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>$ xbcloud get <span class="o">[</span>options<span class="o">]</span> &lt;name&gt; <span class="o">[</span>&lt;list-of-files&gt;<span class="o">]</span> <span class="p">|</span> xbstream -x
+<div class="highlight"><pre><span></span><code>xbcloud get [options] &lt;name&gt; [&lt;list-of-files&gt;] | xbstream -x
 </code></pre></div>
 <p>The following example shows how to fetch and restore the backup from Swift:</p>
 <div class="highlight"><pre><span></span><code>$ xbcloud get --storage<span class="o">=</span>swift <span class="se">\</span>
@@ -2577,7 +2577,7 @@ TempAuth, <code>2.0</code> - Keystone v2.0, and <code>3</code> - Keystone v3. De
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>

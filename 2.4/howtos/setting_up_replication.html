@@ -1620,17 +1620,17 @@ both servers for convenience.</p>
 </div>
 <h2 id="step-1-make-a-backup-on-the-source-and-prepare-it">STEP 1: Make a backup on the <code>Source</code> and prepare it<a class="headerlink" href="#step-1-make-a-backup-on-the-source-and-prepare-it" title="Permanent link">&para;</a></h2>
 <p>On the <code>Source</code>, issue the following command to a shell:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>xtrabackup --backup --user<span class="o">=</span>yourDBuser --password<span class="o">=</span>MaGiCdB1 --target-dir<span class="o">=</span>/path/to/backupdir
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --user<span class="o">=</span>yourDBuser --password<span class="o">=</span>MaGiCdB1 --target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
 <p>After this is finished you should see:</p>
-<div class="highlight"><pre><span></span><code><span class="go">xtrabackup: completed OK!</span>
+<div class="highlight"><pre><span></span><code>xtrabackup: completed OK!
 </code></pre></div>
 <p>This action copies your <em>MySQL</em> data dir to the <code>/path/to/backupdir</code>
 directory. You have told <em>Percona XtraBackup</em> to connect to the database server
 using your database user and password, and do a hot backup of all your data in
 it (all <em>MyISAM</em>, <em>InnoDB</em> tables and indexes in them).</p>
 <p>On the <code>Source</code>, to make the snapshot consistent, prepare the data:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>xtrabackup --user<span class="o">=</span>yourDBuser --password<span class="o">=</span>MaGiCdB1 <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$ xtrabackup --user<span class="o">=</span>yourDBuser --password<span class="o">=</span>MaGiCdB1 <span class="se">\</span>
             --prepare --target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
 <p>Select the path where your snapshot has been taken. If everything is ok
@@ -1641,7 +1641,8 @@ the MySQL server.</p>
 If you have your configuration file in a non-standard place, use the
 flag <code>xtrabackup --defaults-file</code> <code>=/location/of/my.cnf</code>.</p>
 <p>If you want to skip writing the user name and password every time you want to access <em>MySQL</em>, set the information in <code>.mylogin.cnf</code> as follows:</p>
-<div class="highlight"><pre><span></span><code>mysql_config_editor set --login-path=client --host=localhost --user=root --password
+<div class="highlight"><pre><span></span><code>$ mysql_config_editor <span class="nb">set</span> --login-path<span class="o">=</span>client --host<span class="o">=</span>localhost 
+--user<span class="o">=</span>root --password
 </code></pre></div>
 <p>This setting provides root access to MySQL.</p>
 <div class="admonition admonition">
@@ -1652,40 +1653,39 @@ flag <code>xtrabackup --defaults-file</code> <code>=/location/of/my.cnf</code>.<
 <p>Use <code>rsync</code> or <code>scp</code> to copy the data from Source to Replica. If you’re
 syncing the data directly to replica’s data directory it’s advised to stop the
 mysqld there. On the <code>Source</code>, run the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>rsync -avpP -e ssh /path/to/backupdir Replica:/path/to/mysql/
+<div class="highlight"><pre><span></span><code>$ rsync -avpP -e ssh /path/to/backupdir Replica:/path/to/mysql/
 </code></pre></div>
 <p>After data has been copied you can back up the original or previously installed
 <em>MySQL</em> <code>datadir</code> (<strong>NOTE</strong>: Make sure mysqld is shut down before you move
 the contents of its datadir, or move the snapshot into its datadir.). Run the following command on the <code>Replica</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>mv /path/to/mysql/datadir /path/to/mysql/datadir_bak
+<div class="highlight"><pre><span></span><code>$ mv /path/to/mysql/datadir /path/to/mysql/datadir_bak
 </code></pre></div>
 <p>and, on the <code>Replica</code>, move the snapshot from the <code>Source</code> in its place:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>xtrabackup --move-back --target-dir<span class="o">=</span>/path/to/mysql/backupdir
+<div class="highlight"><pre><span></span><code>$ xtrabackup --move-back --target-dir<span class="o">=</span>/path/to/mysql/backupdir
 </code></pre></div>
 <p>After you have copied data to the <code>Replica</code>, make sure the <code>Replica</code> <em>MySQL</em> has the proper permissions:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>chown mysql:mysql /path/to/mysql/datadir
+<div class="highlight"><pre><span></span><code>$ chown mysql:mysql /path/to/mysql/datadir
 </code></pre></div>
-<p>In case the ibdata and iblog files are located in different directories outside
-of the datadir, put them in their proper place after the logs have been applied.</p>
+<p>In case the ibdata and iblog files are located in different directories outside the datadir, put them in their proper place after the logs have been applied.</p>
 <h2 id="step-3-configure-the-source-mysql-server">STEP 3: Configure the <code>Source</code> MySQL server<a class="headerlink" href="#step-3-configure-the-source-mysql-server" title="Permanent link">&para;</a></h2>
 <p>On the <code>Source</code>, add the appropriate grant to allow the replica to connect to the source:</p>
-<div class="highlight"><pre><span></span><code> &gt; GRANT REPLICATION SLAVE ON *.*  TO <span class="s1">&#39;repl&#39;</span>@<span class="s1">&#39;$replicaip&#39;</span>
-IDENTIFIED BY <span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w">  </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;$replicaip&#39;</span><span class="w"></span>
+<span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Also make sure that firewall rules are correct and that the <code>Replica</code> can connect
 to the <code>Source</code>. Test that you can run the mysql client on the <code>Replica</code>,
 connect to the <code>Source</code>, and authenticate.</p>
-<div class="highlight"><pre><span></span><code>$ mysql --host=Source --user=repl --password=$replicapass
+<div class="highlight"><pre><span></span><code>$ mysql --host<span class="o">=</span>Source --user<span class="o">=</span>repl --password<span class="o">=</span><span class="nv">$replicapass</span>
 </code></pre></div>
 <p>Verify the privileges.</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; SHOW GRANTS;
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <h2 id="step-4-configure-the-replica-mysql-server">STEP 4: Configure the <code>Replica</code> MySQL server<a class="headerlink" href="#step-4-configure-the-replica-mysql-server" title="Permanent link">&para;</a></h2>
 <p>Copy the <code>my.cnf</code> file from the <code>Source</code> to the <code>Replica</code>. On the <code>Replica</code>, run the following:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>scp user@Source:/etc/mysql/my.cnf /etc/mysql/my.cnf
+<div class="highlight"><pre><span></span><code>$ scp user@Source:/etc/mysql/my.cnf /etc/mysql/my.cnf
 </code></pre></div>
 <p>then change the following options in /etc/mysql/my.cnf:</p>
-<div class="highlight"><pre><span></span><code><span class="go">server-id=2</span>
+<div class="highlight"><pre><span></span><code>server-id=2
 </code></pre></div>
 <p>and start/restart <code>mysqld</code> on the <code>Replica</code>.</p>
 <p>In case you’re using init script on Debian based system to start mysqld, be sure
@@ -1694,29 +1694,31 @@ same as the user’s password on the <code>Source</code>. This password can be s
 updated in <code>/etc/mysql/debian.cnf</code>.</p>
 <h2 id="step-5-start-the-replication">STEP 5: Start the replication<a class="headerlink" href="#step-5-start-the-replication" title="Permanent link">&para;</a></h2>
 <p>On the <code>Replica</code>, look at the content of the file <code>xtrabackup_binlog_info</code>, it will be something like:</p>
-<div class="highlight"><pre><span></span><code><span class="gp"> $ </span>cat /var/lib/mysql/xtrabackup_binlog_info
-<span class="go">Source-bin.000001     481</span>
+<div class="highlight"><pre><span></span><code> $ cat /var/lib/mysql/xtrabackup_binlog_info
+Source-bin.000001     <span class="m">481</span>
 </code></pre></div>
 <p>Execute the <code>CHANGE MASTER</code> statement on a MySQL console and use the username and password you’ve set up in STEP 3:</p>
-<div class="highlight"><pre><span></span><code><span class="n">TheSlave</span><span class="o">*</span><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CHANGE</span><span class="w"> </span><span class="k">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"></span>
-<span class="w">                </span><span class="k">MASTER_HOST</span><span class="o">=</span><span class="s1">&#39;$sourceip&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="k">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;repl&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="k">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;$replicapass&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="k">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;Source-bin.000001&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="k">MASTER_LOG_POS</span><span class="o">=</span><span class="mi">481</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">TheSlave</span><span class="o">*</span><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"></span>
+<span class="w">                </span><span class="n">MASTER_HOST</span><span class="o">=</span><span class="s1">&#39;$sourceip&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;repl&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;$replicapass&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;Source-bin.000001&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="n">MASTER_LOG_POS</span><span class="o">=</span><span class="mi">481</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>and start the replica:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="k">SLAVE</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="n">SLAVE</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <h2 id="step-6-check">STEP 6: Check<a class="headerlink" href="#step-6-check" title="Permanent link">&para;</a></h2>
 <p>On the <code>Replica</code>, check that everything went OK with:</p>
-<div class="highlight"><pre><span></span><code>TheSlave|mysql&gt; SHOW SLAVE STATUS \G
-         ...
-         Slave_IO_Running: Yes
-         Slave_SQL_Running: Yes
-         ...
-         Seconds_Behind_Master: 13
-         ...
+<p><div class="highlight"><pre><span></span><code><span class="n">TheSlave</span><span class="o">|</span><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="err">\</span><span class="k">G</span><span class="w"></span>
+</code></pre></div>
+The results should look like the following:</p>
+<div class="highlight"><pre><span></span><code> ...
+ Slave_IO_Running: Yes
+ Slave_SQL_Running: Yes
+ ...
+ Seconds_Behind_Master: 13
+ ...
 </code></pre></div>
 <p>Both <code>IO</code> and <code>SQL</code> threads need to be running. The
 <code>Seconds_Behind_Master</code> means the <code>SQL</code> currently being executed has a
@@ -1730,44 +1732,44 @@ source. We will use <em>Percona XtraBackup</em> to clone an already configured
 replica. We will continue using the previous scenario for convenience but we will
 add the <code>NewReplica</code> to the plot.</p>
 <p>At the <code>Replica</code>, do a full backup:</p>
-<div class="highlight"><pre><span></span><code><span class="gp"> $ </span>xtrabackup --user<span class="o">=</span>yourDBuser --password<span class="o">=</span>MaGiCiGaM <span class="se">\</span>
+<div class="highlight"><pre><span></span><code> $ xtrabackup --user<span class="o">=</span>yourDBuser --password<span class="o">=</span>MaGiCiGaM <span class="se">\</span>
 --backup --slave-info --target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
 <p>By using the <code>xtrabackup --slave-info</code> <em>Percona XtraBackup</em> creates
 additional file called xtrabackup_slave_info.</p>
 <p>On the <code>Replica</code>, apply the logs:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>xtrabackup --prepare --use-memory<span class="o">=</span>2G --target-dir<span class="o">=</span>/path/to/backupdir/
+<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --use-memory<span class="o">=</span>2G --target-dir<span class="o">=</span>/path/to/backupdir/
 </code></pre></div>
 <p>Copy the directory from the <code>Replica</code> to the <code>NewReplica</code> (<strong>NOTE</strong>: Make sure
 mysqld is shut down on the <code>NewReplica</code> before you copy the contents the snapshot
 into its <code>datadir</code>.):</p>
-<div class="highlight"><pre><span></span><code><span class="go">rsync -avprP -e ssh /path/to/backupdir NewReplica:/path/to/mysql/datadir</span>
+<div class="highlight"><pre><span></span><code>rsync -avprP -e ssh /path/to/backupdir NewReplica:/path/to/mysql/datadir
 </code></pre></div>
 <p>On the <code>Source</code>, add additional grant on the source:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">REPLICATION</span><span class="w"> </span><span class="k">SLAVE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w">  </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;repl&#39;</span><span class="nv">@&#39;$newreplicaip&#39;</span><span class="w"></span>
-<span class="w">                 </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w">  </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;$newreplicaip&#39;</span><span class="w"></span>
+<span class="w">                 </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>Copy the configuration file from the <code>Replica</code>. On the <code>NewReplica</code>, run the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>scp user@Replica:/etc/mysql/my.cnf /etc/mysql/my.cnf
+<div class="highlight"><pre><span></span><code>$ scp user@Replica:/etc/mysql/my.cnf /etc/mysql/my.cnf
 </code></pre></div>
 <p>Make sure you change the server-id variable in <code>/etc/mysql/my.cnf</code> to 3
 and disable the replication on start:</p>
-<div class="highlight"><pre><span></span><code><span class="go">skip-slave-start</span>
-<span class="go">server-id=3</span>
+<div class="highlight"><pre><span></span><code>skip-slave-start
+server-id=3
 </code></pre></div>
 <p>After setting <code>server_id</code>, start <code>mysqld</code>.</p>
 <p>Fetch the master_log_file and master_log_pos from the file
 <code>xtrabackup_slave_info</code>, execute the statement for setting up the source
 and the log file for the <code>NewReplica</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">TheNEWSlave</span><span class="o">|</span><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CHANGE</span><span class="w"> </span><span class="k">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"></span>
-<span class="w">                   </span><span class="k">MASTER_HOST</span><span class="o">=</span><span class="s1">&#39;$sourceip&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                   </span><span class="k">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;repl&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                   </span><span class="k">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;$replicapass&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                   </span><span class="k">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;Source-bin.000001&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                   </span><span class="k">MASTER_LOG_POS</span><span class="o">=</span><span class="mi">481</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">TheNEWSlave</span><span class="o">|</span><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"></span>
+<span class="w">                   </span><span class="n">MASTER_HOST</span><span class="o">=</span><span class="s1">&#39;$sourceip&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                   </span><span class="n">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;repl&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                   </span><span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;$replicapass&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                   </span><span class="n">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;Source-bin.000001&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                   </span><span class="n">MASTER_LOG_POS</span><span class="o">=</span><span class="mi">481</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>and start the replica:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="k">SLAVE</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="n">SLAVE</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 <p>If both IO and SQL threads are running when you check the the <code>NewReplica</code>,
 server is replicating the <code>Source</code>.</p>
@@ -1792,7 +1794,7 @@ server is replicating the <code>Source</code>.</p>
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-10
     
   </small>
 </div>

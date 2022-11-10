@@ -1537,7 +1537,7 @@ be automatically encrypted.</p>
 <p>To use the streaming feature, you must use the <code>innobackupex --stream</code>,
 providing the format of the stream (<code>tar</code> or <code>xbstream</code> ) and where to store
 the temporary files:</p>
-<div class="highlight"><pre><span></span><code>$ innobackupex --stream=tar /tmp
+<div class="highlight"><pre><span></span><code>$ innobackupex --stream<span class="o">=</span>tar /tmp
 </code></pre></div>
 <p><em>innobackupex</em> uses <em>xbstream</em> to stream all of the data files to <code>STDOUT</code>, in
 a special <code>xbstream</code> format. See <a href="../xbstream/xbstream.html">The xbstream binary</a> for
@@ -1556,10 +1556,10 @@ were both compressed and encrypted, they’ll need to decrypted first in order t
 be uncompressed.</p>
 <h2 id="examples-using-xbstream">Examples using xbstream<a class="headerlink" href="#examples-using-xbstream" title="Permanent link">&para;</a></h2>
 <p>Store the complete backup directly to a single file:</p>
-<div class="highlight"><pre><span></span><code>$ innobackupex --stream=xbstream /root/backup/ &gt; /root/backup/backup.xbstream
+<div class="highlight"><pre><span></span><code>$ innobackupex --stream<span class="o">=</span>xbstream /root/backup/ &gt; /root/backup/backup.xbstream
 </code></pre></div>
 <p>To stream and compress the backup:</p>
-<div class="highlight"><pre><span></span><code>$ innobackupex --stream=xbstream --compress /root/backup/ &gt; /root/backup/backup.xbstream
+<div class="highlight"><pre><span></span><code>$ innobackupex --stream<span class="o">=</span>xbstream --compress /root/backup/ &gt; /root/backup/backup.xbstream
 </code></pre></div>
 <p>To unpack the backup to the /root/backup/ directory:</p>
 <div class="highlight"><pre><span></span><code>$ xbstream -x &lt;  backup.xbstream -C /root/backup/
@@ -1578,12 +1578,9 @@ be uncompressed.</p>
 <p class="admonition-title">Note</p>
 <p>To extract <em>Percona XtraBackup</em>’s archive you <strong>must</strong> use tar with <code>-i</code> option:</p>
 </div>
-<div class="highlight"><pre><span></span><code>.. code-block:: bash
+<p><div class="highlight"><pre><span></span><code> $ tar -xizf backup.tar.gz
 </code></pre></div>
-<blockquote>
-<p>$ tar -xizf backup.tar.gz</p>
-</blockquote>
-<p>Compress with your preferred compression tool:</p>
+Compress with your preferred compression tool:</p>
 <div class="highlight"><pre><span></span><code>$ innobackupex --stream<span class="o">=</span>tar ./ <span class="p">|</span> gzip - &gt; backup.tar.gz
 $ innobackupex --stream<span class="o">=</span>tar ./ <span class="p">|</span> bzip2 - &gt; backup.tar.bz2
 </code></pre></div>
@@ -1610,7 +1607,7 @@ restoration. Streaming mode does not prepare the backup.</p>
   <small>
     
       Last update:
-      2022-07-19
+      2022-11-10
     
   </small>
 </div>
