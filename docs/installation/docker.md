@@ -47,7 +47,7 @@ To set up a database server on a host machine or in Docker
 container, follow the documentation of the supported product that you
 intend to use with Percona XtraBackup.
 
-!!! seealso
+!!! admonition "See also"
 
     Percona Server for MySQL Documentation:
       * [Installing on a host machine](https://www.percona.com/doc/percona-server/5.7/installation.html)
@@ -100,7 +100,7 @@ percona/percona-xtrabackup:2.4
 xtrabackup --backup --data-dir=/var/lib/mysql --target-dir=/backup --user=root --password=mysql
 ```
 
-!!! seealso
+!!! admonition "See also"
 
     More in Docker documentation
       * [Docker volumes as persistent data storage for containers](https://docs.docker.com/storage/volumes/)

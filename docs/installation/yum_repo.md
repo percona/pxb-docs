@@ -27,69 +27,69 @@ The `percona-xtrabackup` package contains the older version of the
 
 1. Install the `percona-release` configuration tool
 
-You can install the yum repository for percona-release
-by running the following command as a `root` user or with
-`sudo`:
+    You can install the yum repository for percona-release
+    by running the following command as a `root` user or with
+    `sudo`:
 
-```shell
-$ yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
-```
+    ```shell
+    $ yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+    ```
 
-You should see some output such as the following:
+    You should see some output such as the following:
 
-```text
-Retrieving https://repo.percona.com/yum/percona-release-latest.noarch.rpm
-Preparing...                ########################################### [100%]
-   1:percona-release        ########################################### [100%]
-```
+    ```text
+    Retrieving https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+    Preparing...                ########################################### [100%]
+       1:percona-release        ########################################### [100%]
+    ```
 
-!!! note
+    !!! note
 
-    *RHEL*/*Centos* 5 doesn’t support installing the packages directly from the remote location so you’ll need to download the package first and install it manually with rpm:
+        *RHEL*/*Centos* 5 doesn’t support installing the packages directly from the remote location so you’ll need to download the package first and install it manually with rpm:
 
-```shell
-$ wget https://repo.percona.com/yum/percona-release-latest.noarch.rpm
-$ rpm -ivH percona-release-latest.noarch.rpm
-```
+    ```shell
+    $ wget https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+    $ rpm -ivH percona-release-latest.noarch.rpm
+    ```
 
 2. Testing the repository
 
-Make sure packages are now available from the repository, by executing the
-following command:
+    Make sure packages are now available from the repository, by executing the
+    following command:
 
-```shell
-$ yum list | grep percona
-```
+    ```shell
+    $ yum list | grep percona
+    ```
 
-You should see output similar to the following:
+    You should see output similar to the following:
 
-```text
-...
-percona-xtrabackup-20.x86_64               2.0.8-587.rhel5             percona-release-x86_64
-percona-xtrabackup-20-debuginfo.x86_64     2.0.8-587.rhel5             percona-release-x86_64
-percona-xtrabackup-20-test.x86_64          2.0.8-587.rhel5             percona-release-x86_64
-percona-xtrabackup-21.x86_64               2.1.9-746.rhel5             percona-release-x86_64
-percona-xtrabackup-21-debuginfo.x86_64     2.1.9-746.rhel5             percona-release-x86_64
-percona-xtrabackup-22.x86_64               2.2.13-1.el5                percona-release-x86_64
-percona-xtrabackup-22-debuginfo.x86_64     2.2.13-1.el5                percona-release-x86_64
-percona-xtrabackup-debuginfo.x86_64        2.3.5-1.el5                 percona-release-x86_64
-percona-xtrabackup-test.x86_64             2.3.5-1.el5                 percona-release-x86_64
-percona-xtrabackup-test-21.x86_64          2.1.9-746.rhel5             percona-release-x86_64
-percona-xtrabackup-test-22.x86_64          2.2.13-1.el5                percona-release-x86_64
-...
-```
+    ```text
+    ...
+    percona-xtrabackup-20.x86_64               2.0.8-587.rhel5             percona-release-x86_64
+    percona-xtrabackup-20-debuginfo.x86_64     2.0.8-587.rhel5             percona-release-x86_64
+    percona-xtrabackup-20-test.x86_64          2.0.8-587.rhel5             percona-release-x86_64
+    percona-xtrabackup-21.x86_64               2.1.9-746.rhel5             percona-release-x86_64
+    percona-xtrabackup-21-debuginfo.x86_64     2.1.9-746.rhel5             percona-release-x86_64
+    percona-xtrabackup-22.x86_64               2.2.13-1.el5                percona-release-x86_64
+    percona-xtrabackup-22-debuginfo.x86_64     2.2.13-1.el5                percona-release-x86_64
+    percona-xtrabackup-debuginfo.x86_64        2.3.5-1.el5                 percona-release-x86_64
+    percona-xtrabackup-test.x86_64             2.3.5-1.el5                 percona-release-x86_64
+    percona-xtrabackup-test-21.x86_64          2.1.9-746.rhel5             percona-release-x86_64
+    percona-xtrabackup-test-22.x86_64          2.2.13-1.el5                percona-release-x86_64
+    ...
+    ```
 
 3. Enable the repository: `percona-release enable-only tools release`
 
-If *Percona XtraBackup* is intented to be used in combination with
-the upstream MySQL Server, you only need to enable the `tools`
-repository: `percona-release enable-only tools`.
+    If *Percona XtraBackup* is intented to be used in combination with
+    the upstream MySQL Server, you only need to enable the `tools`
+    repository: `percona-release enable-only tools`.
 
 4. Install *Percona XtraBackup* by running:  `yum install percona-xtrabackup-24`
 
-!!! warning
+    !!! warning
 
-    In order to sucessfully install *Percona XtraBackup* on CentOS prior to version 7, the `libev` package needs to be installed first. This package `libev` package can be installed from the [EPEL](https://fedoraproject.org/wiki/EPEL) repositories.
+        In order to sucessfully install *Percona XtraBackup* on CentOS prior to version 7, the `libev` package needs to be installed first. This package `libev` package can be installed from the [EPEL](https://fedoraproject.org/wiki/EPEL) repositories.
 
 ## Percona `yum` Testing Repository
 
@@ -103,12 +103,14 @@ updating). **NOTE:** You’ll need to install the Percona repository first (ref
 above) if this hasn’t been done already.
 
 1. To be able to make compressed backups, install the `qpress` package:
+   
+    ```shell
+    $ yum install qpress
+    ```
 
-$ yum install qpress
+    !!! admonition "See also"
 
-!!! seealso
-
-    [Compressed Backup](../backup_scenarios/compressed_backup.md#compressed-backup)
+        [Compressed Backup](../backup_scenarios/compressed_backup.md#compressed-backup)
 
 ## Installing *Percona XtraBackup* using downloaded rpm packages
 

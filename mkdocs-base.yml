@@ -5,9 +5,9 @@ site_description: Documentation
 site_author: Percona LLC
 copyright: Percona LLC, &#169; 2022
 
-repo_name: percona/percona-xtrabackup
-repo_url: https://github.com/percona/percona-xtrabackup
-edit_uri: edit/2.4/storage/innobase/xtrabackup/doc/docs/
+repo_name: percona/pxb-docs
+repo_url: https://github.com/percona/pxb-docs
+edit_uri: edit/2.4/docs/
 
 use_directory_urls: false
 
@@ -33,6 +33,12 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
 
+# Theme features
+
+  features:
+    - search.highlight
+    - navigation.top
+    - content.tabs.link
 
 extra_css:
   - https://unicons.iconscout.com/release/v3.0.3/css/line.css
@@ -79,7 +85,7 @@ plugins:
   with-pdf: # https://github.com/orzih/mkdocs-with-pdf
           output_path: '_pdf/PerconaXtrabackup-2.4.pdf'
           cover_title: 'Percona XtraBackup Documentation'
-          cover_subtitle: 2.4 (June 1, 2022)
+          cover_subtitle: 2.4.26 (June 1, 2022)
           author: 'Percona Technical Documentation Team'
           cover_logo: docs/_static/percona-xtrabackup-logo.jpg
           debug_html: false
@@ -125,7 +131,35 @@ nav:
   - Tutorials, Recipes, How-tos:
       - how-tos.md
   - References:
-      - release-notes.md
+      - Release notes:
+          - release-notes.md
+          - release-notes/2.4/2.4.26.md
+          - release-notes/2.4/2.4.25.md
+          - release-notes/2.4/2.4.24.md
+          - release-notes/2.4/2.4.23.md
+          - release-notes/2.4/2.4.22.md
+          - release-notes/2.4/2.4.21.md
+          - release-notes/2.4/2.4.20.md
+          - release-notes/2.4/2.4.19.md
+          - release-notes/2.4/2.4.18.md
+          - release-notes/2.4/2.4.17.md
+          - release-notes/2.4/2.4.16.md
+          - release-notes/2.4/2.4.15.md
+          - release-notes/2.4/2.4.14.md
+          - release-notes/2.4/2.4.13.md
+          - release-notes/2.4/2.4.12.md
+          - release-notes/2.4/2.4.11.md
+          - release-notes/2.4/2.4.10.md
+          - release-notes/2.4/2.4.9.md
+          - release-notes/2.4/2.4.8.md
+          - release-notes/2.4/2.4.7-2.md
+          - release-notes/2.4/2.4.7.md
+          - release-notes/2.4/2.4.6.md
+          - release-notes/2.4/2.4.5.md
+          - release-notes/2.4/2.4.4.md
+          - release-notes/2.4/2.4.3.md
+          - release-notes/2.4/2.4.2.md
+          - release-notes/2.4/2.4.1.md
       - xtrabackup_bin/xbk_option_reference.md
       - innobackupex/innobackupex_option_reference.md
       - xbcloud/xbcloud.md

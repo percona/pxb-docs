@@ -64,28 +64,21 @@ S3 API.
 Swift was the only option for storing backups in cloud storage until *Percona XtraBackup 2.4.14*. 
 Currently, the xbcloud binary supports [Amazon S3](#creating-a-full-backup-with-amazon-s3), [Azure](xbcloud_azure.md#xbcloud-azure), [MinIO](#creating-a-full-backup-with-minio) and [Google Cloud Storage](#creating-a-full-backup-with-google-cloud-storage). Amazon S3-compatible cloud storage types, such as Wasabi and Digital Ocean Spaces, are also supported.
 
-!!! seealso
+!!! admonition "See also"
 
-    OpenStack Object Storage ("Swift")
-    https://wiki.openstack.org/wiki/Swift
+    [OpenStack Object Storage ("Swift")](https://wiki.openstack.org/wiki/Swift)
     
-    Amazon Simple Storage Service
-    https://aws.amazon.com/s3/
+    [Amazon Simple Storage Service](https://aws.amazon.com/s3/)
 
-    Azure Cloud Storage
-    https://azure.microsoft.com/en-gb/product-categories/storage/
+    [Azure Cloud Storage](https://azure.microsoft.com/en-gb/product-categories/storage/)
     
-    MinIO
-    https://min.io/
+    [MinIO](https://min.io/)
     
-    Google Cloud Storage
-    https://cloud.google.com/storage/
+    [Google Cloud Storage](https://cloud.google.com/storage/)
     
-    Wasabi
-    https://wasabi.com/
+    [Wasabi](https://wasabi.com/)
     
-    Digital Ocean Spaces
-    https://www.digitalocean.com/products/spaces/
+    [Digital Ocean Spaces](https://www.digitalocean.com/products/spaces/)
 
 ## Usage
 
@@ -153,7 +146,7 @@ The support for Google Cloud Storage is implemented using the interoperability
 mode. This mode was especially designed to interact with cloud services
 compatible with *Amazon S3*.
 
-!!! seealso
+!!! admonition "See also"
 
     Cloud Storage Interoperability
       https://cloud.google.com/storage/docs/interoperability

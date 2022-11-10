@@ -88,7 +88,7 @@ $ mysql_config_editor set --login-path=client --host=localhost
 
 This setting provides root access to MySQL.
 
-!!! seealso
+!!! admonition "See also"
 
     *MySQL* Documentaiton: [MySQL Configuration Utility](https://dev.mysql.com/doc/refman/5.7/en/mysql-config-editor.html)
 

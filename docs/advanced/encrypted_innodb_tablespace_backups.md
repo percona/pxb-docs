@@ -107,7 +107,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-vault-config=/etc/vault.cnf
 ```
 
-!!! seealso
+!!! admonition "See also"
 
     Data at Rest Encryption for Percona Server [keyring vault plugin settings] (https://www.percona.com/doc/percona-server/LATEST/management/data_at_rest_encryption.html#keyring-vault-plugin).
 
