@@ -1,6 +1,5 @@
-# The **xtrabackup** Option Reference
+# The xtrabackup Option Reference
 
-<!-- .. program:: xtrabackup -->
 This page documents all of the command-line options for the
 **xtrabackup** binary.
 
@@ -121,7 +120,6 @@ the process is not aborted and a warning is printed.
 xtrabackup: Error: missing required privilege LOCK TABLES on *.*
 xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
 ```
-
 
 ### --close-files()
 Do not keep files opened. When *xtrabackup* opens tablespace it normally
@@ -971,5 +969,3 @@ This option prints *xtrabackup* version and exits.
 
 ### --xtrabackup-plugin-dir(=DIRNAME)
 The absolute path to the directory that contains the `keyring` plugin.
-
-<!-- *xtrabackup* replace:: :program:`xtrabackup` -->

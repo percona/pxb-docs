@@ -13,23 +13,27 @@ partial backups:
 
 3. providing a list of databases
 
-**WARNING**: Do not copy back the prepared backup.
+!!! warning
+   
+    Do not copy back the prepared backup.
 
-Restoring partial backups should be done by importing the tables,
-not by using the –copy-back option. It is not
-recommended to run incremental backups after running a partial
-backup.
+    Restoring partial backups should be done by importing the tables,
+    not by using the –copy-back option. It is not
+    recommended to run incremental backups after running a partial
+    backup.
 
-Although there are some scenarios where restoring can be done by
-copying back the files, this may lead to database
-inconsistencies in many cases and it is not a recommended way to
-do it.
+    Although there are some scenarios where restoring can be done by
+    copying back the files, this may lead to database
+    inconsistencies in many cases and it is not a recommended way to
+    do it.
 
 For the purposes of this manual page, we will assume that there is a database
 named `test` which contains tables named `t1` and `t2`.
 
-**WARNING**: If any of the matched or listed tables is deleted during the backup,
-*xtrabackup* will fail.
+!!! warning
+   
+    If any of the matched or listed tables is deleted during the backup,
+    *xtrabackup* will fail.
 
 ## Creating Partial Backups
 
@@ -89,9 +93,11 @@ this list, make sure to specify the `mysql`, `sys`, and
 `performance_schema` databases. These databases are required when restoring
 the databases using xtrabackup –copy-back.
 
-**NOTE**: Tables processed during the –prepare step may also be added to the backup
-even if they are not explicitly listed by the parameter if they were created
-after the backup started.
+!!! note
+   
+    Tables processed during the –prepare step may also be added to the backup
+    even if they are not explicitly listed by the parameter if they were created
+    after the backup started.
 
 ```shell
 $ xtrabackup --databases='mysql sys performance_schema test ...'
@@ -102,9 +108,11 @@ $ xtrabackup --databases='mysql sys performance_schema test ...'
 The –databases-file option specifies a file that can contain multiple
 databases and tables in the `databasename[.tablename]` format, one element name per line in the file. Names are matched exactly, case-sensitive, with no pattern or regular expression matching.
 
-**NOTE**: Tables processed during the –prepare step may also be added to the backup
-even if they are not explicitly listed by the parameter if they were created
-after the backup started.
+!!! note
+   
+    Tables processed during the –prepare step may also be added to the backup
+    even if they are not explicitly listed by the parameter if they were created
+    after the backup started.
 
 ## Preparing Partial Backups
 
@@ -123,9 +131,9 @@ will be removed from the data dictionary, and when you restore the backup and
 start InnoDB, they will no longer exist and will not cause any errors or
 warnings to be printed to the log file.
 
-> Could not find any file associated with the tablespace ID: 5
+Could not find any file associated with the tablespace ID: 5
 
-> Use –innodb-directories to find the tablespace files. If that fails then use –innodb-force-recovery=1 to ignore this and to permanently lose all changes to the missing tablespace(s).
+Use –innodb-directories to find the tablespace files. If that fails then use –innodb-force-recovery=1 to ignore this and to permanently lose all changes to the missing tablespace(s).
 
 ## Restoring Partial Backups
 

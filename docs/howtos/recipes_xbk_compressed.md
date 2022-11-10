@@ -76,10 +76,9 @@ You should check for a confirmation message:
 
 Now the files in `/data/backup/` is ready to be used by the server.
 
-**NOTE**: *Percona XtraBackup* does not automatically remove the compressed
-files. In
-order to clean up the backup directory users should remove the `\*.qp`
-files.
+!!! note
+   
+    *Percona XtraBackup* does not automatically remove the compressed files. In order to clean up the backup directory users should remove the `\*.qp` files.
 
 ## Restoring the backup
 

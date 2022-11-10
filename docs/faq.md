@@ -25,8 +25,7 @@ see [Percona XtraBackup 8.x and MySQL 8.0.20](https://www.percona.com/blog/2020/
 **innobackupex** has been removed from *Percona XtraBackup*
 8.0 in favor of **xtrabackup**.
 
-## Are you aware of any web-based backup management tools (commercial or not) built around *
-Percona XtraBackup*?
+## Are you aware of any web-based backup management tools (commercial or not) built around *Percona XtraBackup*?
 
 [Zmanda Recovery Manager](http://www.zmanda.com/zrm-mysql-enterprise.html)
 is
@@ -84,9 +83,11 @@ In this case, the following error is printed:
 Percona XtraBackup will not be able to take a consistent backup. Retry the backup operation.
 ```
 
-**NOTE**: Redo logging is disabled during
-a [sorted index build](https://dev.mysql.com/doc/refman/8.0/en/sorted-index-builds.html). To avoid this error,
-Percona XtraBackup can use metadata locks on tables while they are copied:
+!!! note
+   
+    Redo logging is disabled during
+    a [sorted index build](https://dev.mysql.com/doc/refman/8.0/en/sorted-index-builds.html). To avoid this error,
+    Percona XtraBackup can use metadata locks on tables while they are copied:
 
 * To block all DDL operations, use the `--lock-ddl` option
   that issues `LOCK TABLES FOR BACKUP`.
@@ -98,8 +99,11 @@ Percona XtraBackup can use metadata locks on tables while they are copied:
   and until the backup is completed
   using the `--lock-ddl-per-table` option.
 
-**NOTE**: As of *Percona XtraBackup* 8.0.15, the –lock-ddl-per-table option
-is deprecated.
-Use the –lock-ddl option.
+!!! note
+   
+    As of *Percona XtraBackup* 8.0.15, the –lock-ddl-per-table option
+    is deprecated.
+    Use the `--lock-ddl` option.
+
 
 

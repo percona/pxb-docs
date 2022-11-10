@@ -16,12 +16,13 @@ $ git submodule update --init --recursive
 The following packages and tools must be installed to compile *Percona XtraBackup* from source.
 These might vary from system to system.
 
-**Important**
-
+!!! important
+ 
     To build **Percona XtraBackup 8.0 from source, you must use `cmake` 
     version 3. To check which version is 
     currently installed, run `cmake --version` at a command prompt. If the 
-    version is not `3`, install `cmake3`. 
+    version is not `3`, install `cmake3`.
+
 
 This `cmake` version may be available 
 in your distribution as a separate package `cmake3`. For more information, see [cmake.org](https://cmake.org/)
@@ -32,7 +33,7 @@ in your distribution as a separate package `cmake3`. For more information, see [
 sudo apt install bison pkg-config cmake devscripts debconf \
 debhelper automake bison ca-certificates \
 libcurl4-openssl-dev cmake debhelper libaio-dev \
-libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev \
+libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev \
 lsb-release python-docutils build-essential rsync \
 libdbd-mysql-perl libnuma1 socat librtmp-dev libtinfo5 \
 qpress liblz4-tool liblz4-1 liblz4-dev vim-common
@@ -55,7 +56,7 @@ dependencies:
 
 ```shell
 $ sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
-bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel \
+bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel procps-ng-devel \
 vim-common
 ```
 
@@ -73,28 +74,28 @@ be used to compile the source code).
 
 
 1. Change to the directory where you cloned the Percona XtraBackup repository
-
-```shell
-$ cd percona-xtrabackup
-```
-
+ 
+    ```shell
+    $ cd percona-xtrabackup
+    ```
 
 2. Create a directory to store the compiled files and then change to that
 directory:
 
-```shell
-$ mkdir build
-$ cd build
-```
-
+    ```shell
+    $ mkdir build
+    $ cd build
+    ```
 
 3. Run cmake or cmake3. In either case, the options you need to use are the
 same.
 
-**NOTE**: You can build *Percona XtraBackup* with man pages but this requires
-`python-sphinx` package which isn’t available from that main repositories
-for every distribution. If you installed the `python-sphinx` package you
-need to remove the `-DWITH_MAN_PAGES=OFF` from previous command.
+!!! note
+ 
+    You can build *Percona XtraBackup* with man pages but this requires
+    `python-sphinx` package which isn’t available from that main repositories
+    for every distribution. If you installed the `python-sphinx` package you
+    need to remove the `-DWITH_MAN_PAGES=OFF` from previous command.
 
 ```shell
 $ cmake -DWITH_BOOST=PATH-TO-BOOST-LIBRARY -DDOWNLOAD_BOOST=ON \
@@ -103,32 +104,30 @@ $ cmake -DWITH_BOOST=PATH-TO-BOOST-LIBRARY -DDOWNLOAD_BOOST=ON \
 
 ### Parameter Information
 
-| **Parameter**      | **Description**                                                                                                                                                                                                                                                                            |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `DWITH_BOOST`      | For the `-DWITH_BOOST` parameter, specify the name of a directory to download the boost library to. This directory is created automatically in your current directory.                                                                                                                     |
-| `-B` (build        | **Percona XtraBackup** is configured to forbid generating the build pipeline for make in the same directory where you store your sources. The `-B` parameter refers to the directory that contains the source code. In this example, we use the relative path to the parent directory (..) |
-| `-DWITH_MAN_PAGES` | To build Percona XtraBackup man pages, use ON or remove this parameter from the command line (it is ON by default). To install the man pages, install the python3-sphinx package first.                                                                                                    |
-|
+| **Parameter** | **Description** |
+|---------------|-----------------|
+| `-DWITH_BOOST` | For the `-DWITH_BOOST` parameter, specify the name of a directory to download the boost library to. This directory is created automatically in your current directory. |
+| `-DWITH_MAN_PAGES` | To build **Percona XtraBackup** man pages, use `ON` or remove this parameter from the command line (it is `ON` by default). To install the man pages, install the python3-sphinx package first. See also [## Step 2: Compiling the source code](#step-2-compiling-the-source-code)  |
+| `-B` (--build)| **Percona XtraBackup** is configured to forbid generating the build pipeline for make in the same directory where you store your sources. The `-B` parameter refers to the directory that contains the source code. In this example, we use the relative path to the parent directory (..). |
 
- **Important** CMake Error at CMakeLists.txt:367 (MESSAGE): Please do not build in-source. Out-of source builds are highly recommended: you can have multiple builds for the same source, and there is an easy way to do cleanup, simply remove the build directory (note that ‘make clean’ or ‘make distclean’ does not work)
-
-You can force in-source build by invoking cmake with -DFORCE_INSOURCE_BUILD=1
-
+!!! important
+ 
+    CMake Error at CMakeLists.txt:367 (MESSAGE): Please do not build in-source. Out-of source builds are highly recommended: you can have multiple builds for the same source, and there is an easy way to do cleanup, simply remove the build directory (note that ‘make clean’ or ‘make distclean’ does `not` work)
+    
+    You `can` force in-source build by invoking cmake with `-DFORCE_INSOURCE_BUILD=1`.
 
 ## Step 2: Compiling the source code
 
 To compile the source code in your `build` directory, use the `make` command.
 
 
-1. Change to the `build` directory (created at
-Step 2: Generating the build pipeline).
-
+1. Change to the `build` directory (created at Step 2: Generating the build pipeline).
 
 2. Run the `make` command. This command may take a long time to complete.
 
-```shell
-$ make
-```
+    ```shell
+    $ make
+    ```
 
 ## Step 3: Installing on the target system
 
@@ -160,7 +159,9 @@ destinations that you can adjust for your system.
 By default, this parameter is set to `STANDALONE`, which implies the
 installation directory to be `/usr/local/xtrabackup`.
 
-**See also** [MySQL Documentation: -DINSTALL_LAYOUT](https://dev.mysql.com/doc/refman/8.0/en/source-configuration-options.html#option_cmake_install_layout)
+!!! admonition "See also"
+ 
+    [MySQL Documentation: -DINSTALL_LAYOUT](https://dev.mysql.com/doc/refman/8.0/en/source-configuration-options.html#option_cmake_install_layout)
 
 ## Step 4: Running
 

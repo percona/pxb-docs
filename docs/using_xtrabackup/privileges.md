@@ -52,10 +52,11 @@ options to connect to the server:
 These options are passed to the **mysql** child process without
 alteration, see `mysql --help` for details.
 
-
-**NOTE**: In case of multiple server instances, the correct connection parameters
-(port, socket, host) must be specified in order for *xtrabackup* to talk to
-the correct server.
+!!! note
+ 
+    In case of multiple server instances, the correct connection parameters
+    (port, socket, host) must be specified in order for *xtrabackup* to talk to
+    the correct server.
 
 ## Permissions and Privileges Needed
 
@@ -65,55 +66,44 @@ server’s datadir.
 
 The database user needs the following privileges on the tables or databases to be backed up:
 
-
 * `RELOAD` and `LOCK TABLES` (unless the `--no-lock`
 option is specified) in order to run `FLUSH TABLES WITH READ LOCK` and
 `FLUSH ENGINE LOGS` prior to start copying the files, and requires this
 privilege when [Backup Locks](http://www.percona.com/doc/percona-server/8.0/management/backup_locks.html)
 are used
 
-
 * `BACKUP_ADMIN` privilege is needed to query the
 performance_schema.log_status table, and run `LOCK INSTANCE FOR BACKUP`,
 `LOCK BINLOG FOR BACKUP`, or `LOCK TABLES FOR BACKUP`.
 
-
 * `REPLICATION CLIENT` in order to obtain the binary log position,
 
-
 * `CREATE TABLESPACE` in order to import tables (see Restoring Individual Tables),
-
 
 * `PROCESS` in order to run `SHOW ENGINE INNODB STATUS` (which is
 mandatory), and optionally to see all threads which are running on the
 server (see FLUSH TABLES WITH READ LOCK option),
 
-
 * `SUPER` in order to start/stop the replication threads in a replication
 environment, use [XtraDB Changed Page Tracking](https://www.percona.com/doc/percona-server/8.0/management/changed_page_tracking.html)
 for Incremental Backups and for handling FLUSH TABLES WITH READ LOCK,
-
 
 * `CREATE` privilege in order to create the
 PERCONA_SCHEMA.xtrabackup_history database and
 table,
 
-
 * `ALTER` privilege in order to upgrade the
 PERCONA_SCHEMA.xtrabackup_history database and
 table,
 
-
 * `INSERT` privilege in order to add history records to the
 PERCONA_SCHEMA.xtrabackup_history table,
-
 
 * `SELECT` privilege in order to use
 `--incremental-history-name` or
 `--incremental-history-uuid` in order for the feature
 to look up the `innodb_to_lsn` values in the
 PERCONA_SCHEMA.xtrabackup_history table.
-
 
 * `SELECT` privilege on the [keyring_component_status table](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-keyring-component-status-table.html)  to view the attributes and status of the installed keyring component when in use.
 

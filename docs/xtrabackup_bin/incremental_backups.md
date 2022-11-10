@@ -6,7 +6,9 @@ between each full backup, so you can set up a backup process such as a full
 backup once a week and an incremental backup every day, or full backups every
 day and incremental backups every hour.
 
-**NOTE**: Incremental backups on the MyRocks storage engine do not determine if an earlier full backup or incremental backup contains the same files. **Percona XtraBackup** copies all of the MyRocks files each time it takes a backup.
+!!! note
+   
+    Incremental backups on the MyRocks storage engine do not determine if an earlier full backup or incremental backup contains the same files. **Percona XtraBackup** copies all of the MyRocks files each time it takes a backup.
 
 Incremental backups work because each InnoDB page (usually 16kb in size)
 contains a log sequence number, or LSN. The LSN is the system
@@ -94,11 +96,13 @@ progress, and it is likely that they will be committed in the next incremental
 backup. You should use the `--apply-log-only` option to prevent the
 rollback phase.
 
-**NOTE**: If you do not use the `--apply-log-only` option to prevent the
-rollback phase, then your incremental backups will be useless. After
-transactions have been rolled back, further incremental backups cannot be
-applied.
-
+!!! note
+   
+    If you do not use the `--apply-log-only` option to prevent the
+    rollback phase, then your incremental backups will be useless. After
+    transactions have been rolled back, further incremental backups cannot be
+    applied.
+ 
 Beginning with the full backup you created, you can prepare it, and then apply
 the incremental differences to it. Recall that you have the following backups:
 
@@ -169,11 +173,13 @@ xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2
 ```
 
-**NOTE**: `--apply-log-only` should be used when merging all incrementals
-except the last one. That’s why the previous line doesn’t contain the
-`--apply-log-only` option. Even if the `--apply-log-only` was
-used on the last step, backup would still be consistent but in that case
-server would perform the rollback phase.
+!!! note
+   
+    `--apply-log-only` should be used when merging all incrementals
+    except the last one. That’s why the previous line doesn’t contain the
+    `--apply-log-only` option. Even if the `--apply-log-only` was
+    used on the last step, backup would still be consistent but in that case
+    server would perform the rollback phase.
 
 If you wish to avoid the notice that *InnoDB* was not shut down normally, when
 you applied the desired deltas to the base backup, you can run

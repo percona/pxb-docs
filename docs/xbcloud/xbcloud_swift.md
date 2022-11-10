@@ -16,42 +16,41 @@ full_backup
 ```
 
 The following OpenStack environment variables are also recognized and mapped automatically to the corresponding **swift** parameters (`--storage=swift`):
-
-> 
-> * OS_AUTH_URL
-
-
-> * OS_TENANT_NAME
+ 
+* OS_AUTH_URL
 
 
-> * OS_TENANT_ID
+* OS_TENANT_NAME
 
 
-> * OS_USERNAME
+* OS_TENANT_ID
 
 
-> * OS_PASSWORD
+* OS_USERNAME
 
 
-> * OS_USER_DOMAIN
+* OS_PASSWORD
 
 
-> * OS_USER_DOMAIN_ID
+* OS_USER_DOMAIN
 
 
-> * OS_PROJECT_DOMAIN
+* OS_USER_DOMAIN_ID
 
 
-> * OS_PROJECT_DOMAIN_ID
+* OS_PROJECT_DOMAIN
 
 
-> * OS_REGION_NAME
+* OS_PROJECT_DOMAIN_ID
 
 
-> * OS_STORAGE_URL
+* OS_REGION_NAME
 
 
-> * OS_CACERT
+* OS_STORAGE_URL
+
+
+* OS_CACERT
 
 ## Restoring with Swift
 

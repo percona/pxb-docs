@@ -16,8 +16,7 @@ as well as to provide guidance on how to disable this functionality if desired.
 
 *Version Check* was implemented in *Percona Toolkit* 2.1.4, and was enabled by default in
 version 2.2.1. Currently, it is supported as a `--[no]version-check` option
-by [a number of tools in Percona Toolkit](https://www.percona.com/doc/percona-toolkit/LATEST/genindex.html),
-*Percona XtraBackup*, and *Percona Monitoring and Management* (PMM).
+by a number of tools in Percona Toolkit, *Percona XtraBackup*, and *Percona Monitoring and Management* (PMM).
 
 When launched with Version Check enabled, the tool that supports this feature
 connects to a Percona’s *version check service* via a secure HTTPS channel. It
@@ -50,9 +49,11 @@ of the checked system unique ID followed by the software name and version.  The
 ID is generated either at installation or when the *version checking* query is
 submitted for the first time.
 
-**NOTE**: Prior to version 3.0.7 of *Percona Toolkit*, the system ID was calculated as an MD5 hash
-of a hostname, and starting from *Percona Toolkit* 3.0.7 it is generated as an MD5 hash of
-a random number. *Percona XtraBackup* continues to use hostname-based MD5 hash.
+!!! note
+ 
+    Prior to version 3.0.7 of *Percona Toolkit*, the system ID was calculated as an MD5 hash
+    of a hostname, and starting from *Percona Toolkit* 3.0.7 it is generated as an MD5 hash of
+    a random number. *Percona XtraBackup* continues to use hostname-based MD5 hash.
 
 As a result, the content of the sent query is as follows:
 
@@ -88,7 +89,7 @@ in a global configuration file `/etc/percona-toolkit/percona-toolkit.conf`:
 no-version-check
 ```
 
-In case of *Percona XtraBackup* this can be done [in its configuration file](https://www.percona.com/doc/percona-xtrabackup/2.4/using_xtrabackup/configuring.htm)
+In case of *Percona XtraBackup* this can be done [in its configuration file](https://docs.percona.com/percona-xtrabackup/8.0/using_xtrabackup/configuring.html)
 in a similar way:
 
 ```text

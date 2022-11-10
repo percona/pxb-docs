@@ -15,15 +15,11 @@ The results should be similar to the following:
 
 The SELinux context is the following:
 
-
 * user (root)
-
 
 * role (object_r)
 
-
 * type (bin_t)
-
 
 * level (s0)
 
@@ -98,13 +94,17 @@ Create the `xtrabackup.fc` file and add content. This file defines the security 
 > /backups(/.*)?       system_u:object_r:xtrabackup_data_t:s0
 > ```
 
-**NOTE**: If you are using the `/backups` directory you must have the last line. If you are storing the backups in the user’s home directory, you can omit this line.
+!!! note
+ 
+    If you are using the `/backups` directory you must have the last line. If you are storing the backups in the user’s home directory, you can omit this line.
 
 Download the `xtrabackup.te` file from the following location:
 
 [https://github.com/percona/percona-xtrabackup/tree/8.0/packaging/percona/selinx](https://github.com/percona/percona-xtrabackup/tree/8.0/packaging/percona/selinx)
 
-**NOTE**: In the file, the sections in bold should be modified for your system. The fc file can also be downloaded from the same location.
+!!! note
+ 
+    In the file, the sections in bold should be modified for your system. The fc file can also be downloaded from the same location.
 
 Compile the policy module:
 
@@ -130,6 +130,8 @@ If you store your backups at `/backups`, restore the tag in that location:
 > $ restorecon -v /backups
 > ```
 
-**NOTE**: Remember to add the standard Linux DAC permissions for this directory.
+!!! note
+ 
+    Remember to add the standard Linux DAC permissions for this directory.
 
 Perform the backup in the standard way.

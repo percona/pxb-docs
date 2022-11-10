@@ -22,8 +22,9 @@ $ sudo apt update
 $ sudo apt install qpress
 ```
 
-**NOTE**: Enable the
-repository: `percona-release enable-only tools release`
+!!! note
+   
+    Enable the repository: `percona-release enable-only tools release`.
 
 If *Percona XtraBackup* is intended to be used in combination with
 the upstream MySQL Server, you only need to enable the `tools`
@@ -64,9 +65,9 @@ that can be used to decompress the backup.
 $ xtrabackup --decompress --target-dir=/data/compressed/
 ```
 
-**NOTE**: `--parallel` can be used with
-`--decompress` option to decompress multiple files
-simultaneously.
+!!! note
+   
+    `--parallel` can be used with `--decompress` option to decompress multiple files simultaneously. 
 
 *Percona XtraBackup* does not automatically remove the compressed files. In
 order to clean up the backup directory you should use

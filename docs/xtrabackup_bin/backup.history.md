@@ -33,9 +33,11 @@ and `--incremental-history-name` options. If no valid LSN can be found
 (no record by that UUID or missing `to_lsn`), *xtrabackup* will return
 with an error.
 
-**NOTE**: Backup that’s currently being performed will **NOT** exist in the
-xtrabackup_history table within the resulting backup set as the record will
-not be added to that table until after the backup has been taken.
+!!! note
+   
+    Backup that’s currently being performed will **NOT** exist in the
+    xtrabackup_history table within the resulting backup set as the record will
+    not be added to that table until after the backup has been taken.
 
 If you want access to backup history outside of your backup set in the case of
 some catastrophic event, you will need to either perform a `mysqldump`,
@@ -50,107 +52,28 @@ This table contains the information about the previous server
 backups. Information about the backups will only be written if the backup was
 taken with `--history` option.
 
-| Column Name
+| Column Name       | Description                                                                                                                         |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| uuid              | Unique backup id                                                                                                                    |
+| name              | User provided name of backup series. There may be multiple entries with the same name used to identify related backups in a series. |
+| tool_name         | Name of tool used to take backup                                                                                                    |
+| tool_command      | Exact command line given to the tool with --password and --encryption_key obfuscated                                                |
+| tool_version      | Version of tool used to take backup                                                                                                 |
+| ibbackup_version  | Version of the xtrabackup binary used to take backup                                                                                |
+| server_version    | Server version on which backup was taken                                                                                            |
+| start_time        | Time at the start of the backup                                                                                                     |
+| end_time          | Time at the end of the backup                                                                                                       |
+| lock_time         | Amount of time, in seconds, spent calling and holding locks for ``FLUSH TABLES WITH READ LOCK``                                     |
+| binlog_pos        | Binlog file and position at end of ``FLUSH TABLES WITH READ LOCK``                                                                  |
+| innodb_from_lsn   | LSN at beginning of backup which can be used to determine prior backups                                                             |
+| innodb_to_lsn     | LSN at end of backup which can be used as the starting lsn for the next incremental                                                 |
+| partial           | Is this a partial backup, if ``N`` that means that it's the full backup                                                             |
+| incremental       | Is this an incremental backup                                                                                                       |
+| format            | Description of result format (``xbstream``)                                                                                         |
+| compact           | Is this a compact backup                                                                                                            |
+| compressed        | Is this a compressed backup                                                                                                         |
+| encrypted         | Is this an encrypted backup                                                                                                         |
 
- | Description
-
- |
-| ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| uuid
-
-                                                              | Unique backup id
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| name
-
-                                                              | User provided name of backup series. There may be multiple entries with the same name used to identify related backups in a series.
-
-                                                                                                                                                                                                                                                                                                                                         |
-| tool_name
-
-                                                         | Name of tool used to take backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| tool_command
-
-                                                      | Exact command line given to the tool with –password and –encryption_key obfuscated
-
-                                                                                                                                                                                                                                                                                                                                                                                          |
-| tool_version
-
-                                                      | Version of tool used to take backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ibbackup_version
-
-                                                  | Version of the xtrabackup binary used to take backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| server_version
-
-                                                    | Server version on which backup was taken
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| start_time
-
-                                                        | Time at the start of the backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| end_time
-
-                                                          | Time at the end of the backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| lock_time
-
-                                                         | Amount of time, in seconds, spent calling and holding locks for `FLUSH TABLES WITH READ LOCK`
-
-                                                                                                                                                                                                                                                                                                                                                                                 |
-| binlog_pos
-
-                                                        | Binlog file and position at end of `FLUSH TABLES WITH READ LOCK`
-
-                                                                                                                                                                                                                                                                                                                                                                                                              |
-| innodb_from_lsn
-
-                                                   | LSN at beginning of backup which can be used to determine prior backups
-
-                                                                                                                                                                                                                                                                                                                                                                                                     |
-| innodb_to_lsn
-
-                                                     | LSN at end of backup which can be used as the starting lsn for the next incremental
-
-                                                                                                                                                                                                                                                                                                                                                                                         |
-| partial
-
-                                                           | Is this a partial backup, if `N` that means that it’s the full backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                         |
-| incremental
-
-                                                       | Is this an incremental backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| format
-
-                                                            | Description of result format (`xbstream`)
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| compact
-
-                                                           | Is this a compact backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| compressed
-
-                                                        | Is this a compressed backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| encrypted
-
-                                                         | Is this an encrypted backup
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 ### Limitations
 
 

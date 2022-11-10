@@ -19,39 +19,36 @@ things you need to follow the steps without hassles:
 
 `Source`
 
-    A system with a *MySQL*-based server installed, configured and running. This
-    system will be called `Source`, as it is where your data is stored and
-    the one to be replicated. We will assume the following about this system:
+A system with a *MySQL*-based server installed, configured and running. This
+system will be called `Source`, as it is where your data is stored and the one to be replicated. We will assume the following about this system:
+
+* the *MySQL* server is able to communicate with others by the standard TCP/IP port;
 
 
-    * the *MySQL* server is able to communicate with others by the standard TCP/IP port;
+* the *SSH* server is installed and configured;
 
 
-    * the *SSH* server is installed and configured;
+* you have a user account in the system with the appropriate permissions;
 
 
-    * you have a user account in the system with the appropriate permissions;
+* you have a MySQL’s user account with appropriate privileges.
 
 
-    * you have a MySQL’s user account with appropriate privileges.
-
-
-    * server has binlogs enabled and server-id set up to 1.
+* server has binlogs enabled and server-id set up to 1.
 
 `Replica`
 
-    Another system, with a *MySQL*-based server installed on it. We
-    will refer to this machine as `Replica` and we will assume the same things
-    we did about `Source`, except that the server-id on `Replica` is 2.
+Another system, with a *MySQL*-based server installed on it. We
+will refer to this machine as `Replica` and we will assume the same things
+we did about `Source`, except that the server-id on `Replica` is 2.
 
 `Percona XtraBackup`
 
-    The backup tool we will use. It should be installed in both computers for convenience.
+The backup tool we will use. It should be installed in both computers for convenience.
 
-**NOTE**: It is not recommended to mix MySQL variants (Percona Server,
-MySQL) in your
-replication setup. This may produce incorrect `xtrabackup_slave_info`
-file when adding a new replica.
+!!! note
+   
+    It is not recommended to mix MySQL variants (Percona Server, MySQL) in your replication setup. This may produce incorrect `xtrabackup_slave_info` file when adding a new replica. 
 
 ## Version updates
 
@@ -346,7 +343,6 @@ and then start the replica:
 ```sql
 > START REPLICA;
 ```
-
 
 If both IO and SQL threads are running when you check the `NewReplica`,
 server is replicating the `Source`.

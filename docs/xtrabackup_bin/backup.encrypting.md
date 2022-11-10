@@ -14,10 +14,10 @@ i.e. just one of them needs to be provided):
 * `--encrypt`
 
 
-* :option:\` –encrypt-key\`
+* `--encrypt-key`
 
 
-* :option:\` –encrypt-key-file\`
+* `--encrypt-key-file`
 
 Both the `--encrypt-key` option and
 `--encrypt-key-file` option can be used to specify the
@@ -49,11 +49,13 @@ Use the `--encrypt-key-file` option as follows:
 $ xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 ```
 
-**NOTE**: Depending on the text editor that you use to make the `KEYFILE`,
-the editor can automatically insert the CRLF (end of line)
-character. This will cause the key size to grow and thus making it
-invalid. The suggested way to create the file is by using the
-command line: `echo -n “U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=” > /data/backups/keyfile`.
+!!! note
+   
+    Depending on the text editor that you use to make the `KEYFILE`,
+    the editor can automatically insert the CRLF (end of line)
+    character. This will cause the key size to grow and thus making it
+    invalid. The suggested way to create the file is by using the
+    command line: `echo -n “U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=” > /data/backups/keyfile`.
 
 ## Optimizing the encryption process
 
@@ -84,8 +86,9 @@ $ xtrabackup --decrypt=AES256 --encrypt-key="U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmD
 to clean up the backup directory users should remove the `\*.xbcrypt`
 files.
 
-**NOTE**: `--parallel` can be used with `--decrypt` option to decrypt
-multiple files simultaneously.
+!!! note
+   
+    `--parallel` can be used with `--decrypt` option to decrypt multiple files simultaneously.
 
 When the files are decrypted, the backup can be prepared.
 

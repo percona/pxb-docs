@@ -68,8 +68,6 @@ $ xtrabackup --prepare --target-dir=/data/backups/mysql/
 
 ## Notes
 
-* You might want to set the `--use-memory` to speed up the process if you
-  are on a dedicated server that has enough free memory. See 
-  [xtrabackup Option Reference](https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/xbk_option_reference.html)
+* You might want to set the `--use-memory` to speed up the process if you are on a dedicated server that has enough free memory. See [xtrabackup Option Reference](https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/xbk_option_reference.html)
 
 * See [Incremental Backups](https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/incremental_backups.html)

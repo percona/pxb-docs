@@ -124,17 +124,17 @@ command:
 
 The following list details the example output:
 
-> [1.] Chunk `xtrabackup_logfile.00000000000000000006` fails to upload _
-> the first time and slept for 2384 milliseconds.
+[1.] Chunk `xtrabackup_logfile.00000000000000000006` fails to upload _
+the first time and slept for 2384 milliseconds.
 
-> [2.] The same chunk fails for the second time and the time is increased
-> to 4387 milliseconds.
+[2.] The same chunk fails for the second time and the time is increased
+to 4387 milliseconds.
 
-> [3.] The same chunk fails for the third time and the time is increased to
-> 8691 milliseconds.
+[3.] The same chunk fails for the third time and the time is increased to
+8691 milliseconds.
 
-> [4.] The same chunk fails for the fourth time. The `max-backoff`
-> parameter has been reached. All retries sleep the same amount of time after
-> reaching the parameter.
+[4.] The same chunk fails for the fourth time. The `max-backoff`
+parameter has been reached. All retries sleep the same amount of time after
+reaching the parameter.
 
-> [5.] The same chunk is successfully uploaded.
+[5.] The same chunk is successfully uploaded.

@@ -58,4 +58,6 @@ LOCK`. This feature is available in *Percona Server for MySQL* 5.6+. *Percona Xt
 uses this automatically to copy non-InnoDB data to avoid blocking DML queries
 that modify InnoDB tables.
 
-**NOTE**: This option cannot be used together with the `--stream` option.
+!!! note
+   
+    This option cannot be used together with the `--stream` option.

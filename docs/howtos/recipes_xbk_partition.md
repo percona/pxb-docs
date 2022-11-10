@@ -74,8 +74,10 @@ PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2812744 DEFAULT CHARSET=utf8
 ```
 
-**NOTE**: Generate a [.cfg metadata file](https://dev.mysql.com/doc/refman/8.0/en/innodb-table-import.html) by running `FLUSH TABLES ... FOR EXPORT`. The command can only be run on a table, not on the individual table partitions.
-The file is located in the table schema directory and is used for schema verification when importing the tablespace.
+!!! note
+   
+    Generate a [.cfg metadata file](https://dev.mysql.com/doc/refman/8.0/en/innodb-table-import.html) by running `FLUSH TABLES ... FOR EXPORT`. The command can only be run on a table, not on the individual table partitions.
+    The file is located in the table schema directory and is used for schema verification when importing the tablespace. 
 
 To restore the partition from the backup, the tablespace must be discarded for
 that table:
@@ -91,7 +93,9 @@ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#p#p4.exp /var/lib/mysql/imdb/name_p
 cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 ```
 
-**NOTE**: Make sure that the copied files can be accessed by the user running MySQL.
+!!! note
+   
+    Make sure that the copied files can be accessed by the user running MySQL. 
 
 The last step is to import the tablespace:
 
