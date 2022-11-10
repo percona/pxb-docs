@@ -17,7 +17,7 @@ only thing you might find convenient to place in the `[xtrabackup]` section
 of your `my.cnf` file is the `target_dir` option to default the
 directory in which the backups will be placed, for example:
 
-``` text
+```text
 [xtrabackup]
 target_dir = /data/backups/mysql/
 ```
