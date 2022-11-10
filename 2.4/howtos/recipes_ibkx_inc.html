@@ -1520,9 +1520,10 @@
 <div class="highlight"><pre><span></span><code>$ innobackupex --apply-log --redo-only <span class="nv">$FULLBACKUP</span> <span class="se">\</span>
  --use-memory<span class="o">=</span>1G --user<span class="o">=</span>USER --password<span class="o">=</span>PASSWORD
 </code></pre></div>
-<p>The <code>innobackupex --use-memory</code> option is not necessary, it will speed
-up the process if it is used (provided that the amount of RAM given is
-available).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the <code>prepare</code> phase, the <code>--use-memory</code> parameter speeds up the process if the amount of RAM assigned to the option is available. Use the parameter only in the <code>prepare</code> phase. In the other phases the parameter makes the application lazy allocate this memory (reserve) but does not affect database pages.</p>
+</div>
 <p>If everything went fine, you should see an output similar to:</p>
 <div class="highlight"><pre><span></span><code>111225 01:10:12 InnoDB: Shutdown completed; log sequence number 91514213
 </code></pre></div>
