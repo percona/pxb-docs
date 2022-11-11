@@ -15,21 +15,21 @@
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/2.4/2.4/xbcloud/xbcloud_azure.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/2.4/2.4/xtrabackup-versioning-scheme.html">
       
-      <link rel="icon" href="../_static/percona_favicon.ico">
+      <link rel="icon" href="_static/percona_favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.9">
     
     
       
-        <title>Using the xbcloud binary with Microsoft Azure Cloud Storage - Percona XtraBackup</title>
+        <title>Xtrabackup versioning scheme - Percona XtraBackup</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.20d9efc8.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.08040f6c.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.08040f6c.min.css">
         
       
       
@@ -50,11 +50,11 @@
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="../css/percona.css">
+      <link rel="stylesheet" href="css/percona.css">
     
-      <link rel="stylesheet" href="../css/version-select.css">
+      <link rel="stylesheet" href="css/version-select.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-the-xbcloud-binary-with-microsoft-azure-cloud-storage" class="md-skip">
+        <a href="#percona-xtrabackup-24-versioning-scheme" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://percona.com/software/documentation" class="md-header__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
-  <img src="../_static/percona-logo.svg" alt="logo">
+  <img src="_static/percona-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -129,7 +129,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Using the xbcloud binary with Microsoft Azure Cloud Storage
+              Xtrabackup versioning scheme
             
           </span>
         </div>
@@ -229,9 +229,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
+    <a href="index.html" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
-  <img src="../_static/percona-logo.svg" alt="logo">
+  <img src="_static/percona-logo.svg" alt="logo">
 
     </a>
     Percona XtraBackup
@@ -259,7 +259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         Percona XtraBackup - Documentation
       </a>
     </li>
@@ -272,12 +272,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -300,7 +302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../intro.html" class="md-nav__link">
+      <a href="intro.html" class="md-nav__link">
         About Percona XtraBackup
       </a>
     </li>
@@ -314,7 +316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../how_xtrabackup_works.html" class="md-nav__link">
+      <a href="how_xtrabackup_works.html" class="md-nav__link">
         How Percona XtraBackup Works
       </a>
     </li>
@@ -326,11 +328,50 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../xtrabackup-versioning-scheme.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Xtrabackup versioning scheme
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="xtrabackup-versioning-scheme.html" class="md-nav__link md-nav__link--active">
         Xtrabackup versioning scheme
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#percona-xtrabackup-24-versioning-scheme" class="md-nav__link">
+    Percona XtraBackup 2.4 versioning scheme:
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -376,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/apt_repo.html" class="md-nav__link">
+      <a href="installation/apt_repo.html" class="md-nav__link">
         Installing Percona XtraBackup on Debian and Ubuntu
       </a>
     </li>
@@ -390,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/yum_repo.html" class="md-nav__link">
+      <a href="installation/yum_repo.html" class="md-nav__link">
         Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS
       </a>
     </li>
@@ -404,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/binary-tarball.html" class="md-nav__link">
+      <a href="installation/binary-tarball.html" class="md-nav__link">
         Installing Percona XtraBackup from a Binary Tarball
       </a>
     </li>
@@ -418,7 +459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/compiling_xtrabackup.html" class="md-nav__link">
+      <a href="installation/compiling_xtrabackup.html" class="md-nav__link">
         Compiling and Installing from Source Code
       </a>
     </li>
@@ -466,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/docker.html" class="md-nav__link">
+      <a href="installation/docker.html" class="md-nav__link">
         Running Percona XtraBackup in a Docker container
       </a>
     </li>
@@ -514,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../using_xtrabackup/privileges.html" class="md-nav__link">
+      <a href="using_xtrabackup/privileges.html" class="md-nav__link">
         Connection and Privileges Needed
       </a>
     </li>
@@ -528,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../using_xtrabackup/configuring.html" class="md-nav__link">
+      <a href="using_xtrabackup/configuring.html" class="md-nav__link">
         Configuring xtrabackup
       </a>
     </li>
@@ -576,7 +617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../backup_scenarios/full_backup.html" class="md-nav__link">
+      <a href="backup_scenarios/full_backup.html" class="md-nav__link">
         The Backup Cycle - Full Backups
       </a>
     </li>
@@ -590,7 +631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../backup_scenarios/incremental_backup.html" class="md-nav__link">
+      <a href="backup_scenarios/incremental_backup.html" class="md-nav__link">
         Incremental Backup
       </a>
     </li>
@@ -604,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../backup_scenarios/compressed_backup.html" class="md-nav__link">
+      <a href="backup_scenarios/compressed_backup.html" class="md-nav__link">
         Compressed Backup
       </a>
     </li>
@@ -618,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../backup_scenarios/encrypted_backup.html" class="md-nav__link">
+      <a href="backup_scenarios/encrypted_backup.html" class="md-nav__link">
         Encrypted Backup
       </a>
     </li>
@@ -666,7 +707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../manual.html" class="md-nav__link">
+      <a href="manual.html" class="md-nav__link">
         Percona XtraBackup User Manual
       </a>
     </li>
@@ -714,7 +755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/throttling_backups.html" class="md-nav__link">
+      <a href="advanced/throttling_backups.html" class="md-nav__link">
         Throttling Backups
       </a>
     </li>
@@ -728,7 +769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/lockless_bin-log.html" class="md-nav__link">
+      <a href="advanced/lockless_bin-log.html" class="md-nav__link">
         Lockless binary log information
       </a>
     </li>
@@ -742,7 +783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/encrypted_innodb_tablespace_backups.html" class="md-nav__link">
+      <a href="advanced/encrypted_innodb_tablespace_backups.html" class="md-nav__link">
         Encrypted InnoDB Tablespace Backups
       </a>
     </li>
@@ -756,7 +797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/locks.html" class="md-nav__link">
+      <a href="advanced/locks.html" class="md-nav__link">
         `lock-ddl-per-table` Option Improvements
       </a>
     </li>
@@ -804,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../how-tos.html" class="md-nav__link">
+      <a href="how-tos.html" class="md-nav__link">
         How-tos and Recipes
       </a>
     </li>
@@ -824,14 +865,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
       
       
       
@@ -880,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes.html" class="md-nav__link">
+      <a href="release-notes.html" class="md-nav__link">
         Percona XtraBackup 2.4 Release Notes
       </a>
     </li>
@@ -894,7 +933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.26.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.26.html" class="md-nav__link">
         Percona XtraBackup 2.4.26
       </a>
     </li>
@@ -908,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.25.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.25.html" class="md-nav__link">
         Percona XtraBackup 2.4.25
       </a>
     </li>
@@ -922,7 +961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.24.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.24.html" class="md-nav__link">
         Percona XtraBackup 2.4.24
       </a>
     </li>
@@ -936,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.23.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.23.html" class="md-nav__link">
         Percona XtraBackup 2.4.23
       </a>
     </li>
@@ -950,7 +989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.22.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.22.html" class="md-nav__link">
         Percona XtraBackup 2.4.22
       </a>
     </li>
@@ -964,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.21.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.21.html" class="md-nav__link">
         Percona XtraBackup 2.4.21
       </a>
     </li>
@@ -978,7 +1017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.20.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.20.html" class="md-nav__link">
         Percona XtraBackup 2.4.20
       </a>
     </li>
@@ -992,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.19.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.19.html" class="md-nav__link">
         Percona XtraBackup 2.4.19
       </a>
     </li>
@@ -1006,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.18.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.18.html" class="md-nav__link">
         Percona XtraBackup 2.4.18
       </a>
     </li>
@@ -1020,7 +1059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.17.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.17.html" class="md-nav__link">
         Percona XtraBackup 2.4.17
       </a>
     </li>
@@ -1034,7 +1073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.16.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.16.html" class="md-nav__link">
         Percona XtraBackup 2.4.16
       </a>
     </li>
@@ -1048,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.15.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.15.html" class="md-nav__link">
         Percona XtraBackup 2.4.15
       </a>
     </li>
@@ -1062,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.14.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.14.html" class="md-nav__link">
         Percona XtraBackup 2.4.14
       </a>
     </li>
@@ -1076,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.13.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.13.html" class="md-nav__link">
         Percona XtraBackup 2.4.13
       </a>
     </li>
@@ -1090,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.12.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.12.html" class="md-nav__link">
         Percona XtraBackup 2.4.12
       </a>
     </li>
@@ -1104,7 +1143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.11.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.11.html" class="md-nav__link">
         Percona XtraBackup 2.4.11
       </a>
     </li>
@@ -1118,7 +1157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.10.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.10.html" class="md-nav__link">
         Percona XtraBackup 2.4.10
       </a>
     </li>
@@ -1132,7 +1171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.9.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.9.html" class="md-nav__link">
         Percona XtraBackup 2.4.9
       </a>
     </li>
@@ -1146,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.8.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.8.html" class="md-nav__link">
         Percona XtraBackup 2.4.8
       </a>
     </li>
@@ -1160,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.7-2.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.7-2.html" class="md-nav__link">
         Percona XtraBackup 2.4.7-2
       </a>
     </li>
@@ -1174,7 +1213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.7.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.7.html" class="md-nav__link">
         Percona XtraBackup 2.4.7
       </a>
     </li>
@@ -1188,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.6.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.6.html" class="md-nav__link">
         Percona XtraBackup 2.4.6
       </a>
     </li>
@@ -1202,7 +1241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.5.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.5.html" class="md-nav__link">
         Percona XtraBackup 2.4.5
       </a>
     </li>
@@ -1216,7 +1255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.4.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.4.html" class="md-nav__link">
         Percona XtraBackup 2.4.4
       </a>
     </li>
@@ -1230,7 +1269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.3.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.3.html" class="md-nav__link">
         Percona XtraBackup 2.4.3
       </a>
     </li>
@@ -1244,7 +1283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.2.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.2.html" class="md-nav__link">
         Percona XtraBackup 2.4.2
       </a>
     </li>
@@ -1258,7 +1297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.1.html" class="md-nav__link">
+      <a href="release-notes/2.4/2.4.1.html" class="md-nav__link">
         Percona XtraBackup 2.4.1
       </a>
     </li>
@@ -1279,7 +1318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xtrabackup_bin/xbk_option_reference.html" class="md-nav__link">
+      <a href="xtrabackup_bin/xbk_option_reference.html" class="md-nav__link">
         The xtrabackup Option Reference
       </a>
     </li>
@@ -1293,7 +1332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../innobackupex/innobackupex_option_reference.html" class="md-nav__link">
+      <a href="innobackupex/innobackupex_option_reference.html" class="md-nav__link">
         The innobackupex Option Reference
       </a>
     </li>
@@ -1307,7 +1346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud.html" class="md-nav__link">
+      <a href="xbcloud/xbcloud.html" class="md-nav__link">
         The xbcloud Binary
       </a>
     </li>
@@ -1321,7 +1360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud_exbackoff.html" class="md-nav__link">
+      <a href="xbcloud/xbcloud_exbackoff.html" class="md-nav__link">
         Exponential Backoff
       </a>
     </li>
@@ -1333,68 +1372,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Using the xbcloud binary with Microsoft Azure Cloud Storage
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="xbcloud_azure.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="xbcloud/xbcloud_azure.html" class="md-nav__link">
         Using the xbcloud binary with Microsoft Azure Cloud Storage
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    Options
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1406,7 +1388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcrypt/xbcrypt.html" class="md-nav__link">
+      <a href="xbcrypt/xbcrypt.html" class="md-nav__link">
         The xbcrypt binary
       </a>
     </li>
@@ -1420,7 +1402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbstream/xbstream.html" class="md-nav__link">
+      <a href="xbstream/xbstream.html" class="md-nav__link">
         The xbstream binary
       </a>
     </li>
@@ -1434,7 +1416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../known_issues.html" class="md-nav__link">
+      <a href="known_issues.html" class="md-nav__link">
         Known issues and limitations
       </a>
     </li>
@@ -1448,7 +1430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../faq.html" class="md-nav__link">
+      <a href="faq.html" class="md-nav__link">
         Frequently Asked Questions
       </a>
     </li>
@@ -1462,7 +1444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../glossary.html" class="md-nav__link">
+      <a href="glossary.html" class="md-nav__link">
         Glossary
       </a>
     </li>
@@ -1476,7 +1458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xtrabackup-files.html" class="md-nav__link">
+      <a href="xtrabackup-files.html" class="md-nav__link">
         Index of files created by Percona XtraBackup
       </a>
     </li>
@@ -1490,7 +1472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trademark-policy.html" class="md-nav__link">
+      <a href="trademark-policy.html" class="md-nav__link">
         Trademark policy
       </a>
     </li>
@@ -1504,7 +1486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../copyright-and-licensing-information.html" class="md-nav__link">
+      <a href="copyright-and-licensing-information.html" class="md-nav__link">
         Copyright and licensing information
       </a>
     </li>
@@ -1518,7 +1500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../version-check.html" class="md-nav__link">
+      <a href="version-check.html" class="md-nav__link">
         Version Checking
       </a>
     </li>
@@ -1557,8 +1539,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1567,22 +1547,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    Options
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#percona-xtrabackup-24-versioning-scheme" class="md-nav__link">
+    Percona XtraBackup 2.4 versioning scheme:
   </a>
   
 </li>
@@ -1603,7 +1569,7 @@
                 <!-- Edit button -->
                 
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/2.4/docs/xbcloud/xbcloud_azure.md"
+                    href="https://github.com/percona/pxb-docs/edit/2.4/docs/xtrabackup-versioning-scheme.md"
                     title="Edit this page"
                     class="md-content__button md-icon"
                   >
@@ -1617,65 +1583,22 @@
                   as the main headline.
                 -->
                 
+                  <h1>Xtrabackup versioning scheme</h1>
+                
 
                 <!-- Markdown content -->
-                <h1 id="using-the-xbcloud-binary-with-microsoft-azure-cloud-storage">Using the xbcloud binary with Microsoft Azure Cloud Storage<a class="headerlink" href="#using-the-xbcloud-binary-with-microsoft-azure-cloud-storage" title="Permanent link">&para;</a></h1>
-<p>This feature is <em>technical preview</em> quality.</p>
-<p>Implemented in Percona XtraBackup 2.4.25, the <strong>xbcloud</strong> binary adds support for the Microsoft Azure Cloud Storage using the REST API.</p>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
-<p>The following are the options, environment variables, and descriptions for uploading a backup to Azure using the REST API. The environment variables are recognized by <strong>xbcloud</strong>, which maps them automatically to the corresponding parameters:</p>
-<table>
-<thead>
-<tr>
-<th>Option name</th>
-<th>Environment variables</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--azure-storage-account=name</code></td>
-<td>AZURE_STORAGE_ACCOUNT</td>
-<td>An Azure storage account is a unique namespace to access and store your Azure data objects.</td>
-</tr>
-<tr>
-<td><code>--azure-container-name=name</code></td>
-<td>AZURE_CONTAINER_NAME</td>
-<td>A container name is a valid DNS name that conforms to the <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#container-names">Azure naming rules</a></td>
-</tr>
-<tr>
-<td><code>--azure-access-key=name</code></td>
-<td>AZURE_ACCESS_KEY</td>
-<td>A generated key that can be used to authorize access to data in your account using the Shared Key authorization.</td>
-</tr>
-<tr>
-<td><code>--azure-endpoint=name</code></td>
-<td>AZURE_ENDPOINT</td>
-<td>The endpoint allows clients to securely access data.</td>
-</tr>
-<tr>
-<td><code>--azure-tier-class=name</code></td>
-<td>AZURE_STORAGE_CLASS</td>
-<td>Cloud tier can decrease the local storage required while maintaining the performance. When enabled, this feature has the following categories: <br /> &#42; Hot - Frequently accessed or modified data <br />&#42; Cool - Infrequently accessed or modified data <br />&#42; Archive - Rarely accessed or modified data</td>
-</tr>
-</tbody>
-</table>
-<p>Test your Azure applications with the <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio">Azurite open-source emulator</a>. For testing purposes, the <strong>xbcloud</strong> binary adds the <code>--azure-development-storage</code> option that uses the default <code>access_key</code> and <code>storage account</code> of azurite and <code>testcontainer</code> for the container. You can overwrite these options, if needed.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>All of the available options for <strong>xbcloud</strong>, such as parallel, max-retries, and others, can be used. For more information, see <a href="xbcloud.html#xbcloud-binary">The xbcloud Binary</a>.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<p>An example of a <strong>xbcloud</strong> backup.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --stream<span class="o">=</span>xbstream --target-dir<span class="o">=</span> <span class="nv">$TARGET_DIR</span> <span class="p">|</span> xbcloud put backup_name --azure-storage-account<span class="o">=</span>pxbtesting --azure-access-key<span class="o">=</span><span class="nv">$AZURE_KEY</span> --azure-container-name<span class="o">=</span><span class="nb">test</span> --storage<span class="o">=</span>azure
-</code></pre></div>
-<p>An example of restoring a backup from <strong>xbcloud</strong>.</p>
-<div class="highlight"><pre><span></span><code>$ xbcloud get backup_name  --azure-storage-account<span class="o">=</span>pxbtesting --azure-access-key<span class="o">=</span><span class="nv">$AZURE_KEY</span> --azure-container-name<span class="o">=</span><span class="nb">test</span> --storage<span class="o">=</span>azure --parallel<span class="o">=</span><span class="m">10</span> <span class="m">2</span>&gt;download.log <span class="p">|</span> xbstream -x -C restore
-</code></pre></div>
-<p>An example of deleting a backup from <strong>xbcloud</strong>.</p>
-<div class="highlight"><pre><span></span><code>$ xbcloud delete backup_name --azure-storage-account<span class="o">=</span>pxbtesting --azure-access-key<span class="o">=</span><span class="nv">$AZURE_KEY</span> --azure-container-name<span class="o">=</span><span class="nb">test</span> --storage<span class="o">=</span>azure
-</code></pre></div>
-<p>An example of using a shortcut restore.</p>
-<div class="highlight"><pre><span></span><code>$ xbcloud get azure://operator-testing/bak22 ...
-</code></pre></div>
+                <h3 id="percona-xtrabackup-24-versioning-scheme">Percona XtraBackup 2.4 versioning scheme:<a class="headerlink" href="#percona-xtrabackup-24-versioning-scheme" title="Permanent link">&para;</a></h3>
+<p>Here is what the numbers in the product version specification mean:</p>
+<p>For example, in Percona XtraBackup 2.4.26</p>
+<ul>
+<li>
+<p><code>2.4</code> - the version of the Percona XtraBackup that is based on <a href="https://dev.mysql.com/doc/relnotes/mysql/5.7/en/">MySQL 5.7</a> </p>
+</li>
+<li>
+<p><code>26</code> - a sequential number that increases every time Percona releases a new version of Percona XtraBackup </p>
+</li>
+</ul>
+<p>Percona does not release a new version of Percona XtraBackup 2.4 for every release of MySQL 5.7. Percona XtraBackup 2.4 is compatible with newer versions of MySQL 5.7.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1697,7 +1620,7 @@
   <small>
     
       Last update:
-      2022-11-10
+      2022-11-11
     
   </small>
 </div>
@@ -1725,7 +1648,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="xbcloud_exbackoff.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Exponential Backoff" rel="prev">
+        <a href="how_xtrabackup_works.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: How Percona XtraBackup Works" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1734,20 +1657,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Exponential Backoff
+              How Percona XtraBackup Works
             </div>
           </div>
         </a>
       
       
         
-        <a href="../xbcrypt/xbcrypt.html" class="md-footer__link md-footer__link--next" aria-label="Next: The xbcrypt binary" rel="next">
+        <a href="installation/apt_repo.html" class="md-footer__link md-footer__link--next" aria-label="Next: Installing Percona XtraBackup on Debian and Ubuntu" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              The xbcrypt binary
+              Installing Percona XtraBackup on Debian and Ubuntu
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1782,12 +1705,12 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      <script src="assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
-        <script src="../js/version-select.js"></script>
+        <script src="js/version-select.js"></script>
       
     
   </body>
