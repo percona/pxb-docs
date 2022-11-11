@@ -322,6 +322,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xtrabackup-versioning-scheme.html" class="md-nav__link">
+        Xtrabackup versioning scheme
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1950,7 +1964,7 @@ the <code>max-retries</code> parameter is reached.</p>
 depending on the issue. Add new errors by setting the following
 variables <code>--curl-retriable-errors</code> or <code>--http-retriable-errors</code> on the
 command line or in <code>my.cnf</code> or in a custom configuration file under
-the [xbcloud] section.</p>
+the [xbcloud] section. You can add multiple errors using a comma-separated list of codes.</p>
 <p>The error handling is enhanced when using the <code>--verbose</code> output. This
 output specifies which error caused xbcloud to fail and what parameter a
 user must add to retry on this error.</p>
@@ -1963,33 +1977,39 @@ user must add to retry on this error.</p>
 time between retries.</p>
 <div class="highlight"><pre><span></span><code>xbcloud [options] --max-retries=5 --max-backoff=10000
 </code></pre></div>
-<p>The following text is an example of the exponential backoff used with the
-command:</p>
+<p>The following list describes the process using <code>--max-backoff=10000</code>:</p>
+<ul>
+<li>
+<p>The chunk <code>xtrabackup_logfile.00000000000000000006</code> fails to upload the first time and sleeps for 2384 milliseconds.</p>
+</li>
+<li>
+<p>The same chunk fails for the second time and the sleep time is increased to 4387 milliseconds.</p>
+</li>
+<li>
+<p>The same chunk fails for the third time and the sleep time is increased to 8691 milliseconds.</p>
+</li>
+<li>
+<p>The same chunk fails for the fourth time. The <code>max-backoff</code> parameter has been reached. All retries sleep the same amount of time after reaching the parameter.</p>
+</li>
+<li>
+<p>The same chunk is successfully uploaded.</p>
+</li>
+</ul>
+<p>An example of the output for this setting:</p>
 <div class="highlight"><pre><span></span><code>210702 10:07:05 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-210702 10:07:05 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [1]
+210702 10:07:05 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
 210702 10:07:23 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-210702 10:07:23 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [2]
+210702 10:07:23 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
 210702 10:07:52 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-210702 10:07:52 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [3]
+210702 10:07:52 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
 210702 10:08:47 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-210702 10:08:47 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006 [4]
+210702 10:08:47 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
 210702 10:10:12 /work/pxb/ins/8.0/bin/xbcloud: successfully uploaded chunk: backup3/xtrabackup_logfile.00000000000000000006, size: 8388660
 </code></pre></div>
-<p>The following list details the example output:</p>
-<p>[1.] Chunk <code>xtrabackup_logfile.00000000000000000006</code> fails to upload _
-the first time and slept for 2384 milliseconds.</p>
-<p>[2.] The same chunk fails for the second time and the time is increased
-to 4387 milliseconds.</p>
-<p>[3.] The same chunk fails for the third time and the time is increased to
-8691 milliseconds.</p>
-<p>[4.] The same chunk fails for the fourth time. The <code>max-backoff</code>
-parameter has been reached. All retries sleep the same amount of time after
-reaching the parameter.</p>
-<p>[5.] The same chunk is successfully uploaded.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
