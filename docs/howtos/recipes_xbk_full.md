@@ -6,13 +6,13 @@ ready to restore or use (make the data files consistent).
 
 ### Making a backup
 
-```
+```shell
 $ xtrabackup --backup --target-dir=/data/backup/mysql/
 ```
 
 ### Preparing the backup twice
 
-```
+```shell
 $ xtrabackup --prepare --target-dir=/data/backup/mysql/
 $ xtrabackup --prepare --target-dir=/data/backup/mysql/
 ```

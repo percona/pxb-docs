@@ -29,7 +29,7 @@ max-retries, and others, can be used. For more information, see the
 An example of an **xbcloud** backup.
 
 ```shell
-$ xtrabackup --backup --stream=xbstream --target-dir= $TARGET_DIR | 
+$ xtrabackup --backup --stream=xbstream  | 
 xbcloud put backup_name --azure-storage-account=pxbtesting --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure
 ```
 

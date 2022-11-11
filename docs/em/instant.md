@@ -27,7 +27,7 @@ If you already have such tables (information below on how to find such tables), 
 
 To find tables with `INSTANT ADD/DROP COLUMNS` run the following command:
 
-```mysql
+```sql
 mysql> SELECT NAME FROM INFORMATION_SCHEMA.INNODB_TABLES WHERE TOTAL_ROW_VERSIONS > 0;
 +---------+
 | NAME    |
@@ -45,7 +45,7 @@ If this query shows an empty result set, you have no issues. Percona Xtrabackup 
 
 If Percona XtraBackup detects that MySQL 8.0.29 server has tables with instant add/drop columns, it aborts with the following error message
 
-```mysql
+```text
 2022-07-01T15:18:35.127689+05:30 0 [ERROR] [MY-011825] [Xtrabackup] Found tables with row versions due to INSTANT ADD/DROP columns
 2022-07-01T15:18:35.127714+05:30 0 [ERROR] [MY-011825] [Xtrabackup] This feature is not stable and will cause backup corruption.
 2022-07-01T15:18:35.127723+05:30 0 [ERROR] [MY-011825] [Xtrabackup] Tables found:
