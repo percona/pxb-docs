@@ -14,10 +14,7 @@ databases. With *Percona XtraBackup*, you can achieve the following benefits:
 
 * Higher uptime due to faster restore time
 
-See the compatibility matrix in [Percona Software and Platform Lifecycle](https://www.percona.com/services/policies/percona-software-platform-lifecycle)
-
-to find out which versions of MySQL, MariaDB, and Percona Server for MySQL are
-supported by Percona XtraBackup and supports encryption with any kind of backups.
+See the compatibility matrix in [Percona Software and Platform Lifecycle](https://www.percona.com/services/policies/percona-software-platform-lifecycle) to find out which versions of MySQL, MariaDB, and Percona Server for MySQL are supported by Percona XtraBackup and supports encryption with any kind of backups.
 
 Non-blocking backups of InnoDB, Percona XtraDB Cluster, and *HailDB* storage engines are supported.
 In addition, Percona XtraBackup can back up the following storage engines by briefly pausing writes
