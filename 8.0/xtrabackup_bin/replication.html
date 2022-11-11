@@ -1836,6 +1836,11 @@ no open temporary tables. The backup will fail if <code>Slave_open_temp_tables</
 does not become zero after <code>--safe-slave-backup-timeout</code>
 seconds (defaults to 300 seconds). The replication SQL thread will be restarted when
 the backup finishes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Prior to <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
+<p>As of <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
+</div>
 <p>Using this option is always recommended when taking backups from a replica server.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1863,7 +1868,7 @@ source for backup. A good tool to validate a replica is <a href="http://www.perc
   <small>
     
       Last update:
-      2022-08-01
+      2022-09-30
     
   </small>
 </div>

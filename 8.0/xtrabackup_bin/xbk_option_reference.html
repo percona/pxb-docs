@@ -3950,7 +3950,8 @@ See the <strong>xtrabackup</strong> documentation for more details.</p>
 <h3 id="-encrypt-chunk-size">&ndash;encrypt-chunk-size(=#)<a class="headerlink" href="#-encrypt-chunk-size" title="Permanent link">&para;</a></h3>
 <p>This option specifies the size of the internal working buffer for each
 encryption thread, measured in bytes. It is passed directly to the
-xtrabackup child process. See the <strong>xtrabackup</strong> documentation for more details.</p>
+xtrabackup child process.</p>
+<p>To adjust the chunk size for encrypted files, use <a href="#read-buffer-size"><code>--read-buffer-size</code></a> and <code>--encrypt-chunk-size</code>.</p>
 <h3 id="-export">&ndash;export()<a class="headerlink" href="#-export" title="Permanent link">&para;</a></h3>
 <p>Create files necessary for exporting tables. See Restoring Individual
 Tables.</p>
@@ -4085,10 +4086,11 @@ global lock. Default is “select”.</p>
 <p>Issue <code>LOCK TABLES FOR BACKUP</code> if it is supported by server (otherwise use
 <code>LOCK INSTANCE FOR BACKUP</code>) at the beginning of the backup to block all DDL
 operations.</p>
-<p><strong>NOTE</strong>: Prior to <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread
-after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
-<p>As of <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup option stops the SQL
-replica thread before copying the InnoDB files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Prior to <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
+<p>As of <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
+</div>
 <h3 id="-lock-ddl-per-table">&ndash;lock-ddl-per-table()<a class="headerlink" href="#-lock-ddl-per-table" title="Permanent link">&para;</a></h3>
 <p>Lock DDL for each table before xtrabackup starts to copy
 it and until the backup is completed.</p>
@@ -4192,8 +4194,7 @@ on the command-line.</p>
 <p>Makes <strong>xtrabackup</strong> print out parameters that can be used for
 copying the data files back to their original locations to restore them.</p>
 <h3 id="-read-buffer-size">&ndash;read-buffer-size()<a class="headerlink" href="#-read-buffer-size" title="Permanent link">&para;</a></h3>
-<p>Set the datafile read buffer size, given value is scaled up to page size. Default
-is 10Mb.</p>
+<p>Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <a href="#encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
 <h3 id="-rebuild-indexes">&ndash;rebuild-indexes()<a class="headerlink" href="#-rebuild-indexes" title="Permanent link">&para;</a></h3>
 <p>Rebuilds indexes in a compact backup. This option only has effect when the
 <code>--prepare</code> and <code>--rebuild-threads</code> options are provided.</p>
@@ -4233,7 +4234,12 @@ will fail if <code>Slave_open_temp_tables</code> does not become zero after
 <code>--safe-slave-backup-timeout</code> seconds. The replication SQL
 thread will be restarted when the backup finishes. This option is
 implemented in order to deal with <a href="https://dev.mysql.com/doc/refman/5.7/en/replication-features-temptables.html">replicating temporary tables</a>
-and isn’t neccessary with Row-Based-Replication.</p>
+and isn’t necessary with Row-Based-Replication.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Prior to <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
+<p>As of <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
+</div>
 <h3 id="-safe-slave-backup-timeoutseconds">&ndash;safe-slave-backup-timeout(=SECONDS)<a class="headerlink" href="#-safe-slave-backup-timeoutseconds" title="Permanent link">&para;</a></h3>
 <p>How many seconds <code>--safe-slave-backup</code> should wait for
 <code>Slave_open_temp_tables</code> to become zero. Defaults to 300 seconds.</p>
@@ -4341,8 +4347,8 @@ value of <code>--target-dir</code>.</p>
 <p>Directory where temp tablespace files live, this path can be absolute.</p>
 <h3 id="-throttle">&ndash;throttle(=#)<a class="headerlink" href="#-throttle" title="Permanent link">&para;</a></h3>
 <p>This option limits the number of chunks copied per second. The chunk size is
-<em>10 MB</em>. To limit the bandwidth to <em>10 MB/s</em>, set the option to <em>1</em>:
-–throttle=1.</p>
+<em>10 MB</em>. </p>
+<p>To limit the bandwidth to <em>10 MB/s</em>, set the option to <em>1</em>.</p>
 <h3 id="-tls-ciphersuites">&ndash;tls-ciphersuites()<a class="headerlink" href="#-tls-ciphersuites" title="Permanent link">&para;</a></h3>
 <p>TLS v1.3 cipher to use.</p>
 <h3 id="-tls-version">&ndash;tls-version()<a class="headerlink" href="#-tls-version" title="Permanent link">&para;</a></h3>
@@ -4399,7 +4405,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2022-08-02
+      2022-11-11
     
   </small>
 </div>

@@ -2034,6 +2034,7 @@ $ echo ${PIPESTATUS[0]} ${PIPESTATUS[1]}
 <code>backup_name/database/table.ibd.NNNNNNNNNNNNNNNNNNNN</code>, where <code>NNN...</code> is a
 0-padded serial number of chunk within a file. Size of chunk produced by
 <em>xtrabackup</em> and <em>xbstream</em> changed to 10M.</p>
+<p>To adjust the chunk size use <code>--read-buffer-size</code>. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <code>--encrypt-chunk-size</code>.</p>
 <p><em>xbcloud</em> has three essential operations: <em>put</em>, <em>get</em>, and <em>delete</em>. With these
 operations, backups are created, stored, retrieved, restored, and
 deleted. <em>xbcloud</em> operations clearly map to similar operations within 
@@ -2237,7 +2238,7 @@ $ xbstream -xv -C /storage/partial &lt; /storage/partial/partial.xbs
   <small>
     
       Last update:
-      2022-11-10
+      2022-11-11
     
   </small>
 </div>
