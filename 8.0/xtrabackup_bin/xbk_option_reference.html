@@ -4366,14 +4366,7 @@ tablespace keys of tablespaces being backed up.</p>
 value, <strong>xtrabackup</strong> will ask for it. The same passphrase should be
 specified for the <code>--prepare</code> command.</p>
 <h3 id="-use-memory">&ndash;use-memory()<a class="headerlink" href="#-use-memory" title="Permanent link">&para;</a></h3>
-<p>This option affects how much memory is allocated for preparing a backup with
-<code>--prepare</code>, or analyzing statistics with
-<code>--stats</code>. Its purpose is similar
-to innodb_buffer_pool_size. It does not do the same thing as the
-similarly named option in Oracle’s InnoDB Hot Backup tool.
-The default value is 100MB, and if you have enough available memory, 1GB to
-2GB is a good recommended value. Multiples are supported providing the unit
-(e.g. 1MB, 1M, 1GB, 1G).</p>
+<p>This option affects how much memory is allocated and is similar to <code>innodb_buffer_pool_size</code>. This option is only relevant in the <code>--prepare</code> phase or when analyzing statistics with <code>--stats</code>. The default value is 100MB. The recommended value is between 1GB to 2GB. Multiple values are supported if you provide the unit (for example, 1MB, 1M, 1GB, 1G).</p>
 <h3 id="-userusername">&ndash;user(=USERNAME)<a class="headerlink" href="#-userusername" title="Permanent link">&para;</a></h3>
 <p>This option specifies the MySQL username used when connecting to the server,
 if that’s not the current user. The option accepts a string argument. See
