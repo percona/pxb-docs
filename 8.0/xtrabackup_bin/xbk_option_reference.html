@@ -4085,11 +4085,10 @@ global lock. Default is “select”.</p>
 <p>Issue <code>LOCK TABLES FOR BACKUP</code> if it is supported by server (otherwise use
 <code>LOCK INSTANCE FOR BACKUP</code>) at the beginning of the backup to block all DDL
 operations.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Prior to <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
-<p>As of <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
-</div>
+<p><strong>NOTE</strong>: Prior to <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread
+after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
+<p>As of <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup option stops the SQL
+replica thread before copying the InnoDB files.</p>
 <h3 id="-lock-ddl-per-table">&ndash;lock-ddl-per-table()<a class="headerlink" href="#-lock-ddl-per-table" title="Permanent link">&para;</a></h3>
 <p>Lock DDL for each table before xtrabackup starts to copy
 it and until the backup is completed.</p>
@@ -4234,12 +4233,7 @@ will fail if <code>Slave_open_temp_tables</code> does not become zero after
 <code>--safe-slave-backup-timeout</code> seconds. The replication SQL
 thread will be restarted when the backup finishes. This option is
 implemented in order to deal with <a href="https://dev.mysql.com/doc/refman/5.7/en/replication-features-temptables.html">replicating temporary tables</a>
-and isn’t necessary with Row-Based-Replication.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Prior to <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
-<p>As of <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
-</div>
+and isn’t neccessary with Row-Based-Replication.</p>
 <h3 id="-safe-slave-backup-timeoutseconds">&ndash;safe-slave-backup-timeout(=SECONDS)<a class="headerlink" href="#-safe-slave-backup-timeoutseconds" title="Permanent link">&para;</a></h3>
 <p>How many seconds <code>--safe-slave-backup</code> should wait for
 <code>Slave_open_temp_tables</code> to become zero. Defaults to 300 seconds.</p>
@@ -4405,7 +4399,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2022-09-30
+      2022-08-02
     
   </small>
 </div>
