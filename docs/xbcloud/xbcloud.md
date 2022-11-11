@@ -33,6 +33,8 @@ The *xbcloud* binary stores each chunk as a separate object with a name
 0-padded serial number of chunk within a file. Size of chunk produced by
 *xtrabackup* and *xbstream* changed to 10M.
 
+To adjust the chunk size use `--read-buffer-size`. To adjust the chunk size for encrypted files, use `--read-buffer-size` and `--encrypt-chunk-size`.
+
 *xbcloud* has three essential operations: *put*, *get*, and *delete*. With these
 operations, backups are created, stored, retrieved, restored, and
 deleted. *xbcloud* operations clearly map to similar operations within 

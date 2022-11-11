@@ -58,5 +58,6 @@ To decompress individual files, run *xbstream* with the
 used for decompressing by passing the `--decompress-threads`
 option.
 
-Also, files can be decompressed using the **qpress** tool that can be downloaded from [quicklz.com](http://www.quicklz.com/). Qpress supports multi-threaded 
-decompression.
+Also, files can be decompressed using the **qpress** tool that can be downloaded from [quicklz.com](http://www.quicklz.com/). Qpress supports multi-threaded decompression.
+
+The default size of the chunk file is 10MB. To adjust the chunk size use `--read-buffer-size`. To adjust the chunk size for encrypted files, use `--read-buffer-size` and `--encrypt-chunk-size`.
