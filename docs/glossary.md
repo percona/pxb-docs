@@ -16,6 +16,10 @@ Files with the `.exp` extension are created by **Percona XtraBackup** per each _
 
 For each table, the server will create a file with the `.frm` extension containing the table definition (for all storage engines).
 
+## General availability (GA)
+
+A finalized version of the product which is made available to the general public. It is the final stage in the software release cycle.
+
 ### .ibd
 
 On a multiple tablespace setup ([innodb\_file\_per\_table] enabled), _MySQL_ will store each newly created table on a file with a `.ibd` extension.
@@ -168,6 +172,10 @@ A consistent set of backup data that is ready to be restored.
 
 Copies the database backups taken using the backup command to the original location or a different location. A restore returns data that has been either lost, corrupted, or stolen to the original condition at a specific point in time.
 
+### Tech preview
+
+A tech preview item can be a feature, a variable, or a value within a variable. The term designates that the item is not yet ready for production use and is not included in support by SLA. A tech preview item is included in a release so that users can provide feedback. The item is either updated and released as [general availability(GA)](#general-availability-ga) or removed if not useful. The item's functionality can change from tech preview to GA.
+
 ### xbcrypt
 
 To support the encryption and the decryption of the backups, a new tool xbcrypt was introduced to **Percona XtraBackup**. This utility has been modeled after the **xbstream** binary to perform encryption and decryption outside **Percona XtraBackup**.
@@ -180,3 +188,10 @@ To support simultaneous compression and streaming, **Percona XtraBackup** uses t
 
 _Percona XtraDB_ is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. _Percona XtraDB_ includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see [The Percona XtraDB Storage Engine](https://www.percona.com/doc/percona-server/8.0/percona_xtradb.html).
 
+### ZSTD
+
+The `Zstandard (ZSTD)` compression algorithm is a [tech preview](#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
+
+`ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios.
+
+`ZSTD` compression algorithm has been implemented in [Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md).

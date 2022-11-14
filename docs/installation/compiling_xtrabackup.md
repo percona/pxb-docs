@@ -36,7 +36,7 @@ libcurl4-openssl-dev cmake debhelper libaio-dev \
 libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev \
 lsb-release python-docutils build-essential rsync \
 libdbd-mysql-perl libnuma1 socat librtmp-dev libtinfo5 \
-qpress liblz4-tool liblz4-1 liblz4-dev vim-common
+qpress liblz4-tool liblz4-1 liblz4-dev zstd vim-common
 ```
 
 To install the man pages, install the python3-sphinx package first:
@@ -57,7 +57,7 @@ dependencies:
 ```shell
 $ sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
 bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel \
-vim-common procps-ng-devel
+zstd vim-common procps-ng-devel
 ```
 
 To install the man pages, install the python3-sphinx package first:
