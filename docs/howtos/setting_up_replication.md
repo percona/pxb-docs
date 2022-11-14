@@ -108,8 +108,8 @@ you can set it up in `.mylogin.cnf` as follows:
 mysql_config_editor set --login-path=client --host=localhost --user=root --password
 ```
 
-For more information, see MySQL Configuration
-Utility <https://dev.mysql.com/doc/refman/8.0/en/mysql-config-editor.html>.
+For more information, see [MySQL Configuration
+Utility](https://dev.mysql.com/doc/refman/8.0/en/mysql-config-editor.html).
 
 This statement provides root access to MySQL.
 
