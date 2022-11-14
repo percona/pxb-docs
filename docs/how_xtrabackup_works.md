@@ -12,8 +12,9 @@ steps. It applies committed transaction log entries to the data files, and it
 performs an undo operation on any transactions that modified data but did not
 commit.
 
-*Percona XtraBackup* works by remembering the log sequence number (LSN)
-when it starts, and then copying away the data files. It takes some time to do
+[Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md) adds `--register-redo-log-consumer` parameter. The `--register-redo-log-consumer` parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.  
+
+*Percona XtraBackup* works by remembering the LSN when it starts, and then copying away the data files. It takes some time to do
 this, so if the files are changing, then they reflect the state of the database
 at different points in time. At the same time, *Percona XtraBackup* runs a
 background process that watches the transaction log files, and copies changes

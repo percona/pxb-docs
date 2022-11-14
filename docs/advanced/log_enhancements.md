@@ -9,28 +9,31 @@ Notice in the following examples the variance in the log statements:
 
 * The backup log statement header has the name of the module, `xtrabackup`, which generated the statement but no timestamp:
 
-  ```
-  xtrabackup: recognized client arguments: --parallel=4 --target-dir=/data/backups/ --backup=1
+```shell
+ $ xtrabackup: recognized client arguments: --parallel=4 --target-dir=/data/backups/ --backup=1
+```
+The result should be similar to the following:
 
-  ./bin/xtrabackup version 8.0.27-19 based on MySQL server 8.0.27 Linux (x86_64) (revision id: b0f75188ca3)
-  ```
+```text
+./bin/xtrabackup version 8.0.27-19 based on MySQL server 8.0.27 Linux (x86_64) (revision id: b0f75188ca3)
+```
 
 * The copy-back log statement has a timestamp but no module name. The
   timestamp is a mix of UTC and the local timezone.
 
-  ```
-  220322 19:05:13 [01] Copying undo_001 to /data/backups/undo_001
-  ```
+```text
+220322 19:05:13 [01] Copying undo_001 to /data/backups/undo_001
+```
 
 * The following prepare log statements do not have header information,
   which makes diagnosing an issue more difficult.
 
-  ```
-  Completed space ID check of 1008 files.
-  Initializing buffer pool, total size = 128.000000M, instances = 1, chunk size =128.000000M
-  Completed initialization of buffer pool
-  If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
-  ```
+```text
+Completed space ID check of 1008 files.
+Initializing buffer pool, total size = 128.000000M, instances = 1, chunk size =128.000000M
+Completed initialization of buffer pool
+If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+```
 
 ## Log statement structure
 
@@ -55,7 +58,7 @@ The
 uniformity of the headers makes it easier to follow an operation’s progress
 or review the log to diagnose issues.
 
-```
+```text
 2022-03-22T19:15:36.142247+05:30 0 [Note] [MY-011825] [Xtrabackup] This target seems to be not prepared yet.
 2022-03-22T19:15:36.142792+05:30 0 [Note] [MY-013251] [InnoDB] Number of pools: 1
 2022-03-22T19:15:36.149212+05:30 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(33311656)

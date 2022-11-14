@@ -13,7 +13,7 @@ of the database including correctly sized log files, so you need to execute with
 
 The result of running on a backup might look like the following:
 
-```
+```text
 <INDEX STATISTICS>
   table: test/table1, index: PRIMARY, space id: 12, root page 3
   estimated statistics in dictionary:

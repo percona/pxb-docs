@@ -1,7 +1,5 @@
 # Using the xbcloud binary with Microsoft Azure Cloud Storage
 
-This feature is *technical preview* quality.
-
 Implemented in Percona XtraBackup 8.0.27-19, the **xbcloud** binary adds support for the Microsoft Azure Cloud Storage using the REST API.
 
 ## Options
@@ -29,7 +27,7 @@ max-retries, and others, can be used. For more information, see the
 An example of an **xbcloud** backup.
 
 ```shell
-$ xtrabackup --backup --stream=xbstream --target-dir= $TARGET_DIR | 
+$ xtrabackup --backup --stream=xbstream  | 
 xbcloud put backup_name --azure-storage-account=pxbtesting --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure
 ```
 

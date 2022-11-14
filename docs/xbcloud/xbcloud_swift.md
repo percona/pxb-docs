@@ -4,7 +4,7 @@
 
 The following example shows how to make a full backup and upload it to Swift.
 
-```
+```shell
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=swift \
 --swift-container=test \
