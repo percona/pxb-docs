@@ -2006,14 +2006,14 @@
 <p>For paid <a href="https://www.percona.com/services/support">support</a>, <a href="https://www.percona.com/services/managed-services">managed services</a> or <a href="https://www.percona.com/services/consulting">consulting services</a>, contact <a href="https://www.percona.com/about-percona/contact">Percona Sales</a>.</p>
 <p>For <a href="https://www.percona.com/training">training</a>, contact <a href="https://learn.percona.com/contact-me">Percona Training - Start learning now</a>.</p>
 <h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
-<p>The <a href="/docs/advanced/page_tracking.md">Take an incremental backup using page tracking</a> feature is <a href="/docs/glossary.md#generally-available">Generally Available (GA)</a>.</p>
-<p>The following features and improvements introduced in Percona XtraBackup 8.0.30-23 are available only in <a href="/docs/glossary.md#tech-preview">tech preview</a>:</p>
+<p>The <a href="../../advanced/page_tracking.html">Take an incremental backup using page tracking</a> feature is <a href="../../glossary.html#generally-available">Generally Available (GA)</a>.</p>
+<p>The following features and improvements introduced in Percona XtraBackup 8.0.30-23 are available only in <a href="../../glossary.html#tech-preview">tech preview</a>:</p>
 <ul>
 <li>
-<p>Percona XtraBackup adds support for <a href="/docs/backup_scenarios/compressed_backup.md#creating-compressed-backups"><code>Zstandard (ZSTD)</code></a> compression algorithm. <code>ZSTD</code> is a fast lossless compression algorithm, targeting real-time compression scenarios at zlib-level and better compression ratios. </p>
+<p>Percona XtraBackup adds support for <a href="../../backup_scenarios/compressed_backup.html"><code>Zstandard (ZSTD)</code></a> compression algorithm. <code>ZSTD</code> is a fast lossless compression algorithm, targeting real-time compression scenarios at zlib-level and better compression ratios. </p>
 </li>
 <li>
-<p>Percona XtraBackup implements the <a href="/docs/advanced/smart_memory_estimation.md"><code>Smart memory estimation</code></a> feature to compute the memory required to <code>--prepare</code> a backup. Percona XtraBackup has extended the crash recovery logic to extract the formula used to allocate memory. Now, in the backup phase, while copying redo log entries, Percona XtraBackup computes the required memory for <code>--prepare</code>. Percona XtraBackup also takes into consideration the number of InnoDB pages to be fetched from the disk. Percona XtraBackup checks the server&rsquo;s available free memory and uses that memory up to the limit specified in the <code>--use-free-memory-pct</code> option to run <code>--prepare</code>.</p>
+<p>Percona XtraBackup implements the <a href="../../advanced/smart_memory_estimation.html"><code>Smart memory estimation</code></a> feature to compute the memory required to <code>--prepare</code> a backup. Percona XtraBackup has extended the crash recovery logic to extract the formula used to allocate memory. Now, in the backup phase, while copying redo log entries, Percona XtraBackup computes the required memory for <code>--prepare</code>. Percona XtraBackup also takes into consideration the number of InnoDB pages to be fetched from the disk. Percona XtraBackup checks the server&rsquo;s available free memory and uses that memory up to the limit specified in the <code>--use-free-memory-pct</code> option to run <code>--prepare</code>.</p>
 </li>
 </ul>
 <h2 id="new-features">New features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
