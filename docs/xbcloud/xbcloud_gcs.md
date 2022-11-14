@@ -11,7 +11,7 @@ compatible with Amazon S3.
    
     [Cloud Storage Interoperability](https://cloud.google.com/storage/docs/interoperability)
 
-```
+```shell
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=google \
 --google-endpoint=`storage.googleapis.com` \

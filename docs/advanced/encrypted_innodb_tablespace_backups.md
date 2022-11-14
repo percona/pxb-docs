@@ -1,7 +1,6 @@
 # Encrypted InnoDB tablespace backups
 
-InnoDB supports [data encryption for InnoDB tables]
-(https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html)
+InnoDB supports [data encryption for InnoDB tables](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html)
 stored in file-per-table tablespaces. This feature provides an at-rest
 encryption for physical tablespace data files.
 
@@ -38,7 +37,7 @@ In order to back up and prepare a database containing encrypted InnoDB
 tablespaces, specify the path to a keyring file as the value of the
 `--keyring-file-data` option.
 
-```
+```shell
 $ xtrabackup --backup --target-dir=/data/backup/ --user=root \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
@@ -46,7 +45,7 @@ $ xtrabackup --backup --target-dir=/data/backup/ --user=root \
 After *xtrabackup* takes the backup, the following
 message confirms the action:
 
-```
+```text
 xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
 160401 10:25:51 completed OK!
 ```
@@ -59,7 +58,7 @@ xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
 
 To prepare the backup specify the keyring-file-data.
 
-```
+```shell
 $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
@@ -67,7 +66,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 After *xtrabackup* takes the backup, the following message confirms
 the action:
 
-```
+```text
 InnoDB: Shutdown completed; log sequence number 5697064
 160401 10:34:28 completed OK!
 ```
@@ -86,14 +85,14 @@ com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-p
 
 The following command creates a backup in the `/data/backup` directory:
 
-```
+```shell
 $ xtrabackup --backup --target-dir=/data/backup --user=root
 ```
 
 After *xtrabackup* completes the action, the following confirmation message
 appears:
 
-```
+```text
 xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
 160401 10:25:51 completed OK!
 ```
@@ -105,7 +104,7 @@ To prepare the backup, *xtrabackup* must access the keyring.
 default `my.cnf` configuration file. Specify the keyring settings in the
 command line:
 
-```
+```shell
 $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-vault-config=/etc/vault.cnf
 ```
@@ -117,7 +116,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 After *xtrabackup* completes the action, the following confirmation message
 appears:
 
-```
+```text
 InnoDB: Shutdown completed; log sequence number 5697064
 160401 10:34:28 completed OK!
 ```
@@ -125,7 +124,7 @@ InnoDB: Shutdown completed; log sequence number 5697064
 The backup is now prepared and can be restored with the `--copy-back`
 option:
 
-```
+```shell
 $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql
 ```
 
@@ -141,7 +140,7 @@ An example of a manifest and a configuration file follows:
 
 An example of `./bin/mysqld.my`:
 
-```
+```json
 {
    "components": "file://component_keyring_file"
 }
@@ -149,7 +148,7 @@ An example of `./bin/mysqld.my`:
 
 An example of `/lib/plugin/component_keyring_file.cnf`:
 
-```
+```json
 {
    "path": "/var/lib/mysql-keyring/keyring_file", "read_only": false
 }
@@ -167,14 +166,14 @@ when in use.
 The component has no special requirements for backing up a database that
 contains encrypted InnoDB tablespaces.
 
-```
-xtrabackup --backup --target-dir=/data/backup --user=root
+```shell
+$ xtrabackup --backup --target-dir=/data/backup --user=root
 ```
 
 After *xtrabackup* completes the action, the following confirmation message
 appears:
 
-```
+```text
 xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
 160401 10:25:51 completed OK!
 ```
@@ -194,8 +193,8 @@ attribute `PATH` from the xtrabackup_component_keyring_file.cnf.
 The following is an example of adding the location for the
 keyring-file-data:
 
-```
-xtrabackup --prepare --target-dir=/data/backup \
+```shell
+$ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
@@ -206,7 +205,7 @@ xtrabackup --prepare --target-dir=/data/backup \
 After *xtrabackup* completes preparing the backup, the following
 confirmation message appears:
 
-```
+```text
 InnoDB: Shutdown completed; log sequence number 5697064
 160401 10:34:28 completed OK!
 ```
@@ -234,7 +233,7 @@ directory. This file contains a line showing the `to_lsn`, which is the
 database’s LSN at the end of the backup. First you need to create a full
 backup with the following command:
 
-```
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
@@ -246,7 +245,7 @@ $ xtrabackup --backup --target-dir=/data/backups/base \
 If you look at the `xtrabackup_checkpoints` file, you should see
 contents similar to the following:
 
-```
+```text
 backup_type = full-backuped
 from_lsn = 0
 to_lsn = 7666625
@@ -258,7 +257,7 @@ recover_binlog_info = 1
 Now that you have a full backup, you can make an incremental backup based
 on it. Use a command such as the following:
 
-```
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/inc1 \
 --incremental-basedir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
@@ -281,7 +280,7 @@ changes since the `LSN 7666625`. If you examine the
 `xtrabackup_checkpoints` file in this directory, you should see 
 something similar to the following:
 
-```
+```text
 backup_type = incremental
 from_lsn = 7666625
 to_lsn = 8873920
@@ -292,7 +291,7 @@ recover_binlog_info = 1
 
 Use this directory as the base for yet another incremental backup:
 
-```
+```shell
 $ xtrabackup --backup --target-dir=/data/backups/inc2 \
 --incremental-basedir=/data/backups/inc1 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
@@ -324,7 +323,7 @@ apply
 the incremental differences to it. Recall that you have the following
 backups:
 
-```
+```text
 /data/backups/base
 /data/backups/inc1
 /data/backups/inc2
@@ -333,14 +332,14 @@ backups:
 To prepare the base backup, you need to run `--prepare` as usual, but
 prevent the rollback phase:
 
-```
+```shell
 $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
 The output should end with some text such as the following:
 
-```
+```text
 InnoDB: Shutdown completed; log sequence number 7666643
 InnoDB: Number of pools: 1
 160401 12:31:11 completed OK!
@@ -350,7 +349,7 @@ To apply the first incremental backup to the full backup, you should use
 the
 following command:
 
-```
+```shell
 $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
@@ -365,7 +364,7 @@ deltas
 to the (modified) base backup, and you will roll its data forward in 
 time to the point of the second incremental backup:
 
-```
+```shell
 $ xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
@@ -431,7 +430,7 @@ that are being backed up.
 The following example illustrates how the backup can be created in this
 case:
 
-```
+```shell
 $ xtrabackup --backup --user=root -p --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
@@ -448,8 +447,8 @@ the `ps` command output.
 
 The same passphrase should be specified for the prepare command:
 
-```
-$ xtrabackup --prepare --target-dir=/data/backup \
+```shell
+$ xtrabackup --backup --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
 
@@ -463,7 +462,7 @@ When restoring a backup you will need to generate a new master key. Here is
 the
 example for `keyring_file` plugin or component:
 
-```
+```shell
 $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 --transition-key=MySecretKey --generate-new-master-key \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
@@ -471,7 +470,7 @@ $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 
 In case of `keyring_vault`, it will look like this:
 
-```
+```shell
 $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 --transition-key=MySecretKey --generate-new-master-key \
 --keyring-vault-config=/etc/vault.cnf
@@ -494,7 +493,7 @@ In this scenario, the three stages of the backup process look as follows.
 
 * Backup
 
-  ```
+  ```shell
   $ xtrabackup --backup --user=root -p --target-dir=/data/backup \
   --generate-transition-key
   ```
@@ -503,14 +502,14 @@ In this scenario, the three stages of the backup process look as follows.
 
     - `keyring_file` variant:
 
-      ```
+      ```shell
       $ xtrabackup --prepare --target-dir=/data/backup \
       --keyring-file-data=/var/lib/mysql-keyring/keyring
       ```
 
     - `keyring_vault` variant:
 
-      ```
+      ```shell
       $ xtrabackup --prepare --target-dir=/data/backup \
       --keyring-vault-config=/etc/vault.cnf
       ```
@@ -519,14 +518,14 @@ In this scenario, the three stages of the backup process look as follows.
 
   - `keyring_file` variant:
 
-    ```
+    ```shell
     $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
     --generate-new-master-key --keyring-file-data=/var/lib/mysql-keyring/keyring
     ```
 
   - `keyring_vault` variant:
 
-    ```
+    ```shell
     $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
     --generate-new-master-key --keyring-vault-config=/etc/vault.cnf
     ```

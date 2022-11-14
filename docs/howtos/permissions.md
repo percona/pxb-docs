@@ -13,8 +13,12 @@ There are many ways for checking the permission on a file or directory. For
 example, `ls -ls /path/to/file` or `stat /path/to/file | grep Access` will
 do the job:
 
-```
+```shell
 $ stat /etc/mysql | grep Access
+``` 
+The result could look like this:
+
+```text
 Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
 Access: 2011-05-12 21:19:07.129850437 -0300
 $ ls -ld /etc/mysql/my.cnf
@@ -25,8 +29,12 @@ As in this example, `my.cnf` is owned by `root` and not writable for anyone
 else. Assuming that you do not have `root`‘s password, you can check what
 permissions you have on these types of files with `sudo -l`:
 
-```
+```shell
 $ sudo -l
+```
+The results could look like this:
+
+```text
 Password:
 You may run the following commands on this host:
 (root) /usr/bin/
@@ -54,13 +62,13 @@ access. You should check them in that case.
 To query the privileges that your database user has been granted, at a
 console of the server execute:
 
-```
+```sql
 mysql> SHOW GRANTS;
 ```
 
 or for a particular user with:
 
-```
+```sql
 mysql> SHOW GRANTS FOR 'db-user'@'host';
 ```
 
@@ -71,6 +79,6 @@ Note that privileges may vary across versions of the server. To list the
 exact list of privileges that your server support (and a brief description
 of them) execute:
 
-```
+```sql
 mysql> SHOW PRIVILEGES;
 ```

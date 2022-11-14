@@ -338,10 +338,12 @@ See the **xtrabackup** documentation for more details.
 
 
 ### --encrypt-chunk-size(=#)
+
 This option specifies the size of the internal working buffer for each
 encryption thread, measured in bytes. It is passed directly to the
-xtrabackup child process. See the **xtrabackup** documentation for more details.
+xtrabackup child process.
 
+To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-buffer-size) and `--encrypt-chunk-size`.
 
 ### --export()
 Create files necessary for exporting tables. See Restoring Individual
@@ -529,11 +531,11 @@ Issue `LOCK TABLES FOR BACKUP` if it is supported by server (otherwise use
 `LOCK INSTANCE FOR BACKUP`) at the beginning of the backup to block all DDL
 operations.
 
-**NOTE**: Prior to *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread
-after the InnoDB tables and before the non-InnoDB tables are backed up.
+!!! note
 
-As of *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup option stops the SQL
-replica thread before copying the InnoDB files.
+    Prior to *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
+
+    As of *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
 
 
 ### --lock-ddl-per-table()
@@ -686,8 +688,8 @@ copying the data files back to their original locations to restore them.
 
 
 ### --read-buffer-size()
-Set the datafile read buffer size, given value is scaled up to page size. Default
-is 10Mb.
+
+Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use `--read-buffer-size` and [`--encrypt-chunk-size`](#encrypt-chunk-size).
 
 
 ### --rebuild-indexes()
@@ -747,7 +749,13 @@ will fail if `Slave_open_temp_tables` does not become zero after
 `--safe-slave-backup-timeout` seconds. The replication SQL
 thread will be restarted when the backup finishes. This option is
 implemented in order to deal with [replicating temporary tables](https://dev.mysql.com/doc/refman/5.7/en/replication-features-temptables.html)
-and isn’t neccessary with Row-Based-Replication.
+and isn’t necessary with Row-Based-Replication.
+
+!!! note
+
+    Prior to *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
+
+    As of *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
 
 
 ### --safe-slave-backup-timeout(=SECONDS)
@@ -913,8 +921,9 @@ Directory where temp tablespace files live, this path can be absolute.
 
 ### --throttle(=#)
 This option limits the number of chunks copied per second. The chunk size is
-*10 MB*. To limit the bandwidth to *10 MB/s*, set the option to *1*:
-–throttle=1.
+*10 MB*. 
+
+To limit the bandwidth to *10 MB/s*, set the option to *1*.
 
 
 ### --tls-ciphersuites()
@@ -943,14 +952,8 @@ specified for the `--prepare` command.
 
 
 ### --use-memory()
-This option affects how much memory is allocated for preparing a backup with
-`--prepare`, or analyzing statistics with
-`--stats`. Its purpose is similar
-to innodb_buffer_pool_size. It does not do the same thing as the
-similarly named option in Oracle’s InnoDB Hot Backup tool.
-The default value is 100MB, and if you have enough available memory, 1GB to
-2GB is a good recommended value. Multiples are supported providing the unit
-(e.g. 1MB, 1M, 1GB, 1G).
+
+This option affects how much memory is allocated and is similar to `innodb_buffer_pool_size`. This option is only relevant in the `--prepare` phase or when analyzing statistics with `--stats`. The default value is 100MB. The recommended value is between 1GB to 2GB. Multiple values are supported if you provide the unit (for example, 1MB, 1M, 1GB, 1G).
 
 
 ### --user(=USERNAME)

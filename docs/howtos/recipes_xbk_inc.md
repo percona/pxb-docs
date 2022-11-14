@@ -9,8 +9,8 @@ use.
 
 Making an incremental backup requires a full backup as a base:
 
-```
-xtrabackup --backup --target-dir=/data/backups/mysql/
+```shell
+$ xtrabackup --backup --target-dir=/data/backups/mysql/
 ```
 
 It is important that you **do not run** the `--prepare` command yet.
@@ -20,15 +20,15 @@ It is important that you **do not run** the `--prepare` command yet.
 Suppose the full backup is on Monday, and you will create an incremental
 one on Tuesday:
 
-```
-xtrabackup --backup --target-dir=/data/backups/inc/tue/ \
+```shell
+$ xtrabackup --backup --target-dir=/data/backups/inc/tue/ \
       --incremental-basedir=/data/backups/mysql/
 ```
 
 and the same policy is applied on Wednesday:
 
-```
-xtrabackup --backup --target-dir=/data/backups/inc/wed/ \
+```shell
+$ xtrabackup --backup --target-dir=/data/backups/inc/wed/ \
        --incremental-basedir=/data/backups/inc/tue/
 ```
 
@@ -36,16 +36,16 @@ xtrabackup --backup --target-dir=/data/backups/inc/wed/ \
 
 Prepare the base backup (Monday’s backup):
 
-```
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/
+```shell
+$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/
 ```
 
 ## Roll forward the base data to the first increment
 
 Roll Monday’s data forward to the state on Tuesday:
 
-```
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
+```shell
+$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
    --incremental-dir=/data/backups/inc/tue/
 ```
 
@@ -53,7 +53,7 @@ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
 
 Roll forward again to the state on Wednesday (without --apply-log-only):
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backups/mysql/ \
    --incremental-dir=/data/backups/inc/wed/
 ```
