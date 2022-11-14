@@ -31,7 +31,7 @@ with the *percona-release* package configuration tool.
 1. Download a deb package for *percona-release* the repository packages
     from Percona web:
 
-    ```
+    ```shell
     $ wget https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_all.deb
     ```
 
@@ -53,13 +53,13 @@ with the *percona-release* package configuration tool.
 
 5. After that you can install the `percona-xtrabackup-80` package:
 
-    ```
+    ```shell
     $ sudo apt install percona-xtrabackup-80
     ```
 
 6. To make compressed backups, install the `qpress` package:
 
-    ```
+    ```shell
     $ sudo apt install qpress
     ```
 
@@ -80,7 +80,7 @@ upgrades from the distribution repositories. Make a new file
 `/etc/apt/preferences.d/00percona.pref` and add the following lines in
 it:
 
-```
+```text
 Package: *
 Pin: release o=Percona Development Team
 Pin-Priority: 1001
@@ -96,13 +96,13 @@ from [Download Percona XtraBackup 8.0](https://www.percona.com/downloads/XtraBac
 example downloads *Percona XtraBackup* 8.0.26-18 release package for Ubuntu
 20.04:
 
-```
+```shell
 $ wget https://downloads.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0.26-18/binary/debian/focal/x86_64/percona-xtrabackup-80_8.0.26-18-1.focal_amd64.deb
 ```
 
 Install *Percona XtraBackup* by running:
 
-```
+```shell
 $ sudo dpkg -i percona-xtrabackup-80_8.0.26-18-1.focal_amd64.deb
 ```
 
@@ -125,26 +125,30 @@ Follow these steps to upgrade curl to version 7.74.0:
 
 1. Edit the `/etc/apt/sources.list` to add the following:
 
-    ```
+    ```text
     deb http://ftp.de.debian.org/debian buster-backports main
     ```
 
 2. Refresh the `apt` sources:
 
-    ```
+    ```shell
     sudo apt update
     ```
 
 3. Install the version from `buster-backports`:
 
-    ```
+    ```shell
     $ sudo apt install curl/buster-backports
     ```
 
 4. Verify the version number:
 
-    ```
+    ```shell
     $ curl --version
+    ```
+The results should be similar to the following:
+
+    ```text
     curl 7.74.0 (x86_64-pc-linux-gnu) libcurl/7.74.0
     ```
 
@@ -155,6 +159,6 @@ packages.
 
 1. Remove the packages
 
-    ```
+    ```shell
     $ sudo apt remove percona-xtrabackup-80
     ```

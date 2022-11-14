@@ -12,7 +12,7 @@ To use the streaming feature, you must use the `--stream`,
 providing the format of the stream (`xbstream` ) and where to store
 the temporary files:
 
-```
+```shell
 $ xtrabackup --stream=xbstream --target-dir=/tmp
 ```
 

@@ -65,7 +65,7 @@ If you want to speed up the compression you can use the parallel
 compression, which can be enabled with `--compress-threads` option.
 Following example will use four threads for compression:
 
-```
+```shell
 $ xtrabackup --backup --compress --compress-threads=4 \
 --target-dir=/data/compressed/
 ```

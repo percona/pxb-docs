@@ -76,7 +76,3 @@ compression algorithm. Percona XtraBackup supports the following compression alg
     
     To decompress files, use the `--decompress` option. 
 
-
-
-
-
