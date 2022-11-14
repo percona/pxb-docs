@@ -670,6 +670,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#using-the-changed-page-tracking-algorithm" class="md-nav__link">
+    Using the changed page tracking algorithm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#creating-an-incremental-backup" class="md-nav__link">
     Creating an Incremental Backup
   </a>
@@ -1851,6 +1858,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#using-the-changed-page-tracking-algorithm" class="md-nav__link">
+    Using the changed page tracking algorithm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#creating-an-incremental-backup" class="md-nav__link">
     Creating an Incremental Backup
   </a>
@@ -1914,24 +1928,10 @@ hour.</p>
 number, or LSN. The LSN is the system version number for the
 entire database. Each page’s LSN shows how recently it was changed.</p>
 <p>An incremental backup copies each page whose LSN is newer than the
-previous incremental or full backup’s LSN. There are two algorithms in
-use to find the set of such pages to be copied. The first one, available
-with
-all the server types and versions, is to check the page LSN directly by
-reading all the data pages. The second one, available with <em>Percona Server
-for MySQL</em>, is
-to enable
-the <a href="http://www.percona.com/doc/percona-server/5.6/management/changed_page_tracking.html">changed page tracking</a>
-feature on the server, which will note the pages as they are being changed.
-This information will be then written out in a compact separate so-called
-bitmap file. The <em>xtrabackup</em> binary will use that file to read only the
-data
-pages it needs for the incremental backup, potentially saving many read
-requests. The latter algorithm is enabled by default if the <em>xtrabackup</em>
-binary
-finds the bitmap file. It is possible to specify
-<code>--incremental-force-scan</code> to read all the pages even if the
-bitmap data is available.</p>
+previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.</p>
+<h3 id="using-the-changed-page-tracking-algorithm">Using the changed page tracking algorithm<a class="headerlink" href="#using-the-changed-page-tracking-algorithm" title="Permanent link">&para;</a></h3>
+<p><em>Percona XtraBackup</em> 8.0.30 removes the algorithm that used the <a href="https://docs.percona.com/percona-server/8.0/management/changed_page_tracking.html">changed page tracking</a> feature in <em>Percona Server for MySQL</em>. <em>Percona Server for MySQL</em> 8.0.27 deprecated the changed page tracking feature.</p>
+<p>With PXB 8.0.27 or earlier, another algorithm enabled the <em>Percona Server for MySQL</em> changed page tracking feature. The algorithm generates a bitmap file. The <em>xtrabackup</em> binary uses that bitmap file to read only those pages needed for the incremental backup. This method potentially saves resources. The backup enables the algorithm by default if the <em>xtrabackup</em> binary discovers the bitmap file. You can override the algorithm with <code>--incremental-force-scan</code> which forces a read of all pages even if the bitmap file is available.</p>
 <h2 id="creating-an-incremental-backup">Creating an Incremental Backup<a class="headerlink" href="#creating-an-incremental-backup" title="Permanent link">&para;</a></h2>
 <p>To make an incremental backup, begin with a full backup as usual. The
 <em>xtrabackup</em> binary writes a file called <code>xtrabackup_checkpoints</code> into
@@ -2096,7 +2096,7 @@ way.</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-11-14
     
   </small>
 </div>
