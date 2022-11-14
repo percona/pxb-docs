@@ -22,7 +22,7 @@
     
     
       
-        <title>Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS - Percona XtraBackup</title>
+        <title>Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS - Percona XtraBackup</title>
       
     
     
@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installing-percona-xtrabackup-on-red-hat-enterprise-linux-and-centos" class="md-skip">
+        <a href="#install-percona-xtrabackup-on-red-hat-enterprise-linux-and-centos" class="md-skip">
           Skip to content
         </a>
       
@@ -129,7 +129,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+              Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
             
           </span>
         </div>
@@ -402,12 +402,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+          Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="yum_repo.html" class="md-nav__link md-nav__link--active">
-        Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+        Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
       </a>
       
         
@@ -435,8 +435,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-percona-xtrabackup-from-percona-yum-repository" class="md-nav__link">
-    Installing Percona XtraBackup from Percona yum repository
+  <a href="#install-percona-xtrabackup-from-percona-yum-repository" class="md-nav__link">
+    Install Percona XtraBackup from Percona yum repository
   </a>
   
 </li>
@@ -1858,8 +1858,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-percona-xtrabackup-from-percona-yum-repository" class="md-nav__link">
-    Installing Percona XtraBackup from Percona yum repository
+  <a href="#install-percona-xtrabackup-from-percona-yum-repository" class="md-nav__link">
+    Install Percona XtraBackup from Percona yum repository
   </a>
   
 </li>
@@ -1910,7 +1910,7 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="installing-percona-xtrabackup-on-red-hat-enterprise-linux-and-centos">Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS<a class="headerlink" href="#installing-percona-xtrabackup-on-red-hat-enterprise-linux-and-centos" title="Permanent link">&para;</a></h1>
+                <h1 id="install-percona-xtrabackup-on-red-hat-enterprise-linux-and-centos">Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS<a class="headerlink" href="#install-percona-xtrabackup-on-red-hat-enterprise-linux-and-centos" title="Permanent link">&para;</a></h1>
 <p>Ready-to-use packages are available from the <em>Percona XtraBackup</em> software
 repositories and the <a href="https://www.percona.com/downloads/XtraBackup/">download page</a>. The Percona yum repository supports popular <em>RPM</em>-based operating systems, including the <em>Amazon
 Linux AMI</em>.</p>
@@ -1942,7 +1942,7 @@ GA binaries and associated files.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="installing-percona-xtrabackup-from-percona-yum-repository">Installing <em>Percona XtraBackup</em> from Percona <code>yum</code> repository<a class="headerlink" href="#installing-percona-xtrabackup-from-percona-yum-repository" title="Permanent link">&para;</a></h2>
+<h2 id="install-percona-xtrabackup-from-percona-yum-repository">Install <em>Percona XtraBackup</em> from Percona <code>yum</code> repository<a class="headerlink" href="#install-percona-xtrabackup-from-percona-yum-repository" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Install the Percona yum repository by running the following command as the <code>root</code> user or with <strong>sudo</strong>: </p>
@@ -1973,6 +1973,11 @@ installing <em>Percona XtraBackup</em> on CentOS 6. For this operating system, t
 <li>
 <p>To be able to make compressed backups, install the <code>qpress</code> package:</p>
 <div class="highlight"><pre><span></span><code>$ yum install qpress
+</code></pre></div>
+</li>
+<li>
+<p>To decompress backups made using <code>ZSTD</code> compression algorithm, install the <code>zstd</code> package:</p>
+<div class="highlight"><pre><span></span><code>$ yum install zstd
 </code></pre></div>
 </li>
 </ol>
@@ -2016,7 +2021,7 @@ installed packages: </p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-11-14
     
   </small>
 </div>
