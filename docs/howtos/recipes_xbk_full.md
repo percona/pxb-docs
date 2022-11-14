@@ -18,7 +18,7 @@ $ xtrabackup --prepare --target-dir=/data/backup/mysql/
 
 !!! note
     
-    Starting with [Percona Server for MySQL 8.0.30-22](release-notes/8.0/8.0.30-22.0.md) only run prepare once.
+    Starting with [Percona Server for MySQL 8.0.30-22](../release-notes/8.0/8.0.30-23.0.md) only run prepare once.
 
 ### Success Criteria
 
