@@ -22,7 +22,7 @@
     
     
       
-        <title>Making an Incremental Backup - Percona XtraBackup</title>
+        <title>Make an Incremental Backup - Percona XtraBackup</title>
       
     
     
@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#making-an-incremental-backup" class="md-skip">
+        <a href="#make-an-incremental-backup" class="md-skip">
           Skip to content
         </a>
       
@@ -129,7 +129,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Making an Incremental Backup
+              Make an Incremental Backup
             
           </span>
         </div>
@@ -1820,13 +1820,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prepare-the-whole-backup-to-be-ready-to-use" class="md-nav__link">
-    Prepare the whole backup to be ready to use
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     Notes
   </a>
@@ -1865,7 +1858,7 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="making-an-incremental-backup">Making an Incremental Backup<a class="headerlink" href="#making-an-incremental-backup" title="Permanent link">&para;</a></h1>
+                <h1 id="make-an-incremental-backup">Make an Incremental Backup<a class="headerlink" href="#make-an-incremental-backup" title="Permanent link">&para;</a></h1>
 <p>Backup all InnoDB data and log files - located in <code>/var/lib/mysql/</code> -
 <strong>once</strong>, then make two daily incremental backups in <code>/data/backups/mysql/</code>
 (destination). Finally, prepare the backup files to be ready to restore or
@@ -1895,14 +1888,14 @@ one on Tuesday:</p>
    --incremental-dir<span class="o">=</span>/data/backups/inc/tue/
 </code></pre></div>
 <h2 id="roll-forward-again-to-the-second-increment">Roll forward again to the second increment<a class="headerlink" href="#roll-forward-again-to-the-second-increment" title="Permanent link">&para;</a></h2>
-<p>Roll forward again to the state on Wednesday:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/mysql/ <span class="se">\</span>
+<p>Roll forward again to the state on Wednesday (without &ndash;apply-log-only):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/mysql/ <span class="se">\</span>
    --incremental-dir<span class="o">=</span>/data/backups/inc/wed/
 </code></pre></div>
-<h2 id="prepare-the-whole-backup-to-be-ready-to-use">Prepare the whole backup to be ready to use<a class="headerlink" href="#prepare-the-whole-backup-to-be-ready-to-use" title="Permanent link">&para;</a></h2>
-<p>Create the new logs by preparing it:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/mysql/
-</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Starting with <a href="release-notes/8.0/8.0.30-22.0.md">Percona Server for MySQL 8.0.30-22</a>, preparing a backup in two steps, &ndash;prepare &ndash;apply-log-only and then a second &ndash;prepare is not supported. The second &ndash;prepare skips the dynamic metadata and causes corruption.</p>
+</div>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -1933,7 +1926,7 @@ one on Tuesday:</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-11-14
     
   </small>
 </div>

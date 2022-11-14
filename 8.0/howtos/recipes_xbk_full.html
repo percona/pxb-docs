@@ -22,7 +22,7 @@
     
     
       
-        <title>Making a Full Backup - Percona XtraBackup</title>
+        <title>Make a Full Backup - Percona XtraBackup</title>
       
     
     
@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#making-a-full-backup" class="md-skip">
+        <a href="#make-a-full-backup" class="md-skip">
           Skip to content
         </a>
       
@@ -129,7 +129,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Making a Full Backup
+              Make a Full Backup
             
           </span>
         </div>
@@ -1785,15 +1785,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#making-a-backup" class="md-nav__link">
-    Making a backup
+  <a href="#make-a-backup" class="md-nav__link">
+    Make a backup
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparing-the-backup-twice" class="md-nav__link">
-    Preparing the backup twice
+  <a href="#prepare-the-backup" class="md-nav__link">
+    Prepare the backup
   </a>
   
 </li>
@@ -1837,29 +1837,23 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="making-a-full-backup">Making a Full Backup<a class="headerlink" href="#making-a-full-backup" title="Permanent link">&para;</a></h1>
+                <h1 id="make-a-full-backup">Make a Full Backup<a class="headerlink" href="#make-a-full-backup" title="Permanent link">&para;</a></h1>
 <p>Backup the InnoDB data and log files located in <code>/var/lib/mysql/</code> to
 <code>/data/backups/mysql/</code> (destination). Then, prepare the backup files to be
 ready to restore or use (make the data files consistent).</p>
-<h3 id="making-a-backup">Making a backup<a class="headerlink" href="#making-a-backup" title="Permanent link">&para;</a></h3>
+<h3 id="make-a-backup">Make a backup<a class="headerlink" href="#make-a-backup" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup/mysql/
 </code></pre></div>
-<h3 id="preparing-the-backup-twice">Preparing the backup twice<a class="headerlink" href="#preparing-the-backup-twice" title="Permanent link">&para;</a></h3>
+<h3 id="prepare-the-backup">Prepare the backup<a class="headerlink" href="#prepare-the-backup" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup/mysql/
-$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup/mysql/
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Starting with <a href="release-notes/8.0/8.0.30-22.0.md">Percona Server for MySQL 8.0.30-22</a> only run prepare once.</p>
+</div>
 <h3 id="success-criteria">Success Criteria<a class="headerlink" href="#success-criteria" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p>The exit status of xtrabackup is 0.</p>
-</li>
-<li>
-<p>In the second <code>--prepare</code> step, you should see InnoDB print messages
-  similar to <code>Log file ./ib_logfile0 did not exist: new to be created</code>,
-  followed by a line indicating the log file was created (creating new logs
-  is
-  the purpose of the second preparation).</p>
-</li>
+<li>The exit status of xtrabackup is 0.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1887,7 +1881,7 @@ $ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup/mysql/
   <small>
     
       Last update:
-      2022-11-10
+      2022-11-14
     
   </small>
 </div>
