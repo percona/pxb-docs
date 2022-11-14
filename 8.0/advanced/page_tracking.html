@@ -22,7 +22,7 @@
     
     
       
-        <title>Incremental backup using page tracking - Percona XtraBackup</title>
+        <title>Take an incremental backup using page tracking - Percona XtraBackup</title>
       
     
     
@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#incremental-backup-using-page-tracking" class="md-skip">
+        <a href="#take-an-incremental-backup-using-page-tracking" class="md-skip">
           Skip to content
         </a>
       
@@ -129,7 +129,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Incremental backup using page tracking
+              Take an incremental backup using page tracking
             
           </span>
         </div>
@@ -391,7 +391,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/yum_repo.html" class="md-nav__link">
-        Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+        Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
       </a>
     </li>
   
@@ -826,6 +826,20 @@
   
   
     <li class="md-nav__item">
+      <a href="smart_memory_estimation.html" class="md-nav__link">
+        Smart memory estimation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../xtrabackup_bin/working_with_binary_logs.html" class="md-nav__link">
         Working with Binary Logs
       </a>
@@ -1032,12 +1046,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Incremental backup using page tracking
+          Take an incremental backup using page tracking
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="page_tracking.html" class="md-nav__link md-nav__link--active">
-        Incremental backup using page tracking
+        Take an incremental backup using page tracking
       </a>
       
         
@@ -1065,8 +1079,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-page-tracking" class="md-nav__link">
-    Using page tracking
+  <a href="#use-page-tracking" class="md-nav__link">
+    Use page tracking
   </a>
   
 </li>
@@ -1886,8 +1900,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-page-tracking" class="md-nav__link">
-    Using page tracking
+  <a href="#use-page-tracking" class="md-nav__link">
+    Use page tracking
   </a>
   
 </li>
@@ -1966,31 +1980,29 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="incremental-backup-using-page-tracking">Incremental backup using page tracking<a class="headerlink" href="#incremental-backup-using-page-tracking" title="Permanent link">&para;</a></h1>
-<p>This feature is <em>tech preview</em> quality.</p>
-<p>Percona XtraBackup 8.0.27 adds support for the page tracking functionality
-for <a href="https://www.percona.com/doc/percona-xtrabackup/8.0/backup_scenarios/incremental_backup.html">incremental backup</a>.</p>
+                <h1 id="take-an-incremental-backup-using-page-tracking">Take an incremental backup using page tracking<a class="headerlink" href="#take-an-incremental-backup-using-page-tracking" title="Permanent link">&para;</a></h1>
+<p><em>Percona XtraBackup</em> 8.0.27 adds support for page tracking functionality for an <a href="https://www.percona.com/doc/percona-xtrabackup/8.0/backup_scenarios/incremental_backup.html">incremental backup</a>.</p>
 <p>To create an incremental backup with page tracking, Percona XtraBackup uses
-the MySQL mysqlbackup component. This component provides a list of pages
+the MySQL <code>mysqlbackup</code> component. This component provides a list of pages
 modified since the last backup, and Percona XtraBackup copies only those
 pages. This operation removes the need to scan the pages in the
 database. If the majority of pages have not been modified, the page
 tracking feature can improve the speed of incremental backups.</p>
 <h2 id="install-the-component">Install the component<a class="headerlink" href="#install-the-component" title="Permanent link">&para;</a></h2>
-<p>To start using the page tracking functionality, do the following steps:</p>
+<p>To start using the page tracking functionality, do the following:</p>
 <ol>
 <li>
-<p>Install the mysqlbackup component and enable it on the server:</p>
+<p>Install the <code>mysqlbackup</code> component and enable it on the server:</p>
 <div class="highlight"><pre><span></span><code><span class="err">$</span><span class="w"> </span><span class="n">INSTALL</span><span class="w"> </span><span class="n">COMPONENT</span><span class="w"> </span><span class="ss">&quot;file://component_mysqlbackup&quot;</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 </li>
 <li>
-<p>Check whether the mysqlbackup component is installed successfully:</p>
+<p>Check whether the <code>mysqlbackup</code> component is installed successfully:</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">component</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">component_urn</span><span class="o">=</span><span class="s1">&#39;file://component_mysqlbackup&#39;</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 </li>
 </ol>
-<h2 id="using-page-tracking">Using page tracking<a class="headerlink" href="#using-page-tracking" title="Permanent link">&para;</a></h2>
+<h2 id="use-page-tracking">Use page tracking<a class="headerlink" href="#use-page-tracking" title="Permanent link">&para;</a></h2>
 <p>You can enable the page tracking functionality for the full and incremental
 backups with the <code>--page-tracking</code> option.</p>
 <p>The option has the following benefits:</p>
@@ -2002,32 +2014,22 @@ backups with the <code>--page-tracking</code> option.</p>
 <p>Allows the use of page tracking for an incremental backup if the page tracking data is available from the backup’s start checkpoint LSN.</p>
 </li>
 </ul>
-<p>!!! note</p>
-<div class="highlight"><pre><span></span><code>  Percona XtraBackup processes a list of all the tracked pages in memory. If Percona XtraBackup does not have enough available memory to process this list, Percona XtraBackup throws an error and exits. For example, if an incremental backup uses 200GB, Percona XtraBackup can additionally use about 100MB of memory to store the page tracking data.
-</code></pre></div>
+<p><em>Percona XtraBackup</em> processes a list of all the tracked pages in memory. If <em>Percona XtraBackup</em> does not have enough available memory to process this list, the process throws an error and exits. For example, if an incremental backup uses 200GB, <em>Percona XtraBackup</em> can use an additional 100MB of memory to process and store the page tracking data.</p>
 <p>An example of creating a full backup using the <code>--page-tracking</code> option.</p>
-<div class="highlight"><pre><span></span><code>```shell
-$&gt; xtrabackup --backup --target-dir=$FULL_BACK --page-tracking
-```
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span><span class="nv">$FULL_BACK</span> --page-tracking
 </code></pre></div>
 <p>An example of creating an incremental backup using the <code>--page-tracking</code>
 option.</p>
-<div class="highlight"><pre><span></span><code>```shell
-$&gt; xtrabackup --backup --target-dir=$INC_BACKUP  
---incremental-basedir=$FULL_BACKUP --page-tracking
-```
+<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span><span class="nv">$INC_BACKUP</span>  
+--incremental-basedir<span class="o">=</span><span class="nv">$FULL_BACKUP</span> --page-tracking
 </code></pre></div>
 <p>After enabling the functionality, the next incremental backup finds changed
 pages using page tracking.</p>
-<p><strong>NOTE</strong>: For the very first full backup using page tracking, Percona
-XtraBackup may have a delay. The following is an example of the message you
-can receive:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
-to reach to page tracking start lsn 21353759
+<p>The first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:</p>
+<div class="highlight"><pre><span></span><code>    xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
+    to reach to page tracking start lsn 21353759
 </code></pre></div>
-<p>You can avoid this delay by enabling page tracking before creating the
-first backup. Thus, you ensure that page tracking log sequence number (LSN)
-is more than the checkpoint LSN of the server.</p>
+<p>Enable page tracking before creating the first backup to avoid this delay. This method ensures that the page tracking log sequence number (LSN) is higher than the checkpoint LSN of the server.</p>
 <h2 id="start-page-tracking-manually">Start page tracking manually<a class="headerlink" href="#start-page-tracking-manually" title="Permanent link">&para;</a></h2>
 <p>After the mysqlbackup component is loaded and active on the server, you can
 start page tracking manually with the following option:</p>
@@ -2058,12 +2060,11 @@ afterward. To purge the page tracking data, do the following steps:</p>
 </code></pre></div>
 <h2 id="known-issue">Known issue<a class="headerlink" href="#known-issue" title="Permanent link">&para;</a></h2>
 <p>If the index is built in place using an exclusive algorithm and then is
-added to a table after the last LSN checkpoint, you may get a bad
-incremental backup using page tracking. Find more details
-in <a href="https://jira.percona.com/browse/PS-8032">PS-8032</a> .</p>
+added to a table after the last LSN checkpoint, you may generate a bad
+incremental backup using page tracking. For more details
+see <a href="https://jira.percona.com/browse/PS-8032">PS-8032</a>.</p>
 <h2 id="uninstall-the-mysqlbackup-component">Uninstall the mysqlbackup component<a class="headerlink" href="#uninstall-the-mysqlbackup-component" title="Permanent link">&para;</a></h2>
-<p>If you need to uninstall the mysqlbackup component, use the following
-option:</p>
+<p>To uninstall the mysqlbackup component, use the following statement:</p>
 <div class="highlight"><pre><span></span><code><span class="err">$</span><span class="w"> </span><span class="n">UNINSTALL</span><span class="w"> </span><span class="n">COMPONENT</span><span class="w"> </span><span class="ss">&quot;file://component_mysqlbackup&quot;</span><span class="w"></span>
 </code></pre></div>
 
@@ -2087,7 +2088,7 @@ option:</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-11-14
     
   </small>
 </div>

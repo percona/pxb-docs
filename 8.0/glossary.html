@@ -391,7 +391,7 @@
   
     <li class="md-nav__item">
       <a href="installation/yum_repo.html" class="md-nav__link">
-        Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+        Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
       </a>
     </li>
   
@@ -826,6 +826,20 @@
   
   
     <li class="md-nav__item">
+      <a href="advanced/smart_memory_estimation.html" class="md-nav__link">
+        Smart memory estimation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="xtrabackup_bin/working_with_binary_logs.html" class="md-nav__link">
         Working with Binary Logs
       </a>
@@ -1021,7 +1035,7 @@
   
     <li class="md-nav__item">
       <a href="advanced/page_tracking.html" class="md-nav__link">
-        Incremental backup using page tracking
+        Take an incremental backup using page tracking
       </a>
     </li>
   
@@ -1746,247 +1760,274 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#general-availability-ga" class="md-nav__link">
+    General availability (GA)
+  </a>
+  
+    <nav class="md-nav" aria-label="General availability (GA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#ibd" class="md-nav__link">
     .ibd
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#mrg" class="md-nav__link">
     .MRG
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#myd" class="md-nav__link">
     .MYD
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#myi" class="md-nav__link">
     .MYI
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#opt" class="md-nav__link">
     .opt
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#par" class="md-nav__link">
     .par
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#trg" class="md-nav__link">
     .TRG
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#trn" class="md-nav__link">
     .TRN
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#backup" class="md-nav__link">
     backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#compression" class="md-nav__link">
     compression
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#configuration-file" class="md-nav__link">
     configuration file
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#crash" class="md-nav__link">
     crash
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#crash-recovery" class="md-nav__link">
     crash recovery
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#data-dictionary" class="md-nav__link">
     data dictionary
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#datadir" class="md-nav__link">
     datadir
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#full-backup" class="md-nav__link">
     full backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#ibdata" class="md-nav__link">
     ibdata
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#incremental-backup" class="md-nav__link">
     incremental backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb" class="md-nav__link">
     InnoDB
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb_buffer_pool_size" class="md-nav__link">
     innodb_buffer_pool_size
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb_data_home_dir" class="md-nav__link">
     innodb_data_home_dir
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb_data_file_path" class="md-nav__link">
     innodb_data_file_path
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb_file_per_table" class="md-nav__link">
     innodb_file_per_table
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb_log_group_home_dir" class="md-nav__link">
     innodb_log_group_home_dir
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#logical-backup" class="md-nav__link">
     logical backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#lsn" class="md-nav__link">
     LSN
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#mycnf" class="md-nav__link">
     my.cnf
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#myisam" class="md-nav__link">
     MyISAM
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#physical-backup" class="md-nav__link">
     physical backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#point-in-time-recovery" class="md-nav__link">
     point in time recovery
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#prepared-backup" class="md-nav__link">
     prepared backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#restore" class="md-nav__link">
     restore
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#tech-preview" class="md-nav__link">
+    Tech preview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#xbcrypt" class="md-nav__link">
     xbcrypt
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#xbstream" class="md-nav__link">
     xbstream
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#xtradb" class="md-nav__link">
     XtraDB
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zstd" class="md-nav__link">
+    ZSTD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2124,247 +2165,274 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#general-availability-ga" class="md-nav__link">
+    General availability (GA)
+  </a>
+  
+    <nav class="md-nav" aria-label="General availability (GA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#ibd" class="md-nav__link">
     .ibd
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#mrg" class="md-nav__link">
     .MRG
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#myd" class="md-nav__link">
     .MYD
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#myi" class="md-nav__link">
     .MYI
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#opt" class="md-nav__link">
     .opt
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#par" class="md-nav__link">
     .par
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#trg" class="md-nav__link">
     .TRG
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#trn" class="md-nav__link">
     .TRN
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#backup" class="md-nav__link">
     backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#compression" class="md-nav__link">
     compression
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#configuration-file" class="md-nav__link">
     configuration file
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#crash" class="md-nav__link">
     crash
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#crash-recovery" class="md-nav__link">
     crash recovery
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#data-dictionary" class="md-nav__link">
     data dictionary
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#datadir" class="md-nav__link">
     datadir
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#full-backup" class="md-nav__link">
     full backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#ibdata" class="md-nav__link">
     ibdata
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#incremental-backup" class="md-nav__link">
     incremental backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb" class="md-nav__link">
     InnoDB
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb_buffer_pool_size" class="md-nav__link">
     innodb_buffer_pool_size
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb_data_home_dir" class="md-nav__link">
     innodb_data_home_dir
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb_data_file_path" class="md-nav__link">
     innodb_data_file_path
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb_file_per_table" class="md-nav__link">
     innodb_file_per_table
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#innodb_log_group_home_dir" class="md-nav__link">
     innodb_log_group_home_dir
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#logical-backup" class="md-nav__link">
     logical backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#lsn" class="md-nav__link">
     LSN
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#mycnf" class="md-nav__link">
     my.cnf
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#myisam" class="md-nav__link">
     MyISAM
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#physical-backup" class="md-nav__link">
     physical backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#point-in-time-recovery" class="md-nav__link">
     point in time recovery
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#prepared-backup" class="md-nav__link">
     prepared backup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#restore" class="md-nav__link">
     restore
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#tech-preview" class="md-nav__link">
+    Tech preview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#xbcrypt" class="md-nav__link">
     xbcrypt
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#xbstream" class="md-nav__link">
     xbstream
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#xtradb" class="md-nav__link">
     XtraDB
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zstd" class="md-nav__link">
+    ZSTD
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2409,6 +2477,8 @@
 <p>Files with the <code>.exp</code> extension are created by <strong>Percona XtraBackup</strong> per each <em>InnoDB</em> tablespace when the <a href="https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/xbk_option_reference.html#cmdoption-export"><code>--export</code></a> option is used on prepare. See <a href="https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/restoring_individual_tables.html">restoring individual tables</a>.</p>
 <h3 id="frm">.frm<a class="headerlink" href="#frm" title="Permanent link">&para;</a></h3>
 <p>For each table, the server will create a file with the <code>.frm</code> extension containing the table definition (for all storage engines).</p>
+<h2 id="general-availability-ga">General availability (GA)<a class="headerlink" href="#general-availability-ga" title="Permanent link">&para;</a></h2>
+<p>A finalized version of the product which is made available to the general public. It is the final stage in the software release cycle.</p>
 <h3 id="ibd">.ibd<a class="headerlink" href="#ibd" title="Permanent link">&para;</a></h3>
 <p>On a multiple tablespace setup ([innodb_file_per_table] enabled), <em>MySQL</em> will store each newly created table on a file with a <code>.ibd</code> extension.</p>
 <h3 id="mrg">.MRG<a class="headerlink" href="#mrg" title="Permanent link">&para;</a></h3>
@@ -2502,12 +2572,18 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
 <p>A consistent set of backup data that is ready to be restored.</p>
 <h3 id="restore">restore<a class="headerlink" href="#restore" title="Permanent link">&para;</a></h3>
 <p>Copies the database backups taken using the backup command to the original location or a different location. A restore returns data that has been either lost, corrupted, or stolen to the original condition at a specific point in time.</p>
+<h3 id="tech-preview">Tech preview<a class="headerlink" href="#tech-preview" title="Permanent link">&para;</a></h3>
+<p>A tech preview item can be a feature, a variable, or a value within a variable. The term designates that the item is not yet ready for production use and is not included in support by SLA. A tech preview item is included in a release so that users can provide feedback. The item is either updated and released as <a href="#general-availability-ga">general availability(GA)</a> or removed if not useful. The item&rsquo;s functionality can change from tech preview to GA.</p>
 <h3 id="xbcrypt">xbcrypt<a class="headerlink" href="#xbcrypt" title="Permanent link">&para;</a></h3>
 <p>To support the encryption and the decryption of the backups, a new tool xbcrypt was introduced to <strong>Percona XtraBackup</strong>. This utility has been modeled after the <strong>xbstream</strong> binary to perform encryption and decryption outside <strong>Percona XtraBackup</strong>.</p>
 <h3 id="xbstream">xbstream<a class="headerlink" href="#xbstream" title="Permanent link">&para;</a></h3>
 <p>To support simultaneous compression and streaming, <strong>Percona XtraBackup</strong> uses the <strong>xbstream</strong> format. For more information see <a href="https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/xbk_option_reference.html#cmdoption-stream"><code>--stream</code></a></p>
 <h3 id="xtradb">XtraDB<a class="headerlink" href="#xtradb" title="Permanent link">&para;</a></h3>
 <p><em>Percona XtraDB</em> is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. <em>Percona XtraDB</em> includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see <a href="https://www.percona.com/doc/percona-server/8.0/percona_xtradb.html">The Percona XtraDB Storage Engine</a>.</p>
+<h3 id="zstd">ZSTD<a class="headerlink" href="#zstd" title="Permanent link">&para;</a></h3>
+<p>The <code>Zstandard (ZSTD)</code> compression algorithm is a <a href="#tech-preview">tech preview</a> feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.</p>
+<p><code>ZSTD</code> is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios.</p>
+<p><code>ZSTD</code> compression algorithm has been implemented in <a href="release-notes/8.0/8.0.30-23.0.md">Percona XtraBackup 8.0.30-23</a>.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -2529,7 +2605,7 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
   <small>
     
       Last update:
-      2022-08-01
+      2022-11-14
     
   </small>
 </div>

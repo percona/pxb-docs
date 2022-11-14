@@ -15,14 +15,14 @@
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/8.0/8.0/using_xtrabackup/comparison.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/8.0/8.0/advanced/smart_memory_estimation.html">
       
       <link rel="icon" href="../_static/percona_favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>Server Version and Backup Version Comparison - Percona XtraBackup</title>
+        <title>Smart memory estimation - Percona XtraBackup</title>
       
     
     
@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#server-version-and-backup-version-comparison" class="md-skip">
+        <a href="#smart-memory-estimation" class="md-skip">
           Skip to content
         </a>
       
@@ -129,7 +129,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Server Version and Backup Version Comparison
+              Smart memory estimation
             
           </span>
         </div>
@@ -486,14 +486,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -530,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="privileges.html" class="md-nav__link">
+      <a href="../using_xtrabackup/privileges.html" class="md-nav__link">
         Connection and Privileges Needed
       </a>
     </li>
@@ -544,7 +542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="configuring.html" class="md-nav__link">
+      <a href="../using_xtrabackup/configuring.html" class="md-nav__link">
         Configuring xtrabackup
       </a>
     </li>
@@ -556,21 +554,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="comparison.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../using_xtrabackup/comparison.html" class="md-nav__link">
         Server Version and Backup Version Comparison
       </a>
-      
     </li>
   
 
@@ -740,12 +728,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
       
       
       
@@ -768,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/throttling_backups.html" class="md-nav__link">
+      <a href="throttling_backups.html" class="md-nav__link">
         Throttling Backups
       </a>
     </li>
@@ -782,7 +772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/encrypted_innodb_tablespace_backups.html" class="md-nav__link">
+      <a href="encrypted_innodb_tablespace_backups.html" class="md-nav__link">
         Encrypted InnoDB tablespace backups
       </a>
     </li>
@@ -836,11 +826,61 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../advanced/smart_memory_estimation.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Smart memory estimation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="smart_memory_estimation.html" class="md-nav__link md-nav__link--active">
         Smart memory estimation
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-smart-memory-estimation-work" class="md-nav__link">
+    How does Smart memory estimation work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exapmple-of-smart-memory-estimation-usage" class="md-nav__link">
+    Exapmple of Smart memory estimation usage
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -866,7 +906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/log_enhancements.html" class="md-nav__link">
+      <a href="log_enhancements.html" class="md-nav__link">
         Improved Log statements
       </a>
     </li>
@@ -1032,7 +1072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/locks.html" class="md-nav__link">
+      <a href="locks.html" class="md-nav__link">
         `lock-ddl-per-table` option improvements
       </a>
     </li>
@@ -1046,7 +1086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/page_tracking.html" class="md-nav__link">
+      <a href="page_tracking.html" class="md-nav__link">
         Take an incremental backup using page tracking
       </a>
     </li>
@@ -1804,6 +1844,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-smart-memory-estimation-work" class="md-nav__link">
+    How does Smart memory estimation work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exapmple-of-smart-memory-estimation-usage" class="md-nav__link">
+    Exapmple of Smart memory estimation usage
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1818,7 +1880,7 @@
                 <!-- Edit button -->
                 
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/using_xtrabackup/comparison.md"
+                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/advanced/smart_memory_estimation.md"
                     title="Edit this page"
                     class="md-content__button md-icon"
                   >
@@ -1834,50 +1896,87 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="server-version-and-backup-version-comparison">Server Version and Backup Version Comparison<a class="headerlink" href="#server-version-and-backup-version-comparison" title="Permanent link">&para;</a></h1>
-<p>A <em>MySQL</em> change to a feature, such as the structure of a redo log
-record, can cause older versions of <strong>Percona XtraBackup</strong> to fail. To
-ensure that you can back up and restore your data, use a <strong>Percona
-XtraBackup</strong> version that is equal to or above your source server version.</p>
-<div class="admonition admonition">
-<p class="admonition-title">See also</p>
-<p><a href="https://docs.percona.com/percona-xtrabackup/8.0/how_xtrabackup_works.html">How XtraBackup works</a></p>
-</div>
-<p><em>Percona XtraBackup</em> 8.0.21 adds the <code>--no-server-version-check</code> option.
-Before the backup starts, XtraBackup compares the source system version to
-the <em>Percona XtraBackup</em> version. If the source system version is greater
-than the XtraBackup version, XtraBackup stops the backup and returns an
-error message. This comparison prevents a failed backup or a corrupted
-backup due to source system changes.</p>
-<p>The parameter checks for the following scenarios:</p>
+                <h1 id="smart-memory-estimation">Smart memory estimation<a class="headerlink" href="#smart-memory-estimation" title="Permanent link">&para;</a></h1>
+<p>The <code>Smart memory estimation</code> is <a href="../glossary.html#tech-preview">tech preview</a> feature. Before using <code>Smart memory estimation</code> in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.</p>
+<p><a href="release-notes/8.0/8.0.30-23.0.md">Percona XtraBackup 8.0.30-23</a> adds support for <code>Smart memory estimation</code> feature to compute the memory required to <code>--prepare</code> a backup. </p>
+<p>Percona XtraBackup performs the backup procedure in two steps: </p>
 <ul>
 <li>
-<p>The source system and the PXB version are the same, the backup proceeds</p>
+<p>Creates a backup</p>
+<p>To create a backup, Percona XtraBackup copies your <em>InnoDB</em> data files. While copying the files, Percona XtraBackup runs a background process that watches the InnoDB redo log, also called the transaction log, and copies changes from it. </p>
 </li>
 <li>
-<p>The source system is less than the PXB version, the backup proceeds</p>
-</li>
-<li>
-<p>The source system is greater than the PXB version, and the parameter is not overridden, the backup is stopped and returns an error message</p>
-</li>
-<li>
-<p>The source system is greater than the PXB version, and the parameter is  overridden, the backup proceeds</p>
+<p>Prepares a backup</p>
+<p>During the <code>prepare</code> phase, Percona XtraBackup performs crash recovery against the copied data files using the copied transaction log file. Percona XtraBackup reads all the redo log entries into memory, categorizes them by space id and page id, reads the relevant pages into memory, and checks the log sequence number (LSN) on the page and on the redo log record. If the LSN in the redo log is more recent than on the page, Percona Xtrabackup applies the redo log changes to the page.</p>
+<p>To <code>prepare</code> a backup, Percona Xtrabackup uses InnoDB Buffer Pool memory. Memory for 256 pages is reserved for loading the pages into the buffer pool, while the remaining memory is used for hashing/categorizing the redo log entries. </p>
+<p>The available memory is controlled by the <code>--use-memory</code> option. If the available memory on the buffer pool is insufficient, the work is performed in multiple batches. After the batch is processed, the memory is freed to release space for the next batch. This process greatly impacts performance as an InnoDB page holds data from multiple rows. If a change on a page happens in different batches, that page is fetched and evicted numerous times.</p>
 </li>
 </ul>
-<p>Explicitly adding the <code>--no-server-version-check</code> parameter, like the
-example, overrides the parameter and the backup proceeds.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --no-server-version-check --target-dir<span class="o">=</span><span class="nv">$mysql</span>/backup1
-</code></pre></div>
-<p>When you override the parameter, the following events can happen:</p>
+<h2 id="how-does-smart-memory-estimation-work">How does <code>Smart memory estimation</code> work<a class="headerlink" href="#how-does-smart-memory-estimation-work" title="Permanent link">&para;</a></h2>
+<p>Starting with <a href="release-notes/8.0/8.0.30-23.0.md">Percona XtraBackup 8.0.30-23</a>, while copying redo log entries during the backup phase, Percona XtraBackup computes the memory required for <code>prepare</code> phase. Percona XtraBackup also takes into consideration the number of InnoDB pages to be fetched from the disk. Then Percona XtraBackup checks the server&rsquo;s available free memory and uses that memory up to the limit specified in the <code>--use-free-memory-pct</code> option to run <code>--prepare</code>. The default value of <code>--use-free-memory-pct</code> option is 0. This means that the option is disabled by default. If, for example, you set the option to 50, 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100.</p>
+<h2 id="exapmple-of-smart-memory-estimation-usage">Exapmple of <code>Smart memory estimation</code> usage<a class="headerlink" href="#exapmple-of-smart-memory-estimation-usage" title="Permanent link">&para;</a></h2>
+<p>Here is an example of how <code>Smart memory estimation</code> can improve the time spent on <code>prepare</code>.</p>
+<p>Let&rsquo;s say we run 3 backups, using sysbench with 16, 32, and 64 tables containing 1M rows each. The <code>--use-free-memory-pct</code> option is set to 50. This means that 50% of the free memory is used to <code>prepare</code> a backup. The backup is run on an ec2 c4.8xlarge instance (36 vCPU&rsquo;s / 60G memory / General Purpose SSD (gp2)). </p>
+<p>During each <code>--backup</code> the following sysbench is run:</p>
+<p>sysbench &ndash;db-driver=mysql &ndash;db-ps-mode=disable &ndash;mysql-user=sysbench &ndash;mysql-password=sysbench &ndash;table_size=1000000 &ndash;tables=${NUM_OF_TABLES} &ndash;threads=24 &ndash;time=0 &ndash;report-interval=1 /usr/share/sysbench/oltp_write_only.lua run</p>
+<p>The following table shows the backup details:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Used memory (G)</th>
+<th>Size of Xtrabacup log (G)</th>
+<th>Size of backup (G)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16 tables</td>
+<td>3.375</td>
+<td>0.7</td>
+<td>4.7</td>
+</tr>
+<tr>
+<td>32 tables</td>
+<td>8.625</td>
+<td>2.6</td>
+<td>11</td>
+</tr>
+<tr>
+<td>64 tables</td>
+<td>18.5</td>
+<td>5.6</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>
-<p>Backup fails</p>
+<p><strong>Used memory (G)</strong> - the amount of memory required by Percona XtraBackup with <code>--use-free-memory-pct=50</code></p>
 </li>
 <li>
-<p>Creates a corrupted backup</p>
+<p><strong>Size of Xtrabacup log (G)</strong> - the size of Percona XtraBackup log file (redo log entries copied during the backup)</p>
 </li>
 <li>
-<p>Backup successful</p>
+<p><strong>Size of backup (G)</strong> - the size of the resulting backup folder</p>
+</li>
+</ul>
+<p><code>Prepare</code> executed without <code>Smart Memory Estimation</code> use the default of 128M for the buffer pool.</p>
+<p>The results are the following:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following results are based on tests in a specific environment. Your results may vary.</p>
+</div>
+<p><img alt="Time to run --prepare" src="../_static/smart_memory_estimation.png" /></p>
+<ul>
+<li>
+<p><strong>16 tables result</strong> - prepare time dropped to ~5.7% of the original time. An improvement in recovery time of about 17X.</p>
+</li>
+<li>
+<p><strong>32 tables result</strong> - prepare time dropped to ~8,2% of the original time. An improvement in recovery time of about 12x.</p>
+</li>
+<li>
+<p><strong>64 tables result</strong> - prepare time dropped to ~9.9% of the original time. An improvement in recovery time of about 10x.</p>
 </li>
 </ul>
 
@@ -1901,7 +2000,7 @@ example, overrides the parameter and the backup proceeds.</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-11-14
     
   </small>
 </div>
@@ -1929,7 +2028,7 @@ example, overrides the parameter and the backup proceeds.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="configuring.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuring xtrabackup" rel="prev">
+        <a href="../xtrabackup_bin/point-in-time-recovery.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Point-In-Time recovery" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1938,20 +2037,20 @@ example, overrides the parameter and the backup proceeds.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Configuring xtrabackup
+              Point-In-Time recovery
             </div>
           </div>
         </a>
       
       
         
-        <a href="../xtrabackup_bin/xtrabackup_exit_codes.html" class="md-footer__link md-footer__link--next" aria-label="Next: xtrabackup Exit Codes" rel="next">
+        <a href="../xtrabackup_bin/working_with_binary_logs.html" class="md-footer__link md-footer__link--next" aria-label="Next: Working with Binary Logs" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              xtrabackup Exit Codes
+              Working with Binary Logs
             </div>
           </div>
           <div class="md-footer__button md-icon">
