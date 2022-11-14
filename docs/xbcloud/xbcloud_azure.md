@@ -1,7 +1,5 @@
 # Using the xbcloud binary with Microsoft Azure Cloud Storage
 
-This feature is *technical preview* quality.
-
 Implemented in Percona XtraBackup 8.0.27-19, the **xbcloud** binary adds support for the Microsoft Azure Cloud Storage using the REST API.
 
 ## Options
