@@ -24,22 +24,22 @@ When compression is enabled, *xtrabackup* compresses the output data, except for
 
 `quicklz` 
 
-    The resulting files have the `qpress` archive format. Every
-    `\*.qp` file produced by xtrabackup is essentially a one-file qpress archive and can be extracted and uncompressed by the `qpress file archiver` which is available from Percona Software repositories.
+The resulting files have the `qpress` archive format. Every
+`\*.qp` file produced by xtrabackup is essentially a one-file qpress archive and can be extracted and uncompressed by the `qpress file archiver` which is available from Percona Software repositories.
 
 `Zstandard (ZSTD)`
 
-    The Zstandard (ZSTD) compression algorithm is a [tech preview](../glossary.md#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
+The Zstandard (ZSTD) compression algorithm is a [tech preview](../glossary.md#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
 
-    [Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md) adds support for the `Zstandard (ZSTD)` compression algorithm. `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. To compress files using the `ZSTD` compression algorithm, use the `--compress=zstd` option. The resulting files have the `\*.zst` format. 
+[Percona XtraBackup 8.0.30-23](../release-notes/8.0/8.0.30-23.0.md) adds support for the `Zstandard (ZSTD)` compression algorithm. `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. To compress files using the `ZSTD` compression algorithm, use the `--compress=zstd` option. The resulting files have the `\*.zst` format. 
     
-    You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](/docs/xtrabackup_bin/xbk_option_reference.md#compress-zstd-level) option. The defaul value is `1`.
+You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](/docs/xtrabackup_bin/xbk_option_reference.md#compress-zstd-level) option. The defaul value is `1`.
 
-    ```shell
-    $ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
-    ```
+```shell
+$ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
+```
     
-    To decompress files, use the `--decompress` option.
+To decompress files, use the `--decompress` option.
 
 Using *xbstream* as a stream option, backups can be copied and compressed in parallel. This option can significantly improve the speed of the backup process. In case backups
 were both compressed and encrypted, they must be decrypted before they are uncompressed.

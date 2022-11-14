@@ -60,7 +60,7 @@ xtrabackup --prepare --target-dir=/data/backups/mysql/ \
 
 !!! note
 
-    Starting with [Percona Server for MySQL 8.0.30-22](release-notes/8.0/8.0.30-22.0.md), preparing a backup in two steps, --prepare --apply-log-only and then a second --prepare is not supported. The second --prepare skips the dynamic metadata and causes corruption.
+    Starting with [Percona Server for MySQL 8.0.30-22](../release-notes/8.0/8.0.30-23.0.md), preparing a backup in two steps, --prepare --apply-log-only and then a second --prepare is not supported. The second --prepare skips the dynamic metadata and causes corruption.
 
 ## Notes
 

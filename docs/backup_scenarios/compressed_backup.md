@@ -29,7 +29,7 @@ Percona XtraBackup supports the following compression algorithms:
 
 `quicklz`
     
-    To compress files using the `quicklz` compression algorithm, use `--compress` option:
+To compress files using the `quicklz` compression algorithm, use `--compress` option:
 
     ```shell
     $ xtrabackup --backup --compress --target-dir=/data/backup
@@ -37,7 +37,7 @@ Percona XtraBackup supports the following compression algorithms:
 
 `lz4`
 
-    To compress files using the `lz4` compression algorithm, set `--compress` option to `lz4`:
+To compress files using the `lz4` compression algorithm, set `--compress` option to `lz4`:
 
     ```shell
     $ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
@@ -45,17 +45,17 @@ Percona XtraBackup supports the following compression algorithms:
 
 `Zstandard (ZSTD)`
 
-    The Zstandard (ZSTD) compression algorithm is a [tech preview](../glossary.md#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
+The Zstandard (ZSTD) compression algorithm is a [tech preview](../glossary.md#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
 
-    [Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md) adds support for the `Zstandard (ZSTD)` compression algorithm. `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. 
+[Percona XtraBackup 8.0.30-23](../release-notes/8.0/8.0.30-23.0.md) adds support for the `Zstandard (ZSTD)` compression algorithm. `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. 
     
-    To compress files using the `ZSTD` compression algorithm, set `--compress` option to `zstd`:
+To compress files using the `ZSTD` compression algorithm, set `--compress` option to `zstd`:
 
     ```shell
     $ xtrabackup --backup --compress=zstd --target-dir=/data/backup
     ```
    
-    You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](/docs/xtrabackup_bin/xbk_option_reference.md#compress-zstd-level) option. The defaul value is `1`.
+You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](../xtrabackup_bin/xbk_option_reference.md#compress-zstd-level) option. The defaul value is `1`.
 
     ```shell
     $ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
