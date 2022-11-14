@@ -961,6 +961,14 @@ If `--transition-key` does not have any
 value, **xtrabackup** will ask for it. The same passphrase should be
 specified for the `--prepare` command.
 
+### --use-free-memory-pct()
+
+This option has been implemented in Percona XtraBackup 8.0.30-23. 
+
+The `--use-free-memory-pct` is a [tech preview](../glossary.md#tech-preview) option. Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
+
+This option controlls the amount of free memory that can be used to `--prepare` a backup.
+The default value is 0. If, for example, the option is set to 50, this means that 50% of free mamory are used to `--prepare` a backup. The maximum allowed value is 100.
 
 ### --use-memory()
 
