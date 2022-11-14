@@ -391,7 +391,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/yum_repo.html" class="md-nav__link">
-        Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+        Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS
       </a>
     </li>
   
@@ -1021,7 +1021,7 @@
   
     <li class="md-nav__item">
       <a href="../advanced/page_tracking.html" class="md-nav__link">
-        Take an incremental backup using page tracking
+        Incremental backup using page tracking
       </a>
     </li>
   
@@ -1755,13 +1755,6 @@
           <li class="md-nav__item">
   <a href="#-compress-threads" class="md-nav__link">
     --compress-threads(=#)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-compress-zstd-level" class="md-nav__link">
-    --compress-zstd-level(=#)
   </a>
   
 </li>
@@ -2864,13 +2857,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-compress-zstd-level" class="md-nav__link">
-    --compress-zstd-level(=#)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#-copy-back" class="md-nav__link">
     --copy-back()
   </a>
@@ -3849,15 +3835,14 @@ no longer accessed. <em>Percona XtraBackup</em> can produce inconsistent backups
 with this option enabled. Use at your own risk.</p>
 <h3 id="-compress">&ndash;compress()<a class="headerlink" href="#-compress" title="Permanent link">&para;</a></h3>
 <p>This option tells <em>xtrabackup</em> to compress all output data, including the
-transaction log file and meta data files, using either the <code>quicklz</code>, <code>lz4</code>, or <code>ZSTD</code> compression algorithm. <code>quicklz</code> is chosen by default.</p>
+transaction log file and meta data files, using either the <code>quicklz</code> or
+<code>lz4</code> compression algorithm. <code>quicklz</code> is chosen by default.</p>
 <p>When using <code>--compress=quicklz</code> or <code>--compress</code>, the resulting files have
-the qpress archive format. Every <code>\*.qp</code> file produced by <em>xtrabackup</em> is
+the qpress archive format, i.e. every <code>\*.qp</code> file produced by <em>xtrabackup</em> is
 essentially a one-file qpress archive and can be extracted and uncompressed
-by the <code>qpress</code> file archiver.</p>
+by the <a href="http://www.quicklz.com/">qpress</a> file archiver.</p>
 <p><code>--compress=lz4</code> produces <code>\*.lz4</code> files. You can extract the contents of
-these files by using <code>lz4</code> program.</p>
-<p><code>--compress=zstd</code> produces <code>\*.zst</code> files. You can extract the contents of
-these files by using the <code>--decompress</code> option. You can specify <code>ZSTD</code> compression level with the <a href="#compress-zstd-level"><code>--compress-zstd-level(=#)</code></a> option.</p>
+these files by using a program such as <code>lz4</code>.</p>
 <h3 id="-compress-chunk-size">&ndash;compress-chunk-size(=#)<a class="headerlink" href="#-compress-chunk-size" title="Permanent link">&para;</a></h3>
 <p>Size of working buffer(s) for compression threads in bytes. The default
 value is 64K.</p>
@@ -3868,10 +3853,6 @@ compression (<code>--compress-threads</code>) can be used together
 with parallel file copying (<code>--parallel</code>). For example,
 <code>--parallel=4 --compress --compress-threads=2</code> will create 4 I/O threads
 that will read the data and pipe it to 2 compression threads.</p>
-<h3 id="-compress-zstd-level">&ndash;compress-zstd-level(=#)<a class="headerlink" href="#-compress-zstd-level" title="Permanent link">&para;</a></h3>
-<p>This option is <a href="../glossary.html#tech-preview">tech preview</a> quality. Before using <code>--compress-zstd-level(=#)</code> in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.</p>
-<p>This option specifies <code>ZSTD</code> compression level. The default value is 1. Allowed range of values is from 1 to 19. 
-The option has been implemented in Percona XtraBackup 8.0.30-22.</p>
 <h3 id="-copy-back">&ndash;copy-back()<a class="headerlink" href="#-copy-back" title="Permanent link">&para;</a></h3>
 <p>Copy all the files in a previously made backup from the backup directory to
 their original locations. This option will not copy over existing files
@@ -3907,7 +3888,7 @@ server’s datadir.</p>
 <h3 id="-debug-syncname">&ndash;debug-sync(=name)<a class="headerlink" href="#-debug-syncname" title="Permanent link">&para;</a></h3>
 <p>The debug sync point. This option is only used by the <em>xtrabackup</em> test suite.</p>
 <h3 id="-decompress">&ndash;decompress()<a class="headerlink" href="#-decompress" title="Permanent link">&para;</a></h3>
-<p>Decompresses all files in a backup previously
+<p>Decompresses all files with the <code>.qp</code> extension in a backup previously
 made with the <code>--compress</code> option. The
 <code>--parallel</code> option will allow multiple files to be
 decrypted simultaneously. In order to decompress, the qpress utility MUST be

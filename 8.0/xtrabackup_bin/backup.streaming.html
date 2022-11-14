@@ -391,7 +391,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/yum_repo.html" class="md-nav__link">
-        Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+        Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS
       </a>
     </li>
   
@@ -1021,7 +1021,7 @@
   
     <li class="md-nav__item">
       <a href="../advanced/page_tracking.html" class="md-nav__link">
-        Take an incremental backup using page tracking
+        Incremental backup using page tracking
       </a>
     </li>
   
@@ -1838,25 +1838,14 @@ the temporary files:</p>
 <p><em>xtrabackup</em> uses <em>xbstream</em> to stream all of the data files to <code>STDOUT</code>, in a
 special <code>xbstream</code> format. After it finishes streaming all of the data files
 to <code>STDOUT</code>, it stops xtrabackup and streams the saved log file too.</p>
-<p>When compression is enabled, <em>xtrabackup</em> compresses the output data, except for the meta and non-InnoDB files which are not compressed, using the specified compression algorithm. Percona XtraBackup supports the following compression algorithms:</p>
-<p><code>quicklz</code> </p>
-<div class="highlight"><pre><span></span><code>The resulting files have the `qpress` archive format. Every
-`\*.qp` file produced by xtrabackup is essentially a one-file qpress archive and can be extracted and uncompressed by the `qpress file archiver` which is available from Percona Software repositories.
-</code></pre></div>
-<p><code>Zstandard (ZSTD)</code></p>
-<div class="highlight"><pre><span></span><code>The Zstandard (ZSTD) compression algorithm is a [tech preview](../glossary.md#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
-
-[Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md) adds support for the `Zstandard (ZSTD)` compression algorithm. `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. To compress files using the `ZSTD` compression algorithm, use the `--compress=zstd` option. The resulting files have the `\*.zst` format.
-
-You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](/docs/xtrabackup_bin/xbk_option_reference.md#compress-zstd-level) option. The defaul value is `1`.
-
-```shell
-$ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
-```
-
-To decompress files, use the `--decompress` option.
-</code></pre></div>
-<p>Using <em>xbstream</em> as a stream option, backups can be copied and compressed in parallel. This option can significantly improve the speed of the backup process. In case backups
+<p>When compression is enabled, <em>xtrabackup</em> compresses the output data, except for the meta and non-InnoDB files which are not compressed, using the specified
+compression algorithm. The only currently supported algorithm is
+<code>quicklz</code>. The resulting files have the <code>qpress</code> archive format, i.e. every
+*.qp file produced by xtrabackup is essentially a one-file qpress archive and
+can be extracted and uncompressed by the <a href="http://www.quicklz.com/">qpress file archiver</a> which is available from Percona Software
+repositories.</p>
+<p>Using <em>xbstream</em> as a stream option, backups can be copied and compressed in
+parallel. This option can significantly improve the speed of the backup process. In case backups
 were both compressed and encrypted, they must be decrypted before they are uncompressed.</p>
 <table>
 <thead>
@@ -1932,7 +1921,7 @@ restoration. Streaming mode does not prepare the backup.</p>
   <small>
     
       Last update:
-      2022-11-14
+      2022-11-10
     
   </small>
 </div>
