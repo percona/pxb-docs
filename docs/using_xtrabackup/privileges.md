@@ -107,7 +107,7 @@ PERCONA_SCHEMA.xtrabackup_history table.
 
 * `SELECT` privilege on the [keyring_component_status table](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-keyring-component-status-table.html) to view the attributes and status of the installed keyring component when in use.
 
-* `SELECT` privilege on the [replication_group_members](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-replication-group-members-table.html) to make sure group replication is consistent.
+* `SELECT` privilege on the [replication_group_members table](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-replication-group-members-table.html) to make sure group replication is consistent.
 
 The explanation of when these are used can be found in
 How Percona XtraBackup Works.
