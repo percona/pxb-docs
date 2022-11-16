@@ -105,7 +105,9 @@ PERCONA_SCHEMA.xtrabackup_history table,
 to look up the `innodb_to_lsn` values in the
 PERCONA_SCHEMA.xtrabackup_history table.
 
-* `SELECT` privilege on the [keyring_component_status table](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-keyring-component-status-table.html)  to view the attributes and status of the installed keyring component when in use.
+* `SELECT` privilege on the [keyring_component_status table](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-keyring-component-status-table.html) to view the attributes and status of the installed keyring component when in use.
+
+* `SELECT` privilege on the [replication_group_members](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-replication-group-members-table.html) to make sure group replication is consistent.
 
 The explanation of when these are used can be found in
 How Percona XtraBackup Works.
@@ -118,5 +120,6 @@ mysql> CREATE USER 'bkpuser'@'localhost' IDENTIFIED BY 's3cr%T';
 mysql> GRANT BACKUP_ADMIN, PROCESS, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'bkpuser'@'localhost';
 mysql> GRANT SELECT ON performance_schema.log_status TO 'bkpuser'@'localhost';
 mysql> GRANT SELECT ON performance_schema.keyring_component_status TO bkpuser@'localhost'
+mysql> GRANT SELECT ON performance_schema.replication_group_members TO bkpuser@'localhost'
 mysql> FLUSH PRIVILEGES;
 ```
