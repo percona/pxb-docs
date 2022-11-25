@@ -1,5 +1,5 @@
 {#
-MkDocs template for Netlify builds to customize docs layout 
+MkDocs template for builds with Material Theme to customize docs layout 
 by adding marketing-requested elements
 #}
 
@@ -18,17 +18,55 @@ by adding marketing-requested elements
 </div>
 </div>
 {%- endmacro %}
+              
+              {% block extrahead %}
+              {{ super() }}
+
+              <script>
+              (function (w, d, s, l, i) {
+                  w[l] = w[l] || []; w[l].push({
+                    'gtm.start': new Date().getTime(), 
+                    event: 'gtm.js'
+                  });
+                  var f = d.getElementsByTagName(s)[0],
+                  j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                  j.async = true; 
+                  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                  f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', 'GTM-K48FGP2');
+              </script>
+              {% endblock %}
+
+
+              {% block scripts %}
+              {{ super() }}
+
+              <img src="https://tracking.g2crowd.com/attribution_tracking/conversions/1007137.gif?e=" width="1" height="1" />
+
+              <noscript>
+                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K48FGP2" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+              </noscript>
+              {% endblock %}
 
               {% block content %}
 
-                <!-- Edit button -->
+                <!-- Edit and view button -->
                 {% if page.edit_url %}
+                  {% set edit = "https://github.com/percona/pxb-docs/edit/8.0/docs/" %}
+                  {% set view = "https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/" %}
                   <a
                     href="{{ page.edit_url }}"
                     title="{{ lang.t('edit.link.title') }}"
                     class="md-content__button md-icon"
                   >
-                    {% include ".icons/material/pencil.svg" %}
+                    {% include ".icons/material/file-edit-outline.svg" %}
+                  </a>
+                  <a
+                    href="{{ page.edit_url | replace(edit, view) }}"
+                    title="View source of this page"
+                    class="md-content__button md-icon"
+                  >
+                    {% include ".icons/material/file-eye-outline.svg" %}
                   </a>
                 {% endif %}
 
@@ -55,5 +93,3 @@ by adding marketing-requested elements
                   {% endif %}
                 {% endif %}
               {% endblock %}
-
-

@@ -1,4 +1,4 @@
-# Make a Full Backup
+# Make a full backup
 
 Backup the InnoDB data and log files located in `/var/lib/mysql/` to
 `/data/backups/mysql/` (destination). Then, prepare the backup files to be
@@ -6,13 +6,13 @@ ready to restore or use (make the data files consistent).
 
 ### Make a backup
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backup/mysql/
 ```
 
 ### Prepare the backup
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/backup/mysql/
 ```
 
@@ -20,7 +20,7 @@ $ xtrabackup --prepare --target-dir=/data/backup/mysql/
     
     Starting with [Percona Server for MySQL 8.0.30-22](../release-notes/8.0/8.0.30-23.0.md) only run prepare once.
 
-### Success Criteria
+### Success criteria
 
 * The exit status of xtrabackup is 0.
 

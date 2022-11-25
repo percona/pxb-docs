@@ -1,10 +1,10 @@
-# Using the xbcloud Binary with Swift
+# Use the xbcloud binary with Swift
 
-## Creating a full backup with Swift
+## Create a full backup with Swift
 
 The following example shows how to make a full backup and upload it to Swift.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=swift \
 --swift-container=test \
@@ -52,15 +52,15 @@ The following OpenStack environment variables are also recognized and mapped aut
 
 * OS_CACERT
 
-## Restoring with Swift
+## Restore with Swift
 
-```shell
+```{.bash data-prompt="$"}
 $ xbcloud get [options] <name> [<list-of-files>] | xbstream -x
 ```
 
 The following example shows how to fetch and restore the backup from Swift:
 
-```shell
+```{.bash data-prompt="$"}
 $ xbcloud get --storage=swift \
 --swift-container=test \
 --swift-user=test:tester \

@@ -1,15 +1,12 @@
-# Partial Backups
+# Partial backups
 
 *xtrabackup* supports taking partial backups when the
 innodb_file_per_table option is enabled. There are three ways to create
 partial backups:
 
-
 1. matching the tables names with a regular expression
 
-
 2. providing a list of table names in a file
-
 
 3. providing a list of databases
 
@@ -35,23 +32,19 @@ named `test` which contains tables named `t1` and `t2`.
     If any of the matched or listed tables is deleted during the backup,
     *xtrabackup* will fail.
 
-## Creating Partial Backups
+## Create partial backups
 
 There are multiple ways of specifying which part of the whole data is backed up:
 
-
 * Use the `--tables` option to list the table names
-
 
 * Use the `--tables-file` option to list the tables in a file
 
-
 * Use the `--databases` option to list the databases
-
 
 * Use the `--databases-file` option to list the databases
 
-## The –tables Option
+## The `–-tables` option
 
 The first method involves the xtrabackup –tables option. The option’s
 value is a regular expression that is matched against the fully-qualified database name and table name using the `databasename.tablename` format.
@@ -59,19 +52,19 @@ value is a regular expression that is matched against the fully-qualified databa
 To back up only tables in the `test` database, use the following
 command:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 --tables="^test[.].*"
 ```
 
 To back up only the `test.t1` table, use the following command:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 --tables="^test[.]t1"
 ```
 
-## The –tables-file Option
+## The `-–tables-file` option
 
 The `--tables-file` option specifies a file that can contain multiple table
 names, one table name per line in the file. Only the tables named in the file
@@ -79,12 +72,12 @@ will be backed up. Names are matched exactly, case-sensitive, with no pattern or
 regular expression matching. The table names must be fully-qualified in
 `databasename.tablename` format.
 
-```shell
+```{.bash data-prompt="$"}
 $ echo "mydatabase.mytable" > /tmp/tables.txt
 $ xtrabackup --backup --tables-file=/tmp/tables.txt
 ```
 
-## The –databases and –databases-file options
+## The `--databases` and `-–databases-file` options
 
 The \` –databases\` option accepts a space-separated list of the databases
 and tables to backup in the `databasename[.tablename]` format. In addition to
@@ -99,11 +92,11 @@ the databases using xtrabackup –copy-back.
     even if they are not explicitly listed by the parameter if they were created
     after the backup started.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --databases='mysql sys performance_schema test ...'
 ```
 
-## The `--databases-file` Option
+## The `--databases-file` option
 
 The –databases-file option specifies a file that can contain multiple
 databases and tables in the `databasename[.tablename]` format, one element name per line in the file. Names are matched exactly, case-sensitive, with no pattern or regular expression matching.
@@ -114,16 +107,16 @@ databases and tables in the `databasename[.tablename]` format, one element name 
     even if they are not explicitly listed by the parameter if they were created
     after the backup started.
 
-## Preparing Partial Backups
+## Prepare partial backups
 
-The procedure is analogous to restoring individual tables : apply the logs and use the
-–export option:
+The procedure is analogous to restoring individual tables: apply the logs and use the
+`--export` option:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --export --target-dir=/path/to/partial/backup
 ```
 
-When you use the –prepare option on a partial backup, you
+When you use the `--prepare` option on a partial backup, you
 will see warnings about tables that don’t exist. This is because these tables
 exist in the data dictionary inside InnoDB, but the corresponding .ibd
 files don’t exist. They were not copied into the backup directory. These tables
@@ -133,9 +126,9 @@ warnings to be printed to the log file.
 
 Could not find any file associated with the tablespace ID: 5
 
-Use –innodb-directories to find the tablespace files. If that fails then use –innodb-force-recovery=1 to ignore this and to permanently lose all changes to the missing tablespace(s).
+Use `--innodb-directories` to find the tablespace files. If that fails then use `-–innodb-force-recovery=1` to ignore this and to permanently lose all changes to the missing tablespace(s).
 
-## Restoring Partial Backups
+## Restore partial backups
 
 Restoring should be done by restoring individual tables in the partial backup to the server.
 
@@ -143,32 +136,35 @@ It can also be done by copying back the prepared backup to a “clean”
 datadir (in that case, make sure to include the `mysql`
 database) to the datadir you are moving the backup to. A system database can be created with the following:
 
-```shell
+```{.bash data-prompt="$"}
 $ sudo mysql --initialize --user=mysql
 ```
 
 Once you start the server, you may see mysql complaining about missing tablespaces:
 
-```text
-2021-07-19T12:42:11.077200Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name 'test1/t1', file './d2/test1.ibd' is missing!
-2021-07-19T12:42:11.077300Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name 'test1/t1', file './d2/test1.ibd' is missing!
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    2021-07-19T12:42:11.077200Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name 'test1/t1', file './d2/test1.ibd' is missing!
+    2021-07-19T12:42:11.077300Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name 'test1/t1', file './d2/test1.ibd' is missing!
+    ```
 
 In order to clean the orphan database from the data dictionary, you must manually create the missing database directory and then `DROP` this database from the server.
 
 Example of creating the missing database:
 
-```shell
+```{.bash data-prompt="$"}
 $ mkdir /var/lib/mysql/test1/d2
 ```
 
 Example of dropping the database from the server:
 
-```sql
+```{.bash data-prompt="mysql>"}
 mysql> DROP DATABASE d2;
 ```
-The result should be something like the following: 
 
-```text
-Query OK, 2 rows affected (0.5 sec)
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    Query OK, 2 rows affected (0.5 sec)
+    ```

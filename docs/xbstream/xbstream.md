@@ -69,7 +69,7 @@ To compress files using the `ZSTD` compression algorithm, use the `--compress=zs
     
 You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](../xtrabackup_bin/xbk_option_reference.md#compress-zstd-level) option. The defaul value is `1`.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
 ```
     

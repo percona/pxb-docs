@@ -1,4 +1,4 @@
-# Backing Up and Restoring Individual Partitions
+# Back up and restore individual partitions
 
 Percona XtraBackup lets you back up
 individual partitions because partitions are regular tables with specially formatted names. The only
@@ -9,7 +9,7 @@ There is one caveat about using this kind of backup: you can not copy back
 the prepared backup. Restoring partial backups should be done by importing the
 tables.
 
-## Creating the backup
+## Create the backup
 
 There are three ways of specifying which part of the whole data will be backed
 up: regular expressions ( –tables), enumerating the
@@ -25,27 +25,29 @@ If the partition 0 is not backed up, Percona XtraBackup cannot generate a .cfg f
 For example, this operation takes a back-up of the partition `p4` from 
 the table `name` located in the database `imdb`:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --tables=^imdb[.]name#p#p4 --backup
 ```
 
 If partition 0 is not backed up, the following errors may occur:
 
-```text
-xtrabackup: export option not specified
-xtrabackup: error: cannot find dictionary record of table imdb/name#p#p4
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    xtrabackup: export option not specified
+    xtrabackup: error: cannot find dictionary record of table imdb/name#p#p4
+    ```
 
 Note that this option is passed to `xtrabackup --tables` and is matched
 against each table of each database, the directories of each database will be
 created even if they are empty.
 
-## Preparing the backup
+## Prepare the backup
 
 For preparing partial backups, the procedure is analogous to restoring
 individual tables apply the logs and use xtrabackup –export:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --apply-log --export /mnt/backup/2012-08-28_10-29-09
 ```
 
@@ -54,14 +56,14 @@ because *InnoDB*-based engines stores its data dictionary inside the tablespace
 files. *xtrabackup* removes the missing tables (those that haven’t been selected in the partial
 backup) from the data dictionary in order to avoid future warnings or errors.
 
-## Restoring from the backups
+## Restore from the backups
 
 Restoring should be done by importing the tables in the partial backup to the
 server.
 
 First step is to create new table in which data will be restored.
 
-```sql
+```{.bash data-prompt="mysql>"}
 mysql> CREATE TABLE `name_p4` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `name` text NOT NULL,
@@ -82,13 +84,13 @@ PRIMARY KEY (`id`)
 To restore the partition from the backup, the tablespace must be discarded for
 that table:
 
-```sql
+```{.bash data-prompt="mysql>"}
 mysql> ALTER TABLE name_p4 DISCARD TABLESPACE;
 ```
 
 The next step is to copy the .exp and ibd files from the backup to the MySQL data directory:
 
-```shell
+```
 cp /mnt/backup/2012-08-28_10-29-09/imdb/name#p#p4.exp /var/lib/mysql/imdb/name_p4.exp
 cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 ```
@@ -99,6 +101,6 @@ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p
 
 The last step is to import the tablespace:
 
-```sql
+```{.bash data-prompt="mysql>"}
 mysql> ALTER TABLE name_p4 IMPORT TABLESPACE;
 ```

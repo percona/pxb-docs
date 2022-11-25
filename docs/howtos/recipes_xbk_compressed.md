@@ -1,4 +1,4 @@
-# Make a Compressed Backup
+# Make a compressed backup
 
 In order to make a compressed backup, use the `--compress` option along
 with the `--backup` and `--target-dir` options. Percona XtraBackup supports the following compression algorithms:
@@ -7,7 +7,7 @@ with the `--backup` and `--target-dir` options. Percona XtraBackup supports the 
     
     To compress files using the `quicklz` compression algorithm, use `--compress` option:
 
-    ```shell
+    ```{.bash data-prompt="$"}
     $ xtrabackup --backup --compress --target-dir=/data/backup
     ```
 
@@ -15,7 +15,7 @@ with the `--backup` and `--target-dir` options. Percona XtraBackup supports the 
 
     To compress files using the `lz4` compression algorithm, set `--compress` option to `lz4`:
 
-    ```shell
+    ```{.bash data-prompt="$"}
     $ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
     ```
 
@@ -27,13 +27,13 @@ with the `--backup` and `--target-dir` options. Percona XtraBackup supports the 
     
     To compress files using the `ZSTD` compression algorithm, set `--compress` option to `zstd`:
 
-    ```shell
+    ```{.bash data-prompt="$"}
     $ xtrabackup --backup --compress=zstd --target-dir=/data/backup
     ```
 
     You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](/docs/xtrabackup_bin/xbk_option_reference.md#compress-zstd-level) option. The defaul value is `1`.
 
-    ```shell
+    ```{.bash data-prompt="$"}
     $ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
     ```
 
@@ -41,20 +41,22 @@ If you want to speed up the compression you can use the parallel
 compression, which can be enabled with `--compress-threads`
 option. The following example uses four threads for compression.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --compress --compress-threads=4 --target-dir=/data/backup
 ```
 
 Output should look like this:
 
-```text
-...
+??? example "Expected output"
 
-[01] Compressing ./imdb/comp_cast_type.ibd to /data/backup/imdb/comp_cast_type.ibd.qp
-[01]        ...done
-...
-130801 11:50:24  xtrabackup: completed OK
-```
+    ```{.text .no-copy}
+    ...
+
+    [01] Compressing ./imdb/comp_cast_type.ibd to /data/backup/imdb/comp_cast_type.ibd.qp
+    [01]        ...done
+    ...
+    130801 11:50:24  xtrabackup: completed OK
+    ```
 
 ## Prepare the backup
 
@@ -64,36 +66,38 @@ If you used `quicklz` compression algorithm, use `qpress` (which is available fr
 
 You can use the following one-liner to uncompress all the files:
 
-```shell
+```{.bash data-prompt="$"}
 $ for bf in `find . -iname "*\.qp"`; do qpress -d $bf $(dirname $bf) && rm $bf; done
 ``` 
 
 If you used `lz4` compression algorithm, change this script to search
 for `\*.lz4` files:
 
-```shell
+```{.bash data-prompt="$"}
 $ for bf in `find . -iname "*\.lz4"`; do lz4 -d $bf $(dirname $bf) && rm $bf; done
 ```
 
 *Percona XtraBackup* has implemented `--decompress` option
 that can be used to decompress the backup made using `quicklz`, `lz4`, or `ZSTD` compression algorithm.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --decompress --target-dir=/data/compressed/
 ```
 
 When the files are uncompressed you can prepare the backup with the
 `--apply-log-only` option:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --apply-log-only --target-dir=/data/backup/
 ```
 
 You should check for a confirmation message:
 
-```text
-130802 02:51:02  xtrabackup: completed OK!
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    130802 02:51:02  xtrabackup: completed OK!
+    ```
 
 Now the files in `/data/backup/` are ready to be used by the server.
 
@@ -106,7 +110,7 @@ Now the files in `/data/backup/` are ready to be used by the server.
 Once the backup has been prepared you can use the `--copy-back` to
 restore the backup.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --copy-back --target-dir=/data/backup/
 ```
 
@@ -116,15 +120,16 @@ by the `datadir` variable in the `my.cnf` file.
 After the confirmation message, you should check the file permissions after
 copying the data back.
 
-```text
-130802 02:58:44  xtrabackup: completed OK!
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    130802 02:58:44  xtrabackup: completed OK!
+    ```
 
 You may need to adjust the file permissions. The following example
-demonstrates
-how to do it recursively by using **chown**:
+demonstrates how to do it recursively by using **chown**:
 
-```shell
+```{.bash data-prompt="$"}
 $ chown -R mysql:mysql /var/lib/mysql
 ```
 

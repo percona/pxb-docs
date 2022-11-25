@@ -1,4 +1,4 @@
-# Make a Streaming Backup
+# Make a streaming backup
 
 Stream mode sends the backup to `STDOUT` in the `xbstream` format instead
 of

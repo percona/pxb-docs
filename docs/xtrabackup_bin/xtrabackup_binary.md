@@ -1,4 +1,4 @@
-# The xtrabackup Binary
+# The xtrabackup binary
 
 The *xtrabackup* binary is a compiled C program that is linked with the *InnoDB*
 libraries and the standard *MySQL* client libraries.
@@ -16,7 +16,7 @@ corresponding to the two main functions it performs. There are several
 variations on these functions to accomplish different tasks, and there are two
 less commonly used modes, `--stats` and `--print-param`.
 
-## Other Types of Backups
+## Other types of backups
 
 
 * [Incremental Backups](incremental_backups.md)
@@ -25,7 +25,7 @@ less commonly used modes, `--stats` and `--print-param`.
 * [Partial Backups](partial_backups.md)
 
 
-## Advanced Features
+## Advanced features
 
 <!-- NB: the following section has been removed because it is a
 duplicate of a section in source/advanced:

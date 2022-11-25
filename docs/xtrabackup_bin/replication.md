@@ -1,8 +1,8 @@
-# Making Backups in Replication Environments
+# Make backups in replication environments
 
 There are options specific to back up from a replication replica.
 
-## The `--slave-info` Option
+## The `--slave-info` option
 
 This option is useful when backing up a replication replica server. It prints the
 binary log position and name of the source server. It also writes this
@@ -14,7 +14,7 @@ You can start a replica server with this backup and issue the statement saved in
 `xtrabackup_slave_info` file. More details of this procedure can be found
 in How to setup a replica for replication in 6 simple steps with Percona XtraBackup.
 
-## The `--safe-slave-backup` Option
+## The `--safe-slave-backup` option
 
 In order to assure a consistent replication state, this option stops the replication
 SQL thread and waits to start backing up until `Slave_open_temp_tables` in

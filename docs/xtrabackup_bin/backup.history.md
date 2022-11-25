@@ -8,11 +8,9 @@ PERCONA_SCHEMA.XTRABACKUP_HISTORY table.
 
 To use this feature the following options are available:
 
-
 * `--history` =<name> : This option enables the history
 feature and allows the user to specify a backup series name that will be
 placed within the history record.
-
 
 * `--incremental-history-name` =<name> : This option allows an
 incremental backup to be made based on a specific history series by
@@ -22,7 +20,6 @@ as it’s starting lsn. This is mutually exclusive with
 `--incremental-history-uuid`, `--incremental-basedir` and
 `--incremental-lsn` options. If no valid LSN can be found
 (no series by that name) *xtrabackup* will return with an error.
-
 
 * `--incremental-history-uuid` =<uuid> : Allows an incremental backup to
 be made based on a specific history record identified by UUID. *xtrabackup*
@@ -76,10 +73,8 @@ taken with `--history` option.
 
 ### Limitations
 
-
 * `--history` option must be specified only on the command
 line and not within a configuration file in order to be effective.
-
 
 * `--incremental-history-name` and `--incremental-history-uuid`
 options must be specified only on the command line and not within

@@ -1,4 +1,4 @@
-# Configuring xtrabackup
+# Configure xtrabackup
 
 All the *xtrabackup* configuration is done through options, which behave
 exactly like standard *MySQL* program options: they can be specified either at
@@ -17,7 +17,7 @@ only thing you might find convenient to place in the `[xtrabackup]` section
 of your `my.cnf` file is the `target_dir` option to default the
 directory in which the backups will be placed, for example:
 
-```text
+```
 [xtrabackup]
 target_dir = /data/backups/mysql/
 ```
@@ -33,7 +33,7 @@ reasons, the **mysqld** server binary accepts parameters with a
 understand. If your `my.cnf` file has such configuration directives, you
 should rewrite them in the `--variable=value` syntax.
 
-## System Configuration and NFS Volumes
+## System configuration and NFS volumes
 
 The *xtrabackup* tool requires no special configuration on most systems.
 However, the storage where the `--target-dir` is located
