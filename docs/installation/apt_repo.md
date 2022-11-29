@@ -1,5 +1,10 @@
 # Installing Percona XtraBackup on Debian and Ubuntu
 
+
+!!! note
+
+    The following instructions install Percona XtraBackup 2.4 using the APT package manager. The instructions to install Percona XtraBackup 8.0 using the APT package manager are available in the [Percona XtraBackup 8.0 installation documentation](https://docs.percona.com/percona-xtrabackup/8.0/installation/apt_repo.html).
+
 Ready-to-use packages are available from the *Percona XtraBackup* software
 repositories and the [Percona download page](https://www.percona.com/downloads/XtraBackup/).
 

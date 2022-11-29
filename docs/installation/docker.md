@@ -1,5 +1,9 @@
 # Running Percona XtraBackup in a Docker container
 
+!!! note
+
+    The following instructions runs Percona XtraBackup 2.4 in a Docker container. The instructions to run Percona XtraBackup 8.0 by the same method are available in the [Percona XtraBackup 8.0 installation documentation](https://docs.percona.com/percona-xtrabackup/8.0/installation/docker.html).
+
 Docker allows you to run applications in a lightweight unit called a container.
 
 You can run *Percona XtraBackup* in a Docker container without installing the product. All required libraries are available in
