@@ -15,9 +15,9 @@ We recommend that you install Percona XtraBackup 2.4 from the official Percona s
 Percona also provides the following methods:
 
 * [Download a binary tarball](binary-tarball.md) with the required files and binaries for a manual installation
-* 
+
 * [Compile from source](compiling_xtrabackup.md)
-* 
+
 * [Run in a Docker Container](docker.md)
 
 Before installing Percona XtraBackup with any of these methods, we recommend that you review the [release notes](../release-notes.md).
