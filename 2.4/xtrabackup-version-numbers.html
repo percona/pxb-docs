@@ -15,14 +15,14 @@
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/2.4/2.4/xtrabackup-versioning-scheme.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/2.4/2.4/xtrabackup-version-numbers.html">
       
       <link rel="icon" href="_static/percona_favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>Xtrabackup versioning scheme - Percona XtraBackup</title>
+        <title>Understand version numbers - Percona XtraBackup</title>
       
     
     
@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#percona-xtrabackup-24-versioning-scheme" class="md-skip">
+        <a href="#understand-version-numbers" class="md-skip">
           Skip to content
         </a>
       
@@ -129,7 +129,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Xtrabackup versioning scheme
+              Understand version numbers
             
           </span>
         </div>
@@ -336,41 +336,12 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Xtrabackup versioning scheme
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="xtrabackup-versioning-scheme.html" class="md-nav__link md-nav__link--active">
-        Xtrabackup versioning scheme
-      </a>
-      
         
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item">
-  <a href="#percona-xtrabackup-24-versioning-scheme" class="md-nav__link">
-    Percona XtraBackup 2.4 versioning scheme:
-  </a>
-  
-</li>
       
-    </ul>
-  
-</nav>
+      <a href="xtrabackup-version-numbers.html" class="md-nav__link md-nav__link--active">
+        Understand version numbers
+      </a>
       
     </li>
   
@@ -1553,21 +1524,8 @@
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#percona-xtrabackup-24-versioning-scheme" class="md-nav__link">
-    Percona XtraBackup 2.4 versioning scheme:
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1583,7 +1541,7 @@
                 <!-- Edit button -->
                 
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/2.4/docs/xtrabackup-versioning-scheme.md"
+                    href="https://github.com/percona/pxb-docs/edit/2.4/docs/xtrabackup-version-numbers.md"
                     title="Edit this page"
                     class="md-content__button md-icon"
                   >
@@ -1597,22 +1555,50 @@
                   as the main headline.
                 -->
                 
-                  <h1>Xtrabackup versioning scheme</h1>
-                
 
                 <!-- Markdown content -->
-                <h3 id="percona-xtrabackup-24-versioning-scheme">Percona XtraBackup 2.4 versioning scheme:<a class="headerlink" href="#percona-xtrabackup-24-versioning-scheme" title="Permanent link">&para;</a></h3>
-<p>Here is what the numbers in the product version specification mean:</p>
-<p>For example, in Percona XtraBackup 2.4.26</p>
+                <h1 id="understand-version-numbers">Understand version numbers<a class="headerlink" href="#understand-version-numbers" title="Permanent link">&para;</a></h1>
+<p>A version number identifies the product release. The product contains the latest Generally Available (GA) features at the time of that release. </p>
+<style>
+    table {
+        border-collapse: collapse;
+        width=100%;
+    }
+    table td {
+        border: 2px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+    tr:nth-child(even){
+        background-color:#f5f5f5
+    }
+</style>
+
+<table>
+<thead>
+<tr>
+<th>2.4</th>
+<th>26</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base version</td>
+<td>Minor build version</td>
+</tr>
+</tbody>
+</table>
+<p>Percona uses semantic version numbering, which follows the pattern of base version and minor build. Percona assigns unique, non-negative integers in increasing order for each minor build release. The version number combines the base Percona XtraBackup version number and the minor build version.</p>
+<p>Percona does not release a new version of Percona XtraBackup 2.4 for every release of MySQL 5.7. Percona XtraBackup 2.4 is compatible with newer versions of MySQL 5.7. </p>
+<p>The version numbers for Percona XtraBackup 2.4.26 define the following information:</p>
 <ul>
 <li>
-<p><code>2.4</code> - the version of the Percona XtraBackup that is based on <a href="https://dev.mysql.com/doc/relnotes/mysql/5.7/en/">MySQL 5.7</a> </p>
+<p>Base version - the leftmost number indicates the version of the Percona XtraBackup that is based on <a href="https://dev.mysql.com/doc/relnotes/mysql/5.7/en/">MySQL 5.7</a>. An increase in base version resets the minor build version to 0.  </p>
 </li>
 <li>
-<p><code>26</code> - a sequential number that increases every time Percona releases a new version of Percona XtraBackup </p>
+<p>Minor build version - an internal number that denotes the version of the software. A build version increases by one each time the Percona XtraBackup is released.</p>
 </li>
 </ul>
-<p>Percona does not release a new version of Percona XtraBackup 2.4 for every release of MySQL 5.7. Percona XtraBackup 2.4 is compatible with newer versions of MySQL 5.7.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -1634,7 +1620,7 @@
   <small>
     
       Last update:
-      2022-11-11
+      2022-11-30
     
   </small>
 </div>
