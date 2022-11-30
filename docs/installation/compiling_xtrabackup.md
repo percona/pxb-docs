@@ -1,5 +1,9 @@
 # Compiling and Installing from Source Code
 
+!!! note
+
+    The following instructions installs Percona XtraBackup 2.4 by compiling the source code. The instructions to run Percona XtraBackup 8.0 by the same method are available in the [Percona XtraBackup 8.0 installation documentation](https://docs.percona.com/percona-xtrabackup/8.0/installation/compiling_xtrabackup.html).
+
 The source code is available from the *Percona XtraBackup* *Github* [project](https://github.com/percona/percona-xtrabackup). The easiest way to get the
 code is by using the `git clone` command. Then, switch to the release
 branch that you want to install, such as **2.4**.

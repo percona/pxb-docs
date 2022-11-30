@@ -1,5 +1,9 @@
 # Installing Percona XtraBackup from a Binary Tarball
 
+!!! note
+
+    The following instructions install Percona XtraBackup 2.4 by downloading and installing a binary tarball. The instructions to install Percona XtraBackup 8.0 by the same method are available in the [Percona XtraBackup 8.0 installation documentation](https://docs.percona.com/percona-xtrabackup/8.0/installation/binary-tarball.html).
+
 **Percona** provides binary tarballs of **Percona XtraBackup**. Binary tarballs contain pre-compiled executables, libraries, and other dependencies and are compressed `tar` archives. Extract the binary tarballs to any path.
 
 Binary tarballs are available for [download](https://www.percona.com/downloads) and installation. The following table lists the tarballs available in `Linux - Generic`. Select the *Percona XtraBackup* 2.4 version number and the type of tarball for your installation. Binary tarballs support all distributions.

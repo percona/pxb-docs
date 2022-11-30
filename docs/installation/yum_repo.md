@@ -1,5 +1,9 @@
 # Installing Percona XtraBackup on Red Hat Enterprise Linux and CentOS
 
+!!! note
+
+    The following instructions install Percona XtraBackup 2.4 using the YUM package manager. The instructions to install Percona XtraBackup 8.0 using the YUM package manager are available in the [Percona XtraBackup 8.0 installation documentation](https://docs.percona.com/percona-xtrabackup/8.0/installation/yum_repo.html).
+
 Ready-to-use packages are available from the *Percona XtraBackup* software
 repositories and the [download page](https://www.percona.com/downloads/XtraBackup/). The Percona
 `yum` repository supports popular *RPM*-based operating systems,
