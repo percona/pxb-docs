@@ -119,7 +119,7 @@ to full backups would be:
 mysql> CREATE USER 'bkpuser'@'localhost' IDENTIFIED BY 's3cr%T';
 mysql> GRANT BACKUP_ADMIN, PROCESS, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'bkpuser'@'localhost';
 mysql> GRANT SELECT ON performance_schema.log_status TO 'bkpuser'@'localhost';
-mysql> GRANT SELECT ON performance_schema.keyring_component_status TO bkpuser@'localhost'
-mysql> GRANT SELECT ON performance_schema.replication_group_members TO bkpuser@'localhost'
+mysql> GRANT SELECT ON performance_schema.keyring_component_status TO bkpuser@'localhost';
+mysql> GRANT SELECT ON performance_schema.replication_group_members TO bkpuser@'localhost';
 mysql> FLUSH PRIVILEGES;
 ```
