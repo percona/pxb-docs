@@ -2068,7 +2068,10 @@ to look up the <code>innodb_to_lsn</code> values in the
 PERCONA_SCHEMA.xtrabackup_history table.</p>
 </li>
 <li>
-<p><code>SELECT</code> privilege on the <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-keyring-component-status-table.html">keyring_component_status table</a>  to view the attributes and status of the installed keyring component when in use.</p>
+<p><code>SELECT</code> privilege on the <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-keyring-component-status-table.html">keyring_component_status table</a> to view the attributes and status of the installed keyring component when in use.</p>
+</li>
+<li>
+<p><code>SELECT</code> privilege on the <a href="https://dev.mysql.com/doc/refman/8.0/en/performance-schema-replication-group-members-table.html">replication_group_members table</a> to validate if the instance is part of group replication cluster.</p>
 </li>
 </ul>
 <p>The explanation of when these are used can be found in
@@ -2079,6 +2082,7 @@ to full backups would be:</p>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="n">BACKUP_ADMIN</span><span class="p">,</span><span class="w"> </span><span class="n">PROCESS</span><span class="p">,</span><span class="w"> </span><span class="n">RELOAD</span><span class="p">,</span><span class="w"> </span><span class="k">LOCK</span><span class="w"> </span><span class="n">TABLES</span><span class="p">,</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">CLIENT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;bkpuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span><span class="w"></span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">log_status</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;bkpuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span><span class="w"></span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">keyring_component_status</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">bkpuser</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"></span>
+<span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">bkpuser</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"></span>
 <span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
 
@@ -2102,7 +2106,7 @@ to full backups would be:</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-11-30
     
   </small>
 </div>
