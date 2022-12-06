@@ -1576,8 +1576,8 @@
 <p class="admonition-title">Note</p>
 <p>The following instructions install Percona XtraBackup 2.4 by downloading and installing a binary tarball. The instructions to install Percona XtraBackup 8.0 by the same method are available in the <a href="https://docs.percona.com/percona-xtrabackup/8.0/installation/binary-tarball.html">Percona XtraBackup 8.0 installation documentation</a>.</p>
 </div>
-<p><strong>Percona</strong> provides binary tarballs of <strong>Percona XtraBackup</strong>. Binary tarballs contain pre-compiled executables, libraries, and other dependencies and are compressed <code>tar</code> archives. Extract the binary tarballs to any path.</p>
-<p>Binary tarballs are available for <a href="https://www.percona.com/downloads">download</a> and installation. The following table lists the tarballs available in <code>Linux - Generic</code>. Select the <em>Percona XtraBackup</em> 2.4 version number and the type of tarball for your installation. Binary tarballs support all distributions.</p>
+<p>Percona provides binary tarballs of Percona XtraBackup. Binary tarballs contain pre-compiled executables, libraries, and other dependencies and are compressed <code>tar</code> archives. Extract the binary tarballs to any path.</p>
+<p>Binary tarballs are available for <a href="https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/">download</a> and installation. The following table lists the tarballs available in <code>Linux - Generic</code>. Select the <em>Percona XtraBackup</em> 2.4 version number and the type of tarball for your installation. Binary tarballs support all distributions.</p>
 <p>After you have downloaded the binary tarballs, extract the tarball in the file location of your choice.</p>
 <table>
 <thead>
@@ -1601,23 +1601,36 @@
 </tbody>
 </table>
 <p>Fetch and extract the correct binary tarball. For example, the following downloads the full tarball for version 2.4.24:</p>
-<p><div class="highlight"><pre><span></span><code>$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.24/binary/tarball/percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz
+<p>You may need to update the apt repositories and then install <code>wget</code>.</p>
+<div class="highlight"><pre><span></span><code>$ apt update
+$ apt install wget
 </code></pre></div>
-The result may be similar to the following:
-<div class="highlight"><pre><span></span><code>  --2022-04-13 14:34:45--  https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.24/binary/tarball/percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz
-  Resolving downloads.percona.com (downloads.percona.com)... 162.220.4.221, 162.220.4.222, 74.121.199.231
-  Connecting to downloads.percona.com (downloads.percona.com)|162.220.4.221|:443... connected.
+<div class="highlight"><pre><span></span><code>$ wget wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.27/binary/tarball/percona-xtrabackup-2.4.27-Linux-x86_64.glibc2.12.tar.gz
+</code></pre></div>
+<details class="example">
+<summary>Expected results</summary>
+<div class="highlight"><pre><span></span><code>  --2022-12-06 17:01:29--  https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.27/binary/tarball/percona-xtrabackup-2.4.27-Linux-x86_64.glibc2.12.tar.gz
+  Resolving downloads.percona.com (downloads.percona.com)... 74.121.199.231, 162.220.4.221, 162.220.4.222
+  Connecting to downloads.percona.com (downloads.percona.com)|74.121.199.231|:443... connected.
   HTTP request sent, awaiting response... 200 OK
-  Length: 76263220 (73M) [application/x-gzip]
-  Saving to: ‘percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz’
-
-  percona-xtrabackup-2.4.24-Linux-x86_64 100%[==========================================================================&gt;]  72.73M  5.29MB/s    in 20s
-
-  2022-04-13 14:35:05 (3.61 MB/s) - ‘percona-xtrabackup-2.4.24-Linux-x86_64.glibc2.12.tar.gz’ saved [76263220/76263220]
+  Length: 77216741 (74M) [application/x-gzip]
+  Saving to: &#39;percona-xtrabackup-2.4.27-Linux-x86_64.glibc2.12.tar.gz&#39;
 </code></pre></div>
-Uncompress the file:
-<div class="highlight"><pre><span></span><code>$ tar xvf percona-xtrabackup-2.4.21-Linux-x86_64.glibc2.12.tar.gz
-</code></pre></div></p>
+</details>
+<p>Uncompress the file:</p>
+<div class="highlight"><pre><span></span><code>$ tar xvf percona-xtrabackup-2.4.27-Linux-x86_64.glibc2.12.tar.gz
+</code></pre></div>
+<details class="example">
+<summary>Expected results</summary>
+<div class="highlight"><pre><span></span><code>percona-xtrabackup-2.4.27-Linux-x86_64.glibc2.12/
+percona-xtrabackup-2.4.27-Linux-x86_64.glibc2.12/man/
+percona-xtrabackup-2.4.27-Linux-x86_64.glibc2.12/man/man1/
+percona-xtrabackup-2.4.27-Linux-x86_64.glibc2.12/man/man1/xtrabackup.1
+percona-xtrabackup-2.4.27-Linux-x86_64.glibc2.12/man/man1/xbstream.1
+percona-xtrabackup-2.4.27-Linux-x86_64.glibc2.12/man/man1/xbcrypt.1
+...
+</code></pre></div>
+</details>
 <p>An installation from a binary tarball requires doing certain tasks manually, such as configuring settings, and policies, that a repository package installation performs automatically.</p>
 
                 
@@ -1640,7 +1653,7 @@ Uncompress the file:
   <small>
     
       Last update:
-      2022-11-29
+      2022-12-06
     
   </small>
 </div>
