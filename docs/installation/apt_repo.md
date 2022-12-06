@@ -6,7 +6,7 @@
     The following instructions install Percona XtraBackup 2.4 using the APT package manager. The instructions to install Percona XtraBackup 8.0 using the APT package manager are available in the [Percona XtraBackup 8.0 installation documentation](https://docs.percona.com/percona-xtrabackup/8.0/installation/apt_repo.html).
 
 Ready-to-use packages are available from the *Percona XtraBackup* software
-repositories and the [Percona download page](https://www.percona.com/downloads/XtraBackup/).
+repositories and the [Percona download page](https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/).
 
 Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
 
@@ -83,7 +83,7 @@ For more information about the pinning you can check the official
 ## Installing *Percona XtraBackup* using downloaded deb packages
 
 Download the packages of the desired series for your architecture from the
-[download page](https://www.percona.com/downloads/XtraBackup/). Following
+[download page](https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/). Following
 example downloads the *Percona XtraBackup* 2.4.20 release package for *Debian*
 9.0:
 

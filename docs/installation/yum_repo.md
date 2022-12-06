@@ -5,7 +5,7 @@
     The following instructions install Percona XtraBackup 2.4 using the YUM package manager. The instructions to install Percona XtraBackup 8.0 using the YUM package manager are available in the [Percona XtraBackup 8.0 installation documentation](https://docs.percona.com/percona-xtrabackup/8.0/installation/yum_repo.html).
 
 Ready-to-use packages are available from the *Percona XtraBackup* software
-repositories and the [download page](https://www.percona.com/downloads/XtraBackup/). The Percona
+repositories and the [download page](https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/). The Percona
 `yum` repository supports popular *RPM*-based operating systems,
 including the *Amazon Linux AMI*.
 
@@ -93,7 +93,7 @@ The `percona-xtrabackup` package contains the older version of the
 
     !!! warning
 
-        In order to sucessfully install *Percona XtraBackup* on CentOS prior to version 7, the `libev` package needs to be installed first. This package `libev` package can be installed from the [EPEL](https://fedoraproject.org/wiki/EPEL) repositories.
+        In order to successfully install *Percona XtraBackup* on CentOS prior to version 7, the `libev` package needs to be installed first. This package `libev` package can be installed from the [EPEL](https://fedoraproject.org/wiki/EPEL) repositories.
 
 ## Percona `yum` Testing Repository
 
@@ -103,8 +103,11 @@ the testing repository, you’ll need to enable the testing repository in
 `percona-testing-$basearch` and `percona-testing-noarch` to
 `enabled = 1` (Note that there are 3 sections in this file: release, testing
 and experimental - in this case it is the second section that requires
-updating). **NOTE:** You’ll need to install the Percona repository first (ref
-above) if this hasn’t been done already.
+updating). 
+
+!!! note
+
+    You’ll need to install the Percona repository first (ref above) if this hasn’t been done already.
 
 1. To be able to make compressed backups, install the `qpress` package:
    
@@ -119,7 +122,7 @@ above) if this hasn’t been done already.
 ## Installing *Percona XtraBackup* using downloaded rpm packages
 
 Download the packages of the desired series for your architecture from the
-[download page](https://www.percona.com/downloads/XtraBackup/). Following
+[download page](https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/). Following
 example will download *Percona XtraBackup* 2.4.4 release package for
 *CentOS* 7:
 
