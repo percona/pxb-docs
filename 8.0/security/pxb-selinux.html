@@ -22,7 +22,7 @@
     
     
       
-        <title>Working with SELinux - Percona XtraBackup</title>
+        <title>Work with SELinux - Percona XtraBackup</title>
       
     
     
@@ -41,8 +41,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chivo,+Colfax,+Franziska:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Chivo, Colfax, Franziska";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -52,7 +52,7 @@
     
       <link rel="stylesheet" href="../css/percona.css">
     
-      <link rel="stylesheet" href="../css/version-select.css">
+      <link rel="stylesheet" href="../css/nocopy.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -73,6 +73,22 @@
     
     
     
+              
+
+              <script>
+              (function (w, d, s, l, i) {
+                  w[l] = w[l] || []; w[l].push({
+                    'gtm.start': new Date().getTime(), 
+                    event: 'gtm.js'
+                  });
+                  var f = d.getElementsByTagName(s)[0],
+                  j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                  j.async = true; 
+                  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                  f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', 'GTM-K48FGP2');
+              </script>
+              
   </head>
   
   
@@ -95,7 +111,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#working-with-selinux" class="md-skip">
+        <a href="#work-with-selinux" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +127,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://percona.com/software/documentation" class="md-header__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
+    <a href="https://percona.com/software/documentation" class="md-header__button md-logo" aria-label="Percona Product Documentation" data-md-component="logo">
       
   <img src="../_static/percona-logo.svg" alt="logo">
 
@@ -122,14 +138,14 @@
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
-          <span class="md-ellipsis"><a href="https://www.percona.com/software/documentation">
-            Percona Product Documentation
-          </a></span>
+          <span class="md-ellipsis">
+            Percona XtraBackup
+          </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Working with SELinux
+              Work with SELinux
             
           </span>
         </div>
@@ -260,7 +276,7 @@
   
     <li class="md-nav__item">
       <a href="../index.html" class="md-nav__link">
-        Percona XtraBackup - Documentation
+        Home
       </a>
     </li>
   
@@ -315,7 +331,7 @@
   
     <li class="md-nav__item">
       <a href="../how_xtrabackup_works.html" class="md-nav__link">
-        How Percona XtraBackup Works
+        How Percona XtraBackup works
       </a>
     </li>
   
@@ -391,7 +407,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/apt_repo.html" class="md-nav__link">
-        Installing Percona XtraBackup on Debian and Ubuntu
+        Install Percona XtraBackup on Debian and Ubuntu
       </a>
     </li>
   
@@ -418,8 +434,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../installation/install-with-package-manager.html" class="md-nav__link">
+        Install with package manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../installation/binary-tarball.html" class="md-nav__link">
-        Installing Percona XtraBackup from a Binary Tarball
+        Install Percona XtraBackup from a Binary Tarball
       </a>
     </li>
   
@@ -433,7 +463,21 @@
   
     <li class="md-nav__item">
       <a href="../installation/compiling_xtrabackup.html" class="md-nav__link">
-        Compiling and Installing from Source Code
+        Compile and install from source code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/uninstall-percona-xtrabackup.html" class="md-nav__link">
+        Uninstall Percona XtraBackup
       </a>
     </li>
   
@@ -481,7 +525,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/docker.html" class="md-nav__link">
-        Running Percona XtraBackup in a Docker container
+        Run Percona XtraBackup in a Docker container
       </a>
     </li>
   
@@ -529,7 +573,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/implementation_details.html" class="md-nav__link">
-        Implementation Details
+        Implementation details
       </a>
     </li>
   
@@ -543,7 +587,7 @@
   
     <li class="md-nav__item">
       <a href="../using_xtrabackup/privileges.html" class="md-nav__link">
-        Connection and Privileges Needed
+        Connection and privileges needed
       </a>
     </li>
   
@@ -557,7 +601,7 @@
   
     <li class="md-nav__item">
       <a href="../using_xtrabackup/configuring.html" class="md-nav__link">
-        Configuring xtrabackup
+        Configure xtrabackup
       </a>
     </li>
   
@@ -571,7 +615,7 @@
   
     <li class="md-nav__item">
       <a href="../using_xtrabackup/comparison.html" class="md-nav__link">
-        Server Version and Backup Version Comparison
+        Server version and backup version comparison
       </a>
     </li>
   
@@ -585,7 +629,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/xtrabackup_exit_codes.html" class="md-nav__link">
-        xtrabackup Exit Codes
+        xtrabackup exit codes
       </a>
     </li>
   
@@ -615,14 +659,14 @@
       
       
         <label class="md-nav__link" for="__nav_6">
-          Backup Scenarios
+          Backup scenarios
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Backup Scenarios" data-md-level="1">
+      <nav class="md-nav" aria-label="Backup scenarios" data-md-level="1">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
-          Backup Scenarios
+          Backup scenarios
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -633,7 +677,7 @@
   
     <li class="md-nav__item">
       <a href="../backup_scenarios/full_backup.html" class="md-nav__link">
-        The Backup Cycle - Full Backups
+        The backup cycle - full backups
       </a>
     </li>
   
@@ -647,7 +691,7 @@
   
     <li class="md-nav__item">
       <a href="../backup_scenarios/incremental_backup.html" class="md-nav__link">
-        Incremental Backup
+        Incremental backup
       </a>
     </li>
   
@@ -661,7 +705,7 @@
   
     <li class="md-nav__item">
       <a href="../backup_scenarios/compressed_backup.html" class="md-nav__link">
-        Compressed Backup
+        Compressed backup
       </a>
     </li>
   
@@ -675,7 +719,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/partial_backups.html" class="md-nav__link">
-        Partial Backups
+        Partial backups
       </a>
     </li>
   
@@ -705,14 +749,14 @@
       
       
         <label class="md-nav__link" for="__nav_7">
-          User’s Manual
+          User’s manual
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="User’s Manual" data-md-level="1">
+      <nav class="md-nav" aria-label="User’s manual" data-md-level="1">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
-          User’s Manual
+          User’s manual
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -723,7 +767,7 @@
   
     <li class="md-nav__item">
       <a href="../manual.html" class="md-nav__link">
-        Percona XtraBackup User Manual
+        Percona XtraBackup user manual
       </a>
     </li>
   
@@ -753,14 +797,14 @@
       
       
         <label class="md-nav__link" for="__nav_8">
-          Advanced Features
+          Advanced features
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Advanced Features" data-md-level="1">
+      <nav class="md-nav" aria-label="Advanced features" data-md-level="1">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
-          Advanced Features
+          Advanced features
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -771,7 +815,7 @@
   
     <li class="md-nav__item">
       <a href="../advanced/throttling_backups.html" class="md-nav__link">
-        Throttling Backups
+        Throttling backups
       </a>
     </li>
   
@@ -799,7 +843,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/backup.encrypting.html" class="md-nav__link">
-        Encrypting Backups
+        Encrypt backups
       </a>
     </li>
   
@@ -827,7 +871,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/point-in-time-recovery.html" class="md-nav__link">
-        Point-In-Time recovery
+        Point-in-time recovery
       </a>
     </li>
   
@@ -855,7 +899,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/working_with_binary_logs.html" class="md-nav__link">
-        Working with Binary Logs
+        Work with binary logs
       </a>
     </li>
   
@@ -869,7 +913,7 @@
   
     <li class="md-nav__item">
       <a href="../advanced/log_enhancements.html" class="md-nav__link">
-        Improved Log statements
+        Improved log statements
       </a>
     </li>
   
@@ -928,12 +972,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Working with SELinux
+          Work with SELinux
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="pxb-selinux.html" class="md-nav__link md-nav__link--active">
-        Working with SELinux
+        Work with SELinux
       </a>
       
         
@@ -990,7 +1034,7 @@
   
     <li class="md-nav__item">
       <a href="pxb-apparmor.html" class="md-nav__link">
-        Working with AppArmor
+        Work with AppArmor
       </a>
     </li>
   
@@ -1038,7 +1082,7 @@
   
     <li class="md-nav__item">
       <a href="../howtos/enabling_tcp.html" class="md-nav__link">
-        Enabling the server to communicate via TCP/IP
+        Enable the server to communicate via TCP/IP
       </a>
     </li>
   
@@ -1052,7 +1096,7 @@
   
     <li class="md-nav__item">
       <a href="../howtos/ssh_server.html" class="md-nav__link">
-        Installing and configuring an SSH server
+        Install and configure an SSH server
       </a>
     </li>
   
@@ -1066,7 +1110,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/analyzing_table_statistics.html" class="md-nav__link">
-        Analyzing Table Statistics
+        Analyze table statistics
       </a>
     </li>
   
@@ -1080,7 +1124,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/flush-tables-with-read-lock.html" class="md-nav__link">
-        `FLUSH TABLES WITH READ LOCK` option
+        FLUSH TABLES WITH READ LOCK option
       </a>
     </li>
   
@@ -1094,7 +1138,7 @@
   
     <li class="md-nav__item">
       <a href="../advanced/locks.html" class="md-nav__link">
-        `lock-ddl-per-table` option improvements
+        lock-ddl-per-table option improvements
       </a>
     </li>
   
@@ -1138,14 +1182,14 @@
       
       
         <label class="md-nav__link" for="__nav_11">
-          xbcloud Binary
+          xbcloud binary
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="xbcloud Binary" data-md-level="1">
+      <nav class="md-nav" aria-label="xbcloud binary" data-md-level="1">
         <label class="md-nav__title" for="__nav_11">
           <span class="md-nav__icon md-icon"></span>
-          xbcloud Binary
+          xbcloud binary
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1156,7 +1200,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud.html" class="md-nav__link">
-        The xbcloud Binary
+        The xbcloud binary
       </a>
     </li>
   
@@ -1170,7 +1214,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_swift.html" class="md-nav__link">
-        Using the xbcloud Binary with Swift
+        Use the xbcloud binary with Swift
       </a>
     </li>
   
@@ -1184,7 +1228,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_s3.html" class="md-nav__link">
-        Using xbcloud Binary with Amazon S3
+        Use xbcloud Binary with Amazon S3
       </a>
     </li>
   
@@ -1198,7 +1242,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_minio.html" class="md-nav__link">
-        Using the xbcloud binary with MinIO
+        Use the xbcloud binary with MinIO
       </a>
     </li>
   
@@ -1212,7 +1256,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_gcs.html" class="md-nav__link">
-        Using the xbcloud with Google Cloud Storage
+        Use the xbcloud with Google Cloud Storage
       </a>
     </li>
   
@@ -1226,7 +1270,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_exbackoff.html" class="md-nav__link">
-        Exponential Backoff
+        Exponential backoff
       </a>
     </li>
   
@@ -1240,7 +1284,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_azure.html" class="md-nav__link">
-        Using the xbcloud binary with Microsoft Azure Cloud Storage
+        Use the xbcloud binary with Microsoft Azure Cloud Storage
       </a>
     </li>
   
@@ -1270,14 +1314,14 @@
       
       
         <label class="md-nav__link" for="__nav_12">
-          Tutorials, Recipes, How-tos
+          Tutorials, recipes, how-tos
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Tutorials, Recipes, How-tos" data-md-level="1">
+      <nav class="md-nav" aria-label="Tutorials, recipes, how-tos" data-md-level="1">
         <label class="md-nav__title" for="__nav_12">
           <span class="md-nav__icon md-icon"></span>
-          Tutorials, Recipes, How-tos
+          Tutorials, recipes, how-tos
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1288,7 +1332,7 @@
   
     <li class="md-nav__item">
       <a href="../how-tos.html" class="md-nav__link">
-        How-tos and Recipes
+        How-tos and recipes
       </a>
     </li>
   
@@ -1336,7 +1380,7 @@
   
     <li class="md-nav__item">
       <a href="../release-notes.html" class="md-nav__link">
-        Percona XtraBackup 8.0 Release Notes
+        Release notes index
       </a>
     </li>
   
@@ -1726,7 +1770,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/xbk_option_reference.html" class="md-nav__link">
-        The xtrabackup Option Reference
+        The xtrabackup option reference
       </a>
     </li>
   
@@ -1768,7 +1812,7 @@
   
     <li class="md-nav__item">
       <a href="../faq.html" class="md-nav__link">
-        Frequently Asked Questions
+        Frequently asked questions
       </a>
     </li>
   
@@ -1838,7 +1882,7 @@
   
     <li class="md-nav__item">
       <a href="../version-check.html" class="md-nav__link">
-        Version Checking
+        Version checking
       </a>
     </li>
   
@@ -1919,14 +1963,23 @@
               <article class="md-content__inner md-typeset">
                 
 
-                <!-- Edit button -->
+                <!-- Edit and view button -->
                 
+                  
+                  
                   <a
                     href="https://github.com/percona/pxb-docs/edit/8.0/docs/security/pxb-selinux.md"
                     title="Edit this page"
                     class="md-content__button md-icon"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+                  </a>
+                  <a
+                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/security/pxb-selinux.md"
+                    title="View source of this page"
+                    class="md-content__button md-icon"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
                   </a>
                 
 
@@ -1938,14 +1991,16 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="working-with-selinux">Working with SELinux<a class="headerlink" href="#working-with-selinux" title="Permanent link">&para;</a></h1>
-<p><em>Percona XtraBackup</em> is installed as an unconfined process running in an undefined domain. SELinux allows unconfined processes almost all access and the processes only use Discretionary Access Control (DAC) rules.</p>
-<p>You find the current state of the <em>Percona XtraBackup</em> file with the following command:</p>
-<p><div class="highlight"><pre><span></span><code>$ ls -Z /usr/bin <span class="p">|</span> grep xtrabackup
+                <h1 id="work-with-selinux">Work with SELinux<a class="headerlink" href="#work-with-selinux" title="Permanent link">&para;</a></h1>
+<p>Percona XtraBackup is installed as an unconfined process running in an undefined domain. SELinux allows unconfined processes almost all access and the processes only use Discretionary Access Control (DAC) rules.</p>
+<p>You find the current state of the Percona XtraBackup file with the following command:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ ls -Z /usr/bin <span class="p">|</span> grep xtrabackup
 </code></pre></div>
-The results should be similar to the following:</p>
-<div class="highlight"><pre><span></span><code>-rwxr-xr-x. root root   system_u:object_r:bin_t:s0       xtrabackup
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>-rwxr-xr-x. root root   system_u:object_r:bin_t:s0       xtrabackup
 </code></pre></div>
+</details>
 <p>The SELinux context is the following:</p>
 <ul>
 <li>
@@ -1977,46 +2032,42 @@ The results should be similar to the following:</p>
 <p>The first option opens the entire system to read and write. Select the second option to harden your security.</p>
 <h2 id="install-selinux-tools">Install SELinux tools<a class="headerlink" href="#install-selinux-tools" title="Permanent link">&para;</a></h2>
 <p>To work with policies, you must install the SELinux tools. To find which package provides the <code>semanage</code> command and install the package. The following is an example on CentOS 7.</p>
-<blockquote>
-<p><code>shell
-$ yum provides *bin/semanage</code>
-The result should list the packages.</p>
-</blockquote>
-<p><div class="highlight"><pre><span></span><code>&gt; ...
-&gt; policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
-&gt; ...
+<p><div class="highlight" data-prompt="$"><pre><span></span><code>$ yum provides *bin/semanage
 </code></pre></div>
-To install missing packages, run the following:</p>
-<p><div class="highlight"><pre><span></span><code>&gt; $ sudo yum install -y policycoreutils-python
-&gt; <span class="sb">```</span>
-
-The following is an example on CentOS <span class="m">8</span>:
-
-&gt; <span class="sb">```</span>shell
-&gt; $ yum provides *bin/semanage
+The result should list the packages.</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>...
+policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
+...
+</code></pre></div>
+</details>
+<p>To install missing packages, run the following:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ sudo yum install -y policycoreutils-python
+</code></pre></div>
+<p>The following is an example on CentOS 8:</p>
+<p><div class="highlight" data-prompt="$"><pre><span></span><code>$ yum provides *bin/semanage
 </code></pre></div>
 The result should list the missing packages.</p>
-<p><div class="highlight"><pre><span></span><code>&gt; ...
-&gt; policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python utilities
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>...
+policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python utilities
 </code></pre></div>
-Run the following to install the missing packages: </p>
-<p>`` shell</p>
-<blockquote>
-<p>$ sudo yum install -y policycoreutils-python-utils
-```</p>
-</blockquote>
+</details>
+<p>Run the following to install the missing packages: </p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ sudo yum install -y policycoreutils-python-utils
+</code></pre></div>
 <h2 id="create-a-policy">Create a policy<a class="headerlink" href="#create-a-policy" title="Permanent link">&para;</a></h2>
 <p>Use a modular approach to create an SELinux policy. Create a policy module to manage XtraBackup. You must create a <code>.te</code> file for type enforcement, and an optional <code>.fc</code> file for the file contexts.</p>
 <p>Use <code>$ ps -efZ | grep xtrabackup</code> to verify the service is not confined by SELinux.</p>
 <p>Create the <code>xtrabackup.fc</code> file and add content. This file defines the security contexts.</p>
-<blockquote>
 <div class="highlight"><pre><span></span><code>/usr/bin/xtrabackup    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbcrypt    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbstream    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbcloud    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /backups(/.*)?       system_u:object_r:xtrabackup_data_t:s0
 </code></pre></div>
-</blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you are using the <code>/backups</code> directory you must have the last line. If you are storing the backups in the user’s home directory, you can omit this line.</p>
@@ -2028,25 +2079,17 @@ Run the following to install the missing packages: </p>
 <p>In the file, the sections in bold should be modified for your system. The fc file can also be downloaded from the same location.</p>
 </div>
 <p>Compile the policy module:</p>
-<blockquote>
-<div class="highlight"><pre><span></span><code>$ make -f /usr/share/selinux/devel/Makefile xtrabackup.pp
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ make -f /usr/share/selinux/devel/Makefile xtrabackup.pp
 </code></pre></div>
-</blockquote>
 <p>Install the module:</p>
-<blockquote>
-<div class="highlight"><pre><span></span><code>$ semodule -i xtrabackup.pp
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ semodule -i xtrabackup.pp
 </code></pre></div>
-</blockquote>
 <p>Tag the PXB binaries with the proper SELinux tags, such as <code>xtrabackup_exec_t</code>.</p>
-<blockquote>
-<div class="highlight"><pre><span></span><code>$ restorecon -v /usr/bin/*
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ restorecon -v /usr/bin/*
 </code></pre></div>
-</blockquote>
 <p>If you store your backups at <code>/backups</code>, restore the tag in that location:</p>
-<blockquote>
-<div class="highlight"><pre><span></span><code>$ restorecon -v /backups
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ restorecon -v /backups
 </code></pre></div>
-</blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Remember to add the standard Linux DAC permissions for this directory.</p>
@@ -2073,7 +2116,7 @@ Run the following to install the missing packages: </p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-12-06
     
   </small>
 </div>
@@ -2101,7 +2144,7 @@ Run the following to install the missing packages: </p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../advanced/log_enhancements.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Improved Log statements" rel="prev">
+        <a href="../advanced/log_enhancements.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Improved log statements" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2110,20 +2153,20 @@ Run the following to install the missing packages: </p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Improved Log statements
+              Improved log statements
             </div>
           </div>
         </a>
       
       
         
-        <a href="pxb-apparmor.html" class="md-footer__link md-footer__link--next" aria-label="Next: Working with AppArmor" rel="next">
+        <a href="pxb-apparmor.html" class="md-footer__link md-footer__link--next" aria-label="Next: Work with AppArmor" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Working with AppArmor
+              Work with AppArmor
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -2136,11 +2179,9 @@ Run the following to install the missing packages: </p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
-  
     <div class="md-copyright__highlight">
-      Percona LLC, &#169; 2022
+ <a href='https://percona.com' target='_blank'>Percona LLC and/or its affiliates, </a> &copy; 2022
     </div>
-  
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
@@ -2158,14 +2199,24 @@ Run the following to install the missing packages: </p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "navigation.tracking", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
+              
       <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
+        <script src="../js/promptremover.js"></script>
+      
     
+
+              <img src="https://tracking.g2crowd.com/attribution_tracking/conversions/1007137.gif?e=" width="1" height="1" />
+
+              <noscript>
+                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K48FGP2" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+              </noscript>
+              
     
   </body>
 </html>

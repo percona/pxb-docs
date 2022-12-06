@@ -41,8 +41,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chivo,+Colfax,+Franziska:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Chivo, Colfax, Franziska";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -52,7 +52,7 @@
     
       <link rel="stylesheet" href="../css/percona.css">
     
-      <link rel="stylesheet" href="../css/version-select.css">
+      <link rel="stylesheet" href="../css/nocopy.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -73,6 +73,22 @@
     
     
     
+              
+
+              <script>
+              (function (w, d, s, l, i) {
+                  w[l] = w[l] || []; w[l].push({
+                    'gtm.start': new Date().getTime(), 
+                    event: 'gtm.js'
+                  });
+                  var f = d.getElementsByTagName(s)[0],
+                  j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                  j.async = true; 
+                  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                  f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', 'GTM-K48FGP2');
+              </script>
+              
   </head>
   
   
@@ -111,7 +127,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://percona.com/software/documentation" class="md-header__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
+    <a href="https://percona.com/software/documentation" class="md-header__button md-logo" aria-label="Percona Product Documentation" data-md-component="logo">
       
   <img src="../_static/percona-logo.svg" alt="logo">
 
@@ -122,9 +138,9 @@
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
-          <span class="md-ellipsis"><a href="https://www.percona.com/software/documentation">
-            Percona Product Documentation
-          </a></span>
+          <span class="md-ellipsis">
+            Percona XtraBackup
+          </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
@@ -260,7 +276,7 @@
   
     <li class="md-nav__item">
       <a href="../index.html" class="md-nav__link">
-        Percona XtraBackup - Documentation
+        Home
       </a>
     </li>
   
@@ -315,7 +331,7 @@
   
     <li class="md-nav__item">
       <a href="../how_xtrabackup_works.html" class="md-nav__link">
-        How Percona XtraBackup Works
+        How Percona XtraBackup works
       </a>
     </li>
   
@@ -391,7 +407,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/apt_repo.html" class="md-nav__link">
-        Installing Percona XtraBackup on Debian and Ubuntu
+        Install Percona XtraBackup on Debian and Ubuntu
       </a>
     </li>
   
@@ -418,8 +434,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../installation/install-with-package-manager.html" class="md-nav__link">
+        Install with package manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../installation/binary-tarball.html" class="md-nav__link">
-        Installing Percona XtraBackup from a Binary Tarball
+        Install Percona XtraBackup from a Binary Tarball
       </a>
     </li>
   
@@ -433,7 +463,21 @@
   
     <li class="md-nav__item">
       <a href="../installation/compiling_xtrabackup.html" class="md-nav__link">
-        Compiling and Installing from Source Code
+        Compile and install from source code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/uninstall-percona-xtrabackup.html" class="md-nav__link">
+        Uninstall Percona XtraBackup
       </a>
     </li>
   
@@ -481,7 +525,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/docker.html" class="md-nav__link">
-        Running Percona XtraBackup in a Docker container
+        Run Percona XtraBackup in a Docker container
       </a>
     </li>
   
@@ -529,7 +573,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/implementation_details.html" class="md-nav__link">
-        Implementation Details
+        Implementation details
       </a>
     </li>
   
@@ -543,7 +587,7 @@
   
     <li class="md-nav__item">
       <a href="../using_xtrabackup/privileges.html" class="md-nav__link">
-        Connection and Privileges Needed
+        Connection and privileges needed
       </a>
     </li>
   
@@ -557,7 +601,7 @@
   
     <li class="md-nav__item">
       <a href="../using_xtrabackup/configuring.html" class="md-nav__link">
-        Configuring xtrabackup
+        Configure xtrabackup
       </a>
     </li>
   
@@ -571,7 +615,7 @@
   
     <li class="md-nav__item">
       <a href="../using_xtrabackup/comparison.html" class="md-nav__link">
-        Server Version and Backup Version Comparison
+        Server version and backup version comparison
       </a>
     </li>
   
@@ -585,7 +629,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/xtrabackup_exit_codes.html" class="md-nav__link">
-        xtrabackup Exit Codes
+        xtrabackup exit codes
       </a>
     </li>
   
@@ -615,14 +659,14 @@
       
       
         <label class="md-nav__link" for="__nav_6">
-          Backup Scenarios
+          Backup scenarios
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Backup Scenarios" data-md-level="1">
+      <nav class="md-nav" aria-label="Backup scenarios" data-md-level="1">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
-          Backup Scenarios
+          Backup scenarios
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -633,7 +677,7 @@
   
     <li class="md-nav__item">
       <a href="../backup_scenarios/full_backup.html" class="md-nav__link">
-        The Backup Cycle - Full Backups
+        The backup cycle - full backups
       </a>
     </li>
   
@@ -647,7 +691,7 @@
   
     <li class="md-nav__item">
       <a href="../backup_scenarios/incremental_backup.html" class="md-nav__link">
-        Incremental Backup
+        Incremental backup
       </a>
     </li>
   
@@ -661,7 +705,7 @@
   
     <li class="md-nav__item">
       <a href="../backup_scenarios/compressed_backup.html" class="md-nav__link">
-        Compressed Backup
+        Compressed backup
       </a>
     </li>
   
@@ -675,7 +719,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/partial_backups.html" class="md-nav__link">
-        Partial Backups
+        Partial backups
       </a>
     </li>
   
@@ -705,14 +749,14 @@
       
       
         <label class="md-nav__link" for="__nav_7">
-          User’s Manual
+          User’s manual
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="User’s Manual" data-md-level="1">
+      <nav class="md-nav" aria-label="User’s manual" data-md-level="1">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
-          User’s Manual
+          User’s manual
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -723,7 +767,7 @@
   
     <li class="md-nav__item">
       <a href="../manual.html" class="md-nav__link">
-        Percona XtraBackup User Manual
+        Percona XtraBackup user manual
       </a>
     </li>
   
@@ -755,14 +799,14 @@
       
       
         <label class="md-nav__link" for="__nav_8">
-          Advanced Features
+          Advanced features
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Advanced Features" data-md-level="1">
+      <nav class="md-nav" aria-label="Advanced features" data-md-level="1">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
-          Advanced Features
+          Advanced features
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -773,7 +817,7 @@
   
     <li class="md-nav__item">
       <a href="throttling_backups.html" class="md-nav__link">
-        Throttling Backups
+        Throttling backups
       </a>
     </li>
   
@@ -823,7 +867,7 @@
       
         <li class="md-nav__item">
   <a href="#version-updates" class="md-nav__link">
-    Version Updates
+    Version updates
   </a>
   
 </li>
@@ -986,7 +1030,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/backup.encrypting.html" class="md-nav__link">
-        Encrypting Backups
+        Encrypt backups
       </a>
     </li>
   
@@ -1014,7 +1058,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/point-in-time-recovery.html" class="md-nav__link">
-        Point-In-Time recovery
+        Point-in-time recovery
       </a>
     </li>
   
@@ -1042,7 +1086,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/working_with_binary_logs.html" class="md-nav__link">
-        Working with Binary Logs
+        Work with binary logs
       </a>
     </li>
   
@@ -1056,7 +1100,7 @@
   
     <li class="md-nav__item">
       <a href="log_enhancements.html" class="md-nav__link">
-        Improved Log statements
+        Improved log statements
       </a>
     </li>
   
@@ -1104,7 +1148,7 @@
   
     <li class="md-nav__item">
       <a href="../security/pxb-selinux.html" class="md-nav__link">
-        Working with SELinux
+        Work with SELinux
       </a>
     </li>
   
@@ -1118,7 +1162,7 @@
   
     <li class="md-nav__item">
       <a href="../security/pxb-apparmor.html" class="md-nav__link">
-        Working with AppArmor
+        Work with AppArmor
       </a>
     </li>
   
@@ -1166,7 +1210,7 @@
   
     <li class="md-nav__item">
       <a href="../howtos/enabling_tcp.html" class="md-nav__link">
-        Enabling the server to communicate via TCP/IP
+        Enable the server to communicate via TCP/IP
       </a>
     </li>
   
@@ -1180,7 +1224,7 @@
   
     <li class="md-nav__item">
       <a href="../howtos/ssh_server.html" class="md-nav__link">
-        Installing and configuring an SSH server
+        Install and configure an SSH server
       </a>
     </li>
   
@@ -1194,7 +1238,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/analyzing_table_statistics.html" class="md-nav__link">
-        Analyzing Table Statistics
+        Analyze table statistics
       </a>
     </li>
   
@@ -1208,7 +1252,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/flush-tables-with-read-lock.html" class="md-nav__link">
-        `FLUSH TABLES WITH READ LOCK` option
+        FLUSH TABLES WITH READ LOCK option
       </a>
     </li>
   
@@ -1222,7 +1266,7 @@
   
     <li class="md-nav__item">
       <a href="locks.html" class="md-nav__link">
-        `lock-ddl-per-table` option improvements
+        lock-ddl-per-table option improvements
       </a>
     </li>
   
@@ -1266,14 +1310,14 @@
       
       
         <label class="md-nav__link" for="__nav_11">
-          xbcloud Binary
+          xbcloud binary
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="xbcloud Binary" data-md-level="1">
+      <nav class="md-nav" aria-label="xbcloud binary" data-md-level="1">
         <label class="md-nav__title" for="__nav_11">
           <span class="md-nav__icon md-icon"></span>
-          xbcloud Binary
+          xbcloud binary
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1284,7 +1328,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud.html" class="md-nav__link">
-        The xbcloud Binary
+        The xbcloud binary
       </a>
     </li>
   
@@ -1298,7 +1342,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_swift.html" class="md-nav__link">
-        Using the xbcloud Binary with Swift
+        Use the xbcloud binary with Swift
       </a>
     </li>
   
@@ -1312,7 +1356,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_s3.html" class="md-nav__link">
-        Using xbcloud Binary with Amazon S3
+        Use xbcloud Binary with Amazon S3
       </a>
     </li>
   
@@ -1326,7 +1370,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_minio.html" class="md-nav__link">
-        Using the xbcloud binary with MinIO
+        Use the xbcloud binary with MinIO
       </a>
     </li>
   
@@ -1340,7 +1384,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_gcs.html" class="md-nav__link">
-        Using the xbcloud with Google Cloud Storage
+        Use the xbcloud with Google Cloud Storage
       </a>
     </li>
   
@@ -1354,7 +1398,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_exbackoff.html" class="md-nav__link">
-        Exponential Backoff
+        Exponential backoff
       </a>
     </li>
   
@@ -1368,7 +1412,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_azure.html" class="md-nav__link">
-        Using the xbcloud binary with Microsoft Azure Cloud Storage
+        Use the xbcloud binary with Microsoft Azure Cloud Storage
       </a>
     </li>
   
@@ -1398,14 +1442,14 @@
       
       
         <label class="md-nav__link" for="__nav_12">
-          Tutorials, Recipes, How-tos
+          Tutorials, recipes, how-tos
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Tutorials, Recipes, How-tos" data-md-level="1">
+      <nav class="md-nav" aria-label="Tutorials, recipes, how-tos" data-md-level="1">
         <label class="md-nav__title" for="__nav_12">
           <span class="md-nav__icon md-icon"></span>
-          Tutorials, Recipes, How-tos
+          Tutorials, recipes, how-tos
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1416,7 +1460,7 @@
   
     <li class="md-nav__item">
       <a href="../how-tos.html" class="md-nav__link">
-        How-tos and Recipes
+        How-tos and recipes
       </a>
     </li>
   
@@ -1464,7 +1508,7 @@
   
     <li class="md-nav__item">
       <a href="../release-notes.html" class="md-nav__link">
-        Percona XtraBackup 8.0 Release Notes
+        Release notes index
       </a>
     </li>
   
@@ -1854,7 +1898,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/xbk_option_reference.html" class="md-nav__link">
-        The xtrabackup Option Reference
+        The xtrabackup option reference
       </a>
     </li>
   
@@ -1896,7 +1940,7 @@
   
     <li class="md-nav__item">
       <a href="../faq.html" class="md-nav__link">
-        Frequently Asked Questions
+        Frequently asked questions
       </a>
     </li>
   
@@ -1966,7 +2010,7 @@
   
     <li class="md-nav__item">
       <a href="../version-check.html" class="md-nav__link">
-        Version Checking
+        Version checking
       </a>
     </li>
   
@@ -2015,7 +2059,7 @@
       
         <li class="md-nav__item">
   <a href="#version-updates" class="md-nav__link">
-    Version Updates
+    Version updates
   </a>
   
 </li>
@@ -2175,14 +2219,23 @@
               <article class="md-content__inner md-typeset">
                 
 
-                <!-- Edit button -->
+                <!-- Edit and view button -->
                 
+                  
+                  
                   <a
                     href="https://github.com/percona/pxb-docs/edit/8.0/docs/advanced/encrypted_innodb_tablespace_backups.md"
                     title="Edit this page"
                     class="md-content__button md-icon"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+                  </a>
+                  <a
+                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/advanced/encrypted_innodb_tablespace_backups.md"
+                    title="View source of this page"
+                    class="md-content__button md-icon"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
                   </a>
                 
 
@@ -2203,7 +2256,7 @@ tablespace, InnoDB uses the master encryption key to decrypt
 the tablespace key. The master encryption key is stored in a keyring. 
 <em>xtrabackup</em> supports two keyring plugins: <code>keyring_file</code>, and 
 <code>keyring_vault</code>. These plugins are installed into the <code>plugin</code> directory.</p>
-<h2 id="version-updates">Version Updates<a class="headerlink" href="#version-updates" title="Permanent link">&para;</a></h2>
+<h2 id="version-updates">Version updates<a class="headerlink" href="#version-updates" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 8.0.25-17 adds support for the <code>keyring_file</code> component,
 which is part of the component-based infrastructure MySQL which extends the
 server capabilities. The component is stored in the <code>plugin</code> directory.</p>
@@ -2223,64 +2276,75 @@ preview</em> quality.</p>
 <p>In order to back up and prepare a database containing encrypted InnoDB<br />
 tablespaces, specify the path to a keyring file as the value of the
 <code>--keyring-file-data</code> option.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup/ --user<span class="o">=</span>root <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup/ --user<span class="o">=</span>root <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>After <em>xtrabackup</em> takes the backup, the following
 message confirms the action:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
+<details class="example">
+<summary>Confirmation message</summary>
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
 160401 10:25:51 completed OK!
 </code></pre></div>
+</details>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><em>xtrabackup</em> does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.</p>
 </div>
 <h3 id="prepare-the-backup-with-the-keyring_file-plugin">Prepare the backup with the <code>keyring_file</code> plugin<a class="headerlink" href="#prepare-the-backup-with-the-keyring_file-plugin" title="Permanent link">&para;</a></h3>
 <p>To prepare the backup specify the keyring-file-data.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>After <em>xtrabackup</em> takes the backup, the following message confirms
 the action:</p>
-<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
+<details class="example">
+<summary>Confirmation message</summary>
+<div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
 160401 10:34:28 completed OK!
 </code></pre></div>
+</details>
 <p>The backup is now prepared and can be restored with the <code>--copy-back</code>
 option. In case the keyring has been rotated, you must restore the
 keyring used when the backup was taken and prepared.</p>
 <h2 id="use-keyring_vault-plugin">Use <code>keyring_vault</code> plugin<a class="headerlink" href="#use-keyring_vault-plugin" title="Permanent link">&para;</a></h2>
 <p>Keyring vault plugin settings are
-described <a href="https://www.percona.
-com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin">here</a>.</p>
+described <a href="https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin">here</a>.</p>
 <h3 id="create-a-backup-with-the-keyring_vault-plugin">Create a backup with the <code>keyring_vault</code> plugin<a class="headerlink" href="#create-a-backup-with-the-keyring_vault-plugin" title="Permanent link">&para;</a></h3>
 <p>The following command creates a backup in the <code>/data/backup</code> directory:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup --user<span class="o">=</span>root
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup --user<span class="o">=</span>root
 </code></pre></div>
-<p>After <em>xtrabackup</em> completes the action, the following confirmation message
-appears:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
+<p>After <em>xtrabackup</em> completes the action, the following message confirms
+the action:</p>
+<details class="example">
+<summary>Confirmation message</summary>
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
 160401 10:25:51 completed OK!
 </code></pre></div>
+</details>
 <h3 id="prepare-the-backup-with-the-keyring_vault-plugin">Prepare the backup with the <code>keyring_vault</code> plugin<a class="headerlink" href="#prepare-the-backup-with-the-keyring_vault-plugin" title="Permanent link">&para;</a></h3>
 <p>To prepare the backup, <em>xtrabackup</em> must access the keyring.
 <em>xtrabackup</em> does not communicate with the <em>MySQL</em> server or read the
 default <code>my.cnf</code> configuration file. Specify the keyring settings in the
 command line:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
 --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Please look <a href="https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin">using the keyring vault plugin</a> for a description of keyring vault plugin settings.</p>
 </div>
-<p>After <em>xtrabackup</em> completes the action, the following confirmation message
-appears:</p>
-<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
+<p>After <em>xtrabackup</em> completes the action, the following message confirms
+the action:</p>
+<details class="example">
+<summary>Confirmation message</summary>
+<div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
 160401 10:34:28 completed OK!
 </code></pre></div>
+</details>
 <p>The backup is now prepared and can be restored with the <code>--copy-back</code>
 option:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql
 </code></pre></div>
 <h2 id="use-the-keyring_file-component">Use the <code>keyring_file</code> component<a class="headerlink" href="#use-the-keyring_file-component" title="Permanent link">&para;</a></h2>
 <p>A component is not loaded with the <code>--early_plugin_load</code> option. The 
@@ -2308,13 +2372,16 @@ to view the attributes and status of the installed keyring component
 when in use.</p>
 <p>The component has no special requirements for backing up a database that
 contains encrypted InnoDB tablespaces.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup --user<span class="o">=</span>root
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup --user<span class="o">=</span>root
 </code></pre></div>
-<p>After <em>xtrabackup</em> completes the action, the following confirmation message
-appears:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
+<p>After <em>xtrabackup</em> completes the action, the following message confirms
+the action:</p>
+<details class="example">
+<summary>Confirmation message</summary>
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
 160401 10:25:51 completed OK!
 </code></pre></div>
+</details>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><em>xtrabackup</em> does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.</p>
@@ -2326,25 +2393,27 @@ keyring_file data path if the <code>keyring-file-data</code> is not located in t
 attribute <code>PATH</code> from the xtrabackup_component_keyring_file.cnf.</p>
 <p>The following is an example of adding the location for the
 keyring-file-data:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><em>xtrabackup</em> attempts to read <code>xtrabackup_component_keyring_file.cnf</code>. You can assign another keyring file component configuration by passing the <code>--component-keyring-file-config</code> option.</p>
 </div>
-<p>After <em>xtrabackup</em> completes preparing the backup, the following
-confirmation message appears:</p>
-<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
+<p>After <em>xtrabackup</em> completes preparing the backup, the following message confirms
+the action:</p>
+<details class="example">
+<summary>Confirmation message</summary>
+<div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
 160401 10:34:28 completed OK!
 </code></pre></div>
+</details>
 <p>The backup is prepared. To restore the backup use the <code>--copy-back</code> option.
 If the keyring has been rotated, you must restore the specific keyring used
 to take and prepare the backup.</p>
 <h2 id="incremental-encrypted-innodb-tablespace-backups-with-keyring_file">Incremental encrypted InnoDB tablespace backups with <code>keyring_file</code><a class="headerlink" href="#incremental-encrypted-innodb-tablespace-backups-with-keyring_file" title="Permanent link">&para;</a></h2>
 <p>The process of taking incremental backups with InnoDB tablespace encryption
-is
-similar to taking the Incremental Backups with unencrypted tablespace.</p>
+is similar to taking the Incremental Backups with unencrypted tablespace.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <code>keyring-file</code> component should not used in production or for regulatory compliance.</p>
@@ -2356,7 +2425,7 @@ writes a file called <code>xtrabackup_checkpoints</code> into the backup’s tar
 directory. This file contains a line showing the <code>to_lsn</code>, which is the
 database’s LSN at the end of the backup. First you need to create a full
 backup with the following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition warning">
@@ -2364,17 +2433,20 @@ backup with the following command:</p>
 <p><em>xtrabackup</em> will not copy the keyring file into the backup directory. In order to prepare the backup, you must make a copy of the keyring file yourself. If you try to restore the backup after the keyring has been changed you’ll see errors like <code>ERROR 3185 (HY000): Can't find master key from keyring, please check keyring plugin is loaded.</code> when trying to access an encrypted table.</p>
 </div>
 <p>If you look at the <code>xtrabackup_checkpoints</code> file, you should see
-contents similar to the following:</p>
-<div class="highlight"><pre><span></span><code>backup_type = full-backuped
+the output similar to the following:</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>backup_type = full-backuped
 from_lsn = 0
 to_lsn = 7666625
 last_lsn = 7666634
 compact = 0
 recover_binlog_info = 1
 </code></pre></div>
+</details>
 <p>Now that you have a full backup, you can make an incremental backup based
 on it. Use a command such as the following:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
 --incremental-basedir<span class="o">=</span>/data/backups/base <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
@@ -2384,24 +2456,26 @@ on it. Use a command such as the following:</p>
 </div>
 <p>If the
 keyring has not been rotated you can use the same as the one you’ve
-backed-up
-with the base backup. If the keyring has been rotated, or you have 
+backed-up with the base backup. If the keyring has been rotated, or you have 
 upgraded the plugin to a component, you must back up the keyring file. 
 Otherwise, you cannot prepare the backup.</p>
 <p>The <code>/data/backups/inc1/</code> directory should now contain delta files, such
 as <code>ibdata1.delta</code> and <code>test/table1.ibd.delta</code>. These represent the
 changes since the <code>LSN 7666625</code>. If you examine the
 <code>xtrabackup_checkpoints</code> file in this directory, you should see 
-something similar to the following:</p>
-<div class="highlight"><pre><span></span><code>backup_type = incremental
+the output similar to the following:</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>backup_type = incremental
 from_lsn = 7666625
 to_lsn = 8873920
 last_lsn = 8873929
 compact = 0
 recover_binlog_info = 1
 </code></pre></div>
+</details>
 <p>Use this directory as the base for yet another incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc2 <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc2 <span class="se">\</span>
 --incremental-basedir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
@@ -2425,27 +2499,26 @@ rollback phase.</p>
 <p>If you do not use the <code>--apply-log-only</code> option to prevent the rollback phase, then your incremental backups are useless. After transactions have been rolled back, further incremental backups cannot be applied.</p>
 </div>
 <p>Beginning with the full backup you created, you can prepare it and then
-apply
-the incremental differences to it. Recall that you have the following
-backups:</p>
-<div class="highlight"><pre><span></span><code>/data/backups/base
+apply the incremental differences to it. Recall that you have the following backups:</p>
+<div class="no-copy highlight"><pre><span></span><code>/data/backups/base
 /data/backups/inc1
 /data/backups/inc2
 </code></pre></div>
 <p>To prepare the base backup, you need to run <code>--prepare</code> as usual, but
 prevent the rollback phase:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p>The output should end with some text such as the following:</p>
-<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 7666643
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 7666643
 InnoDB: Number of pools: 1
 160401 12:31:11 completed OK!
 </code></pre></div>
+</details>
 <p>To apply the first incremental backup to the full backup, you should use
-the
-following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
+the following command:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
@@ -2457,7 +2530,7 @@ following command:</p>
 deltas
 to the (modified) base backup, and you will roll its data forward in 
 time to the point of the second incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc2 <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
@@ -2466,10 +2539,7 @@ time to the point of the second incremental backup:</p>
 <p><code>--apply-log-only</code> should be used when merging all incremental backups except the last one. That’s why the previous line does not contain the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> was used on the last step, backup would still be consistent but in that case  server would perform the rollback phase.</p>
 </div>
 <p>The backup is now prepared and can be restored with <code>--copy-back</code> option.
-In
-case the keyring has been rotated you’ll need to restore the keyring which
-was
-used to take and prepare the backup.</p>
+In case the keyring has been rotated you’ll need to restore the keyring which was used to take and prepare the backup.</p>
 <h2 id="use-the-key-management-interoperability-protocol-kmip">Use the Key Management Interoperability Protocol (KMIP)<a class="headerlink" href="#use-the-key-management-interoperability-protocol-kmip" title="Permanent link">&para;</a></h2>
 <p>This feature is <em>tech preview</em> quality.</p>
 <p>Percona XtraBackup 8.0.27-19 adds support for the Key Management
@@ -2499,68 +2569,49 @@ that contains encrypted InnoDB tablespaces.</p>
 with the settings from the <code>xtrabackup_component_keyring_kmip.cnf</code> file.</p>
 <h2 id="restore-a-backup-when-the-keyring-is-not-available">Restore a backup when the keyring is not available<a class="headerlink" href="#restore-a-backup-when-the-keyring-is-not-available" title="Permanent link">&para;</a></h2>
 <p>While the described restore method works, this method requires access to
-the same
-keyring that the server is using. It may not be possible if the backup is
-prepared
-on a different server or at a much later time, when keys in the keyring are
-purged, or, in the case of a malfunction, when the keyring vault server is
-not
-available at all.</p>
-<p>The <code>--transition-key=&lt;passphrase&gt;</code> option should be used to make it
-possible
-for <em>xtrabackup</em> to process the backup without access to the keyring vault
-server. In this case, <em>xtrabackup</em> derives the AES encryption key from the
-specified passphrase and will use it to encrypt tablespace keys of
-tablespaces
-that are being backed up.</p>
+the same keyring that the server is using. It may not be possible if the backup is
+prepared on a different server or at a much later time, when keys in the keyring are
+purged, or, in the case of a malfunction, when the keyring vault server is not available at all.</p>
+<p>The <code>--transition-key=&lt;passphrase&gt;</code> option should be used to make it possible for <em>xtrabackup</em> to process the backup without access to the keyring vault server. In this case, <em>xtrabackup</em> derives the AES encryption key from the specified passphrase and will use it to encrypt tablespace keys of tablespaces that are being backed up.</p>
 <h3 id="create-a-backup-with-a-passphrase">Create a backup with a passphrase<a class="headerlink" href="#create-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The following example illustrates how the backup can be created in this
 case:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --user<span class="o">=</span>root -p --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --user<span class="o">=</span>root -p --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey
 </code></pre></div>
-<p>If <code>--transition-key</code> is specified without a value, <em>xtrabackup</em> will ask
-for
-it.</p>
-<p><strong>NOTE</strong>: <em>xtrabackup</em> scrapes <code>--transition-key</code> so that its value is not
-visible in
-the <code>ps</code> command output.</p>
+<p>If <code>--transition-key</code> is specified without a value, <em>xtrabackup</em> will ask for it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>xtrabackup</em> scrapes <code>--transition-key</code> so that its value is not visible in the <code>ps</code> command output.</p>
+</div>
 <h3 id="prepare-a-backup-with-a-passphrase">Prepare a backup with a passphrase<a class="headerlink" href="#prepare-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The same passphrase should be specified for the prepare command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey
 </code></pre></div>
 <p>There are no <code>--keyring-vault...</code>,``–keyring-file…``,
 or <code>--component-keyring-file-config</code> options here,
 because <em>xtrabackup</em> does not talk to the keyring in this case.</p>
 <h3 id="restore-a-backup-with-a-generated-key">Restore a backup with a generated key<a class="headerlink" href="#restore-a-backup-with-a-generated-key" title="Permanent link">&para;</a></h3>
-<p>When restoring a backup you will need to generate a new master key. Here is
-the
-example for <code>keyring_file</code> plugin or component:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
+<p>When restoring a backup you will need to generate a new master key. Here is the example for <code>keyring_file</code> plugin or component:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey --generate-new-master-key <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>In case of <code>keyring_vault</code>, it will look like this:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey --generate-new-master-key <span class="se">\</span>
 --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 <p><em>xtrabackup</em> will generate a new master key, store it in the target keyring
 vault server and re-encrypt the tablespace keys using this key.</p>
 <h3 id="make-a-backup-with-a-stored-transition-key">Make a backup with a stored transition key<a class="headerlink" href="#make-a-backup-with-a-stored-transition-key" title="Permanent link">&para;</a></h3>
-<p>Finally, there is an option to store a transition key in the keyring. In
-this case,
-<em>xtrabackup</em> will need to access the same keyring file or vault server
-during
-prepare and copy-back but does not depend on whether the server keys have
-been
-purged.</p>
+<p>Finally, there is an option to store a transition key in the keyring. In this case, <em>xtrabackup</em> will need to access the same keyring file or vault server during prepare and copy-back but does not depend on whether the server keys have been purged.</p>
 <p>In this scenario, the three stages of the backup process look as follows.</p>
 <ul>
 <li>Backup</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --user<span class="o">=</span>root -p --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --user<span class="o">=</span>root -p --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
 --generate-transition-key
 </code></pre></div>
 <ul>
@@ -2569,13 +2620,13 @@ purged.</p>
 <ul>
 <li><code>keyring_file</code> variant:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <ul>
 <li><code>keyring_vault</code> variant:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
 --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 </li>
@@ -2584,13 +2635,13 @@ purged.</p>
 </li>
 <li>
 <p><code>keyring_file</code> variant:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
 --generate-new-master-key --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 </li>
 <li>
 <p><code>keyring_vault</code> variant:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
 --generate-new-master-key --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 </li>
@@ -2616,7 +2667,7 @@ purged.</p>
   <small>
     
       Last update:
-      2022-11-10
+      2022-12-06
     
   </small>
 </div>
@@ -2644,7 +2695,7 @@ purged.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="throttling_backups.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Throttling Backups" rel="prev">
+        <a href="throttling_backups.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Throttling backups" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2653,20 +2704,20 @@ purged.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Throttling Backups
+              Throttling backups
             </div>
           </div>
         </a>
       
       
         
-        <a href="../xtrabackup_bin/backup.encrypting.html" class="md-footer__link md-footer__link--next" aria-label="Next: Encrypting Backups" rel="next">
+        <a href="../xtrabackup_bin/backup.encrypting.html" class="md-footer__link md-footer__link--next" aria-label="Next: Encrypt backups" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Encrypting Backups
+              Encrypt backups
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -2679,11 +2730,9 @@ purged.</p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
-  
     <div class="md-copyright__highlight">
-      Percona LLC, &#169; 2022
+ <a href='https://percona.com' target='_blank'>Percona LLC and/or its affiliates, </a> &copy; 2022
     </div>
-  
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
@@ -2701,14 +2750,24 @@ purged.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "navigation.tracking", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
+              
       <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
+        <script src="../js/promptremover.js"></script>
+      
     
+
+              <img src="https://tracking.g2crowd.com/attribution_tracking/conversions/1007137.gif?e=" width="1" height="1" />
+
+              <noscript>
+                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K48FGP2" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+              </noscript>
+              
     
   </body>
 </html>

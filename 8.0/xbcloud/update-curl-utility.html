@@ -15,14 +15,14 @@
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/8.0/8.0/using_xtrabackup/comparison.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/8.0/8.0/xbcloud/update-curl-utility.html">
       
       <link rel="icon" href="../_static/percona_favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>Server version and backup version comparison - Percona XtraBackup</title>
+        <title>Update curl utility - Percona XtraBackup</title>
       
     
     
@@ -111,7 +111,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#server-version-and-backup-version-comparison" class="md-skip">
+        <a href="#update-the-curl-utility-in-debian-10" class="md-skip">
           Skip to content
         </a>
       
@@ -145,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Server version and backup version comparison
+              Update curl utility
             
           </span>
         </div>
@@ -544,14 +544,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -588,7 +586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="privileges.html" class="md-nav__link">
+      <a href="../using_xtrabackup/privileges.html" class="md-nav__link">
         Connection and privileges needed
       </a>
     </li>
@@ -602,7 +600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="configuring.html" class="md-nav__link">
+      <a href="../using_xtrabackup/configuring.html" class="md-nav__link">
         Configure xtrabackup
       </a>
     </li>
@@ -614,21 +612,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="comparison.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../using_xtrabackup/comparison.html" class="md-nav__link">
         Server version and backup version comparison
       </a>
-      
     </li>
   
 
@@ -1152,7 +1140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud.html" class="md-nav__link">
+      <a href="xbcloud.html" class="md-nav__link">
         The xbcloud binary
       </a>
     </li>
@@ -1166,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud_swift.html" class="md-nav__link">
+      <a href="xbcloud_swift.html" class="md-nav__link">
         Use the xbcloud binary with Swift
       </a>
     </li>
@@ -1180,7 +1168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud_s3.html" class="md-nav__link">
+      <a href="xbcloud_s3.html" class="md-nav__link">
         Use xbcloud Binary with Amazon S3
       </a>
     </li>
@@ -1194,7 +1182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud_minio.html" class="md-nav__link">
+      <a href="xbcloud_minio.html" class="md-nav__link">
         Use the xbcloud binary with MinIO
       </a>
     </li>
@@ -1208,7 +1196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud_gcs.html" class="md-nav__link">
+      <a href="xbcloud_gcs.html" class="md-nav__link">
         Use the xbcloud with Google Cloud Storage
       </a>
     </li>
@@ -1222,7 +1210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud_exbackoff.html" class="md-nav__link">
+      <a href="xbcloud_exbackoff.html" class="md-nav__link">
         Exponential backoff
       </a>
     </li>
@@ -1236,7 +1224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud_azure.html" class="md-nav__link">
+      <a href="xbcloud_azure.html" class="md-nav__link">
         Use the xbcloud binary with Microsoft Azure Cloud Storage
       </a>
     </li>
@@ -1873,8 +1861,21 @@
   
   
   
-    
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#update-the-curl-utility-in-debian-10" class="md-nav__link">
+    Update the curl utility in Debian 10
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1892,14 +1893,14 @@
                   
                   
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/using_xtrabackup/comparison.md"
+                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/xbcloud/update-curl-utility.md"
                     title="Edit this page"
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
                   </a>
                   <a
-                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/using_xtrabackup/comparison.md"
+                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/xbcloud/update-curl-utility.md"
                     title="View source of this page"
                     class="md-content__button md-icon"
                   >
@@ -1913,54 +1914,45 @@
                   as the main headline.
                 -->
                 
+                  <h1>Update curl utility</h1>
+                
 
                 <!-- Markdown content -->
-                <h1 id="server-version-and-backup-version-comparison">Server version and backup version comparison<a class="headerlink" href="#server-version-and-backup-version-comparison" title="Permanent link">&para;</a></h1>
-<p>A <em>MySQL</em> change to a feature, such as the structure of a redo log
-record, can cause older versions of <strong>Percona XtraBackup</strong> to fail. To
-ensure that you can back up and restore your data, use a <strong>Percona
-XtraBackup</strong> version that is equal to or above your source server version.</p>
-<div class="admonition admonition">
-<p class="admonition-title">See also</p>
-<p><a href="https://docs.percona.com/percona-xtrabackup/8.0/how_xtrabackup_works.html">How XtraBackup works</a></p>
-</div>
-<p><em>Percona XtraBackup</em> 8.0.21 adds the <code>--no-server-version-check</code> option.
-Before the backup starts, XtraBackup compares the source system version to
-the <em>Percona XtraBackup</em> version. If the source system version is greater
-than the XtraBackup version, XtraBackup stops the backup and returns an
-error message. This comparison prevents a failed backup or a corrupted
-backup due to source system changes.</p>
-<p>The parameter checks for the following scenarios:</p>
-<ul>
+                <h2 id="update-the-curl-utility-in-debian-10">Update the curl utility in Debian 10<a class="headerlink" href="#update-the-curl-utility-in-debian-10" title="Permanent link">&para;</a></h2>
+<p>The default curl version, 7.64.0, in Debian 10 has known issues when
+attempting to reuse an already closed connection. This issue directly
+affects <code>xbcloud</code> and users may see intermittent backup failures.</p>
+<p>For more details,
+see <a href="https://github.com/curl/curl/issues/3750">curl #3750</a>
+or <a href="https://github.com/curl/curl/pull/3763">curl #3763</a>.</p>
+<p>Follow these steps to upgrade curl to version 7.74.0:</p>
+<ol>
 <li>
-<p>The source system and the PXB version are the same, the backup proceeds</p>
-</li>
-<li>
-<p>The source system is less than the PXB version, the backup proceeds</p>
-</li>
-<li>
-<p>The source system is greater than the PXB version, and the parameter is not overridden, the backup is stopped and returns an error message</p>
-</li>
-<li>
-<p>The source system is greater than the PXB version, and the parameter is  overridden, the backup proceeds</p>
-</li>
-</ul>
-<p>Explicitly adding the <code>--no-server-version-check</code> parameter, like the
-example, overrides the parameter and the backup proceeds.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --no-server-version-check --target-dir<span class="o">=</span><span class="nv">$mysql</span>/backup1
+<p>Edit the <code>/etc/apt/sources.list</code> to add the following:</p>
+<div class="highlight"><pre><span></span><code>deb http://ftp.de.debian.org/debian buster-backports main
 </code></pre></div>
-<p>When you override the parameter, the following events can happen:</p>
-<ul>
-<li>
-<p>Backup fails</p>
 </li>
 <li>
-<p>Creates a corrupted backup</p>
+<p>Refresh the <code>apt</code> sources:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ sudo apt update
+</code></pre></div>
 </li>
 <li>
-<p>Backup successful</p>
+<p>Install the version from <code>buster-backports</code>:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ sudo apt install curl/buster-backports
+</code></pre></div>
 </li>
-</ul>
+<li>
+<p>Verify the version number:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ curl --version
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>curl 7.74.0 (x86_64-pc-linux-gnu) libcurl/7.74.0
+</code></pre></div>
+</details>
+</li>
+</ol>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -2005,42 +1997,6 @@ example, overrides the parameter and the backup proceeds.</p>
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="configuring.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configure xtrabackup" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Configure xtrabackup
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../xtrabackup_bin/xtrabackup_exit_codes.html" class="md-footer__link md-footer__link--next" aria-label="Next: xtrabackup exit codes" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              xtrabackup exit codes
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

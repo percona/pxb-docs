@@ -22,7 +22,7 @@
     
     
       
-        <title>Incremental Backup - Percona XtraBackup</title>
+        <title>Incremental backup - Percona XtraBackup</title>
       
     
     
@@ -41,8 +41,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chivo,+Colfax,+Franziska:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Chivo, Colfax, Franziska";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -52,7 +52,7 @@
     
       <link rel="stylesheet" href="../css/percona.css">
     
-      <link rel="stylesheet" href="../css/version-select.css">
+      <link rel="stylesheet" href="../css/nocopy.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -73,6 +73,22 @@
     
     
     
+              
+
+              <script>
+              (function (w, d, s, l, i) {
+                  w[l] = w[l] || []; w[l].push({
+                    'gtm.start': new Date().getTime(), 
+                    event: 'gtm.js'
+                  });
+                  var f = d.getElementsByTagName(s)[0],
+                  j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                  j.async = true; 
+                  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                  f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', 'GTM-K48FGP2');
+              </script>
+              
   </head>
   
   
@@ -111,7 +127,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://percona.com/software/documentation" class="md-header__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
+    <a href="https://percona.com/software/documentation" class="md-header__button md-logo" aria-label="Percona Product Documentation" data-md-component="logo">
       
   <img src="../_static/percona-logo.svg" alt="logo">
 
@@ -122,14 +138,14 @@
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
-          <span class="md-ellipsis"><a href="https://www.percona.com/software/documentation">
-            Percona Product Documentation
-          </a></span>
+          <span class="md-ellipsis">
+            Percona XtraBackup
+          </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Incremental Backup
+              Incremental backup
             
           </span>
         </div>
@@ -260,7 +276,7 @@
   
     <li class="md-nav__item">
       <a href="../index.html" class="md-nav__link">
-        Percona XtraBackup - Documentation
+        Home
       </a>
     </li>
   
@@ -315,7 +331,7 @@
   
     <li class="md-nav__item">
       <a href="../how_xtrabackup_works.html" class="md-nav__link">
-        How Percona XtraBackup Works
+        How Percona XtraBackup works
       </a>
     </li>
   
@@ -391,7 +407,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/apt_repo.html" class="md-nav__link">
-        Installing Percona XtraBackup on Debian and Ubuntu
+        Install Percona XtraBackup on Debian and Ubuntu
       </a>
     </li>
   
@@ -418,8 +434,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../installation/install-with-package-manager.html" class="md-nav__link">
+        Install with package manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../installation/binary-tarball.html" class="md-nav__link">
-        Installing Percona XtraBackup from a Binary Tarball
+        Install Percona XtraBackup from a Binary Tarball
       </a>
     </li>
   
@@ -433,7 +463,21 @@
   
     <li class="md-nav__item">
       <a href="../installation/compiling_xtrabackup.html" class="md-nav__link">
-        Compiling and Installing from Source Code
+        Compile and install from source code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/uninstall-percona-xtrabackup.html" class="md-nav__link">
+        Uninstall Percona XtraBackup
       </a>
     </li>
   
@@ -481,7 +525,7 @@
   
     <li class="md-nav__item">
       <a href="../installation/docker.html" class="md-nav__link">
-        Running Percona XtraBackup in a Docker container
+        Run Percona XtraBackup in a Docker container
       </a>
     </li>
   
@@ -529,7 +573,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/implementation_details.html" class="md-nav__link">
-        Implementation Details
+        Implementation details
       </a>
     </li>
   
@@ -543,7 +587,7 @@
   
     <li class="md-nav__item">
       <a href="../using_xtrabackup/privileges.html" class="md-nav__link">
-        Connection and Privileges Needed
+        Connection and privileges needed
       </a>
     </li>
   
@@ -557,7 +601,7 @@
   
     <li class="md-nav__item">
       <a href="../using_xtrabackup/configuring.html" class="md-nav__link">
-        Configuring xtrabackup
+        Configure xtrabackup
       </a>
     </li>
   
@@ -571,7 +615,7 @@
   
     <li class="md-nav__item">
       <a href="../using_xtrabackup/comparison.html" class="md-nav__link">
-        Server Version and Backup Version Comparison
+        Server version and backup version comparison
       </a>
     </li>
   
@@ -585,7 +629,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/xtrabackup_exit_codes.html" class="md-nav__link">
-        xtrabackup Exit Codes
+        xtrabackup exit codes
       </a>
     </li>
   
@@ -617,14 +661,14 @@
       
       
         <label class="md-nav__link" for="__nav_6">
-          Backup Scenarios
+          Backup scenarios
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Backup Scenarios" data-md-level="1">
+      <nav class="md-nav" aria-label="Backup scenarios" data-md-level="1">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
-          Backup Scenarios
+          Backup scenarios
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -635,7 +679,7 @@
   
     <li class="md-nav__item">
       <a href="full_backup.html" class="md-nav__link">
-        The Backup Cycle - Full Backups
+        The backup cycle - full backups
       </a>
     </li>
   
@@ -658,12 +702,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Incremental Backup
+          Incremental backup
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="incremental_backup.html" class="md-nav__link md-nav__link--active">
-        Incremental Backup
+        Incremental backup
       </a>
       
         
@@ -684,22 +728,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-the-changed-page-tracking-algorithm" class="md-nav__link">
-    Using the changed page tracking algorithm
+  <a href="#use-the-changed-page-tracking-algorithm" class="md-nav__link">
+    Use the changed page tracking algorithm
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-an-incremental-backup" class="md-nav__link">
-    Creating an Incremental Backup
+  <a href="#create-an-incremental-backup" class="md-nav__link">
+    Create an incremental backup
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparing-the-incremental-backups" class="md-nav__link">
-    Preparing the Incremental Backups
+  <a href="#prepare-the-incremental-backups" class="md-nav__link">
+    Prepare the incremental backups
   </a>
   
 </li>
@@ -720,7 +764,7 @@
   
     <li class="md-nav__item">
       <a href="compressed_backup.html" class="md-nav__link">
-        Compressed Backup
+        Compressed backup
       </a>
     </li>
   
@@ -734,7 +778,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/partial_backups.html" class="md-nav__link">
-        Partial Backups
+        Partial backups
       </a>
     </li>
   
@@ -764,14 +808,14 @@
       
       
         <label class="md-nav__link" for="__nav_7">
-          User’s Manual
+          User’s manual
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="User’s Manual" data-md-level="1">
+      <nav class="md-nav" aria-label="User’s manual" data-md-level="1">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
-          User’s Manual
+          User’s manual
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -782,7 +826,7 @@
   
     <li class="md-nav__item">
       <a href="../manual.html" class="md-nav__link">
-        Percona XtraBackup User Manual
+        Percona XtraBackup user manual
       </a>
     </li>
   
@@ -812,14 +856,14 @@
       
       
         <label class="md-nav__link" for="__nav_8">
-          Advanced Features
+          Advanced features
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Advanced Features" data-md-level="1">
+      <nav class="md-nav" aria-label="Advanced features" data-md-level="1">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
-          Advanced Features
+          Advanced features
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -830,7 +874,7 @@
   
     <li class="md-nav__item">
       <a href="../advanced/throttling_backups.html" class="md-nav__link">
-        Throttling Backups
+        Throttling backups
       </a>
     </li>
   
@@ -858,7 +902,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/backup.encrypting.html" class="md-nav__link">
-        Encrypting Backups
+        Encrypt backups
       </a>
     </li>
   
@@ -886,7 +930,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/point-in-time-recovery.html" class="md-nav__link">
-        Point-In-Time recovery
+        Point-in-time recovery
       </a>
     </li>
   
@@ -914,7 +958,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/working_with_binary_logs.html" class="md-nav__link">
-        Working with Binary Logs
+        Work with binary logs
       </a>
     </li>
   
@@ -928,7 +972,7 @@
   
     <li class="md-nav__item">
       <a href="../advanced/log_enhancements.html" class="md-nav__link">
-        Improved Log statements
+        Improved log statements
       </a>
     </li>
   
@@ -976,7 +1020,7 @@
   
     <li class="md-nav__item">
       <a href="../security/pxb-selinux.html" class="md-nav__link">
-        Working with SELinux
+        Work with SELinux
       </a>
     </li>
   
@@ -990,7 +1034,7 @@
   
     <li class="md-nav__item">
       <a href="../security/pxb-apparmor.html" class="md-nav__link">
-        Working with AppArmor
+        Work with AppArmor
       </a>
     </li>
   
@@ -1038,7 +1082,7 @@
   
     <li class="md-nav__item">
       <a href="../howtos/enabling_tcp.html" class="md-nav__link">
-        Enabling the server to communicate via TCP/IP
+        Enable the server to communicate via TCP/IP
       </a>
     </li>
   
@@ -1052,7 +1096,7 @@
   
     <li class="md-nav__item">
       <a href="../howtos/ssh_server.html" class="md-nav__link">
-        Installing and configuring an SSH server
+        Install and configure an SSH server
       </a>
     </li>
   
@@ -1066,7 +1110,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/analyzing_table_statistics.html" class="md-nav__link">
-        Analyzing Table Statistics
+        Analyze table statistics
       </a>
     </li>
   
@@ -1080,7 +1124,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/flush-tables-with-read-lock.html" class="md-nav__link">
-        `FLUSH TABLES WITH READ LOCK` option
+        FLUSH TABLES WITH READ LOCK option
       </a>
     </li>
   
@@ -1094,7 +1138,7 @@
   
     <li class="md-nav__item">
       <a href="../advanced/locks.html" class="md-nav__link">
-        `lock-ddl-per-table` option improvements
+        lock-ddl-per-table option improvements
       </a>
     </li>
   
@@ -1138,14 +1182,14 @@
       
       
         <label class="md-nav__link" for="__nav_11">
-          xbcloud Binary
+          xbcloud binary
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="xbcloud Binary" data-md-level="1">
+      <nav class="md-nav" aria-label="xbcloud binary" data-md-level="1">
         <label class="md-nav__title" for="__nav_11">
           <span class="md-nav__icon md-icon"></span>
-          xbcloud Binary
+          xbcloud binary
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1156,7 +1200,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud.html" class="md-nav__link">
-        The xbcloud Binary
+        The xbcloud binary
       </a>
     </li>
   
@@ -1170,7 +1214,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_swift.html" class="md-nav__link">
-        Using the xbcloud Binary with Swift
+        Use the xbcloud binary with Swift
       </a>
     </li>
   
@@ -1184,7 +1228,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_s3.html" class="md-nav__link">
-        Using xbcloud Binary with Amazon S3
+        Use xbcloud Binary with Amazon S3
       </a>
     </li>
   
@@ -1198,7 +1242,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_minio.html" class="md-nav__link">
-        Using the xbcloud binary with MinIO
+        Use the xbcloud binary with MinIO
       </a>
     </li>
   
@@ -1212,7 +1256,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_gcs.html" class="md-nav__link">
-        Using the xbcloud with Google Cloud Storage
+        Use the xbcloud with Google Cloud Storage
       </a>
     </li>
   
@@ -1226,7 +1270,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_exbackoff.html" class="md-nav__link">
-        Exponential Backoff
+        Exponential backoff
       </a>
     </li>
   
@@ -1240,7 +1284,7 @@
   
     <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_azure.html" class="md-nav__link">
-        Using the xbcloud binary with Microsoft Azure Cloud Storage
+        Use the xbcloud binary with Microsoft Azure Cloud Storage
       </a>
     </li>
   
@@ -1270,14 +1314,14 @@
       
       
         <label class="md-nav__link" for="__nav_12">
-          Tutorials, Recipes, How-tos
+          Tutorials, recipes, how-tos
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Tutorials, Recipes, How-tos" data-md-level="1">
+      <nav class="md-nav" aria-label="Tutorials, recipes, how-tos" data-md-level="1">
         <label class="md-nav__title" for="__nav_12">
           <span class="md-nav__icon md-icon"></span>
-          Tutorials, Recipes, How-tos
+          Tutorials, recipes, how-tos
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1288,7 +1332,7 @@
   
     <li class="md-nav__item">
       <a href="../how-tos.html" class="md-nav__link">
-        How-tos and Recipes
+        How-tos and recipes
       </a>
     </li>
   
@@ -1336,7 +1380,7 @@
   
     <li class="md-nav__item">
       <a href="../release-notes.html" class="md-nav__link">
-        Percona XtraBackup 8.0 Release Notes
+        Release notes index
       </a>
     </li>
   
@@ -1726,7 +1770,7 @@
   
     <li class="md-nav__item">
       <a href="../xtrabackup_bin/xbk_option_reference.html" class="md-nav__link">
-        The xtrabackup Option Reference
+        The xtrabackup option reference
       </a>
     </li>
   
@@ -1768,7 +1812,7 @@
   
     <li class="md-nav__item">
       <a href="../faq.html" class="md-nav__link">
-        Frequently Asked Questions
+        Frequently asked questions
       </a>
     </li>
   
@@ -1838,7 +1882,7 @@
   
     <li class="md-nav__item">
       <a href="../version-check.html" class="md-nav__link">
-        Version Checking
+        Version checking
       </a>
     </li>
   
@@ -1886,22 +1930,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-the-changed-page-tracking-algorithm" class="md-nav__link">
-    Using the changed page tracking algorithm
+  <a href="#use-the-changed-page-tracking-algorithm" class="md-nav__link">
+    Use the changed page tracking algorithm
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-an-incremental-backup" class="md-nav__link">
-    Creating an Incremental Backup
+  <a href="#create-an-incremental-backup" class="md-nav__link">
+    Create an incremental backup
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparing-the-incremental-backups" class="md-nav__link">
-    Preparing the Incremental Backups
+  <a href="#prepare-the-incremental-backups" class="md-nav__link">
+    Prepare the incremental backups
   </a>
   
 </li>
@@ -1919,14 +1963,23 @@
               <article class="md-content__inner md-typeset">
                 
 
-                <!-- Edit button -->
+                <!-- Edit and view button -->
                 
+                  
+                  
                   <a
                     href="https://github.com/percona/pxb-docs/edit/8.0/docs/backup_scenarios/incremental_backup.md"
                     title="Edit this page"
                     class="md-content__button md-icon"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+                  </a>
+                  <a
+                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/backup_scenarios/incremental_backup.md"
+                    title="View source of this page"
+                    class="md-content__button md-icon"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
                   </a>
                 
 
@@ -1938,49 +1991,43 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="incremental-backup">Incremental Backup<a class="headerlink" href="#incremental-backup" title="Permanent link">&para;</a></h1>
-<p><em>xtrabackup</em> supports incremental backups, which means that they can copy
-only
-all the data that has changed since the last backup.</p>
+                <h1 id="incremental-backup">Incremental backup<a class="headerlink" href="#incremental-backup" title="Permanent link">&para;</a></h1>
+<p><em>xtrabackup</em> supports incremental backups, which means that they can copy only all the data that has changed since the last backup.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Incremental backups on the MyRocks storage engine do not determine if an earlier full backup or incremental backup contains the same files. <strong>Percona XtraBackup</strong> copies all the MyRocks files each time it takes a backup.</p>
 </div>
-<p>You can perform many incremental backups between each full backup, so you
-can
-set up a backup process such as a full backup once a week and an
-incremental
-backup every day, or full backups every day and incremental backups every
-hour.</p>
+<p>You can perform many incremental backups between each full backup, so you can set up a backup process such as a full backup once a week and an incremental backup every day, or full backups every day and incremental backups every hour.</p>
 <p>Incremental backups work because each <em>InnoDB</em> page contains a log sequence
 number, or LSN. The LSN is the system version number for the
 entire database. Each page’s LSN shows how recently it was changed.</p>
 <p>An incremental backup copies each page whose LSN is newer than the
 previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.</p>
-<h3 id="using-the-changed-page-tracking-algorithm">Using the changed page tracking algorithm<a class="headerlink" href="#using-the-changed-page-tracking-algorithm" title="Permanent link">&para;</a></h3>
+<h3 id="use-the-changed-page-tracking-algorithm">Use the changed page tracking algorithm<a class="headerlink" href="#use-the-changed-page-tracking-algorithm" title="Permanent link">&para;</a></h3>
 <p><em>Percona XtraBackup</em> 8.0.30 removes the algorithm that used the <a href="https://docs.percona.com/percona-server/8.0/management/changed_page_tracking.html">changed page tracking</a> feature in <em>Percona Server for MySQL</em>. <em>Percona Server for MySQL</em> 8.0.27 deprecated the changed page tracking feature.</p>
 <p>With PXB 8.0.27 or earlier, another algorithm enabled the <em>Percona Server for MySQL</em> changed page tracking feature. The algorithm generates a bitmap file. The <em>xtrabackup</em> binary uses that bitmap file to read only those pages needed for the incremental backup. This method potentially saves resources. The backup enables the algorithm by default if the <em>xtrabackup</em> binary discovers the bitmap file. You can override the algorithm with <code>--incremental-force-scan</code> which forces a read of all pages even if the bitmap file is available.</p>
-<h2 id="creating-an-incremental-backup">Creating an Incremental Backup<a class="headerlink" href="#creating-an-incremental-backup" title="Permanent link">&para;</a></h2>
+<h2 id="create-an-incremental-backup">Create an incremental backup<a class="headerlink" href="#create-an-incremental-backup" title="Permanent link">&para;</a></h2>
 <p>To make an incremental backup, begin with a full backup as usual. The
 <em>xtrabackup</em> binary writes a file called <code>xtrabackup_checkpoints</code> into
 the backup’s target directory. This file contains a line showing the
 <code>to_lsn</code>, which is the database’s LSN at the end of the backup.
 Create the full backup with a following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/base
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/base
 </code></pre></div>
 <p>If you look at the <code>xtrabackup_checkpoints</code> file, you should see similar
 content depending on your LSN nuber:</p>
-<div class="highlight"><pre><span></span><code>backup_type = full-backuped
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>backup_type = full-backuped
 from_lsn = 0
 to_lsn = 1626007
 last_lsn = 1626007
 compact = 0
 recover_binlog_info = 1
 </code></pre></div>
-<p>Now that you have a full backup, you can make an incremental backup based
-on
-it. Use the following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
+</details>
+<p>Now that you have a full backup, you can make an incremental backup based on it. Use the following command:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
 --incremental-basedir<span class="o">=</span>/data/backups/base
 </code></pre></div>
 <p>The <code>/data/backups/inc1/</code> directory should now contain delta files, such
@@ -1988,36 +2035,37 @@ as <code>ibdata1.delta</code> and <code>test/table1.ibd.delta</code>. These repr
 changes since the <code>LSN 1626007</code>. If you examine the
 <code>xtrabackup_checkpoints</code> file in this directory, you should see similar
 content to the following:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">backup_type</span> <span class="o">=</span> incremental
-<span class="nv">from_lsn</span> <span class="o">=</span> <span class="m">1626007</span>
-<span class="nv">to_lsn</span> <span class="o">=</span> <span class="m">4124244</span>
-<span class="nv">last_lsn</span> <span class="o">=</span> <span class="m">4124244</span>
-<span class="nv">compact</span> <span class="o">=</span> <span class="m">0</span>
-<span class="nv">recover_binlog_info</span> <span class="o">=</span> <span class="m">1</span>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>backup_type = incremental
+from_lsn = 1626007
+to_lsn = 4124244
+last_lsn = 4124244
+compact = 0
+recover_binlog_info = 1
 </code></pre></div>
-<p><code>from_lsn</code> is the starting LSN of the backup and for incremental it has to
-be
-the same as <code>to_lsn</code> (if it is the last checkpoint) of the previous/base
-backup.</p>
-<p>It’s now possible to use this directory as the base for yet another
-incremental
-backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc2 <span class="se">\</span>
+</details>
+<p><code>from_lsn</code> is the starting LSN of the backup and for incremental it has to be the same as <code>to_lsn</code> (if it is the last checkpoint) of the previous/base backup.</p>
+<p>It’s now possible to use this directory as the base for yet another incremental backup:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc2 <span class="se">\</span>
 --incremental-basedir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
 <p>This folder also contains the <code>xtrabackup_checkpoints</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">backup_type</span> <span class="o">=</span> incremental
-<span class="nv">from_lsn</span> <span class="o">=</span> <span class="m">4124244</span>
-<span class="nv">to_lsn</span> <span class="o">=</span> <span class="m">6938371</span>
-<span class="nv">last_lsn</span> <span class="o">=</span> <span class="m">7110572</span>
-<span class="nv">compact</span> <span class="o">=</span> <span class="m">0</span>
-<span class="nv">recover_binlog_info</span> <span class="o">=</span> <span class="m">1</span>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>backup_type = incremental
+from_lsn = 4124244
+to_lsn = 6938371
+last_lsn = 7110572
+compact = 0
+recover_binlog_info = 1
 </code></pre></div>
+</details>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In this case you can see that there is a difference between the <code>to_lsn</code> (last checkpoint LSN) and <code>last_lsn</code> (last copied LSN), this means that there was some traffic on the server during the backup process.</p>
 </div>
-<h2 id="preparing-the-incremental-backups">Preparing the Incremental Backups<a class="headerlink" href="#preparing-the-incremental-backups" title="Permanent link">&para;</a></h2>
+<h2 id="prepare-the-incremental-backups">Prepare the incremental backups<a class="headerlink" href="#prepare-the-incremental-backups" title="Permanent link">&para;</a></h2>
 <p>The <code>--prepare</code> step for incremental backups is not the same
 as for full backups. In full backups, two types of operations are performed
 to
@@ -2046,21 +2094,23 @@ backups:</p>
 </code></pre></div>
 <p>To prepare the base backup, you need to run <code>--prepare</code> as
 usual, but prevent the rollback phase:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base
 </code></pre></div>
 <p>The output should end with text similar to the following:</p>
-<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 1626007
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 1626007
 161011 12:41:04 completed OK!
 </code></pre></div>
+</details>
 <p>The log sequence number should match the <code>to_lsn</code> of the base backup, which
 you saw previously.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This backup is actually safe to restore as-is now, even though the rollback phase has been skipped. If you restore it and start <em>MySQL</em>, <em>InnoDB</em> will detect that the rollback phase was not performed, and it will do that in the background, as it usually does for a crash recovery upon start. It will notify you that the database was not shut down normally.</p>
 </div>
-<p>To apply the first incremental backup to the full backup, run the following
-command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
+<p>To apply the first incremental backup to the full backup, run the following command:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
 <p>This applies the delta files to the files in <code>/data/backups/base</code>, which
@@ -2068,7 +2118,9 @@ rolls them forward in time to the time of the incremental backup. It then
 applies the redo log as usual to the result. The final data is in
 <code>/data/backups/base</code>, not in the incremental directory. You should see
 an output similar to:</p>
-<div class="highlight"><pre><span></span><code>incremental backup from 1626007 is enabled.
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>incremental backup from 1626007 is enabled.
 xtrabackup: cd to /data/backups/base
 xtrabackup: This target seems to be already prepared with --apply-log-only.
 xtrabackup: xtrabackup_logfile detected: size=2097152, start_lsn=(4124244)
@@ -2078,31 +2130,24 @@ Applying /tmp/backups/inc1/ibdata1.delta to ./ibdata1...
 ...
 161011 12:45:56 completed OK!
 </code></pre></div>
+</details>
 <p>Again, the LSN should match what you saw from your earlier inspection of
-the
-first incremental backup. If you restore the files from
-<code>/data/backups/base</code>, you should see the state of the database as of the
-first incremental backup.</p>
+the first incremental backup. If you restore the files from
+<code>/data/backups/base</code>, you should see the state of the database as of the first incremental backup.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><em>Percona XtraBackup</em> does not support using the same incremental backup directory to prepare two copies of backup. Do not run <code>--prepare</code> with the same incremental backup directory (the value of –incremental-dir) more than once.</p>
 </div>
-<p>Preparing the second incremental backup is a similar process: apply the
-deltas
-to the (modified) base backup, and you will roll its data forward in time
-to
-the point of the second incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
+<p>Preparing the second incremental backup is a similar process: apply the deltas
+to the (modified) base backup, and you will roll its data forward in time to the point of the second incremental backup:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>--apply-log-only</code> should be used when merging the incremental backups except the last one. That’s why the previous line does not contain the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> was used on the last step, backup would still be consistent but in that case server would perform the rollback phase.</p>
 </div>
-<p>Once prepared incremental backups are the same as the full backups, and 
-they
-can be restored in the same
-way.</p>
+<p>Once prepared incremental backups are the same as the full backups, and they can be restored in the same way.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -2124,7 +2169,7 @@ way.</p>
   <small>
     
       Last update:
-      2022-11-14
+      2022-12-06
     
   </small>
 </div>
@@ -2152,7 +2197,7 @@ way.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="full_backup.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: The Backup Cycle - Full Backups" rel="prev">
+        <a href="full_backup.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: The backup cycle - full backups" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2161,20 +2206,20 @@ way.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              The Backup Cycle - Full Backups
+              The backup cycle - full backups
             </div>
           </div>
         </a>
       
       
         
-        <a href="compressed_backup.html" class="md-footer__link md-footer__link--next" aria-label="Next: Compressed Backup" rel="next">
+        <a href="compressed_backup.html" class="md-footer__link md-footer__link--next" aria-label="Next: Compressed backup" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Compressed Backup
+              Compressed backup
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -2187,11 +2232,9 @@ way.</p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
-  
     <div class="md-copyright__highlight">
-      Percona LLC, &#169; 2022
+ <a href='https://percona.com' target='_blank'>Percona LLC and/or its affiliates, </a> &copy; 2022
     </div>
-  
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
@@ -2209,14 +2252,24 @@ way.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "navigation.tracking", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
+              
       <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
+        <script src="../js/promptremover.js"></script>
+      
     
+
+              <img src="https://tracking.g2crowd.com/attribution_tracking/conversions/1007137.gif?e=" width="1" height="1" />
+
+              <noscript>
+                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K48FGP2" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+              </noscript>
+              
     
   </body>
 </html>
