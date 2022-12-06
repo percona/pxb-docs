@@ -595,53 +595,53 @@ on this backup and issuing a `CHANGE MASTER` command with the binary log
 position saved in the xtrabackup_slave_info file.
 
 ### --ssl
-Enable secure connection. More information can be found in [–ssl](https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl)
+Enable secure connection. More information can be found in [–ssl](https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-secure-connections.html)
 MySQL server documentation.
 
 ### --ssl-ca
 Path of the file, which contains a list of trusted SSL CAs. More information
-can be found in [–ssl-ca](https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-ca)
+can be found in [–ssl-ca](https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-secure-connections.html)
 MySQL server documentation.
 
 ### --ssl-capath
 The directory path that contains trusted SSL CA certificates in the PEM format. More
-information can be found in [–ssl-capath](https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-capath)
+information can be found in [–ssl-capath](https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-secure-connections.html)
 MySQL server documentation.
 
 ### --ssl-cert
 Path of the file which contains X509 certificate in PEM format. More
-information can be found in [–ssl-cert](https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-cert)
+information can be found in [–ssl-cert](https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-secure-connections.html)
 MySQL server documentation.
 
 ### --ssl-cipher
 List of permitted ciphers to use for connection encryption. More information
-can be found in [–ssl-cipher](https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-cipher)
+can be found in [–ssl-cipher](https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-secure-connections.html)
 MySQL server documentation.
 
 ### --ssl-crl
 Path of the file that contains certificate revocation lists. More
-information can be found in [–ssl-crl](https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-crl)
+information can be found in [–ssl-crl](https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-secure-connections.html)
 MySQL server documentation.
 
 ### --ssl-crlpath
 Path of the directory that contains certificate revocation list files. More
-information can be found in [–ssl-crlpath](https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-crlpath)
+information can be found in [–ssl-crlpath](https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-secure-connections.html)
 MySQL server documentation.
 
 ### --ssl-key
 Path of the file that contains X509 key in PEM format. More information can be
-found in [–ssl-key](https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-key)
+found in [–ssl-key](https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-secure-connections.html)
 MySQL server documentation.
 
 ### --ssl-mode
 The security state of connection to server. More information can be found in
-[–ssl-mode](https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-mode)
+[–ssl-mode](https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-secure-connections.html)
 MySQL server documentation.
 
 ### --ssl-verify-server-cert
 Verify server certificate Common Name value against host name used when
 connecting to server. More information can be found in
-[–ssl-verify-server-cert](https://dev.mysql.com/doc/refman/5.6/en/secure-connection-options.html#option_general_ssl-verify-server-cert)
+[–ssl-verify-server-cert](https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-secure-connections.html)
 MySQL server documentation.
 
 ### --stats

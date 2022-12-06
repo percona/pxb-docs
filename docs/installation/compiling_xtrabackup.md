@@ -43,7 +43,7 @@ $ sudo apt install python3-sphinx
 
 ### CentOS or Red Hat using `yum`
 
-Percona Xtrabackup requires GCC version 5.3 or higher. If the
+Percona XtraBackup requires GCC version 5.3 or higher. If the
 version of GCC installed on your system is lower then you may need to
 install and enable [the Developer Toolset](https://developers.redhat.com/products/developertoolset/overview) on
 `RPM`-based distributions to make sure that you use the latest GCC
@@ -162,7 +162,7 @@ installation directory to be /usr/local/xtrabackup.
 
 !!! admonition "See also"
 
-    [MySQL Documentation: -DINSTALL_LAYOUT](https://dev.mysql.com/doc/refman/8.0/en/source-configuration-options.html#option_cmake_install_layout)
+    [MySQL Documentation: -DINSTALL_LAYOUT](https://dev.mysql.com/doc/refman/5.7/en/source-configuration-options.html#option_cmake_install_layout)
 
 ## Step 4: Running
 

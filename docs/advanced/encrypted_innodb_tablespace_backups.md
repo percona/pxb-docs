@@ -1,6 +1,6 @@
 # Encrypted InnoDB Tablespace Backups
 
-As of *MySQL* 5.7.11, InnoDB supports data [encryption for InnoDB tables](http://dev.mysql.com/doc/refman/5.7/en/innodb-tablespace-encryption.html)
+As of *MySQL* 5.7.11, InnoDB supports data [encryption for InnoDB tables](https://dev.mysql.com/doc/refman/5.7/en/innodb-data-encryption.html)
 stored in file-per-table tablespaces. This feature provides at-rest encryption
 for physical tablespace data files.
 
