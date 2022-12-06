@@ -1,4 +1,4 @@
-# Point-In-Time recovery
+# Point-in-time recovery
 
 Recovering up to particular moment in database’s history can be done with
 *xtrabackup* and the binary logs of the server.
@@ -8,7 +8,7 @@ a point in the past. You need a full datadir as a base, and then you can
 apply a series of operations from the binary log to make the data match what it
 was at the point in time you want.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/path/to/backup
 $ xtrabackup --prepare --target-dir=/path/to/backup
 ```
@@ -22,36 +22,38 @@ point where the snapshot was taken.
 To find out what is the situation of binary logging in the server, execute the
 following queries:
 
-```sql
+```{.bash data-prompt="mysql>"}
 mysql> SHOW BINARY LOGS;
 ```
-The result should be similar to the following:
 
-```text
-+------------------+-----------+
-| Log_name         | File_size |
-+------------------+-----------+
-| mysql-bin.000001 |       126 |
-| mysql-bin.000002 |      1306 |
-| mysql-bin.000003 |       126 |
-| mysql-bin.000004 |       497 |
-+------------------+-----------+
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    +------------------+-----------+
+    | Log_name         | File_size |
+    +------------------+-----------+
+    | mysql-bin.000001 |       126 |
+    | mysql-bin.000002 |      1306 |
+    | mysql-bin.000003 |       126 |
+    | mysql-bin.000004 |       497 |
+    +------------------+-----------+
+    ```
 
 and
 
-```sql
+```{.bash data-prompt="mysql>"}
 mysql> SHOW MASTER STATUS;
 ```
-The results should be similar to the following:
 
-```text
-+------------------+----------+--------------+------------------+
-| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
-+------------------+----------+--------------+------------------+
-| mysql-bin.000004 |      497 |              |                  |
-+------------------+----------+--------------+------------------+
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    +------------------+----------+--------------+------------------+
+    | File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
+    +------------------+----------+--------------+------------------+
+    | mysql-bin.000004 |      497 |              |                  |
+    +------------------+----------+--------------+------------------+
+    ```
 
 The first query will tell you which files contain the binary log and the second
 one which file is currently being used to record changes, and the current
@@ -62,20 +64,21 @@ position within it. Those files are stored usually in the datadir
 To find out the position of the snapshot taken, see the
 `xtrabackup_binlog_info` at the backup’s directory:
 
-```shell
+```{.bash data-prompt="$"}
 $ cat /path/to/backup/xtrabackup_binlog_info
 ```
-The result should be similar to the following:
 
-```text
-mysql-bin.000003      57
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    mysql-bin.000003      57
+   ```
 
 This will tell you which file was used at moment of the backup for the binary
 log and its position. That position will be the effective one when you restore
 the backup:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --copy-back --target-dir=/path/to/backup
 ```
 
@@ -84,7 +87,7 @@ file permissions, see Restoring a Backup), the next step is
 extracting the queries from the binary log with **mysqlbinlog** starting
 from the position of the snapshot and redirecting it to a file
 
-```shell
+```{.bash data-prompt="$"}
 $ mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 \
     --start-position=57 > mybinlog.sql
 ```
@@ -96,7 +99,7 @@ Inspect the file with the queries to determine which position or date
 corresponds to the point-in-time wanted. Once determined, pipe it to the
 server. Assuming the point is `11-12-25 01:00:00`:
 
-```shell
+```{.bash data-prompt="$"}
 $ mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 \
     --start-position=57 --stop-datetime="11-12-25 01:00:00" | mysql -u root -p
 ```

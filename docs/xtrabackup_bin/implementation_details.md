@@ -1,9 +1,9 @@
-# Implementation Details
+# Implementation details
 
 This page contains notes on various internal aspects of the *xtrabackup* tool's
 operation.
 
-## File Permissions
+## File permissions
 
 *xtrabackup* opens the source data files in read-write mode, although it does
 not modify the files. This means that you must run *xtrabackup* as a user who
@@ -12,7 +12,7 @@ read-write mode is that *xtrabackup* uses the embedded *InnoDB* libraries to
 open and read the files, and *InnoDB* opens them in read-write mode because it
 normally assumes it is going to write to them.
 
-## Tuning the OS Buffers
+## Tune the OS buffers
 
 Because *xtrabackup* reads large amounts of data from the filesystem, it uses
 `posix_fadvise()` where possible, to instruct the operating system not to try
@@ -23,18 +23,18 @@ on the operating system’s virtual memory and cause other processes, such as th
 database server, to be swapped out. The `xtrabackup` tool avoids this with the
 following hint on both the source and destination files:
 
-```shell
+```text
 posix_fadvise(file, 0, 0, POSIX_FADV_DONTNEED)
 ```
 
 In addition, xtrabackup asks the operating system to perform more aggressive
 read-ahead optimizations on the source files:
 
-```shell
+```text
 posix_fadvise(file, 0, 0, POSIX_FADV_SEQUENTIAL)
 ```
 
-## Copying Data Files
+## Copy data files
 
 When copying the data files to the target directory, *xtrabackup* reads and
 writes 1 MB of data at a time. This is not configurable. When copying the log

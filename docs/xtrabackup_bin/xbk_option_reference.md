@@ -1,4 +1,4 @@
-# The xtrabackup Option Reference
+# The xtrabackup option reference
 
 This page documents all of the command-line options for the
 **xtrabackup** binary.
@@ -23,13 +23,13 @@ the alternate `--move-back` mode.
 
 When you intend to run *xtrabackup* in any of these modes, use the following syntax:
 
-```
+```{.bash data-prompt="$"}
 $ xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back|--stats [OPTIONS]
 ```
 
 For example, the `--prepare` mode is applied as follows:
 
-```
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/backup/mysql/
 ```
 
@@ -72,7 +72,7 @@ configuration groups (**xtrabackup** and **mysqld**) with the given suffix.
 
 * `--login-path` to read the given path from the login file.
 
-### InnoDB Options
+### InnoDB options
 
 There is a large group of InnoDB options that are normally read from the
 `my.cnf` configuration file, so that *xtrabackup* boots up its embedded
@@ -116,7 +116,7 @@ If a missing privilege is not required for the current operation,
 but may be necessary for some other XtraBackup operation,
 the process is not aborted and a warning is printed.
 
-```
+```{.text .no-copy}
 xtrabackup: Error: missing required privilege LOCK TABLES on *.*
 xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
 ```
@@ -145,7 +145,7 @@ these files by using `lz4` program.
 `--compress=zstd` produces `\*.zst` files. You can extract the contents of
 these files by using the `--decompress` option. You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](#compress-zstd-level) option.
 
-### --compress-chunk-size(=#)
+### --compress-chunk-size(=#) 
 Size of working buffer(s) for compression threads in bytes. The default
 value is 64K.
 
@@ -807,68 +807,48 @@ passed to the mysql child process without alteration. See **mysql
 
 
 ### --ssl()
-Enable secure connection. More information can be found in [–ssl](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-options.html)
-MySQL server documentation.
+Enable secure connection.
 
 
 ### --ssl-ca()
-Path of the file which contains list of trusted SSL CAs. More information
-can be found in [–ssl-ca](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-options.html#option_general_ssl-ca)
-MySQL server documentation.
+Path of the file which contains list of trusted SSL CAs.
 
 
 ### --ssl-capath()
-Directory path that contains trusted SSL CA certificates in PEM format. More
-information can be found in [–ssl-capath](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-options.html#option_general_ssl-capath)
-MySQL server documentation.
+Directory path that contains trusted SSL CA certificates in PEM format.
 
 
 ### --ssl-cert()
-Path of the file which contains X509 certificate in PEM format. More
-information can be found in [–ssl-cert](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-options.html#option_general_ssl-cert)
-MySQL server documentation.
+Path of the file which contains X509 certificate in PEM format.
 
 
 ### --ssl-cipher()
-List of permitted ciphers to use for connection encryption. More information
-can be found in [–ssl-cipher](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-options.html#option_general_ssl-cipher)
-MySQL server documentation.
+List of permitted ciphers to use for connection encryption.
 
 
 ### --ssl-crl()
-Path of the file that contains certificate revocation lists. More
-information can be found in [–ssl-crl](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-options.html#option_general_ssl-crl)
+Path of the file that contains certificate revocation lists.
 MySQL server documentation.
 
 
 ### --ssl-crlpath()
-Path of directory that contains certificate revocation list files. More
-information can be found in [–ssl-crlpath](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-options.html#option_general_ssl-crlpath)
-MySQL server documentation.
+Path of directory that contains certificate revocation list files. 
 
 
 ### --ssl-fips-mode()
-SSL FIPS mode (applies only for OpenSSL); permitted values are: *OFF*, *ON*,
-*STRICT*.
+SSL FIPS mode (applies only for OpenSSL); permitted values are: *OFF*, *ON*, *STRICT*.
 
 
 ### --ssl-key()
-Path of file that contains X509 key in PEM format. More information can be
-found in [–ssl-key](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-options.html#option_general_ssl-key)
-MySQL server documentation.
+Path of file that contains X509 key in PEM format.
 
 
 ### --ssl-mode()
-Security state of connection to server. More information can be found in
-[–ssl-mode](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-options.html#option_general_ssl-mode)
-MySQL server documentation.
+Security state of connection to server.
 
 
 ### --ssl-verify-server-cert()
-Verify server certificate Common Name value against host name used when
-connecting to server. More information can be found in
-[–ssl-verify-server-cert](https://dev.mysql.com/doc/refman/8.0/en/encrypted-connection-options.html#option_general_ssl-verify-server-cert)
-MySQL server documentation.
+Verify server certificate Common Name value against host name used when connecting to server.
 
 
 ### --stats()

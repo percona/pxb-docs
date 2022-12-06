@@ -1,6 +1,6 @@
-# How-tos and Recipes
+# How-tos and recipes
 
-## Recipes for *xtrabackup*
+## Recipes for xtrabackup
 
 
 * [Making a Full Backup](backup_scenarios/full_backup.md)
@@ -17,7 +17,7 @@
 * [Backing Up and Restoring Individual Partitions](howtos/recipes_xbk_partition.md)
 
 
-## How-Tos
+## How-tos
 
 
 * [Privileges and Permissions for Users](howtos/permissions.md)

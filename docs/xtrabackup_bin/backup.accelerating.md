@@ -1,6 +1,6 @@
-# Accelerating the backup process
+# Accelerate the backup process
 
-### Copying with the `--parallel` and –compress-threads Options
+### Copy with the `--parallel` and `--compress-threads` options
 
 When making a local or streaming backup with *xbstream* option, multiple files
 can be copied at the same time when using the `--parallel` option. This
@@ -23,7 +23,7 @@ If the data is stored on a single file, this option will have no effect.
 
 To use this feature, simply add the option to a local backup, for example:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --parallel=4 --target-dir=/path/to/backup
 ```
 
@@ -34,13 +34,13 @@ compression. The default value for this option is 1.
 
 To use this feature, simply add the option to a local backup, for example:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream --compress --compress-threads=4 --target-dir=./ > backup.xbstream
 ```
 
 Before applying logs, compressed files will need to be uncompressed.
 
-### The `--rsync` Option
+### The `--rsync` option
 
 In order to speed up the backup process and to minimize the time `FLUSH TABLES
 WITH READ LOCK` is blocking the writes, the option `--rsync` should be

@@ -1,4 +1,4 @@
-# Streaming Backups
+# Streaming backups
 
 **Percona XtraBackup** supports streaming mode. Streaming mode sends a backup to `STDOUT` in the *xbstream* format instead of copying the files to the backup directory.
 
@@ -12,7 +12,7 @@ To use the streaming feature, you must use the `--stream`,
 providing the format of the stream (`xbstream` ) and where to store
 the temporary files:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --stream=xbstream --target-dir=/tmp
 ```
 
@@ -35,7 +35,7 @@ The Zstandard (ZSTD) compression algorithm is a [tech preview](../glossary.md#te
     
 You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](/docs/xtrabackup_bin/xbk_option_reference.md#compress-zstd-level) option. The defaul value is `1`.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
 ```
     

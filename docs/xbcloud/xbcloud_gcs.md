@@ -1,6 +1,6 @@
-# Using the xbcloud with Google Cloud Storage
+# Use the xbcloud with Google Cloud Storage
 
-## Creating a full backup with Google Cloud Storage
+## Create a full backup with Google Cloud Storage
 
 The support for Google Cloud Storage is implemented using the
 interoperability
@@ -11,7 +11,7 @@ compatible with Amazon S3.
    
     [Cloud Storage Interoperability](https://cloud.google.com/storage/docs/interoperability)
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=google \
 --google-endpoint=`storage.googleapis.com` \

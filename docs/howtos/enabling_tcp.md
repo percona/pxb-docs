@@ -1,11 +1,11 @@
-# Enabling the server to communicate via TCP/IP
+# Enable the server to communicate via TCP/IP
 
 Most of the Linux distributions do not enable by default to accept TCP/IP
 connections from outside in their MySQL or Percona Server packages.
 
 You can check it with `netstat` on a shell:
 
-```shell
+```{.bash data-prompt="$"}
 $ netstat -lnp | grep mysql
 tcp         0        0 0.0.0.0:3306 0.0.0.0:* LISTEN 2480/mysqld
 unix 2 [ ACC ] STREAM LISTENING 8101 2480/mysqld /tmp/mysql.sock
@@ -14,7 +14,6 @@ unix 2 [ ACC ] STREAM LISTENING 8101 2480/mysqld /tmp/mysql.sock
 You should check two things:
 
 * there is a line starting with `tcp` (the server is indeed accepting TCP connections)
-
 
 * the first address (`0.0.0.0:3306` in this example) is different from `127.0.0.1:3306` (the bind address is not localhost’s).
 

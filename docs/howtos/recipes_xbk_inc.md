@@ -1,4 +1,4 @@
-# Make an Incremental Backup
+# Make an incremental backup
 
 Backup all InnoDB data and log files - located in `/var/lib/mysql/` -
 **once**, then make two daily incremental backups in `/data/backups/mysql/`
@@ -9,7 +9,7 @@ use.
 
 Making an incremental backup requires a full backup as a base:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups/mysql/
 ```
 
@@ -20,14 +20,14 @@ It is important that you **do not run** the `--prepare` command yet.
 Suppose the full backup is on Monday, and you will create an incremental
 one on Tuesday:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups/inc/tue/ \
       --incremental-basedir=/data/backups/mysql/
 ```
 
 and the same policy is applied on Wednesday:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups/inc/wed/ \
        --incremental-basedir=/data/backups/inc/tue/
 ```
@@ -36,7 +36,7 @@ $ xtrabackup --backup --target-dir=/data/backups/inc/wed/ \
 
 Prepare the base backup (Monday’s backup):
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/
 ```
 
@@ -44,7 +44,7 @@ $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/
 
 Roll Monday’s data forward to the state on Tuesday:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
    --incremental-dir=/data/backups/inc/tue/
 ```
@@ -53,8 +53,8 @@ $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
 
 Roll forward again to the state on Wednesday (without --apply-log-only):
 
-```shell
-xtrabackup --prepare --target-dir=/data/backups/mysql/ \
+```{.bash data-prompt="$"}
+$ xtrabackup --prepare --target-dir=/data/backups/mysql/ \
    --incremental-dir=/data/backups/inc/wed/
 ```
 

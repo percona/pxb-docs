@@ -1,4 +1,4 @@
-# Using the xbcloud binary with Microsoft Azure Cloud Storage
+# Use the xbcloud binary with Microsoft Azure Cloud Storage
 
 Implemented in Percona XtraBackup 8.0.27-19, the **xbcloud** binary adds support for the Microsoft Azure Cloud Storage using the REST API.
 
@@ -26,27 +26,27 @@ max-retries, and others, can be used. For more information, see the
 
 An example of an **xbcloud** backup.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream  | 
 xbcloud put backup_name --azure-storage-account=pxbtesting --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure
 ```
 
 An example of restoring a backup from **xbcloud**.
 
-```shell
+```{.bash data-prompt="$"}
 $ xbcloud get backup_name  --azure-storage-account=pxbtesting 
 --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure --parallel=10 2>download.log | xbstream -x -C restore
 ```
 
 An example of deleting a backup from **xbcloud**.
 
-```shell
+```{.bash data-prompt="$"}
 $ xbcloud delete backup_name --azure-storage-account=pxbtesting 
 --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure
 ```
 
 An example of using a shortcut restore.
 
-```shell
+```{.bash data-prompt="$"}
 $ xbcloud get azure://operator-testing/bak22 ...
 ```

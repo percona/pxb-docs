@@ -1,4 +1,4 @@
-# Version Checking
+# Version checking
 
 Some Percona software contains “version checking” functionality which is a
 feature that enables Percona software users to be notified of available software
@@ -57,15 +57,17 @@ submitted for the first time.
 
 As a result, the content of the sent query is as follows:
 
-```text
-85624f3fb5d2af8816178ea1493ed41a;DBD::mysql;4.044
-c2b6d625ef3409164cbf8af4985c48d3;MySQL;MySQL Community Server (GPL) 5.7.22-log
-85624f3fb5d2af8816178ea1493ed41a;OS;Manjaro Linux
-85624f3fb5d2af8816178ea1493ed41a;Percona::Toolkit;3.0.11-dev
-85624f3fb5d2af8816178ea1493ed41a;Perl;5.26.2
-```
+??? example "Expected output"
 
-## Disabling Version Check
+    ```{.text .no-copy}
+    85624f3fb5d2af8816178ea1493ed41a;DBD::mysql;4.044
+    c2b6d625ef3409164cbf8af4985c48d3;MySQL;MySQL Community Server (GPL) 5.7.22-log
+    85624f3fb5d2af8816178ea1493ed41a;OS;Manjaro Linux
+    85624f3fb5d2af8816178ea1493ed41a;Percona::Toolkit;3.0.11-dev
+    85624f3fb5d2af8816178ea1493ed41a;Perl;5.26.2
+    ```
+
+## Disabling version check
 
 Although the *version checking* feature does not collect any personal information,
 you might prefer to disable this feature, either one time or permanently.  To
@@ -74,7 +76,7 @@ from a Percona product which supports it. Here is a simple example which shows
 running [pt-diskstats](https://www.percona.com/doc/percona-toolkit/LATEST/pt-diskstats.html) tool
 from the *Percona Toolkit* with *version checking* turned off:
 
-```shell
+```text
 pt-diskstats --no-version-check
 ```
 
@@ -84,7 +86,7 @@ Disabling *version checking* permanently can be done by placing
 in case of *Percona Toolkit* [this can be done](https://www.percona.com/doc/percona-toolkit/LATEST/configuration_files.html)
 in a global configuration file `/etc/percona-toolkit/percona-toolkit.conf`:
 
-```text
+```{.bash data-prompt="#"}
 # Disable Version Check for all tools:
 no-version-check
 ```
@@ -97,7 +99,7 @@ in a similar way:
 no-version-check
 ```
 
-## Frequently Asked Questions
+## Frequently asked questions
 
 ### Why is this functionality enabled by default?
 

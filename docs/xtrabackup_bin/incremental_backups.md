@@ -1,4 +1,4 @@
-# Incremental Backups
+# Incremental backups
 
 *xtrabackup* supports incremental backups. It copies only the data that has
 changed since the last full backup. You can perform multiple incremental backups
@@ -23,13 +23,13 @@ LSN to the last backup’s LSN. You still need a full backup to
 recover the incremental changes, however; without a full backup to act as a
 base, the incremental backups are useless.
 
-### Using the changed page tracking algorithm 
+### Use the changed page tracking algorithm 
 
 *Percona XtraBackup* 8.0.30 removes the algorithm that used the [changed page tracking](https://docs.percona.com/percona-server/8.0/management/changed_page_tracking.html) feature in *Percona Server for MySQL*. *Percona Server for MySQL* 8.0.27 deprecated the changed page tracking feature.
 
 With PXB 8.0.27 or earlier, another algorithm enabled the *Percona Server for MySQL* changed page tracking feature. The algorithm generates a bitmap file. The *xtrabackup* binary uses that bitmap file to read only those pages needed for the incremental backup. This method potentially saves resources. The backup enables the algorithm by default if the *xtrabackup* binary discovers the bitmap file. You can override the algorithm with `--incremental-force-scan` which forces a read of all pages even if the bitmap file is available.
 
-## Creating an Incremental Backup
+## Create an incremental backup
 
 To make an incremental backup, begin with a full backup as usual. The
 *xtrabackup* binary writes a file called `xtrabackup_checkpoints` into the
@@ -37,23 +37,25 @@ backup’s target directory. This file contains a line showing the `to_lsn`,
 which is the database’s LSN at the end of the backup. Create the
 full backup with a command such as the following:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups/base --datadir=/var/lib/mysql/
 ```
 
 If you look at the `xtrabackup_checkpoints` file, you should see contents
 similar to the following:
 
-```text
-backup_type = full-backuped
-from_lsn = 0
-to_lsn = 1291135
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    backup_type = full-backuped
+    from_lsn = 0
+    to_lsn = 1291135
+    ```
 
 Now that you have a full backup, you can make an incremental backup based on
 it. Use a command such as the following:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups/inc1 \
 --incremental-basedir=/data/backups/base --datadir=/var/lib/mysql/
 ```
@@ -64,21 +66,23 @@ changes since the `LSN 1291135`. If you examine the
 `xtrabackup_checkpoints` file in this directory, you should see something
 similar to the following:
 
-```text
-backup_type = incremental
-from_lsn = 1291135
-to_lsn = 1291340
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    backup_type = incremental
+    from_lsn = 1291135
+    to_lsn = 1291340
+    ```
 
 The meaning should be self-evident. It’s now possible to use this directory as
 the base for yet another incremental backup:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups/inc2 \
 --incremental-basedir=/data/backups/inc1 --datadir=/var/lib/mysql/
 ```
 
-## Preparing the Incremental Backups
+## Prepare the incremental backups
 
 The `--prepare` step for incremental backups is not the same as for
 normal backups. In normal backups, two types of operations are performed to make
@@ -109,15 +113,15 @@ the incremental differences to it. Recall that you have the following backups:
 To prepare the base backup, you need to run `--prepare` as usual, but
 prevent the rollback phase:
 
-```shell
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
+```{.bash data-prompt="$"}
+$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
 ```
 
-The output should end with some text such as the following:
+??? example "Expected output"
 
-```text
-101107 20:49:43  InnoDB: Shutdown completed; log sequence number 1291135
-```
+    ```{.text .no-copy}
+    101107 20:49:43  InnoDB: Shutdown completed; log sequence number 1291135
+    ```
 
 The log sequence number should match the `to_lsn` of the base backup, which
 you saw previously.
@@ -131,16 +135,15 @@ start. It will notify you that the database was not shut down normally.
 To apply the first incremental backup to the full backup, you should use the
 following command:
 
-```shell
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+```{.bash data-prompt="$"}
+$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
 
 This applies the delta files to the files in `/data/backups/base`, which
 rolls them forward in time to the time of the incremental backup. It then
 applies the redo log as usual to the result. The final data is in
-`/data/backups/base`, not in the incremental directory. You should see
-some output such as the following:
+`/data/backups/base`, not in the incremental directory. 
 
 ```text
 incremental backup from 1291135 is enabled.
@@ -162,8 +165,8 @@ Preparing the second incremental backup is a similar process: apply the deltas
 to the (modified) base backup, and you will roll its data forward in time to the
 point of the second incremental backup:
 
-```shell
-xtrabackup --prepare --target-dir=/data/backups/base \
+```{.bash data-prompt="$"}
+$ xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2
 ```
 
@@ -179,7 +182,7 @@ If you wish to avoid the notice that *InnoDB* was not shut down normally, when
 you applied the desired deltas to the base backup, you can run
 `--prepare` again without disabling the rollback phase.
 
-## Restoring Incremental Backups
+## Restore incremental backups
 
 After preparing the incremental backups, the base directory contains the same
 data as the full backup. To restoring this backup, you can use this command:
@@ -188,33 +191,33 @@ data as the full backup. To restoring this backup, you can use this command:
 You may have to change the ownership as detailed on
 Restoring a Backup.
 
-## Incremental Streaming Backups Using xbstream
+## Incremental streaming backups using xbstream
 
 Incremental streaming backups can be performed with the *xbstream* streaming
 option. Currently backups are packed in custom **xbstream** format. With this
 feature, you need to take a BASE backup as well.
 
-### Making a base backup
+### Make a base backup
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups
 ```
 
-### Taking a local backup
+### Take a local backup
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --incremental-lsn=LSN-number --stream=xbstream --target-dir=./ > incremental.xbstream
 ```
 
-### Unpacking the backup
+### Unpack the backup
 
-```
+```{.bash data-prompt="$"}
 $ xbstream -x < incremental.xbstream
 ```
 
-### Taking a local backup and streaming it to the remote server and unpacking it
+### Take a local backup and streaming it to the remote server and unpack it
 
-```
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --incremental-lsn=LSN-number --stream=xbstream --target-dir=./
 $ ssh user@hostname " cat - | xbstream -x -C > /backup-dir/"
 ```

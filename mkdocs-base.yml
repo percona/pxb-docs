@@ -11,12 +11,14 @@ edit_uri: edit/8.0/docs/
 
 use_directory_urls: false
 
-# Theme for netlify testing
+# Theme setup
 theme:
   name: material
   logo: _static/percona-logo.svg
   favicon: _static/percona_favicon.ico
   custom_dir: _resource/overrides/
+  font:
+    text: Chivo, Colfax, Franziska
   palette:
 
     # Light mode
@@ -33,27 +35,23 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
 
-# Theme features
-
-  features:
-    - search.highlight
-    - navigation.top
-    - content.tabs.link
 
 extra_css:
   - https://unicons.iconscout.com/release/v3.0.3/css/line.css
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css
   - css/percona.css
-  - css/version-select.css
+  - css/nocopy.css
 
 extra_javascript:
   - js/version-select.js
+  - js/promptremover.js
 
 markdown_extensions:
   attr_list: {}
   toc:
     permalink: True
     title: On this page
+    toc_depth: 3
   admonition: {}
   footnotes: {}
   def_list: {} # https://michelf.ca/projects/php-markdown/extra/#def-list
@@ -71,7 +69,10 @@ markdown_extensions:
   pymdownx.highlight:
       linenums: false
   pymdownx.inlinehilite: {}
-
+  pymdownx.snippets: {}
+  pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 plugins:
   search: {}
@@ -102,7 +103,7 @@ extra:
     provider: mike
 
 nav:
-  - index.md
+  - Home: index.md
   - Introduction:
       - intro.md
       - how_xtrabackup_works.md
@@ -111,24 +112,27 @@ nav:
       - installation.md
       - installation/apt_repo.md
       - installation/yum_repo.md
+      - installation/install-with-package-manager.md
       - installation/binary-tarball.md
       - installation/compiling_xtrabackup.md
+      - installation/uninstall-percona-xtrabackup.md
+      
   - Run in Docker:
       - installation/docker.md
   - How Percona XtraBackup works:
-      - xtrabackup_bin/implementation_details.md
+      - xtrabackup_bin/implementation_details.md 
       - using_xtrabackup/privileges.md
       - using_xtrabackup/configuring.md
       - using_xtrabackup/comparison.md
       - xtrabackup_bin/xtrabackup_exit_codes.md
-  - Backup Scenarios:
+  - Backup scenarios:
       - backup_scenarios/full_backup.md
       - backup_scenarios/incremental_backup.md
       - backup_scenarios/compressed_backup.md
       - xtrabackup_bin/partial_backups.md
-  - User’s Manual:
+  - User’s manual:
       - manual.md
-  - Advanced Features:
+  - Advanced features:
       - advanced/throttling_backups.md
       - advanced/encrypted_innodb_tablespace_backups.md
       - xtrabackup_bin/backup.encrypting.md
@@ -147,7 +151,7 @@ nav:
       - xtrabackup_bin/flush-tables-with-read-lock.md
       - advanced/locks.md
       - advanced/page_tracking.md
-  - xbcloud Binary:
+  - xbcloud binary:
       - xbcloud/xbcloud.md
       - xbcloud/xbcloud_swift.md
       - xbcloud/xbcloud_s3.md
@@ -155,10 +159,10 @@ nav:
       - xbcloud/xbcloud_gcs.md
       - xbcloud/xbcloud_exbackoff.md
       - xbcloud/xbcloud_azure.md
-  - Tutorials, Recipes, How-tos:
+  - Tutorials, recipes, how-tos:
       - how-tos.md
-  - Release notes:
-      - release-notes.md
+  - Release notes: 
+      - Release notes index: release-notes.md 
       - release-notes/8.0/8.0.30-23.0.md
       - release-notes/8.0/8.0.29-22.0.md
       - release-notes/8.0/8.0.28-21.0.md

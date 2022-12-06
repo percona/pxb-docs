@@ -1,4 +1,4 @@
-# Percona XtraBackup User Manual
+# Percona XtraBackup user manual
 
 *Percona XtraBackup* is a set of the following tools:
 

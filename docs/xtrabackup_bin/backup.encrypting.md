@@ -1,10 +1,10 @@
-# Encrypting Backups
+# Encrypt backups
 
 *Percona XtraBackup* supports encrypting and decrypting local and streaming
 backups with *xbstream* option adding another layer of protection. The
 encryption is implemented using the `libgcrypt` library from GnuPG.
 
-## Creating Encrypted Backups
+## Create encrypted backups
 
 To make an encrypted backup the following options need to be specified (options
 `--encrypt-key` and `--encrypt-key-file` are mutually exclusive,
@@ -24,28 +24,26 @@ Both the `--encrypt-key` option and
 encryption key. An encryption key can be generated with a command like
 `openssl rand -base64 32`
 
-Example output of that command should look like this:
-
 ```text
 U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=
 ```
 
 This value then can be used as the encryption key
 
-### The `--encrypt-key` Option
+### The `--encrypt-key` option
 
 Example of the *xtrabackup* command using the `--encrypt-key` should
 look like this:
 
-```shell
+```{.bash data-prompt="$"}
 $  xtrabackup --backup --encrypt=AES256 --encrypt-key="U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=" --target-dir=/data/backup
 ```
 
-### The `--encrypt-key-file` Option
+### The `--encrypt-key-file` option
 
 Use the `--encrypt-key-file` option as follows:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 ```
 
@@ -57,7 +55,7 @@ $ xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile 
     invalid. The suggested way to create the file is by using the
     command line: `echo -n “U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=” > /data/backups/keyfile`.
 
-## Optimizing the encryption process
+## Optimize the encryption process
 
 Two new options are available for encrypted backups that can be used to speed up
 the encryption process. These are `--encrypt-threads` and
@@ -66,25 +64,24 @@ multiple threads can be specified to be used for encryption in parallel. Option
 `--encrypt-chunk-size` can be used to specify the size (in bytes) of the
 working encryption buffer for each encryption thread (default is 64K).
 
-## Decrypting Encrypted Backups
+## Decrypt encrypted backups
 
 Backups can be decrypted with The xbcrypt binary. The following one-liner can be
 used to encrypt the whole folder:
 
-```shell
+```{.bash data-prompt="$"}
 $ for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 < $i > $(dirname $i)/$(basename $i .xbcrypt) && rm $i; done
 ```
 
 *Percona XtraBackup* `--decrypt` option has been implemented that can be
 used to decrypt the backups:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --decrypt=AES256 --encrypt-key="U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=" --target-dir=/data/backup/
 ```
 
 *Percona XtraBackup* doesn’t automatically remove the encrypted files. In order
-to clean up the backup directory users should remove the `\*.xbcrypt`
-files.
+to clean up the backup directory users should remove the `\*.xbcrypt` files.
 
 !!! note
    
@@ -92,21 +89,21 @@ files.
 
 When the files are decrypted, the backup can be prepared.
 
-## Preparing Encrypted Backups
+## Prepare encrypted backups
 
 After the backups have been decrypted, they can be prepared in the same way as
 the standard full backups with the `--prepare` option:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/backup/
 ```
 
-## Restoring Encrypted Backups
+## Restore encrypted backups
 
 *xtrabackup* offers the `--copy-back` option to restore a backup to the
 server’s datadir:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --copy-back --target-dir=/data/backup/
 ```
 
@@ -114,6 +111,8 @@ It will copy all the data-related files back to the server’s datadir,
 determined by the server’s `my.cnf` configuration file. You should check
 the last line of the output for a success message:
 
-```text
-150318 11:08:13  xtrabackup: completed OK!
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    150318 11:08:13  xtrabackup: completed OK!
+    ```

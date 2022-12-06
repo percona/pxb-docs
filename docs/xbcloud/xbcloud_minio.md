@@ -1,8 +1,8 @@
-# Using the xbcloud binary with MinIO
+# Use the xbcloud binary with MinIO
 
-## Creating a full backup with MinIO
+## Create a full backup with MinIO
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=s3 \
 --s3-endpoint='play.minio.io:9000' \

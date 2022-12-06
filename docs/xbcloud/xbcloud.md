@@ -1,4 +1,4 @@
-# The xbcloud Binary
+# The xbcloud binary
 
 The purpose of *xbcloud* is to download from the cloud and upload to 
 the cloud the full or part of an *xbstream* archive. *xbcloud* will not 
@@ -13,7 +13,7 @@ needing a local storage.
     ${PIPESTATUS[x]} array parameter returns the exit code for each 
     binary in the pipe string.
 
-    ```
+    ```{.bash data-prompt="$"}
     $ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
     ...
     $ ${PIPESTATUS[x]}
@@ -42,7 +42,11 @@ the AWS Amazon S3 API.
 
 The [Exponential Backoff](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_exbackoff.html#xbcloud-exbackoff) feature was implemented in Percona XtraBackup 8.0.26-18. Suppose a chunk fails to upload or download. In that case, this feature adds an exponential backoff, or sleep, time and then retries the upload or download, which increases the chances of completing a backup or a restore operation.
 
-## Supported Cloud Storage Types
+!!! important
+
+    To prevent intermittent backup failures, [update the curl utility in Debian 10](update-curl-utility.md).
+
+## Supported cloud storage types
 
 The following cloud storage types are supported:
 
@@ -81,7 +85,7 @@ In addition to OpenStack Object Storage (Swift), which has been the only option 
 
 The following sample command creates a full backup:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ --extra-lsndirk=/storage/backups/| xbcloud \
 put [options] full_backup
 ```
@@ -90,38 +94,38 @@ An incremental backup only includes the changes since the last backup. The last 
 
 The following sample command creates an incremental backup:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream --incremental-basedir=/storage/backups \
 --target-dir=/storage/inc-backup | xbcloud  put [options] inc_backup
 ```
 
 To prepare an incremental backup, you must first download the full backup with the following command:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup get [options] full_backup | xbstream -xv -C /tmp/full-backup
 ```
 
 You must prepare the full backup:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --apply-log-only --target-dir=/tmp/full-backup
 ```
 
 After the full backup has been prepared, download the incremental backup:
 
-```text
+```
 xbcloud get [options] inc_backup | xbstream -xv -C /tmp/inc-backup
 ```
 
 The downloaded backup is prepared by running the following command:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/tmp/full-backup --incremental-dir=/tmp/inc-backup
 ```
 
 You do not need the full backup to restore only a specific database. You can specify only the tables to be restored:
 
-```text
+```shell
 xbcloud get [options] ibdata1 sakila/payment.ibd /tmp/partial/partial.xbs
 ```
 An example of the code: 
@@ -175,13 +179,13 @@ three distinct parameters (–storage, –s3-bucket, and backup name per se).
     In this example **s3** refers to a storage type, **operator-testing** 
     is a bucket name, and **bak22** is the backup name. 
 
-    ``` bash
+    ```{.bash data-prompt="$"}
     $ xbcloud get s3://operator-testing/bak22 ...
     ```
     
     This shortcut expands as follows:
 
-    ```shell
+    ```{.bash data-prompt="$"}
     $ xbcloud get --storage=s3 --s3-bucket=operator-testing bak22 ...
     ```
 
@@ -195,7 +199,7 @@ type. The `--md5` parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the `backup_name.md5`
 pattern.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream \
 --parallel=8 2>backup.log | xbcloud put s3://operator-testing/bak22 \
 --parallel=8 --md5 2>upload.log
@@ -206,7 +210,7 @@ header with the server side encryption while specifying a customer key.
 
 An example of using the ``--header`` for AES256 encryption.
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream --parallel=4 | \
 xbcloud put s3://operator-testing/bak-enc/ \
 --header="X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256" \
@@ -223,7 +227,7 @@ permissions: `--header="x-amz-acl: bucket-owner-full-control`
 First, you need to make the full backup on which the incremental one is going to
 be based:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/storage/backups/ \
 --target-dir=/storage/backups/ | xbcloud put \
 --storage=swift --swift-container=test_backup \
@@ -235,7 +239,7 @@ full_backup
 
 Then you can make the incremental backup:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --incremental-basedir=/storage/backups \
 --stream=xbstream --target-dir=/storage/inc_backup | xbcloud put \
 --storage=swift --swift-container=test_backup \
@@ -249,7 +253,7 @@ inc_backup
 
 To prepare a backup you first need to download the full backup:
 
-```shell
+```{.bash data-prompt="$"}
 $ xbcloud get --swift-container=test_backup \
 --swift-auth-version=2.0 --swift-user=admin \
 --swift-tenant=admin --swift-password=xoxoxoxo \
@@ -259,14 +263,14 @@ full_backup | xbstream -xv -C /storage/downloaded_full
 
 Once you download the full backup it should be prepared:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --apply-log-only --target-dir=/storage/downloaded_full
 ```
 
 After the full backup has been prepared you can download the incremental
 backup:
 
-```shell
+```{.bash data-prompt="$"}
 $ xbcloud get --swift-container=test_backup \
 --swift-auth-version=2.0 --swift-user=admin \
 --swift-tenant=admin --swift-password=xoxoxoxo \
@@ -276,7 +280,7 @@ inc_backup | xbstream -xv -C /storage/downloaded_inc
 
 Once the incremental backup has been downloaded you can prepare it by running:
 
-```shell
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --apply-log-only \
 --target-dir=/storage/downloaded_full \
 --incremental-dir=/storage/downloaded_inc
@@ -289,7 +293,7 @@ $ xtrabackup --prepare --target-dir=/storage/downloaded_full
 If you do not want to download the entire backup to restore the specific
 database you can specify only the tables you want to restore:
 
-```shell
+```{.bash data-prompt="$"}
 $ xbcloud get --swift-container=test_backup
 --swift-auth-version=2.0 --swift-user=admin \
 --swift-tenant=admin --swift-password=xoxoxoxo \

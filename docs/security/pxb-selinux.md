@@ -1,17 +1,18 @@
-# Working with SELinux
+# Work with SELinux
 
-*Percona XtraBackup* is installed as an unconfined process running in an undefined domain. SELinux allows unconfined processes almost all access and the processes only use Discretionary Access Control (DAC) rules.
+Percona XtraBackup is installed as an unconfined process running in an undefined domain. SELinux allows unconfined processes almost all access and the processes only use Discretionary Access Control (DAC) rules.
 
-You find the current state of the *Percona XtraBackup* file with the following command:
+You find the current state of the Percona XtraBackup file with the following command:
 
-```shell
+```{.bash data-prompt="$"}
 $ ls -Z /usr/bin | grep xtrabackup
 ```
-The results should be similar to the following:
 
-```text
--rwxr-xr-x. root root   system_u:object_r:bin_t:s0       xtrabackup
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    -rwxr-xr-x. root root   system_u:object_r:bin_t:s0       xtrabackup
+    ```
 
 The SELinux context is the following:
 
@@ -45,38 +46,42 @@ The first option opens the entire system to read and write. Select the second op
 
 To work with policies, you must install the SELinux tools. To find which package provides the `semanage` command and install the package. The following is an example on CentOS 7.
 
-> ```shell
-> $ yum provides *bin/semanage
+```{.bash data-prompt="$"}
+$ yum provides *bin/semanage
 ```
 The result should list the packages.
 
-```text
-> ...
-> policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
-> ...
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    ...
+    policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
+    ...
+    ```
 To install missing packages, run the following:
 
-```shell
-> $ sudo yum install -y policycoreutils-python
-> ```
+```{.bash data-prompt="$"}
+$ sudo yum install -y policycoreutils-python
+```
 
 The following is an example on CentOS 8:
 
-> ```shell
-> $ yum provides *bin/semanage
+```{.bash data-prompt="$"}
+$ yum provides *bin/semanage
 ```
 The result should list the missing packages.
 
-```text
-> ...
-> policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python utilities
-```
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    ...
+    policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python utilities
+    ```
 Run the following to install the missing packages: 
 
-`` shell
-> $ sudo yum install -y policycoreutils-python-utils
-> ```
+```{.bash data-prompt="$"}
+$ sudo yum install -y policycoreutils-python-utils
+```
 
 ## Create a policy
 
@@ -86,13 +91,13 @@ Use <code>$ ps -efZ | grep xtrabackup</code> to verify the service is not confin
 
 Create the `xtrabackup.fc` file and add content. This file defines the security contexts.
 
-> ```text
-> /usr/bin/xtrabackup    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
-> /usr/bin/xbcrypt    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
-> /usr/bin/xbstream    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
-> /usr/bin/xbcloud    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
-> /backups(/.*)?       system_u:object_r:xtrabackup_data_t:s0
-> ```
+```
+/usr/bin/xtrabackup    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
+/usr/bin/xbcrypt    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
+/usr/bin/xbstream    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
+/usr/bin/xbcloud    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
+/backups(/.*)?       system_u:object_r:xtrabackup_data_t:s0
+```
 
 !!! note
  
@@ -108,27 +113,27 @@ Download the `xtrabackup.te` file from the following location:
 
 Compile the policy module:
 
-> ```shell
-> $ make -f /usr/share/selinux/devel/Makefile xtrabackup.pp
-> ```
+```{.bash data-prompt="$"}
+$ make -f /usr/share/selinux/devel/Makefile xtrabackup.pp
+```
 
 Install the module:
 
-> ```shell
-> $ semodule -i xtrabackup.pp
-> ```
+```{.bash data-prompt="$"}
+$ semodule -i xtrabackup.pp
+```
 
 Tag the PXB binaries with the proper SELinux tags, such as `xtrabackup_exec_t`.
 
-> ```shell
-> $ restorecon -v /usr/bin/*
-> ```
+```{.bash data-prompt="$"}
+$ restorecon -v /usr/bin/*
+```
 
 If you store your backups at `/backups`, restore the tag in that location:
 
-> ```shell
-> $ restorecon -v /backups
-> ```
+```{.bash data-prompt="$"}
+$ restorecon -v /backups
+```
 
 !!! note
  

@@ -15,14 +15,14 @@ To start using the page tracking functionality, do the following:
 
 1. Install the `mysqlbackup` component and enable it on the server:
 
-    ```sql
+    ```{.bash data-prompt="$"}
     $ INSTALL COMPONENT "file://component_mysqlbackup";
     ```
 
 2. Check whether the `mysqlbackup` component is installed successfully:
 
-    ```sql
-    SELECT COUNT(1) FROM mysql.component WHERE component_urn='file://component_mysqlbackup';
+    ```{.bash data-prompt="$"}
+    $ SELECT COUNT(1) FROM mysql.component WHERE component_urn='file://component_mysqlbackup';
     ```
 
 ## Use page tracking
@@ -36,31 +36,34 @@ The option has the following benefits:
 
 * Allows the use of page tracking for an incremental backup if the page tracking data is available from the backup’s start checkpoint LSN.
 
-*Percona XtraBackup* processes a list of all the tracked pages in memory. If *Percona XtraBackup* does not have enough available memory to process this list, the process throws an error and exits. For example, if an incremental backup uses 200GB, *Percona XtraBackup* can use an additional 100MB of memory to process and store the page tracking data.
+*Percona XtraBackup* processes a list of all the tracked pages in memory. If *Percona XtraBackup* does not have enough available memory to process this list, the process throws an error and exits. For example, if an incremental backup uses 200GB, *Percona XtraBackup* can use an additional 100MB of memory to process and store the page tracking data. 
 
-An example of creating a full backup using the `--page-tracking` option.
+The examples of creating full and incremental backups using the `--page-tracking` option:
 
-```shell
-$ xtrabackup --backup --target-dir=$FULL_BACK --page-tracking
-```
+=== "Full backup"
 
-An example of creating an incremental backup using the `--page-tracking`
-option.
+    ```{.bash data-prompt="$"}
+    $ xtrabackup --backup --target-dir=$FULL_BACK --page-tracking
+    ```
 
-```shell
-$ xtrabackup --backup --target-dir=$INC_BACKUP  
---incremental-basedir=$FULL_BACKUP --page-tracking
-```
+=== "Incremental backup"
+
+    ```{.bash data-prompt="$"}
+    $ xtrabackup --backup --target-dir=$INC_BACKUP  
+    --incremental-basedir=$FULL_BACKUP --page-tracking
+    ```
 
 After enabling the functionality, the next incremental backup finds changed
 pages using page tracking.
 
 The first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:
 
-```text
+??? example "Expected output"
+
+    ```{.text .no-copy}
     xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
     to reach to page tracking start lsn 21353759
-```
+    ```
 
 Enable page tracking before creating the first backup to avoid this delay. This method ensures that the page tracking log sequence number (LSN) is higher than the checkpoint LSN of the server.
 
@@ -69,7 +72,7 @@ Enable page tracking before creating the first backup to avoid this delay. This 
 After the mysqlbackup component is loaded and active on the server, you can
 start page tracking manually with the following option:
 
-```sql
+```{.bash data-prompt="$"}
 $ SELECT mysqlbackup_page_track_set(true);
 ```
 
@@ -78,7 +81,7 @@ $ SELECT mysqlbackup_page_track_set(true);
 Check the LSN value starting from which changed pages are tracked with the
 following option:
 
-```sql
+```{.bash data-prompt="$"}
 $ SELECT mysqlbackup_page_track_get_start_lsn();
 ```
 
@@ -86,7 +89,7 @@ $ SELECT mysqlbackup_page_track_get_start_lsn();
 
 To stop page tracking, use the following command:
 
-```sql
+```{.bash data-prompt="$"}
 $ SELECT mysqlbackup_page_track_set(false);
 ```
 
@@ -101,7 +104,7 @@ grow until you stop the page tracking explicitly.
 If you purge the page tracking data, you should create a full backup
 afterward. To purge the page tracking data, do the following steps:
 
-```sql
+```{.bash data-prompt="$"}
 $ SELECT mysqlbackup_page_track_set(false);
 $ SELECT mysqlbackup_page_track_purge_up_to(9223372036854775807);
 /* Specify the LSN up to which you want to purge page tracking data. /
@@ -120,6 +123,6 @@ see [PS-8032](https://jira.percona.com/browse/PS-8032).
 
 To uninstall the mysqlbackup component, use the following statement:
 
-```sql
+```{.bash data-prompt="$"}
 $ UNINSTALL COMPONENT "file://component_mysqlbackup"
 ```

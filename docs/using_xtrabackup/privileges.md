@@ -1,4 +1,4 @@
-# Connection and Privileges Needed
+# Connection and privileges needed
 
 *Percona XtraBackup* needs to be able to connect to the database server and
 perform operations on the server and the datadir when creating a
@@ -25,12 +25,12 @@ user has the appropriate permissions, and you are providing the relevant options
 for connecting the database server - besides the options for the action to be
 performed - and the database user has adequate privileges.
 
-## Connecting to the server
+## Connect to the server
 
 The database user used to connect to the server and its password are specified
 by the `--user` and `--password` option:
 
-```bash
+```{.bash data-prompt="$"}
 $ xtrabackup --user=DVADER --password=14MY0URF4TH3R --backup \
 --target-dir=/data/bkps/
 ```
@@ -38,7 +38,7 @@ $ xtrabackup --user=DVADER --password=14MY0URF4TH3R --backup \
 If you don’t use the `--user` option, *Percona XtraBackup* will assume
 the database user whose name is the system user executing it.
 
-### Other Connection Options
+### Other connection options
 
 According to your system, you may need to specify one or more of the following
 options to connect to the server:
@@ -58,7 +58,7 @@ alteration, see `mysql --help` for details.
     (port, socket, host) must be specified in order for *xtrabackup* to talk to
     the correct server.
 
-## Permissions and Privileges Needed
+## Permissions and privileges needed
 
 Once connected to the server, in order to perform a backup you will need
 `READ` and `EXECUTE` permissions at a filesystem level in the
@@ -115,7 +115,7 @@ How Percona XtraBackup Works.
 An SQL example of creating a database user with the minimum privileges required
 to full backups would be:
 
-``` sql
+```{.bash data-prompt="mysql>"}
 mysql> CREATE USER 'bkpuser'@'localhost' IDENTIFIED BY 's3cr%T';
 mysql> GRANT BACKUP_ADMIN, PROCESS, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'bkpuser'@'localhost';
 mysql> GRANT SELECT ON performance_schema.log_status TO 'bkpuser'@'localhost';

@@ -1,4 +1,4 @@
-# Running Percona XtraBackup in a Docker container
+# Run Percona XtraBackup in a Docker container
 
 Docker allows you to run applications in a lightweight unit called a
 container.
@@ -15,7 +15,7 @@ Create a Docker container based on a Docker image. Docker images for
 Percona XtraBackup
 are hosted publicly on [Docker Hub](https://hub.docker.com/r/percona/percona-xtrabackup).
 
-```shell
+```{.bash data-prompt="$"}
 $ sudo docker create ... percona/percona-xtrabackup --name xtrabackup ...
 ```
 
@@ -24,7 +24,7 @@ $ sudo docker create ... percona/percona-xtrabackup --name xtrabackup ...
 This section demonstrates how to back up data
 on a Percona Server for MySQL running in another Dockers container.
 
-## Installing Docker
+## 1. Install Docker
 
 Your operating system may already provide a package for *docker*. However,
 the versions of Docker provided by your operating system are likely to be
@@ -34,7 +34,7 @@ Use the installation instructions for your operating system available from
 the
 Docker site to set up the latest version of *docker*.
 
-## Connecting to a Percona Server for MySQL container
+## 2. Connect to a Percona Server for MySQL container
 
 Percona XtraBackup works in combination with a database server. When
 running a Docker container for Percona XtraBackup, you can make
@@ -46,15 +46,13 @@ To set up a database server on a host machine or in Docker
 container, follow the documentation of the supported product that you
 intend to use with *Percona XtraBackup*.
 
-**See also:**
+!!! admontion "See also"
 
-> <a href="https://docs.docker.com/storage/volumes/">Docker volumes as 
-> container persistent data storage</a>
+    [Docker volumes as container persistent data storage](https://docs.docker.com/storage/volumes/)
 
-> <a href="https://docs.docker.com/config/containers/start-containers-automatically">More 
-> information about containers</a>
+    [More information about containers](https://docs.docker.com/config/containers/start-containers-automatically)
 
-```shell
+```{.bash data-prompt="$"}
 $ sudo docker run -d --name percona-server-mysql \
 -e MYSQL_ROOT_PASSWORD=root percona/percona-server:8.0
 ```
@@ -68,7 +66,7 @@ ready to make backups with Percona XtraBackup.
     MySQLserver container, we recommend using the –user root option in the 
     Docker command.
 
-## Creating a Docker container from Percona XtraBackup image
+## 3. Create a Docker container from Percona XtraBackup image
 
 You can create a Docker container based on Percona XtraBackup image with
 either `docker create` or the `docker run` command. `docker create`
@@ -78,7 +76,7 @@ Docker downloads the Percona XtraBackup image from the Docker Hub. If it
 is not the first time you use the selected image, Docker uses the image
 available locally.
 
-```shell
+```{.bash data-prompt="$"}
 $ sudo docker create --name percona-xtrabackup --volumes-from percona-server-mysql \
 percona/percona-xtrabackup  \
 xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup \
@@ -86,17 +84,15 @@ xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup \
 ```
 
 With parameter name you give a meaningful name to your new Docker container
-so
-that you could easily locate it among your other containers.
+so that you could easily locate it among your other containers.
 
 The `volumes-from` flag refers to Percona Server for MySQL and indicates
-that you
-intend to use the same data as the Percona Server for MySQL container.
+that you intend to use the same data as the Percona Server for MySQL container.
 
 Run the container with exactly the same parameters that were used when the
 container was created:
 
-```shell
+```{.bash data-prompt="$"}
 $ sudo docker start -ai percona-xtrabackup
 ```
 
@@ -106,7 +102,7 @@ input/output streams, and opens an interactive shell.
 The `docker run` is a shortcut command that creates a Docker container and
 then immediately runs it.
 
-```shell
+```{.bash data-prompt="$"}
 $ sudo docker run --name percona-xtrabackup --volumes-from percona-server-mysql \
 percona/percona-xtrabackup
 xtrabackup --backup --data-dir=/var/lib/mysql --target-dir=/backup --user=root --password=mysql

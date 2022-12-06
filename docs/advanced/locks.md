@@ -1,4 +1,4 @@
-# `lock-ddl-per-table` option improvements
+# lock-ddl-per-table option improvements
 
 To block DDL statements on an instance, Percona Server implemented LOCK
 TABLES FOR BACKUP. *Percona XtraBackup* uses this lock for the
@@ -36,9 +36,8 @@ These assumptions may not be correct and may lead to inconsistent backups.
 
 ## `--lock-ddl-per-table` redesign
 
-Implemented in *Percona XtraBackup* version 8.0.22-15.0, the
-`--lock-ddl-per-table` has been redesigned to minimize inconsistent
-backups.
+Implemented in *Percona XtraBackup* version 8.0.22-15.0, the `--lock-ddl-per-table` has been redesigned to minimize inconsistent backups.
+
 The following procedure reorders the steps:
 
 * The MDL lock acquired at the beginning of the backup
@@ -51,7 +50,7 @@ The following procedure reorders the steps:
 
 * Copy the `.ibd` files.
 
-## Other Improvements
+## Other improvements
 
 The following improvements have been added:
 
