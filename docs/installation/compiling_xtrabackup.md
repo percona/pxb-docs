@@ -1,4 +1,4 @@
-# Compile and install from source code
+# Compile and install Percona XtraBackup from source code
 
 The source code is available from the [*Percona XtraBackup GitHub* project](https://github.com/percona/percona-xtrabackup). The easiest way to get the code is by using the **git clone** command. Then, switch to the release branch that you want to install, such as **8.0**.
 
