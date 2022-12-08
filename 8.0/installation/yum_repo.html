@@ -22,7 +22,7 @@
     
     
       
-        <title>Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS - Percona XtraBackup</title>
+        <title>Use a YUM repo to install Percona XtraBackup - Percona XtraBackup</title>
       
     
     
@@ -111,7 +111,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#install-percona-xtrabackup-on-red-hat-enterprise-linux-and-centos" class="md-skip">
+        <a href="#use-a-yum-repo-to-install-percona-xtrabackup" class="md-skip">
           Skip to content
         </a>
       
@@ -145,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+              Use a YUM repo to install Percona XtraBackup
             
           </span>
         </div>
@@ -409,7 +409,7 @@
   
     <li class="md-nav__item">
       <a href="apt_repo.html" class="md-nav__link">
-        Install Percona XtraBackup on Debian and Ubuntu
+        Use an APT repo to install Percona XtraBackup
       </a>
     </li>
   
@@ -432,12 +432,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+          Use a YUM repo to install Percona XtraBackup
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="yum_repo.html" class="md-nav__link md-nav__link--active">
-        Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+        Use a YUM repo to install Percona XtraBackup
       </a>
       
         
@@ -456,13 +456,6 @@
       On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#whats-in-each-rpm-package" class="md-nav__link">
-    What’s in each RPM package?
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#install-percona-xtrabackup-from-percona-yum-repository" class="md-nav__link">
@@ -486,8 +479,8 @@
   
   
     <li class="md-nav__item">
-      <a href="install-with-package-manager.html" class="md-nav__link">
-        Install with package manager
+      <a href="deb-rpm-packages.html" class="md-nav__link">
+        Use DEB or RPM downloaded packages to install Percona XtraBackup
       </a>
     </li>
   
@@ -515,7 +508,21 @@
   
     <li class="md-nav__item">
       <a href="compiling_xtrabackup.html" class="md-nav__link">
-        Compile and install from source code
+        Compile and install Percona XtraBackup from source code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="what-is-in-packages.html" class="md-nav__link">
+        What’s in the packages
       </a>
     </li>
   
@@ -1924,13 +1931,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#whats-in-each-rpm-package" class="md-nav__link">
-    What’s in each RPM package?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#install-percona-xtrabackup-from-percona-yum-repository" class="md-nav__link">
     Install Percona XtraBackup from Percona yum repository
   </a>
@@ -1978,39 +1978,12 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="install-percona-xtrabackup-on-red-hat-enterprise-linux-and-centos">Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS<a class="headerlink" href="#install-percona-xtrabackup-on-red-hat-enterprise-linux-and-centos" title="Permanent link">&para;</a></h1>
+                <h1 id="use-a-yum-repo-to-install-percona-xtrabackup">Use a YUM repo to install Percona XtraBackup<a class="headerlink" href="#use-a-yum-repo-to-install-percona-xtrabackup" title="Permanent link">&para;</a></h1>
 <p>Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the <a href="https://www.percona.com/downloads/XtraBackup/">download page</a>. The Percona yum repository supports popular <code>RPM</code>-based operating systems, including the <code>Amazon Linux AMI</code>.</p>
-<p>The easiest way to install the Percona Yum repository is to install an <code>RPM</code>
-that configures yum and installs the <a href="https://www.percona.com/downloads/RPM-GPG-KEY-percona">Percona GPG key</a>.</p>
+<p>The easiest way to install the Percona Yum repository is to install an <code>RPM</code> that configures yum and installs the <a href="https://www.percona.com/downloads/RPM-GPG-KEY-percona">Percona GPG key</a>.</p>
 <p>Specific information on the supported platforms, products, and versions is described in <a href="https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql">Percona Software and Platform Lifecycle</a>.</p>
-<h2 id="whats-in-each-rpm-package">What’s in each RPM package?<a class="headerlink" href="#whats-in-each-rpm-package" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Package</th>
-<th>Contains</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>percona-xtrabackup-80</td>
-<td>The latest Percona XtraBackup GA binaries and associated files</td>
-</tr>
-<tr>
-<td>percona-xtrabackup-80-debuginfo</td>
-<td>The debug symbols for binaries in percona-xtrabackup-80</td>
-</tr>
-<tr>
-<td>percona-xtrabackup-test-80</td>
-<td>The test suite for Percona XtraBackup</td>
-</tr>
-<tr>
-<td>percona-xtrabackup</td>
-<td>The older version of the Percona XtraBackup</td>
-</tr>
-</tbody>
-</table>
+<p>To check what data each <code>RPM</code> package contains, see <a href="what-is-in-packages.html">What’s in the packages</a>.</p>
 <h2 id="install-percona-xtrabackup-from-percona-yum-repository">Install Percona XtraBackup from Percona <code>yum</code> repository<a class="headerlink" href="#install-percona-xtrabackup-from-percona-yum-repository" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -2051,7 +2024,7 @@ the upstream MySQL Server, you only need to enable the `tools repository: </p>
 </ol>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
-<p>To install Percona XtraBackup using downloaded rpm packages, see <a href="install-with-package-manager.html">Install with package manager</a>.</p>
+<p>To install Percona XtraBackup using downloaded rpm packages, see <a href="deb-rpm-packages.html">Install with package manager</a>.</p>
 <p>To uninstall Percona XtraBackup, see <a href="uninstall-percona-xtrabackup.html">Uninstall Percona XtraBackup</a> </p>
 </div>
 
@@ -2075,7 +2048,7 @@ the upstream MySQL Server, you only need to enable the `tools repository: </p>
   <small>
     
       Last update:
-      2022-12-06
+      2022-12-08
     
   </small>
 </div>
@@ -2103,7 +2076,7 @@ the upstream MySQL Server, you only need to enable the `tools repository: </p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="apt_repo.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Install Percona XtraBackup on Debian and Ubuntu" rel="prev">
+        <a href="apt_repo.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Use an APT repo to install Percona XtraBackup" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2112,20 +2085,20 @@ the upstream MySQL Server, you only need to enable the `tools repository: </p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Install Percona XtraBackup on Debian and Ubuntu
+              Use an APT repo to install Percona XtraBackup
             </div>
           </div>
         </a>
       
       
         
-        <a href="install-with-package-manager.html" class="md-footer__link md-footer__link--next" aria-label="Next: Install with package manager" rel="next">
+        <a href="deb-rpm-packages.html" class="md-footer__link md-footer__link--next" aria-label="Next: Use DEB or RPM downloaded packages to install Percona XtraBackup" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Install with package manager
+              Use DEB or RPM downloaded packages to install Percona XtraBackup
             </div>
           </div>
           <div class="md-footer__button md-icon">
