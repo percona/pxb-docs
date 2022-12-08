@@ -1,4 +1,4 @@
-# Install Percona XtraBackup on Debian and Ubuntu
+# Use an APT repo to install Percona XtraBackup
 
 Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [download page](https://www.percona.com/downloads/XtraBackup/).
@@ -6,25 +6,18 @@ repositories and the [download page](https://www.percona.com/downloads/XtraBacku
 Specific information on the supported platforms, products, and versions is
 described in [Percona Release Lifecycle Overview](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
 
+To check what data each `DEB` package contains, see [What’s in the packages](what-is-in-packages.md).
+
 !!! important
 
     To prevent intermittent backup failures, [update the curl utility in Debian 10](../xbcloud/update-curl-utility.md).
-
-## What’s in each DEB package?
-
-|Package|Contains|
-|--- |--- |
-|percona-xtrabackup-80|The latest Percona XtraBackup GA binaries and associated files|
-|percona-xtrabackup-dbg-80|The debug symbols for binaries in `percona-xtrabackup-80`|
-|percona-xtrabackup-test-80|The test suite for Percona XtraBackup|
-|percona-xtrabackup|The older version of the Percona XtraBackup|
 
 ## Install Percona XtraBackup through percona-release
 
 Percona XtraBackup, like many other Percona products, is installed
 with the *percona-release* package configuration tool.
 
-1. Download a deb package for *percona-release* the repository packages
+1. Download a `DEB` package for *percona-release* the repository packages
     from Percona web:
 
     ```{.bash data-prompt="$"}
@@ -85,7 +78,7 @@ For more information about the pinning, check the official [debian wiki](http://
 
 !!! admonition "See also"
 
-    To install Percona XtraBackup using downloaded deb packages, see [Install with package manager](install-with-package-manager.md).
+    To install Percona XtraBackup using downloaded deb packages, see [Install with package manager](deb-rpm-packages.md).
 
     To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup](uninstall-percona-xtrabackup.md)
 

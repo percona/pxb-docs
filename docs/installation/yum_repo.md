@@ -1,21 +1,13 @@
-# Install Percona XtraBackup on Red Hat Enterprise Linux and CentOS
+# Use a YUM repo to install Percona XtraBackup
 
 Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [download page](https://www.percona.com/downloads/XtraBackup/). The Percona yum repository supports popular `RPM`-based operating systems, including the `Amazon Linux AMI`.
 
-The easiest way to install the Percona Yum repository is to install an `RPM`
-that configures yum and installs the [Percona GPG key](https://www.percona.com/downloads/RPM-GPG-KEY-percona).
+The easiest way to install the Percona Yum repository is to install an `RPM` that configures yum and installs the [Percona GPG key](https://www.percona.com/downloads/RPM-GPG-KEY-percona).
 
 Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
 
-## What’s in each RPM package?
-
-|Package|Contains|
-|--- |--- |
-|percona-xtrabackup-80|The latest Percona XtraBackup GA binaries and associated files|
-|percona-xtrabackup-80-debuginfo|The debug symbols for binaries in percona-xtrabackup-80|
-|percona-xtrabackup-test-80|The test suite for Percona XtraBackup|
-|percona-xtrabackup|The older version of the Percona XtraBackup|
+To check what data each `RPM` package contains, see [What’s in the packages](what-is-in-packages.md).
 
 ## Install Percona XtraBackup from Percona `yum` repository
 
@@ -64,7 +56,7 @@ Specific information on the supported platforms, products, and versions is descr
 
 !!! admonition "See also"
 
-    To install Percona XtraBackup using downloaded rpm packages, see [Install with package manager](install-with-package-manager.md).
+    To install Percona XtraBackup using downloaded rpm packages, see [Install with package manager](deb-rpm-packages.md).
 
     To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup](uninstall-percona-xtrabackup.md) 
 

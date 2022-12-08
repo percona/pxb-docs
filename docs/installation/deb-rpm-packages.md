@@ -1,10 +1,10 @@
-# Install with package manager
+# Use DEB or RPM downloaded packages to install Percona XtraBackup
 
-This document demonstrates how to install Percona XtraBackup using downloaded packages.
+This document demonstrates how to install Percona XtraBackup using `DEB` or `RPM` downloaded packages.
 
 === "On Debian / Ubuntu"
 
-    Download deb packages of the desired series for your architecture
+    Download `DEB` packages of the desired series for your architecture
     from [Download Percona XtraBackup 8.0](https://www.percona.com/downloads/XtraBackup/). The following
     example downloads *Percona XtraBackup* 8.0.26-18 release package for Ubuntu
     20.04:
@@ -24,7 +24,7 @@ This document demonstrates how to install Percona XtraBackup using downloaded pa
 
 === "On Red Hat Enterprise Linux / CentOS"
 
-    Download rpm packages of the desired series for your architecture from the
+    Download `RPM` packages of the desired series for your architecture from the
     [download page](https://www.percona.com/downloads/XtraBackup/). The following
     example downloads *Percona XtraBackup* 8.0.4 release package for *CentOS* 7:
 
