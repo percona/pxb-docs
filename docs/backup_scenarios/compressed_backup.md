@@ -31,17 +31,17 @@ Percona XtraBackup supports the following compression algorithms:
     
 To compress files using the `quicklz` compression algorithm, use `--compress` option:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress --target-dir=/data/backup
-    ```
+```{.bash data-prompt="$"}
+$ xtrabackup --backup --compress --target-dir=/data/backup
+```
 
 `lz4`
 
 To compress files using the `lz4` compression algorithm, set `--compress` option to `lz4`:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
-    ```
+```{.bash data-prompt="$"}
+$ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
+```
 
 `Zstandard (ZSTD)`
 
@@ -51,15 +51,15 @@ The Zstandard (ZSTD) compression algorithm is a [tech preview](../glossary.md#te
     
 To compress files using the `ZSTD` compression algorithm, set `--compress` option to `zstd`:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress=zstd --target-dir=/data/backup
-    ```
+```{.bash data-prompt="$"}
+$ xtrabackup --backup --compress=zstd --target-dir=/data/backup
+```
    
 You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](../xtrabackup_bin/xbk_option_reference.md#compress-zstd-level) option. The default value is `1`.
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
-    ```
+```{.bash data-prompt="$"}
+$ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
+```
 
 If you want to speed up the compression you can use the parallel
 compression, which can be enabled with `--compress-threads` option.

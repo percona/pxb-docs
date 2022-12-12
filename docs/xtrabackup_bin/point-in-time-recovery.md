@@ -72,7 +72,7 @@ $ cat /path/to/backup/xtrabackup_binlog_info
 
     ```{.text .no-copy}
     mysql-bin.000003      57
-   ```
+    ```
 
 This will tell you which file was used at moment of the backup for the binary
 log and its position. That position will be the effective one when you restore
