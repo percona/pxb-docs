@@ -2109,12 +2109,12 @@ in your distribution as a separate package <code>cmake3</code>. For more informa
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>sudo apt install bison pkg-config cmake devscripts debconf <span class="se">\</span>
-debhelper automake bison ca-certificates libprocps-dev<span class="se">\</span>
+debhelper automake bison ca-certificates libprocps-dev <span class="se">\</span>
 libcurl4-openssl-dev cmake debhelper libaio-dev <span class="se">\</span>
-libncurses-devlibssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev <span class="se">\</span>
-lsb-release python-docutils build-essential rsync <span class="se">\</span>
-libdbd-mysql-perl libnuma1 socat librtmp-dev libtinfo5 <span class="se">\</span>
-qpress liblz4-tool liblz4-1 liblz4-dev zstd vim-common
+libncurses-dev libssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev <span class="se">\</span>
+lsb-release build-essential rsync libdbd-mysql-perl <span class="se">\</span>
+libnuma1 socat librtmp-dev libtinfo5 vim-common <span class="se">\</span>
+liblz4-tool liblz4-1 liblz4-dev zstd python-docutils qpress
 </code></pre></div>
 <p>To install the man pages, install the python3-sphinx package first:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$ sudo apt install python3-sphinx
@@ -2205,7 +2205,10 @@ need to remove the <code>-DWITH_MAN_PAGES=OFF</code> from previous command.</p>
 </li>
 <li>
 <p>Run the <code>make</code> command. This command may take a long time to complete.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$ make
+<p><div class="highlight" data-prompt="$"><pre><span></span><code>$ make
+</code></pre></div>
+   To use all CPU threads and make compilation faster please use:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$ make -j<span class="k">$(</span>nproc --all<span class="k">)</span>
 </code></pre></div>
 </li>
 </ol>
@@ -2269,7 +2272,7 @@ the locations listed in your <code>PATH</code> environment variable.</p>
   <small>
     
       Last update:
-      2022-12-08
+      2022-12-16
     
   </small>
 </div>
