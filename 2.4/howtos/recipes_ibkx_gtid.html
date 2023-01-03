@@ -17,8 +17,10 @@
       
         <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/2.4/2.4/howtos/recipes_ibkx_gtid.html">
       
+      
+      
       <link rel="icon" href="../_static/percona_favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
     
     
       
@@ -26,11 +28,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.3bd4f189.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -110,7 +111,7 @@
     
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
+  <nav class="md-header__inner md-grid" aria-label="">
     <a href="https://percona.com/software/documentation" class="md-header__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
   <img src="../_static/percona-logo.svg" alt="logo">
@@ -160,39 +161,6 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header__source">
         <a href="https://github.com/percona/pxb-docs" title="Go to repository" class="md-source" data-md-component="source">
@@ -227,7 +195,7 @@
                     
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../index.html" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
@@ -1594,7 +1562,7 @@
                 
                   <a
                     href="https://github.com/percona/pxb-docs/edit/2.4/docs/howtos/recipes_ibkx_gtid.md"
-                    title="Edit this page"
+                    title=""
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
@@ -1618,11 +1586,11 @@ information can be used to create a new (or repair a broken) <code>GTID</code> b
 replica.</p>
 <h2 id="step-1-take-a-backup-from-any-server-on-the-replication-environment-source-or-replica">STEP 1: Take a backup from any server on the replication environment, source or replica.<a class="headerlink" href="#step-1-take-a-backup-from-any-server-on-the-replication-environment-source-or-replica" title="Permanent link">&para;</a></h2>
 <p>The following command takes a backup and saves it in the /data/backups/$TIMESTAMP folder:</p>
-<div class="highlight"><pre><span></span><code>$ innobackupex /data/backups/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>innobackupex<span class="w"> </span>/data/backups/
 </code></pre></div>
 <p>In the destination folder, there will be a file with the name
 <code>xtrabackup_binlog_info</code>. This file contains both binary log coordinates and the <code>GTID</code> information.</p>
-<div class="highlight"><pre><span></span><code>$ cat xtrabackup_binlog_info
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>xtrabackup_binlog_info
 </code></pre></div>
 <p>The results should be similar to the following:</p>
 <div class="highlight"><pre><span></span><code>mysql-bin.000002    1232     c777888a-b6df-11e2-a604-080027635ef5:1-4
@@ -1632,7 +1600,7 @@ replica.</p>
 </code></pre></div>
 <h3 id="step-2-prepare-the-backup">STEP 2: Prepare the backup<a class="headerlink" href="#step-2-prepare-the-backup" title="Permanent link">&para;</a></h3>
 <p>The backup will be prepared with the following command:</p>
-<div class="highlight"><pre><span></span><code>TheMaster$ innobackupex --apply-log /data/backups/<span class="nv">$TIMESTAMP</span>/
+<div class="highlight"><pre><span></span><code>TheMaster$<span class="w"> </span>innobackupex<span class="w"> </span>--apply-log<span class="w"> </span>/data/backups/<span class="nv">$TIMESTAMP</span>/
 </code></pre></div>
 <p>You need to select the path where your snapshot has been taken, for example
 <code>/data/backups/2013-05-07_08-33-33</code>. If everything is ok you should get the
@@ -1642,26 +1610,26 @@ ones are created: your data files are ready to be used by the MySQL server.</p>
 <p>Use <code>rsync</code> or <code>scp</code> to copy the data to the destination
 server. If you are synchronizing the data directly to the already running replica’s data
 directory it is advised to stop the <em>MySQL</em> server there.</p>
-<div class="highlight"><pre><span></span><code>$ rsync -avprP -e ssh /path/to/backupdir/<span class="nv">$TIMESTAMP</span> NewSlave:/path/to/mysql/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>rsync<span class="w"> </span>-avprP<span class="w"> </span>-e<span class="w"> </span>ssh<span class="w"> </span>/path/to/backupdir/<span class="nv">$TIMESTAMP</span><span class="w"> </span>NewSlave:/path/to/mysql/
 </code></pre></div>
 <p>After you copy the data over, make sure <em>MySQL</em> has proper permissions to access them.</p>
-<div class="highlight"><pre><span></span><code>$ chown mysql:mysql /path/to/mysql/datadir
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>chown<span class="w"> </span>mysql:mysql<span class="w"> </span>/path/to/mysql/datadir
 </code></pre></div>
 <h3 id="step-4-configure-and-start-replication">STEP 4: Configure and start replication<a class="headerlink" href="#step-4-configure-and-start-replication" title="Permanent link">&para;</a></h3>
 <p>Set the gtid_purged variable to the <code>GTID</code> from
 <code>xtrabackup_binlog_info</code>. Then, update the information about the
 source node and, finally, start the replica.</p>
-<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="w"> </span><span class="k">Using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="n">shell</span><span class="w"></span>
-<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">RESET</span><span class="w"> </span><span class="n">MASTER</span><span class="p">;</span><span class="w"></span>
-<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">gtid_purged</span><span class="o">=</span><span class="s1">&#39;&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"></span>
-<span class="w">             </span><span class="n">MASTER_HOST</span><span class="o">=</span><span class="ss">&quot;$masterip&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">             </span><span class="n">MASTER_USER</span><span class="o">=</span><span class="ss">&quot;repl&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">             </span><span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="ss">&quot;$slavepass&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">             </span><span class="n">MASTER_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="n">SLAVE</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="w"> </span><span class="k">Using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="n">shell</span>
+<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">RESET</span><span class="w"> </span><span class="n">MASTER</span><span class="p">;</span>
+<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">gtid_purged</span><span class="o">=</span><span class="s1">&#39;&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;&#39;</span><span class="p">;</span>
+<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span>
+<span class="w">             </span><span class="n">MASTER_HOST</span><span class="o">=</span><span class="ss">&quot;$masterip&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="n">MASTER_USER</span><span class="o">=</span><span class="ss">&quot;repl&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="ss">&quot;$slavepass&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="n">MASTER_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">NewSlave</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="n">SLAVE</span><span class="p">;</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1669,7 +1637,7 @@ source node and, finally, start the replica.</p>
 </div>
 <h3 id="step-5-check-the-replication-status">STEP 5: Check the replication status<a class="headerlink" href="#step-5-check-the-replication-status" title="Permanent link">&para;</a></h3>
 <p>Following command will show the replica status:</p>
-<p><div class="highlight"><pre><span></span><code>NewSlave &gt; SHOW SLAVE STATUS<span class="se">\G</span>
+<p><div class="highlight"><pre><span></span><code>NewSlave<span class="w"> </span>&gt;<span class="w"> </span>SHOW<span class="w"> </span>SLAVE<span class="w"> </span>STATUS<span class="se">\G</span>
 </code></pre></div>
 The results should be similar to as follows:</p>
 <div class="highlight"><pre><span></span><code>Slave_IO_Running: Yes
@@ -1751,14 +1719,13 @@ transactions from 1 to 5 are already on this replica.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
-    
     
   </body>
 </html>

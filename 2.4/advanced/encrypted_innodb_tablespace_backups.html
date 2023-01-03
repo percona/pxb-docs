@@ -17,8 +17,14 @@
       
         <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/2.4/2.4/advanced/encrypted_innodb_tablespace_backups.html">
       
+      
+        <link rel="prev" href="lockless_bin-log.html">
+      
+      
+        <link rel="next" href="locks.html">
+      
       <link rel="icon" href="../_static/percona_favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
     
     
       
@@ -26,11 +32,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.3bd4f189.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -110,7 +115,7 @@
     
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
+  <nav class="md-header__inner md-grid" aria-label="">
     <a href="https://percona.com/software/documentation" class="md-header__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
   <img src="../_static/percona-logo.svg" alt="logo">
@@ -160,39 +165,6 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header__source">
         <a href="https://github.com/percona/pxb-docs" title="Go to repository" class="md-source" data-md-component="source">
@@ -227,7 +199,7 @@
                     
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../index.html" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
@@ -1945,7 +1917,7 @@
                 
                   <a
                     href="https://github.com/percona/pxb-docs/edit/2.4/docs/advanced/encrypted_innodb_tablespace_backups.md"
-                    title="Edit this page"
+                    title=""
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
@@ -1980,13 +1952,13 @@ encrypted tablespaces.</p>
 <p>In order to backup and prepare database containing encrypted InnoDB tablespaces,
 you must specify the path to keyring file by using the <code>xtrabackup
 --keyring-file-data</code> option.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup/ --user<span class="o">=</span>root <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>With <em>MySQL</em> prior to 5.7.13, use <code>xtrabackup --server-id</code> in the backup
 creation command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup/ --user<span class="o">=</span>root <span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring --server-id<span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span><span class="se">\</span>
+--keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring<span class="w"> </span>--server-id<span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>After xtrabackup is finished taking the backup you should see the following
 message:</p>
@@ -2001,7 +1973,7 @@ message:</p>
 <p>In order to prepare the backup you’ll need to specify the keyring-file-data
 (server-id is stored in <code>backup-my.cnf</code> file, so it can be omitted when
 preparing the backup, regardless of the <em>MySQL</em> version used).</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>After xtrabackup is finished preparing the backup you should see the following
@@ -2018,7 +1990,7 @@ implemented in <em>Percona XtraBackup</em> 2.4.11.  Keyring vault plugin setting
 described <a href="https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html">here</a>.</p>
 <h3 id="creating-backup_1">Creating Backup<a class="headerlink" href="#creating-backup_1" title="Permanent link">&para;</a></h3>
 <p>The following command creates a backup in the <code>/data/backup</code> directory:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backup --user<span class="o">=</span>root
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--user<span class="o">=</span>root
 </code></pre></div>
 <p>After xtrabackup completes taking the backup you should see the following
 message:</p>
@@ -2030,7 +2002,7 @@ message:</p>
 Since xtrabackup doesn’t talk to MySQL server and doesn’t read default
 <code>my.cnf</code> configuration file during prepare, user will need to specify keyring
 settings via the command line:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 <div class="admonition admonition">
@@ -2044,7 +2016,7 @@ message:</p>
 </code></pre></div>
 <p>The backup is now prepared and can be restored with <code>xtrabackup
 --copy-back</code> option:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
 </code></pre></div>
 <h2 id="incremental-encrypted-innodb-tablespace-backups-with-keyring_file">Incremental Encrypted InnoDB Tablespace Backups with <code>keyring_file</code><a class="headerlink" href="#incremental-encrypted-innodb-tablespace-backups-with-keyring_file" title="Permanent link">&para;</a></h2>
 <p>The process of taking incremental backups with InnoDB tablespace encryption is
@@ -2055,7 +2027,7 @@ writes a file called <code>xtrabackup_checkpoints</code> into the backup’s tar
 directory. This file contains a line showing the <code>to_lsn</code>, which is the
 database’s <code>LSN</code> at the end of the backup. First you need to create a full
 backup with the following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition warning">
@@ -2072,8 +2044,8 @@ compact = 0
 recover_binlog_info = 1
 </code></pre></div>
 <p>Now that you have a full backup, you can make an incremental backup based on it. Use a command such as the following:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/base <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
+--incremental-basedir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition warning">
@@ -2094,8 +2066,8 @@ recover_binlog_info = 1
 </code></pre></div>
 <p>The meaning should be self-evident. It’s now possible to use this directory as
 the base for yet another incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --target-dir<span class="o">=</span>/data/backups/inc2 <span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
+--incremental-basedir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <h3 id="preparing-the-incremental-backups">Preparing the Incremental Backups<a class="headerlink" href="#preparing-the-incremental-backups" title="Permanent link">&para;</a></h3>
@@ -2112,7 +2084,7 @@ as for normal backups. In normal backups, two types of operations are performed 
 </code></pre></div>
 <p>To prepare the base backup, you need to run <code>xtrabackup --prepare</code> as
 usual, but prevent the rollback phase:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>The output should end with some text such as the following:</p>
@@ -2121,8 +2093,8 @@ InnoDB: Number of pools: 1
 160401 12:31:11 completed OK!
 </code></pre></div>
 <p>To apply the first incremental backup to the full backup, you should use the following command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --apply-log-only --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc1 <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition warning">
@@ -2130,8 +2102,8 @@ InnoDB: Number of pools: 1
 <p>Backup should be prepared with the keyring that was used when backup was being taken. This means that if the keyring has been rotated between the base and incremental backup that you’ll need to use the keyring that was in use when the first incremental backup has been taken.</p>
 </div>
 <p>Preparing the second incremental backup is a similar process: apply the deltas to the (modified) base backup, and you will roll its data forward in time to the point of the second incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backups/base <span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc2 <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <div class="admonition note">
@@ -2145,7 +2117,7 @@ InnoDB: Number of pools: 1
 <p>A <code>xtrabackup --transition-key</code> should be used to make it possible for xtrabackup to process the backup without access to the keyring vault server. In this case xtrabackup will derive AES encryption key from specified passphrase and will use it to encrypt tablespace keys of tablespaces being backed up.</p>
 <h3 id="creating-the-backup-with-a-passphrase">Creating the Backup with a Passphrase<a class="headerlink" href="#creating-the-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The following example illustrates how a backup can be created in this case:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --user<span class="o">=</span>root -p --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey
 </code></pre></div>
 <p>If <code>xtrabackup --transition-key</code> is specified without a value, xtrabackup will ask for it.</p>
@@ -2155,7 +2127,7 @@ InnoDB: Number of pools: 1
 </div>
 <h3 id="preparing-the-backup-with-a-passphrase">Preparing the Backup with a Passphrase<a class="headerlink" href="#preparing-the-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The same passphrase should be specified for the <code>prepare</code> command:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey
 </code></pre></div>
 <p>There is no <code>keyring-vault</code> or <code>keyring-file</code> here, because xtrabackup
@@ -2163,13 +2135,13 @@ does not talk to the keyring in this case.</p>
 <h3 id="restoring-the-backup-with-a-generated-key">Restoring the Backup with a Generated Key<a class="headerlink" href="#restoring-the-backup-with-a-generated-key" title="Permanent link">&para;</a></h3>
 <p>When restoring a backup you will need to generate new master key. Here is the
 example for <code>keyring_file</code>:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
---transition-key<span class="o">=</span>MySecetKey --generate-new-master-key <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+--transition-key<span class="o">=</span>MySecetKey<span class="w"> </span>--generate-new-master-key<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>In case of <code>keyring_vault</code> it will look like this:</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
---transition-key<span class="o">=</span>MySecetKey --generate-new-master-key <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+--transition-key<span class="o">=</span>MySecetKey<span class="w"> </span>--generate-new-master-key<span class="w"> </span><span class="se">\</span>
 --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 <p>xtrabackup will generate new master key, store it into target keyring vault
@@ -2181,26 +2153,26 @@ prepare and copy-back, but does not depend on whether the server keys have been
 purged.</p>
 <p>The three stages of the backup process are the following:</p>
 <h3 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --user<span class="o">=</span>root -p --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --generate-transition-key
 </code></pre></div>
 <h3 id="prepare">Prepare<a class="headerlink" href="#prepare" title="Permanent link">&para;</a></h3>
 <h3 id="keyring_file-variant"><code>keyring_file</code> variant<a class="headerlink" href="#keyring_file-variant" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <h3 id="keyring_vault-variant"><code>keyring_vault</code> variant<a class="headerlink" href="#keyring_vault-variant" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --prepare --target-dir<span class="o">=</span>/data/backup <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 <h3 id="copy-back">Copy-back<a class="headerlink" href="#copy-back" title="Permanent link">&para;</a></h3>
 <h3 id="keyring_file-variant_1"><code>keyring_file</code> variant<a class="headerlink" href="#keyring_file-variant_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
---generate-new-master-key --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+--generate-new-master-key<span class="w"> </span>--keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <h3 id="keyring_vault-variant_1"><code>keyring_vault</code> variant<a class="headerlink" href="#keyring_vault-variant_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --copy-back --target-dir<span class="o">=</span>/data/backup --datadir<span class="o">=</span>/data/mysql <span class="se">\</span>
---generate-new-master-key --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+--generate-new-master-key<span class="w"> </span>--keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 
                 
@@ -2247,42 +2219,6 @@ purged.</p>
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="lockless_bin-log.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lockless binary log information" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Lockless binary log information
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="locks.html" class="md-footer__link md-footer__link--next" aria-label="Next: `lock-ddl-per-table` Option Improvements" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              `lock-ddl-per-table` Option Improvements
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -2308,14 +2244,13 @@ purged.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
-    
     
   </body>
 </html>

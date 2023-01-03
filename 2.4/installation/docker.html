@@ -17,8 +17,14 @@
       
         <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/2.4/2.4/installation/docker.html">
       
+      
+        <link rel="prev" href="compiling_xtrabackup.html">
+      
+      
+        <link rel="next" href="../using_xtrabackup/privileges.html">
+      
       <link rel="icon" href="../_static/percona_favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
     
     
       
@@ -26,11 +32,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.3bd4f189.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -110,7 +115,7 @@
     
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
+  <nav class="md-header__inner md-grid" aria-label="">
     <a href="https://percona.com/software/documentation" class="md-header__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
   <img src="../_static/percona-logo.svg" alt="logo">
@@ -160,39 +165,6 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header__source">
         <a href="https://github.com/percona/pxb-docs" title="Go to repository" class="md-source" data-md-component="source">
@@ -227,7 +199,7 @@
                     
 
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../index.html" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
@@ -1647,7 +1619,7 @@
                 
                   <a
                     href="https://github.com/percona/pxb-docs/edit/2.4/docs/installation/docker.md"
-                    title="Edit this page"
+                    title=""
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
@@ -1674,7 +1646,7 @@ configurations where each program runs in a separate container. You may run
 <em>Percona Server for MySQL</em> in one container and <em>Percona XtraBackup</em> in another. Docker images offer a range of options.</p>
 <p>Create a Docker container based on a Docker image. Docker images for Percona XtraBackup
 are hosted publicly on Docker Hub at <code>percona/percona-xtrabackup</code>.</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker create ... percona/percona-xtrabackup --name xtrabackup ...
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>...<span class="w"> </span>percona/percona-xtrabackup<span class="w"> </span>--name<span class="w"> </span>xtrabackup<span class="w"> </span>...
 </code></pre></div>
 <h3 id="scope-of-this-section">Scope of this section<a class="headerlink" href="#scope-of-this-section" title="Permanent link">&para;</a></h3>
 <p>This section demonstrates how to backup data
@@ -1706,8 +1678,8 @@ intend to use with Percona XtraBackup.</p>
   * <a href="https://www.percona.com/doc/percona-server/5.7/installation.html">Installing on a host machine</a>
   * <a href="https://www.percona.com/doc/percona-server/5.7/installation/docker.html">Running in a Docker container</a></p>
 </div>
-<div class="highlight"><pre><span></span><code>$ sudo docker run -d --name percona-server-mysql-5.7 <span class="se">\</span>
--e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root percona/percona-server:5.7
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>percona-server-mysql-5.7<span class="w"> </span><span class="se">\</span>
+-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root<span class="w"> </span>percona/percona-server:5.7
 </code></pre></div>
 <p>As soon as Percona Server for MySQL runs, add some data to it. Now, you are
 ready to make backups with Percona XtraBackup.</p>
@@ -1717,24 +1689,24 @@ either <strong>docker create</strong> or <strong>docker run</strong> command. <s
 creates a Docker container and makes it available for starting later.</p>
 <p>Docker downloads the Percona XtraBackup image from the Docker Hub. If it
 is not the first time you use the selected image, Docker uses the image available locally.</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker create --name percona-xtrabackup-2.4 --volumes-from percona-server-mysql-5.7 <span class="se">\</span>
-percona/percona-xtrabackup:2.4  <span class="se">\</span>
-xtrabackup --backup --datadir<span class="o">=</span>/var/lib/mysql/ --target-dir<span class="o">=</span>/backup <span class="se">\</span>
---user<span class="o">=</span>root --password<span class="o">=</span>mysql
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup-2.4<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql-5.7<span class="w"> </span><span class="se">\</span>
+percona/percona-xtrabackup:2.4<span class="w">  </span><span class="se">\</span>
+xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql/<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span><span class="se">\</span>
+--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>mysql
 </code></pre></div>
 <p>With <code>--name</code> you give a meaningful name to your new Docker container so
 that you could easily locate it among your other containers.</p>
 <p>The <code>--volumes-from</code> referring to <em>percona-server-mysql</em> indicates that you
 indend to use the same data as the <em>percona-server-mysql</em> container.</p>
 <p>Run the container with exactly the same parameters that were used when the container was created:</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker start -ai percona-xtrabackup-2.4
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>percona-xtrabackup-2.4
 </code></pre></div>
 <p>This command starts the <em>percona-xtrabackup</em> container, attaches to its
 input/output streams, and opens an interactive shell.</p>
 <p>The <strong>docker run</strong> is a shortcut command that creates a Docker container and then immediately runs it.</p>
-<div class="highlight"><pre><span></span><code>$ sudo docker run --name percona-xtrabackup-2.4 --volumes-from percona-server-mysql-5.7 <span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup-2.4<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql-5.7<span class="w"> </span><span class="se">\</span>
 percona/percona-xtrabackup:2.4
-xtrabackup --backup --data-dir<span class="o">=</span>/var/lib/mysql --target-dir<span class="o">=</span>/backup --user<span class="o">=</span>root --password<span class="o">=</span>mysql
+xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--data-dir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>mysql
 </code></pre></div>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
@@ -1787,42 +1759,6 @@ xtrabackup --backup --data-dir<span class="o">=</span>/var/lib/mysql --target-di
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="compiling_xtrabackup.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Compiling and Installing from Source Code" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Compiling and Installing from Source Code
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../using_xtrabackup/privileges.html" class="md-footer__link md-footer__link--next" aria-label="Next: Connection and Privileges Needed" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Connection and Privileges Needed
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -1848,14 +1784,13 @@ xtrabackup --backup --data-dir<span class="o">=</span>/var/lib/mysql --target-di
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
-    
     
   </body>
 </html>
