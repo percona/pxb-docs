@@ -443,7 +443,7 @@ If `--transition-key` is specified without a value, *xtrabackup* will ask for it
 The same passphrase should be specified for the prepare command:
 
 ```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backup \
+$ xtrabackup --prepare --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
 
