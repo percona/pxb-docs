@@ -229,10 +229,6 @@ directory users should use `--remove-original` option.
 The `--decompress` option may be used with *xbstream* to
 decompress individual qpress files.
 
-If you used the `lz4` compression algorithm to compress the files
-(`--compress=lz4`), change the `--decompress` parameter
-accordingly: `--decompress=lz4`.
-
 ### --decompress-threads(=#)
 Force *xbstream* to use the specified number of threads for
 decompressing.
@@ -280,7 +276,7 @@ beginning of a backup provided the status variable
 `innodb_buffer_pool_dump_status` reports that the dump has been
 completed.
 
-```
+``````{.bash data-prompt="$"}
 $ xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
 ```
 
