@@ -4040,9 +4040,6 @@ automatically remove the compressed files. In order to clean up the backup
 directory users should use <code>--remove-original</code> option.</p>
 <p>The <code>--decompress</code> option may be used with <em>xbstream</em> to
 decompress individual qpress files.</p>
-<p>If you used the <code>lz4</code> compression algorithm to compress the files
-(<code>--compress=lz4</code>), change the <code>--decompress</code> parameter
-accordingly: <code>--decompress=lz4</code>.</p>
 <h3 id="-decompress-threads">--decompress-threads(=#)<a class="headerlink" href="#-decompress-threads" title="Permanent link">&para;</a></h3>
 <p>Force <em>xbstream</em> to use the specified number of threads for
 decompressing.</p>
@@ -4076,8 +4073,8 @@ takes some time to complete and is done in background) at the
 beginning of a backup provided the status variable
 <code>innodb_buffer_pool_dump_status</code> reports that the dump has been
 completed.</p>
-<div class="highlight"><pre><span></span><code>$ xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
-</code></pre></div>
+<p><code>```{.bash data-prompt="$"}
+$ xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup</code></p>
 <p>By default, this option is set to OFF.</p>
 <p>If <code>innodb_buffer_pool_dump_status</code> reports that there is running
 dump of buffer pool, <em>xtrabackup</em> waits for the dump to complete
@@ -4556,7 +4553,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2022-12-06
+      2023-01-17
     
   </small>
 </div>
