@@ -2601,7 +2601,7 @@ case:</p>
 </div>
 <h3 id="prepare-a-backup-with-a-passphrase">Prepare a backup with a passphrase<a class="headerlink" href="#prepare-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The same passphrase should be specified for the prepare command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey
 </code></pre></div>
 <p>There are no <code>--keyring-vault...</code>,``–keyring-file…``,
@@ -2682,7 +2682,7 @@ vault server and re-encrypt the tablespace keys using this key.</p>
   <small>
     
       Last update:
-      2022-12-06
+      2023-01-09
     
   </small>
 </div>
