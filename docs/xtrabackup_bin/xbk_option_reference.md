@@ -134,6 +134,10 @@ with this option enabled. Use at your own risk.
 This option tells *xtrabackup* to compress all output data, including the
 transaction log file and meta data files, using either the `quicklz`, `lz4`, or `ZSTD` compression algorithm. `quicklz` is chosen by default.
 
+!!! note
+
+    Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms. See [Compressed backups](../backup_scenarios/compressed_backup.md) for more information.
+
 When using `--compress=quicklz` or `--compress`, the resulting files have
 the qpress archive format. Every `\*.qp` file produced by *xtrabackup* is
 essentially a one-file qpress archive and can be extracted and uncompressed

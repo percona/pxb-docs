@@ -5,10 +5,14 @@ backup can be compressed or decompressed with *xbstream*.
 
 ## Create compressed backups
 
+!!! note
+
+    Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms.
+
 To make a compressed backup, use the `--compress` option along
 with the `--backup` and `--target-dir` options. 
 
-The `--compress` option uses the `qpress` tool that you can install with
+By default, the `--compress` option uses the `qpress` tool that you can install with
 the `percona-release` package configuration tool as follows:
 
 ```{.bash data-prompt="$"}
@@ -28,7 +32,7 @@ repository: `percona-release enable-only tools`.
 Percona XtraBackup supports the following compression algorithms:
 
 `quicklz`
-    
+
 To compress files using the `quicklz` compression algorithm, use `--compress` option:
 
 ```{.bash data-prompt="$"}

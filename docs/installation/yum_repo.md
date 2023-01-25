@@ -42,17 +42,19 @@ To check what data each `RPM` package contains, see [What’s in the packages](w
 
         Make sure that you have the `libev` package installed before installing *Percona XtraBackup* on CentOS 6. For this operating system, the `libev` package is available from the [EPEL](https://fedoraproject.org/wiki/EPEL) repositories.
 
-4. To be able to make compressed backups, install the `qpress` package:
+4. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:
 
-    ```{.bash data-prompt="$"}
-    $ yum install qpress
-    ```
+    === "Install the `lz4` package"
 
-5. To decompress backups made using `ZSTD` compression algorithm, install the `zstd` package:
-    
-    ```{.bash data-prompt="$"}
-    $ yum install zstd
-    ```
+        ```{.bash data-prompt="$"}
+        $ sudo yum install lz4
+        ```
+
+    === "Install the `zstd` package"
+
+        ```{.bash data-prompt="$"}
+        $ sudo yum install zstd
+        ```
 
 !!! admonition "See also"
 
