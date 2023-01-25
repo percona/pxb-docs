@@ -3,7 +3,7 @@
 site_name: Percona XtraBackup
 site_description: Documentation
 site_author: Percona LLC
-copyright: Percona LLC, &#169; 2022
+copyright: Percona LLC, &#169; 2023
 
 repo_name: percona/pxb-docs
 repo_url: https://github.com/percona/pxb-docs
@@ -15,7 +15,7 @@ use_directory_urls: false
 theme:
   name: material
   logo: _static/percona-logo.svg
-  favicon: _static/percona_favicon.ico
+  favicon: _static/percona-favicon.ico
   custom_dir: _resource/overrides/
   palette:
 
@@ -44,10 +44,11 @@ extra_css:
   - https://unicons.iconscout.com/release/v3.0.3/css/line.css
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css
   - css/percona.css
-  - css/version-select.css
+  - css/nocopy.css
 
 extra_javascript:
   - js/version-select.js
+  - js/promptremover.js
 
 markdown_extensions:
   attr_list: {}
@@ -60,8 +61,7 @@ markdown_extensions:
   meta: {}
   md_in_html: {}
   smarty:
-      {smart_angled_quotes: true, 
-       smart_dashes: false}
+      {smart_angled_quotes: true}
   pymdownx.details: {}
   pymdownx.mark: {}
   pymdownx.smartsymbols: {}
@@ -72,14 +72,19 @@ markdown_extensions:
   pymdownx.highlight:
       linenums: false
   pymdownx.inlinehilite: {}
+  pymdownx.snippets: {}
+  pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 
 plugins:
-  search: {}
+  search: 
+    separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   git-revision-date: {}
   macros:
       include_yaml:
-#        - 'variables.yml' # Use in markdown as '{{ VAR }}'
+        - 'variables.yml' # Use in markdown as '{{ VAR }}'
 # exclude: # Don't process these files
 #      glob:
 #         - file.md
@@ -103,7 +108,7 @@ extra:
     provider: mike
 
 nav:
-  - index.md
+  - Home: index.md
   - Introduction:
       - intro.md
       - how_xtrabackup_works.md
@@ -135,7 +140,7 @@ nav:
       - how-tos.md
   - References:
       - Release notes:
-          - release-notes.md
+          - Release notes index: release-notes.md
           - release-notes/2.4/2.4.27.md
           - release-notes/2.4/2.4.26.md
           - release-notes/2.4/2.4.25.md

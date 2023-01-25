@@ -1,5 +1,9 @@
 # Percona XtraBackup - Documentation
 
+!!! note ""
+
+    This documentation is for the latest release: Percona XtraBackup {{release}} ([Release Notes](release-notes/2.4/{{release}}.md)).
+
 *Percona XtraBackup* is an open-source hot backup utility for *MySQL* - based
 servers that does not lock your database during the backup. It can back up data
 from *InnoDB*, XtraDB, and *MyISAM* tables on *MySQL* 5.1 , 5.5, 5.6 and 5.7 servers, as well as Percona Server with XtraDB.
