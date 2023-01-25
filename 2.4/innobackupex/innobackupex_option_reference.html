@@ -17,8 +17,14 @@
       
         <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup-docs/2.4/2.4/innobackupex/innobackupex_option_reference.html">
       
-      <link rel="icon" href="../_static/percona_favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      
+        <link rel="prev" href="../xtrabackup_bin/xbk_option_reference.html">
+      
+      
+        <link rel="next" href="../xbcloud/xbcloud.html">
+      
+      <link rel="icon" href="../_static/percona-favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
     
     
       
@@ -26,11 +32,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.558e4712.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
-        
       
       
 
@@ -52,7 +57,7 @@
     
       <link rel="stylesheet" href="../css/percona.css">
     
-      <link rel="stylesheet" href="../css/version-select.css">
+      <link rel="stylesheet" href="../css/nocopy.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -73,6 +78,22 @@
     
     
     
+              
+
+              <script>
+              (function (w, d, s, l, i) {
+                  w[l] = w[l] || []; w[l].push({
+                    'gtm.start': new Date().getTime(), 
+                    event: 'gtm.js'
+                  });
+                  var f = d.getElementsByTagName(s)[0],
+                  j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                  j.async = true; 
+                  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                  f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', 'GTM-K48FGP2');
+              </script>
+              
   </head>
   
   
@@ -138,18 +159,16 @@
     
       <form class="md-header__option" data-md-component="palette">
         
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="percona-light" data-md-color-primary="" data-md-color-accent="" type="radio" name="__palette" id="__palette_1">
+        
+        <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="percona-light" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
             </label>
           
         
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="" type="radio" name="__palette" id="__palette_2">
+        
+        <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
@@ -186,7 +205,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -260,7 +279,7 @@
   
     <li class="md-nav__item">
       <a href="../index.html" class="md-nav__link">
-        Percona XtraBackup - Documentation
+        Home
       </a>
     </li>
   
@@ -277,12 +296,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_2">
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
           Introduction
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -353,12 +373,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
           Installation
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -457,12 +478,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
           Run in Docker
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -505,12 +527,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_5">
+        <label class="md-nav__link" for="__nav_5" tabindex="0" aria-expanded="false">
           Prerequisites
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -567,12 +590,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_6">
+        <label class="md-nav__link" for="__nav_6" tabindex="0" aria-expanded="false">
           Backup Scenarios
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -657,12 +681,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_7">
+        <label class="md-nav__link" for="__nav_7" tabindex="0" aria-expanded="false">
           User’s Manual
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -705,12 +730,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_8">
+        <label class="md-nav__link" for="__nav_8" tabindex="0" aria-expanded="false">
           Advanced Features
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -795,12 +821,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_9">
+        <label class="md-nav__link" for="__nav_9" tabindex="0" aria-expanded="false">
           Tutorials, Recipes, How-tos
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -845,12 +872,13 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
       
       
       
-      
-        <label class="md-nav__link" for="__nav_10">
+        <label class="md-nav__link" for="__nav_10" tabindex="0" aria-expanded="true">
           References
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -871,12 +899,13 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1" type="checkbox" id="__nav_10_1" >
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_10_1" type="checkbox" id="__nav_10_1" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_10_1">
+        <label class="md-nav__link" for="__nav_10_1" tabindex="0" aria-expanded="false">
           Release notes
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -895,7 +924,7 @@
   
     <li class="md-nav__item">
       <a href="../release-notes.html" class="md-nav__link">
-        Percona XtraBackup 2.4 Release Notes
+        Release notes index
       </a>
     </li>
   
@@ -2481,14 +2510,23 @@
               <article class="md-content__inner md-typeset">
                 
 
-                <!-- Edit button -->
+                <!-- Edit and view button -->
                 
+                  
+                  
                   <a
                     href="https://github.com/percona/pxb-docs/edit/2.4/docs/innobackupex/innobackupex_option_reference.md"
-                    title="Edit this page"
+                    title=""
                     class="md-content__button md-icon"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+                  </a>
+                  <a
+                    href="https://github.com/percona/pxb-docs/edit/2.4/docs/innobackupex/innobackupex_option_reference.md"
+                    title="View source of this page"
+                    class="md-content__button md-icon"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
                   </a>
                 
 
@@ -2503,7 +2541,7 @@
                 <h1 id="the-innobackupex-option-reference">The innobackupex Option Reference<a class="headerlink" href="#the-innobackupex-option-reference" title="Permanent link">&para;</a></h1>
 <p>This page documents all the command-line options for the <code>innobackupex</code>.</p>
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
-<h3 id="-apply-log">--apply-log<a class="headerlink" href="#-apply-log" title="Permanent link">&para;</a></h3>
+<h3 id="-apply-log">&ndash;apply-log<a class="headerlink" href="#-apply-log" title="Permanent link">&para;</a></h3>
 <p>Prepare a backup in <code>BACKUP-DIR</code> by applying the transaction log file named
 <code>xtrabackup_logfile</code> located in the same directory. Also, create new
 transaction logs. The InnoDB configuration is read from the file
@@ -2515,15 +2553,15 @@ i.e. <code>innodb_page_size</code>, <code>innodb_log_block_size</code>, etc. Loc
 variables, like <code>innodb_log_group_home_dir</code> or <code>innodb_data_file_path</code> are
 always ignored by <code>--apply-log</code>, so preparing a backup always works with data
 files from the backup directory, rather than any external ones.</p>
-<h3 id="-backup-locks">--backup-locks<a class="headerlink" href="#-backup-locks" title="Permanent link">&para;</a></h3>
+<h3 id="-backup-locks">&ndash;backup-locks<a class="headerlink" href="#-backup-locks" title="Permanent link">&para;</a></h3>
 <p>This option controls if backup locks should be used instead of <code>FLUSH TABLES
 WITH READ LOCK</code> on the backup stage. The option has no effect when backup
 locks are not supported by the server. This option is enabled by default,
 disable with <code>--no-backup-locks</code>.</p>
-<h3 id="-no-backup-locks">--no-backup-locks<a class="headerlink" href="#-no-backup-locks" title="Permanent link">&para;</a></h3>
+<h3 id="-no-backup-locks">&ndash;no-backup-locks<a class="headerlink" href="#-no-backup-locks" title="Permanent link">&para;</a></h3>
 <p>Explicity disables the option <code>–-backup-locks</code> which is enabled by
 default.</p>
-<h3 id="-close-files">--close-files<a class="headerlink" href="#-close-files" title="Permanent link">&para;</a></h3>
+<h3 id="-close-files">&ndash;close-files<a class="headerlink" href="#-close-files" title="Permanent link">&para;</a></h3>
 <p>Do not keep files opened. This option is passed directly to xtrabackup. When
 xtrabackup opens tablespace it normally doesn’t close its file handle in
 order to handle the DDL operations correctly. However, if the number of
@@ -2531,132 +2569,132 @@ tablespaces is really huge and can not fit into any limit, there is an option
 to close file handles once they are no longer accessed. <em>Percona XtraBackup</em>
 can produce inconsistent backups with this option enabled. Use at your own
 risk.</p>
-<h3 id="-compress">--compress<a class="headerlink" href="#-compress" title="Permanent link">&para;</a></h3>
+<h3 id="-compress">&ndash;compress<a class="headerlink" href="#-compress" title="Permanent link">&para;</a></h3>
 <p>This option instructs xtrabackup to compress backup copies of InnoDB data
 files. It is passed directly to the xtrabackup child process. See the
 xtrabackup <a href="../xtrabackup_bin/xtrabackup_binary.html">documentation</a> for details.</p>
-<h3 id="-compress-threads">--compress-threads=<a class="headerlink" href="#-compress-threads" title="Permanent link">&para;</a></h3>
+<h3 id="-compress-threads">&ndash;compress-threads=<a class="headerlink" href="#-compress-threads" title="Permanent link">&para;</a></h3>
 <p>This option specifies the number of worker threads that will be used for
 parallel compression. It is passed directly to the xtrabackup child
 process. See the xtrabackup <a href="../xtrabackup_bin/xtrabackup_binary.html">documentation</a> for details.</p>
-<h3 id="-compress-chunk-size">--compress-chunk-size=<a class="headerlink" href="#-compress-chunk-size" title="Permanent link">&para;</a></h3>
+<h3 id="-compress-chunk-size">&ndash;compress-chunk-size=<a class="headerlink" href="#-compress-chunk-size" title="Permanent link">&para;</a></h3>
 <p>This option specifies the size of the internal working buffer for each
 compression thread, measured in bytes. It is passed directly to the
 xtrabackup child process. The default value is 64K. See the
 <code>xtrabackup</code> <a href="../xtrabackup_bin/xtrabackup_binary.html">documentation</a> for details.</p>
-<h3 id="-copy-back">--copy-back<a class="headerlink" href="#-copy-back" title="Permanent link">&para;</a></h3>
+<h3 id="-copy-back">&ndash;copy-back<a class="headerlink" href="#-copy-back" title="Permanent link">&para;</a></h3>
 <p>Copy all the files in a previously made backup from the backup directory to
 their original locations. <em>Percona XtraBackup</em> <code>innobackupex --copy-back</code>
 option will not copy over existing files unless
 <code>innobackupex --force-non-empty-directories</code> option is specified.</p>
-<h3 id="-databaseslist">--databases=LIST<a class="headerlink" href="#-databaseslist" title="Permanent link">&para;</a></h3>
+<h3 id="-databaseslist">&ndash;databases=LIST<a class="headerlink" href="#-databaseslist" title="Permanent link">&para;</a></h3>
 <p>This option specifies the list of databases that <em>innobackupex</em> should back
 up. The option accepts a string argument or path to file that contains the
 list of databases to back up. The list is of the form
 “databasename1[.table_name1] databasename2[.table_name2] …”. If this
 option is not specified, all databases containing <em>MyISAM</em> and <em>InnoDB</em>
-tables will be backed up. Please make sure that --databases contains all of
+tables will be backed up. Please make sure that &ndash;databases contains all of
 the <em>InnoDB</em> databases and tables, so that all of the innodb.frm files are
 also backed up. In case the list is very long, this can be specified in a
 file, and the full path of the file can be specified instead of the
-list. (See option --tables-file.)</p>
-<h3 id="-decompress">--decompress<a class="headerlink" href="#-decompress" title="Permanent link">&para;</a></h3>
+list. (See option &ndash;tables-file.)</p>
+<h3 id="-decompress">&ndash;decompress<a class="headerlink" href="#-decompress" title="Permanent link">&para;</a></h3>
 <p>Decompresses all files with the .qp extension in a backup previously made
 with the <code>innobackupex --compress</code> option. The <code>innobackupex --parallel</code> option will allow multiple files to be decrypted and/or
 decompressed simultaneously. In order to decompress, the qpress utility MUST
 be installed and accessible within the path. <em>Percona XtraBackup</em> doesn’t
 automatically remove the compressed files. In order to clean up the backup
 directory users should remove the <code>\*.qp</code> files manually.</p>
-<h3 id="-decryptencryption-algorithm">--decrypt=ENCRYPTION-ALGORITHM<a class="headerlink" href="#-decryptencryption-algorithm" title="Permanent link">&para;</a></h3>
+<h3 id="-decryptencryption-algorithm">&ndash;decrypt=ENCRYPTION-ALGORITHM<a class="headerlink" href="#-decryptencryption-algorithm" title="Permanent link">&para;</a></h3>
 <p>Decrypts all files with the .xbcrypt extension in a backup previously made
-with --encrypt option. The <code>innobackupex --parallel</code> option will
+with &ndash;encrypt option. The <code>innobackupex --parallel</code> option will
 allow multiple files to be decrypted and/or decompressed simultaneously.</p>
-<h3 id="-defaults-filemycnf">--defaults-file=[MY.CNF]<a class="headerlink" href="#-defaults-filemycnf" title="Permanent link">&para;</a></h3>
+<h3 id="-defaults-filemycnf">&ndash;defaults-file=[MY.CNF]<a class="headerlink" href="#-defaults-filemycnf" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies what file to read the
 default MySQL options from. Must be given as the first option on the
 command-line.</p>
-<h3 id="-defaults-extra-filemycnf">--defaults-extra-file=[MY.CNF]<a class="headerlink" href="#-defaults-extra-filemycnf" title="Permanent link">&para;</a></h3>
+<h3 id="-defaults-extra-filemycnf">&ndash;defaults-extra-file=[MY.CNF]<a class="headerlink" href="#-defaults-extra-filemycnf" title="Permanent link">&para;</a></h3>
 <p>This option specifies what extra file to read the default <em>MySQL</em> options
 from before the standard defaults-file. Must be given as the first option on
 the command-line.</p>
-<h3 id="-defaults-groupgroup-name">--defaults-group=GROUP-NAME<a class="headerlink" href="#-defaults-groupgroup-name" title="Permanent link">&para;</a></h3>
+<h3 id="-defaults-groupgroup-name">&ndash;defaults-group=GROUP-NAME<a class="headerlink" href="#-defaults-groupgroup-name" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the group which should
 be read from the configuration file. This is needed if you use
 mysqld_multi. This can also be used to indicate groups other than mysqld and
 xtrabackup.</p>
-<h3 id="-encryptencryption_algorithm">--encrypt=ENCRYPTION_ALGORITHM<a class="headerlink" href="#-encryptencryption_algorithm" title="Permanent link">&para;</a></h3>
+<h3 id="-encryptencryption_algorithm">&ndash;encrypt=ENCRYPTION_ALGORITHM<a class="headerlink" href="#-encryptencryption_algorithm" title="Permanent link">&para;</a></h3>
 <p>This option instructs xtrabackup to encrypt backup copies of InnoDB data
 files using the algorithm specified in the ENCRYPTION_ALGORITHM. It is passed
 directly to the xtrabackup child process. See the <code>xtrabackup</code>
 <a href="../xtrabackup_bin/xtrabackup_binary.html">documentation</a> for more details.</p>
 <p>Currently, the following algorithms are supported: <code>AES128</code>,
 <code>AES192</code> and <code>AES256</code>.</p>
-<h3 id="-encrypt-keyencryption_key">--encrypt-key=ENCRYPTION_KEY<a class="headerlink" href="#-encrypt-keyencryption_key" title="Permanent link">&para;</a></h3>
+<h3 id="-encrypt-keyencryption_key">&ndash;encrypt-key=ENCRYPTION_KEY<a class="headerlink" href="#-encrypt-keyencryption_key" title="Permanent link">&para;</a></h3>
 <p>This option instructs xtrabackup to use the given proper length encryption
-key as the ENCRYPTION_KEY when using the --encrypt option. It is passed
+key as the ENCRYPTION_KEY when using the &ndash;encrypt option. It is passed
 directly to the xtrabackup child process. See the <code>xtrabackup</code>
 <a href="../xtrabackup_bin/xtrabackup_binary.html">documentation</a> for more details.</p>
 <p>It is not recommended to use this option where there is uncontrolled access
 to the machine as the command line and thus the key can be viewed as part of
 the process info.</p>
-<h3 id="-encrypt-key-fileencryption_key_file">--encrypt-key-file=ENCRYPTION_KEY_FILE<a class="headerlink" href="#-encrypt-key-fileencryption_key_file" title="Permanent link">&para;</a></h3>
+<h3 id="-encrypt-key-fileencryption_key_file">&ndash;encrypt-key-file=ENCRYPTION_KEY_FILE<a class="headerlink" href="#-encrypt-key-fileencryption_key_file" title="Permanent link">&para;</a></h3>
 <p>This option instructs xtrabackup to use the encryption key stored in the
 given ENCRYPTION_KEY_FILE when using the –encrypt option. It is passed
 directly to the xtrabackup child process. See the <code>xtrabackup</code>
 <a href="../xtrabackup_bin/xtrabackup_binary.html">documentation</a> for more details.</p>
 <p>The file must be a simple binary (or text) file that contains exactly the key
 to be used.</p>
-<h3 id="-encrypt-threads">--encrypt-threads=<a class="headerlink" href="#-encrypt-threads" title="Permanent link">&para;</a></h3>
+<h3 id="-encrypt-threads">&ndash;encrypt-threads=<a class="headerlink" href="#-encrypt-threads" title="Permanent link">&para;</a></h3>
 <p>This option specifies the number of worker threads that will be used for
 parallel encryption. It is passed directly to the xtrabackup child
 process. See the <code>xtrabackup</code> <a href="../xtrabackup_bin/xtrabackup_binary.html">documentation</a> for more details.</p>
-<h3 id="-encrypt-chunk-size">--encrypt-chunk-size=<a class="headerlink" href="#-encrypt-chunk-size" title="Permanent link">&para;</a></h3>
+<h3 id="-encrypt-chunk-size">&ndash;encrypt-chunk-size=<a class="headerlink" href="#-encrypt-chunk-size" title="Permanent link">&para;</a></h3>
 <p>This option specifies the size of the internal working buffer for each
 encryption thread, measured in bytes. It is passed directly to the xtrabackup
 child process. See the <code>xtrabackup</code> <a href="../xtrabackup_bin/xtrabackup_binary.html">documentation</a> for more details.</p>
-<h3 id="-export">--export<a class="headerlink" href="#-export" title="Permanent link">&para;</a></h3>
+<h3 id="-export">&ndash;export<a class="headerlink" href="#-export" title="Permanent link">&para;</a></h3>
 <p>This option is passed directly to <code>xtrabackup --export</code> option. It
 enables exporting individual tables for import into another server. See the
 <em>xtrabackup</em> documentation for details.</p>
-<h3 id="-extra-lsndirdirectory">--extra-lsndir=DIRECTORY<a class="headerlink" href="#-extra-lsndirdirectory" title="Permanent link">&para;</a></h3>
+<h3 id="-extra-lsndirdirectory">&ndash;extra-lsndir=DIRECTORY<a class="headerlink" href="#-extra-lsndirdirectory" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the directory in which
 to save an extra copy of the <code>xtrabackup_checkpoints</code> file. It is
 passed directly to <em>xtrabackup</em>’s <code>innobackupex --extra-lsndir</code> option. See the xtrabackup documentation for details.</p>
-<h3 id="-force-non-empty-directories">--force-non-empty-directories<a class="headerlink" href="#-force-non-empty-directories" title="Permanent link">&para;</a></h3>
+<h3 id="-force-non-empty-directories">&ndash;force-non-empty-directories<a class="headerlink" href="#-force-non-empty-directories" title="Permanent link">&para;</a></h3>
 <p>When specified, it makes <code>innobackupex --copy-back</code> option or
 <code>innobackupex --move-back</code> option transfer files to non-empty
-directories. No existing files will be overwritten. If --copy-back
-or --move-back has to copy a file from the backup directory which already
+directories. No existing files will be overwritten. If &ndash;copy-back
+or &ndash;move-back has to copy a file from the backup directory which already
 exists in the destination directory, it will still fail with an error.</p>
-<h3 id="-galera-info">--galera-info<a class="headerlink" href="#-galera-info" title="Permanent link">&para;</a></h3>
+<h3 id="-galera-info">&ndash;galera-info<a class="headerlink" href="#-galera-info" title="Permanent link">&para;</a></h3>
 <p>This options creates the <code>xtrabackup_galera_info</code> file which contains the
 local node state at the time of the backup. Option should be used when
 performing the backup of Percona-XtraDB-Cluster. Has no effect when backup
 locks are used to create the backup.</p>
-<h3 id="-help">--help<a class="headerlink" href="#-help" title="Permanent link">&para;</a></h3>
+<h3 id="-help">&ndash;help<a class="headerlink" href="#-help" title="Permanent link">&para;</a></h3>
 <p>This option displays a help screen and exits.</p>
-<h3 id="-historyname">--history=NAME<a class="headerlink" href="#-historyname" title="Permanent link">&para;</a></h3>
+<h3 id="-historyname">&ndash;history=NAME<a class="headerlink" href="#-historyname" title="Permanent link">&para;</a></h3>
 <p>This option enables the tracking of backup history in the
 <code>PERCONA_SCHEMA.xtrabackup_history</code> table. An optional history series name
 may be specified that will be placed with the history record for the current
 backup being taken.</p>
-<h3 id="-hosthost">--host=HOST<a class="headerlink" href="#-hosthost" title="Permanent link">&para;</a></h3>
+<h3 id="-hosthost">&ndash;host=HOST<a class="headerlink" href="#-hosthost" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the host to use when
 connecting to the database server with TCP/IP. It is passed to the mysql
 child process without alteration. See <code>mysql --help</code> for details.</p>
-<h3 id="-ibbackupibbackup-binary">--ibbackup=IBBACKUP-BINARY<a class="headerlink" href="#-ibbackupibbackup-binary" title="Permanent link">&para;</a></h3>
+<h3 id="-ibbackupibbackup-binary">&ndash;ibbackup=IBBACKUP-BINARY<a class="headerlink" href="#-ibbackupibbackup-binary" title="Permanent link">&para;</a></h3>
 <p>This option specifies which <em>xtrabackup</em> binary should be used. The option
 accepts a string argument. IBBACKUP-BINARY should be the command used to run
 <em>Percona XtraBackup</em>. The option can be useful if the <em>xtrabackup</em> binary is
 not in your search path or working directory. If this option is not
 specified, <em>innobackupex</em> attempts to determine the binary to use
 automatically.</p>
-<h3 id="-includeregexp">--include=REGEXP<a class="headerlink" href="#-includeregexp" title="Permanent link">&para;</a></h3>
+<h3 id="-includeregexp">&ndash;include=REGEXP<a class="headerlink" href="#-includeregexp" title="Permanent link">&para;</a></h3>
 <p>This option is a regular expression to be matched against table names in
 <code>databasename.tablename</code> format. It is passed directly to xtrabackup’s
 <code>xtrabackup --tables</code> option. See the xtrabackup
 documentation for details.</p>
-<h3 id="-incremental">--incremental<a class="headerlink" href="#-incremental" title="Permanent link">&para;</a></h3>
+<h3 id="-incremental">&ndash;incremental<a class="headerlink" href="#-incremental" title="Permanent link">&para;</a></h3>
 <p>This option tells <em>xtrabackup</em> to create an incremental backup, rather than a
 full one. It is passed to the <em>xtrabackup</em> child process. When this option is
 specified, either <code>innobackupex --incremental-lsn</code> or
@@ -2664,15 +2702,15 @@ specified, either <code>innobackupex --incremental-lsn</code> or
 given, option <code>innobackupex --incremental-basedir</code> is passed to
 <code>xtrabackup</code> by default, set to the first timestamped backup
 directory in the backup base directory.</p>
-<h3 id="-incremental-basedirdirectory">--incremental-basedir=DIRECTORY<a class="headerlink" href="#-incremental-basedirdirectory" title="Permanent link">&para;</a></h3>
+<h3 id="-incremental-basedirdirectory">&ndash;incremental-basedir=DIRECTORY<a class="headerlink" href="#-incremental-basedirdirectory" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the directory containing
 the full backup that is the base dataset for the incremental backup. It is
 used with the <code>innobackupex --incremental</code> option.</p>
-<h3 id="-incremental-dirdirectory">--incremental-dir=DIRECTORY<a class="headerlink" href="#-incremental-dirdirectory" title="Permanent link">&para;</a></h3>
+<h3 id="-incremental-dirdirectory">&ndash;incremental-dir=DIRECTORY<a class="headerlink" href="#-incremental-dirdirectory" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the directory where the
 incremental backup will be combined with the full backup to make a new full
 backup. It is used with the <code>innobackupex --incremental</code> option.</p>
-<h3 id="-incremental-history-namename">--incremental-history-name=NAME<a class="headerlink" href="#-incremental-history-namename" title="Permanent link">&para;</a></h3>
+<h3 id="-incremental-history-namename">&ndash;incremental-history-name=NAME<a class="headerlink" href="#-incremental-history-namename" title="Permanent link">&para;</a></h3>
 <p>This option specifies the name of the backup series stored in the
 <a href="storing_history.html#xtrabackup-history">PERCONA_SCHEMA.xtrabackup_history</a> history record
 to base an incremental backup on. Percona Xtrabackup will search the history
@@ -2684,14 +2722,14 @@ and <code>innobackupex --incremental-lsn</code>. If no
 valid lsn can be found (no series by that name, no successful backups by that
 name) xtrabackup will return with an error. It is used with the
 <code>innobackupex --incremental</code> option.</p>
-<h3 id="-incremental-history-uuiduuid">--incremental-history-uuid=UUID<a class="headerlink" href="#-incremental-history-uuiduuid" title="Permanent link">&para;</a></h3>
+<h3 id="-incremental-history-uuiduuid">&ndash;incremental-history-uuid=UUID<a class="headerlink" href="#-incremental-history-uuiduuid" title="Permanent link">&para;</a></h3>
 <p>This option specifies the UUID of the specific history record stored in the
 <a href="storing_history.html#xtrabackup-history">PERCONA_SCHEMA.xtrabackup_history</a> to base an
 incremental backup on. <code>innobackupex --incremental-history-name</code>, <code>innobackupex --incremental-basedir\</code> and
 <code>innobackupex --incremental-lsn</code>. If no valid lsn can be found (no
 success record with that uuid) xtrabackup will return with an error. It is
 used with the <code>innobackupex --incremental</code> option.</p>
-<h3 id="-incremental-lsnlsn">--incremental-lsn=LSN<a class="headerlink" href="#-incremental-lsnlsn" title="Permanent link">&para;</a></h3>
+<h3 id="-incremental-lsnlsn">&ndash;incremental-lsn=LSN<a class="headerlink" href="#-incremental-lsnlsn" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the log sequence number
 (<code>LSN</code>) to use for the incremental backup. It is used with the
 <code>innobackupex --incremental</code> option. It is used instead of specifying
@@ -2699,7 +2737,7 @@ used with the <code>innobackupex --incremental</code> option.</p>
 <em>Percona Server</em> 5.0-series versions, specify the as two 32-bit integers in
 high:low format. For databases created in 5.1 and later, specify the LSN as a
 single 64-bit integer.</p>
-<h3 id="-kill-long-queries-timeoutseconds">--kill-long-queries-timeout=SECONDS<a class="headerlink" href="#-kill-long-queries-timeoutseconds" title="Permanent link">&para;</a></h3>
+<h3 id="-kill-long-queries-timeoutseconds">&ndash;kill-long-queries-timeout=SECONDS<a class="headerlink" href="#-kill-long-queries-timeoutseconds" title="Permanent link">&para;</a></h3>
 <p>This option specifies the number of seconds innobackupex waits between
 starting <code>FLUSH TABLES WITH READ LOCK</code> and killing those queries that block
 it. Default is 0 seconds, which means innobackupex will not attempt to kill
@@ -2708,10 +2746,10 @@ any queries. In order to use this option xtrabackup user should have
 xtrabackup will automatically use <a href="https://www.percona.com/doc/percona-server/5.6/management/backup_locks.html#backup-locks">Backup Locks</a>
 as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
-<h3 id="-kill-long-query-typeallselect">--kill-long-query-type=all|select<a class="headerlink" href="#-kill-long-query-typeallselect" title="Permanent link">&para;</a></h3>
+<h3 id="-kill-long-query-typeallselect">&ndash;kill-long-query-type=all|select<a class="headerlink" href="#-kill-long-query-typeallselect" title="Permanent link">&para;</a></h3>
 <p>This option specifies which types of queries should be killed to unblock the
 global lock. Default is “all”.</p>
-<h3 id="-ftwrl-wait-timeoutseconds">--ftwrl-wait-timeout=SECONDS<a class="headerlink" href="#-ftwrl-wait-timeoutseconds" title="Permanent link">&para;</a></h3>
+<h3 id="-ftwrl-wait-timeoutseconds">&ndash;ftwrl-wait-timeout=SECONDS<a class="headerlink" href="#-ftwrl-wait-timeoutseconds" title="Permanent link">&para;</a></h3>
 <p>This option specifies time in seconds that innobackupex should wait for
 queries that would block <code>FLUSH TABLES WITH READ LOCK</code> before running
 it. If there are still such queries when the timeout expires, innobackupex
@@ -2721,7 +2759,7 @@ immediately. Where supported (Percona Server 5.6+) xtrabackup will
 automatically use <a href="https://www.percona.com/doc/percona-server/5.6/management/backup_locks.html#backup-locks">Backup Locks</a>
 as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
-<h3 id="-ftwrl-wait-thresholdseconds">--ftwrl-wait-threshold=SECONDS<a class="headerlink" href="#-ftwrl-wait-thresholdseconds" title="Permanent link">&para;</a></h3>
+<h3 id="-ftwrl-wait-thresholdseconds">&ndash;ftwrl-wait-threshold=SECONDS<a class="headerlink" href="#-ftwrl-wait-thresholdseconds" title="Permanent link">&para;</a></h3>
 <p>This option specifies the query run time threshold which is used by
 innobackupex to detect long-running queries with a non-zero value of
 <code>innobackupex –ftwrl-wait-timeout</code>. <code>FLUSH TABLES WITH READ LOCK</code>
@@ -2731,17 +2769,17 @@ supported (Percona Server 5.6+) xtrabackup will automatically use <a href="https
 Locks</a>
 as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
-<h3 id="-ftwrl-wait-query-typeallupdate">--ftwrl-wait-query-type=all|update<a class="headerlink" href="#-ftwrl-wait-query-typeallupdate" title="Permanent link">&para;</a></h3>
+<h3 id="-ftwrl-wait-query-typeallupdate">&ndash;ftwrl-wait-query-type=all|update<a class="headerlink" href="#-ftwrl-wait-query-typeallupdate" title="Permanent link">&para;</a></h3>
 <p>This option specifies which types of queries are allowed to complete before
 innobackupex will issue the global lock. Default is all.</p>
-<h3 id="-log-copy-interval">--log-copy-interval=<a class="headerlink" href="#-log-copy-interval" title="Permanent link">&para;</a></h3>
+<h3 id="-log-copy-interval">&ndash;log-copy-interval=<a class="headerlink" href="#-log-copy-interval" title="Permanent link">&para;</a></h3>
 <p>This option specifies time interval between checks done by log copying thread
 in milliseconds.</p>
-<h3 id="-move-back">--move-back<a class="headerlink" href="#-move-back" title="Permanent link">&para;</a></h3>
+<h3 id="-move-back">&ndash;move-back<a class="headerlink" href="#-move-back" title="Permanent link">&para;</a></h3>
 <p>Move all the files in a previously made backup from the backup directory to
 their original locations. As this option removes backup files, it must be
 used with caution.</p>
-<h3 id="-no-lock">--no-lock<a class="headerlink" href="#-no-lock" title="Permanent link">&para;</a></h3>
+<h3 id="-no-lock">&ndash;no-lock<a class="headerlink" href="#-no-lock" title="Permanent link">&para;</a></h3>
 <p>Use this option to disable table lock with <code>FLUSH TABLES WITH READ
 LOCK</code>. Use it only if ALL your tables are InnoDB and you <strong>DO NOT CARE</strong>
 about the binary log position of the backup. This option shouldn’t be used if
@@ -2762,11 +2800,11 @@ when –no-lock option is used (because <code>SHOW MASTER STATUS</code> may be
 inconsistent), but under certain conditions
 <code>xtrabackup_binlog_pos_innodb</code> can be used instead to get consistent
 binlog coordinates as described in <a href="../xtrabackup_bin/working_with_binary_logs.html#working-with-binlogs">Working with Binary Logs</a>.</p>
-<h3 id="-no-timestamp">--no-timestamp<a class="headerlink" href="#-no-timestamp" title="Permanent link">&para;</a></h3>
+<h3 id="-no-timestamp">&ndash;no-timestamp<a class="headerlink" href="#-no-timestamp" title="Permanent link">&para;</a></h3>
 <p>This option prevents creation of a time-stamped subdirectory of the
 <code>BACKUP-ROOT-DIR</code> given on the command line. When it is specified, the
 backup is done in <code>BACKUP-ROOT-DIR</code> instead.</p>
-<h3 id="-no-version-check">--no-version-check<a class="headerlink" href="#-no-version-check" title="Permanent link">&para;</a></h3>
+<h3 id="-no-version-check">&ndash;no-version-check<a class="headerlink" href="#-no-version-check" title="Permanent link">&para;</a></h3>
 <p>This option disables the version check. If you do not pass this option, the
 automatic version check is enabled implicitly when <code>xtrabackup</code> runs in the <code>--backup</code> mode. To disable the version check, explicitly pass
 the <code>--no-version-check</code> option when invoking <code>xtrabackup</code>. 
@@ -2790,7 +2828,7 @@ connection. </p>
 <p>Each piece of information has a unique identifier which is an MD5 hash value
 that Percona Toolkit uses to obtain statistics about how it is used. This value is
 a random UUID; no client information is either collected or stored.</p>
-<h3 id="-parallelnumber-of-threads">--parallel=NUMBER-OF-THREADS<a class="headerlink" href="#-parallelnumber-of-threads" title="Permanent link">&para;</a></h3>
+<h3 id="-parallelnumber-of-threads">&ndash;parallel=NUMBER-OF-THREADS<a class="headerlink" href="#-parallelnumber-of-threads" title="Permanent link">&para;</a></h3>
 <p>This option accepts an integer argument that specifies the number of threads
 the <code>xtrabackup</code> child process should use to back up files
 concurrently.  Note that this option works on file level, that is, if you
@@ -2802,41 +2840,41 @@ and accessable within the path. This process will remove the original
 compressed/encrypted files and leave the results in the same location. It is
 passed directly to xtrabackup’s <code>xtrabackup --parallel</code> option. See
 the <code>xtrabackup</code> documentation for details</p>
-<h3 id="-passwordpassword">--password=PASSWORD<a class="headerlink" href="#-passwordpassword" title="Permanent link">&para;</a></h3>
+<h3 id="-passwordpassword">&ndash;password=PASSWORD<a class="headerlink" href="#-passwordpassword" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument specifying the password to use when
 connecting to the database. It is passed to the <code>mysql</code> child
 process without alteration. See <code>mysql --help</code> for details.</p>
-<h3 id="-portport">--port=PORT<a class="headerlink" href="#-portport" title="Permanent link">&para;</a></h3>
+<h3 id="-portport">&ndash;port=PORT<a class="headerlink" href="#-portport" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the port to use when
 connecting to the database server with TCP/IP. It is passed to the
 <code>mysql</code> child process. It is passed to the <code>mysql</code> child
 process without alteration. See <code>mysql --help</code> for details.</p>
-<h3 id="-rebuild-indexes">--rebuild-indexes<a class="headerlink" href="#-rebuild-indexes" title="Permanent link">&para;</a></h3>
+<h3 id="-rebuild-indexes">&ndash;rebuild-indexes<a class="headerlink" href="#-rebuild-indexes" title="Permanent link">&para;</a></h3>
 <p>This option only has effect when used together with the <code>--apply-log &lt;innobackupex --apply-log&gt;</code>
 option and is passed directly to xtrabackup. When used, makes xtrabackup
 rebuild all secondary indexes after applying the log. This option is normally
 used to prepare compact backups. See the <code>xtrabackup</code> documentation
 for more information.</p>
-<h3 id="-rebuild-threadsnumber-of-threads">--rebuild-threads=NUMBER-OF-THREADS<a class="headerlink" href="#-rebuild-threadsnumber-of-threads" title="Permanent link">&para;</a></h3>
+<h3 id="-rebuild-threadsnumber-of-threads">&ndash;rebuild-threads=NUMBER-OF-THREADS<a class="headerlink" href="#-rebuild-threadsnumber-of-threads" title="Permanent link">&para;</a></h3>
 <p>This option only has effect when used together with the <code>innobackupex --apply-log</code>
 and <code>innobackupex --rebuild-indexes</code> option and is passed directly to
 xtrabackup. When used, xtrabackup processes tablespaces in parallel with the
 specified number of threads when rebuilding indexes. See the
 <code>xtrabackup</code> documentation for more information.</p>
-<h3 id="-redo-only">--redo-only<a class="headerlink" href="#-redo-only" title="Permanent link">&para;</a></h3>
+<h3 id="-redo-only">&ndash;redo-only<a class="headerlink" href="#-redo-only" title="Permanent link">&para;</a></h3>
 <p>This option should be used when preparing the base full backup and when
 merging all incrementals except the last one. It is passed directly to
 xtrabackup’s <code>xtrabackup --apply-log-only</code> option. This forces
 <code>xtrabackup</code> to skip the “rollback” phase and do a “redo” only. This
 is necessary if the backup will have incremental changes applied to it
 later. See the <em>xtrabackup</em> <a href="../xtrabackup_bin/incremental_backups.html">documentation</a> for details.</p>
-<h3 id="-rsync">--rsync<a class="headerlink" href="#-rsync" title="Permanent link">&para;</a></h3>
+<h3 id="-rsync">&ndash;rsync<a class="headerlink" href="#-rsync" title="Permanent link">&para;</a></h3>
 <p>Uses the <code>rsync</code> utility to optimize local file transfers. When this
 option is specified, <code>innobackupex</code> uses <code>rsync</code> to copy
 all non-InnoDB files instead of spawning a separate <code>cp</code> for each
 file, which can be much faster for servers with a large number of databases
 or tables.  This option cannot be used together with <code>innobackupex --stream</code>.</p>
-<h3 id="-safe-slave-backup">--safe-slave-backup<a class="headerlink" href="#-safe-slave-backup" title="Permanent link">&para;</a></h3>
+<h3 id="-safe-slave-backup">&ndash;safe-slave-backup<a class="headerlink" href="#-safe-slave-backup" title="Permanent link">&para;</a></h3>
 <p>When specified, innobackupex will stop the replica SQL thread just before
 running <code>FLUSH TABLES WITH READ LOCK</code> and wait to start backup until
 <code>Slave_open_temp_tables</code> in <code>SHOW STATUS</code> is zero. If there are no open
@@ -2845,33 +2883,33 @@ be started and stopped until there are no open temporary tables. The backup
 will fail if <code>Slave_open_temp_tables</code> does not become zero after
 <code>innobackupex --safe-slave-backup-timeout</code> seconds. The replica SQL
 thread will be restarted when the backup finishes.</p>
-<h3 id="-safe-slave-backup-timeoutseconds">--safe-slave-backup-timeout=SECONDS<a class="headerlink" href="#-safe-slave-backup-timeoutseconds" title="Permanent link">&para;</a></h3>
+<h3 id="-safe-slave-backup-timeoutseconds">&ndash;safe-slave-backup-timeout=SECONDS<a class="headerlink" href="#-safe-slave-backup-timeoutseconds" title="Permanent link">&para;</a></h3>
 <p>How many seconds <code>innobackupex --safe-slave-backup</code> should wait for
 <code>Slave_open_temp_tables</code> to become zero. Defaults to 300 seconds.</p>
-<h3 id="-slave-info">--slave-info<a class="headerlink" href="#-slave-info" title="Permanent link">&para;</a></h3>
+<h3 id="-slave-info">&ndash;slave-info<a class="headerlink" href="#-slave-info" title="Permanent link">&para;</a></h3>
 <p>This option is useful when backing up a replication replica server. It prints
 the binary log position and name of the source server. It also writes this
 information to the <code>xtrabackup_slave_info</code> file as a <code>CHANGE MASTER</code>
 command. A new replica for this source can be set up by starting a replica server
 on this backup and issuing a <code>CHANGE MASTER</code> command with the binary log
 position saved in the <code>xtrabackup_slave_info</code> file.</p>
-<h3 id="-socket">--socket<a class="headerlink" href="#-socket" title="Permanent link">&para;</a></h3>
+<h3 id="-socket">&ndash;socket<a class="headerlink" href="#-socket" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the socket to use when
 connecting to the local database server with a UNIX domain socket. It is
 passed to the mysql child process without alteration. See <code>mysql --help</code> for details.</p>
-<h3 id="-streamstreamname">--stream=STREAMNAME<a class="headerlink" href="#-streamstreamname" title="Permanent link">&para;</a></h3>
+<h3 id="-streamstreamname">&ndash;stream=STREAMNAME<a class="headerlink" href="#-streamstreamname" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the format in which to
 do the streamed backup. The backup will be done to <code>STDOUT</code> in the
 specified format. Currently, supported formats are <code>tar</code> and <code>xbstream</code>. Uses
 <a href="../xbstream/xbstream.html">xbstream</a>, which is available in <em>Percona XtraBackup</em>
 distributions. If you specify a path after this option, it will be interpreted
 as the value of <code>tmpdir</code></p>
-<h3 id="-tables-filefile">--tables-file=FILE<a class="headerlink" href="#-tables-filefile" title="Permanent link">&para;</a></h3>
+<h3 id="-tables-filefile">&ndash;tables-file=FILE<a class="headerlink" href="#-tables-filefile" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the file in which there
 are a list of names of the form <code>database.table</code>, one per line. The option
 is passed directly to <code>xtrabackup</code> ‘s <code>innobackupex --tables-file</code>
 option.</p>
-<h3 id="-throttle">--throttle=<a class="headerlink" href="#-throttle" title="Permanent link">&para;</a></h3>
+<h3 id="-throttle">&ndash;throttle=<a class="headerlink" href="#-throttle" title="Permanent link">&para;</a></h3>
 <p>This option limits the number of chunks copied per second. The chunk size is
 <em>10 MB</em>. To limit the bandwidth to <em>10 MB/s</em>, set the option to <em>1</em>:
 <code>--throttle=1</code>.</p>
@@ -2879,7 +2917,7 @@ option.</p>
 <p class="admonition-title">See also</p>
 <p>More information about how to throttle a backup <a href="../advanced/throttling_backups.html#throttling-backups">Throttling Backups</a>.</p>
 </div>
-<h3 id="-tmpdirdirectory">--tmpdir=DIRECTORY<a class="headerlink" href="#-tmpdirdirectory" title="Permanent link">&para;</a></h3>
+<h3 id="-tmpdirdirectory">&ndash;tmpdir=DIRECTORY<a class="headerlink" href="#-tmpdirdirectory" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the location where a
 temporary file will be stored. It may be used when <code>innobackupex --stream</code> is
 specified. For these options, the transaction log will first be stored to a
@@ -2891,19 +2929,19 @@ specified in my.cnf as the <code>--target-dir</code> option to the xtrabackup bi
 [mysqld] and [xtrabackup] groups are read from my.cnf. If there is tmpdir in
 both, then the value being used depends on the order of those group in
 my.cnf.</p>
-<h3 id="-use-memory">--use-memory=<a class="headerlink" href="#-use-memory" title="Permanent link">&para;</a></h3>
+<h3 id="-use-memory">&ndash;use-memory=<a class="headerlink" href="#-use-memory" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the amount of memory in
 bytes for <code>xtrabackup</code> to use for crash recovery while preparing a
 backup. Multiples are supported providing the unit (e.g. 1MB, 1M, 1GB,
 1G). It is used only with the option <code>innobackupex --apply-log</code>. It is passed
 directly to xtrabackup’s <code>xtrabackup --use-memory</code> option. See the
 <em>xtrabackup</em> documentation for details.</p>
-<h3 id="-useruser">--user=USER<a class="headerlink" href="#-useruser" title="Permanent link">&para;</a></h3>
+<h3 id="-useruser">&ndash;user=USER<a class="headerlink" href="#-useruser" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the user (i.e., the
 <em>MySQL</em> username used when connecting to the server) to login as, if that’s
 not the current user. It is passed to the mysql child process without
 alteration. See <code>mysql --help</code> for details.</p>
-<h3 id="-version">--version<a class="headerlink" href="#-version" title="Permanent link">&para;</a></h3>
+<h3 id="-version">&ndash;version<a class="headerlink" href="#-version" title="Permanent link">&para;</a></h3>
 <p>This option displays the <em>innobackupex</em> version and copyright notice and then
 exits.</p>
 
@@ -2951,48 +2989,12 @@ exits.</p>
       
         <footer class="md-footer">
   
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../xtrabackup_bin/xbk_option_reference.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: The xtrabackup Option Reference" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              The xtrabackup Option Reference
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../xbcloud/xbcloud.html" class="md-footer__link md-footer__link--next" aria-label="Next: The xbcloud Binary" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              The xbcloud Binary
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Percona LLC, &#169; 2022
+      Percona LLC, &#169; 2023
     </div>
   
   
@@ -3012,14 +3014,23 @@ exits.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+              
+      <script src="../assets/javascripts/bundle.51d95adb.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
+        <script src="../js/promptremover.js"></script>
+      
     
-    
+
+              <img src="https://tracking.g2crowd.com/attribution_tracking/conversions/1007137.gif?e=" width="1" height="1" />
+
+              <noscript>
+                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K48FGP2" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+              </noscript>
+              
   </body>
 </html>
