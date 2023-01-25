@@ -3,7 +3,7 @@
 site_name: Percona XtraBackup
 site_description: Documentation
 site_author: Percona LLC
-copyright: Percona LLC, &#169; 2022
+copyright: Percona LLC, &#169; 2023
 
 repo_name: percona/pxb-docs
 repo_url: https://github.com/percona/pxb-docs
@@ -15,10 +15,10 @@ use_directory_urls: false
 theme:
   name: material
   logo: _static/percona-logo.svg
-  favicon: _static/percona_favicon.ico
+  favicon: _static/percona-favicon.ico
   custom_dir: _resource/overrides/
   font:
-    text: Chivo, Colfax, Franziska
+    text: Poppins
   palette:
 
     # Light mode
@@ -34,7 +34,6 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
-
 
 extra_css:
   - https://unicons.iconscout.com/release/v3.0.3/css/line.css
@@ -76,7 +75,8 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
 plugins:
-  search: {}
+  search: 
+    separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   git-revision-date: {}
   macros:
       include_yaml:
@@ -89,7 +89,7 @@ plugins:
           cover_title: 'Percona XtraBackup Documentation'
           cover_subtitle: 8.0.30-23 (November 14, 2022)
           author: 'Percona Technical Documentation Team'
-          cover_logo: docs/_static/percona-xtrabackup-logo.jpg
+          cover_logo: docs/_static/Percona_Logo_Color.png
           debug_html: false
           custom_template_path: _resource/templates
           enabled_if_env: ENABLE_PDF_EXPORT
@@ -102,6 +102,15 @@ plugins:
 extra:
   version: 
     provider: mike
+  homepage:
+    https://docs.percona.com
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
 
 nav:
   - Home: index.md
@@ -198,4 +207,5 @@ nav:
       - copyright-and-licensing-information.md
       - version-check.md
 # - Version Selector: "../"
+
 
