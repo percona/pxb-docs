@@ -1208,20 +1208,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud-iam-profile.html" class="md-nav__link">
-        Xbcloud with an IAM instance profile
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../xbcloud/xbcloud_minio.html" class="md-nav__link">
         Use the xbcloud binary with MinIO
       </a>
@@ -1364,20 +1350,6 @@
     <li class="md-nav__item">
       <a href="../release-notes.html" class="md-nav__link">
         Release notes index
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../release-notes/8.0/8.0.31-24.0.html" class="md-nav__link">
-        Percona XtraBackup 8.0.31-24 (2023-02-07)
       </a>
     </li>
   
@@ -2012,7 +1984,7 @@ utility: <code>xbstream -x &lt;  backup.xbstream</code>.</p>
 </tr>
 <tr>
 <td>Send the backup to another server using <code>netcat</code></td>
-<td>On the destination host:<br /><code>$ nc -l 9999 | cat - &gt; /data/backups/backup.xbstream</code><br /><br />On the source host:<br /><code>$ xtrabackup --backup --stream=xbstream --target-dir=./ | nc desthost 9999</code></td>
+<td>On the destination host:<br /><code>$ nc -l 9999 | cat - &gt; /data/backups/backup.xbstream</code><br /><br />On the source host:<br /><code>$ xtrabackup --backup --stream=xbstream ./ | nc desthost 9999</code></td>
 </tr>
 <tr>
 <td>Send the backup to another server using a one-liner</td>
@@ -2053,7 +2025,7 @@ utility: <code>xbstream -x &lt;  backup.xbstream</code>.</p>
   <small>
     
       Last update:
-      2023-01-23
+      2022-12-06
     
   </small>
 </div>
