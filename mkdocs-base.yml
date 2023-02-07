@@ -35,7 +35,6 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
 
-
 extra_css:
   - https://unicons.iconscout.com/release/v3.0.3/css/line.css
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css
@@ -76,7 +75,8 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
 plugins:
-  search: {}
+  search: 
+    separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   git-revision-date: {}
   macros:
       include_yaml:
@@ -207,4 +207,5 @@ nav:
       - copyright-and-licensing-information.md
       - version-check.md
 # - Version Selector: "../"
+
 
