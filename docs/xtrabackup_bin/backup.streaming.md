@@ -24,8 +24,20 @@ When compression is enabled, *xtrabackup* compresses the output data, except for
 
 `quicklz` 
 
+!!! note
+
+    Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms.
+
 The resulting files have the `qpress` archive format. Every
 `\*.qp` file produced by xtrabackup is essentially a one-file qpress archive and can be extracted and uncompressed by the `qpress file archiver` which is available from Percona Software repositories.
+
+`lz4`
+
+To compress files using the `lz4` compression algorithm, set `--compress` option to `lz4`:
+
+```{.bash data-prompt="$"}
+$ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
+```
 
 `Zstandard (ZSTD)`
 
