@@ -3979,6 +3979,10 @@ with this option enabled. Use at your own risk.</p>
 <h3 id="-compress">--compress()<a class="headerlink" href="#-compress" title="Permanent link">&para;</a></h3>
 <p>This option tells <em>xtrabackup</em> to compress all output data, including the
 transaction log file and meta data files, using either the <code>quicklz</code>, <code>lz4</code>, or <code>ZSTD</code> compression algorithm. <code>quicklz</code> is chosen by default.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either <code>LZ4</code> or Zstandard (<code>ZSTD</code>) compression algorithms. See <a href="../backup_scenarios/compressed_backup.html">Compressed backups</a> for more information.</p>
+</div>
 <p>When using <code>--compress=quicklz</code> or <code>--compress</code>, the resulting files have
 the qpress archive format. Every <code>\*.qp</code> file produced by <em>xtrabackup</em> is
 essentially a one-file qpress archive and can be extracted and uncompressed
@@ -4558,7 +4562,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2023-01-17
+      2023-01-25
     
   </small>
 </div>

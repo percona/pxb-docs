@@ -2027,9 +2027,13 @@
 <p><em>Percona XtraBackup</em> supports compressed backups. A local or streaming
 backup can be compressed or decompressed with <em>xbstream</em>.</p>
 <h2 id="create-compressed-backups">Create compressed backups<a class="headerlink" href="#create-compressed-backups" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either <code>LZ4</code> or Zstandard (<code>ZSTD</code>) compression algorithms.</p>
+</div>
 <p>To make a compressed backup, use the <code>--compress</code> option along
 with the <code>--backup</code> and <code>--target-dir</code> options. </p>
-<p>The <code>--compress</code> option uses the <code>qpress</code> tool that you can install with
+<p>By default, the <code>--compress</code> option uses the <code>qpress</code> tool that you can install with
 the <code>percona-release</code> package configuration tool as follows:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>tools
 $<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
@@ -2139,7 +2143,7 @@ the last line of the output for a success message:</p>
   <small>
     
       Last update:
-      2022-12-12
+      2023-01-25
     
   </small>
 </div>
