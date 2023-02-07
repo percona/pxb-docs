@@ -356,3 +356,7 @@ and then start the replica:
 
 If both IO and SQL threads are running when you check the `NewReplica`,
 server is replicating the `Source`.
+
+!!! admoniton "See also"
+
+    [How to create a new (or repair a broken) GTID based slave](./recipes_ibkx_gtid.md)
