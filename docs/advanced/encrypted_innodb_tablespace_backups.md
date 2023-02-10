@@ -21,15 +21,13 @@ for more information.
 
 Percona XtraBackup 8.0.27-19 adds support for the Key Management
 Interoperability Protocol (KMIP) which enables the communication between
-the key management system and encrypted database server. This feature is
-*tech preview* quality.
+the key management system and encrypted database server. 
 
 Percona XtraBackup 8.0.28-21 adds support for the Amazon Key Management
 Service (AWS KMS). AWS KMS is cloud-based encryption and key management
 service. The keys and functionality can be used for other AWS services
 or your applications that use AWS. No configuration is required to back
-up a server with AWS KMS-enabled encryption. This feature is *tech
-preview* quality.
+up a server with AWS KMS-enabled encryption. 
 
 ## Use `keyring_file` plugin
 
@@ -114,9 +112,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-vault-config=/etc/vault.cnf
 ```
 
-!!! note
-   
-    Please look [using the keyring vault plugin](https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin) for a description of keyring vault plugin settings.
+Review [using the keyring vault plugin](https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin) for a description of keyring vault plugin settings.
 
 After *xtrabackup* completes the action, the following message confirms
 the action:
@@ -207,9 +203,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-!!! note
-   
-    *xtrabackup* attempts to read `xtrabackup_component_keyring_file.cnf`. You can assign another keyring file component configuration by passing the `--component-keyring-file-config` option.
+xtrabackup attempts to read `xtrabackup_component_keyring_file.cnf`. You can assign another keyring file component configuration by passing the `--component-keyring-file-config` option.
 
 After *xtrabackup* completes preparing the backup, the following message confirms
 the action:
@@ -228,11 +222,7 @@ to take and prepare the backup.
 ## Incremental encrypted InnoDB tablespace backups with `keyring_file`
 
 The process of taking incremental backups with InnoDB tablespace encryption
-is similar to taking the Incremental Backups with unencrypted tablespace.
-
-!!! note
-   
-    The `keyring-file` component should not used in production or for regulatory compliance.
+is similar to taking the Incremental Backups with unencrypted tablespace. The `keyring-file` component should not used in production or for regulatory compliance.
 
 ## Create an incremental backup
 
@@ -248,9 +238,7 @@ $ xtrabackup --backup --target-dir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-!!! warning
-   
-    *xtrabackup* will not copy the keyring file into the backup directory. In order to prepare the backup, you must make a copy of the keyring file yourself. If you try to restore the backup after the keyring has been changed you’ll see errors like `ERROR 3185 (HY000): Can't find master key from keyring, please check keyring plugin is loaded.` when trying to access an encrypted table.
+In order to prepare the backup, you must make a copy of the keyring file yourself. xtrabackup does not copy the keyring file into the backup directory.  Restoring the backup after the keyring has been changed causes errors like `ERROR 3185 (HY000): Can't find master key from keyring, please check keyring plugin is loaded.` when the restore process tries accessing an encrypted table.
 
 If you look at the `xtrabackup_checkpoints` file, you should see
 the output similar to the following:
@@ -275,9 +263,7 @@ $ xtrabackup --backup --target-dir=/data/backups/inc1 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-!!! warning
-   
-    *xtrabackup* does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.
+To prepare the backup, you must copy the keyring file manually. xtrabackup does not copy the keyring file into the backup directory. 
 
 If the
 keyring has not been rotated you can use the same as the one you’ve
@@ -327,9 +313,7 @@ incremental
 backup. You should use the `--apply-log-only` option to prevent the
 rollback phase.
 
-!!! warning
-   
-    If you do not use the `--apply-log-only` option to prevent the rollback phase, then your incremental backups are useless. After transactions have been rolled back, further incremental backups cannot be applied.
+If you do not use the `--apply-log-only` option to prevent the rollback phase, then your incremental backups are useless. After transactions have been rolled back, further incremental backups cannot be applied.
 
 Beginning with the full backup you created, you can prepare it and then
 apply the incremental differences to it. Recall that you have the following backups:
@@ -365,9 +349,7 @@ $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-!!! warning
-   
-    The backup should be prepared with the keyring file and type that was used when backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup that you must use the keyring that was in use when the first incremental backup has been taken.
+The backup should be prepared with the keyring file and type that was used when backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup that you must use the keyring that was in use when the first incremental backup has been taken.
 
 Preparing the second incremental backup is a similar process: apply the
 deltas
@@ -379,17 +361,12 @@ $ xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
-
-!!! note
-   
-    `--apply-log-only` should be used when merging all incremental backups except the last one. That’s why the previous line does not contain the `--apply-log-only` option. Even if the `--apply-log-only` was used on the last step, backup would still be consistent but in that case  server would perform the rollback phase.
+Use `--apply-log-only` when merging all incremental backups except the last one. That’s why the previous line does not contain the `--apply-log-only` option. Even if the `--apply-log-only` was used on the last step, backup would still be consistent but in that case  server would perform the rollback phase.
 
 The backup is now prepared and can be restored with `--copy-back` option.
 In case the keyring has been rotated you’ll need to restore the keyring which was used to take and prepare the backup.
 
 ## Use the Key Management Interoperability Protocol (KMIP)
-
-This feature is *tech preview* quality.
 
 Percona XtraBackup 8.0.27-19 adds support for the Key Management
 Interoperability Protocol (KMIP) which enables the communication between
@@ -434,9 +411,7 @@ $ xtrabackup --backup --user=root -p --target-dir=/data/backup \
 
 If `--transition-key` is specified without a value, *xtrabackup* will ask for it.
 
-!!! note
-
-    *xtrabackup* scrapes `--transition-key` so that its value is not visible in the `ps` command output.
+xtrabackup scrapes `--transition-key` so that its value is not visible in the `ps` command output.
 
 ### Prepare a backup with a passphrase
 
