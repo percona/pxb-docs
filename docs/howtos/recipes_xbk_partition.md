@@ -1,9 +1,8 @@
 # Back up and restore individual partitions
 
 Percona XtraBackup lets you back up
-individual partitions because partitions are regular tables with specially formatted names. The only
-requirement for this feature is having the innodb_file_per_table option
-enabled in the server.
+individual partitions because partitions are regular tables with specially formatted names. The only requirement for this feature is to enable the `innodb_file_per_table` option
+on the server.
 
 There is one caveat about using this kind of backup: you can not copy back
 the prepared backup. Restoring partial backups should be done by importing the
@@ -12,9 +11,9 @@ tables.
 ## Create the backup
 
 There are three ways of specifying which part of the whole data will be backed
-up: regular expressions ( –tables), enumerating the
-tables in a file (–tables) or providing a list of
-databases (–databases).
+up: regular expressions ( --tables), enumerating the
+tables in a file (--tables) or providing a list of
+databases (--databases).
 
 The regular expression provided to this option will be matched against the fully
 qualified database name and table name, in the form of
@@ -31,7 +30,7 @@ $ xtrabackup --tables=^imdb[.]name#p#p4 --backup
 
 If partition 0 is not backed up, the following errors may occur:
 
-??? example "Expected output"
+??? example "The error message"
 
     ```{.text .no-copy}
     xtrabackup: export option not specified
@@ -45,13 +44,13 @@ created even if they are empty.
 ## Prepare the backup
 
 For preparing partial backups, the procedure is analogous to restoring
-individual tables apply the logs and use xtrabackup –export:
+individual tables. Apply the logs and use xtrabackup --export:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --apply-log --export /mnt/backup/2012-08-28_10-29-09
 ```
 
-You may see warnings in the output about tables that do not exist. This is
+You may see warnings in the output about tables that do not exist. This happens
 because *InnoDB*-based engines stores its data dictionary inside the tablespace
 files. *xtrabackup* removes the missing tables (those that haven’t been selected in the partial
 backup) from the data dictionary in order to avoid future warnings or errors.
@@ -88,10 +87,9 @@ that table:
 mysql> ALTER TABLE name_p4 DISCARD TABLESPACE;
 ```
 
-The next step is to copy the .exp and ibd files from the backup to the MySQL data directory:
+The next step is to copy the `.ibd` file from the backup to the MySQL data directory:
 
 ```
-cp /mnt/backup/2012-08-28_10-29-09/imdb/name#p#p4.exp /var/lib/mysql/imdb/name_p4.exp
 cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 ```
 
