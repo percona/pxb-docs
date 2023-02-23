@@ -20,18 +20,18 @@
       
       
       <link rel="icon" href="../_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.12">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.14">
     
     
       
-        <title>Backing Up and Restoring Individual Partitions - Percona XtraBackup</title>
+        <title>Back up and restore individual partitions - Percona XtraBackup</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.113286f1.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -112,7 +112,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#backing-up-and-restoring-individual-partitions" class="md-skip">
+        <a href="#back-up-and-restore-individual-partitions" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +121,7 @@
       
     </div>
     
-      <div data-md-component="outdated" hidden>
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
         
       </div>
     
@@ -148,7 +148,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Backing Up and Restoring Individual Partitions
+              Back up and restore individual partitions
             
           </span>
         </div>
@@ -215,7 +215,7 @@
         <a href="https://github.com/percona/pxb-docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     percona/pxb-docs
@@ -259,7 +259,7 @@
       <a href="https://github.com/percona/pxb-docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     percona/pxb-docs
@@ -1565,25 +1565,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-the-backup" class="md-nav__link">
-    Creating the backup
+  <a href="#create-the-backup" class="md-nav__link">
+    Create the backup
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparing-the-backup" class="md-nav__link">
-    Preparing the backup
+  <a href="#prepare-the-backup" class="md-nav__link">
+    Prepare the backup
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#restoring-from-the-backups" class="md-nav__link">
-    Restoring from the backups
+  <a href="#restore-from-the-backups" class="md-nav__link">
+    Restore from the backups
   </a>
   
-    <nav class="md-nav" aria-label="Restoring from the backups">
+    <nav class="md-nav" aria-label="Restore from the backups">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1639,7 +1639,7 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="backing-up-and-restoring-individual-partitions">Backing Up and Restoring Individual Partitions<a class="headerlink" href="#backing-up-and-restoring-individual-partitions" title="Permanent link">&para;</a></h1>
+                <h1 id="back-up-and-restore-individual-partitions">Back up and restore individual partitions<a class="headerlink" href="#back-up-and-restore-individual-partitions" title="Permanent link">&para;</a></h1>
 <p><em>Percona XtraBackup</em> features <a href="../innobackupex/partial_backups_innobackupex.html">partial backups</a>, which means that you may backup
 individual partitions as well because from the storage engines perspective
 partitions are regular tables with specially formatted names. The only
@@ -1651,7 +1651,7 @@ tables, and not by using the traditional <code>innobackupex --copy-back</code>
 option. Although there are some scenarios where restoring can be done by copying
 back the files, this may be lead to database inconsistencies in many cases and
 it is not the recommended way to do it.</p>
-<h2 id="creating-the-backup">Creating the backup<a class="headerlink" href="#creating-the-backup" title="Permanent link">&para;</a></h2>
+<h2 id="create-the-backup">Create the backup<a class="headerlink" href="#create-the-backup" title="Permanent link">&para;</a></h2>
 <p>There are three ways of specifying which part of the whole data will be backed
 up: regular expressions (<code>innobackupex --include</code>), enumerating the
 tables in a file (<code>innobackupex --tables-file</code>) or providing a list of
@@ -1680,9 +1680,8 @@ imdb.company_type.frm is skipped because it does not match ^imdb[.]name#P#p4.
 <p>Note that this option is passed to <code>xtrabackup --tables</code> and is matched
 against each table of each database, the directories of each database will be
 created even if they are empty.</p>
-<h2 id="preparing-the-backup">Preparing the backup<a class="headerlink" href="#preparing-the-backup" title="Permanent link">&para;</a></h2>
-<p>For preparing partial backups, the procedure is analogous to <a href="../innobackupex/restoring_individual_tables_ibk.html">restoring
-individual tables</a> : apply the
+<h2 id="prepare-the-backup">Prepare the backup<a class="headerlink" href="#prepare-the-backup" title="Permanent link">&para;</a></h2>
+<p>For preparing partial backups, the procedure is analogous to <a href="../innobackupex/restoring_individual_tables_ibk.html">restoring individual tables</a>: apply the
 logs and use <code>innobackupex --export</code>:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>innobackupex<span class="w"> </span>--apply-log<span class="w"> </span>--export<span class="w"> </span>/mnt/backup/2012-08-28_10-29-09
 </code></pre></div>
@@ -1696,56 +1695,41 @@ InnoDB: but tablespace with that id or name does not exist. It will be removed f
 120828 10:25:28  InnoDB: Waiting for the background threads to start
 120828 10:25:29 Percona XtraDB (http://www.percona.com) 1.1.8-20.1 started; log sequence number 10098323731
 xtrabackup: export option is specified.
-xtrabackup: export metadata of table &#39;imdb/name#P#p4&#39; to file `./imdb/name#P#p4.exp` (1 indexes)
 xtrabackup:     name=PRIMARY, id.low=73, page=3
 </code></pre></div>
-<p>You should also see the notification of the creation of a file needed for
-importing (<code>.exp</code> file) for each table included in the partial backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup: export option is specified.
-xtrabackup: export metadata of table &#39;imdb/name#P#p4&#39; to file `./imdb/name#P#p4.exp` (1 indexes)
-xtrabackup:     name=PRIMARY, id.low=73, page=3
-</code></pre></div>
-<p>Note that you can use <code>innobackupex --export</code> with <code>innobackupex --apply-log</code>
-to an already-prepared backup in order to create the .exp
-files.</p>
 <p>Finally, check the for the confirmation message in the output:</p>
 <div class="highlight"><pre><span></span><code>120828 19:25:38  innobackupex: completed OK!
 </code></pre></div>
-<h2 id="restoring-from-the-backups">Restoring from the backups<a class="headerlink" href="#restoring-from-the-backups" title="Permanent link">&para;</a></h2>
-<p>Restoring should be done by <a href="../innobackupex/restoring_individual_tables_ibk.html">importing the tables</a> in the partial backup to the
-server.</p>
+<h2 id="restore-from-the-backups">Restore from the backups<a class="headerlink" href="#restore-from-the-backups" title="Permanent link">&para;</a></h2>
+<p>Restoring should be done by <a href="../innobackupex/restoring_individual_tables_ibk.html">importing the tables</a> in the partial backup to the server.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Improved table/partition import is only available in <em>Percona Server for MySQL</em> and <em>MySQL</em> 5.6, this means that partitions which were backed up from different server can be imported as well. For versions older than <em>MySQL</em> 5.6 only partitions from that server can be imported with some important limitations. There should be no DROP/CREATE/TRUNCATE/ALTER TABLE commands issued between taking the backup and importing the partition.</p>
 </div>
 <p>First step is to create new table in which data will be restored</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="p">(</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="n">imdb_index</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="n">imdb_id</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="n">name_pcode_cf</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="n">name_pcode_nf</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="n">surname_pcode</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
-<span class="o">&gt;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">2812744</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="p">(</span>
+<span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="n">name</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="n">imdb_index</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="n">imdb_id</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="n">name_pcode_cf</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="n">name_pcode_nf</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="n">surname_pcode</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">2812744</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span>
 </code></pre></div>
 <p>To restore the partition from the backup tablespace needs to be discarded for
 that table:</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w">  </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="n">DISCARD</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
 </code></pre></div>
-<p>The next step is to copy the <code>.exp</code> and <code>ibd</code> files from the backup to <em>MySQL</em>
+<p>The next step is to copy the <code>ibd</code> file from the backup to <em>MySQL</em>
 data directory:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cp<span class="w"> </span>/mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.exp<span class="w"> </span>/var/lib/mysql/imdb/name_p4.exp
-$<span class="w"> </span>cp<span class="w"> </span>/mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd<span class="w"> </span>/var/lib/mysql/imdb/name_p4.ibd
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cp<span class="w"> </span>/mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd<span class="w"> </span>/var/lib/mysql/imdb/name_p4.ibd
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Make sure that the copied files can be accessed by the user running the <em>MySQL</em>.</p>
 </div>
-<p>If you are running the <em>Percona Server for MySQL</em> make sure that variable <code>innodb_import_table_from_xtrabackup</code> is enabled:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">innodb_import_table_from_xtrabackup</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
 <p>The last step is to import the tablespace:</p>
 <div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span><span class="w">  </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="n">IMPORT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
 </code></pre></div>
@@ -1757,7 +1741,7 @@ Server for MySQL</em> 5.6 it is possible to exchange individual partitions with 
 tables through <code>ALTER TABLE</code> … <code>EXCHANGE PARTITION</code> command.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In <em>Percona Server for MySQL</em> 5.6, the variable <code>innodb_import_table_from_xtrabackup</code> was been removed in favor of <em>MySQL</em> <a href="http://dev.mysql.com/doc/refman/5.6/en/tablespace-copying.html">Transportable Tablespaces</a> implementation.</p>
+<p>In <em>Percona Server for MySQL</em> 5.6, the variable <code>innodb_import_table_from_xtrabackup</code> was removed in favor of <em>MySQL</em> <a href="https://dev.mysql.com/doc/refman/5.6/en/innodb-table-import.html">Transportable Tablespaces</a> implementation.</p>
 </div>
 <p>When importing an entire partitioned table, first import all (sub)partitions as
 independent tables:</p>
@@ -1815,7 +1799,7 @@ have to be met.</p>
   <small>
     
       Last update:
-      2022-11-10
+      2023-02-23
     
   </small>
 </div>
@@ -1938,11 +1922,11 @@ have to be met.</p>
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
               
-      <script src="../assets/javascripts/bundle.4b2c34cd.min.js"></script>
+      <script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
