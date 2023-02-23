@@ -1,11 +1,11 @@
-# Restoring Individual Tables
+# Restore individual tables
 
 With *Percona XtraBackup*, you can export individual tables from any *InnoDB* database, and
 import them into *Percona Server for MySQL* with *XtraDB* or *MySQL* 5.7. The source does not
 need to be *XtraDB* or *MySQL* 5.7 but the destination must be. This operation only works on
 individual .ibd files. A table that is not contained in its own `.ibd` file cannot be exported.
 
-Let’s see how to export and import the following table:
+The following example exports and imports the following table:
 
 ```sql
 CREATE TABLE export_test (
@@ -13,64 +13,55 @@ CREATE TABLE export_test (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ```
 
-## Exporting the Table
+## Export the table
 
-This table should have been created in `innodb_file_per_table` mode, so
-after taking a backup as usual with `xtrabackup --backup`, the
-`.ibd` file should exist in the target directory:
+To generate an .ibd file in the target directory, create the table using the `innodb_file_per_table` mode:
 
 ```shell
 $ find /data/backups/mysql/ -name export_test.*
 /data/backups/mysql/test/export_test.ibd
 ```
 
-when you prepare the backup, add the extra parameter
-`xtrabackup --export` to the command. Here is an example:
+During the `--prepare` step, add the `--export` option to the command. For example:
 
 ```shell
 $ xtrabackup --prepare --export --target-dir=/data/backups/mysql/
 ```
 
-!!! note
-
-    If you’re trying to restore [encrypted InnoDB tablespace](../advanced/encrypted_innodb_tablespace_backups.md#encrypted-innodb-tablespace-backups) table you must specify the keyring file as well: 
-   
-    ```shell
-    xtrabackup --prepare --export --target-dir=/tmp/table \
-    --keyring-file-data=/var/lib/mysql-keyring/keyring
-    ```
-
-Now you should see a .exp file in the target directory:
-
+When restoring an [encrypted InnoDB tablespace](../advanced/encrypted_innodb_tablespace_backups.md#encrypted-innodb-tablespace-backups) table, add the keyring file:
+ 
 ```shell
-$ find /data/backups/mysql/ -name export_test.*
+$ xtrabackup --prepare --export --target-dir=/tmp/table \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
-The result is similar to the following:
+
+The following files are the only files required to import the table into a server running
+Percona Server for MySQL with XtraDB or MySQL 5.7. If the server uses InnoDB Tablespace Encryption, add the `.cfp` file, which contains the transfer key and an encrypted tablespace key.
+
+The files are located in the target directory:
 
 ```text
-/data/backups/mysql/test/export_test.exp
 /data/backups/mysql/test/export_test.ibd
 /data/backups/mysql/test/export_test.cfg
 ```
 
-These three files are all you need to import the table into a server running
-*Percona Server for MySQL* with XtraDB or *MySQL* 5.7. In case server is using [InnoDB
-Tablespace Encryption](http://dev.mysql.com/doc/refman/5.7/en/innodb-tablespace-encryption.html)
-additional `.cfp` file be listed for encrypted tables.
-
-!!! note
-
-    *MySQL* uses `.cfg` file which contains *InnoDB* dictionary dump in special format. This format is different from the `.exp\` one which is used in XtraDB for the same purpose. Strictly speaking, a `.cfg\` file is not required to import a tablespace to *MySQL* 5.7 or *Percona Server for MySQL* 5.7. A tablespace will be imported successfully even if it is from another server, but *InnoDB* will do schema validation if the corresponding `.cfg` file is present in the same directory.
-
-## Importing the Table
+## Import the table
 
 On the destination server, create a table with the same structure, and then perform the following steps:
 
-* Execute `ALTER TABLE test.export_test DISCARD TABLESPACE;`
+1. Run the `ALTER TABLE test.export_test DISCARD TABLESPACE;` command. If you see the following error message:
 
-    * If you see the `ERROR 1030
-(HY000): Got error -1 from storage engine` message, then enable
-[innodb_file_per_table](../glossary.md#term-innodb_file_per_table) and create the table again:
+    ```{.text .no-copy}
+    ERROR 1030 (HY000): Got error -1 from storage engine` message
+    ```
+    
+    enable [innodb_file_per_table](../glossary.md#innodb_file_per_table) option:
+    
+    ```shell
+    $ set global innodb_file_per_table=ON;
+    ```
+
+    Then create the table again.
 
 * Copy the exported files to the `test/` subdirectory of the destination
 server’s data directory

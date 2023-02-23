@@ -1,4 +1,4 @@
-# Backing Up and Restoring Individual Partitions
+# Back up and restore individual partitions
 
 *Percona XtraBackup* features [partial backups](../innobackupex/partial_backups_innobackupex.md), which means that you may backup
 individual partitions as well because from the storage engines perspective
@@ -13,7 +13,7 @@ option. Although there are some scenarios where restoring can be done by copying
 back the files, this may be lead to database inconsistencies in many cases and
 it is not the recommended way to do it.
 
-## Creating the backup
+## Create the backup
 
 There are three ways of specifying which part of the whole data will be backed
 up: regular expressions (`innobackupex --include`), enumerating the
@@ -53,10 +53,9 @@ Note that this option is passed to `xtrabackup --tables` and is matched
 against each table of each database, the directories of each database will be
 created even if they are empty.
 
-## Preparing the backup
+## Prepare the backup
 
-For preparing partial backups, the procedure is analogous to [restoring
-individual tables](../innobackupex/restoring_individual_tables_ibk.md) : apply the
+For preparing partial backups, the procedure is analogous to [restoring individual tables](../innobackupex/restoring_individual_tables_ibk.md): apply the
 logs and use `innobackupex --export`:
 
 ```shell
@@ -75,22 +74,8 @@ InnoDB: but tablespace with that id or name does not exist. It will be removed f
 120828 10:25:28  InnoDB: Waiting for the background threads to start
 120828 10:25:29 Percona XtraDB (http://www.percona.com) 1.1.8-20.1 started; log sequence number 10098323731
 xtrabackup: export option is specified.
-xtrabackup: export metadata of table 'imdb/name#P#p4' to file `./imdb/name#P#p4.exp` (1 indexes)
 xtrabackup:     name=PRIMARY, id.low=73, page=3
 ```
-
-You should also see the notification of the creation of a file needed for
-importing (`.exp` file) for each table included in the partial backup:
-
-```text
-xtrabackup: export option is specified.
-xtrabackup: export metadata of table 'imdb/name#P#p4' to file `./imdb/name#P#p4.exp` (1 indexes)
-xtrabackup:     name=PRIMARY, id.low=73, page=3
-```
-
-Note that you can use `innobackupex --export` with `innobackupex --apply-log`
-to an already-prepared backup in order to create the .exp
-files.
 
 Finally, check the for the confirmation message in the output:
 
@@ -98,10 +83,9 @@ Finally, check the for the confirmation message in the output:
 120828 19:25:38  innobackupex: completed OK!
 ```
 
-## Restoring from the backups
+## Restore from the backups
 
-Restoring should be done by [importing the tables](../innobackupex/restoring_individual_tables_ibk.md) in the partial backup to the
-server.
+Restoring should be done by [importing the tables](../innobackupex/restoring_individual_tables_ibk.md) in the partial backup to the server.
 
 !!! note
 
@@ -110,16 +94,16 @@ server.
 First step is to create new table in which data will be restored
 
 ```sql
-> mysql> CREATE TABLE name_p4 (
-> id int(11) NOT NULL AUTO_INCREMENT,
-> name text NOT NULL,
-> imdb_index varchar(12) DEFAULT NULL,
-> imdb_id int(11) DEFAULT NULL,
-> name_pcode_cf varchar(5) DEFAULT NULL,
-> name_pcode_nf varchar(5) DEFAULT NULL,
-> surname_pcode varchar(5) DEFAULT NULL,
-> PRIMARY KEY (id)
-> ) ENGINE=InnoDB AUTO_INCREMENT=2812744 DEFAULT CHARSET=utf8
+mysql> CREATE TABLE name_p4 (
+id int(11) NOT NULL AUTO_INCREMENT,
+name text NOT NULL,
+imdb_index varchar(12) DEFAULT NULL,
+imdb_id int(11) DEFAULT NULL,
+name_pcode_cf varchar(5) DEFAULT NULL,
+name_pcode_nf varchar(5) DEFAULT NULL,
+surname_pcode varchar(5) DEFAULT NULL,
+PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=2812744 DEFAULT CHARSET=utf8
 ```
 
 To restore the partition from the backup tablespace needs to be discarded for
@@ -129,23 +113,16 @@ that table:
 mysql>  ALTER TABLE name_p4 DISCARD TABLESPACE;
 ```
 
-The next step is to copy the `.exp` and `ibd` files from the backup to *MySQL*
+The next step is to copy the `ibd` file from the backup to *MySQL*
 data directory:
 
 ```shell
-$ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.exp /var/lib/mysql/imdb/name_p4.exp
 $ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 ```
 
 !!! note
 
     Make sure that the copied files can be accessed by the user running the *MySQL*.
-
-If you are running the *Percona Server for MySQL* make sure that variable `innodb_import_table_from_xtrabackup` is enabled:
-
-```sql
-mysql> SET GLOBAL innodb_import_table_from_xtrabackup=1;
-```
 
 The last step is to import the tablespace:
 
@@ -163,7 +140,7 @@ tables through `ALTER TABLE` … `EXCHANGE PARTITION` command.
 
 !!! note
 
-    In *Percona Server for MySQL* 5.6, the variable `innodb_import_table_from_xtrabackup` was been removed in favor of *MySQL* [Transportable Tablespaces](http://dev.mysql.com/doc/refman/5.6/en/tablespace-copying.html) implementation.
+    In *Percona Server for MySQL* 5.6, the variable `innodb_import_table_from_xtrabackup` was removed in favor of *MySQL* [Transportable Tablespaces](https://dev.mysql.com/doc/refman/5.6/en/innodb-table-import.html) implementation.
 
 When importing an entire partitioned table, first import all (sub)partitions as
 independent tables:
