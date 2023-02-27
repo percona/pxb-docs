@@ -907,6 +907,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../xtrabackup_bin/restoring_individual_tables.html" class="md-nav__link">
+        Restore individual tables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../advanced/smart_memory_estimation.html" class="md-nav__link">
         Smart memory estimation
       </a>
@@ -1993,17 +2007,16 @@
                 <!-- Markdown content -->
                 <h1 id="back-up-and-restore-individual-partitions">Back up and restore individual partitions<a class="headerlink" href="#back-up-and-restore-individual-partitions" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup lets you back up
-individual partitions because partitions are regular tables with specially formatted names. The only
-requirement for this feature is having the innodb_file_per_table option
-enabled in the server.</p>
+individual partitions because partitions are regular tables with specially formatted names. The only requirement for this feature is to enable the <code>innodb_file_per_table</code> option
+on the server.</p>
 <p>There is one caveat about using this kind of backup: you can not copy back
 the prepared backup. Restoring partial backups should be done by importing the
 tables.</p>
 <h2 id="create-the-backup">Create the backup<a class="headerlink" href="#create-the-backup" title="Permanent link">&para;</a></h2>
 <p>There are three ways of specifying which part of the whole data will be backed
-up: regular expressions ( –tables), enumerating the
-tables in a file (–tables) or providing a list of
-databases (–databases).</p>
+up: regular expressions ( --tables), enumerating the
+tables in a file (--tables) or providing a list of
+databases (--databases).</p>
 <p>The regular expression provided to this option will be matched against the fully
 qualified database name and table name, in the form of
 <code>database-name.table-name</code>.</p>
@@ -2014,7 +2027,7 @@ the table <code>name</code> located in the database <code>imdb</code>:</p>
 </code></pre></div>
 <p>If partition 0 is not backed up, the following errors may occur:</p>
 <details class="example">
-<summary>Expected output</summary>
+<summary>The error message</summary>
 <div class="no-copy highlight"><pre><span></span><code>xtrabackup: export option not specified
 xtrabackup: error: cannot find dictionary record of table imdb/name#p#p4
 </code></pre></div>
@@ -2024,10 +2037,10 @@ against each table of each database, the directories of each database will be
 created even if they are empty.</p>
 <h2 id="prepare-the-backup">Prepare the backup<a class="headerlink" href="#prepare-the-backup" title="Permanent link">&para;</a></h2>
 <p>For preparing partial backups, the procedure is analogous to restoring
-individual tables apply the logs and use xtrabackup –export:</p>
+individual tables. Apply the logs and use xtrabackup --export:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--apply-log<span class="w"> </span>--export<span class="w"> </span>/mnt/backup/2012-08-28_10-29-09
 </code></pre></div>
-<p>You may see warnings in the output about tables that do not exist. This is
+<p>You may see warnings in the output about tables that do not exist. This happens
 because <em>InnoDB</em>-based engines stores its data dictionary inside the tablespace
 files. <em>xtrabackup</em> removes the missing tables (those that haven’t been selected in the partial
 backup) from the data dictionary in order to avoid future warnings or errors.</p>
@@ -2055,9 +2068,8 @@ The file is located in the table schema directory and is used for schema verific
 that table:</p>
 <div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>name_p4<span class="w"> </span>DISCARD<span class="w"> </span>TABLESPACE<span class="p">;</span>
 </code></pre></div>
-<p>The next step is to copy the .exp and ibd files from the backup to the MySQL data directory:</p>
-<div class="highlight"><pre><span></span><code>cp /mnt/backup/2012-08-28_10-29-09/imdb/name#p#p4.exp /var/lib/mysql/imdb/name_p4.exp
-cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
+<p>The next step is to copy the <code>.ibd</code> file from the backup to the MySQL data directory:</p>
+<div class="highlight"><pre><span></span><code>cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2087,7 +2099,7 @@ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p
   <small>
     
       Last update:
-      2022-12-06
+      2023-02-21
     
   </small>
 </div>

@@ -907,6 +907,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../xtrabackup_bin/restoring_individual_tables.html" class="md-nav__link">
+        Restore individual tables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../advanced/smart_memory_estimation.html" class="md-nav__link">
         Smart memory estimation
       </a>
@@ -2001,7 +2015,7 @@ with the <code>--backup</code> and <code>--target-dir</code> options. Percona Xt
 </code></pre></div>
 <p><code>Zstandard (ZSTD)</code></p>
 <p>The Zstandard (ZSTD) compression algorithm is a <a href="../glossary.html#tech-preview">tech preview</a> feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.</p>
-<p><a href="release-notes/8.0/8.0.30-23.0.md">Percona XtraBackup 8.0.30-23</a> adds support for the <code>Zstandard (ZSTD)</code> compression algorithm. <code>ZSTD</code> is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios.  </p>
+<p><a href="../release-notes/8.0/8.0.30-23.0.html">Percona XtraBackup 8.0.30-23</a> adds support for the <code>Zstandard (ZSTD)</code> compression algorithm. <code>ZSTD</code> is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios.  </p>
 <p>To compress files using the <code>ZSTD</code> compression algorithm, set <code>--compress</code> option to <code>zstd</code>:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>zstd<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
@@ -2094,7 +2108,7 @@ ready to start the server.</p>
   <small>
     
       Last update:
-      2023-01-25
+      2023-02-21
     
   </small>
 </div>
