@@ -1,6 +1,6 @@
 # Restore individual tables
 
-*Percona XtraBackup* can export a table that is contained in its own .ibd file. With *Percona XtraBackup*, you can export individual tables from any *InnoDB* database, and import them into *Percona Server for MySQL* with *XtraDB* or *MySQL* 8.0. The source doesn’t have to be *XtraDB* or *MySQL* 8.0, but the destination does. This method only works on individual .ibd files.
+Percona XtraBackup can export a table that is contained in its own .ibd file. With Percona XtraBackup, you can export individual tables from any *InnoDB* database, and import them into Percona Server for MySQL with XtraDB or MySQL 8.0. The source doesn’t have to be XtraDB or MySQL 8.0, but the destination does. This method only works on individual .ibd files.
 
 The following example exports and imports the following table:
 
@@ -12,61 +12,55 @@ a int(11) DEFAULT NULL
 
 ## Export the table
 
-Created the table in innodb_file_per_table mode, so
-after taking a backup as usual with the –backup option, the
-.ibd file exists in the target directory:
+To generate an .ibd file in the target directory, create the table using the `innodb_file_per_table` mode:
 
 ```{.bash data-prompt="$"}
 $ find /data/backups/mysql/ -name export_test.*
 /data/backups/mysql/test/export_test.ibd
 ```
 
-when you prepare the backup, add the –export option to the
-command. Here is an example:
+During the `--prepare` step, add the `--export` option to the
+command. For example:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --export --target-dir=/data/backups/mysql/
 ```
 
-!!! note
-   
-    If you restore an encrypted InnoDB tablespace table, add the  keyring file:
-
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --prepare --export --target-dir=/tmp/table \
-    --keyring-file-data=/var/lib/mysql-keyring/keyring
-    ```
-
-Now you should see an .exp file in the target directory:
+When restoring an encrypted InnoDB tablespace table, add the keyring file:
 
 ```{.bash data-prompt="$"}
-$ find /data/backups/mysql/ -name export_test.*
-/data/backups/mysql/test/export_test.exp
+$ xtrabackup --prepare --export --target-dir=/tmp/table \
+--keyring-file-data=/var/lib/mysql-keyring/keyring
+```
+
+The following files are the only files required to import the table into a server running Percona Server for MySQL with XtraDB or MySQL 8.0. If the server uses InnoDB Tablespace Encryption, add the .cfp file, which contains the transfer key and an encrypted tablespace key.
+
+The files are located in the target directory:
+
+```text
 /data/backups/mysql/test/export_test.ibd
 /data/backups/mysql/test/export_test.cfg
 ```
 
-These three files are the only files required to import the table into a server running
-*Percona Server for MySQL* with *XtraDB* or *MySQL* 8.0. In case the server uses InnoDB,
-Tablespace Encryption adds an additional .cfp file which contains the transfer key and an encrypted tablespace key.
-
-!!! note
-   
-    The .cfg metadata file contains an *InnoDB* dictionary dump in a special format. This format is different from the .exp one which is
-    used in *XtraDB* for the same purpose. A .cfg\` file is not required to import a tablespace to *MySQL* 8.0 or Percona
-    Server for MySQL 8.0.
-
-    A tablespace is imported successfully even if the table is from
-    another server, but *InnoDB* performs a schema validation if the corresponding .cfg file is located in the same directory.
-
 ## Import the table
 
-On the destination server running *Percona Server for MySQL* with *XtraDB* and
-`innodb_import_table_from_xtrabackup` option enabled, or *MySQL* 8.0, create a table with the same structure, and then perform the following steps:
+On the destination server running Percona Server for MySQL with XtraDB or MySQL 8.0, create a table with the same structure, and then perform the following steps:
 
-1. Run the `ALTER TABLE test.export_test DISCARD TABLESPACE;` command. If you see the following error, enable innodb_file_per_table and create the table again.
+1. Run the `ALTER TABLE test.export_test DISCARD TABLESPACE;` command. If you see the following error message:
 
-2. Copy the exported files to the `test/` subdirectory of the destination server’s data directory
+    ??? example "Error message"
+
+        ```{.text .no-copy}
+        ERROR 1809 (HY000): Table 'test/export_test' in system tablespace
+        ```
+
+    enable `innodb_file_per_table` option on the server and create the table again.
+
+    ```{.bash data-prompt="$"}
+    $ set global innodb_file_per_table=ON;
+    ```
+
+2. Copy the exported files to the `test/` subdirectory of the destination server’s data directory.
 
 3. Run `ALTER TABLE test.export_test IMPORT TABLESPACE;`
 
