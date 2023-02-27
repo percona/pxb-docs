@@ -61,8 +61,9 @@ S3 API.
 
 ## Supported Cloud Storage Types
 
-Swift was the only option for storing backups in cloud storage until *Percona XtraBackup 2.4.14*. 
-Currently, the xbcloud binary supports [Amazon S3](#creating-a-full-backup-with-amazon-s3), [Azure](xbcloud_azure.md#xbcloud-azure), [MinIO](#creating-a-full-backup-with-minio) and [Google Cloud Storage](#creating-a-full-backup-with-google-cloud-storage). Amazon S3-compatible cloud storage types, such as Wasabi and Digital Ocean Spaces, are also supported.
+Swift was the only option for storing backups in cloud storage until *Percona XtraBackup 2.4.14*.
+
+The xbcloud binary supports [Amazon S3](#creating-a-full-backup-with-amazon-s3), [Azure](xbcloud_azure.md#xbcloud-azure), [MinIO](#creating-a-full-backup-with-minio) and [Google Cloud Storage](#creating-a-full-backup-with-google-cloud-storage). Amazon S3-compatible cloud storage types, such as Wasabi and Digital Ocean Spaces, are also supported. The xbcloud binary should work with other S3-compatible storage options.
 
 !!! admonition "See also"
 
@@ -103,6 +104,8 @@ full_backup
 ```
 
 ## Creating a full backup with *Amazon S3*
+
+
 
 ```shell
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
