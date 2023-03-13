@@ -1,4 +1,4 @@
-# Making a Full Backup
+# Make a full backup
 
 Backup the InnoDB data and log files - located in `/var/lib/mysql/` - to
 `/data/backups/mysql/` (destination). Then, prepare the backup files to be
@@ -10,21 +10,15 @@ ready to restore or use (make the data files consistent).
 $ xtrabackup --backup --target-dir=/data/backups/mysql/
 ```
 
-## Prepare the backup twice:
+## Prepare the backup:
 
 ```shell
 $ xtrabackup --prepare --target-dir=/data/backups/mysql/
-$ xtrabackup --prepare --target-dir=/data/backups/mysql/
 ```
 
-## Success Criterion
+## Success criteria
 
 * The exit status of xtrabackup is 0.
-
-* In the second xtrabackup –prepare step, you should see InnoDB print messages
-similar to `Log file ./ib_logfile0 did not exist: new to be created`,
-followed by a line indicating the log file was created (creating new logs is
-the purpose of the second preparation).
 
 ## Notes
 

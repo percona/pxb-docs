@@ -1,4 +1,4 @@
-# Making an Incremental Backup
+# Make an incremental backup
 
 Backup all the InnoDB data and log files - located in `/var/lib/mysql/` -
 **once**, then make two daily incremental backups in `/data/backups/mysql/`
@@ -49,19 +49,11 @@ $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
 
 ## Roll forward again to the second increment
 
-Roll forward again to the state on Wednesday:
+Roll forward again to the state on Wednesday (without --apply-log-only):
 
 ```shell
-$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/mysql/ \
+$ xtrabackup --prepare --target-dir=/data/backups/mysql/ \
    --incremental-dir=/data/backups/inc/wed/
-```
-
-## Prepare the whole backup to be ready to use
-
-Create the new logs by preparing it:
-
-```shell
-$ xtrabackup --prepare --target-dir=/data/backups/mysql/
 ```
 
 ## Notes
