@@ -20,15 +20,15 @@
       
       
       <link rel="icon" href="../_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
     
     
       
-        <title>Making an Incremental Backup - Percona XtraBackup</title>
+        <title>Make an incremental backup - Percona XtraBackup</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.113286f1.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.7bf56d0a.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -112,7 +112,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#making-an-incremental-backup" class="md-skip">
+        <a href="#make-an-incremental-backup" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +128,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://docs.percona.com" title="Percona XtraBackup" class="md-header__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
@@ -148,7 +150,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Making an Incremental Backup
+              Make an incremental backup
             
           </span>
         </div>
@@ -1600,13 +1602,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prepare-the-whole-backup-to-be-ready-to-use" class="md-nav__link">
-    Prepare the whole backup to be ready to use
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     Notes
   </a>
@@ -1654,7 +1649,7 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="making-an-incremental-backup">Making an Incremental Backup<a class="headerlink" href="#making-an-incremental-backup" title="Permanent link">&para;</a></h1>
+                <h1 id="make-an-incremental-backup">Make an incremental backup<a class="headerlink" href="#make-an-incremental-backup" title="Permanent link">&para;</a></h1>
 <p>Backup all the InnoDB data and log files - located in <code>/var/lib/mysql/</code> -
 <strong>once</strong>, then make two daily incremental backups in <code>/data/backups/mysql/</code>
 (destination). Finally, prepare the backup files to be ready to restore or use.</p>
@@ -1682,13 +1677,9 @@
 <span class="w">   </span>--incremental-dir<span class="o">=</span>/data/backups/inc/tue/
 </code></pre></div>
 <h2 id="roll-forward-again-to-the-second-increment">Roll forward again to the second increment<a class="headerlink" href="#roll-forward-again-to-the-second-increment" title="Permanent link">&para;</a></h2>
-<p>Roll forward again to the state on Wednesday:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/mysql/<span class="w"> </span><span class="se">\</span>
+<p>Roll forward again to the state on Wednesday (without &ndash;apply-log-only):</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/mysql/<span class="w"> </span><span class="se">\</span>
 <span class="w">   </span>--incremental-dir<span class="o">=</span>/data/backups/inc/wed/
-</code></pre></div>
-<h2 id="prepare-the-whole-backup-to-be-ready-to-use">Prepare the whole backup to be ready to use<a class="headerlink" href="#prepare-the-whole-backup-to-be-ready-to-use" title="Permanent link">&para;</a></h2>
-<p>Create the new logs by preparing it:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/mysql/
 </code></pre></div>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1722,7 +1713,7 @@ details <a href="../xtrabackup_bin/xbk_option_reference.html">here</a>.</p>
   <small>
     
       Last update:
-      2022-11-10
+      2023-03-13
     
   </small>
 </div>
@@ -1849,7 +1840,7 @@ details <a href="../xtrabackup_bin/xbk_option_reference.html">here</a>.</p>
     
     
               
-      <script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      <script src="../assets/javascripts/bundle.fc8c2696.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
