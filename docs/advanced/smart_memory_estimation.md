@@ -34,7 +34,7 @@ During each `--backup` the following sysbench is run:
 
 The following table shows the backup details:
 
-||Used memory (G)|Size of Xtrabacup log (G)|Size of backup (G)|
+||Used memory (G)|Size of Xtrabackup log (G)|Size of backup (G)|
 |---|---|---|---|
 | 16 tables | 3.375 | 0.7 | 4.7 |
 | 32 tables | 8.625 | 2.6 | 11 |
@@ -42,7 +42,7 @@ The following table shows the backup details:
 
 * **Used memory (G)** - the amount of memory required by Percona XtraBackup with `--use-free-memory-pct=50`
 
-* **Size of Xtrabacup log (G)** - the size of Percona XtraBackup log file (redo log entries copied during the backup)
+* **Size of Xtrabackup log (G)** - the size of Percona XtraBackup log file (redo log entries copied during the backup)
 
 * **Size of backup (G)** - the size of the resulting backup folder
 
