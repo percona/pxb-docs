@@ -2164,7 +2164,7 @@
 <p><a href="https://jira.percona.com/browse/PXB-2970">PXB-2970</a>: Removed unnecessary check for redo log files at the end of backup in case the redo archive was enabled.</p>
 <p><a href="https://jira.percona.com/browse/PXB-2972">PXB-2972</a>: An error after the redo apply phase caused an assertion failure instead of a graceful exit.</p>
 <p><a href="https://jira.percona.com/browse/PXB-2977">PXB-2977</a>: Fixed the security vulnerability <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-25834">CVE-2022-25834</a>.</p>
-<p><a href="https://jira.percona.com/browse/PXB-2998">PXB-2998</a>: Due to a server <a href="https://bugs.mysql.com/bug.php?id=1101">bug</a> in the upgrade, the server leaves the dictionary tables in a temporary schema instead of the <code>mysql</code> schema. Percona Xtrabackup can now successfully prepare these backup directories.</p>
+<p><a href="https://jira.percona.com/browse/PXB-2998">PXB-2998</a>: Due to a server <a href="https://bugs.mysql.com/bug.php?id=110194">bug</a> in the upgrade, the server leaves the dictionary tables in a temporary schema instead of the <code>mysql</code> schema. Percona Xtrabackup can now successfully prepare these backup directories.</p>
 <p><a href="https://jira.percona.com/browse/PXB-2999">PXB-2999</a>: Removed the warning message that MLOG_INDEX_LOAD redo log record was found.</p>
 <p><a href="https://jira.percona.com/browse/PXB-3022">PXB-3022</a>: Reduced the memory required for <code>--prepare</code> phase.</p>
 <h2 id="useful-links">Useful links<a class="headerlink" href="#useful-links" title="Permanent link">&para;</a></h2>
@@ -2192,7 +2192,7 @@
   <small>
     
       Last update:
-      2023-04-04
+      2023-04-05
     
   </small>
 </div>
