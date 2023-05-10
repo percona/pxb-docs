@@ -15,7 +15,7 @@ xbcloud put --storage=swift \
 full_backup
 ```
 
-The following OpenStack environment variables are also recognized and mapped automatically to the corresponding **swift** parameters (`--storage=swift`):
+The following OpenStack environment variables are also recognized and mapped automatically to the corresponding swift parameters (`--storage=swift`):
  
 * OS_AUTH_URL
 
@@ -78,92 +78,92 @@ $ xbcloud delete --storage=swift --swift-user=xtrabackup \
 
 *xbcloud* has the following command line options:
 
-
 ### --storage(=[swift|s3|google])
+
 Cloud storage option. *xbcloud* supports Swift, MinIO, and AWS S3.
 The default value is `swift`.
 
-
 ### --swift-auth-url()
-URL of Swift cluster.
 
+The URL of the Swift cluster
 
 ### --swift-storage-url()
-xbcloud will try to get object-store URL for given region (if any specified)
-from the keystone response. One can override that URL by passing
+
+The xbcloud tries to get the object-store URL for a given region (if any are specified)
+from the keystone response. You can override that URL by passing
 –swift-storage-url=URL argument.
 
-
 ### --swift-user()
-Swift username (X-Auth-User, specific to Swift)
 
+The Swift username (X-Auth-User, specific to Swift)
 
 ### --swift-key()
-Swift key/password (X-Auth-Key, specific to Swift)
 
+The Swift key/password (X-Auth-Key, specific to Swift)
 
 ### --swift-container()
-Container to backup into (specific to Swift)
 
+The container to back up into (specific to Swift)
 
 ### --parallel(=N)
-Maximum number of concurrent upload/download requests. Default is `1`.
 
+The maximum number of concurrent upload/download requests. The default value is `1`.
 
 ### --cacert()
-Path to the file with CA certificates
 
+The path to the file with CA certificates
 
 ### --insecure()
-Do not verify servers certificate
+
+Do not verify server's certificate
 
 ### Swift authentication options
 
-Swift specification describes several [authentication options](http://docs.openstack.org/developer/swift/overview_auth.html). *xbcloud* can
+The Swift specification describes several [authentication options](http://docs.openstack.org/developer/swift/overview_auth.html). The *xbcloud* tool can
 authenticate against keystone with API version 2 and 3.
 
-
 ### --swift-auth-version()
-Specifies the swift authentication version. Possible values are: `1.0` -
-TempAuth, `2.0` - Keystone v2.0, and `3` - Keystone v3. Default value is
+
+Specifies the swift authentication version. The possible values are: `1.0` -
+TempAuth, `2.0` - Keystone v2.0, and `3` - Keystone v3. The default value is
 `1.0`.
 
 For v2 additional options are:
 
-
 ### --swift-tenant()
-Swift tenant name.
 
+Swift tenant name
 
 ### --swift-tenant-id()
-Swift tenant ID.
 
+Swift tenant ID
 
 ### --swift-region()
-Swift endpoint region.
 
+Swift endpoint region
 
 ### --swift-password()
-Swift password for the user.
+
+Swift password for the user
 
 For v3 additional options are:
 
-
 ### --swift-user-id()
-Swift user ID.
 
+Swift user ID
 
 ### --swift-project()
-Swift project name.
 
+Swift project name
 
 ### --swift-project-id()
-Swift project ID.
 
+Swift project ID
 
 ### --swift-domain()
-Swift domain name.
 
+Swift domain name
 
 ### --swift-domain-id()
-Swift domain ID.
+
+Swift domain ID

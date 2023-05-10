@@ -1,7 +1,7 @@
 # The xbstream binary
 
 To support simultaneous compression and streaming, a new custom streaming
-format called xbstream was introduced to *Percona XtraBackup* in addition to
+format called xbstream was introduced to Percona XtraBackup in addition to
 the TAR format. That was required to overcome some limitations of traditional
 archive formats such as tar, cpio and others which did not allow streaming
 dynamically generated files, for example dynamically compressed files. Other
@@ -61,7 +61,7 @@ To decompress individual files, run *xbstream* with the
 `--decompress` option. You may control the number of threads
 used for decompressing by passing the `--decompress-threads` option.
 
-Also, files can be decompressed using the **qpress** tool. Qpress supports multi-threaded decompression.
+Also, files can be decompressed using the **qpress** tool. The tool supports multi-threaded decompression.
 
 `lz4`
 
