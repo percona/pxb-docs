@@ -22,7 +22,7 @@ i.e. just one of them needs to be provided):
 Both the `--encrypt-key` option and
 `--encrypt-key-file` option can be used to specify the
 encryption key. An encryption key can be generated with a command like
-`openssl rand -base64 32`
+`openssl rand -base64 24`
 
 ```text
 U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=
