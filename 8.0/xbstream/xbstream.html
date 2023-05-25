@@ -32,7 +32,7 @@ compact data storage.">
         <link rel="next" href="../faq.html">
       
       <link rel="icon" href="../_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
@@ -2030,7 +2030,7 @@ compact data storage.">
                 <!-- Markdown content -->
                 <h1 id="the-xbstream-binary">The xbstream binary<a class="headerlink" href="#the-xbstream-binary" title="Permanent link">&para;</a></h1>
 <p>To support simultaneous compression and streaming, a new custom streaming
-format called xbstream was introduced to <em>Percona XtraBackup</em> in addition to
+format called xbstream was introduced to Percona XtraBackup in addition to
 the TAR format. That was required to overcome some limitations of traditional
 archive formats such as tar, cpio and others which did not allow streaming
 dynamically generated files, for example dynamically compressed files. Other
@@ -2091,7 +2091,7 @@ produced by <em>xtrabackup</em> is essentially a one-file qpress archive and can
 <p>To decompress individual files, run <em>xbstream</em> with the
 <code>--decompress</code> option. You may control the number of threads
 used for decompressing by passing the <code>--decompress-threads</code> option.</p>
-<p>Also, files can be decompressed using the <strong>qpress</strong> tool. Qpress supports multi-threaded decompression.</p>
+<p>Also, files can be decompressed using the <strong>qpress</strong> tool. The tool supports multi-threaded decompression.</p>
 <p><code>lz4</code></p>
 <p>To compress files using the <code>lz4</code> compression algorithm, set <code>--compress</code> option to <code>lz4</code>:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>lz4<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
@@ -2125,7 +2125,7 @@ used for decompressing by passing the <code>--decompress-threads</code> option.<
   <small>
     
       Last update:
-      2023-01-25
+      2023-05-25
     
   </small>
 </div>
@@ -2249,7 +2249,7 @@ used for decompressing by passing the <code>--decompress-threads</code> option.<
     <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       

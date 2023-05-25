@@ -28,7 +28,7 @@ needing a local storage.">
         <link rel="next" href="xbcloud_swift.html">
       
       <link rel="icon" href="../_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
@@ -2223,10 +2223,10 @@ needing a local storage.">
 
                 <!-- Markdown content -->
                 <h1 id="the-xbcloud-binary">The xbcloud binary<a class="headerlink" href="#the-xbcloud-binary" title="Permanent link">&para;</a></h1>
-<p>The purpose of <em>xbcloud</em> is to download from the cloud and upload to 
-the cloud the full or part of an <em>xbstream</em> archive. <em>xbcloud</em> will not 
-overwrite the backup with the same name. <em>xbcloud</em> accepts input via a pipe from <em>xbstream</em> so that it can be
-invoked as a pipeline with <em>xtrabackup</em> to stream directly to the cloud without
+<p>The purpose of xbcloud is to download from the cloud and upload to 
+the cloud the full or part of an xbstream archive. xbcloud will not 
+overwrite the backup with the same name. xbcloud accepts input via a pipe from xbstream so that it can be
+invoked as a pipeline with xtrabackup to stream directly to the cloud without
 needing a local storage.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2248,14 +2248,14 @@ $<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><sp
 <span class="m">0</span><span class="w"> </span><span class="m">1</span>
 </code></pre></div>
 </div>
-<p>The <em>xbcloud</em> binary stores each chunk as a separate object with a name
-<code>backup_name/database/table.ibd.NNNNNNNNNNNNNNNNNNNN</code>, where <code>NNN...</code> is a
-0-padded serial number of chunk within a file. Size of chunk produced by
-<em>xtrabackup</em> and <em>xbstream</em> changed to 10M.</p>
-<p>To adjust the chunk size use <code>--read-buffer-size</code>. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <code>--encrypt-chunk-size</code>.</p>
-<p><em>xbcloud</em> has three essential operations: <em>put</em>, <em>get</em>, and <em>delete</em>. With these
+<p>The xbcloud binary stores each chunk as a separate object with a name
+<code>backup_name/database/table.ibd.NNN...</code>, where <code>NNN...</code> is a
+0-padded serial number of chunk within a file. The size of chunk produced by
+xtrabackup and xbstream changed to 10M.</p>
+<p>To adjust the chunk size use <a href="/xtrabackup_bin/xbk_option_reference.html#-read-buffer-size"><code>--read-buffer-size</code></a>. To adjust the chunk size for encrypted files, use <a href="/xtrabackup_bin/xbk_option_reference.html#-read-buffer-size"><code>--read-buffer-size</code></a> and [<a href="/xtrabackup_bin/xbk_option_reference.html#-encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
+<p>xbcloud has three essential operations: <em>put</em>, <em>get</em>, and <em>delete</em>. With these
 operations, backups are created, stored, retrieved, restored, and
-deleted. <em>xbcloud</em> operations clearly map to similar operations within 
+deleted. xbcloud operations clearly map to similar operations within 
 the AWS Amazon S3 API.</p>
 <p>The <a href="https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_exbackoff.html#xbcloud-exbackoff">Exponential Backoff</a> feature was implemented in Percona XtraBackup 8.0.26-18. Suppose a chunk fails to upload or download. In that case, this feature adds an exponential backoff, or sleep, time and then retries the upload or download, which increases the chances of completing a backup or a restore operation.</p>
 <div class="admonition important">
@@ -2281,7 +2281,7 @@ the AWS Amazon S3 API.</p>
 <p>MinIO - see <a href="https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_minio.html#xbcloud-minio">Using the xbcloud Binary with MinIO</a></p>
 </li>
 </ul>
-<p>In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, <em>xbcloud</em> supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.</p>
+<p>In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, xbcloud supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
 <p><a href="https://wiki.openstack.org/wiki/Swift">OpenStack Object Storage(&ldquo;Swift&rdquo;)</a></p>
@@ -2337,11 +2337,11 @@ s3-api-version=4
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you explicitly use a parameter on the command line and in a configuration file, <em>xbcloud</em> uses the value provided on the command line.</p>
+<p>If you explicitly use a parameter on the command line and in a configuration file, xbcloud uses the value provided on the command line.</p>
 </div>
 <h3 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
 <p>If you explicitly use a parameter on the command line, in a configuration
-file, and the corresponding environment variable contains a value, <em>xbcloud</em>
+file, and the corresponding environment variable contains a value, xbcloud
 uses the value provided on the command line or in the configuration file.</p>
 <h3 id="shortcuts">Shortcuts<a class="headerlink" href="#shortcuts" title="Permanent link">&para;</a></h3>
 <p>For all operations (put, get, and delete), you can use a shortcut to specify the
@@ -2350,8 +2350,8 @@ three distinct parameters (–storage, –s3-bucket, and backup name per se).</p
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Use the following format: <code>storage-type://bucket-name/backup-name</code></p>
-<p>In this example <strong>s3</strong> refers to a storage type, <strong>operator-testing</strong> 
-is a bucket name, and <strong>bak22</strong> is the backup name. </p>
+<p>In this example s3 refers to a storage type, operator-testing 
+is a bucket name, and bak22 is the backup name. </p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span>...
 </code></pre></div>
 <p>This shortcut expands as follows:</p>
@@ -2361,7 +2361,7 @@ is a bucket name, and <strong>bak22</strong> is the backup name. </p>
 <p>You can supply the mandatory parameters on the command line,
 configuration files, and in environment variables.</p>
 <h3 id="additional-parameters">Additional parameters<a class="headerlink" href="#additional-parameters" title="Permanent link">&para;</a></h3>
-<p><em>xbcloud</em> accepts additional parameters that you can use with any storage
+<p>xbcloud accepts additional parameters that you can use with any storage
 type. The <code>--md5</code> parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the <code>backup_name.md5</code>
 pattern.</p>
@@ -2460,7 +2460,7 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
   <small>
     
       Last update:
-      2022-12-06
+      2023-05-25
     
   </small>
 </div>
@@ -2584,7 +2584,7 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
     <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       

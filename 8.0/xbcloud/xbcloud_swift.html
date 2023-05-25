@@ -24,7 +24,7 @@
         <link rel="next" href="xbcloud_s3.html">
       
       <link rel="icon" href="../_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
@@ -2400,7 +2400,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 --parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 full_backup
 </code></pre></div>
-<p>The following OpenStack environment variables are also recognized and mapped automatically to the corresponding <strong>swift</strong> parameters (<code>--storage=swift</code>):</p>
+<p>The following OpenStack environment variables are also recognized and mapped automatically to the corresponding swift parameters (<code>--storage=swift</code>):</p>
 <ul>
 <li>
 <p>OS_AUTH_URL</p>
@@ -2461,50 +2461,50 @@ $<span class="w"> </span>xbcloud<span class="w"> </span>delete<span class="w"> <
 <p>Cloud storage option. <em>xbcloud</em> supports Swift, MinIO, and AWS S3.
 The default value is <code>swift</code>.</p>
 <h3 id="-swift-auth-url">--swift-auth-url()<a class="headerlink" href="#-swift-auth-url" title="Permanent link">&para;</a></h3>
-<p>URL of Swift cluster.</p>
+<p>The URL of the Swift cluster</p>
 <h3 id="-swift-storage-url">--swift-storage-url()<a class="headerlink" href="#-swift-storage-url" title="Permanent link">&para;</a></h3>
-<p>xbcloud will try to get object-store URL for given region (if any specified)
-from the keystone response. One can override that URL by passing
+<p>The xbcloud tries to get the object-store URL for a given region (if any are specified)
+from the keystone response. You can override that URL by passing
 –swift-storage-url=URL argument.</p>
 <h3 id="-swift-user">--swift-user()<a class="headerlink" href="#-swift-user" title="Permanent link">&para;</a></h3>
-<p>Swift username (X-Auth-User, specific to Swift)</p>
+<p>The Swift username (X-Auth-User, specific to Swift)</p>
 <h3 id="-swift-key">--swift-key()<a class="headerlink" href="#-swift-key" title="Permanent link">&para;</a></h3>
-<p>Swift key/password (X-Auth-Key, specific to Swift)</p>
+<p>The Swift key/password (X-Auth-Key, specific to Swift)</p>
 <h3 id="-swift-container">--swift-container()<a class="headerlink" href="#-swift-container" title="Permanent link">&para;</a></h3>
-<p>Container to backup into (specific to Swift)</p>
+<p>The container to back up into (specific to Swift)</p>
 <h3 id="-paralleln">--parallel(=N)<a class="headerlink" href="#-paralleln" title="Permanent link">&para;</a></h3>
-<p>Maximum number of concurrent upload/download requests. Default is <code>1</code>.</p>
+<p>The maximum number of concurrent upload/download requests. The default value is <code>1</code>.</p>
 <h3 id="-cacert">--cacert()<a class="headerlink" href="#-cacert" title="Permanent link">&para;</a></h3>
-<p>Path to the file with CA certificates</p>
+<p>The path to the file with CA certificates</p>
 <h3 id="-insecure">--insecure()<a class="headerlink" href="#-insecure" title="Permanent link">&para;</a></h3>
-<p>Do not verify servers certificate</p>
+<p>Do not verify server&rsquo;s certificate</p>
 <h3 id="swift-authentication-options">Swift authentication options<a class="headerlink" href="#swift-authentication-options" title="Permanent link">&para;</a></h3>
-<p>Swift specification describes several <a href="http://docs.openstack.org/developer/swift/overview_auth.html">authentication options</a>. <em>xbcloud</em> can
+<p>The Swift specification describes several <a href="http://docs.openstack.org/developer/swift/overview_auth.html">authentication options</a>. The <em>xbcloud</em> tool can
 authenticate against keystone with API version 2 and 3.</p>
 <h3 id="-swift-auth-version">--swift-auth-version()<a class="headerlink" href="#-swift-auth-version" title="Permanent link">&para;</a></h3>
-<p>Specifies the swift authentication version. Possible values are: <code>1.0</code> -
-TempAuth, <code>2.0</code> - Keystone v2.0, and <code>3</code> - Keystone v3. Default value is
+<p>Specifies the swift authentication version. The possible values are: <code>1.0</code> -
+TempAuth, <code>2.0</code> - Keystone v2.0, and <code>3</code> - Keystone v3. The default value is
 <code>1.0</code>.</p>
 <p>For v2 additional options are:</p>
 <h3 id="-swift-tenant">--swift-tenant()<a class="headerlink" href="#-swift-tenant" title="Permanent link">&para;</a></h3>
-<p>Swift tenant name.</p>
+<p>Swift tenant name</p>
 <h3 id="-swift-tenant-id">--swift-tenant-id()<a class="headerlink" href="#-swift-tenant-id" title="Permanent link">&para;</a></h3>
-<p>Swift tenant ID.</p>
+<p>Swift tenant ID</p>
 <h3 id="-swift-region">--swift-region()<a class="headerlink" href="#-swift-region" title="Permanent link">&para;</a></h3>
-<p>Swift endpoint region.</p>
+<p>Swift endpoint region</p>
 <h3 id="-swift-password">--swift-password()<a class="headerlink" href="#-swift-password" title="Permanent link">&para;</a></h3>
-<p>Swift password for the user.</p>
+<p>Swift password for the user</p>
 <p>For v3 additional options are:</p>
 <h3 id="-swift-user-id">--swift-user-id()<a class="headerlink" href="#-swift-user-id" title="Permanent link">&para;</a></h3>
-<p>Swift user ID.</p>
+<p>Swift user ID</p>
 <h3 id="-swift-project">--swift-project()<a class="headerlink" href="#-swift-project" title="Permanent link">&para;</a></h3>
-<p>Swift project name.</p>
+<p>Swift project name</p>
 <h3 id="-swift-project-id">--swift-project-id()<a class="headerlink" href="#-swift-project-id" title="Permanent link">&para;</a></h3>
-<p>Swift project ID.</p>
+<p>Swift project ID</p>
 <h3 id="-swift-domain">--swift-domain()<a class="headerlink" href="#-swift-domain" title="Permanent link">&para;</a></h3>
-<p>Swift domain name.</p>
+<p>Swift domain name</p>
 <h3 id="-swift-domain-id">--swift-domain-id()<a class="headerlink" href="#-swift-domain-id" title="Permanent link">&para;</a></h3>
-<p>Swift domain ID.</p>
+<p>Swift domain ID</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -2526,7 +2526,7 @@ TempAuth, <code>2.0</code> - Keystone v2.0, and <code>3</code> - Keystone v3. De
   <small>
     
       Last update:
-      2022-12-06
+      2023-05-25
     
   </small>
 </div>
@@ -2650,7 +2650,7 @@ TempAuth, <code>2.0</code> - Keystone v2.0, and <code>3</code> - Keystone v3. De
     <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.fac441b0.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="../js/version-select.js"></script>
       
