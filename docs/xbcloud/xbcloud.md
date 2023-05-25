@@ -1,9 +1,9 @@
 # The xbcloud binary
 
-The purpose of *xbcloud* is to download from the cloud and upload to 
-the cloud the full or part of an *xbstream* archive. *xbcloud* will not 
-overwrite the backup with the same name. *xbcloud* accepts input via a pipe from *xbstream* so that it can be
-invoked as a pipeline with *xtrabackup* to stream directly to the cloud without
+The purpose of xbcloud is to download from the cloud and upload to 
+the cloud the full or part of an xbstream archive. xbcloud will not 
+overwrite the backup with the same name. xbcloud accepts input via a pipe from xbstream so that it can be
+invoked as a pipeline with xtrabackup to stream directly to the cloud without
 needing a local storage.
 
 !!! note
@@ -28,16 +28,16 @@ needing a local storage.
     0 1
     ```
 
-The *xbcloud* binary stores each chunk as a separate object with a name
-`backup_name/database/table.ibd.NNNNNNNNNNNNNNNNNNNN`, where `NNN...` is a
-0-padded serial number of chunk within a file. Size of chunk produced by
-*xtrabackup* and *xbstream* changed to 10M.
+The xbcloud binary stores each chunk as a separate object with a name
+`backup_name/database/table.ibd.NNN...`, where `NNN...` is a
+0-padded serial number of chunk within a file. The size of chunk produced by
+xtrabackup and xbstream changed to 10M.
 
-To adjust the chunk size use `--read-buffer-size`. To adjust the chunk size for encrypted files, use `--read-buffer-size` and `--encrypt-chunk-size`.
+To adjust the chunk size use <a href="/xtrabackup_bin/xbk_option_reference.html#-read-buffer-size">`--read-buffer-size`</a>. To adjust the chunk size for encrypted files, use <a href="/xtrabackup_bin/xbk_option_reference.html#-read-buffer-size">`--read-buffer-size`</a> and [<a href="/xtrabackup_bin/xbk_option_reference.html#-encrypt-chunk-size">`--encrypt-chunk-size`</a>.
 
-*xbcloud* has three essential operations: *put*, *get*, and *delete*. With these
+xbcloud has three essential operations: *put*, *get*, and *delete*. With these
 operations, backups are created, stored, retrieved, restored, and
-deleted. *xbcloud* operations clearly map to similar operations within 
+deleted. xbcloud operations clearly map to similar operations within 
 the AWS Amazon S3 API.
 
 The [Exponential Backoff](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_exbackoff.html#xbcloud-exbackoff) feature was implemented in Percona XtraBackup 8.0.26-18. Suppose a chunk fails to upload or download. In that case, this feature adds an exponential backoff, or sleep, time and then retries the upload or download, which increases the chances of completing a backup or a restore operation.
@@ -50,25 +50,20 @@ The [Exponential Backoff](https://docs.percona.com/percona-xtrabackup/8.0/xbclou
 
 The following cloud storage types are supported:
 
-
 * OpenStack Object Storage (Swift) - see [Using the xbcloud Binary with Swift](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_swift.html#xbcloud-swift)
-
 
 * Amazon Simple Storage (S3) - see [Using xbcloud Binary with Amazon S3](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_s3.html#xbcloud-s3)
 
-
 * Azure Cloud Storage - see [Using the xbcloud binary with Microsoft Azure Cloud Storage](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_azure.html#xbcloud-azure)
-
 
 * Google Cloud Storage (gcs) - see [Using the xbcloud with Google Cloud Storage](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_gcs.html#xbcloud-gcs)
 
-
 * MinIO - see [Using the xbcloud Binary with MinIO](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_minio.html#xbcloud-minio)
 
-In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, *xbcloud* supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.
+In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, xbcloud supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.
 
 !!! admonition "See also"
-   
+
     [OpenStack Object Storage("Swift")](https://wiki.openstack.org/wiki/Swift)
 
     [Amazon Simple Storage Service](https://aws.amazon.com/s3/)
@@ -157,13 +152,13 @@ s3-api-version=4
 ```
 
 !!! note
-   
-    If you explicitly use a parameter on the command line and in a configuration file, *xbcloud* uses the value provided on the command line.
+
+    If you explicitly use a parameter on the command line and in a configuration file, xbcloud uses the value provided on the command line.
 
 ### Environment variables
 
 If you explicitly use a parameter on the command line, in a configuration
-file, and the corresponding environment variable contains a value, *xbcloud*
+file, and the corresponding environment variable contains a value, xbcloud
 uses the value provided on the command line or in the configuration file.
 
 ### Shortcuts
@@ -173,11 +168,11 @@ storage type, bucket name, and backup name as one parameter instead of using
 three distinct parameters (–storage, –s3-bucket, and backup name per se).
 
 !!! note
-   
+
     Use the following format: ``storage-type://bucket-name/backup-name``
 
-    In this example **s3** refers to a storage type, **operator-testing** 
-    is a bucket name, and **bak22** is the backup name. 
+    In this example s3 refers to a storage type, operator-testing 
+    is a bucket name, and bak22 is the backup name. 
 
     ```{.bash data-prompt="$"}
     $ xbcloud get s3://operator-testing/bak22 ...
@@ -194,7 +189,7 @@ configuration files, and in environment variables.
 
 ### Additional parameters
 
-*xbcloud* accepts additional parameters that you can use with any storage
+xbcloud accepts additional parameters that you can use with any storage
 type. The `--md5` parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the `backup_name.md5`
 pattern.
