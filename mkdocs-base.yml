@@ -89,12 +89,6 @@ plugins:
   search: 
     separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   git-revision-date: {}
-  meta-descriptions:
-    export_csv: false
-    quiet: false
-    enable_checks: false
-    min_length: 50
-    max_length: 160
   macros:
       include_yaml:
         - 'variables.yml' # Use in markdown as '{{ VAR }}'
@@ -104,7 +98,7 @@ plugins:
   with-pdf: # https://github.com/orzih/mkdocs-with-pdf
           output_path: '_pdf/PerconaXtrabackup-8.0.pdf'
           cover_title: 'Percona XtraBackup Documentation'
-          cover_subtitle: 8.0.33-27 (May 25, 2023)
+          cover_subtitle: 8.0.32-26 (April 4, 2023)
           author: 'Percona Technical Documentation Team'
           cover_logo: docs/_static/Percona_Logo_Color.png
           debug_html: false
@@ -133,7 +127,6 @@ nav:
   - Home: index.md
   - Release notes: 
       - Release notes index: release-notes.md
-      - release-notes/8.0/8.0.33-27.0.md
       - release-notes/8.0/8.0.32-26.0.md
       - release-notes/8.0/8.0.32-25.0.md
       - release-notes/8.0/8.0.31-24.0.md
@@ -165,66 +158,67 @@ nav:
         - release-notes/8.0/8.0-3-rc1.md
   - Discover Percona XtraBackup:
       - intro.md
-      - how_xtrabackup_works.md
+      - how-xtrabackup-works.md
       - xtrabackup-version-numbers.md
   - Features:
-      - Overview: features-overview.md
       - Tools:
-        - manual.md
+        - Overview: tools-overview.md
         - The xtrabackup binary:
-          - The xtrabackup binary overview: xtrabackup_bin/xbk_option_reference.md
-          - using_xtrabackup/configuring.md
-          - xtrabackup_bin/implementation_details.md
-          - xtrabackup_bin/analyzing_table_statistics.md
-        - xbcrypt/xbcrypt.md
+          - xtrabackup-binary-overview.md 
+          - xtrabackup-option-reference.md
+          - xtrabackup-implementation-details.md
+          - configure-xtrabackup.md
+          - analyze-table-statistics.md
+        - xbcrypt-binary-overview.md
         - The xbstream binary: 
-          - The xbstream binary overview: xbstream/xbstream.md
-          - howtos/recipes_xbk_stream.md
-          - xtrabackup_bin/backup.encrypting.md
+          - xbstream-binary-overview.md
+          - make-streaming-backup.md
+          - encrypt-backups.md
         - The xbcloud binary:
-          - The xbcloud binary overview: xbcloud/xbcloud.md
+          - xbcloud-binary-overview.md
           - Use the xbcloud binary:
-            - xbcloud/xbcloud_s3.md
-            - xbcloud/xbcloud-iam-profile.md
-            - xbcloud/xbcloud_swift.md
-            - xbcloud/xbcloud_gcs.md
-            - xbcloud/xbcloud_azure.md
-            - xbcloud/xbcloud_minio.md
+            - xbcloud-s3.md
+            - xbcloud-iam-profile.md
+            - xbcloud-swift.md
+            - xbcloud-gcs.md
+            - xbcloud-azure.md
+            - xbcloud-minio.md
+          - update-curl-utility.md
+          - xbcloud-exbackoff.md
       - Backup features:
-        - xtrabackup_bin/lru_dump.md
-        - advanced/throttling_backups.md
+        - lru-dump-backup.md
+        - throttling-backups.md
       - Restore features:
-        - xtrabackup_bin/point-in-time-recovery.md
-        - xtrabackup_bin/restoring_individual_tables.md
-      - xbcloud/xbcloud_exbackoff.md
-      - advanced/log_enhancements.md
-      - advanced/locks.md
-      - advanced/smart_memory_estimation.md
-      - xtrabackup_bin/flush-tables-with-read-lock.md
-      - xtrabackup_bin/working_with_binary_logs.md
-      - advanced/encrypted_innodb_tablespace_backups.md
+        - point-in-time-recovery.md
+        - restore-individual-tables.md
+      - encrypted-innodb-tablespace-backups.md
+      - flush-tables-with-read-lock.md
+      - log-enhancements.md
+      - lock-options.md
+      - smart-memory-estimation.md
+      - working-with-binary-logs.md
   -  Quick start guide:
-      - quickstart.md
+      - Quick start guide for Percona XtraBackup: quickstart-overview.md
   - Install:
-      - installation.md
+      - Install Percona XtraBackup from repositories: installation.md
       - Before you start:
         - Connections and privileges:
           - using_xtrabackup/privileges.md
           - Set user privileges and permissions: howtos/permissions.md
         - using_xtrabackup/comparison.md
       - Use APT:
-        - Install using APT repository: installation/apt_repo.md
+        - Use APT repositories: installation/apt_repo.md
         - Files in DEB package: installation/apt-files.md
         - Build APT packages: installation/build-apt-packages.md
-        - Install from downloaded DEB packages: installation/apt-download-deb.md
+        - Downloaded DEB packages: installation/apt-download-deb.md
         - Apt pinning: installation/apt-pinning.md
         - Run Percona XtraBackup: installation/apt-run.md
         - security/pxb-apparmor.md
         - Uninstall: installation/apt-uninstall-xtrabackup.md
       - Use YUM:
-        - Install using a RPM repository: installation/yum_repo.md
+        - Use RPM repositories: installation/yum_repo.md
         - Files in RPM package: installation/yum-files.md
-        - Install from downloaded RPM packages: installation/yum-download-rpm.md
+        - Downloaded RPM packages: installation/yum-download-rpm.md
         - Run Percona XtraBackup: installation/yum-run-xtrabackup.md
         - security/pxb-selinux.md
         - Uninstall: installation/yum-uninstall-xtrabackup.md

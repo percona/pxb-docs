@@ -1,4 +1,4 @@
-# The xbcrypt binary
+# The xbcrypt binary overview
 
 To support encryption and decryption of the backups, a new tool `xbcrypt` was
 introduced to *Percona XtraBackup*.

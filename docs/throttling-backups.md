@@ -7,7 +7,7 @@ much spare I/O capacity, it might be helpful to throttle the rate at which
 
 The image below shows how throttling works when `--throttle` is set to `1`.
 
-![how throttling works](../_static/throttle.png)
+![how throttling works](_static/throttle.png)
 
 When specified with the `--backup` option, this option
 limits the number of pairs of read-and-write operations per second that

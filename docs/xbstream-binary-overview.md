@@ -1,4 +1,4 @@
-# The xbstream binary
+# The xbstream binary overview
 
 To support simultaneous compression and streaming, a new custom streaming
 format called xbstream was introduced to Percona XtraBackup in addition to
@@ -73,13 +73,13 @@ $ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
 
 `Zstandard (ZSTD)`
 
-The Zstandard (ZSTD) compression algorithm is a [tech preview](../glossary.md#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
+The Zstandard (ZSTD) compression algorithm is a [tech preview](glossary.md#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
 
-[Percona XtraBackup 8.0.30-23](../release-notes/8.0/8.0.30-23.0.md) adds support for the `Zstandard (ZSTD)` compression algorithm. `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. 
+[Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md) adds support for the `Zstandard (ZSTD)` compression algorithm. `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. 
     
 To compress files using the `ZSTD` compression algorithm, use the `--compress=zstd` option. The resulting files have the `\*.zst` format. 
     
-You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](../xtrabackup_bin/xbk_option_reference.md#compress-zstd-level) option. The defaul value is `1`.
+You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](xtrabackup-option-reference.md#compress-zstd-level) option. The defaul value is `1`.
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup

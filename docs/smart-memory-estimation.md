@@ -1,8 +1,8 @@
 # Smart memory estimation
 
-The Smart memory estimation is [tech preview](../glossary.md#tech-preview) feature. Before using Smart memory estimation in production, we recommend that you test restoring production from physical backups in your environment and also use the alternative backup method for redundancy.
+The Smart memory estimation is [tech preview](glossary.md#tech-preview) feature. Before using Smart memory estimation in production, we recommend that you test restoring production from physical backups in your environment and also use the alternative backup method for redundancy.
 
-[Percona XtraBackup 8.0.30-23](../release-notes/8.0/8.0.30-23.0.md) adds support for the Smart memory estimation feature. With this feature, Percona XtraBackup computes the memory required for `prepare` phase, while copying redo log entries during the `backup` phase. Percona XtraBackup also considers the number of InnoDB pages to be fetched from the disk.  
+[Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md) adds support for the Smart memory estimation feature. With this feature, Percona XtraBackup computes the memory required for `prepare` phase, while copying redo log entries during the `backup` phase. Percona XtraBackup also considers the number of InnoDB pages to be fetched from the disk.  
 
 Percona XtraBackup performs the backup procedure in two steps: 
 
@@ -20,15 +20,15 @@ Percona XtraBackup performs the backup procedure in two steps:
 
 ## How does Smart memory estimation work
 
-In the `prepare` phase, Percona XtraBackup checks the server's available free memory and uses that memory up to the limit specified in the [`--use-free-memory-pct`](..//xtrabackup_bin/xbk_option_reference.md#use-free-memory-pct) option to run `--prepare`. Due to backward compatibility, the default value for the `--use-free-memory-pct` option is 0 (zero), which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup.
+In the `prepare` phase, Percona XtraBackup checks the server's available free memory and uses that memory up to the limit specified in the [`--use-free-memory-pct`](xtrabackup-option-reference.md#use-free-memory-pct) option to run `--prepare`. Due to backward compatibility, the default value for the `--use-free-memory-pct` option is 0 (zero), which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup.
 
-Starting with Percona XtraBackup 8.0.32-26, you can enable or disable the memory estimation during the `backup` phase with the [`--estimate-memory`](..//xtrabackup_bin/xbk_option_reference.md#estimate-memory) option. The default value is `OFF`. Enable the memory estimation with  `--estimate-memory=ON`:
+Starting with Percona XtraBackup 8.0.32-26, you can enable or disable the memory estimation during the `backup` phase with the [`--estimate-memory`](xtrabackup-option-reference.md#estimate-memory) option. The default value is `OFF`. Enable the memory estimation with  `--estimate-memory=ON`:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
-In the `prepare` phase, enable the [`--use-free-memory-pct`](..//xtrabackup_bin/xbk_option_reference.md#use-free-memory-pct) option by specifying the percentage of free memory to be used to `prepare` a backup. The `--use-free-memory-pct` value must be larger than 0.
+In the `prepare` phase, enable the [`--use-free-memory-pct`](xtrabackup-option-reference.md#use-free-memory-pct) option by specifying the percentage of free memory to be used to `prepare` a backup. The `--use-free-memory-pct` value must be larger than 0.
 
 For example:
 
@@ -77,7 +77,7 @@ The results are the following:
 
     The following results are based on tests in a specific environment. Your results may vary.
 
-![Time to run --prepare](../_static/smart_memory_estimation.png)
+![Time to run --prepare](_static/smart_memory_estimation.png)
 
 * **16 tables result** - prepare time dropped to ~5.7% of the original time. An improvement in recovery time of about 17x.
 

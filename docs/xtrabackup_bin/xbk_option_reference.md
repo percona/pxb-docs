@@ -1,7 +1,6 @@
 # The xtrabackup option reference
 
-This page documents all of the command-line options for the
-**xtrabackup** binary.
+Here you can find all of the command-line options for the **xtrabackup** binary.
 
 ## Modes of operation
 
@@ -353,9 +352,9 @@ To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-b
 
 ### --estimate-memory(=#)
 
-This option is in [tech preview](../glossary.md#tech-preview). Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
+This option is in [tech preview](glossary.md#tech-preview). Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
 
-Implemented in Percona XtraBackup 8.0.32-26, the option lets you enable or disable the [Smart memory estimation](..//advanced/smart_memory_estimation.md) feature. The default value is OFF. Enable the feature by setting `--estimate-memory=ON` in the backup phase and setting the `--use-free-memory-pct` option in the `--prepare` phase. If the `--estimate-memory` setting is disabled, the `--use-free-memory-pct` setting is ignored.
+Implemented in Percona XtraBackup 8.0.32-26, the option lets you enable or disable the [Smart memory estimation](smart-memory-estimation.md) feature. The default value is OFF. Enable the feature by setting `--estimate-memory=ON` in the backup phase and setting the `--use-free-memory-pct` option in the `--prepare` phase. If the `--estimate-memory` setting is disabled, the `--use-free-memory-pct` setting is ignored.
 
 An example of how to enable the Smart memory estimation feature:
 
@@ -727,7 +726,7 @@ option only has effect with the `--prepare` and
 
 The `--register-redo-log-consumer` parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.
 
-Implemented in [Percona XtraBackup 8.0.30-23](../release-notes/8.0/8.0.30-23.0.md).
+Implemented in [Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md).
 
 ### --remove-original()
 Implemented in *Percona XtraBackup* 2.4.6, this option when specified will
@@ -958,9 +957,9 @@ specified for the `--prepare` command.
 
 ### --use-free-memory-pct()
 
-The `--use-free-memory-pct` is a [tech preview](../glossary.md#tech-preview) option. Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
+The `--use-free-memory-pct` is a [tech preview](glossary.md#tech-preview) option. Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
 
-Implemented in Percona XtraBackup 8.0.30-23, this option lets you configure the [Smart memory estimation](..//advanced/smart_memory_estimation.md) feature. The option controlls the amount of free memory that can be used to `--prepare` a backup. The default value is 0 (zero) which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup. The maximum allowed value is 100. 
+Implemented in Percona XtraBackup 8.0.30-23, this option lets you configure the [Smart memory estimation](smart-memory-estimation.md) feature. The option controlls the amount of free memory that can be used to `--prepare` a backup. The default value is 0 (zero) which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup. The maximum allowed value is 100. 
 
 This option works, only if [`--estimate-memory`](#estimate-memory) option is enabled. If the `--estimate-memory` option is disabled, the `--use-free-memory-pct` setting is ignored.
 

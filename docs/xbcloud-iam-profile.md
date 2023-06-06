@@ -1,8 +1,8 @@
-# Xbcloud with an IAM instance profile
+# Use the xbcloud binary with an IAM instance profile
 
-This feature is [tech preview](../glossary/#tech-preview). Before using this feature in production, we recommend that you test restoring from physical backups in your environment and also use the alternative backup method for redundancy.
+This feature is [tech preview](glossary/#tech-preview). Before using this feature in production, we recommend that you test restoring from physical backups in your environment and also use the alternative backup method for redundancy.
 
-[Percona XtraBackup 8.0.31-24](../release-notes/8.0/8.0.31-24.0.md) adds the ability to use the IAM instance profile when running xbcloud from an EC2 instance.
+[Percona XtraBackup 8.0.31-24](release-notes/8.0/8.0.31-24.0.md) adds the ability to use the IAM instance profile when running xbcloud from an EC2 instance.
 
 An authentication system has two elements:
 

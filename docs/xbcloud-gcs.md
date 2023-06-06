@@ -1,4 +1,4 @@
-# Use the xbcloud with Google Cloud Storage
+# Use the xbcloud binary with Google Cloud Storage
 
 ## Create a full backup with Google Cloud Storage
 
