@@ -61,7 +61,7 @@ markdown_extensions:
   toc:
     permalink: True
     title: On this page
-    toc_depth: 3
+    toc_depth: 5
   admonition: {}
   footnotes: {}
   def_list: {} # https://michelf.ca/projects/php-markdown/extra/#def-list
@@ -89,12 +89,6 @@ plugins:
   search: 
     separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   git-revision-date: {}
-  meta-descriptions:
-    export_csv: false
-    quiet: false
-    enable_checks: false
-    min_length: 50
-    max_length: 160
   macros:
       include_yaml:
         - 'variables.yml' # Use in markdown as '{{ VAR }}'
@@ -104,7 +98,7 @@ plugins:
   with-pdf: # https://github.com/orzih/mkdocs-with-pdf
           output_path: '_pdf/PerconaXtrabackup-8.0.pdf'
           cover_title: 'Percona XtraBackup Documentation'
-          cover_subtitle: 8.0.33-27 (May 25, 2023)
+          cover_subtitle: 8.0.32-26 (April 4, 2023)
           author: 'Percona Technical Documentation Team'
           cover_logo: docs/_static/Percona_Logo_Color.png
           debug_html: false
@@ -131,104 +125,146 @@ extra:
 
 nav:
   - Home: index.md
-  - Introduction:
-      - intro.md
-      - how_xtrabackup_works.md
-      - xtrabackup-version-numbers.md
-  - Installation:
-      - installation.md
-      - installation/apt_repo.md
-      - installation/yum_repo.md
-      - installation/deb-rpm-packages.md
-      - installation/binary-tarball.md
-      - installation/compiling_xtrabackup.md
-      - installation/what-is-in-packages.md
-      - installation/uninstall-percona-xtrabackup.md
-  - Run in Docker:
-      - installation/docker.md
-  - How Percona XtraBackup works:
-      - xtrabackup_bin/implementation_details.md 
-      - using_xtrabackup/privileges.md
-      - using_xtrabackup/configuring.md
-      - using_xtrabackup/comparison.md
-      - xtrabackup_bin/xtrabackup_exit_codes.md
-  - Backup scenarios:
-      - backup_scenarios/full_backup.md
-      - backup_scenarios/incremental_backup.md
-      - backup_scenarios/compressed_backup.md
-      - xtrabackup_bin/partial_backups.md
-  - User’s manual:
-      - manual.md
-  - Advanced features:
-      - advanced/throttling_backups.md
-      - advanced/encrypted_innodb_tablespace_backups.md
-      - xtrabackup_bin/backup.encrypting.md
-      - xtrabackup_bin/lru_dump.md
-      - xtrabackup_bin/point-in-time-recovery.md
-      - xtrabackup_bin/restoring_individual_tables.md
-      - advanced/smart_memory_estimation.md
-      - xtrabackup_bin/working_with_binary_logs.md
-      - advanced/log_enhancements.md
-  - Security:
-      - security/pxb-selinux.md
-      - security/pxb-apparmor.md
-  - Auxiliary guides:
-      - howtos/enabling_tcp.md
-      - howtos/ssh_server.md
-      - xtrabackup_bin/analyzing_table_statistics.md
-      - xtrabackup_bin/flush-tables-with-read-lock.md
-      - advanced/locks.md
-      - advanced/page_tracking.md
-  - xbcloud binary:
-      - xbcloud/xbcloud.md
-      - xbcloud/xbcloud_swift.md
-      - xbcloud/xbcloud_s3.md
-      - xbcloud/xbcloud-iam-profile.md
-      - xbcloud/xbcloud_minio.md
-      - xbcloud/xbcloud_gcs.md
-      - xbcloud/xbcloud_exbackoff.md
-      - xbcloud/xbcloud_azure.md
-  - Tutorials, recipes, how-tos:
-      - how-tos.md
   - Release notes: 
       - Release notes index: release-notes.md
-      - release-notes/8.0/8.0.33-27.0.md
       - release-notes/8.0/8.0.32-26.0.md
       - release-notes/8.0/8.0.32-25.0.md
       - release-notes/8.0/8.0.31-24.0.md
-      - release-notes/8.0/8.0.30-23.0.md
-      - release-notes/8.0/8.0.29-22.0.md
-      - release-notes/8.0/8.0.28-21.0.md
-      - release-notes/8.0/8.0.28-20.0.md
-      - release-notes/8.0/8.0.27-19.0.md
-      - release-notes/8.0/8.0.26-18.0.md
-      - release-notes/8.0/8.0.25-17.0.md
-      - release-notes/8.0/8.0.23-16.0.md
-      - release-notes/8.0/8.0.22-15.0.md
-      - release-notes/8.0/8.0.14.md
-      - release-notes/8.0/8.0.13.md
-      - release-notes/8.0/8.0.12.md
-      - release-notes/8.0/8.0.11.md
-      - release-notes/8.0/8.0.10.md
-      - release-notes/8.0/8.0.9.md
-      - release-notes/8.0/8.0.8.md
-      - release-notes/8.0/8.0.7.md
-      - release-notes/8.0/8.0.6.md
-      - release-notes/8.0/8.0.5.md
-      - release-notes/8.0/8.0.4.md
-      - release-notes/8.0/8.0-3-rc1.md
-  - Error message descriptions:
+      - 2022:
+        - release-notes/8.0/8.0.30-23.0.md
+        - release-notes/8.0/8.0.29-22.0.md
+        - release-notes/8.0/8.0.28-21.0.md
+        - release-notes/8.0/8.0.28-20.0.md
+        - release-notes/8.0/8.0.27-19.0.md
+      - 2021:
+        - release-notes/8.0/8.0.26-18.0.md
+        - release-notes/8.0/8.0.25-17.0.md
+        - release-notes/8.0/8.0.23-16.0.md
+      - 2020:
+        - release-notes/8.0/8.0.22-15.0.md
+        - release-notes/8.0/8.0.14.md
+        - release-notes/8.0/8.0.13.md
+        - release-notes/8.0/8.0.12.md
+        - release-notes/8.0/8.0.11.md
+        - release-notes/8.0/8.0.10.md
+      - 2019:
+        - release-notes/8.0/8.0.9.md
+        - release-notes/8.0/8.0.8.md
+        - release-notes/8.0/8.0.7.md
+        - release-notes/8.0/8.0.6.md
+        - release-notes/8.0/8.0.5.md
+      - 2018:
+        - release-notes/8.0/8.0.4.md
+        - release-notes/8.0/8.0-3-rc1.md
+  - Discover Percona XtraBackup:
+      - intro.md
+      - how_xtrabackup_works.md
+      - xtrabackup-version-numbers.md
+  - Features:
+      - Tools:
+        - Overview: tools-overview.md
+        - The xtrabackup binary:
+          - The xtrabackup binary overview: xtrabackup_bin/xbk_option_reference.md
+          - using_xtrabackup/configuring.md
+          - xtrabackup_bin/implementation_details.md
+          - xtrabackup_bin/analyzing_table_statistics.md
+        - xbcrypt/xbcrypt.md
+        - The xbstream binary: 
+          - The xbstream binary overview: xbstream/xbstream.md
+          - howtos/recipes_xbk_stream.md
+          - xtrabackup_bin/backup.encrypting.md
+        - The xbcloud binary:
+          - The xbcloud binary overview: xbcloud/xbcloud.md
+          - Use the xbcloud binary:
+            - Use the xbcloud binary with Amazon S3: xbcloud/xbcloud_s3.md
+            - Use the xbcloud binary with an IAM instance profile: xbcloud/xbcloud-iam-profile.md
+            - xbcloud/xbcloud_swift.md
+            - xbcloud/xbcloud_gcs.md
+            - xbcloud/xbcloud_azure.md
+            - xbcloud/xbcloud_minio.md
+      - Backup features:
+        - xtrabackup_bin/lru_dump.md
+        - advanced/throttling_backups.md
+      - Restore features:
+        - xtrabackup_bin/point-in-time-recovery.md
+        - xtrabackup_bin/restoring_individual_tables.md
+      - xbcloud/xbcloud_exbackoff.md
+      - advanced/log_enhancements.md
+      - advanced/locks.md
+      - advanced/smart_memory_estimation.md
+      - xtrabackup_bin/flush-tables-with-read-lock.md
+      - xtrabackup_bin/working_with_binary_logs.md
+      - advanced/encrypted_innodb_tablespace_backups.md
+  -  Quick start guide:
+      - quickstart-overview.md
+  - Install:
+      - installation.md
+      - Before you start:
+        - using_xtrabackup/comparison.md
+        - using_xtrabackup/privileges.md
+        - howtos/permissions.md
+      - Use APT:
+        - Use APT repositories: installation/apt_repo.md
+        - Files in DEB package: installation/apt-files.md
+        - Downloaded DEB packages: installation/apt-download-deb.md
+        - Apt pinning: installation/apt-pinning.md
+        - security/pxb-apparmor.md
+        - Uninstall: installation/apt-uninstall-xtrabackup.md
+      - Use YUM:
+        - Use RPM repositories: installation/yum_repo.md
+        - Files in RPM package: installation/yum-files.md
+        - Downloaded RPM packages: installation/yum-download-rpm.md
+        - security/pxb-selinux.md
+        - Uninstall: installation/yum-uninstall-xtrabackup.md
+      - Use binary tarballs:
+        - Install with binary tarballs: installation/binary-tarball.md
+        - Binary tarballs available: installation/binary-tarball-names.md
+      - Compile from source:
+        - installation/compiling_xtrabackup.md
+      - Docker:
+        - installation/docker.md
+#  - Upgrade:
+#      - upgrade.md
+  - How to:
+      - Take a full backup:
+        - backup_scenarios/full_backup.md
+        - Create a full backup: create-a-full-backup.md
+        - Prepare a full backup: prepare-a-full-backup.md
+      - Take an incremental backup:
+        - backup_scenarios/incremental_backup.md
+        - Create an incremental backup: create-an-incremental-backup.md
+        - Prepare an incremental backup: prepare-an-incremental-backup.md
+        - advanced/page_tracking.md
+      - Take a compressed backup:
+        - backup_scenarios/compressed_backup.md
+        - Create a compressed backup: create-a-compressed-backup.md
+        - Prepare a compressed backup: prepare-a-compressed-backup.md
+      - Take a partial backup:
+        - xtrabackup_bin/partial_backups.md
+        - Create a partial backup: create-a-partial-backup.md
+        - Prepare a partial backup: prepare-a-partial-backup.md
+      - Back up individual partitions:
+        - howtos/recipes_xbk_partition.md
+        - Create an individual partitions backup: create-an-individual-partitions-backup.md
+        - Prepare an individual partitions backup: prepare-an-individual-partitions-backup.md
+      - Restore a backup:
+        - Restore a full backup: restore-a-full-backup.md
+        - Restore an incremental backup: restore-an-incremental-backup.md
+        - Restore a compressed backup: restore-a-compressed-backup.md
+        - Restore a partial backup: restore-a-partial-backup.md
+        - Restore an individual partitions backup: restore-individual-partitions-backup.md
+        - Restore an encrypted backup: restore-an-encrypted-backup.md
+      - Replicate:
+        - howtos/setting_up_replication.md
+        - howtos/recipes_ibkx_gtid.md
+        - howtos/backup_verification.md
+  - Troubleshoot:
       - em/instant.md
-  - References:
-      - xtrabackup_bin/xbk_option_reference.md
-      - xbcrypt/xbcrypt.md
-      - xbstream/xbstream.md
-      - faq.md
-      - glossary.md
-      - xtrabackup-files.md
-      - trademark-policy.md
-      - copyright-and-licensing-information.md
-      - version-check.md
-# - Version Selector: "../"
-
-
+      - xtrabackup_bin/xtrabackup_exit_codes.md
+  - Reference:
+    - xtrabackup-files.md
+    - faq.md
+    - glossary.md
+    - Percona Toolkit version checking: version-check.md
+    - trademark-policy.md
+    - copyright-and-licensing-information.md

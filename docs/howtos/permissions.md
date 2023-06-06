@@ -1,4 +1,4 @@
-# Privileges and permissions for users
+# Permissions needed
 
 We will be referring to *permissions* to the ability of a user to access
 and perform changes on the relevant parts of the host’s filesystem,
@@ -6,8 +6,6 @@ starting/stopping services and installing software.
 
 By *privileges*, we refer to the abilities of a database user to perform
 different kinds of actions on the database server.
-
-## At a system level
 
 There are many ways for checking the permission on a file or directory. For
 example, `ls -ls /path/to/file` or `stat /path/to/file | grep Access` will
@@ -61,28 +59,6 @@ There are other ways for managing permissions, such as using *PolicyKit*, *
 Extended ACLs* or *SELinux*, which may be preventing or allowing your
 access. You should check them in that case.
 
-## At a database server level
+!!! admonition "See also"
 
-To query the privileges that your database user has been granted, at a
-console of the server execute:
-
-```{.bash data-prompt="mysql>"}
-mysql> SHOW GRANTS;
-```
-
-or for a particular user with:
-
-```{.bash data-prompt="mysql>"}
-mysql> SHOW GRANTS FOR 'db-user'@'host';
-```
-
-It will display the privileges using the same format as for
-the [GRANT statement](http://dev.mysql.com/doc/refman/8.0/en/show-grants.html).
-
-Note that privileges may vary across versions of the server. To list the
-exact list of privileges that your server support (and a brief description
-of them) execute:
-
-```{.bash data-prompt="mysql>"}
-mysql> SHOW PRIVILEGES;
-```
+    [Connection and privileges needed](../using_xtrabackup/privileges.md)

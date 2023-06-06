@@ -1,4 +1,4 @@
-# Install Percona XtraBackup 8.0
+# Install Percona XtraBackup 8.0 overview
 
 We recommend that you install Percona XtraBackup 8.0 from the official Percona software repositories using the appropriate package manager for your system:
 
@@ -10,7 +10,9 @@ We recommend that you install Percona XtraBackup 8.0 from the official Percona s
 
 Percona also provides the following methods:
 
-* [Use DEB or RPM downloaded packages to install Percona XtraBackup](./installation/deb-rpm-packages.md)
+* [Use DEB downloaded packages to install Percona XtraBackup](./installation/apt-download-deb.md)
+
+* [Use RPM downloaded packages to install Percona XtraBackup](./installation/yum-download-rpm.md) 
 
 * [Install Percona XtraBackup from a Binary Tarball](./installation/binary-tarball.md) with all the required files and binaries for a manual installation
 
@@ -18,4 +20,4 @@ Percona also provides the following methods:
 
 * [Run Percona XtraBackup in a Docker container](./installation/docker.md)
 
-Before installing Percona XtraBackup with any of these methods, we recommend that you review the [release notes](./release-notes.md)
+Before installing Percona XtraBackup with any of these methods, we recommend that you review the [release notes](./release-notes.md) and [Server version and backup version comparison](./using_xtrabackup/comparison.md).
