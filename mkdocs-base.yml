@@ -164,37 +164,39 @@ nav:
       - Tools:
         - Overview: tools-overview.md
         - The xtrabackup binary:
-          - The xtrabackup binary overview: xtrabackup_bin/xbk_option_reference.md
-          - using_xtrabackup/configuring.md
-          - xtrabackup_bin/implementation_details.md
-          - xtrabackup_bin/analyzing_table_statistics.md
-        - xbcrypt/xbcrypt.md
+          - xtrabackup-binary-overview.md 
+          - xtrabackup-option-reference.md
+          - xtrabackup-implementation-details.md
+          - configure-xtrabackup.md
+          - analyze-table-statistics.md
+        - xbcrypt-binary-overview.md
         - The xbstream binary: 
-          - The xbstream binary overview: xbstream/xbstream.md
-          - howtos/recipes_xbk_stream.md
-          - xtrabackup_bin/backup.encrypting.md
+          - xbstream-binary-overview.md
+          - make-streaming-backup.md
+          - encrypt-backups.md
         - The xbcloud binary:
-          - The xbcloud binary overview: xbcloud/xbcloud.md
+          - xbcloud-binary-overview.md
           - Use the xbcloud binary:
-            - Use the xbcloud binary with Amazon S3: xbcloud/xbcloud_s3.md
-            - Use the xbcloud binary with an IAM instance profile: xbcloud/xbcloud-iam-profile.md
-            - xbcloud/xbcloud_swift.md
-            - xbcloud/xbcloud_gcs.md
-            - xbcloud/xbcloud_azure.md
-            - xbcloud/xbcloud_minio.md
+            - xbcloud-s3.md
+            - xbcloud-iam-profile.md
+            - xbcloud-swift.md
+            - xbcloud-gcs.md
+            - xbcloud-azure.md
+            - xbcloud-minio.md
+          - update-curl-utility.md
+          - xbcloud-exbackoff.md
       - Backup features:
-        - xtrabackup_bin/lru_dump.md
-        - advanced/throttling_backups.md
+        - lru-dump-backup.md
+        - throttling-backups.md
       - Restore features:
-        - xtrabackup_bin/point-in-time-recovery.md
-        - xtrabackup_bin/restoring_individual_tables.md
-      - xbcloud/xbcloud_exbackoff.md
-      - advanced/log_enhancements.md
-      - advanced/locks.md
-      - advanced/smart_memory_estimation.md
-      - xtrabackup_bin/flush-tables-with-read-lock.md
-      - xtrabackup_bin/working_with_binary_logs.md
-      - advanced/encrypted_innodb_tablespace_backups.md
+        - point-in-time-recovery.md
+        - restore-individual-tables.md
+      - encrypted-innodb-tablespace-backups.md
+      - flush-tables-with-read-lock.md
+      - log-enhancements.md
+      - lock-options.md
+      - smart-memory-estimation.md
+      - working-with-binary-logs.md
   -  Quick start guide:
       - quickstart-overview.md
   - Install:
@@ -227,37 +229,29 @@ nav:
 #      - upgrade.md
   - How to:
       - Take a full backup:
-        - backup_scenarios/full_backup.md
-        - Create a full backup: create-a-full-backup.md
-        - Prepare a full backup: prepare-a-full-backup.md
+        - create-full-backup.md
+        - prepare-full-backup.md
       - Take an incremental backup:
-        - backup_scenarios/incremental_backup.md
-        - Create an incremental backup: create-an-incremental-backup.md
-        - Prepare an incremental backup: prepare-an-incremental-backup.md
-        - advanced/page_tracking.md
+        - create-incremental-backup.md
+        - prepare-incremental-backup.md
+        - page-tracking.md
       - Take a compressed backup:
-        - backup_scenarios/compressed_backup.md
-        - Create a compressed backup: create-a-compressed-backup.md
-        - Prepare a compressed backup: prepare-a-compressed-backup.md
+        - create-compressed-backup.md
+        - prepare-compressed-backup.md
       - Take a partial backup:
-        - xtrabackup_bin/partial_backups.md
-        - Create a partial backup: create-a-partial-backup.md
-        - Prepare a partial backup: prepare-a-partial-backup.md
+        - create-partial-backup.md
+        - prepare-partial-backup.md
       - Back up individual partitions:
-        - howtos/recipes_xbk_partition.md
-        - Create an individual partitions backup: create-an-individual-partitions-backup.md
-        - Prepare an individual partitions backup: prepare-an-individual-partitions-backup.md
+        - create-individual-partition-backup.md
+        - prepare-individual-partitions-backup.md
       - Restore a backup:
-        - Restore a full backup: restore-a-full-backup.md
-        - Restore an incremental backup: restore-an-incremental-backup.md
-        - Restore a compressed backup: restore-a-compressed-backup.md
-        - Restore a partial backup: restore-a-partial-backup.md
+        - Restore full, incremental, compressed backups: restore-a-backup.md
+        - restore-partial-backup.md
         - Restore an individual partitions backup: restore-individual-partitions-backup.md
-        - Restore an encrypted backup: restore-an-encrypted-backup.md
       - Replicate:
-        - howtos/setting_up_replication.md
-        - howtos/recipes_ibkx_gtid.md
-        - howtos/backup_verification.md
+        - setting_up_replication.md
+        - recipes_ibkx_gtid.md
+        - backup_verification.md
   - Troubleshoot:
       - em/instant.md
       - xtrabackup_bin/xtrabackup_exit_codes.md
@@ -268,3 +262,4 @@ nav:
     - Percona Toolkit version checking: version-check.md
     - trademark-policy.md
     - copyright-and-licensing-information.md
+
