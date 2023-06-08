@@ -59,7 +59,6 @@ the [CHANGE_REPLICATION_SOURCE_TO and the appropriate options](https://dev.mysql
 The 8.0.22 version deprecates the`START SLAVE` command. In that version or 
 later, use `START REPLICA` instead.
 
-
 ## 1. Make a backup on the `Source` and prepare it
 
 At the  `Source`, issue the following to a shell:
@@ -359,4 +358,4 @@ server is replicating the `Source`.
 
 !!! admoniton "See also"
 
-    [How to create a new (or repair a broken) GTID based slave](./recipes_ibkx_gtid.md)
+    [How to create a new (or repair a broken) GTID based slave](create-gtid-replica.md)

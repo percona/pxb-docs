@@ -8,7 +8,7 @@ described in [Percona Release Lifecycle Overview](https://www.percona.com/servic
 
 !!! important
 
-    To prevent intermittent backup failures, [update the curl utility in Debian 10](../xbcloud/update-curl-utility.md).
+To prevent intermittent backup failures, [update the curl utility in Debian 10](update-curl-utility.md).
 
 ## Install Percona XtraBackup through percona-release
 
@@ -66,5 +66,5 @@ Percona XtraBackup, like many other Percona products, is installed with the *per
 
     To install Percona XtraBackup using downloaded deb packages, see [Install Percona XtraBackup 8.0](apt-download-deb.md).
 
-    To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup 8.0](yum-uninstall-xtrabackup.md)
+    To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup 8.0](apt-uninstall-xtrabackup.md)
 

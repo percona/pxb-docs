@@ -127,6 +127,7 @@ nav:
   - Home: index.md
   - Release notes: 
       - Release notes index: release-notes.md
+      - release-notes/8.0/8.0.33-27.0.md
       - release-notes/8.0/8.0.32-26.0.md
       - release-notes/8.0/8.0.32-25.0.md
       - release-notes/8.0/8.0.31-24.0.md
@@ -157,7 +158,7 @@ nav:
         - release-notes/8.0/8.0.4.md
         - release-notes/8.0/8.0-3-rc1.md
   - Discover Percona XtraBackup:
-      - intro.md
+      - about-xtrabackup.md
       - how-xtrabackup-works.md
       - xtrabackup-version-numbers.md
   - Features:
@@ -172,7 +173,8 @@ nav:
         - xbcrypt-binary-overview.md
         - The xbstream binary: 
           - xbstream-binary-overview.md
-          - make-streaming-backup.md
+          - take-streaming-backup.md
+          - accelerate-backup-process.md
           - encrypt-backups.md
         - The xbcloud binary:
           - xbcloud-binary-overview.md
@@ -188,6 +190,7 @@ nav:
       - Backup features:
         - lru-dump-backup.md
         - throttling-backups.md
+        - store-backup-history.md
       - Restore features:
         - point-in-time-recovery.md
         - restore-individual-tables.md
@@ -197,34 +200,34 @@ nav:
       - lock-options.md
       - smart-memory-estimation.md
       - working-with-binary-logs.md
-  -  Quick start guide:
+  -  Quickstart Guide:
       - quickstart-overview.md
   - Install:
       - installation.md
       - Before you start:
-        - using_xtrabackup/comparison.md
-        - using_xtrabackup/privileges.md
-        - howtos/permissions.md
+        - server-backup-version-comparison.md
+        - privileges.md
+        - permissions.md
       - Use APT:
-        - Use APT repositories: installation/apt_repo.md
-        - Files in DEB package: installation/apt-files.md
-        - Downloaded DEB packages: installation/apt-download-deb.md
-        - Apt pinning: installation/apt-pinning.md
-        - security/pxb-apparmor.md
-        - Uninstall: installation/apt-uninstall-xtrabackup.md
+        - Use APT repositories: apt-repo.md
+        - Files in DEB package: apt-files.md
+        - Downloaded DEB packages: apt-download-deb.md
+        - Apt pinning: apt-pinning.md
+        - work-with-apparmor.md
+        - Uninstall: apt-uninstall-xtrabackup.md
       - Use YUM:
-        - Use RPM repositories: installation/yum_repo.md
-        - Files in RPM package: installation/yum-files.md
-        - Downloaded RPM packages: installation/yum-download-rpm.md
-        - security/pxb-selinux.md
-        - Uninstall: installation/yum-uninstall-xtrabackup.md
+        - Use RPM repositories: yum-repo.md
+        - Files in RPM package: yum-files.md
+        - Downloaded RPM packages: yum-download-rpm.md
+        - work-with-selinux.md
+        - Uninstall: yum-uninstall-xtrabackup.md
       - Use binary tarballs:
-        - Install with binary tarballs: installation/binary-tarball.md
-        - Binary tarballs available: installation/binary-tarball-names.md
+        - Install with binary tarballs: binary-tarball.md
+        - Binary tarballs available: binary-tarball-names.md
       - Compile from source:
-        - installation/compiling_xtrabackup.md
+        - compile-xtrabackup.md
       - Docker:
-        - installation/docker.md
+        - docker.md
 #  - Upgrade:
 #      - upgrade.md
   - How to:
@@ -247,19 +250,20 @@ nav:
       - Restore a backup:
         - Restore full, incremental, compressed backups: restore-a-backup.md
         - restore-partial-backup.md
-        - Restore an individual partitions backup: restore-individual-partitions-backup.md
+        - Restore an individual partitions backup: restore-individual-partitions.md
       - Replicate:
-        - setting_up_replication.md
-        - recipes_ibkx_gtid.md
-        - backup_verification.md
+        - set-up-replication.md
+        - create-gtid-replica.md
+        - make-backup-in-replication-env.md
+        - varify-backup.md
   - Troubleshoot:
-      - em/instant.md
-      - xtrabackup_bin/xtrabackup_exit_codes.md
+      - error-message-instant.md
+      - xtrabackup-exit-codes.md
   - Reference:
     - xtrabackup-files.md
     - faq.md
     - glossary.md
-    - Percona Toolkit version checking: version-check.md
+    - toolkit-version-check.md
     - trademark-policy.md
     - copyright-and-licensing-information.md
 

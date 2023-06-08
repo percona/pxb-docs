@@ -146,4 +146,4 @@ mysql> SHOW PRIVILEGES;
 
 !!! admonition "See also"
 
-    [Permissions needed](../howtos/permissions.md)
+    [Permissions needed](permissions.md)

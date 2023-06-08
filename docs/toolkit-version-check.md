@@ -1,4 +1,4 @@
-# Version checking
+# Percona Toolkit version checking
 
 Some Percona software contains “version checking” functionality which is a
 feature that enables Percona software users to be notified of available software

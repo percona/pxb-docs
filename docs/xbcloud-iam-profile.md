@@ -30,7 +30,7 @@ The xbcloud binary outputs a connect message when successful.
     221121 13:16:26 xbcloud: Successfully connected.
     ```
 
-An important consideration is that the instance metadata has a time to live (TTL) of 6 hours. A backup that takes more than that time contains Expired token errors. Use [Exponential Backoff](xbcloud_exbackoff.md) to retry the upload after fetching new keys from the instance metadata.
+An important consideration is that the instance metadata has a time to live (TTL) of 6 hours. A backup that takes more than that time contains Expired token errors. Use [Exponential Backoff](xbcloud-exbackoff.md) to retry the upload after fetching new keys from the instance metadata.
 
 ??? example "Output when keys have expired"
 

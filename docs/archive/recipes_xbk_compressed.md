@@ -137,5 +137,4 @@ demonstrates how to do it recursively by using **chown**:
 $ chown -R mysql:mysql /var/lib/mysql
 ```
 
-Now, your data directory contains the restored data. You are
-ready to start the server.
+Now, your data directory contains the restored data. You are ready to start the server.

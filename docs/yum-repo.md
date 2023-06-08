@@ -56,7 +56,7 @@ Specific information on the supported platforms, products, and versions is descr
 
 !!! admonition "See also"
 
-    To install Percona XtraBackup using downloaded rpm packages, see [Install with package manager](deb-rpm-packages.md).
+    To install Percona XtraBackup using downloaded rpm packages, see [Install with package manager](yum-download-rpm.md).
 
-    To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup](uninstall-percona-xtrabackup.md) 
+    To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup](yum-uninstall-xtrabackup.md) 
 

@@ -1,21 +1,18 @@
 # About Percona XtraBackup
 
-*Percona XtraBackup* is the world’s only open-source, free *MySQL* hot backup
+*Percona XtraBackup* is the world’s only open source, free *MySQL* hot backup
 software that performs non-blocking backups for *InnoDB* and *XtraDB*
-databases. With *Percona XtraBackup*, you can achieve the following benefits:
+databases. 
 
+With *Percona XtraBackup*, you can achieve the following benefits:
 
 * Backups that complete quickly and reliably
 
-
 * Uninterrupted transaction processing during backups
-
 
 * Savings on disk space and network bandwidth
 
-
 * Automatic backup verification
-
 
 * Higher uptime due to faster restore time
 
@@ -34,15 +31,11 @@ backups.
 Percona’s enterprise-grade commercial [MySQL Support](http://www.percona.com/mysql-support/) contracts include support for *Percona
 XtraBackup*. We recommend support for critical production deployments. Percona XtraDB Backup supports encryption.
 
-### Supported storage engines
+## Supported storage engines
 
-Percona XtraBackup works with MySQL and Percona Server. It supports
-completely non-blocking backups of InnoDB, XtraDB, and MyRocks storage
-engines. Fast incremental backups are supported for Percona Server with the XtraDB changed page tracking enabled.
-
-In addition, it can back up the following storage engines by briefly
-pausing writes at the end of the backup: MyISAM and Merge, including partitioned tables, triggers, and database
-options. The InnoDB tables are still locked while copying non-InnoDB data.
+*Percona XtraBackup* can back up data from *InnoDB*, *XtraDB*,
+*MyISAM*, and MyRocks tables on *MySQL* 8.0 servers as well as *Percona Server for MySQL*
+with *XtraDB*, [*Percona Server for MySQL* 8.0](https://docs.percona.com/percona-server/8.0/), and [*Percona XtraDB Cluster* 8.0](https://docs.percona.com/percona-xtradb-cluster/8.0/).
 
 !!! admonition "Version updates"
    
@@ -58,6 +51,20 @@ options. The InnoDB tables are still locked while copying non-InnoDB data.
    
     [Percona TokuBackup](https://docs.percona.com/percona-server/latest/tokudb/toku_backup.html)
 
+## Limitations
+
+*Percona XtraBackup* 8.0 does not support making backups of databases
+created in versions prior to 8.0 of *MySQL*, *Percona Server for MySQL* or
+*Percona XtraDB Cluster*. As the changes that *MySQL* 8.0 introduced
+in *data dictionaries*, *redo log* and *undo log* are incompatible
+with previous versions, it is currently impossible for *Percona XtraBackup* 8.0 to also support versions prior to 8.0.
+
+Due to changes in MySQL 8.0.20 released by Oracle at the end of April 2020,
+*Percona XtraBackup* 8.0, up to version 8.0.11, is not compatible with MySQL version 8.0.20 or
+higher, or Percona products that are based on it: Percona Server for MySQL and
+Percona XtraDB Cluster.
+
+For more information, see [Percona XtraBackup 8.x and MySQL 8.0.20](https://www.percona.com/blog/2020/04/28/percona-xtrabackup-8-x-and-mysql-8-0-20/)
 
 ## What are the features of Percona XtraBackup?
 

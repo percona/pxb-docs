@@ -61,4 +61,4 @@ access. You should check them in that case.
 
 !!! admonition "See also"
 
-    [Connection and privileges needed](../using_xtrabackup/privileges.md)
+    [Connection and privileges needed](privileges.md)

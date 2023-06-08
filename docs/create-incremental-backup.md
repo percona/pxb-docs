@@ -12,7 +12,7 @@ Incremental backups work because each *InnoDB* page contains a log sequence
 number, or LSN. The LSN is the system version number for the
 entire database. Each page’s LSN shows how recently it was changed.
 
-An incremental backup copies each page whose LSN is newer than the
+An incremental backup copies each page which LSN is newer than the
 previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.
 
 ### Use the changed page tracking algorithm 
@@ -21,7 +21,7 @@ previous incremental or full backup’s LSN. An algorithm finds the pages that m
 
 With PXB 8.0.27 or earlier, another algorithm enabled the *Percona Server for MySQL* changed page tracking feature. The algorithm generates a bitmap file. The *xtrabackup* binary uses that bitmap file to read only those pages needed for the incremental backup. This method potentially saves resources. The backup enables the algorithm by default if the *xtrabackup* binary discovers the bitmap file. You can override the algorithm with `--incremental-force-scan` which forces a read of all pages even if the bitmap file is available.
 
-## Create an incremental backup
+## Create an incremental backup 
 
 To make an incremental backup, begin with a full backup as usual. The
 *xtrabackup* binary writes a file called `xtrabackup_checkpoints` into

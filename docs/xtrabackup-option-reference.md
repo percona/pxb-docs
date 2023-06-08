@@ -163,7 +163,7 @@ that will read the data and pipe it to 2 compression threads.
 
 ### --compress-zstd-level(=#)
 
-This option is [tech preview](../glossary.md#tech-preview) quality. Before using `--compress-zstd-level(=#)` in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
+This option is [tech preview](glossary.md#tech-preview) quality. Before using `--compress-zstd-level(=#)` in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
 
 This option specifies `ZSTD` compression level. The default value is 1. Allowed range of values is from 1 to 19. 
 The option has been implemented in Percona XtraBackup 8.0.30-22.

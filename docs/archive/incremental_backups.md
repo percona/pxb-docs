@@ -12,8 +12,7 @@ day and incremental backups every hour.
 
 The write-ahead log (WAL) is immutable and append-only. All writes to the WAL are sequential. Every record has a unique, uniformly increasing log sequence number (LSN) which is assigned to page changes. Each page contains a Page LSN that shows the most recent update to that page. An incremental backup copies each page whose
 LSN is newer than the previous incremental or the full backup’s
-LSN. An incremental backup copies each page whose LSN is newer than the
-previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.
+LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.
 
 Incremental backups do not actually compare the data files to the previous
 backup’s data files. In fact, you can use `--incremental-lsn` to perform
