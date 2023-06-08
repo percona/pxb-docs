@@ -1,4 +1,4 @@
-# Implementation details
+# xtrabackup implementation details
 
 This page contains notes on various internal aspects of the *xtrabackup* tool's
 operation.

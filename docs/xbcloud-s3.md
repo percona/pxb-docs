@@ -1,4 +1,4 @@
-# Use xbcloud Binary with Amazon S3
+# Use the xbcloud binary with Amazon S3
 
 ## Create a full backup with Amazon S3
 

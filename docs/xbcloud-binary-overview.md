@@ -1,4 +1,4 @@
-# The xbcloud binary
+# The xbcloud binary overview
 
 The purpose of xbcloud is to download from the cloud and upload to 
 the cloud the full or part of an xbstream archive. xbcloud will not 
