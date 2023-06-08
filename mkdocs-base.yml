@@ -164,37 +164,39 @@ nav:
       - Tools:
         - Overview: tools-overview.md
         - The xtrabackup binary:
-          - The xtrabackup binary overview: xtrabackup_bin/xbk_option_reference.md
-          - using_xtrabackup/configuring.md
-          - xtrabackup_bin/implementation_details.md
-          - xtrabackup_bin/analyzing_table_statistics.md
-        - xbcrypt/xbcrypt.md
+          - xtrabackup-binary-overview.md 
+          - xtrabackup-option-reference.md
+          - xtrabackup-implementation-details.md
+          - configure-xtrabackup.md
+          - analyze-table-statistics.md
+        - xbcrypt-binary-overview.md
         - The xbstream binary: 
-          - The xbstream binary overview: xbstream/xbstream.md
-          - howtos/recipes_xbk_stream.md
-          - xtrabackup_bin/backup.encrypting.md
+          - xbstream-binary-overview.md
+          - make-streaming-backup.md
+          - encrypt-backups.md
         - The xbcloud binary:
-          - The xbcloud binary overview: xbcloud/xbcloud.md
+          - xbcloud-binary-overview.md
           - Use the xbcloud binary:
-            - Use the xbcloud binary with Amazon S3: xbcloud/xbcloud_s3.md
-            - Use the xbcloud binary with an IAM instance profile: xbcloud/xbcloud-iam-profile.md
-            - xbcloud/xbcloud_swift.md
-            - xbcloud/xbcloud_gcs.md
-            - xbcloud/xbcloud_azure.md
-            - xbcloud/xbcloud_minio.md
+            - xbcloud-s3.md
+            - xbcloud-iam-profile.md
+            - xbcloud-swift.md
+            - xbcloud-gcs.md
+            - xbcloud-azure.md
+            - xbcloud-minio.md
+          - update-curl-utility.md
+          - xbcloud-exbackoff.md
       - Backup features:
-        - xtrabackup_bin/lru_dump.md
-        - advanced/throttling_backups.md
+        - lru-dump-backup.md
+        - throttling-backups.md
       - Restore features:
-        - xtrabackup_bin/point-in-time-recovery.md
-        - xtrabackup_bin/restoring_individual_tables.md
-      - xbcloud/xbcloud_exbackoff.md
-      - advanced/log_enhancements.md
-      - advanced/locks.md
-      - advanced/smart_memory_estimation.md
-      - xtrabackup_bin/flush-tables-with-read-lock.md
-      - xtrabackup_bin/working_with_binary_logs.md
-      - advanced/encrypted_innodb_tablespace_backups.md
+        - point-in-time-recovery.md
+        - restore-individual-tables.md
+      - encrypted-innodb-tablespace-backups.md
+      - flush-tables-with-read-lock.md
+      - log-enhancements.md
+      - lock-options.md
+      - smart-memory-estimation.md
+      - working-with-binary-logs.md
   -  Quick start guide:
       - quickstart-overview.md
   - Install:
@@ -260,3 +262,4 @@ nav:
     - Percona Toolkit version checking: version-check.md
     - trademark-policy.md
     - copyright-and-licensing-information.md
+
