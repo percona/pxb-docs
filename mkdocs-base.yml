@@ -198,28 +198,24 @@ nav:
       - smart-memory-estimation.md
       - working-with-binary-logs.md
   -  Quick start guide:
-      - Quick start guide for Percona XtraBackup: quickstart-overview.md
+      - quickstart-overview.md
   - Install:
-      - Install Percona XtraBackup from repositories: installation.md
+      - installation.md
       - Before you start:
-        - Connections and privileges:
-          - using_xtrabackup/privileges.md
-          - Set user privileges and permissions: howtos/permissions.md
         - using_xtrabackup/comparison.md
+        - using_xtrabackup/privileges.md
+        - howtos/permissions.md
       - Use APT:
         - Use APT repositories: installation/apt_repo.md
         - Files in DEB package: installation/apt-files.md
-        - Build APT packages: installation/build-apt-packages.md
         - Downloaded DEB packages: installation/apt-download-deb.md
         - Apt pinning: installation/apt-pinning.md
-        - Run Percona XtraBackup: installation/apt-run.md
         - security/pxb-apparmor.md
         - Uninstall: installation/apt-uninstall-xtrabackup.md
       - Use YUM:
         - Use RPM repositories: installation/yum_repo.md
         - Files in RPM package: installation/yum-files.md
         - Downloaded RPM packages: installation/yum-download-rpm.md
-        - Run Percona XtraBackup: installation/yum-run-xtrabackup.md
         - security/pxb-selinux.md
         - Uninstall: installation/yum-uninstall-xtrabackup.md
       - Use binary tarballs:
@@ -233,37 +229,29 @@ nav:
 #      - upgrade.md
   - How to:
       - Take a full backup:
-        - backup_scenarios/full_backup.md
-        - Create a full backup: create-a-full-backup.md
-        - Prepare a full backup: prepare-a-full-backup.md
+        - create-full-backup.md
+        - prepare-full-backup.md
       - Take an incremental backup:
-        - backup_scenarios/incremental_backup.md
-        - Create an incremental backup: create-an-incremental-backup.md
-        - Prepare an incremental backup: prepare-an-incremental-backup.md
-        - advanced/page_tracking.md
+        - create-incremental-backup.md
+        - prepare-incremental-backup.md
+        - page-tracking.md
       - Take a compressed backup:
-        - backup_scenarios/compressed_backup.md
-        - Create a compressed backup: create-a-compressed-backup.md
-        - Prepare a compressed backup: prepare-a-compressed-backup.md
+        - create-compressed-backup.md
+        - prepare-compressed-backup.md
       - Take a partial backup:
-        - xtrabackup_bin/partial_backups.md
-        - Create a partial backup: create-a-partial-backup.md
-        - Prepare a partial backup: prepare-a-partial-backup.md
+        - create-partial-backup.md
+        - prepare-partial-backup.md
       - Back up individual partitions:
-        - howtos/recipes_xbk_partition.md
-        - Create an individual partitions backup: create-an-individual-partitions-backup.md
-        - Prepare an individual partitions backup: prepare-an-individual-partitions-backup.md
+        - create-individual-partition-backup.md
+        - prepare-individual-partitions-backup.md
       - Restore a backup:
-        - Restore a full backup: restore-a-full-backup.md
-        - Restore an incremental backup: restore-an-incremental-backup.md
-        - Restore a compressed backup: restore-a-compressed-backup.md
-        - Restore a partial backup: restore-a-partial-backup.md
+        - Restore full, incremental, compressed backups: restore-a-backup.md
+        - restore-partial-backup.md
         - Restore an individual partitions backup: restore-individual-partitions-backup.md
-        - Restore an encrypted backup: restore-an-encrypted-backup.md
       - Replicate:
-        - howtos/setting_up_replication.md
-        - howtos/recipes_ibkx_gtid.md
-        - howtos/backup_verification.md
+        - setting_up_replication.md
+        - recipes_ibkx_gtid.md
+        - backup_verification.md
   - Troubleshoot:
       - em/instant.md
       - xtrabackup_bin/xtrabackup_exit_codes.md
@@ -274,3 +262,4 @@ nav:
     - Percona Toolkit version checking: version-check.md
     - trademark-policy.md
     - copyright-and-licensing-information.md
+

@@ -1,6 +1,12 @@
-# Compile and install Percona XtraBackup from source code
+# Compile and install Percona XtraBackup 8.0 from source
 
-The source code is available from the [*Percona XtraBackup GitHub* project](https://github.com/percona/percona-xtrabackup). The easiest way to get the code is by using the **git clone** command. Then, switch to the release branch that you want to install, such as **8.0**.
+The following instructions install Percona XtraBackup 8.0.
+
+## 1. Install Percona XtraBackup from the Git Source Tree
+
+Percona uses the [Github](https://github.com/) revision control system for development. To build the latest Percona Server for MySQL from the source tree, you will need `git` installed on your system.
+
+You can now fetch the latest Percona XtraBackup 8.0 sources:
 
 ```{.bash data-prompt="$"}
 $ git clone https://github.com/percona/percona-xtrabackup.git
@@ -9,7 +15,7 @@ $ git checkout 8.0
 $ git submodule update --init --recursive
 ```
 
-## 1. Installing prerequisites
+## 2. Installation prerequisites
 
 The following packages and tools must be installed to compile *Percona XtraBackup* from source.
 These might vary from system to system.
@@ -64,10 +70,10 @@ in your distribution as a separate package `cmake3`. For more information, see [
     $ sudo yum install python3-sphinx
     ```
 
-## 2. Generate the build pipeline
+## 3. Generate the build pipeline
 
 At this step, you have `cmake` run the commands in the `CMakeList.txt`
-file to generate the build pipeline, i.e. a native build environment that will
+file to generate the build pipeline, i.e., a native build environment that will
 be used to compile the source code).
 
 
@@ -114,10 +120,9 @@ $ cmake -DWITH_BOOST=PATH-TO-BOOST-LIBRARY -DDOWNLOAD_BOOST=ON \
     
     You `can` force in-source build by invoking cmake with `-DFORCE_INSOURCE_BUILD=1`.
 
-## 3. Compile the source code
+## 4. Compile the source code
 
 To compile the source code in your `build` directory, use the `make` command.
-
 
 1. Change to the `build` directory (created at Step 2: Generating the build pipeline).
 
@@ -126,13 +131,14 @@ To compile the source code in your `build` directory, use the `make` command.
     ```{.bash data-prompt="$"}
     $ make
     ```
-   To use all CPU threads and make compilation faster please use:
+   
+    To use all CPU threads and make compilation faster please use:
 
     ```{.bash data-prompt="$"}
     $ make -j$(nproc --all)
     ```
 
-## 4. Install on the target system
+## 5. Install on the target system
 
 The following command installs all *Percona XtraBackup* binaries *xtrabackup*
 and tests to default location on the target system: `/usr/local/xtrabackup`.
@@ -166,7 +172,7 @@ installation directory to be `/usr/local/xtrabackup`.
  
     [MySQL Documentation: -DINSTALL_LAYOUT](https://dev.mysql.com/doc/refman/8.0/en/source-configuration-options.html#option_cmake_install_layout)
 
-## 5. Run Percona XtraBackup
+## 6. Run Percona XtraBackup
 
 After *Percona XtraBackup* is installed on your system, you may run it by using
 the full path to the `xtrabackup` command:

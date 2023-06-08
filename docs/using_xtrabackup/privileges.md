@@ -58,13 +58,12 @@ alteration, see `mysql --help` for details.
     (port, socket, host) must be specified in order for *xtrabackup* to talk to
     the correct server.
 
-## Permissions and privileges needed
+## Privileges needed
 
-Once connected to the server, in order to perform a backup you will need
-`READ` and `EXECUTE` permissions at a filesystem level in the
-server’s datadir.
+Once connected to the server, in order to perform a backup you need
+`READ` and `EXECUTE` permissions at a filesystem level in the server’s datadir.
 
-The database user needs the following privileges on the tables or databases to be backed up:
+The database user needs the following privileges to back up tables or databases:
 
 * `RELOAD` and `LOCK TABLES` (unless the `--no-lock`
 option is specified) in order to run `FLUSH TABLES WITH READ LOCK` and
@@ -109,11 +108,7 @@ PERCONA_SCHEMA.xtrabackup_history table.
 
 * `SELECT` privilege on the [replication_group_members table](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-replication-group-members-table.html) to validate if the instance is part of group replication cluster.
 
-The explanation of when these are used can be found in
-How Percona XtraBackup Works.
-
-An SQL example of creating a database user with the minimum privileges required
-to full backups would be:
+A SQL example of creating a database user with the minimum privileges required to take full backups would be:
 
 ```{.bash data-prompt="mysql>"}
 mysql> CREATE USER 'bkpuser'@'localhost' IDENTIFIED BY 's3cr%T';
@@ -123,3 +118,32 @@ mysql> GRANT SELECT ON performance_schema.keyring_component_status TO bkpuser@'l
 mysql> GRANT SELECT ON performance_schema.replication_group_members TO bkpuser@'localhost';
 mysql> FLUSH PRIVILEGES;
 ```
+
+### Query the privileges
+
+To query the privileges that your database user has been granted at the console of the server execute:
+
+```{.bash data-prompt="mysql>"}
+mysql> SHOW GRANTS;
+```
+
+or for a particular user with:
+
+```{.bash data-prompt="mysql>"}
+mysql> SHOW GRANTS FOR 'db-user'@'host';
+```
+
+It will display the privileges using the same format as for
+the [GRANT statement](http://dev.mysql.com/doc/refman/8.0/en/show-grants.html).
+
+Note that privileges may vary across versions of the server. To list the
+exact list of privileges that your server support (and a brief description
+of them) execute:
+
+```{.bash data-prompt="mysql>"}
+mysql> SHOW PRIVILEGES;
+```
+
+!!! admonition "See also"
+
+    [Permissions needed](../howtos/permissions.md)

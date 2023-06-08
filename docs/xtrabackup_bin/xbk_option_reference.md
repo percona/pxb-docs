@@ -135,7 +135,7 @@ transaction log file and meta data files, using either the `quicklz`, `lz4`, or 
 
 !!! note
 
-    Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms. See [Compressed backups](../backup_scenarios/compressed_backup.md) for more information.
+    Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms. See [Compressed backups](create-compressed-backup.md) for more information.
 
 When using `--compress=quicklz` or `--compress`, the resulting files have
 the qpress archive format. Every `\*.qp` file produced by *xtrabackup* is
