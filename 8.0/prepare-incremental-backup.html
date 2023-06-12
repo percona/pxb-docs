@@ -9,7 +9,20 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentation">
+        <meta name="description" content="The --prepare step for incremental backups is not the same
+as for full backups. In full backups, two types of operations are performed
+to
+make the database consistent: committed transactions are replayed from the
+log
+file against the data files, and uncommitted transactions are rolled back.
+You
+must skip the rollback of uncommitted transactions when preparing an
+incremental backup, because transactions that were uncommitted at the time
+of
+your backup may be in progress, and it’s likely that they will be committed
+in
+the next incremental backup. You should use the
+--apply-log-only option to prevent the rollback phase.">
       
       
         <meta name="author" content="Percona LLC">
