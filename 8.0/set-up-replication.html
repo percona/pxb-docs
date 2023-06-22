@@ -29,7 +29,7 @@ task. Percona XtraBackup is designed to solve this problem.">
         <link rel="next" href="create-gtid-replica.html">
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
     
     
       
@@ -3217,8 +3217,7 @@ and do a hot backup of all your data in it
 (all <em>MyISAM</em>, <em>InnoDB</em> tables and indexes in them).</p>
 <p>In order for snapshot to be consistent you need to prepare the data on the
 source:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--user<span class="o">=</span>yourDBuser<span class="w"> </span>--password<span class="o">=</span>MaGiCdB1<span class="w"> </span><span class="se">\</span>
-<span class="w">            </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
 <p>You need to select path where your snapshot has been taken.
 If everything is ok you should get the same OK message.
@@ -3430,7 +3429,7 @@ server is replicating the <code>Source</code>.</p>
   <small>
     
       Last update:
-      2023-06-12
+      2023-06-22
     
   </small>
 </div>
@@ -3554,11 +3553,15 @@ server is replicating the <code>Source</code>.</p>
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="assets/javascripts/bundle.a51614de.min.js"></script>
       
-        <script src="js/version-select.js"></script>
+        
+          <script src="js/version-select.js"></script>
+        
       
-        <script src="js/promptremover.js"></script>
+        
+          <script src="js/promptremover.js"></script>
+        
       
     
   </body>
