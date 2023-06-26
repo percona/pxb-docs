@@ -1457,13 +1457,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental" class="md-nav__link">
-    --incremental()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#-incremental-basedirdirectory" class="md-nav__link">
     --incremental-basedir(=DIRECTORY)
   </a>
@@ -4301,13 +4294,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental" class="md-nav__link">
-    --incremental()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#-incremental-basedirdirectory" class="md-nav__link">
     --incremental-basedir(=DIRECTORY)
   </a>
@@ -5265,13 +5251,6 @@ backup being taken.</p>
 <p>This option accepts a string argument that specifies the host to use when
 connecting to the database server with TCP/IP. It is passed to the mysql
 child process without alteration. See <strong>mysql --help</strong> for details.</p>
-<h3 id="-incremental">--incremental()<a class="headerlink" href="#-incremental" title="Permanent link">&para;</a></h3>
-<p>This option tells <em>xtrabackup</em> to create an incremental backup. It is passed
-to the <em>xtrabackup</em> child process. When this option is specified, either
-<code>--incremental-lsn</code> or <code>--incremental-basedir</code> can also be
-given. If neither option is given, option <code>--incremental-basedir</code> is
-passed to <strong>xtrabackup</strong> by default, set to the first timestamped
-backup directory in the backup base directory.</p>
 <h3 id="-incremental-basedirdirectory">--incremental-basedir(=DIRECTORY)<a class="headerlink" href="#-incremental-basedirdirectory" title="Permanent link">&para;</a></h3>
 <p>When creating an incremental backup, this is the directory containing the
 full backup that is the base dataset for the incremental backups.</p>
@@ -5638,7 +5617,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2023-06-12
+      2023-06-26
     
   </small>
 </div>
