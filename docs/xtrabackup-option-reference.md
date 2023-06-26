@@ -457,15 +457,6 @@ connecting to the database server with TCP/IP. It is passed to the mysql
 child process without alteration. See **mysql --help** for details.
 
 
-### --incremental()
-This option tells *xtrabackup* to create an incremental backup. It is passed
-to the *xtrabackup* child process. When this option is specified, either
-`--incremental-lsn` or `--incremental-basedir` can also be
-given. If neither option is given, option `--incremental-basedir` is
-passed to **xtrabackup** by default, set to the first timestamped
-backup directory in the backup base directory.
-
-
 ### --incremental-basedir(=DIRECTORY)
 When creating an incremental backup, this is the directory containing the
 full backup that is the base dataset for the incremental backups.
