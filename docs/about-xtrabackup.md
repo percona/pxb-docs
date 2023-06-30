@@ -103,7 +103,7 @@ for more.
 
 !!! admonition "See also"
    
-    [How Percona XtraBackup works](https://docs.percona.com/percona-xtrabackup/8.0/how_xtrabackup_works.html#how-xtrabackup-works)
+    [How Percona XtraBackup works](how-xtrabackup-works.md)
 
 ### Additional information
 
