@@ -10,7 +10,7 @@ Each table with the **CSV Storage** engine has `.CSV` file which contains the da
 
 ### .exp
 
-Files with the `.exp` extension are created by **Percona XtraBackup** per each _InnoDB_ tablespace when the [`--export`](https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/xbk_option_reference.html#cmdoption-export) option is used on prepare. See [restoring individual tables](https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/restoring_individual_tables.html).
+Files with the `.exp` extension are created by **Percona XtraBackup** per each _InnoDB_ tablespace when the [`--export`](xtrabackup-option-reference.md#–-export) option is used on prepare. See [restore individual tables](restore-individual-tables.md).
 
 ### .frm
 
@@ -182,16 +182,14 @@ To support the encryption and the decryption of the backups, a new tool xbcrypt 
 
 ### xbstream
 
-To support simultaneous compression and streaming, **Percona XtraBackup** uses the **xbstream** format. For more information see [`--stream`](https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/xbk_option_reference.html#cmdoption-stream)
+To support simultaneous compression and streaming, **Percona XtraBackup** uses the **xbstream** format. For more information see [xbstream](xbstream-binary-overview.md)
 
 ### XtraDB
 
 _Percona XtraDB_ is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. _Percona XtraDB_ includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see [The Percona XtraDB Storage Engine](https://www.percona.com/doc/percona-server/8.0/percona_xtradb.html).
 
-### ZSTD
-
-The `Zstandard (ZSTD)` compression algorithm is a [tech preview](#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
+### Zstandard (ZSTD)
 
 `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios.
 
-`ZSTD` compression algorithm has been implemented in [Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md).
+`ZSTD` compression algorithm was implemented in [Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md).

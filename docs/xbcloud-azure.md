@@ -20,7 +20,7 @@ Test your Azure applications with the [Azurite open-source emulator](https://doc
 
 All the available options for **xbcloud**, such as parallel, 
 max-retries, and others, can be used. For more information, see the
-[xbcloud Binary](https://docs.percona.com/percona-xtrabackup/latest/xbcloud/xbcloud.html#xbcloud-binary).
+[xbcloud binary overview](xbcloud-binary-overview.md).
 
 ## Examples
 
