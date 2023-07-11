@@ -111,7 +111,7 @@ $ cmake -DWITH_BOOST=PATH-TO-BOOST-LIBRARY -DDOWNLOAD_BOOST=ON \
 | **Parameter** | **Description** |
 |---------------|-----------------|
 | `-DWITH_BOOST` | For the `-DWITH_BOOST` parameter, specify the name of a directory to download the boost library to. This directory is created automatically in your current directory. |
-| `-DWITH_MAN_PAGES` | To build **Percona XtraBackup** man pages, use `ON` or remove this parameter from the command line (it is `ON` by default). To install the man pages, install the python3-sphinx package first. See also [## Step 2: Compiling the source code](#step-2-compile-the-source-code)  |
+| `-DWITH_MAN_PAGES` | To build **Percona XtraBackup** man pages, use `ON` or remove this parameter from the command line (it is `ON` by default). To install the man pages, install the python3-sphinx package first. |
 | `-B` (--build)| **Percona XtraBackup** is configured to forbid generating the build    pipeline for make in the same directory where you store your sources. The `-B` parameter refers to the directory that contains the source code. In this example, we use the relative path to the parent directory (..). |
 
 !!! important

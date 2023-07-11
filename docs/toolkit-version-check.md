@@ -91,7 +91,7 @@ in a global configuration file `/etc/percona-toolkit/percona-toolkit.conf`:
 no-version-check
 ```
 
-In case of *Percona XtraBackup* this can be done [in its configuration file](https://docs.percona.com/percona-xtrabackup/8.0/using_xtrabackup/configuring.html)
+In case of *Percona XtraBackup* this can be done [in its configuration file](configure-xtrabackup.md)
 in a similar way:
 
 ```text

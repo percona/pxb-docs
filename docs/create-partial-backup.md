@@ -11,7 +11,7 @@ partial backups:
 3. providing a list of databases
 
 !!! warning
-   
+
     Do not copy back the prepared backup.
 
     Restoring partial backups should be done by importing the tables,
@@ -28,19 +28,19 @@ For the purposes of this manual page, we will assume that there is a database
 named `test` which contains tables named `t1` and `t2`.
 
 !!! warning
-   
+
     If any of the matched or listed tables is deleted during the backup,
     *xtrabackup* will fail.
 
 There are multiple ways of specifying which part of the whole data is backed up:
 
-* Use the [`--tables`](#the-–-tables-option) option to list the table names
+* Use the `--tables` option to list the table names
 
-* Use the [`--tables-file`](#the--–tables-file-option) option to list the tables in a file
+* Use the `--tables-file` option to list the tables in a file
 
-* Use the [`--databases`](#the---databases-and--–databases-file-options) option to list the databases
+* Use the `--databases` option to list the databases
 
-* Use the [`--databases-file`](#the---databases-file-option) option to list the databases
+* Use the `--databases-file` option to list the databases
 
 ## The `–-tables` option
 

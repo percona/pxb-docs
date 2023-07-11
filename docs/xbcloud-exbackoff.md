@@ -11,7 +11,7 @@ upload or download.
 
 When a chunk upload or download operation fails, xbcloud checks the reason
 for the failure. This failure can be a CURL error or an HTTP error, or a
-client-specific error. If the error is listed in the [Retriable errors](https://docs.percona.com/percona-xtrabackup/latest/xbcloud/xbcloud_exbackoff.html#retriable) list,
+client-specific error. If the error is listed in the [Retriable errors](#retriable-errors) list,
 xbcloud pauses for a calculated time before retrying the operation until
 that time reaches the `--max-backoff` value.
 

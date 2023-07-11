@@ -45,7 +45,7 @@ libraries
 (and version) by *xtrabackup*. Installing the *GCC* suite with the
 supporting
 libraries and recompiling *xtrabackup* solves the issue. See
-[Compiling and Installing from Source Code](https://docs.percona.com/percona-xtrabackup/latest/installation/compiling_xtrabackup.html) for instructions on the
+[Compiling and Installing from Source Code](compile-xtrabackup.md) for instructions on the
 procedure.
 
 ## How xtrabackup handles the ibdata/ib_log files on restore if they aren’t in mysql datadir?

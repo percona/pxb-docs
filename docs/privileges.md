@@ -68,7 +68,7 @@ The database user needs the following privileges to back up tables or databases:
 * `RELOAD` and `LOCK TABLES` (unless the `--no-lock`
 option is specified) in order to run `FLUSH TABLES WITH READ LOCK` and
 `FLUSH ENGINE LOGS` prior to start copying the files, and requires this
-privilege when [Backup Locks](http://www.percona.com/doc/percona-server/8.0/management/backup_locks.html)
+privilege when [Backup Locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
 are used
 
 * `BACKUP_ADMIN` privilege is needed to query the

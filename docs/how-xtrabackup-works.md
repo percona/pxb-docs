@@ -23,7 +23,8 @@ transaction logs are written in a round-robin fashion, and can be reused after a
 while. *Percona XtraBackup* needs the transaction log records for every change
 to the data files since it began execution.
 
-*Percona XtraBackup* uses [Backup locks](https://docs.percona.com/percona-server/8.0/management/backup_locks.html)
+*Percona XtraBackup* uses [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
+
 where available as a lightweight alternative to `FLUSH TABLES WITH READ
 LOCK`. This feature is available in *Percona Server for MySQL* 5.6+. *MySQL* 8.0 allows
 acquiring an instance level backup lock via the `LOCK INSTANCE FOR BACKUP`
