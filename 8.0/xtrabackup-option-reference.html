@@ -24,7 +24,7 @@
         <link rel="next" href="xtrabackup-implementation-details.html">
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
     
     
       
@@ -4921,9 +4921,9 @@
 
                 <!-- Markdown content -->
                 <h1 id="the-xtrabackup-option-reference">The xtrabackup option reference<a class="headerlink" href="#the-xtrabackup-option-reference" title="Permanent link">&para;</a></h1>
-<p>Here you can find all of the command-line options for the <strong>xtrabackup</strong> binary.</p>
+<p>Here you can find all of the command-line options for the xtrabackup binary.</p>
 <h2 id="modes-of-operation">Modes of operation<a class="headerlink" href="#modes-of-operation" title="Permanent link">&para;</a></h2>
-<p>You invoke <em>xtrabackup</em> in one of the following modes:</p>
+<p>You invoke xtrabackup in one of the following modes:</p>
 <ul>
 <li>
 <p><code>--backup</code> mode to make a backup in a target directory</p>
@@ -4940,14 +4940,14 @@ the alternate <code>--move-back</code> mode.</p>
 <p><code>--stats</code> mode to scan the specified data files and print out index statistics.</p>
 </li>
 </ul>
-<p>When you intend to run <em>xtrabackup</em> in any of these modes, use the following syntax:</p>
+<p>When you intend to run xtrabackup in any of these modes, use the following syntax:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span><span class="o">[</span>--defaults-file<span class="o">=</span><span class="c1">#] --backup|--prepare|--copy-back|--stats [OPTIONS]</span>
 </code></pre></div>
 <p>For example, the <code>--prepare</code> mode is applied as follows:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/mysql/
 </code></pre></div>
-<p>For all modes, the default options are read from the <strong>xtrabackup</strong> and
-<strong>mysqld</strong> configuration groups from the following files in the given order:</p>
+<p>For all modes, the default options are read from the xtrabackup and
+mysqld configuration groups from the following files in the given order:</p>
 <ol>
 <li>
 <p><code>/etc/my.cnf</code></p>
@@ -4962,11 +4962,11 @@ the alternate <code>--move-back</code> mode.</p>
 <p><code>~/.my.cnf</code>.</p>
 </li>
 </ol>
-<p>As the first parameter to <em>xtrabackup</em> (in place of the <code>--defaults-file</code>,
+<p>As the first parameter to xtrabackup (in place of the <code>--defaults-file</code>,
 you may supply one of the following:</p>
 <ul>
 <li>
-<p><code>--print-defaults</code> to have <em>xtrabackup</em> print the argument list and exit.</p>
+<p><code>--print-defaults</code> to have xtrabackup print the argument list and exit.</p>
 </li>
 <li>
 <p><code>--no-defaults</code> to forbid reading options from any file but the login file.</p>
@@ -4981,7 +4981,7 @@ the global files have been read.</p>
 <li>
 <p><code>--defaults-group-suffix</code> to read the configuration groups with the
 given suffix. The effective group name is constructed by concatenating the default
-configuration groups (<strong>xtrabackup</strong> and <strong>mysqld</strong>) with the given suffix.</p>
+configuration groups (xtrabackup and mysqld) with the given suffix.</p>
 </li>
 <li>
 <p><code>--login-path</code> to read the given path from the login file.</p>
@@ -4989,7 +4989,7 @@ configuration groups (<strong>xtrabackup</strong> and <strong>mysqld</strong>) w
 </ul>
 <h3 id="innodb-options">InnoDB options<a class="headerlink" href="#innodb-options" title="Permanent link">&para;</a></h3>
 <p>There is a large group of InnoDB options that are normally read from the
-<code>my.cnf</code> configuration file, so that <em>xtrabackup</em> boots up its embedded
+<code>my.cnf</code> configuration file, so that xtrabackup boots up its embedded
 InnoDB in the same configuration as your current server. You normally do not
 need to specify them explicitly. These options have the same behavior in InnoDB
 and XtraDB. See <code>--innodb-miscellaneous</code> for more information.</p>
@@ -5010,7 +5010,7 @@ WITH READ LOCK</code> on the backup stage. The option has no effect when backup
 locks are not supported by the server. This option is enabled by default,
 disable with <code>--no-backup-locks</code>.</p>
 <h3 id="-check-privileges">--check-privileges()<a class="headerlink" href="#-check-privileges" title="Permanent link">&para;</a></h3>
-<p>This option checks if <em>Percona XtraBackup</em> has all required privileges.
+<p>This option checks if Percona XtraBackup has all required privileges.
 If a missing privilege is required for the current operation,
 it will terminate and print out an error message.
 If a missing privilege is not required for the current operation,
@@ -5020,32 +5020,32 @@ the process is not aborted and a warning is printed.</p>
 xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
 </code></pre></div>
 <h3 id="-close-files">--close-files()<a class="headerlink" href="#-close-files" title="Permanent link">&para;</a></h3>
-<p>Do not keep files opened. When <em>xtrabackup</em> opens tablespace it normally
+<p>Do not keep files opened. When xtrabackup opens tablespace it normally
 doesn’t close its file handle in order to handle the DDL operations
 correctly. However, if the number of tablespaces is really huge and can not
 fit into any limit, there is an option to close file handles once they are
-no longer accessed. <em>Percona XtraBackup</em> can produce inconsistent backups
+no longer accessed. Percona XtraBackup can produce inconsistent backups
 with this option enabled. Use at your own risk.</p>
 <h3 id="-compress">--compress()<a class="headerlink" href="#-compress" title="Permanent link">&para;</a></h3>
-<p>This option tells <em>xtrabackup</em> to compress all output data, including the
+<p>This option tells xtrabackup to compress all output data, including the
 transaction log file and meta data files, using either the <code>quicklz</code>, <code>lz4</code>, or <code>ZSTD</code> compression algorithm. <code>quicklz</code> is chosen by default.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either <code>LZ4</code> or Zstandard (<code>ZSTD</code>) compression algorithms. See <a href="create-compressed-backup.html">Compressed backups</a> for more information.</p>
+<p>Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either <code>LZ4</code> or Zstandard (<code>ZSTD</code>) compression algorithms. See <a href="create-compressed-backup.html">Create a compressed backup</a> for more information.</p>
 </div>
 <p>When using <code>--compress=quicklz</code> or <code>--compress</code>, the resulting files have
-the qpress archive format. Every <code>\*.qp</code> file produced by <em>xtrabackup</em> is
+the qpress archive format. Every <code>\*.qp</code> file produced by xtrabackup is
 essentially a one-file qpress archive and can be extracted and uncompressed
 by the <code>qpress</code> file archiver.</p>
 <p><code>--compress=lz4</code> produces <code>\*.lz4</code> files. You can extract the contents of
 these files by using <code>lz4</code> program.</p>
 <p><code>--compress=zstd</code> produces <code>\*.zst</code> files. You can extract the contents of
-these files by using the <code>--decompress</code> option. You can specify <code>ZSTD</code> compression level with the <a href="#compress-zstd-level"><code>--compress-zstd-level(=#)</code></a> option.</p>
+these files by using the <code>--decompress</code> option. You can specify <code>ZSTD</code> compression level with the <code>--compress-zstd-level(=#)</code> option.</p>
 <h3 id="-compress-chunk-size">--compress-chunk-size(=#)<a class="headerlink" href="#-compress-chunk-size" title="Permanent link">&para;</a></h3>
 <p>Size of working buffer(s) for compression threads in bytes. The default
 value is 64K.</p>
 <h3 id="-compress-threads">--compress-threads(=#)<a class="headerlink" href="#-compress-threads" title="Permanent link">&para;</a></h3>
-<p>This option specifies the number of worker threads used by <em>xtrabackup</em> for
+<p>This option specifies the number of worker threads used by xtrabackup for
 parallel data compression. This option defaults to <code>1</code>. Parallel
 compression (<code>--compress-threads</code>) can be used together
 with parallel file copying (<code>--parallel</code>). For example,
@@ -5077,7 +5077,7 @@ and tables that should be backed up. The file can contain the list elements
 of the form <code>databasename1[.table_name1]</code>, one element per line.</p>
 <h3 id="-datadirdirectory">--datadir(=DIRECTORY)<a class="headerlink" href="#-datadirdirectory" title="Permanent link">&para;</a></h3>
 <p>The source directory for the backup. This should be the same as the datadir
-for your <em>MySQL</em> server, so it should be read from <code>my.cnf</code> if that
+for your MySQL server, so it should be read from <code>my.cnf</code> if that
 exists; otherwise you must specify it on the command line.</p>
 <p>When combined with the <code>--copy-back</code> or
 <code>--move-back</code> option, <code>--datadir</code>
@@ -5086,27 +5086,27 @@ refers to the destination directory.</p>
 <code>READ</code> and <code>EXECUTE</code> permissions at a filesystem level in the
 server’s datadir.</p>
 <h3 id="-debug-sleep-before-unlock">--debug-sleep-before-unlock(=#)<a class="headerlink" href="#-debug-sleep-before-unlock" title="Permanent link">&para;</a></h3>
-<p>This is a debug-only option used by the <em>xtrabackup</em> test suite.</p>
+<p>This is a debug-only option used by the xtrabackup test suite.</p>
 <h3 id="-debug-syncname">--debug-sync(=name)<a class="headerlink" href="#-debug-syncname" title="Permanent link">&para;</a></h3>
-<p>The debug sync point. This option is only used by the <em>xtrabackup</em> test suite.</p>
+<p>The debug sync point. This option is only used by the xtrabackup test suite.</p>
 <h3 id="-decompress">--decompress()<a class="headerlink" href="#-decompress" title="Permanent link">&para;</a></h3>
 <p>Decompresses all files in a backup previously
 made with the <code>--compress</code> option. The
 <code>--parallel</code> option will allow multiple files to be
 decrypted simultaneously. In order to decompress, the qpress utility MUST be
-installed and accessible within the path. <em>Percona XtraBackup</em> does not
+installed and accessible within the path. Percona XtraBackup does not
 automatically remove the compressed files. In order to clean up the backup
 directory users should use <code>--remove-original</code> option.</p>
-<p>The <code>--decompress</code> option may be used with <em>xbstream</em> to
+<p>The <code>--decompress</code> option may be used with xbstream to
 decompress individual qpress files.</p>
 <h3 id="-decompress-threads">--decompress-threads(=#)<a class="headerlink" href="#-decompress-threads" title="Permanent link">&para;</a></h3>
-<p>Force <em>xbstream</em> to use the specified number of threads for
+<p>Force xbstream to use the specified number of threads for
 decompressing.</p>
 <h3 id="-decryptencryption-algorithm">--decrypt(=ENCRYPTION-ALGORITHM)<a class="headerlink" href="#-decryptencryption-algorithm" title="Permanent link">&para;</a></h3>
 <p>Decrypts all files with the <code>.xbcrypt</code> extension in a backup
 previously made with <code>--encrypt</code> option. The
 <code>--parallel</code> option will allow multiple files to be
-decrypted simultaneously. <em>Percona XtraBackup</em> doesn’t
+decrypted simultaneously. Percona XtraBackup doesn’t
 automatically remove the encrypted files. In order to clean up the backup
 directory users should use <code>--remove-original</code> option.</p>
 <h3 id="-defaults-extra-filemycnf">--defaults-extra-file(=[MY.CNF])<a class="headerlink" href="#-defaults-extra-filemycnf" title="Permanent link">&para;</a></h3>
@@ -5118,7 +5118,7 @@ option on the command-line. Must be a real file; it cannot be a symbolic
 link.</p>
 <h3 id="-defaults-groupgroup-name">--defaults-group(=GROUP-NAME)<a class="headerlink" href="#-defaults-groupgroup-name" title="Permanent link">&para;</a></h3>
 <p>This option is to set the group which should be read from the configuration
-file. This is used by <em>xtrabackup</em> if you use the
+file. This is used by xtrabackup if you use the
 <code>--defaults-group</code> option. It is needed for
 <code>mysqld_multi</code> deployments.</p>
 <h3 id="-defaults-group-suffix">--defaults-group-suffix(=#)<a class="headerlink" href="#-defaults-group-suffix" title="Permanent link">&para;</a></h3>
@@ -5126,7 +5126,7 @@ file. This is used by <em>xtrabackup</em> if you use the
 <h3 id="-dump-innodb-buffer-pool">--dump-innodb-buffer-pool()<a class="headerlink" href="#-dump-innodb-buffer-pool" title="Permanent link">&para;</a></h3>
 <p>This option controls whether or not a new dump of buffer pool
 content should be done.</p>
-<p>With <code>--dump-innodb-buffer-pool</code>, <em>xtrabackup</em>
+<p>With <code>--dump-innodb-buffer-pool</code>, xtrabackup
 makes a request to the server to start the buffer pool dump (it
 takes some time to complete and is done in background) at the
 beginning of a backup provided the status variable
@@ -5136,12 +5136,12 @@ completed.</p>
 </code></pre></div>
 <p>By default, this option is set to OFF.</p>
 <p>If <code>innodb_buffer_pool_dump_status</code> reports that there is running
-dump of buffer pool, <em>xtrabackup</em> waits for the dump to complete
+dump of buffer pool, xtrabackup waits for the dump to complete
 using the value of <code>--dump-innodb-buffer-pool-timeout</code></p>
 <p>The file <code>ib_buffer_pool</code> stores tablespace ID and page ID
 data used to warm up the buffer pool sooner.</p>
 <h3 id="-dump-innodb-buffer-pool-timeout">--dump-innodb-buffer-pool-timeout()<a class="headerlink" href="#-dump-innodb-buffer-pool-timeout" title="Permanent link">&para;</a></h3>
-<p>This option contains the number of seconds that <em>xtrabackup</em> should
+<p>This option contains the number of seconds that xtrabackup should
 monitor the value of <code>innodb_buffer_pool_dump_status</code> to
 determine if buffer pool dump has completed.</p>
 <p>This option is used in combination with
@@ -5151,10 +5151,10 @@ seconds.</p>
 <p>This option contains the percentage of the most recently used buffer pool
 pages to dump.</p>
 <p>This option is effective if <code>--dump-innodb-buffer-pool</code> option is set
-to ON. If this option contains a value, <em>xtrabackup</em> sets the <em>MySQL</em>
+to ON. If this option contains a value, xtrabackup sets the MySQL
 system variable <code>innodb_buffer_pool_dump_pct</code>. As soon as the buffer pool
 dump completes or it is stopped (see
-<code>--dump-innodb-buffer-pool-timeout</code>), the value of the <em>MySQL</em> system
+<code>--dump-innodb-buffer-pool-timeout</code>), the value of the MySQL system
 variable is restored.</p>
 <h3 id="-encryptencryption_algorithm">--encrypt(=ENCRYPTION_ALGORITHM)<a class="headerlink" href="#-encryptencryption_algorithm" title="Permanent link">&para;</a></h3>
 <p>This option instructs xtrabackup to encrypt backup copies of InnoDB data
@@ -5169,16 +5169,16 @@ and thus the key can be viewed as part of the process info.</p>
 from. The file must be a simple binary (or text) file that contains exactly
 the key to be used.</p>
 <p>It is passed directly to the xtrabackup child process. See the
-<strong>xtrabackup</strong> documentation for more details.</p>
+xtrabackup documentation for more details.</p>
 <h3 id="-encrypt-threads">--encrypt-threads(=#)<a class="headerlink" href="#-encrypt-threads" title="Permanent link">&para;</a></h3>
 <p>This option specifies the number of worker threads that will be used for
 parallel encryption/decryption.
-See the <strong>xtrabackup</strong> documentation for more details.</p>
+See the xtrabackup documentation for more details.</p>
 <h3 id="-encrypt-chunk-size">--encrypt-chunk-size(=#)<a class="headerlink" href="#-encrypt-chunk-size" title="Permanent link">&para;</a></h3>
 <p>This option specifies the size of the internal working buffer for each
 encryption thread, measured in bytes. It is passed directly to the
 xtrabackup child process.</p>
-<p>To adjust the chunk size for encrypted files, use <a href="#read-buffer-size"><code>--read-buffer-size</code></a> and <code>--encrypt-chunk-size</code>.</p>
+<p>To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <code>--encrypt-chunk-size</code>.</p>
 <h3 id="-estimate-memory">--estimate-memory(=#)<a class="headerlink" href="#-estimate-memory" title="Permanent link">&para;</a></h3>
 <p>This option is in <a href="glossary.html#tech-preview">tech preview</a>. Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.</p>
 <p>Implemented in Percona XtraBackup 8.0.32-26, the option lets you enable or disable the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The default value is OFF. Enable the feature by setting <code>--estimate-memory=ON</code> in the backup phase and setting the <code>--use-free-memory-pct</code> option in the <code>--prepare</code> phase. If the <code>--estimate-memory</code> setting is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
@@ -5205,8 +5205,8 @@ queries that would block <code>FLUSH TABLES WITH READ LOCK</code> before running
 If there are still such queries when the timeout expires, xtrabackup
 terminates with an error. Default is <code>0</code>, in which case it does not wait
 for queries to complete and starts <code>FLUSH TABLES WITH READ LOCK</code>
-immediately. Where supported <em>xtrabackup</em> will
-automatically use <a href="https://www.percona.com/doc/percona-server/8.0/management/backup_locks.html#backup-locks">Backup Locks</a>
+immediately. Where supported xtrabackup will
+automatically use <a href="https://docs.percona.com/percona-server/8.0/backup-locks.html">Backup Locks</a>
 as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <h3 id="-ftwrl-wait-thresholdseconds">--ftwrl-wait-threshold(=SECONDS)<a class="headerlink" href="#-ftwrl-wait-thresholdseconds" title="Permanent link">&para;</a></h3>
@@ -5216,7 +5216,7 @@ xtrabackup to detect long-running queries with a non-zero value of
 is not started until such long-running queries exist. This option has no
 effect if <code>--ftwrl-wait-timeout</code> is <code>0</code>. Default value
 is <code>60</code> seconds. Where supported xtrabackup will
-automatically use <a href="https://www.percona.com/doc/percona-server/8.0/management/backup_locks.html#backup-locks">Backup Locks</a>
+automatically use <a href="https://docs.percona.com/percona-server/8.0/backup-locks.html">Backup Locks</a>
 as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <h3 id="-ftwrl-wait-query-typeallupdate">--ftwrl-wait-query-type(=all|update)<a class="headerlink" href="#-ftwrl-wait-query-typeallupdate" title="Permanent link">&para;</a></h3>
@@ -5225,21 +5225,21 @@ xtrabackup will issue the global lock. Default is <code>all</code>.</p>
 <h3 id="-galera-info">--galera-info()<a class="headerlink" href="#-galera-info" title="Permanent link">&para;</a></h3>
 <p>This option creates the <code>xtrabackup_galera_info</code> file which contains
 the local node state at the time of the backup. Option should be used when
-performing the backup of <em>Percona XtraDB Cluster</em>. It has no effect when
+performing the backup of Percona XtraDB Cluster. It has no effect when
 backup locks are used to create the backup.</p>
 <h3 id="-generate-new-master-key">--generate-new-master-key()<a class="headerlink" href="#-generate-new-master-key" title="Permanent link">&para;</a></h3>
 <p>Generate a new master key when doing a copy-back.</p>
 <h3 id="-generate-transition-key">--generate-transition-key()<a class="headerlink" href="#-generate-transition-key" title="Permanent link">&para;</a></h3>
-<p><em>xtrabackup</em> needs to access the same keyring file or vault server
+<p>xtrabackup needs to access the same keyring file or vault server
 during prepare and copy-back but it should not depend on whether the
 server keys have been purged.</p>
 <p><code>--generate-transition-key</code> creates and adds to the keyring
-a transition key for <em>xtrabackup</em> to use if the master key used for
+a transition key for xtrabackup to use if the master key used for
 encryption is not found because it has been rotated and purged.</p>
 <h3 id="-get-server-public-key">--get-server-public-key()<a class="headerlink" href="#-get-server-public-key" title="Permanent link">&para;</a></h3>
 <p>Get the server public key</p>
 <h3 id="-help">--help()<a class="headerlink" href="#-help" title="Permanent link">&para;</a></h3>
-<p>When run with this option or without any options <em>xtrabackup</em> displays
+<p>When run with this option or without any options xtrabackup displays
 information about how to run the program on the command line along with all
 supported options and variables with default values where appropriate.</p>
 <h3 id="-historyname">--history(=NAME)<a class="headerlink" href="#-historyname" title="Permanent link">&para;</a></h3>
@@ -5250,7 +5250,7 @@ backup being taken.</p>
 <h3 id="-hosthost">--host(=HOST)<a class="headerlink" href="#-hosthost" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the host to use when
 connecting to the database server with TCP/IP. It is passed to the mysql
-child process without alteration. See <strong>mysql --help</strong> for details.</p>
+child process without alteration. See mysql --help for details.</p>
 <h3 id="-incremental-basedirdirectory">--incremental-basedir(=DIRECTORY)<a class="headerlink" href="#-incremental-basedirdirectory" title="Permanent link">&para;</a></h3>
 <p>When creating an incremental backup, this is the directory containing the
 full backup that is the base dataset for the incremental backups.</p>
@@ -5264,33 +5264,35 @@ that instance.</p>
 <h3 id="-incremental-history-namename">--incremental-history-name(=name)<a class="headerlink" href="#-incremental-history-namename" title="Permanent link">&para;</a></h3>
 <p>This option specifies the name of the backup series stored in the
 <code>PERCONA_SCHEMA.xtrabackup_history</code> history record to base an incremental
-backup on. <em>xtrabackup</em> will search the history table looking for the most
+backup on. xtrabackup will search the history table looking for the most
 recent (highest <code>innodb_to_lsn</code>), successful backup in the series and take
 the to_lsn value to use as the starting <code>lsn</code> for the incremental
 backup. This will be mutually exclusive with
 <code>--incremental-history-uuid</code>, <code>--incremental-basedir</code> and
 <code>--incremental-lsn</code>. If no valid lsn can be found (no series by that
-name, no successful backups by that name) <em>xtrabackup</em> will return with an
+name, no successful backups by that name) xtrabackup will return with an
 error. It is used with the <code>--incremental</code> option.</p>
 <h3 id="-incremental-history-uuidname">--incremental-history-uuid(=name)<a class="headerlink" href="#-incremental-history-uuidname" title="Permanent link">&para;</a></h3>
-<p>This option specifies the <em>UUID</em> of the specific history record stored in the
+<p>This option specifies the UUID of the specific history record stored in the
 <code>PERCONA_SCHEMA.xtrabackup_history</code> to base an incremental backup on.
 <code>--incremental-history-name</code>, <code>--incremental-basedir</code> and
 <code>--incremental-lsn</code>. If no valid lsn can be found (no success record
-with that <em>UUID</em>) <em>xtrabackup</em> will return with an error. It is used with
+with that UUID) xtrabackup will return with an error. It is used with
 the –incremental option.</p>
 <h3 id="-incremental-lsnlsn">--incremental-lsn(=LSN)<a class="headerlink" href="#-incremental-lsnlsn" title="Permanent link">&para;</a></h3>
 <p>When creating an incremental backup, you can specify the log sequence number
 (LSN) instead of specifying
 <code>--incremental-basedir</code>. For databases created in 5.1 and
-later, specify the LSN as a single 64-bit integer. <strong>ATTENTION</strong>: If
-a wrong LSN value is specified (a user  error which <em>Percona XtraBackup</em> is
-unable to detect), the backup will be unusable. Be careful!</p>
+later, specify the LSN as a single 64-bit integer. </p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If a wrong LSN value is specified (a user error which Percona XtraBackup does not detect), the backup is unusable. Be careful!</p>
+</div>
 <h3 id="-innodbname">--innodb([=name])<a class="headerlink" href="#-innodbname" title="Permanent link">&para;</a></h3>
 <p>This option is ignored for MySQL option compatibility.</p>
 <h3 id="-innodb-miscellaneous">--innodb-miscellaneous()<a class="headerlink" href="#-innodb-miscellaneous" title="Permanent link">&para;</a></h3>
 <p>There is a large group of InnoDB options that are normally read from the
-<code>my.cnf</code> configuration file, so that <em>xtrabackup</em> boots up its
+<code>my.cnf</code> configuration file, so that xtrabackup boots up its
 embedded InnoDB in the same configuration as your current server. You
 normally do not need to specify these explicitly. These options have the
 same behavior in InnoDB and XtraDB:</p>
@@ -5298,12 +5300,12 @@ same behavior in InnoDB and XtraDB:</p>
 <p>The path to the keyring file. Combine this option with
 <code>--xtrabackup-plugin-dir</code>.</p>
 <h3 id="-kill-long-queries-timeoutseconds">--kill-long-queries-timeout(=SECONDS)<a class="headerlink" href="#-kill-long-queries-timeoutseconds" title="Permanent link">&para;</a></h3>
-<p>This option specifies the number of seconds <em>xtrabackup</em> waits between
+<p>This option specifies the number of seconds xtrabackup waits between
 starting <code>FLUSH TABLES WITH READ LOCK</code> and killing those queries that block
-it. Default is 0 seconds, which means <em>xtrabackup</em> will not attempt to kill
+it. Default is 0 seconds, which means xtrabackup will not attempt to kill
 any queries. In order to use this option xtrabackup user should have the
-<code>PROCESS</code> and <code>SUPER</code> privileges. Where supported, <em>xtrabackup</em>
-automatically uses <a href="https://www.percona.com/doc/percona-server/8.0/management/backup_locks.html#backup-locks">Backup Locks</a>
+<code>PROCESS</code> and <code>SUPER</code> privileges. Where supported, xtrabackup
+automatically uses <a href="https://docs.percona.com/percona-server/8.0/backup-locks.html">Backup locks</a>
 as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <h3 id="-kill-long-query-typeallselect">--kill-long-query-type(=all|select)<a class="headerlink" href="#-kill-long-query-typeallselect" title="Permanent link">&para;</a></h3>
@@ -5315,18 +5317,21 @@ global lock. Default is “select”.</p>
 operations.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Prior to <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
-<p>As of <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
+<p>Prior to Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
+<p>As of Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
 </div>
 <h3 id="-lock-ddl-per-table">--lock-ddl-per-table()<a class="headerlink" href="#-lock-ddl-per-table" title="Permanent link">&para;</a></h3>
 <p>Lock DDL for each table before xtrabackup starts to copy
 it and until the backup is completed.</p>
-<p><strong>NOTE</strong>: As of <em>Percona XtraBackup</em> 8.0.15, the –lock-ddl-per-table option is deprecated. Use the –lock-ddl option instead.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As of Percona XtraBackup 8.0.15, the <code>–lock-ddl-per-table</code> option is deprecated. Use the <code>–lock-ddl</code> option instead.</p>
+</div>
 <h3 id="-lock-ddl-timeout">--lock-ddl-timeout()<a class="headerlink" href="#-lock-ddl-timeout" title="Permanent link">&para;</a></h3>
 <p>If <code>LOCK TABLES FOR BACKUP</code> or <code>LOCK INSTANCE FOR BACKUP</code> does not return
 within given timeout, abort the backup.</p>
 <h3 id="-log">--log()<a class="headerlink" href="#-log" title="Permanent link">&para;</a></h3>
-<p>This option is ignored for <em>MySQL</em></p>
+<p>This option is ignored for MySQL</p>
 <h3 id="-log-bin">--log-bin()<a class="headerlink" href="#-log-bin" title="Permanent link">&para;</a></h3>
 <p>The base name for the log sequence.</p>
 <h3 id="-log-bin-indexname">--log-bin-index(=name)<a class="headerlink" href="#-log-bin-indexname" title="Permanent link">&para;</a></h3>
@@ -5346,13 +5351,13 @@ default.</p>
 <h3 id="-no-defaults">--no-defaults()<a class="headerlink" href="#-no-defaults" title="Permanent link">&para;</a></h3>
 <p>The default options are only read from the login file.</p>
 <h3 id="-no-lock">--no-lock()<a class="headerlink" href="#-no-lock" title="Permanent link">&para;</a></h3>
-<p>Use this option to disable table lock with <code>FLUSH TABLES WITH READ
-LOCK</code>. Use it only if ALL your tables are InnoDB and you <strong>DO NOT CARE</strong>
+<p>Disables table lock with <code>FLUSH TABLES WITH READ
+LOCK</code>. Use it only if all your tables are InnoDB and you do not care
 about the binary log position of the backup. This option shouldn’t be used if
 there are any <code>DDL</code> statements being executed or if any updates are
 happening on non-InnoDB tables (this includes the system MyISAM tables in the
-<em>mysql</em> database), otherwise it could lead to an inconsistent backup. Where
-supported <em>xtrabackup</em> will automatically use <a href="https://www.percona.com/doc/percona-server/8.0/management/backup_locks.html#backup-locks">Backup Locks</a>
+mysql database), otherwise it could lead to an inconsistent backup. Where
+supported xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/8.0/backup-locks.html">Backup locks</a>
 as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.  If
 you are considering to use this because your backups are failing to acquire
@@ -5361,19 +5366,19 @@ the lock from succeeding. Please try using <code>--safe-slave-backup</code> to
 momentarily stop the replication replica thread, this may help the backup to
 succeed and you do not need to use this option.</p>
 <h3 id="-no-server-version-check">--no-server-version-check()<a class="headerlink" href="#-no-server-version-check" title="Permanent link">&para;</a></h3>
-<p>Implemented in <em>Percona XtraBackup</em> 8.0.21.</p>
+<p>Implemented in Percona XtraBackup 8.0.21.</p>
 <p>The <code>--no-server-version-check</code> option disables the server version check.</p>
-<p>The default behavior runs a check that compares the source system version to the <em>Percona XtraBackup</em> version. If the source system version is higher than the XtraBackup version, the backup is aborted with a message.</p>
+<p>The default behavior runs a check that compares the source system version to the Percona XtraBackup version. If the source system version is higher than the XtraBackup version, the backup is aborted with a message.</p>
 <p>Adding the option overrides this check, and the backup proceeds, but there may be issues with the backup.</p>
 <p>See Server Version and Backup Version Comparison for more information.</p>
 <h3 id="-no-version-check">--no-version-check()<a class="headerlink" href="#-no-version-check" title="Permanent link">&para;</a></h3>
 <p>This option disables the version check. If you do not pass this option, the
-automatic version check is enabled implicitly when <em>xtrabackup</em> runs
+automatic version check is enabled implicitly when xtrabackup runs
 in the <code>--backup</code> mode. To disable the version check, you should pass
-explicitly the <code>--no-version-check</code> option when invoking <em>xtrabackup</em>.</p>
-<p>When the automatic version check is enabled, <em>xtrabackup</em> performs a
+explicitly the <code>--no-version-check</code> option when invoking xtrabackup.</p>
+<p>When the automatic version check is enabled, xtrabackup performs a
 version check against the server on the backup stage after creating a server
-connection. <em>xtrabackup</em> sends the following information to the server:</p>
+connection. xtrabackup sends the following information to the server:</p>
 <ul>
 <li>
 <p>MySQL flavour and version</p>
@@ -5396,32 +5401,32 @@ a random UUID; no client information is either collected or stored.</p>
 <h3 id="-parallel">--parallel(=#)<a class="headerlink" href="#-parallel" title="Permanent link">&para;</a></h3>
 <p>This option specifies the number of threads to use to copy multiple data
 files concurrently when creating a backup. The default value is 1 (i.e., no
-concurrent transfer). In <em>Percona XtraBackup</em> 2.3.10 and newer, this option
+concurrent transfer). In Percona XtraBackup 2.3.10 and newer, this option
 can be used with the <code>--copy-back</code> option to copy the user
 data files in parallel (redo logs and system tablespaces are copied in the
 main thread).</p>
 <h3 id="-passwordpassword">--password(=PASSWORD)<a class="headerlink" href="#-passwordpassword" title="Permanent link">&para;</a></h3>
 <p>This option specifies the password to use when connecting to the database.
-It accepts a string argument. See <strong>mysql --help</strong> for details.</p>
+It accepts a string argument. See mysql --help for details.</p>
 <h3 id="-plugin-load">--plugin-load()<a class="headerlink" href="#-plugin-load" title="Permanent link">&para;</a></h3>
 <p>List of plugins to load.</p>
 <h3 id="-portport">--port(=PORT)<a class="headerlink" href="#-portport" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the port to use when
 connecting to the database server with TCP/IP. It is passed to the
-<strong>mysql</strong> child process without alteration. See <strong>mysql
---help</strong> for details.</p>
+mysql child process without alteration. See mysql
+--help for details.</p>
 <h3 id="-prepare">--prepare()<a class="headerlink" href="#-prepare" title="Permanent link">&para;</a></h3>
-<p>Makes <strong>xtrabackup</strong> perform a recovery on a backup created with
+<p>Makes xtrabackup perform a recovery on a backup created with
 <code>--backup</code>, so that it is ready to use. See
 preparing a backup.</p>
 <h3 id="-print-defaults">--print-defaults()<a class="headerlink" href="#-print-defaults" title="Permanent link">&para;</a></h3>
 <p>Print the program argument list and exit. Must be given as the first option
 on the command-line.</p>
 <h3 id="-print-param">--print-param()<a class="headerlink" href="#-print-param" title="Permanent link">&para;</a></h3>
-<p>Makes <strong>xtrabackup</strong> print out parameters that can be used for
+<p>Makes xtrabackup print out parameters that can be used for
 copying the data files back to their original locations to restore them.</p>
 <h3 id="-read-buffer-size">--read-buffer-size()<a class="headerlink" href="#-read-buffer-size" title="Permanent link">&para;</a></h3>
-<p>Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <a href="#encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
+<p>Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <code>--encrypt-chunk-size</code>.</p>
 <h3 id="-rebuild-indexes">--rebuild-indexes()<a class="headerlink" href="#-rebuild-indexes" title="Permanent link">&para;</a></h3>
 <p>Rebuilds indexes in a compact backup. This option only has effect when the
 <code>--prepare</code> and <code>--rebuild-threads</code> options are provided.</p>
@@ -5433,7 +5438,7 @@ option only has effect with the <code>--prepare</code> and
 <p>The <code>--register-redo-log-consumer</code> parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.</p>
 <p>Implemented in <a href="release-notes/8.0/8.0.30-23.0.html">Percona XtraBackup 8.0.30-23</a>.</p>
 <h3 id="-remove-original">--remove-original()<a class="headerlink" href="#-remove-original" title="Permanent link">&para;</a></h3>
-<p>Implemented in <em>Percona XtraBackup</em> 2.4.6, this option when specified will
+<p>Implemented in Percona XtraBackup 2.4.6, this option when specified will
 remove <code>.qp</code>, <code>.xbcrypt</code> and <code>.qp.xbcrypt</code> files after
 decryption and decompression.</p>
 <h3 id="-rocksdb-datadir">--rocksdb-datadir()<a class="headerlink" href="#-rocksdb-datadir" title="Permanent link">&para;</a></h3>
@@ -5449,9 +5454,9 @@ this number of checkpoints.</p>
 <h3 id="-rollback-prepared-trx">--rollback-prepared-trx()<a class="headerlink" href="#-rollback-prepared-trx" title="Permanent link">&para;</a></h3>
 <p>Force rollback prepared InnoDB transactions.</p>
 <h3 id="-rsync">--rsync()<a class="headerlink" href="#-rsync" title="Permanent link">&para;</a></h3>
-<p>Uses the <strong>rsync</strong> utility to optimize local file transfers. When this
-option is specified, <em>xtrabackup</em> uses <strong>rsync</strong> to copy
-all non-InnoDB files instead of spawning a separate <strong>cp</strong> for each
+<p>Uses the rsync utility to optimize local file transfers. When this
+option is specified, xtrabackup uses rsync to copy
+all non-InnoDB files instead of spawning a separate cp for each
 file, which can be much faster for servers with a large number of databases
 or tables.  This option cannot be used together with <code>--stream</code>.</p>
 <h3 id="-safe-slave-backup">--safe-slave-backup()<a class="headerlink" href="#-safe-slave-backup" title="Permanent link">&para;</a></h3>
@@ -5467,8 +5472,8 @@ implemented in order to deal with <a href="https://dev.mysql.com/doc/refman/5.7/
 and isn’t necessary with Row-Based-Replication.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Prior to <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
-<p>As of <em>Percona XtraBackup</em> 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
+<p>Prior to Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
+<p>As of Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
 </div>
 <h3 id="-safe-slave-backup-timeoutseconds">--safe-slave-backup-timeout(=SECONDS)<a class="headerlink" href="#-safe-slave-backup-timeoutseconds" title="Permanent link">&para;</a></h3>
 <p>How many seconds <code>--safe-slave-backup</code> should wait for
@@ -5492,8 +5497,8 @@ position saved in the <code>xtrabackup_slave_info</code> file.</p>
 <h3 id="-socket">--socket()<a class="headerlink" href="#-socket" title="Permanent link">&para;</a></h3>
 <p>This option accepts a string argument that specifies the socket to use when
 connecting to the local database server with a UNIX domain socket. It is
-passed to the mysql child process without alteration. See <strong>mysql
---help</strong> for details.</p>
+passed to the mysql child process without alteration. See mysql
+--help for details.</p>
 <h3 id="-ssl">--ssl()<a class="headerlink" href="#-ssl" title="Permanent link">&para;</a></h3>
 <p>Enable secure connection.</p>
 <h3 id="-ssl-ca">--ssl-ca()<a class="headerlink" href="#-ssl-ca" title="Permanent link">&para;</a></h3>
@@ -5510,7 +5515,7 @@ MySQL server documentation.</p>
 <h3 id="-ssl-crlpath">--ssl-crlpath()<a class="headerlink" href="#-ssl-crlpath" title="Permanent link">&para;</a></h3>
 <p>Path of directory that contains certificate revocation list files. </p>
 <h3 id="-ssl-fips-mode">--ssl-fips-mode()<a class="headerlink" href="#-ssl-fips-mode" title="Permanent link">&para;</a></h3>
-<p>SSL FIPS mode (applies only for OpenSSL); permitted values are: <em>OFF</em>, <em>ON</em>, <em>STRICT</em>.</p>
+<p>SSL FIPS mode (applies only for OpenSSL); permitted values are: OFF, ON, STRICT.</p>
 <h3 id="-ssl-key">--ssl-key()<a class="headerlink" href="#-ssl-key" title="Permanent link">&para;</a></h3>
 <p>Path of file that contains X509 key in PEM format.</p>
 <h3 id="-ssl-mode">--ssl-mode()<a class="headerlink" href="#-ssl-mode" title="Permanent link">&para;</a></h3>
@@ -5518,13 +5523,13 @@ MySQL server documentation.</p>
 <h3 id="-ssl-verify-server-cert">--ssl-verify-server-cert()<a class="headerlink" href="#-ssl-verify-server-cert" title="Permanent link">&para;</a></h3>
 <p>Verify server certificate Common Name value against host name used when connecting to server.</p>
 <h3 id="-stats">--stats()<a class="headerlink" href="#-stats" title="Permanent link">&para;</a></h3>
-<p>Causes <strong>xtrabackup</strong> to scan the specified data files and print out
+<p>Causes xtrabackup to scan the specified data files and print out
 index statistics.</p>
 <h3 id="-streamformat">--stream(=FORMAT)<a class="headerlink" href="#-streamformat" title="Permanent link">&para;</a></h3>
 <p>Stream all backup files to the standard output in the specified format.
 Currently, this option only supports the xbstream format.</p>
 <h3 id="-strict">--strict()<a class="headerlink" href="#-strict" title="Permanent link">&para;</a></h3>
-<p>If this option is specified, <em>xtrabackup</em> fails with an error when invalid
+<p>If this option is specified, xtrabackup fails with an error when invalid
 parameters are passed.</p>
 <h3 id="-tablesname">--tables(=name)<a class="headerlink" href="#-tablesname" title="Permanent link">&para;</a></h3>
 <p>A regular expression against which the full tablename, in
@@ -5544,12 +5549,12 @@ backup. Note that this option has a higher priority than
 The backup will be limited to the specified tables.</p>
 <h3 id="-target-dirdirectory">--target-dir(=DIRECTORY)<a class="headerlink" href="#-target-dirdirectory" title="Permanent link">&para;</a></h3>
 <p>This option specifies the destination directory for the backup. If the
-directory does not exist, <strong>xtrabackup</strong> creates it. If the directory
-does exist and is empty, <strong>xtrabackup</strong> will succeed.
-<strong>xtrabackup</strong> will not overwrite existing files, however; it will
+directory does not exist, xtrabackup creates it. If the directory
+does exist and is empty, xtrabackup will succeed.
+xtrabackup will not overwrite existing files, however; it will
 fail with operating system error 17, <code>file exists</code>.</p>
 <p>If this option is a relative path, it is interpreted as being relative to
-the current working directory from which <strong>xtrabackup</strong> is executed.</p>
+the current working directory from which xtrabackup is executed.</p>
 <p>In order to perform a backup, you need <code>READ</code>, <code>WRITE</code>, and <code>EXECUTE</code>
 permissions at a filesystem level for the directory that you supply as the
 value of <code>--target-dir</code>.</p>
@@ -5557,28 +5562,28 @@ value of <code>--target-dir</code>.</p>
 <p>Directory where temp tablespace files live, this path can be absolute.</p>
 <h3 id="-throttle">--throttle(=#)<a class="headerlink" href="#-throttle" title="Permanent link">&para;</a></h3>
 <p>This option limits the number of chunks copied per second. The chunk size is
-<em>10 MB</em>. </p>
-<p>To limit the bandwidth to <em>10 MB/s</em>, set the option to <em>1</em>.</p>
+10 MB. </p>
+<p>To limit the bandwidth to 10 MB/s, set the option to 1.</p>
 <h3 id="-tls-ciphersuites">--tls-ciphersuites()<a class="headerlink" href="#-tls-ciphersuites" title="Permanent link">&para;</a></h3>
 <p>TLS v1.3 cipher to use.</p>
 <h3 id="-tls-version">--tls-version()<a class="headerlink" href="#-tls-version" title="Permanent link">&para;</a></h3>
-<p>TLS version to use, permitted values are: <em>TLSv1</em>, <em>TLSv1.1</em>,
-<em>TLSv1.2</em>, <em>TLSv1.3</em>.</p>
+<p>TLS version to use, permitted values are: TLSv1, TLSv1.1,
+TLSv1.2, TLSv1.3.</p>
 <h3 id="-tmpdirname">--tmpdir(=name)<a class="headerlink" href="#-tmpdirname" title="Permanent link">&para;</a></h3>
 <p>Specify the directory that will be used to store temporary files during the
 backup</p>
 <h3 id="-transition-keyname">--transition-key(=name)<a class="headerlink" href="#-transition-keyname" title="Permanent link">&para;</a></h3>
 <p>This option is used to enable processing the backup without accessing the
-keyring vault server. In this case, <strong>xtrabackup</strong> derives the AES
+keyring vault server. In this case, xtrabackup derives the AES
 encryption key from the specified passphrase and uses it to encrypt
 tablespace keys of tablespaces being backed up.</p>
 <p>If <code>--transition-key</code> does not have any
-value, <strong>xtrabackup</strong> will ask for it. The same passphrase should be
+value, xtrabackup will ask for it. The same passphrase should be
 specified for the <code>--prepare</code> command.</p>
 <h3 id="-use-free-memory-pct">--use-free-memory-pct()<a class="headerlink" href="#-use-free-memory-pct" title="Permanent link">&para;</a></h3>
 <p>The <code>--use-free-memory-pct</code> is a <a href="glossary.html#tech-preview">tech preview</a> option. Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.</p>
-<p>Implemented in Percona XtraBackup 8.0.30-23, this option lets you configure the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The option controlls the amount of free memory that can be used to <code>--prepare</code> a backup. The default value is 0 (zero) which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100. </p>
-<p>This option works, only if <a href="#estimate-memory"><code>--estimate-memory</code></a> option is enabled. If the <code>--estimate-memory</code> option is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
+<p>Implemented in Percona XtraBackup 8.0.30-23, this option lets you configure the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The option controls the amount of free memory that can be used to <code>--prepare</code> a backup. The default value is 0 (zero) which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100. </p>
+<p>This option works, only if <code>--estimate-memory</code> option is enabled. If the <code>--estimate-memory</code> option is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
@@ -5593,7 +5598,7 @@ mysql –help for details.</p>
 <h3 id="-v">-v()<a class="headerlink" href="#-v" title="Permanent link">&para;</a></h3>
 <p>See <code>--version</code></p>
 <h3 id="-version">--version()<a class="headerlink" href="#-version" title="Permanent link">&para;</a></h3>
-<p>This option prints <em>xtrabackup</em> version and exits.</p>
+<p>This option prints xtrabackup version and exits.</p>
 <h3 id="-xtrabackup-plugin-dirdirname">--xtrabackup-plugin-dir(=DIRNAME)<a class="headerlink" href="#-xtrabackup-plugin-dirdirname" title="Permanent link">&para;</a></h3>
 <p>The absolute path to the directory that contains the <code>keyring</code> plugin.</p>
 
@@ -5617,7 +5622,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2023-06-26
+      2023-07-10
     
   </small>
 </div>
@@ -5738,10 +5743,10 @@ mysql –help for details.</p>
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b425cdc4.min.js"></script>
+      <script src="assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
           <script src="js/version-select.js"></script>

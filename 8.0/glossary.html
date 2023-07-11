@@ -24,7 +24,7 @@
         <link rel="next" href="toolkit-version-check.html">
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
     
     
       
@@ -3172,8 +3172,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#zstd" class="md-nav__link">
-    ZSTD
+  <a href="#zstandard-zstd" class="md-nav__link">
+    Zstandard (ZSTD)
   </a>
   
 </li>
@@ -3564,8 +3564,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#zstd" class="md-nav__link">
-    ZSTD
+  <a href="#zstandard-zstd" class="md-nav__link">
+    Zstandard (ZSTD)
   </a>
   
 </li>
@@ -3622,7 +3622,7 @@
 <h3 id="csv">.CSV<a class="headerlink" href="#csv" title="Permanent link">&para;</a></h3>
 <p>Each table with the <strong>CSV Storage</strong> engine has <code>.CSV</code> file which contains the data of it (which is a standard Comma Separated Value file).</p>
 <h3 id="exp">.exp<a class="headerlink" href="#exp" title="Permanent link">&para;</a></h3>
-<p>Files with the <code>.exp</code> extension are created by <strong>Percona XtraBackup</strong> per each <em>InnoDB</em> tablespace when the <a href="https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/xbk_option_reference.html#cmdoption-export"><code>--export</code></a> option is used on prepare. See <a href="https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/restoring_individual_tables.html">restoring individual tables</a>.</p>
+<p>Files with the <code>.exp</code> extension are created by <strong>Percona XtraBackup</strong> per each <em>InnoDB</em> tablespace when the <a href="xtrabackup-option-reference.html#–-export"><code>--export</code></a> option is used on prepare. See <a href="restore-individual-tables.html">restore individual tables</a>.</p>
 <h3 id="frm">.frm<a class="headerlink" href="#frm" title="Permanent link">&para;</a></h3>
 <p>For each table, the server will create a file with the <code>.frm</code> extension containing the table definition (for all storage engines).</p>
 <h2 id="general-availability-ga">General availability (GA)<a class="headerlink" href="#general-availability-ga" title="Permanent link">&para;</a></h2>
@@ -3725,13 +3725,12 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
 <h3 id="xbcrypt">xbcrypt<a class="headerlink" href="#xbcrypt" title="Permanent link">&para;</a></h3>
 <p>To support the encryption and the decryption of the backups, a new tool xbcrypt was introduced to <strong>Percona XtraBackup</strong>. This utility has been modeled after the <strong>xbstream</strong> binary to perform encryption and decryption outside <strong>Percona XtraBackup</strong>.</p>
 <h3 id="xbstream">xbstream<a class="headerlink" href="#xbstream" title="Permanent link">&para;</a></h3>
-<p>To support simultaneous compression and streaming, <strong>Percona XtraBackup</strong> uses the <strong>xbstream</strong> format. For more information see <a href="https://docs.percona.com/percona-xtrabackup/latest/xtrabackup_bin/xbk_option_reference.html#cmdoption-stream"><code>--stream</code></a></p>
+<p>To support simultaneous compression and streaming, <strong>Percona XtraBackup</strong> uses the <strong>xbstream</strong> format. For more information see <a href="xbstream-binary-overview.html">xbstream</a></p>
 <h3 id="xtradb">XtraDB<a class="headerlink" href="#xtradb" title="Permanent link">&para;</a></h3>
 <p><em>Percona XtraDB</em> is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. <em>Percona XtraDB</em> includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see <a href="https://www.percona.com/doc/percona-server/8.0/percona_xtradb.html">The Percona XtraDB Storage Engine</a>.</p>
-<h3 id="zstd">ZSTD<a class="headerlink" href="#zstd" title="Permanent link">&para;</a></h3>
-<p>The <code>Zstandard (ZSTD)</code> compression algorithm is a <a href="#tech-preview">tech preview</a> feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.</p>
+<h3 id="zstandard-zstd">Zstandard (ZSTD)<a class="headerlink" href="#zstandard-zstd" title="Permanent link">&para;</a></h3>
 <p><code>ZSTD</code> is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios.</p>
-<p><code>ZSTD</code> compression algorithm has been implemented in <a href="release-notes/8.0/8.0.30-23.0.html">Percona XtraBackup 8.0.30-23</a>.</p>
+<p><code>ZSTD</code> compression algorithm was implemented in <a href="release-notes/8.0/8.0.30-23.0.html">Percona XtraBackup 8.0.30-23</a>.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -3753,7 +3752,7 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
   <small>
     
       Last update:
-      2022-11-14
+      2023-07-10
     
   </small>
 </div>
@@ -3874,10 +3873,10 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b425cdc4.min.js"></script>
+      <script src="assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
           <script src="js/version-select.js"></script>

@@ -28,7 +28,7 @@ needing a local storage.">
         <link rel="next" href="xbcloud-s3.html">
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
     
     
       
@@ -3218,12 +3218,12 @@ $<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><sp
 <code>backup_name/database/table.ibd.NNN...</code>, where <code>NNN...</code> is a
 0-padded serial number of chunk within a file. The size of chunk produced by
 xtrabackup and xbstream changed to 10M.</p>
-<p>To adjust the chunk size use <a href="/xtrabackup_bin/xbk_option_reference.html#-read-buffer-size"><code>--read-buffer-size</code></a>. To adjust the chunk size for encrypted files, use <a href="/xtrabackup_bin/xbk_option_reference.html#-read-buffer-size"><code>--read-buffer-size</code></a> and [<a href="/xtrabackup_bin/xbk_option_reference.html#-encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
+<p>To adjust the chunk size use <a href="xtrabackup-option-reference.html#--read-buffer-size"><code>--read-buffer-size</code></a>. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <a href="xtrabackup-option-reference.html#--encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
 <p>xbcloud has three essential operations: <em>put</em>, <em>get</em>, and <em>delete</em>. With these
 operations, backups are created, stored, retrieved, restored, and
 deleted. xbcloud operations clearly map to similar operations within 
 the AWS Amazon S3 API.</p>
-<p>The <a href="https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_exbackoff.html#xbcloud-exbackoff">Exponential Backoff</a> feature was implemented in Percona XtraBackup 8.0.26-18. Suppose a chunk fails to upload or download. In that case, this feature adds an exponential backoff, or sleep, time and then retries the upload or download, which increases the chances of completing a backup or a restore operation.</p>
+<p>The <a href="xbcloud-exbackoff.html">Exponential backoff</a> feature was implemented in Percona XtraBackup 8.0.26-18. Suppose a chunk fails to upload or download. In that case, this feature adds an exponential backoff, or sleep, time and then retries the upload or download, which increases the chances of completing a backup or a restore operation.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>To prevent intermittent backup failures, <a href="update-curl-utility.html">update the curl utility in Debian 10</a>.</p>
@@ -3232,19 +3232,19 @@ the AWS Amazon S3 API.</p>
 <p>The following cloud storage types are supported:</p>
 <ul>
 <li>
-<p>OpenStack Object Storage (Swift) - see <a href="https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_swift.html#xbcloud-swift">Using the xbcloud Binary with Swift</a></p>
+<p>OpenStack Object Storage (Swift) - see <a href="xbcloud-swift.html">Using the xbcloud binary with Swift</a></p>
 </li>
 <li>
-<p>Amazon Simple Storage (S3) - see <a href="https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_s3.html#xbcloud-s3">Using xbcloud Binary with Amazon S3</a></p>
+<p>Amazon Simple Storage (S3) - see <a href="xbcloud-s3.html">Using the xbcloud binary with Amazon S3</a></p>
 </li>
 <li>
-<p>Azure Cloud Storage - see <a href="https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_azure.html#xbcloud-azure">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></p>
+<p>Azure Cloud Storage - see <a href="xbcloud-azure.html">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></p>
 </li>
 <li>
-<p>Google Cloud Storage (gcs) - see <a href="https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_gcs.html#xbcloud-gcs">Using the xbcloud with Google Cloud Storage</a></p>
+<p>Google Cloud Storage (gcs) - see <a href="xbcloud-gcs.html">Using the xbcloud binary with Google Cloud Storage</a></p>
 </li>
 <li>
-<p>MinIO - see <a href="https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_minio.html#xbcloud-minio">Using the xbcloud Binary with MinIO</a></p>
+<p>MinIO - see <a href="xbcloud-minio.html">Using the xbcloud binary with MinIO</a></p>
 </li>
 </ul>
 <p>In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, xbcloud supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.</p>
@@ -3426,7 +3426,7 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
   <small>
     
       Last update:
-      2023-06-12
+      2023-07-10
     
   </small>
 </div>
@@ -3547,10 +3547,10 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b425cdc4.min.js"></script>
+      <script src="assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
           <script src="js/version-select.js"></script>
