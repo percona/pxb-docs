@@ -1,10 +1,10 @@
 # The xtrabackup option reference
 
-Here you can find all of the command-line options for the **xtrabackup** binary.
+Here you can find all of the command-line options for the xtrabackup binary.
 
 ## Modes of operation
 
-You invoke *xtrabackup* in one of the following modes:
+You invoke xtrabackup in one of the following modes:
 
 
 * `--backup` mode to make a backup in a target directory
@@ -20,7 +20,7 @@ the alternate `--move-back` mode.
 
 * `--stats` mode to scan the specified data files and print out index statistics.
 
-When you intend to run *xtrabackup* in any of these modes, use the following syntax:
+When you intend to run xtrabackup in any of these modes, use the following syntax:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back|--stats [OPTIONS]
@@ -32,8 +32,8 @@ For example, the `--prepare` mode is applied as follows:
 $ xtrabackup --prepare --target-dir=/data/backup/mysql/
 ```
 
-For all modes, the default options are read from the **xtrabackup** and
-**mysqld** configuration groups from the following files in the given order:
+For all modes, the default options are read from the xtrabackup and
+mysqld configuration groups from the following files in the given order:
 
 
 1. `/etc/my.cnf`
@@ -47,11 +47,11 @@ For all modes, the default options are read from the **xtrabackup** and
 
 4. `~/.my.cnf`.
 
-As the first parameter to *xtrabackup* (in place of the `--defaults-file`,
+As the first parameter to xtrabackup (in place of the `--defaults-file`,
 you may supply one of the following:
 
 
-* `--print-defaults` to have *xtrabackup* print the argument list and exit.
+* `--print-defaults` to have xtrabackup print the argument list and exit.
 
 
 * `--no-defaults` to forbid reading options from any file but the login file.
@@ -66,7 +66,7 @@ the global files have been read.
 
 * `--defaults-group-suffix` to read the configuration groups with the
 given suffix. The effective group name is constructed by concatenating the default
-configuration groups (**xtrabackup** and **mysqld**) with the given suffix.
+configuration groups (xtrabackup and mysqld) with the given suffix.
 
 
 * `--login-path` to read the given path from the login file.
@@ -74,7 +74,7 @@ configuration groups (**xtrabackup** and **mysqld**) with the given suffix.
 ### InnoDB options
 
 There is a large group of InnoDB options that are normally read from the
-`my.cnf` configuration file, so that *xtrabackup* boots up its embedded
+`my.cnf` configuration file, so that xtrabackup boots up its embedded
 InnoDB in the same configuration as your current server. You normally do not
 need to specify them explicitly. These options have the same behavior in InnoDB
 and XtraDB. See `--innodb-miscellaneous` for more information.
@@ -108,7 +108,7 @@ disable with `--no-backup-locks`.
 
 
 ### --check-privileges()
-This option checks if *Percona XtraBackup* has all required privileges.
+This option checks if Percona XtraBackup has all required privileges.
 If a missing privilege is required for the current operation,
 it will terminate and print out an error message.
 If a missing privilege is not required for the current operation,
@@ -121,24 +121,24 @@ xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
 ```
 
 ### --close-files()
-Do not keep files opened. When *xtrabackup* opens tablespace it normally
+Do not keep files opened. When xtrabackup opens tablespace it normally
 doesn’t close its file handle in order to handle the DDL operations
 correctly. However, if the number of tablespaces is really huge and can not
 fit into any limit, there is an option to close file handles once they are
-no longer accessed. *Percona XtraBackup* can produce inconsistent backups
+no longer accessed. Percona XtraBackup can produce inconsistent backups
 with this option enabled. Use at your own risk.
 
 
 ### --compress()
-This option tells *xtrabackup* to compress all output data, including the
+This option tells xtrabackup to compress all output data, including the
 transaction log file and meta data files, using either the `quicklz`, `lz4`, or `ZSTD` compression algorithm. `quicklz` is chosen by default.
 
 !!! note
 
-    Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms. See [Compressed backups](create-compressed-backup.md) for more information.
+    Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms. See [Create a compressed backup](create-compressed-backup.md) for more information.
 
 When using `--compress=quicklz` or `--compress`, the resulting files have
-the qpress archive format. Every `\*.qp` file produced by *xtrabackup* is
+the qpress archive format. Every `\*.qp` file produced by xtrabackup is
 essentially a one-file qpress archive and can be extracted and uncompressed
 by the `qpress` file archiver.
 
@@ -146,7 +146,7 @@ by the `qpress` file archiver.
 these files by using `lz4` program.
 
 `--compress=zstd` produces `\*.zst` files. You can extract the contents of
-these files by using the `--decompress` option. You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](#compress-zstd-level) option.
+these files by using the `--decompress` option. You can specify `ZSTD` compression level with the `--compress-zstd-level(=#)` option.
 
 ### --compress-chunk-size(=#) 
 Size of working buffer(s) for compression threads in bytes. The default
@@ -154,7 +154,7 @@ value is 64K.
 
 
 ### --compress-threads(=#)
-This option specifies the number of worker threads used by *xtrabackup* for
+This option specifies the number of worker threads used by xtrabackup for
 parallel data compression. This option defaults to `1`. Parallel
 compression (`--compress-threads`) can be used together
 with parallel file copying (`--parallel`). For example,
@@ -200,7 +200,7 @@ of the form `databasename1[.table_name1]`, one element per line.
 
 ### --datadir(=DIRECTORY)
 The source directory for the backup. This should be the same as the datadir
-for your *MySQL* server, so it should be read from `my.cnf` if that
+for your MySQL server, so it should be read from `my.cnf` if that
 exists; otherwise you must specify it on the command line.
 
 When combined with the `--copy-back` or
@@ -213,11 +213,11 @@ server’s datadir.
 
 
 ### --debug-sleep-before-unlock(=#)
-This is a debug-only option used by the *xtrabackup* test suite.
+This is a debug-only option used by the xtrabackup test suite.
 
 
 ### --debug-sync(=name)
-The debug sync point. This option is only used by the *xtrabackup* test suite.
+The debug sync point. This option is only used by the xtrabackup test suite.
 
 
 ### --decompress()
@@ -225,15 +225,15 @@ Decompresses all files in a backup previously
 made with the `--compress` option. The
 `--parallel` option will allow multiple files to be
 decrypted simultaneously. In order to decompress, the qpress utility MUST be
-installed and accessible within the path. *Percona XtraBackup* does not
+installed and accessible within the path. Percona XtraBackup does not
 automatically remove the compressed files. In order to clean up the backup
 directory users should use `--remove-original` option.
 
-The `--decompress` option may be used with *xbstream* to
+The `--decompress` option may be used with xbstream to
 decompress individual qpress files.
 
 ### --decompress-threads(=#)
-Force *xbstream* to use the specified number of threads for
+Force xbstream to use the specified number of threads for
 decompressing.
 
 
@@ -241,7 +241,7 @@ decompressing.
 Decrypts all files with the `.xbcrypt` extension in a backup
 previously made with `--encrypt` option. The
 `--parallel` option will allow multiple files to be
-decrypted simultaneously. *Percona XtraBackup* doesn’t
+decrypted simultaneously. Percona XtraBackup doesn’t
 automatically remove the encrypted files. In order to clean up the backup
 directory users should use `--remove-original` option.
 
@@ -259,7 +259,7 @@ link.
 
 ### --defaults-group(=GROUP-NAME)
 This option is to set the group which should be read from the configuration
-file. This is used by *xtrabackup* if you use the
+file. This is used by xtrabackup if you use the
 `--defaults-group` option. It is needed for
 `mysqld_multi` deployments.
 
@@ -272,7 +272,7 @@ Also reads groups with concat(group, suffix).
 This option controls whether or not a new dump of buffer pool
 content should be done.
 
-With `--dump-innodb-buffer-pool`, *xtrabackup*
+With `--dump-innodb-buffer-pool`, xtrabackup
 makes a request to the server to start the buffer pool dump (it
 takes some time to complete and is done in background) at the
 beginning of a backup provided the status variable
@@ -286,7 +286,7 @@ $ xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
 By default, this option is set to OFF.
 
 If `innodb_buffer_pool_dump_status` reports that there is running
-dump of buffer pool, *xtrabackup* waits for the dump to complete
+dump of buffer pool, xtrabackup waits for the dump to complete
 using the value of `--dump-innodb-buffer-pool-timeout`
 
 The file `ib_buffer_pool` stores tablespace ID and page ID
@@ -294,7 +294,7 @@ data used to warm up the buffer pool sooner.
 
 
 ### --dump-innodb-buffer-pool-timeout()
-This option contains the number of seconds that *xtrabackup* should
+This option contains the number of seconds that xtrabackup should
 monitor the value of `innodb_buffer_pool_dump_status` to
 determine if buffer pool dump has completed.
 
@@ -308,10 +308,10 @@ This option contains the percentage of the most recently used buffer pool
 pages to dump.
 
 This option is effective if `--dump-innodb-buffer-pool` option is set
-to ON. If this option contains a value, *xtrabackup* sets the *MySQL*
+to ON. If this option contains a value, xtrabackup sets the MySQL
 system variable `innodb_buffer_pool_dump_pct`. As soon as the buffer pool
 dump completes or it is stopped (see
-`--dump-innodb-buffer-pool-timeout`), the value of the *MySQL* system
+`--dump-innodb-buffer-pool-timeout`), the value of the MySQL system
 variable is restored.
 
 
@@ -333,13 +333,13 @@ from. The file must be a simple binary (or text) file that contains exactly
 the key to be used.
 
 It is passed directly to the xtrabackup child process. See the
-**xtrabackup** documentation for more details.
+xtrabackup documentation for more details.
 
 
 ### --encrypt-threads(=#)
 This option specifies the number of worker threads that will be used for
 parallel encryption/decryption.
-See the **xtrabackup** documentation for more details.
+See the xtrabackup documentation for more details.
 
 
 ### --encrypt-chunk-size(=#)
@@ -348,7 +348,7 @@ This option specifies the size of the internal working buffer for each
 encryption thread, measured in bytes. It is passed directly to the
 xtrabackup child process.
 
-To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-buffer-size) and `--encrypt-chunk-size`.
+To adjust the chunk size for encrypted files, use `--read-buffer-size` and `--encrypt-chunk-size`.
 
 ### --estimate-memory(=#)
 
@@ -390,8 +390,8 @@ queries that would block `FLUSH TABLES WITH READ LOCK` before running it.
 If there are still such queries when the timeout expires, xtrabackup
 terminates with an error. Default is `0`, in which case it does not wait
 for queries to complete and starts `FLUSH TABLES WITH READ LOCK`
-immediately. Where supported *xtrabackup* will
-automatically use [Backup Locks](https://www.percona.com/doc/percona-server/8.0/management/backup_locks.html#backup-locks)
+immediately. Where supported xtrabackup will
+automatically use [Backup Locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
 as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
 
@@ -403,7 +403,7 @@ xtrabackup to detect long-running queries with a non-zero value of
 is not started until such long-running queries exist. This option has no
 effect if `--ftwrl-wait-timeout` is `0`. Default value
 is `60` seconds. Where supported xtrabackup will
-automatically use [Backup Locks](https://www.percona.com/doc/percona-server/8.0/management/backup_locks.html#backup-locks)
+automatically use [Backup Locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
 as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
 
@@ -416,7 +416,7 @@ xtrabackup will issue the global lock. Default is `all`.
 ### --galera-info()
 This option creates the `xtrabackup_galera_info` file which contains
 the local node state at the time of the backup. Option should be used when
-performing the backup of *Percona XtraDB Cluster*. It has no effect when
+performing the backup of Percona XtraDB Cluster. It has no effect when
 backup locks are used to create the backup.
 
 
@@ -425,12 +425,12 @@ Generate a new master key when doing a copy-back.
 
 
 ### --generate-transition-key()
-*xtrabackup* needs to access the same keyring file or vault server
+xtrabackup needs to access the same keyring file or vault server
 during prepare and copy-back but it should not depend on whether the
 server keys have been purged.
 
 `--generate-transition-key` creates and adds to the keyring
-a transition key for *xtrabackup* to use if the master key used for
+a transition key for xtrabackup to use if the master key used for
 encryption is not found because it has been rotated and purged.
 
 
@@ -439,7 +439,7 @@ Get the server public key
 
 
 ### --help()
-When run with this option or without any options *xtrabackup* displays
+When run with this option or without any options xtrabackup displays
 information about how to run the program on the command line along with all
 supported options and variables with default values where appropriate.
 
@@ -454,16 +454,7 @@ backup being taken.
 ### --host(=HOST)
 This option accepts a string argument that specifies the host to use when
 connecting to the database server with TCP/IP. It is passed to the mysql
-child process without alteration. See **mysql --help** for details.
-
-
-### --incremental()
-This option tells *xtrabackup* to create an incremental backup. It is passed
-to the *xtrabackup* child process. When this option is specified, either
-`--incremental-lsn` or `--incremental-basedir` can also be
-given. If neither option is given, option `--incremental-basedir` is
-passed to **xtrabackup** by default, set to the first timestamped
-backup directory in the backup base directory.
+child process without alteration. See mysql --help for details.
 
 
 ### --incremental-basedir(=DIRECTORY)
@@ -485,22 +476,22 @@ that instance.
 ### --incremental-history-name(=name)
 This option specifies the name of the backup series stored in the
 `PERCONA_SCHEMA.xtrabackup_history` history record to base an incremental
-backup on. *xtrabackup* will search the history table looking for the most
+backup on. xtrabackup will search the history table looking for the most
 recent (highest `innodb_to_lsn`), successful backup in the series and take
 the to_lsn value to use as the starting `lsn` for the incremental
 backup. This will be mutually exclusive with
 `--incremental-history-uuid`, `--incremental-basedir` and
 `--incremental-lsn`. If no valid lsn can be found (no series by that
-name, no successful backups by that name) *xtrabackup* will return with an
+name, no successful backups by that name) xtrabackup will return with an
 error. It is used with the `--incremental` option.
 
 
 ### --incremental-history-uuid(=name)
-This option specifies the *UUID* of the specific history record stored in the
+This option specifies the UUID of the specific history record stored in the
 `PERCONA_SCHEMA.xtrabackup_history` to base an incremental backup on.
 `--incremental-history-name`, `--incremental-basedir` and
 `--incremental-lsn`. If no valid lsn can be found (no success record
-with that *UUID*) *xtrabackup* will return with an error. It is used with
+with that UUID) xtrabackup will return with an error. It is used with
 the –incremental option.
 
 
@@ -508,9 +499,11 @@ the –incremental option.
 When creating an incremental backup, you can specify the log sequence number
 (LSN) instead of specifying
 `--incremental-basedir`. For databases created in 5.1 and
-later, specify the LSN as a single 64-bit integer. **ATTENTION**: If
-a wrong LSN value is specified (a user  error which *Percona XtraBackup* is
-unable to detect), the backup will be unusable. Be careful!
+later, specify the LSN as a single 64-bit integer. 
+
+!!! important
+
+    If a wrong LSN value is specified (a user error which Percona XtraBackup does not detect), the backup is unusable. Be careful!
 
 
 ### --innodb([=name])
@@ -519,7 +512,7 @@ This option is ignored for MySQL option compatibility.
 
 ### --innodb-miscellaneous()
 There is a large group of InnoDB options that are normally read from the
-`my.cnf` configuration file, so that *xtrabackup* boots up its
+`my.cnf` configuration file, so that xtrabackup boots up its
 embedded InnoDB in the same configuration as your current server. You
 normally do not need to specify these explicitly. These options have the
 same behavior in InnoDB and XtraDB:
@@ -531,12 +524,12 @@ The path to the keyring file. Combine this option with
 
 
 ### --kill-long-queries-timeout(=SECONDS)
-This option specifies the number of seconds *xtrabackup* waits between
+This option specifies the number of seconds xtrabackup waits between
 starting `FLUSH TABLES WITH READ LOCK` and killing those queries that block
-it. Default is 0 seconds, which means *xtrabackup* will not attempt to kill
+it. Default is 0 seconds, which means xtrabackup will not attempt to kill
 any queries. In order to use this option xtrabackup user should have the
-`PROCESS` and `SUPER` privileges. Where supported, *xtrabackup*
-automatically uses [Backup Locks](https://www.percona.com/doc/percona-server/8.0/management/backup_locks.html#backup-locks)
+`PROCESS` and `SUPER` privileges. Where supported, xtrabackup
+automatically uses [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
 as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
 
@@ -553,16 +546,18 @@ operations.
 
 !!! note
 
-    Prior to *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
+    Prior to Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
 
-    As of *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
+    As of Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
 
 
 ### --lock-ddl-per-table()
 Lock DDL for each table before xtrabackup starts to copy
 it and until the backup is completed.
 
-**NOTE**: As of *Percona XtraBackup* 8.0.15, the –lock-ddl-per-table option is deprecated. Use the –lock-ddl option instead.
+!!! note 
+
+    As of Percona XtraBackup 8.0.15, the `–lock-ddl-per-table` option is deprecated. Use the `–lock-ddl` option instead.
 
 
 ### --lock-ddl-timeout()
@@ -571,7 +566,7 @@ within given timeout, abort the backup.
 
 
 ### --log()
-This option is ignored for *MySQL*
+This option is ignored for MySQL
 
 
 ### --log-bin()
@@ -607,13 +602,13 @@ The default options are only read from the login file.
 
 
 ### --no-lock()
-Use this option to disable table lock with `FLUSH TABLES WITH READ
-LOCK`. Use it only if ALL your tables are InnoDB and you **DO NOT CARE**
+Disables table lock with `FLUSH TABLES WITH READ
+LOCK`. Use it only if all your tables are InnoDB and you do not care
 about the binary log position of the backup. This option shouldn’t be used if
 there are any `DDL` statements being executed or if any updates are
 happening on non-InnoDB tables (this includes the system MyISAM tables in the
-*mysql* database), otherwise it could lead to an inconsistent backup. Where
-supported *xtrabackup* will automatically use [Backup Locks](https://www.percona.com/doc/percona-server/8.0/management/backup_locks.html#backup-locks)
+mysql database), otherwise it could lead to an inconsistent backup. Where
+supported xtrabackup will automatically use [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
 as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.  If
 you are considering to use this because your backups are failing to acquire
@@ -624,11 +619,11 @@ succeed and you do not need to use this option.
 
 
 ### --no-server-version-check()
-Implemented in *Percona XtraBackup* 8.0.21.
+Implemented in Percona XtraBackup 8.0.21.
 
 The `--no-server-version-check` option disables the server version check.
 
-The default behavior runs a check that compares the source system version to the *Percona XtraBackup* version. If the source system version is higher than the XtraBackup version, the backup is aborted with a message.
+The default behavior runs a check that compares the source system version to the Percona XtraBackup version. If the source system version is higher than the XtraBackup version, the backup is aborted with a message.
 
 Adding the option overrides this check, and the backup proceeds, but there may be issues with the backup.
 
@@ -637,13 +632,13 @@ See Server Version and Backup Version Comparison for more information.
 
 ### --no-version-check()
 This option disables the version check. If you do not pass this option, the
-automatic version check is enabled implicitly when *xtrabackup* runs
+automatic version check is enabled implicitly when xtrabackup runs
 in the `--backup` mode. To disable the version check, you should pass
-explicitly the `--no-version-check` option when invoking *xtrabackup*.
+explicitly the `--no-version-check` option when invoking xtrabackup.
 
-When the automatic version check is enabled, *xtrabackup* performs a
+When the automatic version check is enabled, xtrabackup performs a
 version check against the server on the backup stage after creating a server
-connection. *xtrabackup* sends the following information to the server:
+connection. xtrabackup sends the following information to the server:
 
 
 * MySQL flavour and version
@@ -669,7 +664,7 @@ The maximum number of file descriptors to reserve with setrlimit().
 ### --parallel(=#)
 This option specifies the number of threads to use to copy multiple data
 files concurrently when creating a backup. The default value is 1 (i.e., no
-concurrent transfer). In *Percona XtraBackup* 2.3.10 and newer, this option
+concurrent transfer). In Percona XtraBackup 2.3.10 and newer, this option
 can be used with the `--copy-back` option to copy the user
 data files in parallel (redo logs and system tablespaces are copied in the
 main thread).
@@ -677,7 +672,7 @@ main thread).
 
 ### --password(=PASSWORD)
 This option specifies the password to use when connecting to the database.
-It accepts a string argument. See **mysql --help** for details.
+It accepts a string argument. See mysql --help for details.
 
 
 ### --plugin-load()
@@ -687,12 +682,12 @@ List of plugins to load.
 ### --port(=PORT)
 This option accepts a string argument that specifies the port to use when
 connecting to the database server with TCP/IP. It is passed to the
-**mysql** child process without alteration. See **mysql
---help** for details.
+mysql child process without alteration. See mysql
+--help for details.
 
 
 ### --prepare()
-Makes **xtrabackup** perform a recovery on a backup created with
+Makes xtrabackup perform a recovery on a backup created with
 `--backup`, so that it is ready to use. See
 preparing a backup.
 
@@ -703,13 +698,13 @@ on the command-line.
 
 
 ### --print-param()
-Makes **xtrabackup** print out parameters that can be used for
+Makes xtrabackup print out parameters that can be used for
 copying the data files back to their original locations to restore them.
 
 
 ### --read-buffer-size()
 
-Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use `--read-buffer-size` and [`--encrypt-chunk-size`](#encrypt-chunk-size).
+Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use `--read-buffer-size` and `--encrypt-chunk-size`.
 
 
 ### --rebuild-indexes()
@@ -729,7 +724,7 @@ The `--register-redo-log-consumer` parameter is disabled by default. When enable
 Implemented in [Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md).
 
 ### --remove-original()
-Implemented in *Percona XtraBackup* 2.4.6, this option when specified will
+Implemented in Percona XtraBackup 2.4.6, this option when specified will
 remove `.qp`, `.xbcrypt` and `.qp.xbcrypt` files after
 decryption and decompression.
 
@@ -757,9 +752,9 @@ Force rollback prepared InnoDB transactions.
 
 
 ### --rsync()
-Uses the **rsync** utility to optimize local file transfers. When this
-option is specified, *xtrabackup* uses **rsync** to copy
-all non-InnoDB files instead of spawning a separate **cp** for each
+Uses the rsync utility to optimize local file transfers. When this
+option is specified, xtrabackup uses rsync to copy
+all non-InnoDB files instead of spawning a separate cp for each
 file, which can be much faster for servers with a large number of databases
 or tables.  This option cannot be used together with `--stream`.
 
@@ -778,9 +773,9 @@ and isn’t necessary with Row-Based-Replication.
 
 !!! note
 
-    Prior to *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
+    Prior to Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
 
-    As of *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
+    As of Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
 
 
 ### --safe-slave-backup-timeout(=SECONDS)
@@ -817,8 +812,8 @@ position saved in the `xtrabackup_slave_info` file.
 ### --socket()
 This option accepts a string argument that specifies the socket to use when
 connecting to the local database server with a UNIX domain socket. It is
-passed to the mysql child process without alteration. See **mysql
---help** for details.
+passed to the mysql child process without alteration. See mysql
+--help for details.
 
 
 ### --ssl()
@@ -851,7 +846,7 @@ Path of directory that contains certificate revocation list files.
 
 
 ### --ssl-fips-mode()
-SSL FIPS mode (applies only for OpenSSL); permitted values are: *OFF*, *ON*, *STRICT*.
+SSL FIPS mode (applies only for OpenSSL); permitted values are: OFF, ON, STRICT.
 
 
 ### --ssl-key()
@@ -867,7 +862,7 @@ Verify server certificate Common Name value against host name used when connecti
 
 
 ### --stats()
-Causes **xtrabackup** to scan the specified data files and print out
+Causes xtrabackup to scan the specified data files and print out
 index statistics.
 
 
@@ -877,7 +872,7 @@ Currently, this option only supports the xbstream format.
 
 
 ### --strict()
-If this option is specified, *xtrabackup* fails with an error when invalid
+If this option is specified, xtrabackup fails with an error when invalid
 parameters are passed.
 
 
@@ -907,13 +902,13 @@ The backup will be limited to the specified tables.
 
 ### --target-dir(=DIRECTORY)
 This option specifies the destination directory for the backup. If the
-directory does not exist, **xtrabackup** creates it. If the directory
-does exist and is empty, **xtrabackup** will succeed.
-**xtrabackup** will not overwrite existing files, however; it will
+directory does not exist, xtrabackup creates it. If the directory
+does exist and is empty, xtrabackup will succeed.
+xtrabackup will not overwrite existing files, however; it will
 fail with operating system error 17, `file exists`.
 
 If this option is a relative path, it is interpreted as being relative to
-the current working directory from which **xtrabackup** is executed.
+the current working directory from which xtrabackup is executed.
 
 In order to perform a backup, you need `READ`, `WRITE`, and `EXECUTE`
 permissions at a filesystem level for the directory that you supply as the
@@ -926,9 +921,9 @@ Directory where temp tablespace files live, this path can be absolute.
 
 ### --throttle(=#)
 This option limits the number of chunks copied per second. The chunk size is
-*10 MB*. 
+10 MB. 
 
-To limit the bandwidth to *10 MB/s*, set the option to *1*.
+To limit the bandwidth to 10 MB/s, set the option to 1.
 
 
 ### --tls-ciphersuites()
@@ -936,8 +931,8 @@ TLS v1.3 cipher to use.
 
 
 ### --tls-version()
-TLS version to use, permitted values are: *TLSv1*, *TLSv1.1*,
-*TLSv1.2*, *TLSv1.3*.
+TLS version to use, permitted values are: TLSv1, TLSv1.1,
+TLSv1.2, TLSv1.3.
 
 
 ### --tmpdir(=name)
@@ -947,21 +942,21 @@ backup
 
 ### --transition-key(=name)
 This option is used to enable processing the backup without accessing the
-keyring vault server. In this case, **xtrabackup** derives the AES
+keyring vault server. In this case, xtrabackup derives the AES
 encryption key from the specified passphrase and uses it to encrypt
 tablespace keys of tablespaces being backed up.
 
 If `--transition-key` does not have any
-value, **xtrabackup** will ask for it. The same passphrase should be
+value, xtrabackup will ask for it. The same passphrase should be
 specified for the `--prepare` command.
 
 ### --use-free-memory-pct()
 
 The `--use-free-memory-pct` is a [tech preview](glossary.md#tech-preview) option. Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
 
-Implemented in Percona XtraBackup 8.0.30-23, this option lets you configure the [Smart memory estimation](smart-memory-estimation.md) feature. The option controlls the amount of free memory that can be used to `--prepare` a backup. The default value is 0 (zero) which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup. The maximum allowed value is 100. 
+Implemented in Percona XtraBackup 8.0.30-23, this option lets you configure the [Smart memory estimation](smart-memory-estimation.md) feature. The option controls the amount of free memory that can be used to `--prepare` a backup. The default value is 0 (zero) which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup. The maximum allowed value is 100. 
 
-This option works, only if [`--estimate-memory`](#estimate-memory) option is enabled. If the `--estimate-memory` option is disabled, the `--use-free-memory-pct` setting is ignored.
+This option works, only if `--estimate-memory` option is enabled. If the `--estimate-memory` option is disabled, the `--use-free-memory-pct` setting is ignored.
 
 An example of how to enable the Smart memory estimation feature:
 
@@ -989,7 +984,7 @@ See `--version`
 
 
 ### --version()
-This option prints *xtrabackup* version and exits.
+This option prints xtrabackup version and exits.
 
 
 ### --xtrabackup-plugin-dir(=DIRNAME)

@@ -8,7 +8,7 @@ described in [Percona Release Lifecycle Overview](https://www.percona.com/servic
 
 !!! important
 
-To prevent intermittent backup failures, [update the curl utility in Debian 10](update-curl-utility.md).
+    To prevent intermittent backup failures, [update the curl utility in Debian 10](update-curl-utility.md).
 
 ## Install Percona XtraBackup through percona-release
 
@@ -59,7 +59,7 @@ Percona XtraBackup, like many other Percona products, is installed with the *per
 
 !!! note
  
-    For AppArmor profile information, see [Working with AppArmor](https://docs.percona.com/percona-xtrabackup/8.0/security/pxb-apparmor.html).
+    For AppArmor profile information, see [Working with AppArmor](work-with-apparmor.md).
 
 
 !!! admonition "See also"

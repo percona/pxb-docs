@@ -86,8 +86,7 @@ In order for snapshot to be consistent you need to prepare the data on the
 source:
 
 ```{.bash data-prompt="$"}
-$ xtrabackup --user=yourDBuser --password=MaGiCdB1 \
-            --prepare --target-dir=/path/to/backupdir
+$ xtrabackup --prepare --target-dir=/path/to/backupdir
 ```
 
 You need to select path where your snapshot has been taken.

@@ -33,7 +33,7 @@ The xbcloud binary stores each chunk as a separate object with a name
 0-padded serial number of chunk within a file. The size of chunk produced by
 xtrabackup and xbstream changed to 10M.
 
-To adjust the chunk size use <a href="/xtrabackup_bin/xbk_option_reference.html#-read-buffer-size">`--read-buffer-size`</a>. To adjust the chunk size for encrypted files, use <a href="/xtrabackup_bin/xbk_option_reference.html#-read-buffer-size">`--read-buffer-size`</a> and [<a href="/xtrabackup_bin/xbk_option_reference.html#-encrypt-chunk-size">`--encrypt-chunk-size`</a>.
+To adjust the chunk size use [`--read-buffer-size`](xtrabackup-option-reference.md#--read-buffer-size). To adjust the chunk size for encrypted files, use `--read-buffer-size` and [`--encrypt-chunk-size`](xtrabackup-option-reference.md#--encrypt-chunk-size).
 
 xbcloud has three essential operations: *put*, *get*, and *delete*. With these
 operations, backups are created, stored, retrieved, restored, and
@@ -52,15 +52,15 @@ The [FIFO datasink](xbcloud-binary-fifo-datasink.md) feature was implemented in 
 
 The following cloud storage types are supported:
 
-* OpenStack Object Storage (Swift) - see [Using the xbcloud Binary with Swift](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_swift.html#xbcloud-swift)
+* OpenStack Object Storage (Swift) - see [Using the xbcloud binary with Swift](xbcloud-swift.md)
 
-* Amazon Simple Storage (S3) - see [Using xbcloud Binary with Amazon S3](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_s3.html#xbcloud-s3)
+* Amazon Simple Storage (S3) - see [Using the xbcloud binary with Amazon S3](xbcloud-s3.md)
 
-* Azure Cloud Storage - see [Using the xbcloud binary with Microsoft Azure Cloud Storage](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_azure.html#xbcloud-azure)
+* Azure Cloud Storage - see [Using the xbcloud binary with Microsoft Azure Cloud Storage](xbcloud-azure.md)
 
-* Google Cloud Storage (gcs) - see [Using the xbcloud with Google Cloud Storage](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_gcs.html#xbcloud-gcs)
+* Google Cloud Storage (gcs) - see [Using the xbcloud binary with Google Cloud Storage](xbcloud-gcs.md)
 
-* MinIO - see [Using the xbcloud Binary with MinIO](https://docs.percona.com/percona-xtrabackup/8.0/xbcloud/xbcloud_minio.html#xbcloud-minio)
+* MinIO - see [Using the xbcloud binary with MinIO](xbcloud-minio.md)
 
 In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, xbcloud supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.
 
