@@ -45,15 +45,15 @@ XtraBackup spawns multiple copy threads and each copy thread reads a data chunk 
 
 The streaming capacity for XtraBackup using STDOUT is 1.8G. This capacity is sufficient for streaming data using Wide Area Network (WAN) into, for example, Amazon Web Services or Google Cloud Platform. 
 
-Starting with [Percona XtraBackup 8.0.33-28](release-notes/8.0/8.0.33-28.0.md), when you stream backups to Amazon S3 compatible storage using LAN with streaming capacity of 10Gbps, XtraBackup can use multiple FIFO streams to stream the backups faster. 
+Starting with [Percona XtraBackup 8.0.33-28](release-notes/8.0/8.0.33-28.0.md), when you stream backups to Amazon S3 compatible storage using LAN with a streaming capacity of 10Gbps, XtraBackup can use multiple FIFO streams to stream the backups faster. 
 
-XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then multiple FIFO files are created to store the data from XtraBackup. Each XtraBackup copy thread writes the data chunks to a specific FIFO file. Xbcloud reads from the FIFO streams and uploads data to an object storage using async request. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure). 
+XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then multiple FIFO files are created to store the data from XtraBackup. Each XtraBackup copy thread writes the data chunks to a specific FIFO file. Xbcloud reads from the FIFO streams and uploads data to an object storage using an async request. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure). 
 
 ![image](_static/fifo-datasink.png)
 
 ## Performance improvement 
 
-Consider an example of using FIFO data sink compared to STDOUT method.
+Consider an example of using a FIFO data sink compared to the STDOUT method.
 
 The database has 1TB of data in multiple tables. The link speed between the source server and destination server using MinIO is ~ 9.2 Gbps.
 
@@ -64,7 +64,7 @@ For the FIFO data sink we configure 8 parallel streams with `--fifo-streams=8` b
 The results are the following:
 
 * The `STDOUT` method takes 01:25:24 to push 1TB of data using 239 MBps (1.8 Gbps).
-* The `FIFO` method, using 8 streams, takes 00:16:01 to push 1TB of data using 1.15 Gbps (9.2 Gbps).
+* The `FIFO` method, using 8 streams, takes 00:16:01 to push 1TB of data using 1.15 GBps (9.2 Gbps).
 
 
 
