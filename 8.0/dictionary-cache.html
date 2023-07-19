@@ -9,28 +9,26 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Percona XtraBackup lets you back up
-individual partitions because partitions are regular tables with specially formatted names. The only requirement for this feature is to enable the innodb_file_per_table option
-on the server.">
+        <meta name="description" content="Percona XtraBackup is based on how crash recovery works. Percona XtraBackup copies the InnoDB data files, which results in data that is internally inconsistent; then the prepare phase performs crash recovery on the files to make a consistent, usable database again.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/create-individual-partition-backup.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/dictionary-cache.html">
       
       
-        <link rel="prev" href="prepare-partial-backup.html">
+        <link rel="prev" href="store-backup-history.html">
       
       
-        <link rel="next" href="prepare-individual-partitions-backup.html">
+        <link rel="next" href="point-in-time-recovery.html">
       
       <link rel="icon" href="_static/percona-favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
     
     
       
-        <title>Create an individual partitions backup - Percona XtraBackup</title>
+        <title>Dictionary cache - Percona XtraBackup</title>
       
     
     
@@ -84,7 +82,7 @@ on the server.">
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Create an individual partitions backup" />
+                 <meta property="og:title" content="Percona XtraBackup - Dictionary cache" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
               
@@ -110,7 +108,7 @@ on the server.">
     <div data-md-component="skip">
       
         
-        <a href="#create-an-individual-partitions-backup" class="md-skip">
+        <a href="#dictionary-cache" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +146,7 @@ on the server.">
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Create an individual partitions backup
+              Dictionary cache
             
           </span>
         </div>
@@ -942,14 +940,16 @@ on the server.">
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
       
@@ -958,7 +958,7 @@ on the server.">
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Features
@@ -1495,14 +1495,16 @@ on the server.">
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
       
       
       
@@ -1511,7 +1513,7 @@ on the server.">
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4_3">
           <span class="md-nav__icon md-icon"></span>
           Prepare features
@@ -1522,11 +1524,61 @@ on the server.">
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="dictionary-cache.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Dictionary cache
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="dictionary-cache.html" class="md-nav__link md-nav__link--active">
         Dictionary cache
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#undo-log" class="md-nav__link">
+    Undo log
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    Version changes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2251,16 +2303,14 @@ on the server.">
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
       
       
       
@@ -2269,7 +2319,7 @@ on the server.">
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           How to
@@ -2542,16 +2592,14 @@ on the server.">
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
       
       
       
@@ -2560,7 +2608,7 @@ on the server.">
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_5">
           <span class="md-nav__icon md-icon"></span>
           Back up individual partitions
@@ -2571,21 +2619,11 @@ on the server.">
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="create-individual-partition-backup.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="create-individual-partition-backup.html" class="md-nav__link">
         Create an individual partitions backup
       </a>
-      
     </li>
   
 
@@ -2995,6 +3033,28 @@ on the server.">
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#undo-log" class="md-nav__link">
+    Undo log
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    Version changes
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3011,14 +3071,14 @@ on the server.">
                   
                   
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/create-individual-partition-backup.md"
+                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/dictionary-cache.md"
                     title=""
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
                   </a>
                   <a
-                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/create-individual-partition-backup.md"
+                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/dictionary-cache.md"
                     title="View source of this page"
                     class="md-content__button md-icon"
                   >
@@ -3034,35 +3094,44 @@ on the server.">
                 
 
                 <!-- Markdown content -->
-                <h1 id="create-an-individual-partitions-backup">Create an individual partitions backup<a class="headerlink" href="#create-an-individual-partitions-backup" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup lets you back up
-individual partitions because partitions are regular tables with specially formatted names. The only requirement for this feature is to enable the <code>innodb_file_per_table</code> option
-on the server.</p>
-<p>There is one caveat about using this kind of backup: you can not copy back
-the prepared backup. Restoring partial backups should be done by importing the
-tables.</p>
-<p>There are three ways of specifying which part of the whole data will be backed
-up: regular expressions ( --tables), enumerating the
-tables in a file (--tables) or providing a list of
-databases (--databases).</p>
-<p>The regular expression provided to this option will be matched against the fully
-qualified database name and table name, in the form of
-<code>database-name.table-name</code>.</p>
-<p>If the partition 0 is not backed up, Percona XtraBackup cannot generate a .cfg file. MySQL 8.0 stores the table metadata in partition 0.</p>
-<p>For example, this operation takes a back-up of the partition <code>p4</code> from 
-the table <code>name</code> located in the database <code>imdb</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--tables<span class="o">=</span>^imdb<span class="o">[</span>.<span class="o">]</span>name#p#p4<span class="w"> </span>--backup
-</code></pre></div>
-<p>If partition 0 is not backed up, the following errors may occur:</p>
-<details class="example">
-<summary>The error message</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: export option not specified
-xtrabackup: error: cannot find dictionary record of table imdb/name#p#p4
-</code></pre></div>
-</details>
-<p>Note that this option is passed to <code>xtrabackup --tables</code> and is matched
-against each table of each database, the directories of each database will be
-created even if they are empty.</p>
+                <h1 id="dictionary-cache">Dictionary cache<a class="headerlink" href="#dictionary-cache" title="Permanent link">&para;</a></h1>
+<p>Percona XtraBackup is based on how <a href="https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_crash_recovery"><code>crash recovery</code></a> works. Percona XtraBackup copies the InnoDB data files, which results in data that is internally inconsistent; then the <code>prepare</code> phase performs crash recovery on the files to make a consistent, usable database again.</p>
+<p>The <code>--prepare</code> phase has the following operations:</p>
+<ul>
+<li>Applies the redo log</li>
+<li>Applies the undo log</li>
+</ul>
+<p>As a physical operation, the changes from the redo log modifications are applied to a page. In the redo log operation, there is no concept of row or transaction. The redo apply operation does not make the database consistent with a transaction. An uncommitted transaction can be flushed or written to the redo log by the server. Percona XtraBackup applies changes recorded in the redo log.</p>
+<p>Percona XtraBackup physically modifies a specific offset of a page within a tablespace (IBD file) when applying a redo log. </p>
+<p>As a logical operation, Percona XtraBackup applies the undo log on a specific row. When the redo log completes, XtraBackup uses the undo log to roll back changes from uncommitted transactions during the backup.</p>
+<h2 id="undo-log">Undo log<a class="headerlink" href="#undo-log" title="Permanent link">&para;</a></h2>
+<p>There are two types of undo log records:</p>
+<ul>
+<li>INSERT</li>
+<li>UPDATE</li>
+</ul>
+<p>An undo log record contains a <code>table_id</code>. Percona XtraBackup uses this <code>table_id</code> to find the table definition, and then uses that information to parse the records on an index page. The transaction rollback reads the undo log records and applies the changes. </p>
+<p>After initializing the data dictionary engine and the data dictionary cache, the storage engine can request the <code>table_id</code> and uses this ID to fetch the table schema. An index search tuple (key) is created from the table schema and key fields from the undo log record. The server finds the record using the search tuple (key) and performs the undo operation.</p>
+<p>For example, InnoDB uses the <code>table_id</code> (also known as the <code>se_private_id</code>) for a table definition. Percona XtraBackup does not behave like a server and does not have access to the data dictionary. XtraBackup initializes the InnoDB engine and uses the <code>InnoDB table object</code> (<code>dict_table_t</code>) when needed. XtraBackup relies on Serialized Dictionary Information (SDI) that is stored in the tablespace. SDI is a JSON representation of a table.</p>
+<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Prior to Percona XtraBackup 8.0.33-28, XtraBackup loads the SDI from every <code>.IBD</code> file and all tables into cache as non-evictable. Making the tables non-evictable essentially disables the LRU cache. Every table remains in memory until the operation ends. </p>
+<p>This method has the following issues:</p>
+<ul>
+<li>Unnecessary IO operations from reading SDI pages to load the tables that are not required for rollback</li>
+<li>All tables loaded into the cache increases the time required in the <code>--prepare</code> phase</li>
+<li>Unnecessary tables can lead to out-of-memory errors</li>
+<li>Huge number of tables and IBD files may cause an exit in the <code>--prepare</code> phase</li>
+</ul>
+<p>Percona XtraBackup 8.0.33-28 implements a new design and tables are loaded as <code>evictable</code>. XtraBackup scans the B-tree index of the data dictionary tables <code>mysql.indexes</code> and <code>mysql.index_partitions</code> to establish a relationship between the <code>table_id</code> and the tablespace(space_id). XtraBackup uses this relationship during transaction rollback. XtraBackup does not load user tables unless there is a transaction rollback on them.</p>
+<p>A background thread or a Percona XtraBackup main thread handles the cache eviction when the cache size limit is reached.</p>
+<p>This new design provides the following benefits during the <code>--prepare</code> phase:</p>
+<ul>
+<li>Uses less memory</li>
+<li>Uses less IO</li>
+<li>Improves the time taken in the <code>--prepare</code> phase</li>
+<li>Completes successfully, even if the <code>--prepare</code> phase has a huge number of tables</li>
+<li>Completes the Percona XtraDB Cluster SST process faster</li>
+</ul>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -3084,7 +3153,7 @@ created even if they are empty.</p>
   <small>
     
       Last update:
-      2023-06-12
+      2023-07-07
     
   </small>
 </div>
