@@ -3178,18 +3178,18 @@ $<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </sp
 <p>XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then each copy thread writes the data chunks to a pipe (STDOUT). An xbcloud read thread reads each chunk of STDIN data. Then xbcloud uploads the chunks to an object storage using an async request, and adds a callback to an event handler list. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure).</p>
 <p><img alt="image" src="_static/backup-streamed-to-object-storage.png" /></p>
 <p>The streaming capacity for XtraBackup using STDOUT is 1.8G. This capacity is sufficient for streaming data using Wide Area Network (WAN) into, for example, Amazon Web Services or Google Cloud Platform. </p>
-<p>Starting with <a href="release-notes/8.0/8.0.33-28.0.html">Percona XtraBackup 8.0.33-28</a>, when you stream backups to Amazon S3 compatible storage using LAN with streaming capacity of 10Gbps, XtraBackup can use multiple FIFO streams to stream the backups faster. </p>
-<p>XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then multiple FIFO files are created to store the data from XtraBackup. Each XtraBackup copy thread writes the data chunks to a specific FIFO file. Xbcloud reads from the FIFO streams and uploads data to an object storage using async request. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure). </p>
+<p>Starting with <a href="release-notes/8.0/8.0.33-28.0.html">Percona XtraBackup 8.0.33-28</a>, when you stream backups to Amazon S3 compatible storage using LAN with a streaming capacity of 10Gbps, XtraBackup can use multiple FIFO streams to stream the backups faster. </p>
+<p>XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then multiple FIFO files are created to store the data from XtraBackup. Each XtraBackup copy thread writes the data chunks to a specific FIFO file. Xbcloud reads from the FIFO streams and uploads data to an object storage using an async request. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure). </p>
 <p><img alt="image" src="_static/fifo-datasink.png" /></p>
 <h2 id="performance-improvement">Performance improvement<a class="headerlink" href="#performance-improvement" title="Permanent link">&para;</a></h2>
-<p>Consider an example of using FIFO data sink compared to STDOUT method.</p>
+<p>Consider an example of using a FIFO data sink compared to the STDOUT method.</p>
 <p>The database has 1TB of data in multiple tables. The link speed between the source server and destination server using MinIO is ~ 9.2 Gbps.</p>
 <p>Both STDOUT and FIFO data sink scenarios push 1TB of data from two servers.</p>
 <p>For the FIFO data sink we configure 8 parallel streams with <code>--fifo-streams=8</code> both for XtraBackup and xbcloud.</p>
 <p>The results are the following:</p>
 <ul>
 <li>The <code>STDOUT</code> method takes 01:25:24 to push 1TB of data using 239 MBps (1.8 Gbps).</li>
-<li>The <code>FIFO</code> method, using 8 streams, takes 00:16:01 to push 1TB of data using 1.15 Gbps (9.2 Gbps).</li>
+<li>The <code>FIFO</code> method, using 8 streams, takes 00:16:01 to push 1TB of data using 1.15 GBps (9.2 Gbps).</li>
 </ul>
 
                 
