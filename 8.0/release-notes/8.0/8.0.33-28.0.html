@@ -9,26 +9,26 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Date">
+        <meta name="description" content="Percona XtraBackup (PXB) is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems. Maintain fully available applications during planned maintenance windows with Percona XtraBackup.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/release-notes/8.0/8.0.23-16.0.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/release-notes/8.0/8.0.33-28.0.html">
       
       
-        <link rel="prev" href="8.0.25-17.0.html">
+        <link rel="prev" href="../../release-notes.html">
       
       
-        <link rel="next" href="8.0.22-15.0.html">
+        <link rel="next" href="8.0.33-27.0.html">
       
       <link rel="icon" href="../../_static/percona-favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
     
     
       
-        <title>Percona XtraBackup 8.0.23-16.0 - Percona XtraBackup</title>
+        <title>Percona XtraBackup 8.0.33-28 (2023-07-19) - Percona XtraBackup</title>
       
     
     
@@ -82,7 +82,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Percona XtraBackup 8.0.23-16.0" />
+                 <meta property="og:title" content="Percona XtraBackup - Percona XtraBackup 8.0.33-28 (2023-07-19)" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
               
@@ -108,7 +108,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#percona-xtrabackup-8023-160" class="md-skip">
+        <a href="#percona-xtrabackup-8033-28-2023-07-19" class="md-skip">
           Skip to content
         </a>
       
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Percona XtraBackup 8.0.23-16.0
+              Percona XtraBackup 8.0.33-28 (2023-07-19)
             
           </span>
         </div>
@@ -337,11 +337,89 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="8.0.33-28.0.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Percona XtraBackup 8.0.33-28 (2023-07-19)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="8.0.33-28.0.html" class="md-nav__link md-nav__link--active">
         Percona XtraBackup 8.0.33-28 (2023-07-19)
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    Release highlights
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-feature" class="md-nav__link">
+    New feature
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improvements" class="md-nav__link">
+    Improvements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-fix" class="md-nav__link">
+    Bug fix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packaging-notes" class="md-nav__link">
+    Packaging notes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links" class="md-nav__link">
+    Useful links
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -511,16 +589,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
       
       
       
@@ -529,7 +605,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2_8">
           <span class="md-nav__icon md-icon"></span>
           2021
@@ -568,61 +644,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Percona XtraBackup 8.0.23-16.0
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="8.0.23-16.0.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="8.0.23-16.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.23-16.0
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#improvements" class="md-nav__link">
-    Improvements
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bugs-fixed" class="md-nav__link">
-    Bugs Fixed
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3068,6 +3094,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    Release highlights
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-feature" class="md-nav__link">
+    New feature
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#improvements" class="md-nav__link">
     Improvements
   </a>
@@ -3075,8 +3115,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#bugs-fixed" class="md-nav__link">
-    Bugs Fixed
+  <a href="#bug-fix" class="md-nav__link">
+    Bug fix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packaging-notes" class="md-nav__link">
+    Packaging notes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links" class="md-nav__link">
+    Useful links
   </a>
   
 </li>
@@ -3099,14 +3153,14 @@
                   
                   
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/release-notes/8.0/8.0.23-16.0.md"
+                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/release-notes/8.0/8.0.33-28.0.md"
                     title=""
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
                   </a>
                   <a
-                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/release-notes/8.0/8.0.23-16.0.md"
+                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/release-notes/8.0/8.0.33-28.0.md"
                     title="View source of this page"
                     class="md-content__button md-icon"
                   >
@@ -3122,61 +3176,46 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="percona-xtrabackup-8023-160">Percona XtraBackup 8.0.23-16.0<a class="headerlink" href="#percona-xtrabackup-8023-160" title="Permanent link">&para;</a></h1>
-<ul>
-<li>
-<p><strong>Date</strong></p>
-<p>March 22, 2021</p>
-</li>
-<li>
-<p><strong>Installation</strong></p>
-<p><a href="https://www.percona.com/doc/percona-xtrabackup/8.0/installation.html">Installing Percona XtraBackup</a></p>
-</li>
-</ul>
-<p>Percona XtraBackup enables MySQL backups without blocking user queries, making it ideal
-for companies with large data sets and mission-critical applications that cannot tolerate
-long periods of downtime. Offered free as an open source solution, it drives down backup
-costs while providing unique features for MySQL backups.</p>
-<p>This release fixes the security vulnerability <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-29488">CVE-2020-29488</a></p>
+                <h1 id="percona-xtrabackup-8033-28-2023-07-19">Percona XtraBackup 8.0.33-28 (2023-07-19)<a class="headerlink" href="#percona-xtrabackup-8033-28-2023-07-19" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.percona.com/software/mysql-database/percona-xtrabackup">Percona XtraBackup (PXB)</a> is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems. Maintain fully available applications during planned maintenance windows with Percona XtraBackup.</p>
+<h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<p>This release includes improvements, features, and bug fixes. Percona has implemented a two-stage release process for each version. The first release primarily ensures compatibility with the latest MySQL version, to help those customers who need an updated version of Percona XtraBackup as soon as possible. The second release contains additional bug fixes and any improvements or new features.</p>
+<p>Percona XtraBackup 8.0.33-28 implements a new data sink that uses the first in, first out (FIF0) method. With the <a href="../../xbcloud-binary-fifo-datasink.html">FIFO data sink</a> feature, users with a streaming capacity of 10Gbps (typically on a Local Area Network (LAN)) can benefit from faster backups by streaming data in parallel to object storage. This feature is in <a href="../../glossary.html#tech-preview">tech preview</a>.</p>
+<p>Percona XtraBackup 8.0.33-28 implements the <a href="../../dictionary-cache.html">Dictionary cache</a> feature. Dictionary cache improves the performance of xtrabackup <code>--prepare</code> operation.</p>
+<h2 id="new-feature">New feature<a class="headerlink" href="#new-feature" title="Permanent link">&para;</a></h2>
+<p><a href="https://jira.percona.com/browse/PXB-2514">PXB-2514</a>: Implements a new <a href="../../xbcloud-binary-fifo-datasink.html">data sink that uses <code>FIFO</code> (named pipes)</a>.</p>
 <h2 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-2280">PXB-2280</a>: Provide SELinux and AppArmor default policies</p>
+<p><a href="https://jira.percona.com/browse/PXB-2955">PXB-2955</a>: Implements <a href="../../dictionary-cache.html">dictionary cache</a>.</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-1979">PXB-1979</a>: Enable –lock-ddl by default to prevent corruption of the backup</p>
+<p><a href="https://jira.percona.com/browse/PXB-3033">PXB-3033</a>: Executes <code>STOP SLAVE</code> conditionally depending on <code>--lock-ddl</code>.</p>
+</li>
+<li>
+<p><a href="https://jira.percona.com/browse/PXB-3066">PXB-3066</a>: Fixes compilation issues on Debian 12.</p>
+</li>
+<li>
+<p><a href="https://jira.percona.com/browse/PXB-2993">PXB-2993</a>: Makes Percona XtraBackup compatible with procps-4.</p>
 </li>
 </ul>
-<h2 id="bugs-fixed">Bugs Fixed<a class="headerlink" href="#bugs-fixed" title="Permanent link">&para;</a></h2>
+<h2 id="bug-fix">Bug fix<a class="headerlink" href="#bug-fix" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-2274">PXB-2274</a>: Correct restore processing when there are DML statements running during backup stage by writing the last_checkpoint and LSN from ps.log_status instead of the redo log (Thanks to user Li Biao for reporting this issue)</p>
+<p><a href="https://jira.percona.com/browse/PXB-2811">PXB-2811</a>: Fix for several Percona XtraBackup compilation warnings.</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-2430">PXB-2430</a>: Correct build failure by removing the dependency of no-server-version-check with version-check (Thanks to user agarner for reporting this issue)</p>
-</li>
-<li>
-<p><a href="https://jira.percona.com/browse/PXB-2415">PXB-2415</a>: Add build dependencies to correct Debian/Ubuntu packages in docker (Thanks to user Matt Cole for reporting this issue)</p>
-</li>
-<li>
-<p><a href="https://jira.percona.com/browse/PXB-2429">PXB-2429</a>: Correct Backup failure for encrypted tablespace by skipping the encryption reset operation during the redo scan phase</p>
-</li>
-<li>
-<p><a href="https://jira.percona.com/browse/PXB-2418">PXB-2418</a>: Remove PROTOBUF_LITE_LIBRARY - it is not used and is not needed</p>
-</li>
-<li>
-<p><a href="https://jira.percona.com/browse/PXB-2395">PXB-2395</a>: Update versions for xbstream and xbcrypt</p>
-</li>
-<li>
-<p><a href="https://jira.percona.com/browse/PXB-2394">PXB-2394</a>: Correct spellings in xbcloud help</p>
-</li>
-<li>
-<p><a href="https://jira.percona.com/browse/PXB-2357">PXB-2357</a>: Correct hang in backup with redo log archive by using block number instead of checksum (checksum of redo file and archive file can be different)</p>
-</li>
-<li>
-<p><a href="https://jira.percona.com/browse/PXB-2180">PXB-2180</a>: Correct incremental prepare failure with logical redo by skipping the apply of logical redos (MLOG_TABLE_DYNAMIC_META) during the incremental prepare (except the last prepare).</p>
+<p><a href="https://jira.percona.com/browse/PXB-3075">PXB-3075</a>: Percona XtraBackup 8.0.33 could not prepare backups from 8.0.29 and previous versions.</p>
 </li>
 </ul>
+<h2 id="packaging-notes">Packaging notes<a class="headerlink" href="#packaging-notes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.0.33-28 supports Debian 12.</p>
+<h2 id="useful-links">Useful links<a class="headerlink" href="#useful-links" title="Permanent link">&para;</a></h2>
+<p>Install <a href="../../installation.html">Percona XtraBackup 8.0</a></p>
+<p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub location</a></p>
+<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p>
+<p><a href="https://github.com/percona/pxb-docs/blob/8.0/contributing.md">Contribute to the documentation</a></p>
+<p>For <a href="https://www.percona.com/training">training</a>, contact <a href="https://learn.percona.com/contact-me">Percona Training - Start learning now</a>.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -3198,7 +3237,7 @@ costs while providing unique features for MySQL backups.</p>
   <small>
     
       Last update:
-      2022-08-24
+      2023-07-19
     
   </small>
 </div>
