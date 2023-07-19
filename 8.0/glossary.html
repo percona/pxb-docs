@@ -1391,6 +1391,20 @@
   
   
     <li class="md-nav__item">
+      <a href="xbcloud-binary-fifo-datasink.html" class="md-nav__link">
+        FIFO data sink
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="xbcloud-exbackoff.html" class="md-nav__link">
         Exponential backoff
       </a>
@@ -3769,7 +3783,7 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
 <h3 id="restore">restore<a class="headerlink" href="#restore" title="Permanent link">&para;</a></h3>
 <p>Copies the database backups taken using the backup command to the original location or a different location. A restore returns data that has been either lost, corrupted, or stolen to the original condition at a specific point in time.</p>
 <h3 id="tech-preview">Tech preview<a class="headerlink" href="#tech-preview" title="Permanent link">&para;</a></h3>
-<p>A tech preview item can be a feature, a variable, or a value within a variable. The term designates that the item is not yet ready for production use and is not included in support by SLA. A tech preview item is included in a release so that users can provide feedback. The item is either updated and released as <a href="#general-availability-ga">general availability(GA)</a> or removed if not useful. The item&rsquo;s functionality can change from tech preview to GA.</p>
+<p>A tech preview item can be a feature, a variable, or a value within a variable. Before using this feature in production, we recommend that you test restoring production from physical backups in your environment and also use an alternative backup method for redundancy. A tech preview item is included in a release for users to provide feedback. The item is either updated and released as <a href="#general-availability-ga">general availability(GA)</a> or removed if not useful. The functionality can change from tech preview to GA.</p>
 <h3 id="xbcrypt">xbcrypt<a class="headerlink" href="#xbcrypt" title="Permanent link">&para;</a></h3>
 <p>To support the encryption and the decryption of the backups, a new tool xbcrypt was introduced to <strong>Percona XtraBackup</strong>. This utility has been modeled after the <strong>xbstream</strong> binary to perform encryption and decryption outside <strong>Percona XtraBackup</strong>.</p>
 <h3 id="xbstream">xbstream<a class="headerlink" href="#xbstream" title="Permanent link">&para;</a></h3>
@@ -3800,7 +3814,7 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
   <small>
     
       Last update:
-      2023-07-10
+      2023-07-19
     
   </small>
 </div>

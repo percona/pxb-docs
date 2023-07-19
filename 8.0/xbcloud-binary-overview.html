@@ -1519,6 +1519,20 @@ needing a local storage.">
   
   
     <li class="md-nav__item">
+      <a href="xbcloud-binary-fifo-datasink.html" class="md-nav__link">
+        FIFO data sink
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="xbcloud-exbackoff.html" class="md-nav__link">
         Exponential backoff
       </a>
@@ -3271,7 +3285,8 @@ xtrabackup and xbstream changed to 10M.</p>
 operations, backups are created, stored, retrieved, restored, and
 deleted. xbcloud operations clearly map to similar operations within 
 the AWS Amazon S3 API.</p>
-<p>The <a href="xbcloud-exbackoff.html">Exponential backoff</a> feature was implemented in Percona XtraBackup 8.0.26-18. Suppose a chunk fails to upload or download. In that case, this feature adds an exponential backoff, or sleep, time and then retries the upload or download, which increases the chances of completing a backup or a restore operation.</p>
+<p>The <a href="xbcloud-exbackoff.html">Exponential Backoff</a> feature was implemented in Percona XtraBackup 8.0.26-18. During the backup, a chunk fails to upload or download operation; this feature adds an exponential backoff, a sleep time, and retries the operation. This feature increases the chances of completing a backup or a restore operation.</p>
+<p>The <a href="xbcloud-binary-fifo-datasink.html">FIFO datasink</a> feature was implemented in Percona XtraBackup 8.0.33-28. With the <code>FIFO</code> data sink feature, users with a streaming capacity of 10Gbps (typically on a Local Area Network (LAN)) can benefit from faster backups by streaming data in parallel to object storage.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>To prevent intermittent backup failures, <a href="update-curl-utility.html">update the curl utility in Debian 10</a>.</p>
@@ -3474,7 +3489,7 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
   <small>
     
       Last update:
-      2023-07-10
+      2023-07-19
     
   </small>
 </div>

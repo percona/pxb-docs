@@ -9,26 +9,26 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The FLUSH TABLES WITH READ LOCK option does the following with a global read lock:">
+        <meta name="description" content="The feature is in tech preview.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/flush-tables-with-read-lock.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/xbcloud-binary-fifo-datasink.html">
       
       
-        <link rel="prev" href="encrypted-innodb-tablespace-backups.html">
+        <link rel="prev" href="update-curl-utility.html">
       
       
-        <link rel="next" href="log-enhancements.html">
+        <link rel="next" href="xbcloud-exbackoff.html">
       
       <link rel="icon" href="_static/percona-favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
     
     
       
-        <title>FLUSH TABLES WITH READ LOCK option - Percona XtraBackup</title>
+        <title>FIFO data sink - Percona XtraBackup</title>
       
     
     
@@ -82,7 +82,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - FLUSH TABLES WITH READ LOCK option" />
+                 <meta property="og:title" content="Percona XtraBackup - FIFO data sink" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
               
@@ -108,7 +108,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#flush-tables-with-read-lock-option" class="md-skip">
+        <a href="#fifo-data-sink" class="md-skip">
           Skip to content
         </a>
       
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FLUSH TABLES WITH READ LOCK option
+              FIFO data sink
             
           </span>
         </div>
@@ -969,14 +969,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
       
       
       
@@ -985,7 +987,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4_1">
           <span class="md-nav__icon md-icon"></span>
           Tools
@@ -1218,14 +1220,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_5" checked>
       
       
       
@@ -1234,7 +1238,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_5_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_5_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4_1_5">
           <span class="md-nav__icon md-icon"></span>
           The xbcloud binary
@@ -1391,11 +1395,75 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="xbcloud-binary-fifo-datasink.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          FIFO data sink
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="xbcloud-binary-fifo-datasink.html" class="md-nav__link md-nav__link--active">
         FIFO data sink
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fifo-data-sink-options" class="md-nav__link">
+    FIFO data sink options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-enable-fifo-data-sink" class="md-nav__link">
+    How to enable FIFO data sink
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stream-to-an-object-storage" class="md-nav__link">
+    Stream to an object storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-improvement" class="md-nav__link">
+    Performance improvement
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1633,81 +1701,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          FLUSH TABLES WITH READ LOCK option
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="flush-tables-with-read-lock.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="flush-tables-with-read-lock.html" class="md-nav__link">
         FLUSH TABLES WITH READ LOCK option
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#wait-for-queries-to-finish" class="md-nav__link">
-    Wait for queries to finish
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kill-the-blocking-queries" class="md-nav__link">
-    Kill the blocking queries
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#options-summary" class="md-nav__link">
-    Options summary
-  </a>
-  
-    <nav class="md-nav" aria-label="Options summary">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3072,36 +3070,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#wait-for-queries-to-finish" class="md-nav__link">
-    Wait for queries to finish
+  <a href="#fifo-data-sink-options" class="md-nav__link">
+    FIFO data sink options
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#kill-the-blocking-queries" class="md-nav__link">
-    Kill the blocking queries
+  <a href="#how-to-enable-fifo-data-sink" class="md-nav__link">
+    How to enable FIFO data sink
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#options-summary" class="md-nav__link">
-    Options summary
-  </a>
-  
-    <nav class="md-nav" aria-label="Options summary">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#stream-to-an-object-storage" class="md-nav__link">
+    Stream to an object storage
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#performance-improvement" class="md-nav__link">
+    Performance improvement
+  </a>
   
 </li>
       
@@ -3123,14 +3115,14 @@
                   
                   
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/flush-tables-with-read-lock.md"
+                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/xbcloud-binary-fifo-datasink.md"
                     title=""
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
                   </a>
                   <a
-                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/flush-tables-with-read-lock.md"
+                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/xbcloud-binary-fifo-datasink.md"
                     title="View source of this page"
                     class="md-content__button md-icon"
                   >
@@ -3146,112 +3138,46 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="flush-tables-with-read-lock-option">FLUSH TABLES WITH READ LOCK option<a class="headerlink" href="#flush-tables-with-read-lock-option" title="Permanent link">&para;</a></h1>
-<p>The <code>FLUSH TABLES WITH READ LOCK</code> option does the following with a global read lock:</p>
+                <h1 id="fifo-data-sink">FIFO data sink<a class="headerlink" href="#fifo-data-sink" title="Permanent link">&para;</a></h1>
+<p>The feature is in <a href="glossary.html#tech-preview">tech preview</a>.</p>
+<p><a href="release-notes/8.0/8.0.33-28.0.md">Percona XtraBackup 8.0.33-28</a> implements a new data sink that uses the first in, first out (FIFO) method. With the <code>FIFO</code> data sink feature, users with a streaming capacity of 10Gbps (typically on a Local Area Network (LAN)) can benefit from faster backups by streaming data in parallel to an object storage.</p>
+<h2 id="fifo-data-sink-options">FIFO data sink options<a class="headerlink" href="#fifo-data-sink-options" title="Permanent link">&para;</a></h2>
+<p><a href="release-notes/8.0/8.0.33-28.0.md">Percona XtraBackup 8.0.33-28</a> implements the following options:</p>
 <ul>
-<li>
-<p>Closes all open tables</p>
-</li>
-<li>
-<p>Locks all tables for all databases</p>
-</li>
+<li><code>--fifo-streams=#</code> - specifies the number of FIFO files to use for parallel data stream. To disable FIFO data sink and send stream to STDOUT, set <code>--fifo-streams=1</code>. The default value is <code>1</code> (STDOUT) to ensure the backward compatibility. The <code>--fifo-streams</code> value must match on both the XtraBackup and xbcloud sides.</li>
+<li><code>--fifo-dir=name</code> - specifies a directory to write Named Pipe.</li>
+<li><code>--fifo-timeout=#</code> - specifies the number of seconds to wait for the other end to open the stream for reading. The default value is <code>60</code> seconds.</li>
 </ul>
-<p>Release the lock with <code>UNLOCK TABLES</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code>FLUSH TABLES WITH READ LOCK</code> does not prevent inserting rows into the log tables.</p>
-</div>
-<p>To ensure consistent backups, use the <code>FLUSH TABLES WITH READ LOCK</code> option before taking a non-InnoDB file backup. The option does not affect long-running queries.</p>
-<p>Long-running queries with <code>FLUSH TABLES WITH READ LOCK</code> enabled can leave the server in a read-only mode until the queries finish. Killing the <code>FLUSH TABLES WITH READ LOCK</code> does not help if the database is in either the <code>Waiting for table flush</code> or <code>Waiting for master to send event</code> state. To return to normal operation, you must kill any long-running queries.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>All described in this section has no effect when backup locks are
-used. <em>Percona XtraBackup</em> will use <a href="https://www.percona.com/doc/percona-server/5.6/management/backup_locks.html#backup-locks">Backup locks</a>
-where available as a lightweight alternative to <code>FLUSH TABLES WITH READ
-LOCK</code>. This feature is available in <em>Percona Server for MySQL</em> 5.6+.
-<em>Percona XtraBackup</em> uses this automatically to copy non-InnoDB data to avoid blocking
-DML queries that modify InnoDB tables.</p>
-</div>
-<p>In order to prevent this from happening two things have been implemented:</p>
-<ul>
-<li>
-<p><em>xtrabackup</em> waits for a good moment to issue the global lock</p>
-</li>
-<li>
-<p><em>xtrabackup</em> kills all queries or only the SELECT queries which prevent the
-global lock from being acquired</p>
-</li>
-</ul>
-<h2 id="wait-for-queries-to-finish">Wait for queries to finish<a class="headerlink" href="#wait-for-queries-to-finish" title="Permanent link">&para;</a></h2>
-<p>You should issue a global lock when no long queries are running. Waiting to issue the global lock for extended period of time is not a good method. The wait can extend the time needed for
-backup to take place. The –ftwrl-wait-timeout option can limit the
-waiting time. If it cannot issue the lock during this
-time, <em>xtrabackup</em> stops the option, exits with an error message, and backup is
-not be taken.</p>
-<p>The default value for this option is zero (0) value which turns off the option.</p>
-<p>Another possibility is to specify the type of query to wait on. In this case
-<code>--ftwrl-wait-query-type</code>. Possible values are <code>all</code> and
-<code>update</code>. When <code>all</code> is used <em>xtrabackup</em> will wait for all long running
-queries (execution time longer than allowed by <code>--ftwrl-wait-threshold</code>)
-to finish before running the <code>FLUSH TABLES WITH READ LOCK</code>. When <code>update</code> is
-used <em>xtrabackup</em> will wait on <code>UPDATE/ALTER/REPLACE/INSERT</code> queries to
-finish.</p>
-<p>The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. <em>xtrabackup</em> uses the value of
-–ftwrl-wait-threshold option to specify the long-running queries
-and will block a global lock. In order to use this option
-xtrabackup user should have <code>PROCESS</code> and <code>SUPER</code> privileges.</p>
-<h2 id="kill-the-blocking-queries">Kill the blocking queries<a class="headerlink" href="#kill-the-blocking-queries" title="Permanent link">&para;</a></h2>
-<p>The second option is to kill all the queries which prevent from acquiring the
-global lock. In this case, all queries which run longer than <code>FLUSH TABLES WITH
-READ LOCK</code> are potential blockers. Although all queries can be killed,
-additional time can be specified for the short running queries to finish using
-the <code>--kill-long-queries-timeout</code> option. This option
-specifies the time for queries to complete, after the value is reached, all the
-running queries will be killed. The default value is zero, which turns this
-feature off.</p>
-<p>The <code>--kill-long-query-type</code> option can be used to specify all or only
-<code>SELECT</code> queries that are preventing global lock from being acquired. In order
-to use this option xtrabackup user should have <code>PROCESS</code> and <code>SUPER</code>
-privileges.</p>
-<h2 id="options-summary">Options summary<a class="headerlink" href="#options-summary" title="Permanent link">&para;</a></h2>
-<ul>
-<li>
-<p><code>--ftwrl-wait-timeout</code> (seconds) - how long to wait for a
-good moment. Default is 0, not to wait.</p>
-</li>
-<li>
-<p><code>--ftwrl-wait-query-type</code> - which long queries
-should be finished before <code>FLUSH TABLES WITH READ LOCK</code> is run. Default is
-all.</p>
-</li>
-<li>
-<p><code>--ftwrl-wait-threshold</code> (seconds) - how long query
-should be running before we consider it long running and potential blocker of
-global lock.</p>
-</li>
-<li>
-<p><code>--kill-long-queries-timeout</code> (seconds) - how many time
-we give for queries to complete after <code>FLUSH TABLES WITH READ LOCK</code> is
-issued before start to kill. Default if <code>0</code>, not to kill.</p>
-</li>
-<li>
-<p><code>--kill-long-query-type</code> - which queries should be killed once
-<code>kill-long-queries-timeout</code> has expired.</p>
-</li>
-</ul>
-<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
-<p>Running the <em>xtrabackup</em> with the following options will cause <em>xtrabackup</em>
-to spend no longer than 3 minutes waiting for all queries older than 40 seconds
-to complete.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w">  </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--ftwrl-wait-threshold<span class="o">=</span><span class="m">40</span><span class="w"> </span><span class="se">\</span>
---ftwrl-wait-query-type<span class="o">=</span>all<span class="w"> </span>--ftwrl-wait-timeout<span class="o">=</span><span class="m">180</span><span class="w"> </span><span class="se">\</span>
---kill-long-queries-timeout<span class="o">=</span><span class="m">20</span><span class="w"> </span>--kill-long-query-type<span class="o">=</span>all<span class="w"> </span><span class="se">\</span>
---target-dir<span class="o">=</span>/data/backups/
+<h2 id="how-to-enable-fifo-data-sink">How to enable FIFO data sink<a class="headerlink" href="#how-to-enable-fifo-data-sink" title="Permanent link">&para;</a></h2>
+<p>To use FIFO data sink, you can either run two commands in separate terminal sessions or run xtrabackup in the background.</p>
+<p>For example, run the following commands in separate terminal sessions:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo
 </code></pre></div>
-<p>After <code>FLUSH TABLES WITH READ LOCK</code> is issued, <em>xtrabackup</em> will wait for 20
-seconds for lock to be acquired. If lock is still not acquired after 20 seconds,
-it will kill all queries which are running longer that the <code>FLUSH TABLES WITH
-READ LOCK</code>.</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span>full
+</code></pre></div>
+<p>Run xtrabackup in the background with the following commands:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span><span class="p">&amp;</span>
+$<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span>full
+</code></pre></div>
+<h2 id="stream-to-an-object-storage">Stream to an object storage<a class="headerlink" href="#stream-to-an-object-storage" title="Permanent link">&para;</a></h2>
+<p>When taking a backup, you can save the files locally or stream the files to either a different server or an object storage. </p>
+<p>Before <a href="release-notes/8.0/8.0.33-28.0.md">Percona XtraBackup 8.0.33-28</a>, XtraBackup streams data to an object storage writing to STDOUT (a pipe) and using <a href="xbcloud-binary-overview.html"><code>xbcloud</code></a> to read from STDIN (standard input device). </p>
+<p>XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then each copy thread writes the data chunks to a pipe (STDOUT). An xbcloud read thread reads each chunk of STDIN data. Then xbcloud uploads the chunks to an object storage using an async request, and adds a callback to an event handler list. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure).</p>
+<p><img alt="image" src="_static/backup-streamed-to-object-storage.png" /></p>
+<p>The streaming capacity for XtraBackup using STDOUT is 1.8G. This capacity is sufficient for streaming data using Wide Area Network (WAN) into, for example, Amazon Web Services or Google Cloud Platform. </p>
+<p>Starting with <a href="release-notes/8.0/8.0.33-28.0.md">Percona XtraBackup 8.0.33-28</a>, when you stream backups to Amazon S3 compatible storage using LAN with streaming capacity of 10Gbps, XtraBackup can use multiple FIFO streams to stream the backups faster. </p>
+<p>XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then multiple FIFO files are created to store the data from XtraBackup. Each XtraBackup copy thread writes the data chunks to a specific FIFO file. Xbcloud reads from the FIFO streams and uploads data to an object storage using async request. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure). </p>
+<p><img alt="image" src="_static/fifo-datasink.png" /></p>
+<h2 id="performance-improvement">Performance improvement<a class="headerlink" href="#performance-improvement" title="Permanent link">&para;</a></h2>
+<p>Consider an example of using FIFO data sink compared to STDOUT method.</p>
+<p>The database has 1TB of data in multiple tables. The link speed between the source server and destination server using MinIO is ~ 9.2 Gbps.</p>
+<p>Both STDOUT and FIFO data sink scenarios push 1TB of data from two servers.</p>
+<p>For the FIFO data sink we configure 8 parallel streams with <code>--fifo-streams=8</code> both for XtraBackup and xbcloud.</p>
+<p>The results are the following:</p>
+<ul>
+<li>The <code>STDOUT</code> method takes 01:25:24 to push 1TB of data using 239 MBps (1.8 Gbps).</li>
+<li>The <code>FIFO</code> method, using 8 streams, takes 00:16:01 to push 1TB of data using 1.15 Gbps (9.2 Gbps).</li>
+</ul>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -3273,7 +3199,7 @@ READ LOCK</code>.</p>
   <small>
     
       Last update:
-      2023-06-12
+      2023-07-19
     
   </small>
 </div>
