@@ -1,6 +1,6 @@
-# Percona XtraBackup tools overview
+# Percona XtraBackup binaries overview
 
-Percona XtraBackup is a set of the following tools:
+Percona XtraBackup is a set of the following binaries:
 
 * [xtrabackup](xtrabackup-binary-overview.md) - a compiled *C* binary that provides functionality to backup a whole *MySQL* database instance with *MyISAM*, *InnoDB*, and *XtraDB* tables.
 
