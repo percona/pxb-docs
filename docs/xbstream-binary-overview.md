@@ -46,44 +46,5 @@ appropriate `posix_fadvise()` calls when available.
 
 When compression is enabled with *xtrabackup* all data is being compressed,
 including the transaction log file and meta data files, using the specified
-compression algorithm. Percona XtraBackup supports the following compression algorithms:
-
-`quicklz` 
-
-!!! note
-
-    Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms.
-
-The resulting files have the qpress archive format. Every `\*.qp` file
-produced by *xtrabackup* is essentially a one-file qpress archive and can be extracted and uncompressed by the `qpress file archiver`. This means that there is no need to decompress entire backup to restore a single table as with `tar.gz`. 
-
-To decompress individual files, run *xbstream* with the
-`--decompress` option. You may control the number of threads
-used for decompressing by passing the `--decompress-threads` option.
-
-Also, files can be decompressed using the **qpress** tool. The tool supports multi-threaded decompression.
-
-`lz4`
-
-To compress files using the `lz4` compression algorithm, set `--compress` option to `lz4`:
-
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
-```
-
-`Zstandard (ZSTD)`
-
-The Zstandard (ZSTD) compression algorithm is a [tech preview](glossary.md#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
-
-[Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md) adds support for the `Zstandard (ZSTD)` compression algorithm. `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. 
-    
-To compress files using the `ZSTD` compression algorithm, use the `--compress=zstd` option. The resulting files have the `\*.zst` format. 
-    
-You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](xtrabackup-option-reference.md#compress-zstd-level) option. The defaul value is `1`.
-
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
-```
-    
-To decompress files, use the `--decompress` option. 
+compression algorithm. Read more about supported compression algorithms in the [Create a compressed backup](create-compressed-backup.md) document.
 

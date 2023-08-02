@@ -128,30 +128,38 @@ fit into any limit, there is an option to close file handles once they are
 no longer accessed. Percona XtraBackup can produce inconsistent backups
 with this option enabled. Use at your own risk.
 
-
 ### --compress()
-This option tells xtrabackup to compress all output data, including the
-transaction log file and meta data files, using either the `quicklz`, `lz4`, or `ZSTD` compression algorithm. `quicklz` is chosen by default.
+This option tells xtrabackup to compress all output data, including the transaction log file and meta data files. 
 
-!!! note
+**Version updates**
 
-    Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms. See [Create a compressed backup](create-compressed-backup.md) for more information.
+* Before Percona XtraBackup 8.0.31-24 the `--compress` option uses either the `quicklz`, `lz4`, or `ZSTD` compression algorithm to compress all output data. `quicklz` is chosen by default.
 
-When using `--compress=quicklz` or `--compress`, the resulting files have
-the qpress archive format. Every `\*.qp` file produced by xtrabackup is
-essentially a one-file qpress archive and can be extracted and uncompressed
-by the `qpress` file archiver.
+    When using `--compress=quicklz` or `--compress`, the resulting files have
+    the qpress archive format. Every `\*.qp` file produced by xtrabackup is
+    essentially a one-file qpress archive and can be extracted and uncompressed
+    by the `qpress` file archiver.
 
-`--compress=lz4` produces `\*.lz4` files. You can extract the contents of
-these files by using `lz4` program.
+    * `--compress=zstd` produces `\*.zst` files. You can specify `ZSTD` compression level with the `--compress-zstd-level(=#)` option.
 
-`--compress=zstd` produces `\*.zst` files. You can extract the contents of
-these files by using the `--decompress` option. You can specify `ZSTD` compression level with the `--compress-zstd-level(=#)` option.
+    * `--compress=lz4` produces `\*.lz4` files. You can extract the contents of these files by using `lz4` program.
+
+    You can extract the contents of the files by using the `--decompress` option. 
+
+* Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms. `ZSTD` compression algorithm is in [tech preview](glossary.md#tech-preview). See [Create a compressed backup](create-compressed-backup.md) for more information.
+
+* Percona XtraBackup 8.0.34-29 removes `qpress/QuickLZ` and moves the `ZSTD` compression method to [General Availability](glossary.md#general-availability-ga). With this version `ZSTD` becomes the default compression method for the `--compress` option.
+
+    * `--compress` produces `\*.zst` files. You can specify `ZSTD` compression level with the `--compress-zstd-level(=#)` option.
+
+    * `--compress=lz4` produces `\*.lz4` files. You can extract the contents of
+    these files by using `lz4` program.
+
+    You can extract the contents of the files by using the `--decompress` option.
 
 ### --compress-chunk-size(=#) 
 Size of working buffer(s) for compression threads in bytes. The default
 value is 64K.
-
 
 ### --compress-threads(=#)
 This option specifies the number of worker threads used by xtrabackup for
@@ -163,10 +171,8 @@ that will read the data and pipe it to 2 compression threads.
 
 ### --compress-zstd-level(=#)
 
-This option is [tech preview](glossary.md#tech-preview) quality. Before using `--compress-zstd-level(=#)` in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
-
 This option specifies `ZSTD` compression level. The default value is 1. Allowed range of values is from 1 to 19. 
-The option has been implemented in Percona XtraBackup 8.0.30-22.
+The option was implemented in Percona XtraBackup 8.0.30-22.
 
 ### --copy-back()
 Copy all the files in a previously made backup from the backup directory to
@@ -224,8 +230,7 @@ The debug sync point. This option is only used by the xtrabackup test suite.
 Decompresses all files in a backup previously
 made with the `--compress` option. The
 `--parallel` option will allow multiple files to be
-decrypted simultaneously. In order to decompress, the qpress utility MUST be
-installed and accessible within the path. Percona XtraBackup does not
+decrypted simultaneously. In order to decompress files compressed with `quicklz` compression algorithm, install the qpress utility. It must be accessible within the path. Percona XtraBackup does not
 automatically remove the compressed files. In order to clean up the backup
 directory users should use `--remove-original` option.
 

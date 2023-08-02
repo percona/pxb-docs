@@ -20,38 +20,7 @@ $ xtrabackup --stream=xbstream --target-dir=/tmp
 special `xbstream` format. After it finishes streaming all of the data files
 to `STDOUT`, it stops xtrabackup and streams the saved log file too.
 
-When compression is enabled, *xtrabackup* compresses the output data, except for the meta and non-InnoDB files which are not compressed, using the specified compression algorithm. Percona XtraBackup supports the following compression algorithms:
-
-`quicklz` 
-
-!!! note
-
-    Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms.
-
-The resulting files have the `qpress` archive format. Every
-`\*.qp` file produced by xtrabackup is essentially a one-file qpress archive and can be extracted and uncompressed by the `qpress file archiver` which is available from Percona Software repositories.
-
-`lz4`
-
-To compress files using the `lz4` compression algorithm, set `--compress` option to `lz4`:
-
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
-```
-
-`Zstandard (ZSTD)`
-
-The Zstandard (ZSTD) compression algorithm is a [tech preview](glossary.md#tech-preview) feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
-
-[Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md) adds support for the `Zstandard (ZSTD)` compression algorithm. `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. To compress files using the `ZSTD` compression algorithm, use the `--compress=zstd` option. The resulting files have the `\*.zst` format. 
-    
-You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](xtrabackup-option-reference.md#compress-zstd-level) option. The defaul value is `1`.
-
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
-```
-    
-To decompress files, use the `--decompress` option.
+When compression is enabled, *xtrabackup* compresses the output data, except for the metadata, using the specified compression algorithm. Read about the supported compression algorithms in the [Create a compressed backup](create-compressed-backup.md) document.
 
 Using *xbstream* as a stream option, backups can be copied and compressed in parallel. This option can significantly improve the speed of the backup process. In case backups
 were both compressed and encrypted, they must be decrypted before they are uncompressed.
