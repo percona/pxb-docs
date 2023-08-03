@@ -52,6 +52,7 @@ There are several active versions of the documentation. Each version has a branc
 
 - 2.4
 - 8.0
+- 8.1
 
 The `.md` files are in the ``docs/`` directory.
 
