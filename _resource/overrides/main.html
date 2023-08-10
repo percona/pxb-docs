@@ -19,8 +19,7 @@ by adding marketing-requested elements
 </div>
 </div>
 
-{%- endmacro %}
-              
+{%- endmacro %}          
                  {% block extrahead %}
                  {{ super() }}
                  {% set title = config.site_name %}
@@ -51,7 +50,6 @@ by adding marketing-requested elements
               {% endblock %}
 
               {% block content %}
-
                 <!-- Edit and view button -->
                 {% if page.edit_url %}
                   {% set edit = "https://github.com/percona/pxb-docs/edit/8.0/docs/" %}
@@ -95,3 +93,4 @@ by adding marketing-requested elements
                   {% endif %}
                 {% endif %}
               {% endblock %}
+
