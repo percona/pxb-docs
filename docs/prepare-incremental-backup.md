@@ -17,7 +17,7 @@ the next incremental backup. You should use the
 
 !!! warning
    
-    **If you do not use the** `--apply-log-only` **option to prevent the rollback phase, then your incremental backups will be useless**. After transactions have been rolled back, further incremental backups cannot be applied.
+    If you do not use the `--apply-log-only` option to prevent the rollback phase, then your incremental backups will be useless. After transactions have been rolled back, further incremental backups cannot be applied.
  
 Beginning with the full backup you created, you can prepare it, and then
 apply
@@ -51,7 +51,7 @@ you saw previously.
 
 !!! warning
    
-    This backup is actually safe to restore as-is now, even though the rollback phase has been skipped. If you restore it and start *MySQL*, *InnoDB* will detect that the rollback phase was not performed, and it will do that in the background, as it usually does for a crash recovery upon start. It will notify you that the database was not shut down normally.
+    This backup is actually safe to restore as-is now, even though the rollback phase has been skipped. If you restore it and start MySQL, InnoDB will detect that the rollback phase was not performed, and it will do that in the background, as it usually does for a crash recovery upon start. It will notify you that the database was not shut down normally.
 
 To apply the first incremental backup to the full backup, run the following command:
 
@@ -86,7 +86,7 @@ the first incremental backup. If you restore the files from
 
 !!! warning
    
-    *Percona XtraBackup* does not support using the same incremental backup directory to prepare two copies of backup. Do not run `--prepare` with the same incremental backup directory (the value of –incremental-dir) more than once.
+    Percona XtraBackup does not support using the same incremental backup directory to prepare two copies of backup. Do not run `--prepare` with the same incremental backup directory (the value of –incremental-dir) more than once.
 
 Preparing the second incremental backup is a similar process: apply the deltas
 to the (modified) base backup, and you will roll its data forward in time to the point of the second incremental backup:

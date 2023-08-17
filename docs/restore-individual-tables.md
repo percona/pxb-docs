@@ -1,6 +1,6 @@
 # Restore individual tables
 
-Percona XtraBackup can export a table that is contained in its own .ibd file. With Percona XtraBackup, you can export individual tables from any *InnoDB* database, and import them into Percona Server for MySQL with XtraDB or MySQL 8.0. The source doesn’t have to be XtraDB or MySQL 8.0, but the destination does. This method only works on individual .ibd files.
+Percona XtraBackup can export a table that is contained in its own .ibd file. With Percona XtraBackup, you can export individual tables from any InnoDB database, and import them into Percona Server for MySQL with XtraDB or MySQL 8.1. The source doesn’t have to be XtraDB or MySQL 8.1, but the destination does. This method only works on individual .ibd files.
 
 The following example exports and imports the following table:
 
@@ -33,7 +33,7 @@ $ xtrabackup --prepare --export --target-dir=/tmp/table \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-The following files are the only files required to import the table into a server running Percona Server for MySQL with XtraDB or MySQL 8.0. If the server uses InnoDB Tablespace Encryption, add the .cfp file, which contains the transfer key and an encrypted tablespace key.
+The following files are the only files required to import the table into a server running Percona Server for MySQL with XtraDB or MySQL 8.1. If the server uses InnoDB Tablespace Encryption, add the .cfp file, which contains the transfer key and an encrypted tablespace key.
 
 The files are located in the target directory:
 
@@ -44,7 +44,7 @@ The files are located in the target directory:
 
 ## Import the table
 
-On the destination server running Percona Server for MySQL with XtraDB or MySQL 8.0, create a table with the same structure, and then perform the following steps:
+On the destination server running Percona Server for MySQL with XtraDB or MySQL 8.1, create a table with the same structure, and then perform the following steps:
 
 1. Run the `ALTER TABLE test.export_test DISCARD TABLESPACE;` command. If you see the following error message:
 

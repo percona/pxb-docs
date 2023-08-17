@@ -1,30 +1,34 @@
+<!---
+    changed_page_tracking removed from 8.1
+    --->
 # Create an incremental backup
 
-*xtrabackup* supports incremental backups, which means that they can copy only all the data that has changed since the last backup.
+xtrabackup supports incremental backups, which means that they can copy only all the data that has changed since the last backup.
 
 !!! note
    
-    Incremental backups on the MyRocks storage engine do not determine if an earlier full backup or incremental backup contains the same files. **Percona XtraBackup** copies all the MyRocks files each time it takes a backup.
+    Incremental backups on the MyRocks storage engine do not determine if an earlier full backup or incremental backup contains the same files. Percona XtraBackup copies all the MyRocks files each time it takes a backup.
 
 You can perform many incremental backups between each full backup, so you can set up a backup process such as a full backup once a week and an incremental backup every day, or full backups every day and incremental backups every hour.
 
-Incremental backups work because each *InnoDB* page contains a log sequence
+Incremental backups work because each InnoDB page contains a log sequence
 number, or LSN. The LSN is the system version number for the
 entire database. Each page’s LSN shows how recently it was changed.
 
 An incremental backup copies each page which LSN is newer than the
 previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.
 
+<!---
 ### Use the changed page tracking algorithm 
 
-*Percona XtraBackup* 8.0.30 removes the algorithm that used the [changed page tracking](https://docs.percona.com/percona-server/8.0/management/changed_page_tracking.html) feature in *Percona Server for MySQL*. *Percona Server for MySQL* 8.0.27 deprecated the changed page tracking feature.
+Percona XtraBackup 8.0.30 removes the algorithm that used the [changed page tracking](https://docs.percona.com/percona-server/8.0/management/changed_page_tracking.html) feature in Percona Server for MySQL. Percona Server for MySQL 8.0.27 deprecated the changed page tracking feature.
 
-With PXB 8.0.27 or earlier, another algorithm enabled the *Percona Server for MySQL* changed page tracking feature. The algorithm generates a bitmap file. The *xtrabackup* binary uses that bitmap file to read only those pages needed for the incremental backup. This method potentially saves resources. The backup enables the algorithm by default if the *xtrabackup* binary discovers the bitmap file. You can override the algorithm with `--incremental-force-scan` which forces a read of all pages even if the bitmap file is available.
-
+With PXB 8.0.27 or earlier, another algorithm enabled the Percona Server for MySQL changed page tracking feature. The algorithm generates a bitmap file. The xtrabackup binary uses that bitmap file to read only those pages needed for the incremental backup. This method potentially saves resources. The backup enables the algorithm by default if the xtrabackup binary discovers the bitmap file. You can override the algorithm with `--incremental-force-scan` which forces a read of all pages even if the bitmap file is available.
+--->
 ## Create an incremental backup 
 
 To make an incremental backup, begin with a full backup as usual. The
-*xtrabackup* binary writes a file called `xtrabackup_checkpoints` into
+xtrabackup binary writes a file called `xtrabackup_checkpoints` into
 the backup’s target directory. This file contains a line showing the
 `to_lsn`, which is the database’s LSN at the end of the backup.
 Create the full backup with a following command:

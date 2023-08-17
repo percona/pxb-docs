@@ -1,17 +1,20 @@
-# Compile and install Percona XtraBackup 8.0 from source
+<!--- are these instructions current?
+    --->
 
-The following instructions install Percona XtraBackup 8.0.
+# Compile and install from source
+
+The following instructions install Percona XtraBackup 8.1.
 
 ## 1. Install Percona XtraBackup from the Git Source Tree
 
 Percona uses the [Github](https://github.com/) revision control system for development. To build the latest Percona Server for MySQL from the source tree, you will need `git` installed on your system.
 
-You can now fetch the latest Percona XtraBackup 8.0 sources:
+You can now fetch the latest Percona XtraBackup 8.1 sources:
 
 ```{.bash data-prompt="$"}
 $ git clone https://github.com/percona/percona-xtrabackup.git
 $ cd percona-xtrabackup
-$ git checkout 8.0
+$ git checkout 8.1
 $ git submodule update --init --recursive
 ```
 
@@ -22,7 +25,7 @@ These might vary from system to system.
 
 !!! important
  
-    To build **Percona XtraBackup 8.0 from source, you must use `cmake` 
+    To build **Percona XtraBackup 8.1 from source, you must use `cmake` 
     version 3. To check which version is 
     currently installed, run `cmake --version` at a command prompt. If the 
     version is not `3`, install `cmake3`.
@@ -170,7 +173,7 @@ installation directory to be `/usr/local/xtrabackup`.
 
 !!! admonition "See also"
  
-    [MySQL Documentation: -DINSTALL_LAYOUT](https://dev.mysql.com/doc/refman/8.0/en/source-configuration-options.html#option_cmake_install_layout)
+    [MySQL Documentation: -DINSTALL_LAYOUT](https://dev.mysql.com/doc/refman/8.1/en/source-configuration-options.html#option_cmake_install_layout)
 
 ## 6. Run Percona XtraBackup
 

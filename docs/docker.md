@@ -1,13 +1,13 @@
-# Run Percona XtraBackup 8.0 in a Docker container
+# Run a Docker container
 
 Docker allows you to run applications in a lightweight unit called a
 container.
 
-You can run *Percona XtraBackup* in a Docker container without installing
+You can run Percona XtraBackup in a Docker container without installing
 the product. All required libraries are available in
 the container. Being a lightweight execution environment, Docker containers
 enable creating configurations where each program runs in a separate container. You may run
-*Percona Server for MySQL* in one container and *Percona XtraBackup* in
+Percona Server for MySQL in one container and Percona XtraBackup in
 another. Docker images offer a range of options.
 
 Create a Docker container based on a Docker image. Docker images for
@@ -24,12 +24,12 @@ on a Percona Server for MySQL running in another Dockers container.
 
 ## 1. Install Docker
 
-Your operating system may already provide a package for *docker*. However,
+Your operating system may already provide a package for docker. However,
 the versions of Docker provided by your operating system are likely to be
 outdated.
 
 Use the installation instructions for your operating system available from
-the Docker site to set up the latest version of *docker*.
+the Docker site to set up the latest version of docker.
 
 ## 2. Connect to a Percona Server for MySQL container
 
@@ -40,7 +40,7 @@ running in a separate Docker container.
 
 To set up a database server on a host machine or in Docker
 container, follow the documentation of the supported product that you
-intend to use with *Percona XtraBackup*.
+intend to use with Percona XtraBackup.
 
 !!! admontion "See also"
 
@@ -92,7 +92,7 @@ container was created:
 $ sudo docker start -ai percona-xtrabackup
 ```
 
-This command starts the *percona-xtrabackup* container, attaches to its
+This command starts the percona-xtrabackup container, attaches to its
 input/output streams, and opens an interactive shell.
 
 The `docker run` is a shortcut command that creates a Docker container and

@@ -1,14 +1,10 @@
-# Use an APT repository to install Percona XtraBackup 8.0
+# Install with an APT repository
 
 Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [download page](https://www.percona.com/downloads).
 
 Specific information on the supported platforms, products, and versions is
 described in [Percona Release Lifecycle Overview](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
-
-!!! important
-
-    To prevent intermittent backup failures, [update the curl utility in Debian 10](update-curl-utility.md).
 
 ## Install Percona XtraBackup through percona-release
 
@@ -37,10 +33,10 @@ Percona XtraBackup, like many other Percona products, is installed with the *per
     $ sudo apt update
     ```
 
-5. Install the `percona-xtrabackup-80` package:
+5. Install the `percona-xtrabackup-81` package:
 
     ```{.bash data-prompt="$"}
-    $ sudo apt install percona-xtrabackup-80
+    $ sudo apt install percona-xtrabackup-81
     ```
 
 6. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:
@@ -64,7 +60,7 @@ Percona XtraBackup, like many other Percona products, is installed with the *per
 
 !!! admonition "See also"
 
-    To install Percona XtraBackup using downloaded deb packages, see [Install Percona XtraBackup 8.0](apt-download-deb.md).
+    To install Percona XtraBackup using downloaded deb packages, see [Install Percona XtraBackup 8.1](apt-download-deb.md).
 
-    To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup 8.0](apt-uninstall-xtrabackup.md)
+    To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup 8.1](apt-uninstall-xtrabackup.md)
 

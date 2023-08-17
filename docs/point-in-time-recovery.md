@@ -1,7 +1,7 @@
 # Point-in-time recovery
 
 Recovering up to particular moment in database’s history can be done with
-*xtrabackup* and the binary logs of the server.
+xtrabackup and the binary logs of the server.
 
 Note that the binary log contains the operations that modified the database from
 a point in the past. You need a full datadir as a base, and then you can
@@ -84,7 +84,7 @@ $ xtrabackup --copy-back --target-dir=/path/to/backup
 
 As the restoration will not affect the binary log files (you may need to adjust
 file permissions, see Restoring a Backup), the next step is
-extracting the queries from the binary log with **mysqlbinlog** starting
+extracting the queries from the binary log with mysqlbinlog starting
 from the position of the snapshot and redirecting it to a file
 
 ```{.bash data-prompt="$"}

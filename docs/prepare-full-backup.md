@@ -1,19 +1,19 @@
 # Prepare a full backup
 
 After making a backup with the `--backup` option, you need to prepare it in order to [restore](restore-a-backup.md) it. Data files are not point-in-time
-consistent until they are *prepared*, because they were copied at different times as the program ran, and they might have been changed while this was happening.
+consistent until they are prepared, because they were copied at different times as the program ran, and they might have been changed while this was happening.
 
-If you try to start InnoDB with these data files, it will detect corruption and stop working to avoid running on damaged data. The `--prepare` step makes the files perfectly consistent at a single instant in time, so you can run *InnoDB* on them.
+If you try to start InnoDB with these data files, it will detect corruption and stop working to avoid running on damaged data. The `--prepare` step makes the files perfectly consistent at a single instant in time, so you can run InnoDB on them.
 
-You can run the *prepare* operation on any machine; it does not need to be on the originating server or the server to which you intend to restore. You can copy the backup to a utility server and prepare it there.
+You can run the prepare operation on any machine; it does not need to be on the originating server or the server to which you intend to restore. You can copy the backup to a utility server and prepare it there.
 
-Note that *Percona XtraBackup* 8.0 can only prepare backups of *MySQL*
-8.0, *Percona Server for MySQL* 8.0, and *Percona XtraDB Cluster* 8.0
-databases. Releases prior to 8.0 are not supported.
+Note that Percona XtraBackup 8.1 can only prepare backups of MySQL
+8.1, Percona Server for MySQL 8.1, and Percona XtraDB Cluster 8.1
+databases. Releases prior to 8.1 are not supported.
 
-During the *prepare* operation, *xtrabackup* boots up a kind of modified embedded InnoDB (the libraries *xtrabackup* was linked against). The modifications are necessary to disable InnoDB standard safety checks, such as complaining about the log file not being the right size. This warning is not appropriate for working with backups. These modifications are only for the xtrabackup binary; you do not need a modified *InnoDB* to use *xtrabackup* for your backups.
+During the prepare operation, xtrabackup boots up a kind of modified embedded InnoDB (the libraries xtrabackup was linked against). The modifications are necessary to disable InnoDB standard safety checks, such as complaining about the log file not being the right size. This warning is not appropriate for working with backups. These modifications are only for the xtrabackup binary; you do not need a modified InnoDB to use xtrabackup for your backups.
 
-The *prepare* step uses this “embedded InnoDB” to perform crash recovery on the copied data files, using the copied log file. The `prepare` step is very simple to use: you simply run *xtrabackup* with the `--prepare` option and tell it which directory to prepare, for example, to prepare the previously taken backup run:
+The prepare step uses this “embedded InnoDB” to perform crash recovery on the copied data files, using the copied log file. The `prepare` step is very simple to use: you simply run xtrabackup with the `--prepare` option and tell it which directory to prepare, for example, to prepare the previously taken backup run:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/backups/

@@ -1,3 +1,7 @@
+<!---
+ review for rewrite and update
+ --->
+
 # FLUSH TABLES WITH READ LOCK option
 
 The `FLUSH TABLES WITH READ LOCK` option does the following with a global read lock:
@@ -18,39 +22,40 @@ Long-running queries with `FLUSH TABLES WITH READ LOCK` enabled can leave the se
 
 !!! note
    
-    All described in this section has no effect when backup locks are
-    used. *Percona XtraBackup* will use [Backup locks](https://www.percona.com/doc/percona-server/5.6/management/backup_locks.html#backup-locks)
+    All operations described in this section have no effect when [backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html) are used.
+
+    Percona XtraBackup uses [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
     where available as a lightweight alternative to `FLUSH TABLES WITH READ
-    LOCK`. This feature is available in *Percona Server for MySQL* 5.6+.
-    *Percona XtraBackup* uses this automatically to copy non-InnoDB data to avoid blocking
-    DML queries that modify InnoDB tables.
+    LOCK`. This operation automatically copies non-InnoDB data and avoids blocking DML queries that modify InnoDB tables.
 
 In order to prevent this from happening two things have been implemented:
 
-* *xtrabackup* waits for a good moment to issue the global lock
+ * xtrabackup waits for a good moment to issue the global lock
 
-* *xtrabackup* kills all queries or only the SELECT queries which prevent the
+ * xtrabackup kills all queries or only the SELECT queries which prevent the
 global lock from being acquired
 
 ## Wait for queries to finish
 
 You should issue a global lock when no long queries are running. Waiting to issue the global lock for extended period of time is not a good method. The wait can extend the time needed for
-backup to take place. The –ftwrl-wait-timeout option can limit the
+backup to take place. The `–ftwrl-wait-timeout` option can limit the
 waiting time. If it cannot issue the lock during this
-time, *xtrabackup* stops the option, exits with an error message, and backup is
+time, xtrabackup stops the option, exits with an error message, and backup is
 not be taken.
 
-The default value for this option is zero (0) value which turns off the option.
+The option's default value is zero (0), which turns off the option.
 
 Another possibility is to specify the type of query to wait on. In this case
-`--ftwrl-wait-query-type`. Possible values are `all` and
-`update`. When `all` is used *xtrabackup* will wait for all long running
+`--ftwrl-wait-query-type`.
+
+The possible values are `all` and
+`update`. When `all` is used xtrabackup will wait for all long running
 queries (execution time longer than allowed by `--ftwrl-wait-threshold`)
 to finish before running the `FLUSH TABLES WITH READ LOCK`. When `update` is
-used *xtrabackup* will wait on `UPDATE/ALTER/REPLACE/INSERT` queries to
+used xtrabackup will wait on `UPDATE/ALTER/REPLACE/INSERT` queries to
 finish.
 
-The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. *xtrabackup* uses the value of
+The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. xtrabackup uses the value of
 –ftwrl-wait-threshold option to specify the long-running queries
 and will block a global lock. In order to use this option
 xtrabackup user should have `PROCESS` and `SUPER` privileges.
@@ -94,7 +99,7 @@ issued before start to kill. Default if `0`, not to kill.
 
 ### Example
 
-Running the *xtrabackup* with the following options will cause *xtrabackup*
+Running the xtrabackup with the following options will cause xtrabackup
 to spend no longer than 3 minutes waiting for all queries older than 40 seconds
 to complete.
 
@@ -105,7 +110,7 @@ $  xtrabackup --backup --ftwrl-wait-threshold=40 \
 --target-dir=/data/backups/
 ```
 
-After `FLUSH TABLES WITH READ LOCK` is issued, *xtrabackup* will wait for 20
+After `FLUSH TABLES WITH READ LOCK` is issued, xtrabackup will wait for 20
 seconds for lock to be acquired. If lock is still not acquired after 20 seconds,
 it will kill all queries which are running longer that the `FLUSH TABLES WITH
 READ LOCK`.

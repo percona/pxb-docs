@@ -1,3 +1,7 @@
+<!---
+    Will this be needed in 8.1?
+    --->
+
 # Error Message: Found tables with row versions due to INSTANT ADD/DROP columns
 
 *MySQL* 8.0.29 extended the support for `ALTER TABLE … ALGORITHM=INSTANT` to allow users to add a column in any table position or drop any column. As part of this update, the redo log format has changed for all server DML operations. This updated redo log format has a design flaw that can cause data corruption for tables with INSTANT ADD/DROP COLUMNS.

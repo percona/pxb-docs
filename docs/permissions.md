@@ -1,10 +1,10 @@
 # Permissions needed
 
-We will be referring to *permissions* to the ability of a user to access
+We will be referring to permissions to the ability of a user to access
 and perform changes on the relevant parts of the host’s filesystem,
 starting/stopping services and installing software.
 
-By *privileges*, we refer to the abilities of a database user to perform
+By privileges, we refer to the abilities of a database user to perform
 different kinds of actions on the database server.
 
 There are many ways for checking the permission on a file or directory. For
@@ -55,8 +55,8 @@ install or remove software with it. If not, having `rwx` permission over a
 directory will let you do a local installation of software by compiling it
 there. This is a typical situation in many hosting companies’ services.
 
-There are other ways for managing permissions, such as using *PolicyKit*, *
-Extended ACLs* or *SELinux*, which may be preventing or allowing your
+There are other ways for managing permissions, such as using PolicyKit, 
+Extended ACLs or SELinux, which may be preventing or allowing your
 access. You should check them in that case.
 
 !!! admonition "See also"
