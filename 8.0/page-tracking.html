@@ -2491,6 +2491,19 @@
     Use page tracking
   </a>
   
+    <nav class="md-nav" aria-label="Use page tracking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3138,6 +3151,19 @@
     Use page tracking
   </a>
   
+    <nav class="md-nav" aria-label="Use page tracking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3273,14 +3299,20 @@ backups with the <code>--page-tracking</code> option.</p>
 </div>
 <p>After enabling the functionality, the next incremental backup finds changed
 pages using page tracking.</p>
-<p>The first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:</p>
-<details class="example">
-<summary>Expected output</summary>
+<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>When creating the first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:</p>
 <div class="no-copy highlight"><pre><span></span><code>xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
 to reach to page tracking start lsn 21353759
 </code></pre></div>
-</details>
 <p>Enable page tracking before creating the first backup to avoid this delay. This method ensures that the page tracking log sequence number (LSN) is higher than the checkpoint LSN of the server.</p>
+</li>
+<li>
+<p>If an Oracle MySQL Server uses page tracking and runs <code>LOCK=EXCLUSIVE</code> and <code>ALGORITHM=INPLACE</code> DDL operations, Percona XtraBackup may take an inconsistent backup. Oracle MySQL Server does not write these DDL operations (Oracle MySQL <a href="https://bugs.mysql.com/bug.php?id=106163">bug 106163</a>) to the redo log, and Percona XtraBackup only detects the inconsistency during the <code>--prepare</code> phase.</p>
+</li>
+</ol>
+<p>This bug does not influence Percona XtraBackup taking backup of Percona Server for MySQL because the bug is fixed in Percona Server for MySQL 8.0.27. </p>
 <h2 id="start-page-tracking-manually">Start page tracking manually<a class="headerlink" href="#start-page-tracking-manually" title="Permanent link">&para;</a></h2>
 <p>After the mysqlbackup component is loaded and active on the server, you can
 start page tracking manually with the following option:</p>
@@ -3340,7 +3372,7 @@ see <a href="https://jira.percona.com/browse/PS-8032">PS-8032</a>.</p>
   <small>
     
       Last update:
-      2023-07-10
+      2023-08-21
     
   </small>
 </div>
