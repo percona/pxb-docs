@@ -56,16 +56,20 @@ The examples of creating full and incremental backups using the `--page-tracking
 After enabling the functionality, the next incremental backup finds changed
 pages using page tracking.
 
-The first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:
+### Limitations
 
-??? example "Expected output"
+1. When creating the first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:
 
     ```{.text .no-copy}
     xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
     to reach to page tracking start lsn 21353759
     ```
 
-Enable page tracking before creating the first backup to avoid this delay. This method ensures that the page tracking log sequence number (LSN) is higher than the checkpoint LSN of the server.
+    Enable page tracking before creating the first backup to avoid this delay. This method ensures that the page tracking log sequence number (LSN) is higher than the checkpoint LSN of the server.
+
+2. If an Oracle MySQL Server uses page tracking and runs `LOCK=EXCLUSIVE` and `ALGORITHM=INPLACE` DDL operations, Percona XtraBackup may take an inconsistent backup. Oracle MySQL Server does not write these DDL operations (Oracle MySQL [bug 106163](https://bugs.mysql.com/bug.php?id=106163)) to the redo log, and Percona XtraBackup only detects the inconsistency during the `--prepare` phase.
+
+This bug does not influence Percona XtraBackup taking backup of Percona Server for MySQL because the bug is fixed in Percona Server for MySQL 8.0.27. 
 
 ## Start page tracking manually
 
