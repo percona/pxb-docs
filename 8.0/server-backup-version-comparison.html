@@ -9,8 +9,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A MySQL change to a feature, such as the structure of a redo log
-record, can cause older versions of Percona XtraBackup to fail. To
+        <meta name="description" content="A MySQL change to a feature, for example, changing the redo log
+record structure, can cause older versions of Percona XtraBackup to fail. To
 ensure that you can back up and restore your data, use a Percona
 XtraBackup version that is equal to or above your source server version.">
       
@@ -1875,9 +1875,42 @@ XtraBackup version that is equal to or above your source server version.">
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Server version and backup version comparison
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="server-backup-version-comparison.html" class="md-nav__link md-nav__link--active">
         Server version and backup version comparison
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    Version changes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3041,6 +3074,21 @@ XtraBackup version that is equal to or above your source server version.">
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    Version changes
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3080,37 +3128,38 @@ XtraBackup version that is equal to or above your source server version.">
 
                 <!-- Markdown content -->
                 <h1 id="server-version-and-backup-version-comparison">Server version and backup version comparison<a class="headerlink" href="#server-version-and-backup-version-comparison" title="Permanent link">&para;</a></h1>
-<p>A <em>MySQL</em> change to a feature, such as the structure of a redo log
-record, can cause older versions of <strong>Percona XtraBackup</strong> to fail. To
-ensure that you can back up and restore your data, use a <strong>Percona
-XtraBackup</strong> version that is equal to or above your source server version.</p>
+<p>A MySQL change to a feature, for example, changing the redo log
+record structure, can cause older versions of Percona XtraBackup to fail. To
+ensure that you can back up and restore your data, use a Percona
+XtraBackup version that is equal to or above your source server version.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
 <p><a href="how-xtrabackup-works.html">How XtraBackup works</a></p>
 </div>
-<p><em>Percona XtraBackup</em> 8.0.21 adds the <code>--no-server-version-check</code> option.
+<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>With the release of Percona XtraBackup 8.0.34-29, Percona XtraBackup allows backups on version 8.0.35 and higher. </p>
+<p>Percona XtraBackup 8.0.21 adds the <code>--no-server-version-check</code> option.
 Before the backup starts, XtraBackup compares the source system version to
-the <em>Percona XtraBackup</em> version. If the source system version is greater
-than the XtraBackup version, XtraBackup stops the backup and returns an
-error message. This comparison prevents a failed backup or a corrupted
+the Percona XtraBackup version. If the source system version is greater than the XtraBackup version, XtraBackup stops the backup and returns an
+error message. This comparison prevents a failed or corrupted
 backup due to source system changes.</p>
 <p>The parameter checks for the following scenarios:</p>
 <ul>
 <li>
-<p>The source system and the PXB version are the same, the backup proceeds</p>
+<p>The source system and the PXB version are the same; the backup proceeds</p>
 </li>
 <li>
 <p>The source system is less than the PXB version, the backup proceeds</p>
 </li>
 <li>
-<p>The source system is greater than the PXB version, and the parameter is not overridden, the backup is stopped and returns an error message</p>
+<p>The source system is greater than the PXB version, and the parameter is not overridden; the backup is stopped and returns an error message</p>
 </li>
 <li>
-<p>The source system is greater than the PXB version, and the parameter is  overridden, the backup proceeds</p>
+<p>The source system is greater than the PXB version, and the parameter is  overridden; the backup proceeds</p>
 </li>
 </ul>
 <p>Explicitly adding the <code>--no-server-version-check</code> parameter, like the
-example, overrides the parameter and the backup proceeds.</p>
+example overrides the parameter, and the backup proceeds.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--no-server-version-check<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$mysql</span>/backup1
 </code></pre></div>
 <p>When you override the parameter, the following events can happen:</p>
@@ -3147,7 +3196,7 @@ example, overrides the parameter and the backup proceeds.</p>
   <small>
     
       Last update:
-      2023-06-30
+      2023-08-21
     
   </small>
 </div>
