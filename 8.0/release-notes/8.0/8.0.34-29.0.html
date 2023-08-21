@@ -9,33 +9,33 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The xtrabackup binary integrates with the log_status table. This integration enables xtrabackup to print out the backup’s corresponding binary log position, so that you can use this binary log position to provision a new replica or perform point-in-time recovery.">
+        <meta name="description" content="Get started with Quickstart Guide for Percona XtraBackup.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/working-with-binary-logs.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/release-notes/8.0/8.0.34-29.0.html">
       
       
-        <link rel="prev" href="smart-memory-estimation.html">
+        <link rel="prev" href="../../release-notes.html">
       
       
-        <link rel="next" href="binaries-overview.html">
+        <link rel="next" href="8.0.33-28.0.html">
       
-      <link rel="icon" href="_static/percona-favicon.ico">
+      <link rel="icon" href="../../_static/percona-favicon.ico">
       <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
-        <title>Work with binary logs - Percona XtraBackup</title>
+        <title>Percona XtraBackup 8.0.34-29 (2023-08-21) - Percona XtraBackup</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.eebd395e.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -55,13 +55,13 @@
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="css/percona.css">
+      <link rel="stylesheet" href="../../css/percona.css">
     
-      <link rel="stylesheet" href="css/nocopy.css/">
+      <link rel="stylesheet" href="../../css/nocopy.css/">
     
-      <link rel="stylesheet" href="css/extra.css">
+      <link rel="stylesheet" href="../../css/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
               <!-- Google Tag Manager -->
               <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -84,7 +84,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Work with binary logs" />
+                 <meta property="og:title" content="Percona XtraBackup - Percona XtraBackup 8.0.34-29 (2023-08-21)" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
               
@@ -110,7 +110,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#work-with-binary-logs" class="md-skip">
+        <a href="#percona-xtrabackup-8034-29-2023-08-21" class="md-skip">
           Skip to content
         </a>
       
@@ -132,7 +132,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://docs.percona.com" title="Percona XtraBackup" class="md-header__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
-  <img src="_static/percona-logo.svg" alt="logo">
+  <img src="../../_static/percona-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -148,7 +148,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Work with binary logs
+              Percona XtraBackup 8.0.34-29 (2023-08-21)
             
           </span>
         </div>
@@ -255,7 +255,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://docs.percona.com" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
-  <img src="_static/percona-logo.svg" alt="logo">
+  <img src="../../_static/percona-logo.svg" alt="logo">
 
     </a>
     Percona XtraBackup
@@ -283,7 +283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index.html" class="md-nav__link">
+      <a href="../../index.html" class="md-nav__link">
         Home
       </a>
     </li>
@@ -296,14 +296,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
       
@@ -312,7 +314,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Release notes
@@ -325,7 +327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes.html" class="md-nav__link">
+      <a href="../../release-notes.html" class="md-nav__link">
         Release notes index
       </a>
     </li>
@@ -337,11 +339,95 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.34-29.0.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Percona XtraBackup 8.0.34-29 (2023-08-21)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="8.0.34-29.0.html" class="md-nav__link md-nav__link--active">
         Percona XtraBackup 8.0.34-29 (2023-08-21)
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    Release highlights
+  </a>
+  
+    <nav class="md-nav" aria-label="Release highlights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compression" class="md-nav__link">
+    Compression
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    New features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improvements" class="md-nav__link">
+    Improvements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-fix" class="md-nav__link">
+    Bug fix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links" class="md-nav__link">
+    Useful links
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -353,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.33-28.0.html" class="md-nav__link">
+      <a href="8.0.33-28.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.33-28 (2023-07-19)
       </a>
     </li>
@@ -367,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.33-27.0.html" class="md-nav__link">
+      <a href="8.0.33-27.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.33-27 (2023-05-25)
       </a>
     </li>
@@ -381,7 +467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.32-26.0.html" class="md-nav__link">
+      <a href="8.0.32-26.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.32-26 (2023-04-04)
       </a>
     </li>
@@ -395,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.32-25.0.html" class="md-nav__link">
+      <a href="8.0.32-25.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.32-25 (2023-02-27)
       </a>
     </li>
@@ -409,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.31-24.0.html" class="md-nav__link">
+      <a href="8.0.31-24.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.31-24 (2023-02-07)
       </a>
     </li>
@@ -450,7 +536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.30-23.0.html" class="md-nav__link">
+      <a href="8.0.30-23.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.30-23 (2022-11-14)
       </a>
     </li>
@@ -464,7 +550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.29-22.0.html" class="md-nav__link">
+      <a href="8.0.29-22.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.29-22 (2022-07-19)
       </a>
     </li>
@@ -478,7 +564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.28-21.0.html" class="md-nav__link">
+      <a href="8.0.28-21.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.28-21 (2022-05-25)
       </a>
     </li>
@@ -492,7 +578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.28-20.0.html" class="md-nav__link">
+      <a href="8.0.28-20.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.28-20
       </a>
     </li>
@@ -506,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.27-19.0.html" class="md-nav__link">
+      <a href="8.0.27-19.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.27-19
       </a>
     </li>
@@ -554,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.26-18.0.html" class="md-nav__link">
+      <a href="8.0.26-18.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.26-18.0
       </a>
     </li>
@@ -568,7 +654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.25-17.0.html" class="md-nav__link">
+      <a href="8.0.25-17.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.25-17.0
       </a>
     </li>
@@ -582,7 +668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.23-16.0.html" class="md-nav__link">
+      <a href="8.0.23-16.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.23-16.0
       </a>
     </li>
@@ -630,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.22-15.0.html" class="md-nav__link">
+      <a href="8.0.22-15.0.html" class="md-nav__link">
         Percona XtraBackup 8.0.22-15.0
       </a>
     </li>
@@ -644,7 +730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.14.html" class="md-nav__link">
+      <a href="8.0.14.html" class="md-nav__link">
         Percona XtraBackup 8.0.14
       </a>
     </li>
@@ -658,7 +744,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.13.html" class="md-nav__link">
+      <a href="8.0.13.html" class="md-nav__link">
         Percona XtraBackup 8.0.13
       </a>
     </li>
@@ -672,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.12.html" class="md-nav__link">
+      <a href="8.0.12.html" class="md-nav__link">
         Percona XtraBackup 8.0.12
       </a>
     </li>
@@ -686,7 +772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.11.html" class="md-nav__link">
+      <a href="8.0.11.html" class="md-nav__link">
         Percona XtraBackup 8.0.11
       </a>
     </li>
@@ -700,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.10.html" class="md-nav__link">
+      <a href="8.0.10.html" class="md-nav__link">
         Percona XtraBackup 8.0.10
       </a>
     </li>
@@ -748,7 +834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.9.html" class="md-nav__link">
+      <a href="8.0.9.html" class="md-nav__link">
         Percona XtraBackup 8.0.9
       </a>
     </li>
@@ -762,7 +848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.8.html" class="md-nav__link">
+      <a href="8.0.8.html" class="md-nav__link">
         Percona XtraBackup 8.0.8
       </a>
     </li>
@@ -776,7 +862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.7.html" class="md-nav__link">
+      <a href="8.0.7.html" class="md-nav__link">
         Percona XtraBackup 8.0.7
       </a>
     </li>
@@ -790,7 +876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.6.html" class="md-nav__link">
+      <a href="8.0.6.html" class="md-nav__link">
         Percona XtraBackup 8.0.6
       </a>
     </li>
@@ -804,7 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.5.html" class="md-nav__link">
+      <a href="8.0.5.html" class="md-nav__link">
         Percona XtraBackup 8.0.5
       </a>
     </li>
@@ -852,7 +938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0.4.html" class="md-nav__link">
+      <a href="8.0.4.html" class="md-nav__link">
         Percona XtraBackup 8.0.4
       </a>
     </li>
@@ -866,7 +952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.0/8.0-3-rc1.html" class="md-nav__link">
+      <a href="8.0-3-rc1.html" class="md-nav__link">
         Percona XtraBackup 8.0-3-rc1
       </a>
     </li>
@@ -922,7 +1008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="about-xtrabackup.html" class="md-nav__link">
+      <a href="../../about-xtrabackup.html" class="md-nav__link">
         About Percona XtraBackup
       </a>
     </li>
@@ -936,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="how-xtrabackup-works.html" class="md-nav__link">
+      <a href="../../how-xtrabackup-works.html" class="md-nav__link">
         How Percona XtraBackup works
       </a>
     </li>
@@ -950,7 +1036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-version-numbers.html" class="md-nav__link">
+      <a href="../../xtrabackup-version-numbers.html" class="md-nav__link">
         Understand version numbers
       </a>
     </li>
@@ -970,16 +1056,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
@@ -988,7 +1072,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Features
@@ -1028,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lru-dump-backup.html" class="md-nav__link">
+      <a href="../../lru-dump-backup.html" class="md-nav__link">
         LRU dump backup
       </a>
     </li>
@@ -1042,7 +1126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="throttling-backups.html" class="md-nav__link">
+      <a href="../../throttling-backups.html" class="md-nav__link">
         Throttling backups
       </a>
     </li>
@@ -1056,7 +1140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="store-backup-history.html" class="md-nav__link">
+      <a href="../../store-backup-history.html" class="md-nav__link">
         Store backup history on the server
       </a>
     </li>
@@ -1104,7 +1188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dictionary-cache.html" class="md-nav__link">
+      <a href="../../dictionary-cache.html" class="md-nav__link">
         Dictionary cache
       </a>
     </li>
@@ -1152,7 +1236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="point-in-time-recovery.html" class="md-nav__link">
+      <a href="../../point-in-time-recovery.html" class="md-nav__link">
         Point-in-time recovery
       </a>
     </li>
@@ -1166,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-individual-tables.html" class="md-nav__link">
+      <a href="../../restore-individual-tables.html" class="md-nav__link">
         Restore individual tables
       </a>
     </li>
@@ -1187,7 +1271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="encrypted-innodb-tablespace-backups.html" class="md-nav__link">
+      <a href="../../encrypted-innodb-tablespace-backups.html" class="md-nav__link">
         Encrypted InnoDB tablespace backups
       </a>
     </li>
@@ -1201,7 +1285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="flush-tables-with-read-lock.html" class="md-nav__link">
+      <a href="../../flush-tables-with-read-lock.html" class="md-nav__link">
         FLUSH TABLES WITH READ LOCK option
       </a>
     </li>
@@ -1215,7 +1299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="log-enhancements.html" class="md-nav__link">
+      <a href="../../log-enhancements.html" class="md-nav__link">
         Improved log statements
       </a>
     </li>
@@ -1229,7 +1313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lock-options.html" class="md-nav__link">
+      <a href="../../lock-options.html" class="md-nav__link">
         lock-ddl-per-table option improvements
       </a>
     </li>
@@ -1243,7 +1327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="smart-memory-estimation.html" class="md-nav__link">
+      <a href="../../smart-memory-estimation.html" class="md-nav__link">
         Smart memory estimation
       </a>
     </li>
@@ -1255,68 +1339,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Work with binary logs
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="working-with-binary-logs.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../working-with-binary-logs.html" class="md-nav__link">
         Work with binary logs
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#find-the-binary-log-position" class="md-nav__link">
-    Find the binary log position
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#point-in-time-recovery" class="md-nav__link">
-    Point-in-time recovery
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#set-up-a-new-replication-replica" class="md-nav__link">
-    Set up a new replication replica
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1363,7 +1390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="binaries-overview.html" class="md-nav__link">
+      <a href="../../binaries-overview.html" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -1404,7 +1431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-binary-overview.html" class="md-nav__link">
+      <a href="../../xtrabackup-binary-overview.html" class="md-nav__link">
         The xtrabackup binary overview
       </a>
     </li>
@@ -1418,7 +1445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+      <a href="../../xtrabackup-option-reference.html" class="md-nav__link">
         The xtrabackup option reference
       </a>
     </li>
@@ -1432,7 +1459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-implementation-details.html" class="md-nav__link">
+      <a href="../../xtrabackup-implementation-details.html" class="md-nav__link">
         xtrabackup implementation details
       </a>
     </li>
@@ -1446,7 +1473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="configure-xtrabackup.html" class="md-nav__link">
+      <a href="../../configure-xtrabackup.html" class="md-nav__link">
         Configure xtrabackup
       </a>
     </li>
@@ -1460,7 +1487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="analyze-table-statistics.html" class="md-nav__link">
+      <a href="../../analyze-table-statistics.html" class="md-nav__link">
         Analyze table statistics
       </a>
     </li>
@@ -1481,7 +1508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcrypt-binary-overview.html" class="md-nav__link">
+      <a href="../../xbcrypt-binary-overview.html" class="md-nav__link">
         The xbcrypt binary overview
       </a>
     </li>
@@ -1522,7 +1549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbstream-binary-overview.html" class="md-nav__link">
+      <a href="../../xbstream-binary-overview.html" class="md-nav__link">
         The xbstream binary overview
       </a>
     </li>
@@ -1536,7 +1563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="take-streaming-backup.html" class="md-nav__link">
+      <a href="../../take-streaming-backup.html" class="md-nav__link">
         Take a streaming backup
       </a>
     </li>
@@ -1550,7 +1577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="accelerate-backup-process.html" class="md-nav__link">
+      <a href="../../accelerate-backup-process.html" class="md-nav__link">
         Accelerate the backup process
       </a>
     </li>
@@ -1564,7 +1591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="encrypt-backups.html" class="md-nav__link">
+      <a href="../../encrypt-backups.html" class="md-nav__link">
         Encrypt backups
       </a>
     </li>
@@ -1612,7 +1639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-binary-overview.html" class="md-nav__link">
+      <a href="../../xbcloud-binary-overview.html" class="md-nav__link">
         The xbcloud binary overview
       </a>
     </li>
@@ -1653,7 +1680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-s3.html" class="md-nav__link">
+      <a href="../../xbcloud-s3.html" class="md-nav__link">
         Use the xbcloud binary with Amazon S3
       </a>
     </li>
@@ -1667,7 +1694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-iam-profile.html" class="md-nav__link">
+      <a href="../../xbcloud-iam-profile.html" class="md-nav__link">
         Use the xbcloud binary with an IAM instance profile
       </a>
     </li>
@@ -1681,7 +1708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-swift.html" class="md-nav__link">
+      <a href="../../xbcloud-swift.html" class="md-nav__link">
         Use the xbcloud binary with Swift
       </a>
     </li>
@@ -1695,7 +1722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-gcs.html" class="md-nav__link">
+      <a href="../../xbcloud-gcs.html" class="md-nav__link">
         Use the xbcloud binary with Google Cloud Storage
       </a>
     </li>
@@ -1709,7 +1736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-azure.html" class="md-nav__link">
+      <a href="../../xbcloud-azure.html" class="md-nav__link">
         Use the xbcloud binary with Microsoft Azure Cloud Storage
       </a>
     </li>
@@ -1723,7 +1750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-minio.html" class="md-nav__link">
+      <a href="../../xbcloud-minio.html" class="md-nav__link">
         Use the xbcloud binary with MinIO
       </a>
     </li>
@@ -1744,7 +1771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="update-curl-utility.html" class="md-nav__link">
+      <a href="../../update-curl-utility.html" class="md-nav__link">
         Update curl utility
       </a>
     </li>
@@ -1758,7 +1785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-binary-fifo-datasink.html" class="md-nav__link">
+      <a href="../../xbcloud-binary-fifo-datasink.html" class="md-nav__link">
         FIFO data sink
       </a>
     </li>
@@ -1772,7 +1799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-exbackoff.html" class="md-nav__link">
+      <a href="../../xbcloud-exbackoff.html" class="md-nav__link">
         Exponential backoff
       </a>
     </li>
@@ -1828,7 +1855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-overview.html" class="md-nav__link">
+      <a href="../../quickstart-overview.html" class="md-nav__link">
         Quickstart Guide for Percona XtraBackup
       </a>
     </li>
@@ -1877,7 +1904,7 @@
   
   
     <li class="md-nav__item">
-      <a href="installation.html" class="md-nav__link">
+      <a href="../../installation.html" class="md-nav__link">
         Install Percona XtraBackup 8.0 overview
       </a>
     </li>
@@ -1918,7 +1945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="server-backup-version-comparison.html" class="md-nav__link">
+      <a href="../../server-backup-version-comparison.html" class="md-nav__link">
         Server version and backup version comparison
       </a>
     </li>
@@ -1932,7 +1959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="privileges.html" class="md-nav__link">
+      <a href="../../privileges.html" class="md-nav__link">
         Connection and privileges needed
       </a>
     </li>
@@ -1946,7 +1973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="permissions.html" class="md-nav__link">
+      <a href="../../permissions.html" class="md-nav__link">
         Permissions needed
       </a>
     </li>
@@ -1994,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-repo.html" class="md-nav__link">
+      <a href="../../apt-repo.html" class="md-nav__link">
         Use APT repositories
       </a>
     </li>
@@ -2008,7 +2035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-files.html" class="md-nav__link">
+      <a href="../../apt-files.html" class="md-nav__link">
         Files in DEB package
       </a>
     </li>
@@ -2022,7 +2049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-download-deb.html" class="md-nav__link">
+      <a href="../../apt-download-deb.html" class="md-nav__link">
         Downloaded DEB packages
       </a>
     </li>
@@ -2036,7 +2063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-pinning.html" class="md-nav__link">
+      <a href="../../apt-pinning.html" class="md-nav__link">
         Apt pinning
       </a>
     </li>
@@ -2050,7 +2077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="work-with-apparmor.html" class="md-nav__link">
+      <a href="../../work-with-apparmor.html" class="md-nav__link">
         Work with AppArmor
       </a>
     </li>
@@ -2064,7 +2091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-uninstall-xtrabackup.html" class="md-nav__link">
+      <a href="../../apt-uninstall-xtrabackup.html" class="md-nav__link">
         Uninstall
       </a>
     </li>
@@ -2112,7 +2139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-repo.html" class="md-nav__link">
+      <a href="../../yum-repo.html" class="md-nav__link">
         Use RPM repositories
       </a>
     </li>
@@ -2126,7 +2153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-files.html" class="md-nav__link">
+      <a href="../../yum-files.html" class="md-nav__link">
         Files in RPM package
       </a>
     </li>
@@ -2140,7 +2167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-download-rpm.html" class="md-nav__link">
+      <a href="../../yum-download-rpm.html" class="md-nav__link">
         Downloaded RPM packages
       </a>
     </li>
@@ -2154,7 +2181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="work-with-selinux.html" class="md-nav__link">
+      <a href="../../work-with-selinux.html" class="md-nav__link">
         Work with SELinux
       </a>
     </li>
@@ -2168,7 +2195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-uninstall-xtrabackup.html" class="md-nav__link">
+      <a href="../../yum-uninstall-xtrabackup.html" class="md-nav__link">
         Uninstall
       </a>
     </li>
@@ -2216,7 +2243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="binary-tarball.html" class="md-nav__link">
+      <a href="../../binary-tarball.html" class="md-nav__link">
         Install with binary tarballs
       </a>
     </li>
@@ -2230,7 +2257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="binary-tarball-names.html" class="md-nav__link">
+      <a href="../../binary-tarball-names.html" class="md-nav__link">
         Binary tarballs available
       </a>
     </li>
@@ -2278,7 +2305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="compile-xtrabackup.html" class="md-nav__link">
+      <a href="../../compile-xtrabackup.html" class="md-nav__link">
         Compile and install Percona XtraBackup 8.0 from source
       </a>
     </li>
@@ -2326,7 +2353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="docker.html" class="md-nav__link">
+      <a href="../../docker.html" class="md-nav__link">
         Run Percona XtraBackup 8.0 in a Docker container
       </a>
     </li>
@@ -2409,7 +2436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-full-backup.html" class="md-nav__link">
+      <a href="../../create-full-backup.html" class="md-nav__link">
         Create a full backup
       </a>
     </li>
@@ -2423,7 +2450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-full-backup.html" class="md-nav__link">
+      <a href="../../prepare-full-backup.html" class="md-nav__link">
         Prepare a full backup
       </a>
     </li>
@@ -2471,7 +2498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-incremental-backup.html" class="md-nav__link">
+      <a href="../../create-incremental-backup.html" class="md-nav__link">
         Create an incremental backup
       </a>
     </li>
@@ -2485,7 +2512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-incremental-backup.html" class="md-nav__link">
+      <a href="../../prepare-incremental-backup.html" class="md-nav__link">
         Prepare an incremental backup
       </a>
     </li>
@@ -2499,7 +2526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="page-tracking.html" class="md-nav__link">
+      <a href="../../page-tracking.html" class="md-nav__link">
         Take an incremental backup using page tracking
       </a>
     </li>
@@ -2547,7 +2574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-compressed-backup.html" class="md-nav__link">
+      <a href="../../create-compressed-backup.html" class="md-nav__link">
         Create a compressed backup
       </a>
     </li>
@@ -2561,7 +2588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-compressed-backup.html" class="md-nav__link">
+      <a href="../../prepare-compressed-backup.html" class="md-nav__link">
         Prepare the backup
       </a>
     </li>
@@ -2609,7 +2636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-partial-backup.html" class="md-nav__link">
+      <a href="../../create-partial-backup.html" class="md-nav__link">
         Create a partial backup
       </a>
     </li>
@@ -2623,7 +2650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-partial-backup.html" class="md-nav__link">
+      <a href="../../prepare-partial-backup.html" class="md-nav__link">
         Prepare a partial backup
       </a>
     </li>
@@ -2671,7 +2698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-individual-partition-backup.html" class="md-nav__link">
+      <a href="../../create-individual-partition-backup.html" class="md-nav__link">
         Create an individual partitions backup
       </a>
     </li>
@@ -2685,7 +2712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-individual-partitions-backup.html" class="md-nav__link">
+      <a href="../../prepare-individual-partitions-backup.html" class="md-nav__link">
         Prepare an individual partitions backup
       </a>
     </li>
@@ -2733,7 +2760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-a-backup.html" class="md-nav__link">
+      <a href="../../restore-a-backup.html" class="md-nav__link">
         Restore full, incremental, compressed backups
       </a>
     </li>
@@ -2747,7 +2774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-partial-backup.html" class="md-nav__link">
+      <a href="../../restore-partial-backup.html" class="md-nav__link">
         Restore a partial backup
       </a>
     </li>
@@ -2761,7 +2788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-individual-partitions.html" class="md-nav__link">
+      <a href="../../restore-individual-partitions.html" class="md-nav__link">
         Restore an individual partitions backup
       </a>
     </li>
@@ -2809,7 +2836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="set-up-replication.html" class="md-nav__link">
+      <a href="../../set-up-replication.html" class="md-nav__link">
         How to set up a replica for replication in 6 simple steps with Percona XtraBackup
       </a>
     </li>
@@ -2823,7 +2850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-gtid-replica.html" class="md-nav__link">
+      <a href="../../create-gtid-replica.html" class="md-nav__link">
         How to create a new (or repair a broken) GTID-based replica
       </a>
     </li>
@@ -2837,7 +2864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="make-backup-in-replication-env.html" class="md-nav__link">
+      <a href="../../make-backup-in-replication-env.html" class="md-nav__link">
         Make backups in replication environments
       </a>
     </li>
@@ -2851,7 +2878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="varify-backup.html" class="md-nav__link">
+      <a href="../../varify-backup.html" class="md-nav__link">
         Verify backups with replication and pt-checksum
       </a>
     </li>
@@ -2907,7 +2934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="error-message-instant.html" class="md-nav__link">
+      <a href="../../error-message-instant.html" class="md-nav__link">
         Error Message: Found tables with row versions due to INSTANT ADD/DROP columns
       </a>
     </li>
@@ -2921,7 +2948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-exit-codes.html" class="md-nav__link">
+      <a href="../../xtrabackup-exit-codes.html" class="md-nav__link">
         xtrabackup exit codes
       </a>
     </li>
@@ -2970,7 +2997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-files.html" class="md-nav__link">
+      <a href="../../xtrabackup-files.html" class="md-nav__link">
         Index of files created by Percona XtraBackup
       </a>
     </li>
@@ -2984,7 +3011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="faq.html" class="md-nav__link">
+      <a href="../../faq.html" class="md-nav__link">
         Frequently asked questions
       </a>
     </li>
@@ -2998,7 +3025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="glossary.html" class="md-nav__link">
+      <a href="../../glossary.html" class="md-nav__link">
         Glossary
       </a>
     </li>
@@ -3012,7 +3039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="toolkit-version-check.html" class="md-nav__link">
+      <a href="../../toolkit-version-check.html" class="md-nav__link">
         Percona Toolkit version checking
       </a>
     </li>
@@ -3026,7 +3053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="trademark-policy.html" class="md-nav__link">
+      <a href="../../trademark-policy.html" class="md-nav__link">
         Trademark policy
       </a>
     </li>
@@ -3040,7 +3067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="copyright-and-licensing-information.html" class="md-nav__link">
+      <a href="../../copyright-and-licensing-information.html" class="md-nav__link">
         Copyright and licensing information
       </a>
     </li>
@@ -3090,22 +3117,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#find-the-binary-log-position" class="md-nav__link">
-    Find the binary log position
+  <a href="#release-highlights" class="md-nav__link">
+    Release highlights
+  </a>
+  
+    <nav class="md-nav" aria-label="Release highlights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compression" class="md-nav__link">
+    Compression
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    New features
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#point-in-time-recovery" class="md-nav__link">
-    Point-in-time recovery
+  <a href="#improvements" class="md-nav__link">
+    Improvements
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#set-up-a-new-replication-replica" class="md-nav__link">
-    Set up a new replication replica
+  <a href="#bug-fix" class="md-nav__link">
+    Bug fix
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links" class="md-nav__link">
+    Useful links
   </a>
   
 </li>
@@ -3127,14 +3181,14 @@
                   
                   
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/working-with-binary-logs.md"
+                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/release-notes/8.0/8.0.34-29.0.md"
                     title=""
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
                   </a>
                   <a
-                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/working-with-binary-logs.md"
+                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/release-notes/8.0/8.0.34-29.0.md"
                     title="View source of this page"
                     class="md-content__button md-icon"
                   >
@@ -3150,29 +3204,44 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="work-with-binary-logs">Work with binary logs<a class="headerlink" href="#work-with-binary-logs" title="Permanent link">&para;</a></h1>
-<p>The <code>xtrabackup</code> binary integrates with the <code>log_status table</code>. This integration enables <code>xtrabackup</code> to print out the backup’s corresponding binary log position, so that you can use this binary log position to provision a new replica or perform point-in-time recovery.</p>
-<h2 id="find-the-binary-log-position">Find the binary log position<a class="headerlink" href="#find-the-binary-log-position" title="Permanent link">&para;</a></h2>
-<p>You can find the binary log position corresponding to a backup after the backup has been taken. If your backup is from a server with binary logging enabled, <code>xtrabackup</code> creates a file named <code>xtrabackup_binlog_info</code> in the target directory. This file contains the binary log file name and position of the exact point when the backup was taken.</p>
-<details class="example">
-<summary>Expected output during the backup stage</summary>
-<div class="no-copy highlight"><pre><span></span><code>210715 14:14:59 Backup created in directory &#39;/backup/&#39;
-MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
-. . .
-210715 14:15:00 completed OK!
-</code></pre></div>
-</details>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>As of Percona XtraBackup 8.0.26-18.0, xtrabackup no longer creates the <code>xtrabackup_binlog_pos_innodb</code> file. This change is because MySQL and Percona Server no longer update the binary log information on global transaction system section of <code>ibdata</code>. You should rely on <code>xtrabackup_binlog_info</code> regardless of the storage engine in use.</p>
-</div>
-<h2 id="point-in-time-recovery">Point-in-time recovery<a class="headerlink" href="#point-in-time-recovery" title="Permanent link">&para;</a></h2>
-<p>To perform a point-in-time recovery from an <code>xtrabackup</code> backup, you should prepare and restore the backup, and then replay binary logs from the point shown in the <code>xtrabackup_binlog_info</code> file.</p>
-<p>A more detailed procedure is found here.</p>
-<h2 id="set-up-a-new-replication-replica">Set up a new replication replica<a class="headerlink" href="#set-up-a-new-replication-replica" title="Permanent link">&para;</a></h2>
-<p>To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. If you are using version 8.0.22 or earlier, in your <code>CHANGE MASTER TO</code> command, use the binary log filename and position shown in the <code>xtrabackup_binlog_info</code> file to start replication.</p>
-<p>If you are using 8.0.23 or later, use the <a href="https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO and the appropriate options</a>. <code>CHANGE_MASTER_TO</code> is deprecated.</p>
-<p>A more detailed procedure is found in  How to setup a replica for replication in 6 simple steps with Percona XtraBackup.</p>
+                <h1 id="percona-xtrabackup-8034-29-2023-08-21">Percona XtraBackup 8.0.34-29 (2023-08-21)<a class="headerlink" href="#percona-xtrabackup-8034-29-2023-08-21" title="Permanent link">&para;</a></h1>
+<p>Get started with <a href="quickstart-overview.md">Quickstart Guide for Percona XtraBackup</a>.</p>
+<p><a href="https://www.percona.com/software/mysql-database/percona-xtrabackup">Percona XtraBackup (PXB)</a> is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems. Maintain fully available applications during planned maintenance windows with Percona XtraBackup.</p>
+<h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.0.34 allows taking backups of Percona Server for MySQL 8.0.35 and MySQL 8.0.35 and higher versions.</p>
+<h3 id="compression">Compression<a class="headerlink" href="#compression" title="Permanent link">&para;</a></h3>
+<p>The <a href="../../create-compressed-backup.html">ZSTD compression algorithm</a> is moved to <a href="../../glossary.html#general-availability-ga">General Availability</a> and becomes the default compression algorithm for the <a href="../../create-compressed-backup.html"><code>--compress</code></a> option.</p>
+<p>The <code>QuickLZ</code> compression algorithm is removed and is not used for <code>--backup</code>. The <code>--decompress</code> option still uses <code>qpress</code> for backward compatibility to decompress backups taken by older versions of Percona XtraBackup.</p>
+<h2 id="new-features">New features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://jira.percona.com/browse/PXB-3059">PXB-3059</a>: Adds the <code>--redo-log-arch-dir=name</code> option to<br />
+set the redo log archive destination directory. (Thanks to wangbincmss for providing the patch)</li>
+</ul>
+<h2 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://jira.percona.com/browse/PXB-3007">PXB-3007</a>: The <a href="../../create-compressed-backup.html">ZSTD compression algorithm</a> is moved to <a href="../../glossary.html#general-availability-ga">General Availability</a> and becomes the default compression algorithm for the <a href="../../create-compressed-backup.html"><code>--compress</code></a> option.</li>
+</ul>
+<h2 id="bug-fix">Bug fix<a class="headerlink" href="#bug-fix" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="https://jira.percona.com/browse/PXB-3073">PXB-3073</a>: An unresponsive host may cause <code>xbcloud</code> to become stuck. Added a <code>--timeout</code> option to <code>xbcloud</code>.</p>
+</li>
+<li>
+<p><a href="https://jira.percona.com/browse/PXB-3088">PXB-3088</a>: Percona XtraBackup could not prepare the backup if the redo log size was more than 128G. (Thanks to Ahmed Et-tanany for providing the fix for this issue)</p>
+</li>
+<li>
+<p><a href="https://jira.percona.com/browse/PXB-3079">PXB-3079</a>: The prepare phase skipped rollback on encrypted tables and was completed successfully if the keyring plugin was not loaded.</p>
+</li>
+<li>
+<p><a href="https://jira.percona.com/browse/PXB-2860">PXB-2860</a>: Percona XtraBackup locked table even when the  <code>--tables-exclude</code> and <code>--lock-ddl-per-table</code> options were used.</p>
+</li>
+</ul>
+<h2 id="useful-links">Useful links<a class="headerlink" href="#useful-links" title="Permanent link">&para;</a></h2>
+<p>Install <a href="../../installation.html">Percona XtraBackup 8.0</a></p>
+<p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub location</a></p>
+<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p>
+<p><a href="https://github.com/percona/pxb-docs/blob/8.0/contributing.md">Contribute to the documentation</a></p>
+<p>For <a href="https://www.percona.com/training">training</a>, contact <a href="https://learn.percona.com/contact-me">Percona Training - Start learning now</a>.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -3195,7 +3264,7 @@ MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
   <small>
     
       Last update:
-      2023-06-12
+      2023-08-01
     
   </small>
 </div>
@@ -3316,17 +3385,17 @@ MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.220ee61c.min.js"></script>
+      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
-          <script src="js/version-select.js"></script>
+          <script src="../../js/version-select.js"></script>
         
       
         
-          <script src="js/promptremover.js"></script>
+          <script src="../../js/promptremover.js"></script>
         
       
     
