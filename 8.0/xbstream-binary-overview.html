@@ -3136,30 +3136,7 @@ because they are mutually exclusive. This option has been implemented in
 appropriate <code>posix_fadvise()</code> calls when available.</p>
 <p>When compression is enabled with <em>xtrabackup</em> all data is being compressed,
 including the transaction log file and meta data files, using the specified
-compression algorithm. Percona XtraBackup supports the following compression algorithms:</p>
-<p><code>quicklz</code> </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either <code>LZ4</code> or Zstandard (<code>ZSTD</code>) compression algorithms.</p>
-</div>
-<p>The resulting files have the qpress archive format. Every <code>\*.qp</code> file
-produced by <em>xtrabackup</em> is essentially a one-file qpress archive and can be extracted and uncompressed by the <code>qpress file archiver</code>. This means that there is no need to decompress entire backup to restore a single table as with <code>tar.gz</code>. </p>
-<p>To decompress individual files, run <em>xbstream</em> with the
-<code>--decompress</code> option. You may control the number of threads
-used for decompressing by passing the <code>--decompress-threads</code> option.</p>
-<p>Also, files can be decompressed using the <strong>qpress</strong> tool. The tool supports multi-threaded decompression.</p>
-<p><code>lz4</code></p>
-<p>To compress files using the <code>lz4</code> compression algorithm, set <code>--compress</code> option to <code>lz4</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>lz4<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
-</code></pre></div>
-<p><code>Zstandard (ZSTD)</code></p>
-<p>The Zstandard (ZSTD) compression algorithm is a <a href="glossary.html#tech-preview">tech preview</a> feature. Before using ZSTD in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.</p>
-<p><a href="release-notes/8.0/8.0.30-23.0.html">Percona XtraBackup 8.0.30-23</a> adds support for the <code>Zstandard (ZSTD)</code> compression algorithm. <code>ZSTD</code> is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. </p>
-<p>To compress files using the <code>ZSTD</code> compression algorithm, use the <code>--compress=zstd</code> option. The resulting files have the <code>\*.zst</code> format. </p>
-<p>You can specify <code>ZSTD</code> compression level with the <a href="xtrabackup-option-reference.html#compress-zstd-level"><code>--compress-zstd-level(=#)</code></a> option. The defaul value is <code>1</code>.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
-</code></pre></div>
-<p>To decompress files, use the <code>--decompress</code> option. </p>
+compression algorithm. Read more about supported compression algorithms in the <a href="create-compressed-backup.html">Create a compressed backup</a> document.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -3182,7 +3159,7 @@ used for decompressing by passing the <code>--decompress-threads</code> option.<
   <small>
     
       Last update:
-      2023-06-12
+      2023-08-21
     
   </small>
 </div>

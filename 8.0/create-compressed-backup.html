@@ -9,8 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Percona XtraBackup supports compressed backups. A local or streaming
-backup can be compressed or decompressed with xbstream.">
+        <meta name="description" content="Percona XtraBackup supports compressed backups. A local or streaming backup can be compressed or decompressed with xbstream.">
       
       
         <meta name="author" content="Percona LLC">
@@ -2502,9 +2501,42 @@ backup can be compressed or decompressed with xbstream.">
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Create a compressed backup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="create-compressed-backup.html" class="md-nav__link md-nav__link--active">
         Create a compressed backup
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-updates" class="md-nav__link">
+    Version updates
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3039,6 +3071,21 @@ backup can be compressed or decompressed with xbstream.">
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-updates" class="md-nav__link">
+    Version updates
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3078,16 +3125,52 @@ backup can be compressed or decompressed with xbstream.">
 
                 <!-- Markdown content -->
                 <h1 id="create-a-compressed-backup">Create a compressed backup<a class="headerlink" href="#create-a-compressed-backup" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup supports compressed backups. A local or streaming
-backup can be compressed or decompressed with <em>xbstream</em>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either <code>LZ4</code> or Zstandard (<code>ZSTD</code>) compression algorithms.</p>
-</div>
-<p>To make a compressed backup, use the <code>--compress</code> option along
-with the <code>--backup</code> and <code>--target-dir</code> options. </p>
-<p>By default, the <code>--compress</code> option uses the <code>qpress</code> tool that you can install with
-the <code>percona-release</code> package configuration tool as follows:</p>
+<p>Percona XtraBackup supports compressed backups. A local or streaming backup can be compressed or decompressed with <em>xbstream</em>.</p>
+<p>To make a compressed backup, use the <code>--compress</code> option along with the <code>--backup</code> and <code>--target-dir</code> options. </p>
+<h2 id="version-updates">Version updates<a class="headerlink" href="#version-updates" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>Starting with Percona XtraBackup 8.0.34-29</summary>
+<p>Percona XtraBackup removes <code>qpress/QuickLZ</code> and moves the <code>ZSTD</code> compression method to <a href="glossary.html#general-availability-ga">General Availability</a>. With this version <code>ZSTD</code> becomes the default compression method for the <code>--compress</code> option.</p>
+<p>The following compression algorithms are supported:</p>
+<p><code>Zstandard (ZSTD)</code></p>
+<p><code>ZSTD</code> is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. <code>ZSTD</code> is the default compression method for the <code>--compress</code> option.</p>
+<p>To compress files using the <code>ZSTD</code> compression algorithm, run the following command:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+</code></pre></div>
+<p>You can specify <code>ZSTD</code> compression level with the <a href="xtrabackup-option-reference.html#compress-zstd-level"><code>--compress-zstd-level(=#)</code></a> option. The default value is <code>1</code>.</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+</code></pre></div>
+<p>If you want to speed up the compression you can use the parallel
+compression, which can be enabled with <code>--compress-threads</code> option.
+Following example will use four threads for compression:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--compress-threads<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/data/compressed/
+</code></pre></div>
+<p>The expected output:</p>
+<div class="no-copy highlight"><pre><span></span><code>...
+170223 13:00:38 [01] Compressing ./test/sbtest1.frm to /tmp/compressed/test/sbtest1.frm.qp
+170223 13:00:38 [01]        ...done
+170223 13:00:38 [01] Compressing ./test/sbtest2.frm to /tmp/compressed/test/sbtest2.frm.qp
+170223 13:00:38 [01]        ...done
+...
+170223 13:00:39 [00] Compressing xtrabackup_info
+170223 13:00:39 [00]        ...done
+xtrabackup: Transaction log of lsn (9291934) to (9291934) was copied.
+170223 13:00:39 completed OK!
+</code></pre></div>
+<p><code>lz4</code></p>
+<p>To compress files using the <code>lz4</code> compression algorithm, set <code>--compress</code> option to <code>lz4</code>:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>lz4<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+</code></pre></div>
+<p>To decompress files, use the <code>--decompress</code> option. </p>
+</details>
+<details class="note">
+<summary>Starting with Percona XtraBackup 8.0.31-24</summary>
+<p>Using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either <code>LZ4</code> or Zstandard (<code>ZSTD</code>) compression algorithms. <code>ZSTD</code> compression algorithm is in <a href="glossary.html#tech-preview">tech preview</a>. </p>
+</details>
+<details class="note">
+<summary>Before Percona XtraBackup 8.0.31-24</summary>
+<p>By default, the <code>--compress</code> option uses the <code>qpress</code> tool that you can install with the <code>percona-release</code> package configuration tool as follows:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>tools
 $<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
 $<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>qpress
@@ -3099,7 +3182,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>
 <p>If <em>Percona XtraBackup</em> is intended to be used in combination with
 the upstream MySQL Server, you only need to enable the <code>tools</code>
 repository: <code>percona-release enable-only tools</code>.</p>
-<p>Percona XtraBackup supports the following compression algorithms:</p>
+<p>The following compression algorithms are supported:</p>
 <p><code>quicklz</code></p>
 <p>To compress files using the <code>quicklz</code> compression algorithm, use <code>--compress</code> option:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
@@ -3115,7 +3198,7 @@ repository: <code>percona-release enable-only tools</code>.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>zstd<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>You can specify <code>ZSTD</code> compression level with the <a href="xtrabackup-option-reference.html#compress-zstd-level"><code>--compress-zstd-level(=#)</code></a> option. The default value is <code>1</code>.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>If you want to speed up the compression you can use the parallel
 compression, which can be enabled with <code>--compress-threads</code> option.
@@ -3123,8 +3206,7 @@ Following example will use four threads for compression:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--compress-threads<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
-<details class="example">
-<summary>Expected output</summary>
+<p>The expected output:</p>
 <div class="no-copy highlight"><pre><span></span><code>...
 170223 13:00:38 [01] Compressing ./test/sbtest1.frm to /tmp/compressed/test/sbtest1.frm.qp
 170223 13:00:38 [01]        ...done
@@ -3160,7 +3242,7 @@ xtrabackup: Transaction log of lsn (9291934) to (9291934) was copied.
   <small>
     
       Last update:
-      2023-06-12
+      2023-08-21
     
   </small>
 </div>
