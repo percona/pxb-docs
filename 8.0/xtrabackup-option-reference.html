@@ -2015,6 +2015,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#-redo-log-arch-dirname" class="md-nav__link">
+    --redo-log-arch-dir(=name)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#-register-redo-log-consumer" class="md-nav__link">
     --register-redo-log-consumer()
   </a>
@@ -4637,6 +4644,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#-redo-log-arch-dirname" class="md-nav__link">
+    --redo-log-arch-dir(=name)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#-register-redo-log-consumer" class="md-nav__link">
     --register-redo-log-consumer()
   </a>
@@ -5536,7 +5550,7 @@ on the command-line.</p>
 <p>Makes xtrabackup print out parameters that can be used for
 copying the data files back to their original locations to restore them.</p>
 <h3 id="-read-buffer-size">--read-buffer-size()<a class="headerlink" href="#-read-buffer-size" title="Permanent link">&para;</a></h3>
-<p>Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <code>--encrypt-chunk-size</code>.</p>
+<p>Sets the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <code>--encrypt-chunk-size</code>.</p>
 <h3 id="-rebuild-indexes">--rebuild-indexes()<a class="headerlink" href="#-rebuild-indexes" title="Permanent link">&para;</a></h3>
 <p>Rebuilds indexes in a compact backup. This option only has effect when the
 <code>--prepare</code> and <code>--rebuild-threads</code> options are provided.</p>
@@ -5544,6 +5558,9 @@ copying the data files back to their original locations to restore them.</p>
 <p>Uses the given number of threads to rebuild indexes in a compact backup. This
 option only has effect with the <code>--prepare</code> and
 <code>--rebuild-indexes</code> options.</p>
+<h3 id="-redo-log-arch-dirname">--redo-log-arch-dir(=name)<a class="headerlink" href="#-redo-log-arch-dirname" title="Permanent link">&para;</a></h3>
+<p>This option sets the redo log archive directory if this directory is not already set on the server.</p>
+<p>Implemented in <a href="release-notes/8.0/8.0.34-29.0.html">Percona XtraBackup 8.0.34-29</a>.</p>
 <h3 id="-register-redo-log-consumer">--register-redo-log-consumer()<a class="headerlink" href="#-register-redo-log-consumer" title="Permanent link">&para;</a></h3>
 <p>The <code>--register-redo-log-consumer</code> parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.</p>
 <p>Implemented in <a href="release-notes/8.0/8.0.30-23.0.html">Percona XtraBackup 8.0.30-23</a>.</p>
