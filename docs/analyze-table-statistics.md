@@ -1,11 +1,13 @@
+<!---check with Marce if this topic is accurate 20230817--->
+
 # Analyze table statistics
 
 !!! note
 
-    As of *Percona XtraBackup* 8.0.30 the `--stats` option is deprecated and may be removed in future releases. We no longer support using the `--stats` option in *Percona XtraBackup* 8.0.29 and older versions.
+    The `--stats` option is deprecated in Percona XtraBackup 8.1 and may be removed in a future release.
 
 The *xtrabackup* binary can analyze InnoDB data files in read-only mode to give
-statistics about them. To do this, you should use the `--stats`
+statistics about them. To do this, use the `--stats`
 option. You can combine this with the `--tables` option to limit the
 files to examine. It also uses the `--use-memory` option.
 

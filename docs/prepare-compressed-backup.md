@@ -1,7 +1,7 @@
 # Prepare the backup
 
 Before you can prepare the backup you’ll need to uncompress all the files.
-*Percona XtraBackup* has implemented `--decompress` option
+Percona XtraBackup has implemented `--decompress` option
 that can be used to decompress the backup.
 
 ```{.bash data-prompt="$"}
@@ -12,7 +12,7 @@ $ xtrabackup --decompress --target-dir=/data/compressed/
    
     `--parallel` can be used with `--decompress` option to decompress multiple files simultaneously. 
 
-*Percona XtraBackup* does not automatically remove the compressed files. In order to clean up the backup directory you should use `--remove-original` option. Even if they’re not removed these files will not be copied/moved over to the datadir if `--copy-back` or `--move-back` are used.
+Percona XtraBackup does not automatically remove the compressed files. In order to clean up the backup directory you should use `--remove-original` option. Even if they’re not removed these files will not be copied/moved over to the datadir if `--copy-back` or `--move-back` are used.
 
 When the files are uncompressed you can prepare the backup with the `--prepare` option:
 

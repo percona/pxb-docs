@@ -1,3 +1,7 @@
+<!---
+    assumes the Percona XtraBackup 8.0.33-28 changes are default in 8.1
+    --->
+
 # Dictionary cache 
 
 Percona XtraBackup is based on how [`crash recovery`](https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_crash_recovery) works. Percona XtraBackup copies the InnoDB data files, which results in data that is internally inconsistent; then the `prepare` phase performs crash recovery on the files to make a consistent, usable database again.
@@ -27,7 +31,7 @@ After initializing the data dictionary engine and the data dictionary cache, the
 For example, InnoDB uses the `table_id` (also known as the `se_private_id`) for a table definition. Percona XtraBackup does not behave like a server and does not have access to the data dictionary. XtraBackup initializes the InnoDB engine and uses the `InnoDB table object` (`dict_table_t`) when needed. XtraBackup relies on Serialized Dictionary Information (SDI) that is stored in the tablespace. SDI is a JSON representation of a table.
 
 ## Version changes
-
+<!---
 Prior to Percona XtraBackup 8.0.33-28, XtraBackup loads the SDI from every `.IBD` file and all tables into cache as non-evictable. Making the tables non-evictable essentially disables the LRU cache. Every table remains in memory until the operation ends. 
 
 This method has the following issues:
@@ -36,12 +40,12 @@ This method has the following issues:
 * All tables loaded into the cache increases the time required in the `--prepare` phase
 * Unnecessary tables can lead to out-of-memory errors
 * Huge number of tables and IBD files may cause an exit in the `--prepare` phase
-
-Percona XtraBackup 8.0.33-28 implements a new design and tables are loaded as `evictable`. XtraBackup scans the B-tree index of the data dictionary tables `mysql.indexes` and `mysql.index_partitions` to establish a relationship between the `table_id` and the tablespace(space_id). XtraBackup uses this relationship during transaction rollback. XtraBackup does not load user tables unless there is a transaction rollback on them.
+--->
+In Percona XtraBackup 8.1, tables are loaded as `evictable`. XtraBackup scans the B-tree index of the data dictionary tables `mysql.indexes` and `mysql.index_partitions` to establish a relationship between the `table_id` and the `tablespace(space_id)`. XtraBackup uses this relationship during transaction rollback. XtraBackup does not load user tables unless there is a transaction rollback on them.
 
 A background thread or a Percona XtraBackup main thread handles the cache eviction when the cache size limit is reached.
 
-This new design provides the following benefits during the `--prepare` phase:
+This  design provides the following benefits during the `--prepare` phase:
 
 * Uses less memory
 * Uses less IO

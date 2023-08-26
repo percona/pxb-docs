@@ -1,6 +1,10 @@
+<!---
+    Check if this is active
+    --->
+
 # Take an incremental backup using page tracking
 
-*Percona XtraBackup* 8.0.27 adds support for page tracking functionality for an [incremental backup](create-incremental-backup.md).
+Supports for page tracking functionality for an [incremental backup](create-incremental-backup.md).
 
 To create an incremental backup with page tracking, Percona XtraBackup uses
 the MySQL `mysqlbackup` component. This component provides a list of pages
@@ -36,7 +40,7 @@ The option has the following benefits:
 
 * Allows the use of page tracking for an incremental backup if the page tracking data is available from the backup’s start checkpoint LSN.
 
-*Percona XtraBackup* processes a list of all the tracked pages in memory. If *Percona XtraBackup* does not have enough available memory to process this list, the process throws an error and exits. For example, if an incremental backup uses 200GB, *Percona XtraBackup* can use an additional 100MB of memory to process and store the page tracking data. 
+Percona XtraBackup processes a list of all the tracked pages in memory. If Percona XtraBackup does not have enough available memory to process this list, the process throws an error and exits. For example, if an incremental backup uses 200GB, Percona XtraBackup can use an additional 100MB of memory to process and store the page tracking data. 
 
 The examples of creating full and incremental backups using the `--page-tracking` option:
 

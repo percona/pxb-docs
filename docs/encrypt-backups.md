@@ -1,7 +1,7 @@
 # Encrypt backups
 
-*Percona XtraBackup* supports encrypting and decrypting local and streaming
-backups with *xbstream* option adding another layer of protection. The
+Percona XtraBackup supports encrypting and decrypting local and streaming
+backups with xbstream option adding another layer of protection. The
 encryption is implemented using the `libgcrypt` library from GnuPG.
 
 ## Create encrypted backups
@@ -32,7 +32,7 @@ This value then can be used as the encryption key
 
 ### The `--encrypt-key` option
 
-Example of the *xtrabackup* command using the `--encrypt-key` should
+Example of the xtrabackup command using the `--encrypt-key` should
 look like this:
 
 ```{.bash data-prompt="$"}
@@ -73,14 +73,14 @@ used to encrypt the whole folder:
 $ for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 < $i > $(dirname $i)/$(basename $i .xbcrypt) && rm $i; done
 ```
 
-*Percona XtraBackup* `--decrypt` option has been implemented that can be
+Percona XtraBackup `--decrypt` option has been implemented that can be
 used to decrypt the backups:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --decrypt=AES256 --encrypt-key="U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=" --target-dir=/data/backup/
 ```
 
-*Percona XtraBackup* doesn’t automatically remove the encrypted files. In order
+Percona XtraBackup doesn’t automatically remove the encrypted files. In order
 to clean up the backup directory users should remove the `\*.xbcrypt` files.
 
 !!! note
@@ -100,7 +100,7 @@ $ xtrabackup --prepare --target-dir=/data/backup/
 
 ## Restore encrypted backups
 
-*xtrabackup* offers the `--copy-back` option to restore a backup to the
+xtrabackup offers the `--copy-back` option to restore a backup to the
 server’s datadir:
 
 ```{.bash data-prompt="$"}

@@ -27,14 +27,12 @@ the backup finishes.
 
 !!! note
 
-    Prior to *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
-
-    As of *Percona XtraBackup* 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
+    Using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
 
 Using this option is always recommended when taking backups from a replica server.
 
 !!! warning
    
     Make sure your replica is a true replica of the source before using it as a
-    source for backup. A good tool to validate a replica is [pt-table-checksum](http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html).
+    source for backup. A good tool to validate a replica is [pt-table-checksum](https://docs.percona.com/percona-toolkit/pt-table-checksum.html).
 

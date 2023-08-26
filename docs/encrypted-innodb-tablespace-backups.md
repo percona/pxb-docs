@@ -7,9 +7,10 @@ encryption for physical tablespace data files.
 For an authenticated user or application to access an  encrypted 
 tablespace, InnoDB uses the master encryption key to decrypt 
 the tablespace key. The master encryption key is stored in a keyring. 
-*xtrabackup* supports two keyring plugins: `keyring_file`, and 
+xtrabackup supports two keyring plugins: `keyring_file`, and 
 `keyring_vault`. These plugins are installed into the `plugin` directory.
 
+<!---
 ## Version updates
 
 Percona XtraBackup 8.0.25-17 adds support for the `keyring_file` component,
@@ -28,7 +29,7 @@ Service (AWS KMS). AWS KMS is cloud-based encryption and key management
 service. The keys and functionality can be used for other AWS services
 or your applications that use AWS. No configuration is required to back
 up a server with AWS KMS-enabled encryption. 
-
+--->
 ## Use `keyring_file` plugin
 
 In order to back up and prepare a database containing encrypted InnoDB  
@@ -40,7 +41,7 @@ $ xtrabackup --backup --target-dir=/data/backup/ --user=root \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-After *xtrabackup* takes the backup, the following
+After xtrabackup takes the backup, the following
 message confirms the action:
 
 ??? example "Confirmation message"
@@ -52,7 +53,7 @@ message confirms the action:
 
 !!! warning
    
-    *xtrabackup* does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.
+    xtrabackup does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.
 
 ### Prepare the backup with the `keyring_file` plugin
 
@@ -63,7 +64,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-After *xtrabackup* takes the backup, the following message confirms
+After xtrabackup takes the backup, the following message confirms
 the action:
 
 ??? example "Confirmation message"
@@ -90,7 +91,7 @@ The following command creates a backup in the `/data/backup` directory:
 $ xtrabackup --backup --target-dir=/data/backup --user=root
 ```
 
-After *xtrabackup* completes the action, the following message confirms
+After xtrabackup completes the action, the following message confirms
 the action:
 
 ??? example "Confirmation message"
@@ -102,8 +103,8 @@ the action:
 
 ### Prepare the backup with the `keyring_vault` plugin
 
-To prepare the backup, *xtrabackup* must access the keyring.
-*xtrabackup* does not communicate with the *MySQL* server or read the
+To prepare the backup, xtrabackup must access the keyring.
+xtrabackup does not communicate with the MySQL server or read the
 default `my.cnf` configuration file. Specify the keyring settings in the
 command line:
 
@@ -114,7 +115,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 
 Review [using the keyring vault plugin](https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin) for a description of keyring vault plugin settings.
 
-After *xtrabackup* completes the action, the following message confirms
+After xtrabackup completes the action, the following message confirms
 the action:
 
 ??? example "Confirmation message"
@@ -173,7 +174,7 @@ contains encrypted InnoDB tablespaces.
 $ xtrabackup --backup --target-dir=/data/backup --user=root
 ```
 
-After *xtrabackup* completes the action, the following message confirms
+After xtrabackup completes the action, the following message confirms
 the action:
 
 ??? example "Confirmation message"
@@ -185,12 +186,12 @@ the action:
 
 !!! warning
    
-    *xtrabackup* does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.
+    xtrabackup does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.
 
 
 ### Prepare the backup with the `keyring_file` component
 
-*xtrabackup* reads the keyring_file component configuration
+xtrabackup reads the keyring_file component configuration
 from `xtrabackup_component_keyring_file.cnf`. You must specify the
 keyring_file data path if the `keyring-file-data` is not located in the
 attribute `PATH` from the xtrabackup_component_keyring_file.cnf.
@@ -205,7 +206,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 
 xtrabackup attempts to read `xtrabackup_component_keyring_file.cnf`. You can assign another keyring file component configuration by passing the `--component-keyring-file-config` option.
 
-After *xtrabackup* completes preparing the backup, the following message confirms
+After xtrabackup completes preparing the backup, the following message confirms
 the action:
 
 ??? example "Confirmation message"
@@ -226,7 +227,7 @@ is similar to taking the Incremental Backups with unencrypted tablespace. The `k
 
 ## Create an incremental backup
 
-To make an incremental backup, begin with a full backup. The *xtrabackup*
+To make an incremental backup, begin with a full backup. The xtrabackup
 binary
 writes a file called `xtrabackup_checkpoints` into the backup’s target
 directory. This file contains a line showing the `to_lsn`, which is the
@@ -397,7 +398,7 @@ the same keyring that the server is using. It may not be possible if the backup 
 prepared on a different server or at a much later time, when keys in the keyring are
 purged, or, in the case of a malfunction, when the keyring vault server is not available at all.
 
-The `--transition-key=<passphrase>` option should be used to make it possible for *xtrabackup* to process the backup without access to the keyring vault server. In this case, *xtrabackup* derives the AES encryption key from the specified passphrase and will use it to encrypt tablespace keys of tablespaces that are being backed up.
+The `--transition-key=<passphrase>` option should be used to make it possible for xtrabackup to process the backup without access to the keyring vault server. In this case, xtrabackup derives the AES encryption key from the specified passphrase and will use it to encrypt tablespace keys of tablespaces that are being backed up.
 
 ### Create a backup with a passphrase
 
@@ -409,7 +410,7 @@ $ xtrabackup --backup --user=root -p --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
 
-If `--transition-key` is specified without a value, *xtrabackup* will ask for it.
+If `--transition-key` is specified without a value, xtrabackup will ask for it.
 
 xtrabackup scrapes `--transition-key` so that its value is not visible in the `ps` command output.
 
@@ -424,7 +425,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 
 There are no `--keyring-vault...`,\`\`–keyring-file…\`\`,
 or `--component-keyring-file-config` options here,
-because *xtrabackup* does not talk to the keyring in this case.
+because xtrabackup does not talk to the keyring in this case.
 
 ### Restore a backup with a generated key
 
@@ -444,12 +445,12 @@ $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 --keyring-vault-config=/etc/vault.cnf
 ```
 
-*xtrabackup* will generate a new master key, store it in the target keyring
+xtrabackup will generate a new master key, store it in the target keyring
 vault server and re-encrypt the tablespace keys using this key.
 
 ### Make a backup with a stored transition key
 
-Finally, there is an option to store a transition key in the keyring. In this case, *xtrabackup* will need to access the same keyring file or vault server during prepare and copy-back but does not depend on whether the server keys have been purged.
+Finally, there is an option to store a transition key in the keyring. In this case, xtrabackup will need to access the same keyring file or vault server during prepare and copy-back but does not depend on whether the server keys have been purged.
 
 In this scenario, the three stages of the backup process look as follows.
 

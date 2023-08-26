@@ -2,7 +2,7 @@
 
 The Smart memory estimation is [tech preview](glossary.md#tech-preview) feature. Before using Smart memory estimation in production, we recommend that you test restoring production from physical backups in your environment and also use the alternative backup method for redundancy.
 
-[Percona XtraBackup 8.0.30-23](release-notes/8.0/8.0.30-23.0.md) adds support for the Smart memory estimation feature. With this feature, Percona XtraBackup computes the memory required for `prepare` phase, while copying redo log entries during the `backup` phase. Percona XtraBackup also considers the number of InnoDB pages to be fetched from the disk.  
+Percona XtraBackup supports the Smart memory estimation feature. With this feature, Percona XtraBackup computes the memory required for `prepare` phase, while copying redo log entries during the `backup` phase. Percona XtraBackup also considers the number of InnoDB pages to be fetched from the disk.  
 
 Percona XtraBackup performs the backup procedure in two steps: 
 
@@ -38,16 +38,9 @@ $ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 
 ## Example of Smart memory estimation usage
 
-The examples of how Smart memory estimation can improve the time spent on `prepare` in different versions of Percona XtraBackup:
+The examples of how Smart memory estimation can improve the time spent on `prepare` in Percona XtraBackup:
 
-=== "In Percona XtraBackup 8.0.32-26 and higher"
-
-     We back up 16, 32, and 64 tables using sysbench. Each set contains 1M rows. In the `backup` phase, we enable Smart memory estimation with `--estimate-memory=ON`. In the `prepare` phase, we set `--use-free-memory-pct=50`, and Percona XtraBackup uses 50% of the free memory to prepare a backup. The backup is run on an ec2 c4.8xlarge instance (36 vCPUs / 60GB memory / General Purpose SSD (gp2)). 
-
-=== "In Percona XtraBackup 8.0.30-23 and higher"
-
-     We back up 16, 32, and 64 tables using sysbench. Each set contains 1M rows. In the `prepare` phase, we set `--use-free-memory-pct=50`, and Percona XtraBackup uses 50% of the free memory to prepare a backup. The backup is run on an ec2 c4.8xlarge instance (36 vCPUs / 60GB memory / General Purpose SSD (gp2)). 
-
+We back up 16, 32, and 64 tables using sysbench. Each set contains 1M rows. In the `backup` phase, we enable Smart memory estimation with `--estimate-memory=ON`. In the `prepare` phase, we set `--use-free-memory-pct=50`, and Percona XtraBackup uses 50% of the free memory to prepare a backup. The backup is run on an ec2 c4.8xlarge instance (36 vCPUs / 60GB memory / General Purpose SSD (gp2)). 
 
 During each `--backup`, the following sysbench is run:
 
@@ -63,11 +56,11 @@ The following table shows the backup details (all measurements are in Gigabytes)
 | 32 tables | 8.625 | 2.6 | 11 |
 | 64 tables | 18.5 | 5.6 | 22 |
 
-* **Used memory** - the amount of memory required by Percona XtraBackup with `--use-free-memory-pct=50`
+* Used memory - the amount of memory required by Percona XtraBackup with `--use-free-memory-pct=50`
 
-* **Size of XtraBackup log** - the size of Percona XtraBackup log file (redo log entries copied during the backup)
+* Size of XtraBackup log - the size of Percona XtraBackup log file (redo log entries copied during the backup)
 
-* **Size of backup** - the size of the resulting backup folder
+* Size of backup - the size of the resulting backup folder
 
 `Prepare` executed without Smart memory estimation uses the default of 128MB for the buffer pool.
 
@@ -79,8 +72,8 @@ The results are the following:
 
 ![Time to run --prepare](_static/smart_memory_estimation.png)
 
-* **16 tables result** - prepare time dropped to ~5.7% of the original time. An improvement in recovery time of about 17x.
+* 16 tables result - prepare time dropped to ~5.7% of the original time. An improvement in recovery time of about 17x.
 
-* **32 tables result** - prepare time dropped to ~8,2% of the original time. An improvement in recovery time of about 12x.
+* 32 tables result - prepare time dropped to ~8,2% of the original time. An improvement in recovery time of about 12x.
 
-* **64 tables result** - prepare time dropped to ~9.9% of the original time. An improvement in recovery time of about 10x.
+* 64 tables result - prepare time dropped to ~9.9% of the original time. An improvement in recovery time of about 10x.

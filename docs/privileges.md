@@ -1,26 +1,26 @@
 # Connection and privileges needed
 
-*Percona XtraBackup* needs to be able to connect to the database server and
+Percona XtraBackup needs to be able to connect to the database server and
 perform operations on the server and the datadir when creating a
 backup, when preparing in some scenarios and when restoring it. In order to do
 so, there are privileges and permission requirements on its execution that
 must be fulfilled.
 
 Privilege refers to the operations that a system user is permitted to do in
-the database server. **They are set at the database server and only apply to
-users in the database server**.
+the database server. They are set at the database server and only apply to
+users in the database server.
 
 Permissions are those which permits a user to perform operations on the system,
 like reading, writing or executing on a certain directory or start/stop a
-system service. **They are set at a system level and only apply to system
-users**.
+system service. They are set at a system level and only apply to system
+users.
 
-When *xtrabackup* is used, there are two actors involved: the user invoking the
-program - *a system user* - and the user performing action in the database
-server - *a database user*. Note that these are different users in different
+When xtrabackup is used, there are two actors involved: the user invoking the
+program - a system user - and the user performing action in the database
+server - a database user. Note that these are different users in different
 places, even though they may have the same username.
 
-All the invocations of *xtrabackup* in this documentation assume that the system
+All the invocations of xtrabackup in this documentation assume that the system
 user has the appropriate permissions, and you are providing the relevant options
 for connecting the database server - besides the options for the action to be
 performed - and the database user has adequate privileges.
@@ -35,7 +35,7 @@ $ xtrabackup --user=DVADER --password=14MY0URF4TH3R --backup \
 --target-dir=/data/bkps/
 ```
 
-If you don’t use the `--user` option, *Percona XtraBackup* will assume
+If you don’t use the `--user` option, Percona XtraBackup will assume
 the database user whose name is the system user executing it.
 
 ### Other connection options
@@ -43,19 +43,19 @@ the database user whose name is the system user executing it.
 According to your system, you may need to specify one or more of the following
 options to connect to the server:
 
-| **Option** | **Description**                                                  |
+| Option | Description                                                  |
 |------------|------------------------------------------------------------------|
 | -port      | Use this port when connecting to the database with TCP/IP        |
 | -socket    | Use this socket when connecting to the local database.           |
 | -host      | Use this host when connecting to the database server with TCP/IP |
 
-These options are passed to the **mysql** child process without
+These options are passed to the mysql child process without
 alteration, see `mysql --help` for details.
 
 !!! note
  
     In case of multiple server instances, the correct connection parameters
-    (port, socket, host) must be specified in order for *xtrabackup* to talk to
+    (port, socket, host) must be specified in order for xtrabackup to talk to
     the correct server.
 
 ## Privileges needed
@@ -84,7 +84,7 @@ mandatory), and optionally to see all threads which are running on the
 server (see FLUSH TABLES WITH READ LOCK option),
 
 * `SUPER` in order to start/stop the replication threads in a replication
-environment, use [XtraDB Changed Page Tracking](https://www.percona.com/doc/percona-server/8.0/management/changed_page_tracking.html)
+environment, use [XtraDB Changed Page Tracking](https://www.percona.com/doc/percona-server/8.0/changed_page_tracking.html)
 for Incremental Backups and for handling FLUSH TABLES WITH READ LOCK,
 
 * `CREATE` privilege in order to create the
@@ -104,9 +104,9 @@ PERCONA_SCHEMA.xtrabackup_history table,
 to look up the `innodb_to_lsn` values in the
 PERCONA_SCHEMA.xtrabackup_history table.
 
-* `SELECT` privilege on the [keyring_component_status table](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-keyring-component-status-table.html) to view the attributes and status of the installed keyring component when in use.
+* `SELECT` privilege on the [keyring_component_status table](https://dev.mysql.com/doc/refman/8.1/en/performance-schema-keyring-component-status-table.html) to view the attributes and status of the installed keyring component when in use.
 
-* `SELECT` privilege on the [replication_group_members table](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-replication-group-members-table.html) to validate if the instance is part of group replication cluster.
+* `SELECT` privilege on the [replication_group_members table](https://dev.mysql.com/doc/refman/8.1/en/performance-schema-replication-group-members-table.html) to validate if the instance is part of group replication cluster.
 
 A SQL example of creating a database user with the minimum privileges required to take full backups would be:
 
@@ -134,7 +134,7 @@ mysql> SHOW GRANTS FOR 'db-user'@'host';
 ```
 
 It will display the privileges using the same format as for
-the [GRANT statement](http://dev.mysql.com/doc/refman/8.0/en/show-grants.html).
+the [GRANT statement](https://dev.mysql.com/doc/refman/8.1/en/show-grants.html).
 
 Note that privileges may vary across versions of the server. To list the
 exact list of privileges that your server support (and a brief description

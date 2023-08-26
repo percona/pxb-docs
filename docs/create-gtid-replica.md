@@ -1,10 +1,8 @@
 # How to create a new (or repair a broken) GTID-based replica
 
-*MySQL* 5.6 introduced the Global Transaction
-ID ([GTID](http://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html))
-support in replication. *Percona XtraBackup* automatically
+Percona XtraBackup automatically
 stores the `GTID` value in the `xtrabackup_binlog_info` when doing the
-backup of *MySQL* and *Percona Server for MySQL* 5.7 with the `GTID` mode
+backup of MySQL and Percona Server for MySQL 8.1 with the `GTID` mode
 enabled. This
 information can be used to create a new (or repair a broken) `GTID`-based
 replica.
@@ -50,23 +48,23 @@ $ xtrabackup --prepare --target-dir=/data/backup
 ```
 
 You need to select the path where your snapshot has been taken, for example
-`/data/backups/2013-05-07_08-33-33`. If everything is ok you should get the
+`/data/backups/2023-05-07_08-33-33`. If everything is ok you should get the
 same OK message. Now, the transaction logs are applied to the data files,
 and new
 ones are created: your data files are ready to be used by the MySQL server.
 
 ## 3. Move the backup to the destination server
 
-Use **rsync** or **scp** to copy the data to the destination
+Use rsync or scp to copy the data to the destination
 server. If you are synchronizing the data directly to the already running
 replica’s data
-directory it is advised to stop the *MySQL* server there.
+directory it is advised to stop the MySQL server there.
 
 ```{.bash data-prompt="$"}
 $ rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewSlave:/path/to/mysql/
 ```
 
-After you copy the data over, make sure *MySQL* has proper permissions to
+After you copy the data over, make sure MySQL has proper permissions to
 access them.
 
 ```{.bash data-prompt="$"}

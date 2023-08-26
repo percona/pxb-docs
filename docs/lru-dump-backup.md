@@ -1,3 +1,7 @@
+<!---
+    is this needed - check with Satya/Marce
+    --->
+
 # LRU dump backup
 
 <!-- There is a MySQL feature

@@ -1,31 +1,32 @@
 # Create a full backup
 
-To create a backup, run **xtrabackup** with the `--backup`
-option. You also need to specify the `--target-dir` option, which is where
-the backup will be stored, if the *InnoDB* data or log files are not stored
+To create a backup, run xtrabackup with the `--backup`
+option. You also must specify the `--target-dir` option, which is where
+the backup is stored. If the InnoDB data or log files are not stored
 in
-the same directory, you might need to specify the location of those, too.
+the same directory, you must specify their location.
 If the
-target directory does not exist, *xtrabackup* creates it. If the directory
+target directory does not exist, xtrabackup creates it. If the directory
 does
-exist and is empty, *xtrabackup* will succeed.
+exist and is empty, xtrabackup succeeds.
 
-*xtrabackup* will not overwrite existing files, it will fail with operating
+xtrabackup does not overwrite existing files. it will fail with operating
 system error 17, `file exists`.
 
-To start the backup process run:
+The following command starts the process:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups/
 ```
 
-This will store the backup at `/data/backups/`. If you specify a
-relative path, the target directory will be relative to the current directory.
+This operation stores the backup at `/data/backups/`. If you specify a
+relative path, the target directory is relative to the current directory.
 
-During the backup process, you should see a lot of output showing the data
-files being copied, as well as the log file thread repeatedly scanning the
-log files and copying from it. Here is an example that shows the log thread
-scanning the log in the background, and a file copying thread working on the `ibdata1` file:
+During the backup process, the output shows the copied data
+files, and a log file thread that scans and copies from the
+log files.
+
+The following is an example of the output:
 
 ??? example "Expected output"
 
@@ -46,11 +47,11 @@ scanning the log in the background, and a file copying thread working on the `ib
     160906 10:19:18 completed OK!
     ```
 
-The last thing you should see is something like the following, where the
-value of the `<LSN>` will be a number that depends on your system:
+The process ends with the following statement; the
+value of the `<LSN>` depends on your system:
 
 ```{.bash data-prompt="$"}
-$ xtrabackup: Transaction log of lsn (<SLN>) to (<LSN>) was copied.
+$ xtrabackup: Transaction log of lsn (<LSN>) to (<LSN>) was copied.
 ```
 
 !!! note
@@ -83,6 +84,6 @@ The result should look like this:
     -rw-r-----  1 root root 106M Sep  6 10:19 xtrabackup_logfile
     ```
 
-The backup can take a long time, depending on how large the database is. It is safe to cancel at any time, because *xtrabackup* does not modify the database.
+The backup can take a long time, depending on how large the database is. It is safe to cancel at any time, because xtrabackup does not modify the database.
 
 The next step is to [prepare](prepare-full-backup.md) the backup in order to restore it. 
