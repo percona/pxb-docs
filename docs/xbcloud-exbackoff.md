@@ -1,8 +1,5 @@
 # Exponential backoff
 
-This feature was implemented in [Percona XtraBackup 8.0.26-18.0](https://docs.percona.com/percona-xtrabackup/latest/release-notes/8.0/8.0.26-18.0.html#pxb-8-0-26-18-0) in the
-xbcloud binary.
-
 Exponential backoff increases the chances for the completion of a backup or
 a restore operation. For example, a chunk upload or download may fail if
 you have an unstable network connection or other network issues. This

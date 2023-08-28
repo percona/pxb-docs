@@ -40,9 +40,10 @@ operations, backups are created, stored, retrieved, restored, and
 deleted. xbcloud operations clearly map to similar operations within 
 the AWS Amazon S3 API.
 
-The [Exponential Backoff](xbcloud-exbackoff.md) feature was implemented in Percona XtraBackup 8.0.26-18. During the backup, a chunk fails to upload or download operation; this feature adds an exponential backoff, a sleep time, and retries the operation. This feature increases the chances of completing a backup or a restore operation.
+The [Exponential Backoff](xbcloud-exbackoff.md) feature increases the chances for the completion of a backup or
+a restore operation. When taking a backup, a chunk upload or download may fail if you have an unstable network connection or other network issues. This feature adds an exponential backoff, a sleep time, and retries the operations.
 
-The [FIFO datasink](xbcloud-binary-fifo-datasink.md) feature was implemented in Percona XtraBackup 8.0.33-28. With the `FIFO` data sink feature, users with a streaming capacity of 10Gbps (typically on a Local Area Network (LAN)) can benefit from faster backups by streaming data in parallel to object storage.
+With the [FIFO data sink](xbcloud-binary-fifo-datasink.md) feature, users with a streaming capacity of 10Gbps (typically on a Local Area Network (LAN)) can benefit from faster backups by streaming data in parallel to object storage.
 
 !!! important
 
