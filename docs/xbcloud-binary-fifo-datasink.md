@@ -2,7 +2,6 @@
 
 The feature is in [tech preview](glossary.md#tech-preview).
 
-
 Percona XtraBackup implements a data sink that uses the first in, first out (FIFO) method. With the `FIFO` data sink feature, users with a streaming capacity of 10Gbps (typically on a Local Area Network (LAN)) can benefit from faster backups by streaming data in parallel to an object storage.
 
 ## FIFO data sink options

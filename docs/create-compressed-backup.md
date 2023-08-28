@@ -1,15 +1,7 @@
-<!---
-    remove quicklz references
-    20230818
-    --->
-
 # Create a compressed backup
 
-Percona XtraBackup supports compressed backups. A local or streaming
-backup can be compressed or decompressed with xbstream.
-
-To make a compressed backup, use the `--compress` option along
-with the `--backup` and `--target-dir` options. 
+Percona XtraBackup supports compressed backups. To make a compressed backup, use the `--compress` option along
+with the `--backup` and `--target-dir` options. A local or streaming backup can be compressed or decompressed with [xbstream](xbstream-binary-overview.md).
 
 By default, the `--compress` option uses the `zstandard` tool that you can install with
 the `percona-release` package configuration tool as follows:
@@ -29,36 +21,34 @@ the upstream MySQL Server, you only need to enable the `tools`
 repository: `percona-release enable-only tools`.
 
 Percona XtraBackup supports the following compression algorithms:
-<!---
-`quicklz`
 
-To compress files using the `quicklz` compression algorithm, use `--compress` option:
+`Zstandard (ZSTD)`
+
+The Zstandard (ZSTD) is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. `ZSTD` is the default compression algorithm for the `--compress` option.
+
+To compress files using the `ZSTD` compression algorithm, use the `--compress` option:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --compress --target-dir=/data/backup
 ```
---->
+
+The resulting files have the `\*.zst` format.
+   
+You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](xtrabackup-option-reference.md#compress-zstd-level) option. The default value is `1`.
+
+```{.bash data-prompt="$"}
+$ xtrabackup –backup –compress –compress-zstd-level=1 –target-dir=/data/backup
+```
+
 `lz4`
 
-To compress files using the `lz4` compression algorithm, set `--compress` option to `lz4`:
+To compress files using the `lz4` compression algorithm, set the `--compress` option to `lz4`:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
 ```
 
-`Zstandard (ZSTD)`
-
-To compress files using the `ZSTD` compression algorithm, set `--compress` option to `zstd`:
-
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --compress=zstd --target-dir=/data/backup
-```
-   
-You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](xtrabackup-option-reference.md#compress-zstd-level) option. The default value is `1`.
-
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --compress-zstd-level=1 --target-dir=/data/backup
-```
+The resulting files have the `\*.lz4` format. 
 
 If you want to speed up the compression you can use the parallel
 compression, which can be enabled with `--compress-threads` option.

@@ -43,7 +43,7 @@ in your distribution as a separate package `cmake3`. For more information, see [
     libncurses-dev libssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev \
     lsb-release build-essential rsync libdbd-mysql-perl \
     libnuma1 socat librtmp-dev libtinfo5 vim-common \
-    liblz4-tool liblz4-1 liblz4-dev zstd python-docutils qpress
+    liblz4-tool liblz4-1 liblz4-dev zstd python-docutils
     ```
 
     To install the man pages, install the python3-sphinx package first:
