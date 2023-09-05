@@ -13,6 +13,6 @@ configuration file.
 
 The tool runs in either `--backup` or `--prepare` mode,
 corresponding to the two main functions it performs. There are several
-variations on these functions to accomplish different tasks, and there are two
-less commonly used modes, `--stats` and `--print-param`.
+variations on these functions to accomplish different tasks, and there is one
+less commonly used mode, `--print-param`.
 

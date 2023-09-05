@@ -14,7 +14,7 @@ You can now fetch the latest Percona XtraBackup 8.1 sources:
 ```{.bash data-prompt="$"}
 $ git clone https://github.com/percona/percona-xtrabackup.git
 $ cd percona-xtrabackup
-$ git checkout 8.1
+$ git checkout trunk
 $ git submodule update --init --recursive
 ```
 
