@@ -6,7 +6,7 @@ To make a compressed backup, use the `--compress` option along with the `--backu
 
 ## Version updates
 
-??? note "Starting with Percona XtraBackup 8.0.34-29"
+??? note "From Percona XtraBackup 8.0.34-29"
 
     Percona XtraBackup removes `qpress/QuickLZ` and moves the `ZSTD` compression method to [General Availability](glossary.md#general-availability-ga). With this version `ZSTD` becomes the default compression method for the `--compress` option.
 
@@ -62,7 +62,7 @@ To make a compressed backup, use the `--compress` option along with the `--backu
     
     To decompress files, use the `--decompress` option. 
 
-??? note "Starting with Percona XtraBackup 8.0.31-24"
+??? note "From Percona XtraBackup 8.0.31-24"
 
     Using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms. `ZSTD` compression algorithm is in [tech preview](glossary.md#tech-preview). 
 
