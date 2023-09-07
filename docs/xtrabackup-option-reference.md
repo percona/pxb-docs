@@ -17,13 +17,10 @@ You invoke xtrabackup in one of the following modes:
 that contained the original data; to move data instead of copying use
 the alternate `--move-back` mode.
 
-
-* `--stats` mode to scan the specified data files and print out index statistics.
-
 When you intend to run xtrabackup in any of these modes, use the following syntax:
 
 ```{.bash data-prompt="$"}
-$ xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back|--stats [OPTIONS]
+$ xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back| [OPTIONS]
 ```
 
 For example, the `--prepare` mode is applied as follows:
@@ -154,7 +151,9 @@ that will read the data and pipe it to 2 compression threads.
 
 ### --compress-zstd-level(=#)
 
-This option specifies `ZSTD` compression level. The default value is 1. Allowed range of values is from 1 to 19. 
+This option specifies `ZSTD` compression level. Compression levels provide a trade-off between the speed of compression and the size of the compressed files. A lower compression level provides faster compression speed but larger file sizes. A higher compression level provides lower compression speed but smaller file sizes. For example, set level 1 if the compression speed is the most important for you. Set level 19 if the size of the compressed files is the most important.
+
+The default value is 1. Allowed range of values is from 1 to 19. 
 
 ### --copy-back()
 Copy all the files in a previously made backup from the backup directory to
@@ -843,11 +842,6 @@ Security state of connection to server.
 Verify server certificate Common Name value against host name used when connecting to server.
 
 
-### --stats()
-Causes xtrabackup to scan the specified data files and print out
-index statistics.
-
-
 ### --stream(=FORMAT)
 Stream all backup files to the standard output in the specified format.
 Currently, this option only supports the xbstream format.
@@ -952,7 +946,7 @@ $ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 
 ### --use-memory()
 
-This option affects how much memory is allocated and is similar to `innodb_buffer_pool_size`. This option is only relevant in the `--prepare` phase or when analyzing statistics with `--stats`. The default value is 100MB. The recommended value is between 1GB to 2GB. Multiple values are supported if you provide the unit (for example, 1MB, 1M, 1GB, 1G).
+This option affects how much memory is allocated and is similar to `innodb_buffer_pool_size`. This option is only relevant in the `--prepare` phase. The default value is 100MB. The recommended value is between 1GB to 2GB. Multiple values are supported if you provide the unit (for example, 1MB, 1M, 1GB, 1G).
 
 
 ### --user(=USERNAME)

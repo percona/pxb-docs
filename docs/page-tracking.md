@@ -1,6 +1,3 @@
-<!---
-    Check if this is active
-    --->
 
 # Take an incremental backup using page tracking
 
