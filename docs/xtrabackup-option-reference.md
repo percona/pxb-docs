@@ -133,7 +133,18 @@ This option tells xtrabackup to compress all output data, including the transact
 
 **Version updates**
 
-* Before Percona XtraBackup 8.0.31-24 the `--compress` option uses either the `quicklz`, `lz4`, or `ZSTD` compression algorithm to compress all output data. `quicklz` is chosen by default.
+* From Percona XtraBackup 8.0.34-29, qpress/QuickLZ is no longer supported for compress operations. The `ZSTD` compression algorithm is moved to [General Availability](glossary.md#general-availability-ga). With this version, `ZSTD` becomes the default compression method for the `--compress` option.
+
+    * `--compress` produces `\*.zst` files. You can specify `ZSTD` compression level with the `--compress-zstd-level(=#)` option.
+
+    * `--compress=lz4` produces `\*.lz4` files. You can extract the contents of
+    these files by using `lz4` program.
+
+    You can extract the contents of the files by using the `--decompress` option.
+
+    To decompress backups taken by older versions of Percona XtraBackup that used a QuickLZ compression algorithm, the `--decompress` option still supports `qpress` for backward compatibility.
+
+* Up to Percona XtraBackup 8.0.33-28, the `--compress` option uses either the `quicklz`, `lz4`, or `ZSTD` compression algorithm to compress all output data. `quicklz` is chosen by default.
 
     When using `--compress=quicklz` or `--compress`, the resulting files have
     the qpress archive format. Every `\*.qp` file produced by xtrabackup is
@@ -144,18 +155,15 @@ This option tells xtrabackup to compress all output data, including the transact
 
     * `--compress=lz4` produces `\*.lz4` files. You can extract the contents of these files by using `lz4` program.
 
-    You can extract the contents of the files by using the `--decompress` option. 
-
-* Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms. `ZSTD` compression algorithm is in [tech preview](glossary.md#tech-preview). See [Create a compressed backup](create-compressed-backup.md) for more information.
-
-* Percona XtraBackup 8.0.34-29 removes `qpress/QuickLZ` and moves the `ZSTD` compression method to [General Availability](glossary.md#general-availability-ga). With this version `ZSTD` becomes the default compression method for the `--compress` option.
-
-    * `--compress` produces `\*.zst` files. You can specify `ZSTD` compression level with the `--compress-zstd-level(=#)` option.
-
-    * `--compress=lz4` produces `\*.lz4` files. You can extract the contents of
-    these files by using `lz4` program.
-
     You can extract the contents of the files by using the `--decompress` option.
+
+* From Percona XtraBackup 8.0.31-24 the use of qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or `ZSTD` compression algorithms. `ZSTD` compression algorithm is in [tech preview](glossary.md#tech-preview).
+
+* Percona XtraBackup 8.0.30-23 adds Zstandard (`ZSTD`) compression algorithm in [tech preview](glossary.md#tech-preview). `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. 
+
+    To compress files using the ZSTD compression algorithm, set the `--compress` option to zstd. The `--compress=zstd` option produces `*.zst` files. You can extract the contents of these files with the `--decompress` option.
+
+    Also, you can specify the ZSTD compression level with the `--compress-zstd-level(=#)` option as follows.
 
 ### --compress-chunk-size(=#) 
 Size of working buffer(s) for compression threads in bytes. The default
@@ -171,7 +179,10 @@ that will read the data and pipe it to 2 compression threads.
 
 ### --compress-zstd-level(=#)
 
-This option specifies `ZSTD` compression level. The default value is 1. Allowed range of values is from 1 to 19. 
+This option specifies `ZSTD` compression level. Compression levels provide a trade-off between the speed of compression and the size of the compressed files. A lower compression level provides faster compression speed but larger file sizes. A higher compression level provides lower compression speed but smaller file sizes. For example, set level 1 if the compression speed is the most important for you. Set level 19 if the size of the compressed files is the most important.
+
+The default value is 1. Allowed range of values is from 1 to 19.
+
 The option was implemented in Percona XtraBackup 8.0.30-22.
 
 ### --copy-back()
