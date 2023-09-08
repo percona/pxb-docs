@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.3">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.8">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.0e669242.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.046329b4.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.85d0ee34.min.css">
@@ -6119,7 +6119,21 @@ with this option enabled. Use at your own risk.</p>
 <p><strong>Version updates</strong></p>
 <ul>
 <li>
-<p>Before Percona XtraBackup 8.0.31-24 the <code>--compress</code> option uses either the <code>quicklz</code>, <code>lz4</code>, or <code>ZSTD</code> compression algorithm to compress all output data. <code>quicklz</code> is chosen by default.</p>
+<p>From Percona XtraBackup 8.0.34-29, qpress/QuickLZ is no longer supported for compress operations. The <code>ZSTD</code> compression algorithm is moved to <a href="glossary.html#general-availability-ga">General Availability</a>. With this version, <code>ZSTD</code> becomes the default compression method for the <code>--compress</code> option.</p>
+<ul>
+<li>
+<p><code>--compress</code> produces <code>\*.zst</code> files. You can specify <code>ZSTD</code> compression level with the <code>--compress-zstd-level(=#)</code> option.</p>
+</li>
+<li>
+<p><code>--compress=lz4</code> produces <code>\*.lz4</code> files. You can extract the contents of
+these files by using <code>lz4</code> program.</p>
+</li>
+</ul>
+<p>You can extract the contents of the files by using the <code>--decompress</code> option.</p>
+<p>To decompress backups taken by older versions of Percona XtraBackup that used a QuickLZ compression algorithm, the <code>--decompress</code> option still supports <code>qpress</code> for backward compatibility.</p>
+</li>
+<li>
+<p>Up to Percona XtraBackup 8.0.33-28, the <code>--compress</code> option uses either the <code>quicklz</code>, <code>lz4</code>, or <code>ZSTD</code> compression algorithm to compress all output data. <code>quicklz</code> is chosen by default.</p>
 <p>When using <code>--compress=quicklz</code> or <code>--compress</code>, the resulting files have
 the qpress archive format. Every <code>\*.qp</code> file produced by xtrabackup is
 essentially a one-file qpress archive and can be extracted and uncompressed
@@ -6132,23 +6146,15 @@ by the <code>qpress</code> file archiver.</p>
 <p><code>--compress=lz4</code> produces <code>\*.lz4</code> files. You can extract the contents of these files by using <code>lz4</code> program.</p>
 </li>
 </ul>
-<p>You can extract the contents of the files by using the <code>--decompress</code> option. </p>
-</li>
-<li>
-<p>Starting with Percona XtraBackup 8.0.31-24 using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either <code>LZ4</code> or Zstandard (<code>ZSTD</code>) compression algorithms. <code>ZSTD</code> compression algorithm is in <a href="glossary.html#tech-preview">tech preview</a>. See <a href="create-compressed-backup.html">Create a compressed backup</a> for more information.</p>
-</li>
-<li>
-<p>Percona XtraBackup 8.0.34-29 removes <code>qpress/QuickLZ</code> and moves the <code>ZSTD</code> compression method to <a href="glossary.html#general-availability-ga">General Availability</a>. With this version <code>ZSTD</code> becomes the default compression method for the <code>--compress</code> option.</p>
-<ul>
-<li>
-<p><code>--compress</code> produces <code>\*.zst</code> files. You can specify <code>ZSTD</code> compression level with the <code>--compress-zstd-level(=#)</code> option.</p>
-</li>
-<li>
-<p><code>--compress=lz4</code> produces <code>\*.lz4</code> files. You can extract the contents of
-these files by using <code>lz4</code> program.</p>
-</li>
-</ul>
 <p>You can extract the contents of the files by using the <code>--decompress</code> option.</p>
+</li>
+<li>
+<p>From Percona XtraBackup 8.0.31-24 the use of qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either <code>LZ4</code> or <code>ZSTD</code> compression algorithms. <code>ZSTD</code> compression algorithm is in <a href="glossary.html#tech-preview">tech preview</a>.</p>
+</li>
+<li>
+<p>Percona XtraBackup 8.0.30-23 adds Zstandard (<code>ZSTD</code>) compression algorithm in <a href="glossary.html#tech-preview">tech preview</a>. <code>ZSTD</code> is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. </p>
+<p>To compress files using the ZSTD compression algorithm, set the <code>--compress</code> option to zstd. The <code>--compress=zstd</code> option produces <code>*.zst</code> files. You can extract the contents of these files with the <code>--decompress</code> option.</p>
+<p>Also, you can specify the ZSTD compression level with the <code>--compress-zstd-level(=#)</code> option as follows.</p>
 </li>
 </ul>
 <h3 id="-compress-chunk-size">--compress-chunk-size(=#)<a class="headerlink" href="#-compress-chunk-size" title="Permanent link">&para;</a></h3>
@@ -6162,8 +6168,9 @@ with parallel file copying (<code>--parallel</code>). For example,
 <code>--parallel=4 --compress --compress-threads=2</code> will create 4 I/O threads
 that will read the data and pipe it to 2 compression threads.</p>
 <h3 id="-compress-zstd-level">--compress-zstd-level(=#)<a class="headerlink" href="#-compress-zstd-level" title="Permanent link">&para;</a></h3>
-<p>This option specifies <code>ZSTD</code> compression level. The default value is 1. Allowed range of values is from 1 to 19. 
-The option was implemented in Percona XtraBackup 8.0.30-22.</p>
+<p>This option specifies <code>ZSTD</code> compression level. Compression levels provide a trade-off between the speed of compression and the size of the compressed files. A lower compression level provides faster compression speed but larger file sizes. A higher compression level provides lower compression speed but smaller file sizes. For example, set level 1 if the compression speed is the most important for you. Set level 19 if the size of the compressed files is the most important.</p>
+<p>The default value is 1. Allowed range of values is from 1 to 19.</p>
+<p>The option was implemented in Percona XtraBackup 8.0.30-22.</p>
 <h3 id="-copy-back">--copy-back()<a class="headerlink" href="#-copy-back" title="Permanent link">&para;</a></h3>
 <p>Copy all the files in a previously made backup from the backup directory to
 their original locations. This option will not copy over existing files
@@ -6734,7 +6741,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2023-08-21
+      2023-09-08
     
   </small>
 </div>
@@ -6859,7 +6866,7 @@ mysql –help for details.</p>
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.78eede0e.min.js"></script>
+      <script src="assets/javascripts/bundle.dff1b7c8.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
