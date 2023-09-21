@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.8">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.3.2">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.046329b4.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.30068a00.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.85d0ee34.min.css">
@@ -4152,7 +4152,7 @@ MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
 </div>
 <h2 id="point-in-time-recovery">Point-in-time recovery<a class="headerlink" href="#point-in-time-recovery" title="Permanent link">&para;</a></h2>
 <p>To perform a point-in-time recovery from an <code>xtrabackup</code> backup, you should prepare and restore the backup, and then replay binary logs from the point shown in the <code>xtrabackup_binlog_info</code> file.</p>
-<p>A more detailed procedure is found here.</p>
+<p>A more detailed procedure is found <a href="point-in-time-recovery.html">here</a>.</p>
 <h2 id="set-up-a-new-replication-replica">Set up a new replication replica<a class="headerlink" href="#set-up-a-new-replication-replica" title="Permanent link">&para;</a></h2>
 <p>To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. If you are using version 8.0.22 or earlier, in your <code>CHANGE MASTER TO</code> command, use the binary log filename and position shown in the <code>xtrabackup_binlog_info</code> file to start replication.</p>
 <p>If you are using 8.0.23 or later, use the <a href="https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO and the appropriate options</a>. <code>CHANGE_MASTER_TO</code> is deprecated.</p>
@@ -4179,7 +4179,7 @@ MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
   <small>
     
       Last update:
-      2023-06-12
+      2023-09-21
     
   </small>
 </div>
