@@ -24,7 +24,7 @@ You can find the binary log position corresponding to a backup after the backup 
 
 To perform a point-in-time recovery from an `xtrabackup` backup, you should prepare and restore the backup, and then replay binary logs from the point shown in the `xtrabackup_binlog_info` file.
 
-A more detailed procedure is found [here](point-in-time-recovery.md).
+Find a more detailed procedure in the [Point-in-time recovery](point-in-time-recovery.md) document.
 
 ## Set up a new replication replica
 
