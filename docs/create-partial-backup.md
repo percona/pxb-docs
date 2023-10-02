@@ -91,4 +91,6 @@ The following examples assume a database named `test` that contains tables named
         even if they are not explicitly listed by the parameter if they were created
         after the backup started.
 
-The next step is to [prepare](prepare-partial-backup.md) the backup in order to restore it. 
+## Next step
+
+[Prepare the backup :material-arrow-right:](prepare-partial-backup.md){.md-button}

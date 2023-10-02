@@ -22,7 +22,7 @@ to `STDOUT`, it stops xtrabackup and streams the saved log file too.
 
 When compression is enabled, *xtrabackup* compresses the output data, except for the meta and non-InnoDB files which are not compressed, using the specified compression algorithm. Percona XtraBackup supports the following compression algorithms:
 
-`Zstandard (ZSTD)`
+## Zstandard (ZSTD)
 
 The Zstandard (ZSTD) is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. `ZSTD` is the default compression algorithm for the `--compress` option.
 
@@ -40,7 +40,7 @@ You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](
 $ xtrabackup –backup –compress –compress-zstd-level=1 –target-dir=/data/backup
 ```
 
-`lz4`
+## lz4
 
 To compress files using the `lz4` compression algorithm, set the `--compress` option to `lz4`:
 

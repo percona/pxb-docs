@@ -21,7 +21,7 @@ background process that watches the transaction log files, and copies any change
 Percona XtraBackup uses [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
 
 where available as a lightweight alternative to `FLUSH TABLES WITH READ
-LOCK`. MySQL 8.1 allows
+LOCK`. MySQL {{release}} allows
 acquiring an instance level backup lock via the `LOCK INSTANCE FOR BACKUP`
 statement.
 
@@ -39,9 +39,9 @@ avoid blocking DML queries that modify InnoDB tables.
 xtrabackup tries to avoid backup locks and `FLUSH TABLES WITH READ LOCK`
 when the instance contains only InnoDB tables. In this case, xtrabackup
 obtains binary log coordinates from `performance_schema.log_status`. `FLUSH
-TABLES WITH READ LOCK` is still required in MySQL 8.1 when xtrabackup is
+TABLES WITH READ LOCK` is still required in MySQL {{release}} when xtrabackup is
 started with the `--slave-info`. The `log_status` table in Percona
-Server for MySQL 8.1 is extended to include the relay log coordinates, so no locks are
+Server for MySQL {{release}} is extended to include the relay log coordinates, so no locks are
 needed even with the `--slave-info` option.
 
 !!! admonition "See also"

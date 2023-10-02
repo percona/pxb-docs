@@ -12,5 +12,7 @@ because InnoDB-based engines stores its data dictionary inside the tablespace
 files. xtrabackup removes the missing tables (those that haven’t been selected in the partial
 backup) from the data dictionary in order to avoid future warnings or errors.
 
-The next step is  to [restore]() the backup. 
+## Next step
+
+[Restore the partition from the backup :material-arrow-right:](restore-individual-partitions.md){.md-button}
 

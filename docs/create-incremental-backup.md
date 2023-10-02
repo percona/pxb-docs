@@ -91,5 +91,9 @@ This folder also contains the `xtrabackup_checkpoints`:
    
     In this case you can see that there is a difference between the `to_lsn` (last checkpoint LSN) and `last_lsn` (last copied LSN), this means that there was some traffic on the server during the backup process.
 
-The next step is to [prepare](prepare-incremental-backup.md) the backup in order to restore it. 
+## Next step
+
+[Prepare the backup :material-arrow-right:](prepare-incremental-backup.md){.md-button}
+
+
 

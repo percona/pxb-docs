@@ -100,4 +100,6 @@ $ xtrabackup --prepare --target-dir=/data/backups/base \
    
     `--apply-log-only` should be used when merging the incremental backups except the last one. That’s why the previous line does not contain the `--apply-log-only` option. Even if the `--apply-log-only` was used on the last step, backup would still be consistent but in that case server would perform the rollback phase.
 
-Once prepared incremental backups are the same as the full backups, and they can be [restored](restore-a-backup.md) in the same way.
+## Next step
+
+[Restore the backup :material-arrow-right:](restore-a-backup.md){.md-button}

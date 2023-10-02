@@ -86,4 +86,6 @@ The result should look like this:
 
 The backup can take a long time, depending on how large the database is. It is safe to cancel at any time, because xtrabackup does not modify the database.
 
-The next step is to [prepare](prepare-full-backup.md) the backup in order to restore it. 
+## Next step
+
+[Prepare the backup :material-arrow-right:](prepare-full-backup.md){.md-button}

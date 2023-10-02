@@ -9,6 +9,9 @@ Specific information on the supported platforms, products, and versions is descr
 
 ## Install Percona XtraBackup from Percona `yum` repository
 
+To install Percona XtraBackup from Percona `yum` repository, do the following steps:
+{.power-number}
+
 1. Install the Percona yum repository by running the following command as the `root` user or with **sudo**: 
 
     ```{.bash data-prompt="$"}

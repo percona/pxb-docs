@@ -39,3 +39,6 @@ Note that this option is passed to `xtrabackup --tables` and is matched
 against each table of each database, the directories of each database will be
 created even if they are empty.
 
+## Next step
+
+[Prepare an individual partitions backup :material-arrow-right:](prepare-individual-partitions-backup.md){.md-button}

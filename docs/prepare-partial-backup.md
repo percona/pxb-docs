@@ -19,4 +19,6 @@ Could not find any file associated with the tablespace ID: 5
 
 Use `--innodb-directories` to find the tablespace files. If that fails then use `-–innodb-force-recovery=1` to ignore this and to permanently lose all changes to the missing tablespace(s).
 
-The next step is to [restore](restore-individual-partitions.md) restore the partition from the backup. 
+## Next step
+
+[Restore the partition from the backup :material-arrow-right:](restore-individual-partitions.md){.md-button}

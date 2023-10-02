@@ -21,8 +21,8 @@ Percona’s enterprise-grade commercial [MySQL Support](http://www.percona.com/m
 ## Supported storage engines
 
 Percona XtraBackup can back up data from InnoDB, XtraDB,
-MyISAM, and MyRocks tables on MySQL 8.1 servers as well as Percona Server for MySQL
-with XtraDB, and Percona XtraDB Cluster 8.1.
+MyISAM, and MyRocks tables on MySQL {{release}} servers as well as Percona Server for MySQL
+with XtraDB, and Percona XtraDB Cluster {{release}}.
 
 Percona XtraBackup supports the MyRocks storage engine. An incremental backup on the MyRocks storage engine does not determine if an earlier full or incremental backup contains the same files. Percona XtraBackup copies all MyRocks files each time it takes a backup. Percona XtraBackup does not support the TokuDB storage engine.
 

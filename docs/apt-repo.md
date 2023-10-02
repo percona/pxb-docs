@@ -9,6 +9,7 @@ described in [Percona Release Lifecycle Overview](https://www.percona.com/servic
 ## Install Percona XtraBackup through percona-release
 
 Percona XtraBackup, like many other Percona products, is installed with the *percona-release* package configuration tool.
+{.power-number}
 
 1. Download a `DEB` package for *percona-release* the repository packages from Percona web:
 
@@ -60,7 +61,7 @@ Percona XtraBackup, like many other Percona products, is installed with the *per
 
 !!! admonition "See also"
 
-    To install Percona XtraBackup using downloaded deb packages, see [Install Percona XtraBackup 8.1](apt-download-deb.md).
+    To install Percona XtraBackup using downloaded deb packages, see [Install Percona XtraBackup {{release}}](apt-download-deb.md).
 
-    To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup 8.1](apt-uninstall-xtrabackup.md)
+    To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup {{release}}](apt-uninstall-xtrabackup.md)
 

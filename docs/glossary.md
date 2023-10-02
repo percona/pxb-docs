@@ -98,7 +98,7 @@ A backup stores data from a specific point in time.
 
 Storage engine which provides ACID-compliant transactions and foreign 
 key support, among others improvements over MyISAM. It is the default 
-engine for MySQL as of the 8.1 series.
+engine for MySQL as of the {{release}} series.
 
 ## innodb\_buffer\_pool\_size
 

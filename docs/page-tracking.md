@@ -1,8 +1,6 @@
 
 # Take an incremental backup using page tracking
 
-Supports for page tracking functionality for an [incremental backup](create-incremental-backup.md).
-
 To create an incremental backup with page tracking, Percona XtraBackup uses
 the MySQL `mysqlbackup` component. This component provides a list of pages
 modified since the last backup, and Percona XtraBackup copies only those
@@ -13,6 +11,7 @@ tracking feature can improve the speed of incremental backups.
 ## Install the component
 
 To start using the page tracking functionality, do the following:
+{.power-number}
 
 1. Install the `mysqlbackup` component and enable it on the server:
 
