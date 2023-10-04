@@ -30,5 +30,7 @@ $ xtrabackup --prepare --target-dir=/data/compressed/
 
 Now the files in `/data/compressed/` are ready to be used by the server.
 
-The next step is  to [restore](restore-a-backup.md) the backup. 
+## Next step
+
+[Restore the backup :material-arrow-right:](restore-a-backup.md){.md-button}
 

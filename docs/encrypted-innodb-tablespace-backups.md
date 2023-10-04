@@ -454,7 +454,7 @@ Finally, there is an option to store a transition key in the keyring. In this ca
 
 In this scenario, the three stages of the backup process look as follows.
 
-* Backup
+* Back up
 
   ```{.bash data-prompt="$"}
   $ xtrabackup --backup --user=root -p --target-dir=/data/backup \
@@ -479,16 +479,16 @@ In this scenario, the three stages of the backup process look as follows.
 
 * Copy-back
 
-  - `keyring_file` variant:
+    - `keyring_file` variant:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
-    --generate-new-master-key --keyring-file-data=/var/lib/mysql-keyring/keyring
-    ```
+      ```{.bash data-prompt="$"}
+      $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
+      --generate-new-master-key --keyring-file-data=/var/lib/mysql-keyring/keyring
+      ```
 
-  - `keyring_vault` variant:
+    - `keyring_vault` variant:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
-    --generate-new-master-key --keyring-vault-config=/etc/vault.cnf
-    ```
+      ```{.bash data-prompt="$"}
+      $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
+      --generate-new-master-key --keyring-vault-config=/etc/vault.cnf
+      ```

@@ -10,7 +10,7 @@ For a list of common AppArmor commands, see [Percona Server for MySQL - AppArmor
 
 Download the profile from:
 
-[https://github.com/percona/percona-xtrabackup/tree/8.0/packaging/percona/apparmor/apparmor.d](https://github.com/percona/percona-xtrabackup/tree/8.0/packaging/percona/apparmor/apparmor.d)
+[https://github.com/percona/percona-xtrabackup/tree/trunk/packaging/percona/apparmor/apparmor.d](https://github.com/percona/percona-xtrabackup/tree/trunk/packaging/percona/apparmor/apparmor.d)
 
 The following profile sections should be updated with your system information, such as location of the backup destination directory.
 

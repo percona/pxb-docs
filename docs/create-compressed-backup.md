@@ -22,7 +22,7 @@ repository: `percona-release enable-only tools`.
 
 Percona XtraBackup supports the following compression algorithms:
 
-`Zstandard (ZSTD)`
+## Zstandard (ZSTD)
 
 The Zstandard (ZSTD) is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. `ZSTD` is the default compression algorithm for the `--compress` option.
 
@@ -40,7 +40,7 @@ You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](
 $ xtrabackup –backup –compress –compress-zstd-level=1 –target-dir=/data/backup
 ```
 
-`lz4`
+## lz4
 
 To compress files using the `lz4` compression algorithm, set the `--compress` option to `lz4`:
 
@@ -74,6 +74,7 @@ $ xtrabackup --backup --compress --compress-threads=4 \
     170223 13:00:39 completed OK!
     ```
 
-The next step is to [prepare](prepare-compressed-backup.md) the backup in order to [restore](restore-a-backup.md) it. 
+## Next step
 
+[Prepare the backup :material-arrow-right:](prepare-compressed-backup.md){.md-button}
 

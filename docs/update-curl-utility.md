@@ -9,6 +9,7 @@ see [curl #3750](https://github.com/curl/curl/issues/3750)
 or [curl #3763](https://github.com/curl/curl/pull/3763).
 
 Follow these steps to upgrade curl to version 7.74.0:
+{.power-number}
 
 1. Edit the `/etc/apt/sources.list` to add the following:
 

@@ -3,34 +3,26 @@
  --->
 # Frequently asked questions
 
-## Does Percona XtraBackup 8.1 support making backups of databases in versions prior to 8.1?
+## Does Percona XtraBackup {{release}} support making backups of databases in versions prior to {{release}}?
 
-Percona XtraBackup 8.1 does not support making backups of databases
-created in versions prior to 8.1 of MySQL, Percona Server for MySQL or
+Percona XtraBackup {{release}} does not support making backups of databases
+created in versions prior to {{release}} of MySQL, Percona Server for MySQL or
 Percona XtraDB Cluster. 
 
 
 ## Are you aware of any web-based backup management tools (commercial or not) built around Percona XtraBackup*?
 
-[ZRM Community](https://www.zmanda.com/zrm-community/
-is a community tool that uses Percona XtraBackup for Non-Blocking Backups:
+[ZRM Community](https://www.zmanda.com/zrm-community/) is a community tool that uses Percona XtraBackup for Non-Blocking Backups:
 
-> “ZRM provides support for non-blocking backups of MySQL using Percona
-> XtraBackup. ZRM with \Percona XtraBackup provides resource utilization
-> management by providing throttling based on the number of IO operations
-> per
-> second. Percona XtraBackup based backups also allow for table level
-> recovery
-> even though the backup was done at the database level (needs the recovery
-> database server to be Percona Server for MySQL with XtraDB).”\*
+“ZRM provides support for non-blocking backups of MySQL using Percona
+XtraBackup. ZRM with \Percona XtraBackup provides resource utilization
+management by providing throttling based on the number of IO operations per second. Percona XtraBackup based backups also allow for table level recovery even though the backup was done at the database level (needs the recovery database server to be Percona Server for MySQL with XtraDB).”\*
 
 ## xtrabackup binary fails with a floating point exception
 
 In most of the cases this is due to not having installed the required
-libraries
-(and version) by xtrabackup. Installing the GCC suite with the
-supporting
-libraries and recompiling xtrabackup solves the issue. See
+libraries (and version) by xtrabackup. Installing the GCC suite with the
+supporting libraries and recompiling xtrabackup solves the issue. See
 [Compiling and Installing from Source Code](compile-xtrabackup.md) for instructions on the
 procedure.
 
@@ -71,12 +63,9 @@ Percona XtraBackup will not be able to take a consistent backup. Retry the backu
  --->
 !!! note
    
- *   Redo logging is disabled during
-    a [sorted index build](https://dev.mysql.com/doc/refman/8.0/en/sorted-index-builds.html). To avoid this error,
-    Percona XtraBackup can use metadata locks on tables while they are copied:
+    *   Redo logging is disabled during a [sorted index build](https://dev.mysql.com/doc/refman/8.0/en/sorted-index-builds.html). To avoid this error, Percona XtraBackup can use metadata locks on tables while they are copied:
 
-* To block all DDL operations, use the `--lock-ddl` option
-  that issues `LOCK TABLES FOR BACKUP`.
+    * To block all DDL operations, use the `--lock-ddl` option that issues `LOCK TABLES FOR BACKUP`.
 
 
 
