@@ -40,6 +40,7 @@ in your distribution as a separate package `cmake3`. For more information, see [
     libncurses-dev libssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev \
     lsb-release build-essential rsync libdbd-mysql-perl \
     libnuma1 socat librtmp-dev libtinfo5 vim-common \
+    libudev-dev \
     liblz4-tool liblz4-1 liblz4-dev zstd python-docutils qpress
     ```
 
@@ -61,6 +62,7 @@ in your distribution as a separate package `cmake3`. For more information, see [
     ```{.bash data-prompt="$"}
     $ sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
     bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel \
+    bibudev-dev \
     zstd vim-common procps-ng-devel
     ```
 
