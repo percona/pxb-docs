@@ -15,11 +15,6 @@ You can find the binary log position corresponding to a backup after the backup 
     210715 14:15:00 completed OK!
     ```
 
-!!! note
-   
-    As of Percona XtraBackup 8.0.26-18.0, xtrabackup no longer creates the `xtrabackup_binlog_pos_innodb` file. This change is because MySQL and Percona Server no longer update the binary log information on global transaction system section of `ibdata`. You should rely on `xtrabackup_binlog_info` regardless of the storage engine in use.
-
-
 ## Point-in-time recovery
 
 To perform a point-in-time recovery from an `xtrabackup` backup, you should prepare and restore the backup, and then replay binary logs from the point shown in the `xtrabackup_binlog_info` file.
@@ -28,8 +23,6 @@ Find a more detailed procedure in the [Point-in-time recovery](point-in-time-rec
 
 ## Set up a new replication replica
 
-To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. If you are using version 8.0.22 or earlier, in your `CHANGE MASTER TO` command, use the binary log filename and position shown in the `xtrabackup_binlog_info` file to start replication.
+To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the [CHANGE_REPLICATION_SOURCE_TO with the appropriate options](https://dev.mysql.com/doc/refman/8.1/en/change-replication-source-to.html) command, use the binary log filename and position shown in the `xtrabackup_binlog_info` file to start replication.
 
-If you are using 8.0.23 or later, use the [CHANGE_REPLICATION_SOURCE_TO and the appropriate options](https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html). `CHANGE_MASTER_TO` is deprecated.
-
-A more detailed procedure is found in  How to setup a replica for replication in 6 simple steps with Percona XtraBackup.
+A more detailed procedure is found in  [How to setup a replica for replication in 6 simple steps with Percona XtraBackup](set-up-replication.md).

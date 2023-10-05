@@ -1,6 +1,8 @@
+<!--- We should probably remove the info about `keyring_file` plugin-->
+
 # Encrypted InnoDB tablespace backups
 
-InnoDB supports [data encryption for InnoDB tables](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html)
+InnoDB supports [data encryption for InnoDB tables](https://dev.mysql.com/doc/refman/8.1/en/innodb-data-encryption.html)
 stored in file-per-table tablespaces. This feature provides an at-rest
 encryption for physical tablespace data files.
 
@@ -10,26 +12,13 @@ the tablespace key. The master encryption key is stored in a keyring.
 xtrabackup supports two keyring plugins: `keyring_file`, and 
 `keyring_vault`. These plugins are installed into the `plugin` directory.
 
-<!---
-## Version updates
-
-Percona XtraBackup 8.0.25-17 adds support for the `keyring_file` component,
-which is part of the component-based infrastructure MySQL which extends the
-server capabilities. The component is stored in the `plugin` directory.
-
-See a [comparison of keyring components and keyring plugins](https://dev.mysql.com/doc/refman/8.0/en/keyring-component-plugin-comparison.html)
-for more information.
-
-Percona XtraBackup 8.0.27-19 adds support for the Key Management
-Interoperability Protocol (KMIP) which enables the communication between
-the key management system and encrypted database server. 
-
-Percona XtraBackup 8.0.28-21 adds support for the Amazon Key Management
+Percona XtraBackup supports the Amazon Key Management
 Service (AWS KMS). AWS KMS is cloud-based encryption and key management
 service. The keys and functionality can be used for other AWS services
 or your applications that use AWS. No configuration is required to back
 up a server with AWS KMS-enabled encryption. 
---->
+
+<!--- We should probably remove the info about `keyring_file` plugin
 ## Use `keyring_file` plugin
 
 In order to back up and prepare a database containing encrypted InnoDB  
@@ -80,8 +69,7 @@ keyring used when the backup was taken and prepared.
 
 ## Use `keyring_vault` plugin
 
-Keyring vault plugin settings are
-described [here](https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin).
+Keyring vault plugin settings are described in [Use the keyring component or keyring plugin](https://docs.percona.com/percona-server/8.1/using-keyring-plugin.html).
 
 ### Create a backup with the `keyring_vault` plugin
 
@@ -113,7 +101,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-vault-config=/etc/vault.cnf
 ```
 
-Review [using the keyring vault plugin](https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin) for a description of keyring vault plugin settings.
+Review [Use the keyring component or keyring plugin](https://docs.percona.com/percona-server/8.1/using-keyring-plugin.html) for a description of keyring vault plugin settings.
 
 After xtrabackup completes the action, the following message confirms
 the action:
@@ -131,13 +119,14 @@ option:
 ```{.bash data-prompt="$"}
 $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql
 ```
+-->
 
 ## Use the `keyring_file` component
 
 A component is not loaded with the `--early_plugin_load` option. The 
 server uses a manifest to load the component and the component has its 
 own configuration file. See the [MySQL documentation on the component 
-installation](https://dev.mysql.com/doc/refman/8.0/en/keyring-component-installation.html) for more 
+installation](https://dev.mysql.com/doc/refman/8.1/en/keyring-component-installation.html) for more 
 information.
 
 An example of a manifest and a configuration file follows:
@@ -159,11 +148,11 @@ An example of `/lib/plugin/component_keyring_file.cnf`:
 ```
 
 For more information,
-see [Keyring Component Installation](https://dev.mysql.com/doc/refman/8.0/en/keyring-component-installation.html)
-and [Using the keyring_file File-Based Keyring Plugin](https://dev.mysql.com/doc/refman/8.0/en/keyring-file-plugin.html).
+see [Keyring Component Installation](https://dev.mysql.com/doc/refman/8.1/en/keyring-component-installation.html)
+and [Using the keyring_file File-Based Keyring Plugin](https://dev.mysql.com/doc/refman/8.1/en/keyring-file-plugin.html).
 
 With the appropriate privilege, you can `SELECT` on
-the [performance_schema.keyring_component_status table](https://dev.mysql.com/doc/refman/8.0/en/performance-schema-keyring-component-status-table.html)
+the [performance_schema.keyring_component_status table](https://dev.mysql.com/doc/refman/8.1/en/performance-schema-keyring-component-status-table.html)
 to view the attributes and status of the installed keyring component 
 when in use.
 

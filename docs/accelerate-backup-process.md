@@ -57,7 +57,7 @@ TABLES WITH READ LOCK` and once during to minimize the time the read lock is
 being held. During the second `rsync` call, it will only synchronize the
 changes to non-transactional data (if any) since the first call performed before
 the `FLUSH TABLES WITH READ LOCK`. Note that Percona XtraBackup will use
-[Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
+[Backup locks](https://docs.percona.com/percona-server/8.1/backup-locks.html)
 where available as a lightweight alternative to `FLUSH TABLES WITH READ
 LOCK`.
 

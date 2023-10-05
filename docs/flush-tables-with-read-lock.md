@@ -22,9 +22,9 @@ Long-running queries with `FLUSH TABLES WITH READ LOCK` enabled can leave the se
 
 !!! note
    
-    All operations described in this section have no effect when [backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html) are used.
+    All operations described in this section have no effect when [backup locks](https://docs.percona.com/percona-server/8.1/backup-locks.html) are used.
 
-    Percona XtraBackup uses [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
+    Percona XtraBackup uses [Backup locks](https://docs.percona.com/percona-server/8.1/backup-locks.html)
     where available as a lightweight alternative to `FLUSH TABLES WITH READ
     LOCK`. This operation automatically copies non-InnoDB data and avoids blocking DML queries that modify InnoDB tables.
 

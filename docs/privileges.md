@@ -68,7 +68,7 @@ The database user needs the following privileges to back up tables or databases:
 * `RELOAD` and `LOCK TABLES` (unless the `--no-lock`
 option is specified) in order to run `FLUSH TABLES WITH READ LOCK` and
 `FLUSH ENGINE LOGS` prior to start copying the files, and requires this
-privilege when [Backup Locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
+privilege when [Backup Locks](https://docs.percona.com/percona-server/8.1/backup-locks.html)
 are used
 
 * `BACKUP_ADMIN` privilege is needed to query the
@@ -84,8 +84,7 @@ mandatory), and optionally to see all threads which are running on the
 server (see FLUSH TABLES WITH READ LOCK option),
 
 * `SUPER` in order to start/stop the replication threads in a replication
-environment, use [XtraDB Changed Page Tracking](https://www.percona.com/doc/percona-server/8.0/changed_page_tracking.html)
-for Incremental Backups and for handling FLUSH TABLES WITH READ LOCK,
+environment,
 
 * `CREATE` privilege in order to create the
 PERCONA_SCHEMA.xtrabackup_history database and

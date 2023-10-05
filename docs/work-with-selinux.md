@@ -105,7 +105,7 @@ Create the `xtrabackup.fc` file and add content. This file defines the security 
 
 Download the `xtrabackup.te` file from the following location:
 
-[https://github.com/percona/percona-xtrabackup/tree/8.0/packaging/percona/selinx](https://github.com/percona/percona-xtrabackup/tree/8.0/packaging/percona/selinx)
+[https://github.com/percona/percona-xtrabackup/tree/trunk/packaging/percona/selinx](https://github.com/percona/percona-xtrabackup/tree/trunk/packaging/percona/selinx)
 
 !!! note
  
