@@ -1,4 +1,4 @@
-# Prepare the backup
+# Decompress and prepare a compressed backup
 
 Before you can prepare the backup you’ll need to uncompress all the files.
 *Percona XtraBackup* has implemented `--decompress` option
