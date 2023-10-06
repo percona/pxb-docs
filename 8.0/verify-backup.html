@@ -9,15 +9,23 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Percona XtraBackup is a set of the following binaries:">
+        <meta name="description" content="One way to verify if the backup is consistent is by setting up the
+replication and running pt-table-checksum. This can be used to verify any type of backups, but before setting up
+replication, backup should be prepared and be able to run (this means that
+incremental backups should be merged to full backups, encrypted backups
+decrypted etc.).">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/binaries-overiew.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/verify-backup.html">
       
       
+        <link rel="prev" href="make-backup-in-replication-env.html">
+      
+      
+        <link rel="next" href="error-message-instant.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
@@ -25,7 +33,7 @@
     
     
       
-        <title>Percona XtraBackup binaries overview - Percona XtraBackup</title>
+        <title>Verify backups with replication and pt-checksum - Percona XtraBackup</title>
       
     
     
@@ -84,7 +92,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Percona XtraBackup binaries overview" />
+                 <meta property="og:title" content="Percona XtraBackup - Verify backups with replication and pt-checksum" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
               
@@ -110,7 +118,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#percona-xtrabackup-binaries-overview" class="md-skip">
+        <a href="#verify-backups-with-replication-and-pt-checksum" class="md-skip">
           Skip to content
         </a>
       
@@ -149,7 +157,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Percona XtraBackup binaries overview
+              Verify backups with replication and pt-checksum
             
           </span>
         </div>
@@ -3074,18 +3082,20 @@
       
   
   
+    
+  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -3099,7 +3109,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             How to
@@ -3360,7 +3370,7 @@
         
   
   <span class="md-ellipsis">
-    Prepare the backup
+    Decompress and prepare a compressed backup
   </span>
   
 
@@ -3654,18 +3664,20 @@
                 
   
   
+    
+  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" checked>
         
           
           <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="0">
@@ -3679,7 +3691,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8_7">
             <span class="md-nav__icon md-icon"></span>
             Replicate
@@ -3750,9 +3762,29 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="varify-backup.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Verify backups with replication and pt-checksum
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="verify-backup.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -3761,6 +3793,42 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-the-replication" class="md-nav__link">
+    Set up the replication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-pt-table-checksum" class="md-nav__link">
+    Use pt-table-checksum
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3909,6 +3977,26 @@
             Reference
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="topic-index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Topic index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -4066,6 +4154,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-the-replication" class="md-nav__link">
+    Set up the replication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-pt-table-checksum" class="md-nav__link">
+    Use pt-table-checksum
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4081,14 +4191,14 @@
                   
                   
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/binaries-overiew.md"
+                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/verify-backup.md"
                     title="edit.link.title"
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
                   </a>
                   <a
-                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/binaries-overiew.md"
+                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/verify-backup.md"
                     title="View source of this page"
                     class="md-content__button md-icon"
                   >
@@ -4104,23 +4214,93 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="percona-xtrabackup-binaries-overview">Percona XtraBackup binaries overview<a class="headerlink" href="#percona-xtrabackup-binaries-overview" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup is a set of the following binaries:</p>
-<ul>
-<li>
-<p><a href="xtrabackup-binary-overview.html">xtrabackup</a> - a compiled <em>C</em> binary that provides functionality to backup a whole <em>MySQL</em> database instance with <em>MyISAM</em>, <em>InnoDB</em>, and <em>XtraDB</em> tables.</p>
-</li>
-<li>
-<p><a href="xbcrypt-binary-overview.html">xbcrypt</a> - a utility used for encrypting and decrypting backup files.</p>
-</li>
-<li>
-<p><a href="xbstream-binary-overview.html">xbstream</a> - a utility that allows streaming and extracting files to / from the xbstream format.</p>
-</li>
-<li>
-<p><a href="xbcloud-binary-overview.html">xbcloud</a> - a utility used for downloading and uploading full or part of <em>xbstream</em> archive from / to cloud.</p>
-</li>
-</ul>
-<p>The recommended way to take the backup is by using the <em>xtrabackup</em> script. For more information on script options, see <a href="xtrabackup-binary-overview.html">xtrabackup</a>.</p>
+                <h1 id="verify-backups-with-replication-and-pt-checksum">Verify backups with replication and pt-checksum<a class="headerlink" href="#verify-backups-with-replication-and-pt-checksum" title="Permanent link">&para;</a></h1>
+<p>One way to verify if the backup is consistent is by setting up the
+replication and running <a href="http://www.percona.com/doc/percona-toolkit/pt-table-checksum.html">pt-table-checksum</a>. This can be used to verify any type of backups, but before setting up
+replication, backup should be prepared and be able to run (this means that
+incremental backups should be merged to full backups, encrypted backups
+decrypted etc.).</p>
+<h2 id="set-up-the-replication">Set up the replication<a class="headerlink" href="#set-up-the-replication" title="Permanent link">&para;</a></h2>
+<p>How to set up a replica for replication in 6 simple steps with Percona
+XtraBackup guide provides a detailed instructions on how to take the backup
+and set up the replication.</p>
+<p>For checking the backup consistency you can use either the original server
+where the backup was taken, or another test server created by using a
+different backup method (such as cold backup, mysqldump or LVM snapshots)
+as the source server in the replication setup.</p>
+<h2 id="use-pt-table-checksum">Use pt-table-checksum<a class="headerlink" href="#use-pt-table-checksum" title="Permanent link">&para;</a></h2>
+<p>This tool is part of the <em>Percona Toolkit</em>. It performs an online
+replication consistency check by executing checksum queries on the source,
+which produces different results on replicas that are inconsistent with the
+source.</p>
+<p>After you confirmed that replication has been set up successfully, you
+can <a href="http://www.percona.com/doc/percona-toolkit/installation.html">install</a>
+or download <em>pt-table-checksum</em>. This example shows downloading the latest
+version of <em>pt-table-checksum</em>:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>percona.com/get/pt-table-checksum
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In order for pt-table-checksum to work correctly <code>libdbd-mysql-perl</code> will need to be installed on <em>Debian/Ubuntu</em> systems or <code>perl-DBD-MySQL</code> on <em>RHEL/CentOS</em>. If you installed the <em>percona-toolkit</em> package from the Percona repositories package manager should install those libraries automatically.</p>
+</div>
+<p>After this command has been run, <em>pt-table-checksum</em> will be downloaded to
+your current working directory.</p>
+<p>Running the <em>pt-table-checksum</em> on the source will create <code>percona</code>
+database with the <code>checksums</code> table which will be replicated to the
+replicas as well. Example of the <em>pt-table-checksum</em> will look like this:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./pt-table-checksum
+</code></pre></div>
+<p>The results are similar to the following:</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>TS ERRORS  DIFFS     ROWS  CHUNKS SKIPPED    TIME TABLE
+04-30T11:31:50      0      0   633135       8       0   5.400 exampledb.aka_name
+04-30T11:31:52      0      0   290859       1       0   2.692 exampledb.aka_title
+Checksumming exampledb.user_info:  16% 02:27 remain
+Checksumming exampledb.user_info:  34% 01:58 remain
+Checksumming exampledb.user_info:  50% 01:29 remain
+Checksumming exampledb.user_info:  68% 00:56 remain
+Checksumming exampledb.user_info:  86% 00:24 remain
+04-30T11:34:38      0      0 22187768     126       0 165.216 exampledb.user_info
+04-30T11:38:09      0      0        0       1       0   0.033 mysql.time_zone_name
+04-30T11:38:09      0      0        0       1       0   0.052 mysql.time_zone_transition
+04-30T11:38:09      0      0        0       1       0   0.054 mysql.time_zone_transition_type
+04-30T11:38:09      0      0        8       1       0   0.064 mysql.user
+</code></pre></div>
+</details>
+<p>If all the values in the <code>DIFFS</code> column are 0 that means that backup is
+consistent with the current setup.</p>
+<p>In case backup was not consistent  <em>pt-table-checksum</em> should spot the
+difference and point to the table that does not match. Following example
+shows adding new user on the backed up replica in order to simulate the
+inconsistent backup:</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>grant<span class="w"> </span>usage<span class="w"> </span>on<span class="w"> </span>exampledb.*<span class="w"> </span>to<span class="w"> </span>exampledb@localhost<span class="w"> </span>identified<span class="w"> </span>by<span class="w"> </span><span class="s1">&#39;thisisnewpassword&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>If we run the <em>pt-table-checksum</em> now difference should be spotted</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./pt-table-checksum
+</code></pre></div>
+<p>The results are similar to the following:</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>TS ERRORS  DIFFS     ROWS  CHUNKS SKIPPED    TIME TABLE
+04-30T11:31:50      0      0   633135       8       0   5.400 exampledb.aka_name
+04-30T11:31:52      0      0   290859       1       0   2.692 exampledb.aka_title
+Checksumming exampledb.user_info:  16% 02:27 remain
+Checksumming exampledb.user_info:  34% 01:58 remain
+Checksumming exampledb.user_info:  50% 01:29 remain
+Checksumming exampledb.user_info:  68% 00:56 remain
+Checksumming exampledb.user_info:  86% 00:24 remain
+04-30T11:34:38      0      0 22187768     126       0 165.216 exampledb.user_info
+04-30T11:38:09      0      0        0       1       0   0.033 mysql.time_zone_name
+04-30T11:38:09      0      0        0       1       0   0.052 mysql.time_zone_transition
+04-30T11:38:09      0      0        0       1       0   0.054 mysql.time_zone_transition_type
+04-30T11:38:09      1      0        8       1       0   0.064 mysql.user
+</code></pre></div>
+</details>
+<p>This output shows that source and the replica aren’t in consistent state
+and that the difference is in the <code>mysql.user</code> table.</p>
+<p>More information on different options that pt-table-checksum provides can
+be found in the <em>pt-table-checksum</em> <a href="http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html">documentation</a>.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -4143,7 +4323,7 @@
   <small>
     
       Last update:
-      2023-07-19
+      2023-10-06
     
   </small>
 </div>

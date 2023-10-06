@@ -9,23 +9,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="One way to verify if the backup is consistent is by setting up the
-replication and running pt-table-checksum. This can be used to verify any type of backups, but before setting up
-replication, backup should be prepared and be able to run (this means that
-incremental backups should be merged to full backups, encrypted backups
-decrypted etc.).">
+        <meta name="description" content="Apt pinning the Percona XtraBackup 8.0 packages">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/varify-backup.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/topic-index.html">
       
       
-        <link rel="prev" href="make-backup-in-replication-env.html">
+        <link rel="prev" href="xtrabackup-exit-codes.html">
       
       
-        <link rel="next" href="error-message-instant.html">
+        <link rel="next" href="xtrabackup-files.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
@@ -33,7 +29,7 @@ decrypted etc.).">
     
     
       
-        <title>Verify backups with replication and pt-checksum - Percona XtraBackup</title>
+        <title>Topic index - Percona XtraBackup</title>
       
     
     
@@ -92,7 +88,7 @@ decrypted etc.).">
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Verify backups with replication and pt-checksum" />
+                 <meta property="og:title" content="Percona XtraBackup - Topic index" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
               
@@ -118,7 +114,7 @@ decrypted etc.).">
     <div data-md-component="skip">
       
         
-        <a href="#verify-backups-with-replication-and-pt-checksum" class="md-skip">
+        <a href="#topic-index" class="md-skip">
           Skip to content
         </a>
       
@@ -157,7 +153,7 @@ decrypted etc.).">
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Verify backups with replication and pt-checksum
+              Topic index
             
           </span>
         </div>
@@ -3082,20 +3078,18 @@ decrypted etc.).">
       
   
   
-    
-  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -3109,7 +3103,7 @@ decrypted etc.).">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             How to
@@ -3370,7 +3364,7 @@ decrypted etc.).">
         
   
   <span class="md-ellipsis">
-    Prepare the backup
+    Decompress and prepare a compressed backup
   </span>
   
 
@@ -3664,20 +3658,18 @@ decrypted etc.).">
                 
   
   
-    
-  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" >
         
           
           <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="0">
@@ -3691,7 +3683,7 @@ decrypted etc.).">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8_7">
             <span class="md-nav__icon md-icon"></span>
             Replicate
@@ -3762,29 +3754,9 @@ decrypted etc.).">
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Verify backups with replication and pt-checksum
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="varify-backup.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="verify-backup.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3793,42 +3765,6 @@ decrypted etc.).">
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#set-up-the-replication" class="md-nav__link">
-    Set up the replication
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-pt-table-checksum" class="md-nav__link">
-    Use pt-table-checksum
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3946,18 +3882,20 @@ decrypted etc.).">
       
   
   
+    
+  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
@@ -3971,12 +3909,42 @@ decrypted etc.).">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             Reference
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="topic-index.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Topic index
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
             
               
                 
@@ -4134,28 +4102,6 @@ decrypted etc.).">
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#set-up-the-replication" class="md-nav__link">
-    Set up the replication
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-pt-table-checksum" class="md-nav__link">
-    Use pt-table-checksum
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -4171,14 +4117,14 @@ decrypted etc.).">
                   
                   
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/varify-backup.md"
+                    href="https://github.com/percona/pxb-docs/edit/8.0/docs/topic-index.md"
                     title="edit.link.title"
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
                   </a>
                   <a
-                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/varify-backup.md"
+                    href="https://raw.githubusercontent.com/percona/pxb-docs/8.0/docs/topic-index.md"
                     title="View source of this page"
                     class="md-content__button md-icon"
                   >
@@ -4194,93 +4140,155 @@ decrypted etc.).">
                 
 
                 <!-- Markdown content -->
-                <h1 id="verify-backups-with-replication-and-pt-checksum">Verify backups with replication and pt-checksum<a class="headerlink" href="#verify-backups-with-replication-and-pt-checksum" title="Permanent link">&para;</a></h1>
-<p>One way to verify if the backup is consistent is by setting up the
-replication and running <a href="http://www.percona.com/doc/percona-toolkit/pt-table-checksum.html">pt-table-checksum</a>. This can be used to verify any type of backups, but before setting up
-replication, backup should be prepared and be able to run (this means that
-incremental backups should be merged to full backups, encrypted backups
-decrypted etc.).</p>
-<h2 id="set-up-the-replication">Set up the replication<a class="headerlink" href="#set-up-the-replication" title="Permanent link">&para;</a></h2>
-<p>How to set up a replica for replication in 6 simple steps with Percona
-XtraBackup guide provides a detailed instructions on how to take the backup
-and set up the replication.</p>
-<p>For checking the backup consistency you can use either the original server
-where the backup was taken, or another test server created by using a
-different backup method (such as cold backup, mysqldump or LVM snapshots)
-as the source server in the replication setup.</p>
-<h2 id="use-pt-table-checksum">Use pt-table-checksum<a class="headerlink" href="#use-pt-table-checksum" title="Permanent link">&para;</a></h2>
-<p>This tool is part of the <em>Percona Toolkit</em>. It performs an online
-replication consistency check by executing checksum queries on the source,
-which produces different results on replicas that are inconsistent with the
-source.</p>
-<p>After you confirmed that replication has been set up successfully, you
-can <a href="http://www.percona.com/doc/percona-toolkit/installation.html">install</a>
-or download <em>pt-table-checksum</em>. This example shows downloading the latest
-version of <em>pt-table-checksum</em>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>percona.com/get/pt-table-checksum
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In order for pt-table-checksum to work correctly <code>libdbd-mysql-perl</code> will need to be installed on <em>Debian/Ubuntu</em> systems or <code>perl-DBD-MySQL</code> on <em>RHEL/CentOS</em>. If you installed the <em>percona-toolkit</em> package from the Percona repositories package manager should install those libraries automatically.</p>
-</div>
-<p>After this command has been run, <em>pt-table-checksum</em> will be downloaded to
-your current working directory.</p>
-<p>Running the <em>pt-table-checksum</em> on the source will create <code>percona</code>
-database with the <code>checksums</code> table which will be replicated to the
-replicas as well. Example of the <em>pt-table-checksum</em> will look like this:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./pt-table-checksum
-</code></pre></div>
-<p>The results are similar to the following:</p>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>TS ERRORS  DIFFS     ROWS  CHUNKS SKIPPED    TIME TABLE
-04-30T11:31:50      0      0   633135       8       0   5.400 exampledb.aka_name
-04-30T11:31:52      0      0   290859       1       0   2.692 exampledb.aka_title
-Checksumming exampledb.user_info:  16% 02:27 remain
-Checksumming exampledb.user_info:  34% 01:58 remain
-Checksumming exampledb.user_info:  50% 01:29 remain
-Checksumming exampledb.user_info:  68% 00:56 remain
-Checksumming exampledb.user_info:  86% 00:24 remain
-04-30T11:34:38      0      0 22187768     126       0 165.216 exampledb.user_info
-04-30T11:38:09      0      0        0       1       0   0.033 mysql.time_zone_name
-04-30T11:38:09      0      0        0       1       0   0.052 mysql.time_zone_transition
-04-30T11:38:09      0      0        0       1       0   0.054 mysql.time_zone_transition_type
-04-30T11:38:09      0      0        8       1       0   0.064 mysql.user
-</code></pre></div>
-</details>
-<p>If all the values in the <code>DIFFS</code> column are 0 that means that backup is
-consistent with the current setup.</p>
-<p>In case backup was not consistent  <em>pt-table-checksum</em> should spot the
-difference and point to the table that does not match. Following example
-shows adding new user on the backed up replica in order to simulate the
-inconsistent backup:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>grant<span class="w"> </span>usage<span class="w"> </span>on<span class="w"> </span>exampledb.*<span class="w"> </span>to<span class="w"> </span>exampledb@localhost<span class="w"> </span>identified<span class="w"> </span>by<span class="w"> </span><span class="s1">&#39;thisisnewpassword&#39;</span><span class="p">;</span>
-</code></pre></div>
-<p>If we run the <em>pt-table-checksum</em> now difference should be spotted</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./pt-table-checksum
-</code></pre></div>
-<p>The results are similar to the following:</p>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>TS ERRORS  DIFFS     ROWS  CHUNKS SKIPPED    TIME TABLE
-04-30T11:31:50      0      0   633135       8       0   5.400 exampledb.aka_name
-04-30T11:31:52      0      0   290859       1       0   2.692 exampledb.aka_title
-Checksumming exampledb.user_info:  16% 02:27 remain
-Checksumming exampledb.user_info:  34% 01:58 remain
-Checksumming exampledb.user_info:  50% 01:29 remain
-Checksumming exampledb.user_info:  68% 00:56 remain
-Checksumming exampledb.user_info:  86% 00:24 remain
-04-30T11:34:38      0      0 22187768     126       0 165.216 exampledb.user_info
-04-30T11:38:09      0      0        0       1       0   0.033 mysql.time_zone_name
-04-30T11:38:09      0      0        0       1       0   0.052 mysql.time_zone_transition
-04-30T11:38:09      0      0        0       1       0   0.054 mysql.time_zone_transition_type
-04-30T11:38:09      1      0        8       1       0   0.064 mysql.user
-</code></pre></div>
-</details>
-<p>This output shows that source and the replica aren’t in consistent state
-and that the difference is in the <code>mysql.user</code> table.</p>
-<p>More information on different options that pt-table-checksum provides can
-be found in the <em>pt-table-checksum</em> <a href="http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html">documentation</a>.</p>
+                <h1 id="topic-index">Topic index<a class="headerlink" href="#topic-index" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="about-xtrabackup.html">About Percona Xtrabackup</a></li>
+<li><a href="accelerate-backup-process.html">Accelerate the backup process</a></li>
+<li><a href="analyze-table-statistics.html">Analyze table statistics</a></li>
+<li>
+<p><a href="apt-pinning.html">Apt pinning the Percona XtraBackup 8.0 packages</a></p>
+</li>
+<li>
+<p><a href="binary-tarball-names.html">Binary tarball file names available</a></p>
+</li>
+<li>
+<p><a href="compile-xtrabackup.html">Compile and install Percona XtraBackup 8.0 from source</a></p>
+</li>
+<li><a href="configure-xtrabackup.html">Configure xtrabackup</a></li>
+<li><a href="privileges.html">Connection and privileges needed</a></li>
+<li><a href="copyright-and-licensing-information.html">Copyright and licensing information</a></li>
+<li><a href="create-compressed-backup.html">Create a compressed backup</a></li>
+<li>
+<p><a href="create-full-backup.html">Create a full backup</a></p>
+</li>
+<li>
+<p><a href="create-incremental-backup.html">Create an incremental backup</a></p>
+</li>
+<li><a href="create-individual-partition-backup.html">Create an individual partitions backup</a></li>
+<li><a href="create-partial-backup.html">Create a partial backup</a></li>
+<li><a href="prepare-compressed-backup.html">Decompress and prepare a compressed backup</a></li>
+<li>
+<p><a href="dictionary-cache.html">Dictionary cache</a></p>
+</li>
+<li>
+<p><a href="encrypt-backups.html">Encrypt backups</a></p>
+</li>
+<li><a href="encrypted-innodb-tablespace-backups.html">Encrypted InnoDB tablespace backups</a></li>
+<li><a href="error-message-instant.html">Error message: Found tables with row versions due to INSTANT ADD/DROP columns</a></li>
+<li><a href="xbcloud-exbackoff.html">Exponential backup</a></li>
+<li><a href="xbcloud-binary-fifo-datasink.html">FIFO data sink</a></li>
+<li><a href="apt-files.html">Files in the DEB package built for Percona XtraBackup 8.0</a></li>
+<li><a href="yum-files.html">Files in the RPM package built for Percona XtraBackup 8.0</a></li>
+<li><a href="flush-tables-with-read-lock.html">FLUSH TABLES WITH READ LOCK option</a></li>
+<li>
+<p><a href="faq.html">Frequently asked questions</a></p>
+</li>
+<li>
+<p><a href="glossary.html">Glossary</a></p>
+</li>
+<li>
+<p><a href="index.html">Home</a></p>
+</li>
+<li><a href="how-xtrabackup-works.html">How Percona XtraBackup works</a></li>
+<li><a href="create-gtid-replica.html">How to create a new (or repair a broken) GTID-based replica</a></li>
+<li><a href="set-up-replication.html">How to set up a replica for replication in 6 simple steps with Percona XtraBackup</a></li>
+<li><a href="log-enhancements.html">Improved log statements</a></li>
+<li><a href="binary-tarball.html">Install Percona XtraBackup 8.0 from a binary tarball</a></li>
+<li><a href="installation.html">Install Percona XtraBackup 8.0 overview</a></li>
+<li><a href="apt-download-deb.html">Install Percona XtraBackup 8.0 using downloaded DEB packages</a></li>
+<li><a href="yum-download-rpm.html">Install Percona XtraBackup 8.0 using downloaded RPM packages</a></li>
+<li>
+<p><a href="xtrabackup-files.html">Index of files created by Percona XtraBackup</a></p>
+</li>
+<li>
+<p><a href="lock-options.html">lock-ddl-per-table option improvements</a></p>
+</li>
+<li><a href="lru-dump-backup.html">LRU dump backup</a></li>
+<li>
+<p><a href="make-backup-in-replication-env.html">Make backups in replication environments</a></p>
+</li>
+<li>
+<p><a href="permissions.html">Permissions needed</a></p>
+</li>
+<li>
+<p><a href="point-in-time-recovery.html">Point-in-time recovery</a></p>
+</li>
+<li>
+<p><a href="prepare-full-backup.html">Prepare a full backup</a></p>
+</li>
+<li><a href="prepare-incremental-backup.html">Prepare an incremental backup</a></li>
+<li><a href="prepare-individual-partitions-backup.html">Prepare an individual partitions backup</a></li>
+<li>
+<p><a href="prepare-partial-backup.html">Prepare a partial backup</a></p>
+</li>
+<li>
+<p><a href="toolkit-version-check.html">Percona Toolkit version checking</a></p>
+</li>
+<li><a href="binaries-overview.html">Percona XtraBackup binaries overview</a></li>
+<li><a href="quickstart-overview.html">Quickstart Guide for Percona XtraBackup</a></li>
+<li><a href="release-notes.html">Release notes index</a></li>
+<li><a href="restore-a-backup.html">Restore a backup</a></li>
+<li><a href="restore-partial-backup.html">Restore a partial backup</a></li>
+<li><a href="restore-individual-tables.html">Restore individual tables</a></li>
+<li>
+<p><a href="restore-individual-partitions.html">Restore the partition from a backup</a></p>
+</li>
+<li>
+<p><a href="docker.html">Run Percona XtraBackup 8.0 in a Docker container</a></p>
+</li>
+<li>
+<p><a href="server-backup-version-comparison.html">Server version and backup version comparison</a></p>
+</li>
+<li>
+<p><a href="smart-memory-estimation.html">Smart memory estimation</a></p>
+</li>
+<li>
+<p><a href="store-backup-history.html">Store backup history on the server</a></p>
+</li>
+<li>
+<p><a href="take-streaming-backup.html">Take a streaming backup</a></p>
+</li>
+<li><a href="page-tracking.html">Take an incremental backup using page tracking</a></li>
+<li>
+<p><a href="throttling-backups.html">Throttling backups</a></p>
+</li>
+<li>
+<p><a href="trademark-policy.html">Trademark policy</a></p>
+</li>
+<li><a href="xtrabackup-option-reference.html">The xtrabackup option reference</a></li>
+<li><a href="xtrabackup-binary-overview.html">The xtrabackup binary overview</a></li>
+<li><a href="xbcloud-binary-overview.html">The xbcloud binary overview</a></li>
+<li><a href="xtrabackup-version-numbers.html">Understand version numbers</a></li>
+<li><a href="apt-uninstall-xtrabackup.html">Uninstall Percona XtraBackup 8.0 on Debian and Ubuntu</a></li>
+<li><a href="yum-uninstall-xtrabackup.html">Uninstall Percona XtraBackup 8.0 on Red Hat Enterprise Linux and CentOS</a></li>
+<li><a href="update-curl-utility.html">Update curl utility</a></li>
+<li>
+<p><a href="apt-repo.html">Use an APT repository to install Percona XtraBackup 8.0</a></p>
+</li>
+<li>
+<p><a href="xbcloud-s3.html">Use the xbcloud binary with Amazon S3</a></p>
+</li>
+<li><a href="xbcloud-gcs.html">Use the xbcloud binary with Google Cloud Storage</a></li>
+<li><a href="xbcloud-iam-profile.html">Use the xbcloud binary with an IAM instance profile</a></li>
+<li><a href="xbcloud-azure.html">Use the xbcloud binary with Microsoft Azure Cloud Storage</a></li>
+<li><a href="xbcloud-minio.html">Use the xbcloud binary with MinIO</a></li>
+<li><a href="xbcloud-swift.html">Use the xbcloud binary with Swift</a></li>
+<li><a href="yum-repo.html">Use a YUM repository to install Percona XtraBackup</a></li>
+<li><a href="xbcrypt-binary-overview.html">The xbcrypt binary overview</a></li>
+<li><a href="xbstream-binary-overview.html">The xbstream binary overview</a></li>
+<li><a href="verify-backup.html">Verify backups with replication and pt-checksum</a></li>
+<li><a href="work-with-apparmor.html">Work with AppArmor</a></li>
+<li><a href="working-with-binary-logs.html">Work with binary logs</a></li>
+<li>
+<p><a href="work-with-selinux.html">Work with SELinux</a></p>
+</li>
+<li>
+<p><a href="xtrabackup-exit-codes.html">xtrabackup exit codes</a></p>
+</li>
+<li>
+<p><a href="xtrabackup-implementation-details.html">xtrabackup implementation details</a></p>
+</li>
+</ul>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -4303,7 +4311,7 @@ be found in the <em>pt-table-checksum</em> <a href="http://www.percona.com/doc/p
   <small>
     
       Last update:
-      2023-06-12
+      2023-10-06
     
   </small>
 </div>
