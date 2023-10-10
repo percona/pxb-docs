@@ -63,7 +63,7 @@ Percona XtraBackup will not be able to take a consistent backup. Retry the backu
  --->
 !!! note
    
-    *   Redo logging is disabled during a [sorted index build](https://dev.mysql.com/doc/refman/8.0/en/sorted-index-builds.html). To avoid this error, Percona XtraBackup can use metadata locks on tables while they are copied:
+    *   Redo logging is disabled during a [sorted index build](https://dev.mysql.com/doc/refman/8.1/en/sorted-index-builds.html). To avoid this error, Percona XtraBackup can use metadata locks on tables while they are copied:
 
     * To block all DDL operations, use the `--lock-ddl` option that issues `LOCK TABLES FOR BACKUP`.
 

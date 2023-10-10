@@ -18,7 +18,7 @@ Percona XtraBackup remembers the LSN when it starts, and then copies the data fi
 at different points in time. Percona XtraBackup also runs a
 background process that watches the transaction log files, and copies any changes. Percona XtraBackup does this continually. The transaction logs are written in a round-robin fashion, and can be reused.
 
-Percona XtraBackup uses [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
+Percona XtraBackup uses [Backup locks](https://docs.percona.com/percona-server/8.1/backup-locks.html)
 
 where available as a lightweight alternative to `FLUSH TABLES WITH READ
 LOCK`. MySQL {{release}} allows
@@ -46,7 +46,7 @@ needed even with the `--slave-info` option.
 
 !!! admonition "See also"
 
-    [MySQL Documentation: LOCK INSTANCE FOR BACKUP](https://dev.mysql.com/doc/refman/8.0/en/lock-instance-for-backup.html)
+    [MySQL Documentation: LOCK INSTANCE FOR BACKUP](https://dev.mysql.com/doc/refman/8.1/en/lock-instance-for-backup.html)
 
 When backup locks are supported by the server, xtrabackup first copies
 InnoDB data, runs the `LOCK TABLES FOR BACKUP` and then copies the MyISAM

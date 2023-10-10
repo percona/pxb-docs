@@ -36,7 +36,7 @@ These assumptions may not be correct and may lead to inconsistent backups.
 
 ## `--lock-ddl-per-table` redesign
 
-Implemented in Percona XtraBackup version 8.0.22-15.0, the `--lock-ddl-per-table` has been redesigned to minimize inconsistent backups.
+The `--lock-ddl-per-table` option has been redesigned to minimize inconsistent backups.
 
 The following procedure reorders the steps:
 

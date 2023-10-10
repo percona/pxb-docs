@@ -66,18 +66,18 @@ class="pre">xtrabackup_logfile</span></code
 ></td>
 <td>Contains data needed for running the: <code><span 
 class="pre">--prepare</span></code>.
->     The bigger this file is the <code><span 
+     The bigger this file is the <code><span 
 class="pre">--prepare</span></code> process
->     will take longer to finish.
+     will take longer to finish.
 </td></tr>
 <tr><td><code><span 
 class="pre">&lt;table_name&gt;.delta.meta</span></code
 ></td>
 <td><p>This file is going to be created when performing the incremental 
 backup.
->     It contains the per-table delta metadata: page size, size of compressed
->     page (if the value is 0 it means the tablespace isn’t compressed) and
->     space id. Example of this file:</p>
+     It contains the per-table delta metadata: page size, size of compressed
+     page (if the value is 0 it means the tablespace isn’t compressed) and
+     space id. Example of this file:</p>
 <div class="last highlight-text"><div class="highlight"><pre><span></span>page_size = 16384
 zip_size = 0
 space_id = 0

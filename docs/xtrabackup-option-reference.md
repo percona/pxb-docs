@@ -374,7 +374,7 @@ If there are still such queries when the timeout expires, xtrabackup
 terminates with an error. Default is `0`, in which case it does not wait
 for queries to complete and starts `FLUSH TABLES WITH READ LOCK`
 immediately. Where supported xtrabackup will
-automatically use [Backup Locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
+automatically use [Backup Locks](https://docs.percona.com/percona-server/8.1/backup-locks.html)
 as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
 
@@ -386,7 +386,7 @@ xtrabackup to detect long-running queries with a non-zero value of
 is not started until such long-running queries exist. This option has no
 effect if `--ftwrl-wait-timeout` is `0`. Default value
 is `60` seconds. Where supported xtrabackup will
-automatically use [Backup Locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
+automatically use [Backup Locks](https://docs.percona.com/percona-server/8.1/backup-locks.html)
 as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
 
@@ -512,7 +512,7 @@ starting `FLUSH TABLES WITH READ LOCK` and killing those queries that block
 it. Default is 0 seconds, which means xtrabackup will not attempt to kill
 any queries. In order to use this option xtrabackup user should have the
 `PROCESS` and `SUPER` privileges. Where supported, xtrabackup
-automatically uses [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
+automatically uses [Backup locks](https://docs.percona.com/percona-server/8.1/backup-locks.html)
 as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
 
@@ -591,7 +591,7 @@ about the binary log position of the backup. This option shouldn’t be used if
 there are any `DDL` statements being executed or if any updates are
 happening on non-InnoDB tables (this includes the system MyISAM tables in the
 mysql database), otherwise it could lead to an inconsistent backup. Where
-supported xtrabackup will automatically use [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
+supported xtrabackup will automatically use [Backup locks](https://docs.percona.com/percona-server/8.1/backup-locks.html)
 as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.  If
 you are considering to use this because your backups are failing to acquire
@@ -749,14 +749,11 @@ be started and stopped until there are no open temporary tables. The backup
 will fail if `Slave_open_temp_tables` does not become zero after
 `--safe-slave-backup-timeout` seconds. The replication SQL
 thread will be restarted when the backup finishes. This option is
-implemented in order to deal with [replicating temporary tables](https://dev.mysql.com/doc/refman/5.7/en/replication-features-temptables.html)
-and isn’t necessary with Row-Based-Replication.
+implemented in order to deal with [replicating temporary tables](https://dev.mysql.com/doc/refman/8.1/en/replication-features-temptables.html) and isn’t necessary with Row-Based-Replication.
 
 !!! note
 
-    Prior to Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.
-
-    As of Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
+    Using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
 
 
 ### --safe-slave-backup-timeout(=SECONDS)

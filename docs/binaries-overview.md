@@ -6,8 +6,8 @@ Percona XtraBackup contains a set of the following binaries:
 
 * [xbcrypt](xbcrypt-binary-overview.md) - a utility used for encrypting and decrypting backup files.
 
-* [xbstream](xbstream-binary-overview.md) - a utility that allows streaming and extracting files to / from the xbstream format.
+* [xbstream](xbstream-binary-overview.md) - a utility that allows streaming and extracting files to or from the xbstream format.
 
-* [xbcloud](xbcloud-binary-overview.md) - a utility used for downloading and uploading full or part of xbstream archive from / to cloud.
+* [xbcloud](xbcloud-binary-overview.md) - a utility used for downloading and uploading full or part of xbstream archive from or to cloud.
 
 The recommended way to take the backup is by using the xtrabackup script. For more information on script options, see [xtrabackup](xtrabackup-binary-overview.md).
