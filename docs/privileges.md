@@ -65,15 +65,11 @@ Once connected to the server, in order to perform a backup you need
 
 The database user needs the following privileges to back up tables or databases:
 
-* `RELOAD` and `LOCK TABLES` (unless the `--no-lock`
-option is specified) in order to run `FLUSH TABLES WITH READ LOCK` and
-`FLUSH ENGINE LOGS` prior to start copying the files, and requires this
-privilege when [Backup Locks](https://docs.percona.com/percona-server/8.1/backup-locks.html)
-are used
+* `RELOAD` and `FLUSH_TABLES` in order to run `FLUSH TABLES WITH READ LOCK`.
 
-* `BACKUP_ADMIN` privilege is needed to query the
+* The `BACKUP_ADMIN` privilege is needed to query the
 performance_schema.log_status table, and run `LOCK INSTANCE FOR BACKUP`,
-`LOCK BINLOG FOR BACKUP`, or `LOCK TABLES FOR BACKUP`.
+`LOCK BINLOG FOR BACKUP`, or `LOCK TABLES FOR BACKUP`. The `BACKUP_ADMIN` privilege is required to use the [Page tracking](page-tracking.md) feature.
 
 * `REPLICATION CLIENT` in order to obtain the binary log position,
 
@@ -83,7 +79,7 @@ performance_schema.log_status table, and run `LOCK INSTANCE FOR BACKUP`,
 mandatory), and optionally to see all threads which are running on the
 server (see FLUSH TABLES WITH READ LOCK option),
 
-* `SUPER` in order to start/stop the replication threads in a replication
+* `REPLICATION_SLAVE_ADMIN` in order to start/stop the replication threads in a replication
 environment,
 
 * `CREATE` privilege in order to create the
@@ -103,9 +99,9 @@ PERCONA_SCHEMA.xtrabackup_history table,
 to look up the `innodb_to_lsn` values in the
 PERCONA_SCHEMA.xtrabackup_history table.
 
-* `SELECT` privilege on the [keyring_component_status table](https://dev.mysql.com/doc/refman/8.1/en/performance-schema-keyring-component-status-table.html) to view the attributes and status of the installed keyring component when in use.
+* `SELECT` privilege on the [keyring_component_status table] to view the attributes and status of the installed keyring component when in use.
 
-* `SELECT` privilege on the [replication_group_members table](https://dev.mysql.com/doc/refman/8.1/en/performance-schema-replication-group-members-table.html) to validate if the instance is part of group replication cluster.
+* `SELECT` privilege on the [replication_group_members table] to validate if the instance is part of group replication cluster.
 
 A SQL example of creating a database user with the minimum privileges required to take full backups would be:
 
@@ -133,7 +129,7 @@ mysql> SHOW GRANTS FOR 'db-user'@'host';
 ```
 
 It will display the privileges using the same format as for
-the [GRANT statement](https://dev.mysql.com/doc/refman/8.1/en/show-grants.html).
+the [GRANT statement].
 
 Note that privileges may vary across versions of the server. To list the
 exact list of privileges that your server support (and a brief description
@@ -146,3 +142,9 @@ mysql> SHOW PRIVILEGES;
 !!! admonition "See also"
 
     [Permissions needed](permissions.md)
+
+[keyring_component_status table]: https://dev.mysql.com/doc/refman/{{vers}}/en/performance-schema-keyring-component-status-table.html
+
+[replication_group_members table]: https://dev.mysql.com/doc/refman/{{vers}}/en/performance-schema-replication-group-members-table.html
+
+[GRANT statement]: https://dev.mysql.com/doc/refman/{{vers}}/en/show-grants.html

@@ -1,5 +1,8 @@
 <!---
  review for rewrite and update
+
+Should we rewrite that the user needs FLUSH_TABLES or RELOAD privilege to use FLUSH TABLES WITH READ LOCK and remove `PROCESS` and `SUPER` privileges?
+
  --->
 
 # FLUSH TABLES WITH READ LOCK option
@@ -18,22 +21,20 @@ Release the lock with `UNLOCK TABLES`.
 
 To ensure consistent backups, use the `FLUSH TABLES WITH READ LOCK` option before taking a non-InnoDB file backup. The option does not affect long-running queries.
 
-Long-running queries with `FLUSH TABLES WITH READ LOCK` enabled can leave the server in a read-only mode until the queries finish. Killing the `FLUSH TABLES WITH READ LOCK` does not help if the database is in either the `Waiting for table flush` or `Waiting for master to send event` state. To return to normal operation, you must kill any long-running queries.
+The long-running queries with `FLUSH TABLES WITH READ LOCK` enabled can leave the server in a read-only mode until the queries finish. Killing the `FLUSH TABLES WITH READ LOCK` does not help if the database is in either the `Waiting for table flush` or `Waiting for master to send event` state. To return to regular operation, the user must kill any long-running queries.
+
+To prevent the server staying in a read-only mode until the queries finish, xtrabackup does the following:
+
+* waits for a good moment to issue the global lock
+
+* kills all queries or only the SELECT queries which prevent the global lock from being acquired
 
 !!! note
    
-    All operations described in this section have no effect when [backup locks](https://docs.percona.com/percona-server/8.1/backup-locks.html) are used.
+    All operations described in this section have no effect when [Backup locks] are used.
 
-    Percona XtraBackup uses [Backup locks](https://docs.percona.com/percona-server/8.1/backup-locks.html)
-    where available as a lightweight alternative to `FLUSH TABLES WITH READ
+    Percona XtraBackup uses [Backup locks] where available as a lightweight alternative to `FLUSH TABLES WITH READ
     LOCK`. This operation automatically copies non-InnoDB data and avoids blocking DML queries that modify InnoDB tables.
-
-In order to prevent this from happening two things have been implemented:
-
- * xtrabackup waits for a good moment to issue the global lock
-
- * xtrabackup kills all queries or only the SELECT queries which prevent the
-global lock from being acquired
 
 ## Wait for queries to finish
 
@@ -56,8 +57,8 @@ used xtrabackup will wait on `UPDATE/ALTER/REPLACE/INSERT` queries to
 finish.
 
 The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. xtrabackup uses the value of
-–ftwrl-wait-threshold option to specify the long-running queries
-and will block a global lock. In order to use this option
+`–ftwrl-wait-threshold option to specify the long-running queries
+and will block a global lock. To use this option
 xtrabackup user should have `PROCESS` and `SUPER` privileges.
 
 ## Kill the blocking queries
@@ -72,9 +73,7 @@ running queries will be killed. The default value is zero, which turns this
 feature off.
 
 The `--kill-long-query-type` option can be used to specify all or only
-`SELECT` queries that are preventing global lock from being acquired. In order
-to use this option xtrabackup user should have `PROCESS` and `SUPER`
-privileges.
+`SELECT` queries that are preventing global lock from being acquired. To use this option xtrabackup user should have `PROCESS` and `SUPER` privileges.
 
 ## Options summary
 
@@ -94,8 +93,7 @@ global lock.
 we give for queries to complete after `FLUSH TABLES WITH READ LOCK` is
 issued before start to kill. Default if `0`, not to kill.
 
-* `--kill-long-query-type` - which queries should be killed once
-`kill-long-queries-timeout` has expired.
+* `--kill-long-query-type` - which queries should be killed once `kill-long-queries-timeout` has expired.
 
 ### Example
 
@@ -112,5 +110,7 @@ $  xtrabackup --backup --ftwrl-wait-threshold=40 \
 
 After `FLUSH TABLES WITH READ LOCK` is issued, xtrabackup will wait for 20
 seconds for lock to be acquired. If lock is still not acquired after 20 seconds,
-it will kill all queries which are running longer that the `FLUSH TABLES WITH
-READ LOCK`.
+it will kill all queries which are running longer that the `FLUSH TABLES WITH READ LOCK`.
+
+[backup locks]: https://docs.percona.com/percona-server/{{vers}}/backup-locks.html
+[Backup locks]: https://docs.percona.com/percona-server/{{vers}}/backup-locks.html

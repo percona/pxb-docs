@@ -2,7 +2,7 @@
 
 Percona XtraBackup automatically
 stores the `GTID` value in the `xtrabackup_binlog_info` when doing the
-backup of MySQL and Percona Server for MySQL {{release}} with the `GTID` mode
+backup of MySQL and Percona Server for MySQL {{vers}} with the `GTID` mode
 enabled. This
 information can be used to create a new (or repair a broken) `GTID`-based
 replica.
@@ -13,7 +13,7 @@ The following command takes a backup and saves it in
 the `/data/backups/$TIMESTAMP` folder:
 
 ```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dirs=/data/backups/
+$ xtrabackup --backup --target-dir=/data/backups/
 ```
 
 In the destination folder, there will be a file with the name
@@ -116,8 +116,8 @@ The results should be similar to the following:
     Executed_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:1-5
     ```
 
-We can see that the replica has retrieved a new transaction with number 5,
-so transactions from 1 to 5 are already on this slave.
+We can see that the replica has retrieved a new transaction with step 5,
+so transactions from 1 to 5 are already on the replica.
 
 We have created a new replica in our `GTID` based replication
 environment.
