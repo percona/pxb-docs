@@ -1,10 +1,10 @@
 # Install with an APT repository
 
 Ready-to-use packages are available from the Percona XtraBackup software
-repositories and the [download page](https://www.percona.com/downloads).
+repositories and the [download page].
 
 Specific information on the supported platforms, products, and versions is
-described in [Percona Release Lifecycle Overview](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
+described in [Percona Release Lifecycle Overview].
 
 ## Install Percona XtraBackup through percona-release
 
@@ -61,7 +61,9 @@ Percona XtraBackup, like many other Percona products, is installed with the *per
 
 !!! admonition "See also"
 
-    To install Percona XtraBackup using downloaded deb packages, see [Install Percona XtraBackup {{release}}](apt-download-deb.md).
+    To install Percona XtraBackup using downloaded deb packages, see [Install Percona XtraBackup {{vers}}](apt-download-deb.md).
 
-    To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup {{release}}](apt-uninstall-xtrabackup.md)
+    To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup {{vers}}](apt-uninstall-xtrabackup.md)
 
+[download page]: https://www.percona.com/downloads
+[Percona Release Lifecycle Overview]: https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql

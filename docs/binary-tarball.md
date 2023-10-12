@@ -8,7 +8,7 @@ update example
 Binary tarballs contain precompiled executable files, libraries, and other dependencies and are
 compressed `tar` archives. Extract the binary tarballs to any path.
 
-Download the binary tarballs from the `Linux - Generic` section on [Percona Product Downloads](https://www.percona.com/downloads/).
+Download the binary tarballs from the `Linux - Generic` section on [Percona Product Downloads].
 
 The following example downloads the a tarball:
 
@@ -31,3 +31,4 @@ The output displays the following information:
     percona-xtrabackup   0%[                       ]   3.17M  1.54MB/s
     ```
 
+[Percona Product Downloads]: https://www.percona.com/downloads/

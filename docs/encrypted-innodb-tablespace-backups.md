@@ -2,8 +2,7 @@
 
 # Encrypted InnoDB tablespace backups
 
-InnoDB supports [data encryption for InnoDB tables](https://dev.mysql.com/doc/refman/8.1/en/innodb-data-encryption.html)
-stored in file-per-table tablespaces. This feature provides an at-rest
+InnoDB supports [data encryption for InnoDB tables] stored in file-per-table tablespaces. This feature provides an at-rest
 encryption for physical tablespace data files.
 
 For an authenticated user or application to access an  encrypted 
@@ -69,7 +68,7 @@ keyring used when the backup was taken and prepared.
 
 ## Use `keyring_vault` plugin
 
-Keyring vault plugin settings are described in [Use the keyring component or keyring plugin](https://docs.percona.com/percona-server/8.1/using-keyring-plugin.html).
+Keyring vault plugin settings are described in [Use the keyring component or keyring plugin](https://docs.percona.com/percona-server/{{vers}}/using-keyring-plugin.html).
 
 ### Create a backup with the `keyring_vault` plugin
 
@@ -101,7 +100,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-vault-config=/etc/vault.cnf
 ```
 
-Review [Use the keyring component or keyring plugin](https://docs.percona.com/percona-server/8.1/using-keyring-plugin.html) for a description of keyring vault plugin settings.
+Review [Use the keyring component or keyring plugin](https://docs.percona.com/percona-server/{{vers}}/using-keyring-plugin.html) for a description of keyring vault plugin settings.
 
 After xtrabackup completes the action, the following message confirms
 the action:
@@ -126,8 +125,7 @@ $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql
 A component is not loaded with the `--early_plugin_load` option. The 
 server uses a manifest to load the component and the component has its 
 own configuration file. See the [MySQL documentation on the component 
-installation](https://dev.mysql.com/doc/refman/8.1/en/keyring-component-installation.html) for more 
-information.
+installation] for more information.
 
 An example of a manifest and a configuration file follows:
 
@@ -147,13 +145,10 @@ An example of `/lib/plugin/component_keyring_file.cnf`:
 }
 ```
 
-For more information,
-see [Keyring Component Installation](https://dev.mysql.com/doc/refman/8.1/en/keyring-component-installation.html)
-and [Using the keyring_file File-Based Keyring Plugin](https://dev.mysql.com/doc/refman/8.1/en/keyring-file-plugin.html).
+For more information, see [Keyring Component Installation] and [Using the keyring_file File-Based Keyring Plugin].
 
 With the appropriate privilege, you can `SELECT` on
-the [performance_schema.keyring_component_status table](https://dev.mysql.com/doc/refman/8.1/en/performance-schema-keyring-component-status-table.html)
-to view the attributes and status of the installed keyring component 
+the [performance_schema.keyring_component_status table] to view the attributes and status of the installed keyring component 
 when in use.
 
 The component has no special requirements for backing up a database that
@@ -481,3 +476,9 @@ In this scenario, the three stages of the backup process look as follows.
       $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
       --generate-new-master-key --keyring-vault-config=/etc/vault.cnf
       ```
+
+[data encryption for InnoDB tables]: https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-data-encryption.html
+[MySQL documentation on the component installation]: https://dev.mysql.com/doc/refman/{{vers}}/en/keyring-component-installation.html
+[Keyring Component Installation]: https://dev.mysql.com/doc/refman/{{vers}}/en/keyring-component-installation.html
+[Using the keyring_file File-Based Keyring Plugin]: https://dev.mysql.com/doc/refman/{{vers}}/en/keyring-file-plugin.html
+[performance_schema.keyring_component_status table]: https://dev.mysql.com/doc/refman/{{vers}}/en/performance-schema-keyring-component-status-table.html
