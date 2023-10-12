@@ -1,6 +1,6 @@
 # Dictionary cache 
 
-Percona XtraBackup is based on how [`crash recovery`](https://dev.mysql.com/doc/refman/8.1/en/glossary.html#glos_crash_recovery) works. Percona XtraBackup copies the InnoDB data files, which results in data that is internally inconsistent; then the `prepare` phase performs crash recovery on the files to make a consistent, usable database again.
+Percona XtraBackup is based on how [`crash recovery`] works. Percona XtraBackup copies the InnoDB data files, which results in data that is internally inconsistent; then the `prepare` phase performs crash recovery on the files to make a consistent, usable database again.
 
 The `--prepare` phase has the following operations:
 
@@ -38,3 +38,4 @@ This  design provides the following benefits during the `--prepare` phase:
 * Completes successfully, even if the `--prepare` phase has a huge number of tables
 * Completes the Percona XtraDB Cluster SST process faster
 
+[crash recovery]: https://dev.mysql.com/doc/refman/{{vers}}/en/glossary.html#glos_crash_recovery

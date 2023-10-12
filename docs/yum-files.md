@@ -1,4 +1,4 @@
-# Files in the RPM package built for Percona XtraBackup 8.0
+# Files in the RPM package built for Percona XtraBackup {{vers}}
 
 The following tables show what data each `RPM` package contains:
 

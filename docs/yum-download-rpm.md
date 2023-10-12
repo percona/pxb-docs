@@ -1,4 +1,4 @@
-# Install Percona XtraBackup 8.0 using downloaded RPM packages
+# Install Percona XtraBackup {{vers}} using downloaded RPM packages
 
 Download `RPM` packages of the desired series for your architecture from the [download page](https://www.percona.com/downloads/). 
 

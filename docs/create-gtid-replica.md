@@ -2,7 +2,7 @@
 
 Percona XtraBackup automatically
 stores the `GTID` value in the `xtrabackup_binlog_info` when doing the
-backup of MySQL and Percona Server for MySQL {{release}} with the `GTID` mode
+backup of MySQL and Percona Server for MySQL {{vers}} with the `GTID` mode
 enabled. This
 information can be used to create a new (or repair a broken) `GTID`-based
 replica.

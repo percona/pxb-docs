@@ -133,7 +133,7 @@ mysql> SHOW GRANTS FOR 'db-user'@'host';
 ```
 
 It will display the privileges using the same format as for
-the [GRANT statement](https://dev.mysql.com/doc/refman/8.1/en/show-grants.html).
+the [GRANT statement].
 
 Note that privileges may vary across versions of the server. To list the
 exact list of privileges that your server support (and a brief description
@@ -146,3 +146,5 @@ mysql> SHOW PRIVILEGES;
 !!! admonition "See also"
 
     [Permissions needed](permissions.md)
+
+[GRANT statement]: https://dev.mysql.com/doc/refman/{{vers}}/en/show-grants.html

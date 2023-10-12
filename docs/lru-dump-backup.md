@@ -12,4 +12,6 @@ reducing the warm up time. It restores the buffer pool state from
 If the buffer restore option is enabled in `my.cnf`, buffer pool will be in
 the warm state after backup is restored.
 
-Find the information on how to save and restore the buffer pool dump in [Saving and Restoring the Buffer Pool State](https://dev.mysql.com/doc/refman/8.1/en/innodb-preload-buffer-pool.html).
+Find the information on how to save and restore the buffer pool dump in [Saving and Restoring the Buffer Pool State].
+
+[Saving and Restoring the Buffer Pool State]: https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-preload-buffer-pool.html

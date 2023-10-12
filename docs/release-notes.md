@@ -1,2 +1,2 @@
-# Percona XtraBackup {{release}} release notes index
+# Percona XtraBackup 8.1 release notes index
 

@@ -1,6 +1,6 @@
 # Take a streaming backup
 
-**Percona XtraBackup** supports streaming mode. Streaming mode sends a backup to `STDOUT` in the *xbstream* format instead of copying the files to the backup directory.
+Percona XtraBackup supports streaming mode. Streaming mode sends a backup to `STDOUT` in the *xbstream* format instead of copying the files to the backup directory.
 
 This method allows you to use other programs to filter the output of the backup,
 providing greater flexibility for storage of the backup. For example,

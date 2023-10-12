@@ -3,13 +3,13 @@
 
 # Compile and install from source
 
-The following instructions install Percona XtraBackup {{release}}.
+The following instructions install Percona XtraBackup {{vers}}.
 
 ## 1. Install Percona XtraBackup from the Git Source Tree
 
 Percona uses the [Github](https://github.com/) revision control system for development. To build the latest Percona Server for MySQL from the source tree, you will need `git` installed on your system.
 
-You can now fetch the latest Percona XtraBackup {{release}} sources:
+You can now fetch the latest Percona XtraBackup {{vers}} sources:
 
 ```{.bash data-prompt="$"}
 $ git clone https://github.com/percona/percona-xtrabackup.git
@@ -25,14 +25,14 @@ These might vary from system to system.
 
 !!! important
  
-    To build **Percona XtraBackup {{release}} from source, you must use `cmake` 
+    To build **Percona XtraBackup {{vers}} from source, you must use `cmake` 
     version 3. To check which version is 
     currently installed, run `cmake --version` at a command prompt. If the 
     version is not `3`, install `cmake3`.
 
 
 This `cmake` version may be available 
-in your distribution as a separate package `cmake3`. For more information, see [cmake.org](https://cmake.org/)
+in your distribution as a separate package `cmake3`. For more information, see [cmake.org].
 
 === "Debian or Ubuntu using `apt`"
 
@@ -56,7 +56,7 @@ in your distribution as a separate package `cmake3`. For more information, see [
 
     Percona Xtrabackup requires GCC version 5.3 or higher. If the
     version of GCC installed on your system is lower then you may need to
-    install and enable [the Developer Toolset](https://developers.redhat.com/products/developertoolset/overview) on
+    install and enable [the Developer Toolset] on
     `RPM`-based distributions to make sure that you use the latest GCC
     compiler and development tools.  Then, install `cmake` and other
     dependencies:
@@ -174,7 +174,7 @@ installation directory to be `/usr/local/xtrabackup`.
 
 !!! admonition "See also"
  
-    [MySQL Documentation: -DINSTALL_LAYOUT](https://dev.mysql.com/doc/refman/8.1/en/source-configuration-options.html#option_cmake_install_layout)
+    [MySQL Documentation: -DINSTALL_LAYOUT]
 
 ## 6. Run Percona XtraBackup
 
@@ -200,3 +200,7 @@ Alternatively, you may consider placing a soft link (using `ln -s`) to one of
 the locations listed in your `PATH` environment variable.
 
 To view the documentation with `man`, update the `MANPATH` variable.
+
+[cmake.org]: https://cmake.org/
+[the Developer Toolset]: https://developers.redhat.com/products/developertoolset/overview
+[MySQL Documentation: -DINSTALL_LAYOUT]: https://dev.mysql.com/doc/refman/{{vers}}/en/source-configuration-options.html#option_cmake_install_layout

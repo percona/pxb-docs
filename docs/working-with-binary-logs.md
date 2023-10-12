@@ -23,6 +23,8 @@ Find a more detailed procedure in the [Point-in-time recovery](point-in-time-rec
 
 ## Set up a new replication replica
 
-To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the [CHANGE_REPLICATION_SOURCE_TO with the appropriate options](https://dev.mysql.com/doc/refman/8.1/en/change-replication-source-to.html) command, use the binary log filename and position shown in the `xtrabackup_binlog_info` file to start replication.
+To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the [CHANGE_REPLICATION_SOURCE_TO with the appropriate options] command, use the binary log filename and position shown in the `xtrabackup_binlog_info` file to start replication.
 
 A more detailed procedure is found in  [How to setup a replica for replication in 6 simple steps with Percona XtraBackup](set-up-replication.md).
+
+[CHANGE_REPLICATION_SOURCE_TO with the appropriate options]: https://dev.mysql.com/doc/refman/{{vers}}/en/change-replication-source-to.html

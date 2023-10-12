@@ -7,8 +7,8 @@ If you try to start InnoDB with these data files, it will detect corruption and 
 
 You can run the prepare operation on any machine; it does not need to be on the originating server or the server to which you intend to restore. You can copy the backup to a utility server and prepare it there.
 
-Note that Percona XtraBackup {{release}} can only prepare backups of MySQL
-{{release}} and Percona Server for MySQL {{release}} databases. Releases prior to {{release}} are not supported.
+Note that Percona XtraBackup {{vers}} can only prepare backups of MySQL
+{{vers}} and Percona Server for MySQL {{vers}} databases. Releases prior to {{vers}} are not supported.
 
 During the prepare operation, xtrabackup boots up a kind of modified embedded InnoDB (the libraries xtrabackup was linked against). The modifications are necessary to disable InnoDB standard safety checks, such as complaining about the log file not being the right size. This warning is not appropriate for working with backups. These modifications are only for the xtrabackup binary; you do not need a modified InnoDB to use xtrabackup for your backups.
 

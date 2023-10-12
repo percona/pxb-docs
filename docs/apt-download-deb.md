@@ -2,7 +2,7 @@
 
 # Install using downloaded DEB packages
 
-Download `DEB` packages of the desired series for your architecture from [Percona Product Downloads](https://www.percona.com/downloads). This method requires you to resolve all dependencies and install any missing packages.
+Download `DEB` packages of the desired series for your architecture from [Percona Product Downloads]. This method requires you to resolve all dependencies and install any missing packages.
 
 The following example downloads Percona XtraBackup  release package for Ubuntu 20.04:
 
@@ -15,3 +15,5 @@ Install Percona XtraBackup by using `dpkg`. Run this command as root or use the 
 ```{.bash data-prompt="$"}
 $ sudo dpkg -i percona-xtrabackup-80_8.0.26-18-1.focal_amd64.deb
 ```
+
+[Percona Product Downloads]: https://www.percona.com/downloads
