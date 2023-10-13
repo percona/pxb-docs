@@ -1,9 +1,9 @@
 
-# Percona XtraBackup {{release}} - Documentation
+# Percona XtraBackup {{vers}} - Documentation
 
 !!! note ""
 
-    This documentation is for the latest release: Percona XtraBackup {{release}} ([Release Notes]({release}}.0.md)).
+    This documentation is for the latest release: Percona XtraBackup {{vers}} ([Release Notes]({release}}.md)).
 
 Percona XtraBackup is an open source hot backup utility for
 MySQL-based servers that keep your database fully available during planned maintenance windows.
@@ -16,14 +16,14 @@ environment. Percona XtraBackup (PXB) is a 100% open source backup solution with
 ### Supported storage engines
 
 Percona XtraBackup can back up data from InnoDB, XtraDB,
-MyISAM, MyRocks tables on MySQL {{release}} servers and Percona Server for MySQL with XtraDB, Percona Server for MySQL {{release}}, and Percona XtraDB Cluster {{release}}.
+MyISAM, MyRocks tables on MySQL {{vers}} servers and Percona Server for MySQL with XtraDB, Percona Server for MySQL {{vers}}, and Percona XtraDB Cluster {{vers}}.
 
-Percona XtraBackup {{release}} supports the MyRocks storage engine. An incremental backup on the MyRocks storage engine does not determine if an earlier full or incremental backup contains duplicate files. Percona XtraBackup copies all MyRocks files each time it takes a backup.
+Percona XtraBackup {{vers}} supports the MyRocks storage engine. An incremental backup on the MyRocks storage engine does not determine if an earlier full or incremental backup contains duplicate files. Percona XtraBackup copies all MyRocks files each time it takes a backup.
 
 ### Limitations
 
-Percona XtraBackup {{release}} does not support making backups of databases
-created in versions before {{release}} of MySQL, Percona Server for MySQL or
+Percona XtraBackup {{vers}} does not support making backups of databases
+created in versions before {{vers}} of MySQL, Percona Server for MySQL or
 Percona XtraDB Cluster.
 
 

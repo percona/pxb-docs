@@ -50,8 +50,7 @@ $ xtrabackup --prepare --target-dir=/data/backup
 You need to select the path where your snapshot has been taken, for example
 `/data/backups/2023-05-07_08-33-33`. If everything is ok you should get the
 same OK message. Now, the transaction logs are applied to the data files,
-and new
-ones are created: your data files are ready to be used by the MySQL server.
+and new ones are created: your data files are ready to be used by the MySQL server.
 
 ## 3. Move the backup to the destination server
 

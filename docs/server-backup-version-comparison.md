@@ -3,7 +3,7 @@
 A MySQL change to a feature, such as the structure of a redo log
 record, can cause older versions of Percona XtraBackup to fail. To
 ensure that you can back up and restore your data, use a Percona
-XtraBackup version that is equal to your source server major version. This means if you use Percona XtraBackup 8.1.x, you can safely back up the source server from 8.1.x to 8.1.xx.
+XtraBackup version that is equal to your source server major version. This means if you use Percona XtraBackup {{vers}}.x, you can safely back up the source server from {{vers}}.x to {{vers}}.xx.
 
 !!! admonition "See also"
    
@@ -33,7 +33,7 @@ example, overrides the parameter and the backup proceeds.
 $ xtrabackup --backup --no-server-version-check --target-dir=$mysql/backup1
 ```
 
-Overriding the `--no-server-version-check` parameter allows taking backups using a Percona XtraBackup version that is equal to a version of your source server up to the last release in the LTS series. This means if you use Percona XtraBackup 8.1.x, you can back up the source server from 8.1.x to 8.4.xx.
+Overriding the `--no-server-version-check` parameter allows taking backups using a Percona XtraBackup version that is equal to a version of your source server up to the last release in the LTS series. This means if you use Percona XtraBackup {{vers}}.x, you can back up the source server from {{vers}}.x to 8.4.xx.
 
 When you override the parameter, the following events can happen:
 

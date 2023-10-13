@@ -21,13 +21,13 @@ Release the lock with `UNLOCK TABLES`.
 
 To ensure consistent backups, use the `FLUSH TABLES WITH READ LOCK` option before taking a non-InnoDB file backup. The option does not affect long-running queries.
 
-The long-running queries with `FLUSH TABLES WITH READ LOCK` enabled can leave the server in a read-only mode until the queries finish. Killing the `FLUSH TABLES WITH READ LOCK` does not help if the database is in either the `Waiting for table flush` or `Waiting for master to send event` state. To return to regular operation, the user must kill any long-running queries.
+Enabling `FLUSH TABLES WITH READ LOCK` when the server has long-running queries can leave the server in a read-only mode until the queries finish. If the server is in either the `Waiting for table flush` or the `Waiting for master to send event` state, stopping the `FLUSH TABLES WITH READ LOCK` operation does not help. Stop any long-running queries to return to normal operation.
 
 To prevent the server staying in a read-only mode until the queries finish, xtrabackup does the following:
 
-* waits for a good moment to issue the global lock
+* checks if any queries run longer than specified in `--ftwrl-wait-threshold`. If xtrabackup finds such queries, xtrabackup waits for one second and checks again. If xtrabackup waits longer than specified in `--ftwrl-wait-timeout`, the backup is aborted. As soon as xtrabackup finds no queries running longer than specified in `--ftwrl-wait-threshold`, xtrabackup issues the global lock.
 
-* kills all queries or only the SELECT queries which prevent the global lock from being acquired
+* kills all queries or only the SELECT queries which prevent the global lock from being acquired.
 
 !!! note
    
@@ -59,21 +59,18 @@ finish.
 The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. xtrabackup uses the value of
 `–ftwrl-wait-threshold option to specify the long-running queries
 and will block a global lock. To use this option
-xtrabackup user should have `PROCESS` and `SUPER` privileges.
+xtrabackup user should have `PROCESS` and `CONNECTION_ADMIN` privileges.
 
 ## Kill the blocking queries
 
 The second option is to kill all the queries which prevent from acquiring the
-global lock. In this case, all queries which run longer than `FLUSH TABLES WITH
-READ LOCK` are potential blockers. Although all queries can be killed,
+global lock. In this case, all queries which run longer than `FLUSH TABLES WITH READ LOCK` are potential blockers. Although all queries can be killed,
 additional time can be specified for the short running queries to finish using
-the `--kill-long-queries-timeout` option. This option
-specifies the time for queries to complete, after the value is reached, all the
-running queries will be killed. The default value is zero, which turns this
+the `--kill-long-queries-timeout` option. This option specifies a query time limit. After the specified time is reached, the server kills the query. The default value is zero, which turns this
 feature off.
 
 The `--kill-long-query-type` option can be used to specify all or only
-`SELECT` queries that are preventing global lock from being acquired. To use this option xtrabackup user should have `PROCESS` and `SUPER` privileges.
+`SELECT` queries that are preventing global lock from being acquired. To use this option xtrabackup user should have `PROCESS` and `CONNECTION_ADMIN` privileges.
 
 ## Options summary
 

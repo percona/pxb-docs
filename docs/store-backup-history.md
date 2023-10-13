@@ -1,10 +1,9 @@
 # Store backup history on the server
 
-*Percona XtraBackup* supports storing the backups history on the server. This
-feature was implemented in *Percona XtraBackup* 2.2. Storing backup history on
+*Percona XtraBackup* supports storing the backups history on the server. Storing backup history on
 the server was implemented to provide users with additional information about
 backups that are being taken. Backup history information will be stored in the
-PERCONA_SCHEMA.XTRABACKUP_HISTORY table.
+`PERCONA_SCHEMA.XTRABACKUP_HISTORY` table.
 
 To use this feature the following options are available:
 
