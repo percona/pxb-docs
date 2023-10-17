@@ -34,10 +34,10 @@ Percona XtraBackup, like many other Percona products, is installed with the *per
     $ sudo apt update
     ```
 
-5. Install the `percona-xtrabackup-81` package:
+5. Install the `percona-xtrabackup-{{pkg}}` package:
 
     ```{.bash data-prompt="$"}
-    $ sudo apt install percona-xtrabackup-81
+    $ sudo apt install percona-xtrabackup-{{pkg}}
     ```
 
 6. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:

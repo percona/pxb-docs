@@ -36,7 +36,7 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
 3. Install *Percona XtraBackup* by running:
 
     ```{.bash data-prompt="$"}
-    $ sudo yum install percona-xtrabackup-80
+    $ sudo yum install percona-xtrabackup-81
     ```
 
     !!! warning

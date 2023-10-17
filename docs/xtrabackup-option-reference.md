@@ -701,10 +701,7 @@ option only has effect with the `--prepare` and
 The `--register-redo-log-consumer` parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.
 
 ### --remove-original()
-Implemented in Percona XtraBackup 2.4.6, this option when specified will
-remove `.qp`, `.xbcrypt` and `.qp.xbcrypt` files after
-decryption and decompression.
-
+This option when specified will remove `.qp`, `.xbcrypt` and `.qp.xbcrypt` files after decryption and decompression.
 
 ### --rocksdb-datadir()
 RocksDB data directory

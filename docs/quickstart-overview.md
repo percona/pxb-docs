@@ -22,15 +22,11 @@ Percona Server for MySQL (PS) is a freely available, fully compatible, enhanced,
 
 Install [Percona Server for MySQL].
 
-<!--- Do we need PXC? We do not have PXC 8.1 branch
-
 ## For high availability
 
 Percona XtraDB Cluster (PXC) is a 100% open source, enterprise-grade, highly available clustering solution for MySQL multi-master setups based on Galera. PXC helps enterprises minimize unexpected downtime and data loss, reduce costs, and improve performance and scalability of your database environments supporting your critical business applications in the most demanding public, private, and hybrid cloud environments. 
 
-Install [Percona XtraDB Cluster](https://docs.percona.com/percona-xtradb-cluster/8.0/install/index.html).
-
- -->
+Install [Percona XtraDB Cluster].
 
 ## For Monitoring and Management
 
@@ -39,3 +35,4 @@ Percona Monitoring and Management (PMM) monitors and provides actionable perform
 [Install PMM and connect your MySQL instances to it](https://docs.percona.com/percona-monitoring-and-management/get-started/index.html).
 
 [Percona Server for MySQL]: https://docs.percona.com/percona-server/{{vers}}/installation.html
+[Percona XtraDB Cluster]: https://docs.percona.com/percona-xtradb-cluster/8.0/install/index.html

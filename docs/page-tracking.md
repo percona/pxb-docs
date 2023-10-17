@@ -1,4 +1,3 @@
-
 # Take an incremental backup using page tracking
 
 To create an incremental backup with page tracking, Percona XtraBackup uses
