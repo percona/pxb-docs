@@ -93,7 +93,7 @@ you can set it up in `.mylogin.cnf` as follows:
 mysql_config_editor set --login-path=client --host=localhost --user=root --password
 ```
 
-For more information, see [MySQL Configuration Utility](https://dev.mysql.com/doc/refman/8.1/en/mysql-config-editor.html).
+For more information, see [MySQL Configuration Utility].
 
 This statement provides root access to MySQL.
 
@@ -272,7 +272,7 @@ $ xtrabackup --prepare --use-memory=2G --target-dir=/path/to/backupdir/
 
 Copy the directory from the `Replica` to the `NewReplica`:
 
-!!! note:
+!!! note
 
     Make sure mysqld is shut down on the `NewReplica` before you copy the contents the snapshot into its datadir.
 
@@ -302,7 +302,7 @@ skip-slave-start
 server-id=3
 ```
 
-After setting `server_id`, start **mysqld**.
+After setting `server_id`, start mysqld.
 
 Fetch the source_log_file and source_log_pos from the
 file `xtrabackup_slave_info`, execute the statement for setting up the
@@ -329,3 +329,5 @@ server is replicating the `Source`.
 !!! admoniton "See also"
 
     [How to create a new (or repair a broken) GTID based slave](create-gtid-replica.md)
+
+[MySQL Configuration Utility]: https://dev.mysql.com/doc/refman/{{vers}}/en/mysql-config-editor.html

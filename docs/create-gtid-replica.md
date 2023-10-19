@@ -13,7 +13,7 @@ The following command takes a backup and saves it in
 the `/data/backups/$TIMESTAMP` folder:
 
 ```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dirs=/data/backups/
+$ xtrabackup --backup --target-dir=/data/backups/
 ```
 
 In the destination folder, there will be a file with the name
@@ -50,8 +50,7 @@ $ xtrabackup --prepare --target-dir=/data/backup
 You need to select the path where your snapshot has been taken, for example
 `/data/backups/2023-05-07_08-33-33`. If everything is ok you should get the
 same OK message. Now, the transaction logs are applied to the data files,
-and new
-ones are created: your data files are ready to be used by the MySQL server.
+and new ones are created: your data files are ready to be used by the MySQL server.
 
 ## 3. Move the backup to the destination server
 
@@ -116,8 +115,8 @@ The results should be similar to the following:
     Executed_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:1-5
     ```
 
-We can see that the replica has retrieved a new transaction with number 5,
-so transactions from 1 to 5 are already on this slave.
+We can see that the replica has retrieved a new transaction with step 5,
+so transactions from 1 to 5 are already on the replica.
 
 We have created a new replica in our `GTID` based replication
 environment.
