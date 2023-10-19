@@ -3,7 +3,7 @@
 
 !!! note ""
 
-    This documentation is for the latest release: Percona XtraBackup {{vers}} ([Release Notes]({release}}.0.md)).
+    This documentation is for the latest release: Percona XtraBackup {{vers}} ([Release Notes]({release}}.md)).
 
 Percona XtraBackup is an open source hot backup utility for
 MySQL-based servers that keep your database fully available during planned maintenance windows.
