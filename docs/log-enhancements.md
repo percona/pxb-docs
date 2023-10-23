@@ -16,7 +16,7 @@ The output should be similar to the following:
 ??? example "Expected output"
 
     ```{.text .no-copy}
-    ./bin/xtrabackup version {{release}} based on MySQL server {{release}} Linux (x86_64) (revision id: b0f75188ca3)
+    ./bin/xtrabackup version {{release}} based on MySQL server {{vers}} Linux (x86_64) (revision id: b0f75188ca3)
     ```
 
 * The copy-back log statement has a timestamp but no module name. The
