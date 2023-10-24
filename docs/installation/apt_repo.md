@@ -6,7 +6,7 @@
     The following instructions install Percona XtraBackup 2.4 using the APT package manager. The instructions to install Percona XtraBackup 8.0 using the APT package manager are available in the [Percona XtraBackup 8.0 installation documentation](https://docs.percona.com/percona-xtrabackup/8.0/installation/apt_repo.html).
 
 Ready-to-use packages are available from the *Percona XtraBackup* software
-repositories and the [Percona download page](https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/).
+repositories and the [Percona download page](https://www.percona.com/downloads).
 
 Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
 
@@ -83,19 +83,19 @@ For more information about the pinning you can check the official
 ## Installing *Percona XtraBackup* using downloaded deb packages
 
 Download the packages of the desired series for your architecture from the
-[download page](https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/). Following
-example downloads the *Percona XtraBackup* 2.4.20 release package for *Debian*
-9.0:
+[download page](https://www.percona.com/downloads/). Following
+example downloads the *Percona XtraBackup* 2.4.28 release package for *Debian*
+10.0:
 
 ```shell
-$ wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.20/\
-binary/debian/stretch/x86_64/percona-xtrabackup-24_2.4.20-1.stretch_amd64.deb
+$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.28/
+\binary/debian/buster/x86_64/percona-xtrabackup-dbg-24_2.4.28-1.buster_amd64.deb
 ```
 
 Now you can install *Percona XtraBackup* by running:
 
 ```shell
-$ sudo dpkg -i percona-xtrabackup-24_2.4.20-1.stretch_amd64.deb
+$ sudo dpkg -i percona-xtrabackup-24_2.4.28-1.buster_amd64.deb
 ```
 
 !!! note
