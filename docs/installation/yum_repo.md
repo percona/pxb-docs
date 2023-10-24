@@ -5,12 +5,12 @@
     The following instructions install Percona XtraBackup 2.4 using the YUM package manager. The instructions to install Percona XtraBackup 8.0 using the YUM package manager are available in the [Percona XtraBackup 8.0 installation documentation](https://docs.percona.com/percona-xtrabackup/8.0/installation/yum_repo.html).
 
 Ready-to-use packages are available from the *Percona XtraBackup* software
-repositories and the [download page](https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/). The Percona
+repositories and the [download page](https://www.percona.com/downloads/). The Percona
 `yum` repository supports popular *RPM*-based operating systems,
 including the *Amazon Linux AMI*.
 
 The easiest way to install the *Percona Yum* repository is to install an *RPM*
-that configures `yum` and installs the [Percona GPG key](https://www.percona.com/downloads/RPM-GPG-KEY-percona).
+that configures `yum` and installs the [Percona GPG key](https://repo.percona.com/yum/PERCONA-PACKAGING-KEY).
 
 Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
 
@@ -85,7 +85,7 @@ The `percona-xtrabackup` package contains the older version of the
 
 3. Enable the repository: `percona-release enable-only tools release`
 
-    If *Percona XtraBackup* is intented to be used in combination with
+    If *Percona XtraBackup* is intended to be used in combination with
     the upstream MySQL Server, you only need to enable the `tools`
     repository: `percona-release enable-only tools`.
 
@@ -122,19 +122,19 @@ updating).
 ## Installing *Percona XtraBackup* using downloaded rpm packages
 
 Download the packages of the desired series for your architecture from the
-[download page](https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/). Following
-example will download *Percona XtraBackup* 2.4.4 release package for
-*CentOS* 7:
+[download page](https://www.percona.com/downloads). Following
+example will download *Percona XtraBackup* 2.4.28 release package for
+*CentOS* 9:
 
 ```shell
-$ wget https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.4/\
-binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.4-1.el7.x86_64.rpm
+$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/\
+Percona-XtraBackup-2.4.28/binary/redhat/9/x86_64/percona-xtrabackup-24-2.4.28-1.el9.x86_64.rpm
 ```
 
 Now you can install *Percona XtraBackup* by running:
 
 ```shell
-$ yum localinstall percona-xtrabackup-24-2.4.4-1.el7.x86_64.rpm
+$ yum localinstall percona-xtrabackup-24-2.4.28-1.el9.x86_64.rpm
 ```
 
 !!! note
