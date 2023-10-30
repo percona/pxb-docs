@@ -24,15 +24,15 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.7">
     
     
       
-        <title>Flush tables with read lock - Percona XtraBackup</title>
+        <title>FLUSH TABLES WITH READ LOCK option - Percona XtraBackup</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.4b4a2bd9.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
@@ -89,7 +89,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Flush tables with read lock" />
+                 <meta property="og:title" content="Percona XtraBackup - FLUSH TABLES WITH READ LOCK option" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/innovation-release/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
               
@@ -154,7 +154,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Flush tables with read lock
+              FLUSH TABLES WITH READ LOCK option
             
           </span>
         </div>
@@ -840,7 +840,7 @@
           
   
   <span class="md-ellipsis">
-    Flush tables with read lock
+    FLUSH TABLES WITH READ LOCK option
   </span>
   
 
@@ -851,7 +851,7 @@
         
   
   <span class="md-ellipsis">
-    Flush tables with read lock
+    FLUSH TABLES WITH READ LOCK option
   </span>
   
 
@@ -3423,13 +3423,6 @@
   
 
 
-<!---
- review for rewrite and update
-
-Should we rewrite that the user needs FLUSH_TABLES or RELOAD privilege to use FLUSH TABLES WITH READ LOCK and remove `PROCESS` and `SUPER` privileges?
-
- --->
-
 <h1 id="flush-tables-with-read-lock-option">FLUSH TABLES WITH READ LOCK option<a class="headerlink" href="#flush-tables-with-read-lock-option" title="Permanent link">&para;</a></h1>
 <p>The <code>FLUSH TABLES WITH READ LOCK</code> option does the following with a global read lock:</p>
 <ul>
@@ -3542,7 +3535,7 @@ it will kill all queries which are running longer that the <code>FLUSH TABLES WI
   <small>
     
       Last update:
-      2023-10-19
+      2023-10-30
     
   </small>
 </div>
