@@ -1,9 +1,3 @@
-<!---
- review for rewrite and update
-
-Should we rewrite that the user needs FLUSH_TABLES or RELOAD privilege to use FLUSH TABLES WITH READ LOCK and remove `PROCESS` and `SUPER` privileges?
-
- --->
 
 # FLUSH TABLES WITH READ LOCK option
 
