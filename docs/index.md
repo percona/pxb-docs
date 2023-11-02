@@ -13,7 +13,7 @@ Percona XtraBackup is designed to make backups seamless
 without disrupting the server's performance in a production
 environment. Percona XtraBackup (PXB) is a 100% open source backup solution with [commercial support](https://www.percona.com/mysql-support/) available for organizations who want to benefit from comprehensive, responsive, and cost-flexible database support for MySQL.
 
-### Supported storage engines
+## Supported storage engines
 
 Percona XtraBackup can back up data from InnoDB, XtraDB,
 MyISAM, MyRocks tables on MySQL {{vers}} servers and Percona Server for MySQL with XtraDB, Percona Server for MySQL {{vers}}, and Percona XtraDB Cluster {{vers}}.
