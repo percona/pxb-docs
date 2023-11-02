@@ -10,17 +10,16 @@ task. Percona XtraBackup is designed to solve this problem.
 You can have almost real-time backups in 6 simple steps by setting up a
 replication environment with Percona XtraBackup.
 
-## All the things you will need
+## Things you need
 
 Setting up a replica for replication with *Percona XtraBackup* is a
 straightforward procedure. In order to keep it simple, here is a list of
-the
-things you need to follow the steps without hassles:
+the things you need to follow the steps without hassles:
 
 `Source`
 
 A system with a *MySQL*-based server installed, configured and running. This
-system will be called `Source`, as it is where your data is stored and the one to be replicated. We will assume the following about this system:
+system is called `Source`. The `Source` server stores your data and can be replicated. We assume the following about this system:
 
 * the *MySQL* server is able to communicate with others by the standard TCP/IP port;
 
@@ -38,30 +37,20 @@ system will be called `Source`, as it is where your data is stored and the one t
 
 `Replica`
 
-Another system, with a *MySQL*-based server installed on it. We
-will refer to this machine as `Replica` and we will assume the same things
+Another system, with a *MySQL*-based server installed on it. We refer to this machine as `Replica` and assume the same things
 we did about `Source`, except that the server-id on `Replica` is 2.
 
 `Percona XtraBackup`
 
-The backup tool we will use. It should be installed in both computers for convenience.
+We use this backup tool. Install Percona XtraBackup on both computers for convenience.
 
 !!! note
    
     It is not recommended to mix MySQL variants (Percona Server, MySQL) in your replication setup. This may produce incorrect `xtrabackup_slave_info` file when adding a new replica. 
 
-## Version updates
-
-The 8.0.23 version deprecates the `CHANGE_MASTER_TO` command. In that 
-version and later, use
-the [CHANGE_REPLICATION_SOURCE_TO and the appropriate options](https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html) instead.
-
-The 8.0.22 version deprecates the`START SLAVE` command. In that version or 
-later, use `START REPLICA` instead.
-
 ## 1. Make a backup on the `Source` and prepare it
 
-At the  `Source`, issue the following to a shell:
+At the `Source`, issue the following to a shell:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --user=yourDBuser --password=MaGiCdB1 --target-dir=/path/to/backupdir
@@ -75,27 +64,24 @@ After this is finished you should get:
     xtrabackup: completed OK!
     ```
 
-This will make a copy of your *MySQL* data dir
+This operation makes a copy of your *MySQL* data dir
 to the `/path/to/backupdir` directory.
 You have told *Percona XtraBackup* to connect to the database server
 using your database user and password,
 and do a hot backup of all your data in it
 (all *MyISAM*, *InnoDB* tables and indexes in them).
 
-In order for snapshot to be consistent you need to prepare the data on the
+In order for snapshot to be consistent, prepare the data on the
 source:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/path/to/backupdir
 ```
 
-You need to select path where your snapshot has been taken.
-If everything is ok you should get the same OK message.
-Now the transaction logs are applied to the data files,
-and new ones are created:
-your data files are ready to be used by the MySQL server.
+Select the path where your snapshot has been taken.
+Apply the transaction logs to the data files and your data files are ready to be used by the MySQL server.
 
-*Percona XtraBackup* knows where your data is by reading your my.cnf file.
+Percona XtraBackup reads the my.cnf file to locate your data.
 If you have your configuration file in a non-standard place,
 you should use the flag `--defaults-file` `=/location/of/my.cnf`.
 
@@ -107,8 +93,7 @@ you can set it up in `.mylogin.cnf` as follows:
 mysql_config_editor set --login-path=client --host=localhost --user=root --password
 ```
 
-For more information, see [MySQL Configuration
-Utility](https://dev.mysql.com/doc/refman/8.0/en/mysql-config-editor.html).
+For more information, see [MySQL Configuration Utility].
 
 This statement provides root access to MySQL.
 
@@ -122,10 +107,14 @@ we recommend that you stop the `mysqld` there.
 $ rsync -avpP -e ssh /path/to/backupdir Replica:/path/to/mysql/
 ```
 
-After data has been copied, you can back up the original or previously
-installed *MySQL* datadir (**NOTE**: Make sure mysqld is shut down before
-you move the contents of its datadir, or move the snapshot into its
-datadir.). Run the following commands on the Replica:
+After data is copied, you can back up the original or previously
+installed *MySQL* datadir. 
+
+!!! note
+
+    Make sure mysqld is shut down before you move the contents of its datadir, or move the snapshot into its datadir.
+
+Run the following commands on the Replica:
 
 ```{.bash data-prompt="$"}
 $ mv /path/to/mysql/datadir /path/to/mysql/datadir_bak
@@ -196,8 +185,7 @@ and updated in `/etc/mysql/debian.cnf`.
 
 ## 5. Start the replication
 
-On the `Replica`, review the content of the file `xtrabackup_binlog_info`,
-it will be something like:
+On the `Replica`, review the content of the `xtrabackup_binlog_info` file:
 
 ```{.bash data-prompt="$"}
 $ cat /var/lib/mysql/xtrabackup_binlog_info
@@ -211,14 +199,10 @@ The results should resemble the following:
     Source-bin.000001     481
     ```
 
-[The term `master` is deprecated](#version-updates). Do the following on a 
-MySQL console and use the username and
-password you’ve set up in STEP 3 :
+Do the following on a MySQL console and use the username and
+password you’ve set up in STEP 3:
 
-* Version 8.0.23 or later, use the `CHANGE_REPLICATION_SOURCE_TO` statement
-
-* Before 8.0.23, use the `CHANGE MASTER` statement
-
+Use the `CHANGE_REPLICATION_SOURCE_TO` statement
 
 ```sql
 CHANGE REPLICATION SOURCE TO
@@ -234,11 +218,6 @@ Start the replica:
 ```sql
 START REPLICA;
 ```
-
-The [term `slave` is deprecated](#version-updates). Do the following:
-
-* Version 8.0.22 or later, use `START REPLICA`
-* Before version 8.0.22, use `START SLAVE`
 
 ## 6. Check
 
@@ -291,9 +270,11 @@ $ xtrabackup --prepare --use-memory=2G --target-dir=/path/to/backupdir/
 
     In the ``prepare`` phase, the `--use-memory` parameter speeds up the process if the amount of RAM assigned to the option is available. Use the parameter only in the `prepare` phase. In the other phases the parameter makes the application lazy allocate this memory (reserve) but does not affect database pages.
 
-Copy the directory from the `Replica` to the `NewReplica` (**NOTE**: Make
-sure mysqld is shut down on the `NewReplica` before you copy the contents
-the snapshot into its datadir.):
+Copy the directory from the `Replica` to the `NewReplica`:
+
+!!! note
+
+    Make sure mysqld is shut down on the `NewReplica` before you copy the contents the snapshot into its datadir.
 
 ```
 rsync -avprP -e ssh /path/to/backupdir NewReplica:/path/to/mysql/datadir
@@ -321,32 +302,22 @@ skip-slave-start
 server-id=3
 ```
 
-After setting `server_id`, start **mysqld**.
+After setting `server_id`, start mysqld.
 
-Fetch the master_log_file and master_log_pos from the
+Fetch the source_log_file and source_log_pos from the
 file `xtrabackup_slave_info`, execute the statement for setting up the
 source and the log file for the NewReplica:
 
-```{.bash data-prompt=">"}
-> CHANGE MASTER TO
-     MASTER_HOST='$Sourceip',
-     MASTER_USER='repl',
-     MASTER_PASSWORD='$replicapass',
-     MASTER_LOG_FILE='Source-bin.000001',
-     MASTER_LOG_POS=481;
+```sql
+CHANGE REPLICATION SOURCE TO
+    SOURCE_HOST='$sourceip',
+    SOURCE_USER='repl',
+    SOURCE_PASSWORD='$replicapass',
+    SOURCE_LOG_FILE='Source-bin.000001',
+    SOURCE_LOG_POS=481;
 ```
 
-[The term `master` is deprecated](#version-updates). Do the following 
-and then start the replica:
-
-* Version 8.0.23 or later, use the `CHANGE_REPLICATION_SOURCE_TO` statement
-
-* Before 8.0.23, use the `CHANGE MASTER` statement
-
-[The term `slave` is deprecated](#version-updates). Do the following:
-
-* Version 8.0.22 or later, use `START REPLICA`.
-* Before version 8.0.22, use `START SLAVE`
+Start the replica:
 
 ```{.bash data-prompt=">"}
 > START REPLICA;
@@ -358,3 +329,5 @@ server is replicating the `Source`.
 !!! admoniton "See also"
 
     [How to create a new (or repair a broken) GTID based slave](create-gtid-replica.md)
+
+[MySQL Configuration Utility]: https://dev.mysql.com/doc/refman/{{vers}}/en/mysql-config-editor.html

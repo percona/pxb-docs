@@ -3,16 +3,16 @@
  --->
 # Frequently asked questions
 
-## Does Percona XtraBackup {{release}} support making backups of databases in versions prior to {{release}}?
+## Does Percona XtraBackup {{vers}} support making backups of databases in versions prior to {{vers}}?
 
-Percona XtraBackup {{release}} does not support making backups of databases
-created in versions prior to {{release}} of MySQL, Percona Server for MySQL or
+Percona XtraBackup {{vers}} does not support making backups of databases
+created in versions prior to {{vers}} of MySQL, Percona Server for MySQL or
 Percona XtraDB Cluster. 
 
 
 ## Are you aware of any web-based backup management tools (commercial or not) built around Percona XtraBackup*?
 
-[ZRM Community](https://www.zmanda.com/zrm-community/) is a community tool that uses Percona XtraBackup for Non-Blocking Backups:
+[ZRM Community] is a community tool that uses Percona XtraBackup for Non-Blocking Backups:
 
 “ZRM provides support for non-blocking backups of MySQL using Percona
 XtraBackup. ZRM with \Percona XtraBackup provides resource utilization
@@ -63,11 +63,11 @@ Percona XtraBackup will not be able to take a consistent backup. Retry the backu
  --->
 !!! note
    
-    *   Redo logging is disabled during a [sorted index build](https://dev.mysql.com/doc/refman/8.0/en/sorted-index-builds.html). To avoid this error, Percona XtraBackup can use metadata locks on tables while they are copied:
+    * Redo logging is disabled during a [sorted index build]. To avoid this error, Percona XtraBackup can use metadata locks on tables while they are copied:
 
     * To block all DDL operations, use the `--lock-ddl` option that issues `LOCK TABLES FOR BACKUP`.
 
 
+[sorted index build]: https://dev.mysql.com/doc/refman/{{vers}}/en/sorted-index-builds.html
 
-
-
+[ZRM Community]: https://www.zmanda.com/zrm-community/

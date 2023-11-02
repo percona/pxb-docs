@@ -89,8 +89,8 @@ The following is an example of a verbose output:
 ??? example "Expected output"
 
     ```{.text .no-copy}
-    210701 14:34:23 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-    210701 14:34:23 /work/pxb/ins/8.0/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
+    210701 14:34:23 /work/pxb/ins/{{vers}}/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+    210701 14:34:23 /work/pxb/ins/{{vers}}/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
     ```
 
 ## Example
@@ -117,17 +117,17 @@ The following list describes the process using `--max-backoff=10000`:
 ??? example "An example of the output for this setting"
 
     ```{.text .no-copy}
-    210702 10:07:05 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-    210702 10:07:05 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
+    210702 10:07:05 /work/pxb/ins/{{vers}}/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+    210702 10:07:05 /work/pxb/ins/{{vers}}/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
     . . .
-    210702 10:07:23 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-    210702 10:07:23 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
+    210702 10:07:23 /work/pxb/ins/{{vers}}/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+    210702 10:07:23 /work/pxb/ins/{{vers}}/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
     . . .
-    210702 10:07:52 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-    210702 10:07:52 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
+    210702 10:07:52 /work/pxb/ins/{{vers}}/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
+    210702 10:07:52 /work/pxb/ins/{{vers}}/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
     . . .
-    210702 10:08:47 /work/pxb/ins/8.0/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-    210702 10:08:47 /work/pxb/ins/8.0/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
+    210702 10:08:47 /work/pxb/ins/{{vers}}/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
+    210702 10:08:47 /work/pxb/ins/{{vers}}/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
     . . .
-    210702 10:10:12 /work/pxb/ins/8.0/bin/xbcloud: successfully uploaded chunk: backup3/xtrabackup_logfile.00000000000000000006, size: 8388660
+    210702 10:10:12 /work/pxb/ins/{{vers}}/bin/xbcloud: successfully uploaded chunk: backup3/xtrabackup_logfile.00000000000000000006, size: 8388660
     ```

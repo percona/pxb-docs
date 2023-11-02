@@ -11,7 +11,7 @@ Percona Server for MySQL in one container and Percona XtraBackup in
 another. Docker images offer a range of options.
 
 Create a Docker container based on a Docker image. Docker images for
-Percona XtraBackup are hosted publicly on [Docker Hub](https://hub.docker.com/r/percona/percona-xtrabackup).
+Percona XtraBackup are hosted publicly on [Docker Hub].
 
 ```{.bash data-prompt="$"}
 $ sudo docker create ... percona/percona-xtrabackup --name xtrabackup ...
@@ -44,13 +44,13 @@ intend to use with Percona XtraBackup.
 
 !!! admontion "See also"
 
-    [Docker volumes as container persistent data storage](https://docs.docker.com/storage/volumes/)
+    [Docker volumes as container persistent data storage]
 
-    [More information about containers](https://docs.docker.com/config/containers/start-containers-automatically)
+    [More information about containers]
 
 ```{.bash data-prompt="$"}
 $ sudo docker run -d --name percona-server-mysql \
--e MYSQL_ROOT_PASSWORD=root percona/percona-server:8.0
+-e MYSQL_ROOT_PASSWORD=root percona/percona-server:{{vers}}
 ```
 
 As soon as Percona Server for MySQL runs, add some data to it. Now, you are
@@ -104,3 +104,6 @@ percona/percona-xtrabackup
 xtrabackup --backup --data-dir=/var/lib/mysql --target-dir=/backup --user=root --password=mysql
 ```
 
+[Docker Hub]: https://hub.docker.com/r/percona/percona-xtrabackup
+[Docker volumes as container persistent data storage]: https://docs.docker.com/storage/volumes/
+[More information about containers]: https://docs.docker.com/config/containers/start-containers-automatically

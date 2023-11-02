@@ -23,7 +23,7 @@ the file <code><span class="pre">backup-my.cnf</span></code> created by
 class="pre">--prepare</span></code> uses InnoDB 
 configuration from <code><span class="pre">backup-my.cnf</span></code> 
 by default, or from <code><span 
-class="pre">--defaults-file</span></code>, if specified. The InnoDB's configuration in this context means server variables that affect dataformat, i.e. <code><span class="pre">innodb_page_size</span></code> option, <code><span class="pre">innodb_log_block_size</span></code>, etc. Location-related variables, like <code><span class="pre">innodb_log_group_home_dir</span></code> or <code><span class="pre">innodb_data_file_path</span></code> are always ignored by <code><span class="pre">--prepare</span></code>, so preparing a backup always works with data files from the back directory, rather than any external ones.    </td></tr>
+class="pre">--defaults-file</span></code>, if specified. The InnoDB's configuration in this context means server variables that affect dataformat, i.e., <code><span class="pre">innodb_page_size</span></code> option, <code><span class="pre">innodb_log_block_size</span></code>, etc. Location-related variables, like <code><span class="pre">innodb_log_group_home_dir</span></code> or <code><span class="pre">innodb_data_file_path</span></code> are always ignored by <code><span class="pre">--prepare</span></code>, so preparing a backup always works with data files from the back directory, rather than any external ones.    </td></tr>
     <tr>
         <td><code><span class="pre">xtrabackup_checkpoints</span></code
 ></td><td><p>The type of the backup (for example, full or incremental), 
@@ -66,18 +66,18 @@ class="pre">xtrabackup_logfile</span></code
 ></td>
 <td>Contains data needed for running the: <code><span 
 class="pre">--prepare</span></code>.
->     The bigger this file is the <code><span 
+     The bigger this file is the <code><span 
 class="pre">--prepare</span></code> process
->     will take longer to finish.
+     will take longer to finish.
 </td></tr>
 <tr><td><code><span 
 class="pre">&lt;table_name&gt;.delta.meta</span></code
 ></td>
 <td><p>This file is going to be created when performing the incremental 
 backup.
->     It contains the per-table delta metadata: page size, size of compressed
->     page (if the value is 0 it means the tablespace isn’t compressed) and
->     space id. Example of this file:</p>
+     It contains the per-table delta metadata: page size, size of compressed
+     page (if the value is 0 it means the tablespace isn’t compressed) and
+     space id. Example of this file:</p>
 <div class="last highlight-text"><div class="highlight"><pre><span></span>page_size = 16384
 zip_size = 0
 space_id = 0

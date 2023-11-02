@@ -98,7 +98,7 @@ A backup stores data from a specific point in time.
 
 Storage engine which provides ACID-compliant transactions and foreign 
 key support, among others improvements over MyISAM. It is the default 
-engine for MySQL as of the {{release}} series.
+engine for MySQL {{vers}}.
 
 ## innodb\_buffer\_pool\_size
 
@@ -124,7 +124,7 @@ Specifies the names, sizes and location of shared tablespace files:
 
 ## innodb\_file\_per\_table
 
-By default, InnoDB creates tables and indexes in a [file-per-tablespace](https://dev.mysql.com/doc/refman/8.0/en/innodb-file-per-table-tablespaces.html). If the `innodb_file_per_table` variable is disabled, you can enable the variable in your configuration file:
+By default, InnoDB creates tables and indexes in a [file-per-tablespace]. If the `innodb_file_per_table` variable is disabled, you can enable the variable in your configuration file:
 
 > \[mysqld\]<br/>
 > innodb\_file\_per\_table <br/>
@@ -186,10 +186,12 @@ To support simultaneous compression and streaming, Percona XtraBackup uses the x
 
 ## XtraDB
 
-Percona XtraDB is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. Percona XtraDB includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see [The Percona XtraDB Storage Engine](https://www.percona.com/doc/percona-server/8.0/percona_xtradb.html).
+Percona XtraDB is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. Percona XtraDB includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see [The Percona XtraDB Storage Engine].
 
 ## Zstandard (ZSTD)
 
 `ZSTD` is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios.
 
 
+[file-per-tablespace]: https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-file-per-table-tablespaces.html
+[The Percona XtraDB Storage Engine]: https://www.percona.com/doc/percona-server/{{vers}}/percona-xtradb.html

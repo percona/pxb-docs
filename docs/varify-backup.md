@@ -110,4 +110,4 @@ This output shows that source and the replica aren’t in consistent state
 and that the difference is in the `mysql.user` table.
 
 More information on different options that pt-table-checksum provides can
-be found in the *pt-table-checksum* [documentation](http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html).
+be found in the *pt-table-checksum* [documentation](https://docs.percona.com/percona-toolkit/pt-table-checksum.html).

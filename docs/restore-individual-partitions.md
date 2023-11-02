@@ -20,7 +20,7 @@ PRIMARY KEY (`id`)
 
 !!! note
    
-    Generate a [.cfg metadata file](https://dev.mysql.com/doc/refman/8.0/en/innodb-table-import.html) by running `FLUSH TABLES ... FOR EXPORT`. The command can only be run on a table, not on the individual table partitions.
+    Generate a [.cfg metadata file] by running `FLUSH TABLES ... FOR EXPORT`. The command can only be run on a table, not on the individual table partitions.
     The file is located in the table schema directory and is used for schema verification when importing the tablespace. 
 
 To restore the partition from the backup, the tablespace must be discarded for
@@ -46,3 +46,4 @@ The last step is to import the tablespace:
 mysql> ALTER TABLE name_p4 IMPORT TABLESPACE;
 ```
 
+[.cfg metadata file]: https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-table-import.html

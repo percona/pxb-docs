@@ -1,6 +1,6 @@
 # Install overview
 
-We recommend that you install Percona XtraBackup {{release}} from the official Percona software repositories using the appropriate package manager for your system:
+We recommend that you install Percona XtraBackup {{vers}} from the official Percona software repositories using the appropriate package manager for your system:
 
 * [Use an APT repo to install Percona XtraBackup](apt-repo.md)
 

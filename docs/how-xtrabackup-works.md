@@ -14,14 +14,12 @@ commit.
 
 The `--register-redo-log-consumer` parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.  
 
-Percona XtraBackup remembers the LSN when it starts, and then copies the data files. The operation takes time, and the files may change, then LSN reflects the state of the database
-at different points in time. Percona XtraBackup also runs a
-background process that watches the transaction log files, and copies any changes. Percona XtraBackup does this continually. The transaction logs are written in a round-robin fashion, and can be reused.
+Percona XtraBackup remembers the LSN when it starts, and then copies the data files. The operation takes time, and the files may change, then LSN reflects the state of the database at different points in time. Percona XtraBackup also runs a background process that watches the transaction log files, and copies any changes. Percona XtraBackup does this continually. The transaction logs are written in a round-robin fashion, and can be reused.
 
-Percona XtraBackup uses [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
+Percona XtraBackup uses [Backup locks]
 
 where available as a lightweight alternative to `FLUSH TABLES WITH READ
-LOCK`. MySQL {{release}} allows
+LOCK`. MySQL {{vers}} allows
 acquiring an instance level backup lock via the `LOCK INSTANCE FOR BACKUP`
 statement.
 
@@ -39,14 +37,14 @@ avoid blocking DML queries that modify InnoDB tables.
 xtrabackup tries to avoid backup locks and `FLUSH TABLES WITH READ LOCK`
 when the instance contains only InnoDB tables. In this case, xtrabackup
 obtains binary log coordinates from `performance_schema.log_status`. `FLUSH
-TABLES WITH READ LOCK` is still required in MySQL {{release}} when xtrabackup is
+TABLES WITH READ LOCK` is still required in MySQL {{vers}} when xtrabackup is
 started with the `--slave-info`. The `log_status` table in Percona
-Server for MySQL {{release}} is extended to include the relay log coordinates, so no locks are
+Server for MySQL {{vers}} is extended to include the relay log coordinates, so no locks are
 needed even with the `--slave-info` option.
 
 !!! admonition "See also"
 
-    [MySQL Documentation: LOCK INSTANCE FOR BACKUP](https://dev.mysql.com/doc/refman/8.0/en/lock-instance-for-backup.html)
+    [MySQL Documentation: LOCK INSTANCE FOR BACKUP]
 
 When backup locks are supported by the server, xtrabackup first copies
 InnoDB data, runs the `LOCK TABLES FOR BACKUP` and then copies the MyISAM
@@ -111,3 +109,6 @@ with the only difference that instead of copying files it moves them to their
 target locations. As this option removes backup files, it must be used with
 caution. It is useful in cases when there is not enough free disk space to hold
 both data files and their backup copies.
+
+[MySQL Documentation: LOCK INSTANCE FOR BACKUP]: https://dev.mysql.com/doc/refman/{{vers}}/en/lock-instance-for-backup.html
+[Backup locks]: https://docs.percona.com/percona-server/{{vers}}/backup-locks.html
