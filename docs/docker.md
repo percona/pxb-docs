@@ -50,7 +50,7 @@ intend to use with Percona XtraBackup.
 
 ```{.bash data-prompt="$"}
 $ sudo docker run -d --name percona-server-mysql \
--e MYSQL_ROOT_PASSWORD=root percona/percona-server:8.0
+-e MYSQL_ROOT_PASSWORD=root percona/percona-server:{{vers}}
 ```
 
 As soon as Percona Server for MySQL runs, add some data to it. Now, you are

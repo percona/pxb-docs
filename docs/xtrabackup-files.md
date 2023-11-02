@@ -23,7 +23,7 @@ the file <code><span class="pre">backup-my.cnf</span></code> created by
 class="pre">--prepare</span></code> uses InnoDB 
 configuration from <code><span class="pre">backup-my.cnf</span></code> 
 by default, or from <code><span 
-class="pre">--defaults-file</span></code>, if specified. The InnoDB's configuration in this context means server variables that affect dataformat, i.e. <code><span class="pre">innodb_page_size</span></code> option, <code><span class="pre">innodb_log_block_size</span></code>, etc. Location-related variables, like <code><span class="pre">innodb_log_group_home_dir</span></code> or <code><span class="pre">innodb_data_file_path</span></code> are always ignored by <code><span class="pre">--prepare</span></code>, so preparing a backup always works with data files from the back directory, rather than any external ones.    </td></tr>
+class="pre">--defaults-file</span></code>, if specified. The InnoDB's configuration in this context means server variables that affect dataformat, i.e., <code><span class="pre">innodb_page_size</span></code> option, <code><span class="pre">innodb_log_block_size</span></code>, etc. Location-related variables, like <code><span class="pre">innodb_log_group_home_dir</span></code> or <code><span class="pre">innodb_data_file_path</span></code> are always ignored by <code><span class="pre">--prepare</span></code>, so preparing a backup always works with data files from the back directory, rather than any external ones.    </td></tr>
     <tr>
         <td><code><span class="pre">xtrabackup_checkpoints</span></code
 ></td><td><p>The type of the backup (for example, full or incremental), 
