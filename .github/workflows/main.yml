@@ -2,7 +2,7 @@ name: Build Percona XtraBackup 8.1 docs
 on:
   push:
     branches: 
-      - inno-release
+      - innovation-release
 jobs:
   build:
     name: Deploy docs
@@ -44,9 +44,9 @@ jobs:
      # Deploy docs
       - name: Deploy docs
         run: |
-          mike deploy inno-release -b publish -p
-          mike set-default inno-release -b publish -p
-          mike retitle inno-release "8.1 (LATEST)" -b publish -p
+          mike deploy innovation-release -b publish -p
+          mike set-default innovation-release -b publish -p
+          mike retitle innovation-release "8.1 (LATEST)" -b publish -p
 # - name: Install Node.js 14.x
 #        uses: percona-platform/setup-node@v2
 #        with:
