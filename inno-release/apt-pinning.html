@@ -347,11 +347,31 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes.html" class="md-nav__link">
+      <a href="release-notes/release-notes.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Release notes index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/8.1.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.1.0-1 (2023-11-02)
   </span>
   
 
@@ -3360,7 +3380,7 @@
 <h1 id="apt-pinning-packages">Apt pinning packages<a class="headerlink" href="#apt-pinning-packages" title="Permanent link">&para;</a></h1>
 <p>In some cases you might need to <code>pin</code> the selected packages to avoid the upgrades from the distribution repositories. </p>
 <p>The pinning takes place in the <code>preference</code> file. To pin a package, set the <code>Pin-Priority</code> to higher numbers.</p>
-<p>Make a new file <code>/etc/apt/preferences.d/01percona.pref</code>. For example, add the following to the preference file:</p>
+<p>Make a new file <code>/etc/apt/preferences.d/00percona.pref</code>. For example, add the following to the preference file:</p>
 <div class="highlight"><pre><span></span><code>Package:
 Pin: release o=Percona Development Team
 Pin-Priority: 1001
@@ -3382,7 +3402,7 @@ Pin-Priority: 1001
   <small>
     
       Last update:
-      2023-10-12
+      2023-10-23
     
   </small>
 </div>

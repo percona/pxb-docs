@@ -19,7 +19,7 @@ MySQL-based servers that keep your database fully available during planned maint
       
       
       
-        <link rel="next" href="release-notes.html">
+        <link rel="next" href="release-notes/release-notes.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
@@ -341,12 +341,18 @@ MySQL-based servers that keep your database fully available during planned maint
     Supported storage engines
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Supported storage engines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#limitations" class="md-nav__link">
     Limitations
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -407,11 +413,31 @@ MySQL-based servers that keep your database fully available during planned maint
   
   
     <li class="md-nav__item">
-      <a href="release-notes.html" class="md-nav__link">
+      <a href="release-notes/release-notes.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Release notes index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/8.1.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.1.0-1 (2023-11-02)
   </span>
   
 
@@ -3331,12 +3357,18 @@ MySQL-based servers that keep your database fully available during planned maint
     Supported storage engines
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Supported storage engines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#limitations" class="md-nav__link">
     Limitations
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3388,7 +3420,7 @@ MySQL-based servers that keep your database fully available during planned maint
 Percona XtraBackup is designed to make backups seamless
 without disrupting the server&rsquo;s performance in a production
 environment. Percona XtraBackup (PXB) is a 100% open source backup solution with <a href="https://www.percona.com/mysql-support/">commercial support</a> available for organizations who want to benefit from comprehensive, responsive, and cost-flexible database support for MySQL.</p>
-<h3 id="supported-storage-engines">Supported storage engines<a class="headerlink" href="#supported-storage-engines" title="Permanent link">&para;</a></h3>
+<h2 id="supported-storage-engines">Supported storage engines<a class="headerlink" href="#supported-storage-engines" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup can back up data from InnoDB, XtraDB,
 MyISAM, MyRocks tables on MySQL 8.1 servers and Percona Server for MySQL with XtraDB, Percona Server for MySQL 8.1, and Percona XtraDB Cluster 8.1.</p>
 <p>Percona XtraBackup 8.1 supports the MyRocks storage engine. An incremental backup on the MyRocks storage engine does not determine if an earlier full or incremental backup contains duplicate files. Percona XtraBackup copies all MyRocks files each time it takes a backup.</p>
@@ -3412,7 +3444,7 @@ Percona XtraDB Cluster.</p>
   <small>
     
       Last update:
-      2023-10-19
+      2023-11-02
     
   </small>
 </div>

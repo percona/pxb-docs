@@ -347,11 +347,31 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes.html" class="md-nav__link">
+      <a href="release-notes/release-notes.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Release notes index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/8.1.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.1.0-1 (2023-11-02)
   </span>
   
 
@@ -5741,9 +5761,7 @@ option only has effect with the <code>--prepare</code> and
 <h3 id="-register-redo-log-consumer">&ndash;register-redo-log-consumer()<a class="headerlink" href="#-register-redo-log-consumer" title="Permanent link">&para;</a></h3>
 <p>The <code>--register-redo-log-consumer</code> parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.</p>
 <h3 id="-remove-original">&ndash;remove-original()<a class="headerlink" href="#-remove-original" title="Permanent link">&para;</a></h3>
-<p>Implemented in Percona XtraBackup 2.4.6, this option when specified will
-remove <code>.qp</code>, <code>.xbcrypt</code> and <code>.qp.xbcrypt</code> files after
-decryption and decompression.</p>
+<p>This option when specified will remove <code>.qp</code>, <code>.xbcrypt</code> and <code>.qp.xbcrypt</code> files after decryption and decompression.</p>
 <h3 id="-rocksdb-datadir">&ndash;rocksdb-datadir()<a class="headerlink" href="#-rocksdb-datadir" title="Permanent link">&para;</a></h3>
 <p>RocksDB data directory</p>
 <h3 id="-rocksdb-wal-dir">&ndash;rocksdb-wal-dir()<a class="headerlink" href="#-rocksdb-wal-dir" title="Permanent link">&para;</a></h3>
@@ -5915,7 +5933,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2023-10-12
+      2023-10-17
     
   </small>
 </div>
