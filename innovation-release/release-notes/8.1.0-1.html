@@ -3440,7 +3440,7 @@
 <p>Use the Percona XtraBackup 8.0 series to take backups of Percona Server for MySQL 8.0.x or MySQL 8.0.x. Percona XtraBackup 8.1.0-1 does not take a backup of the Percona Server for MySQL 8.0 or the MySQL 8.0.x series.</p>
 <h2 id="improvement">Improvement<a class="headerlink" href="#improvement" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://jira.percona.com/browse/PXB-3155">PXB-3155</a> : Moved the vault from a plugin to a component.</li>
+<li><a href="https://jira.percona.com/browse/PXB-3155">PXB-3155</a> : In the MySQL 8.0 series, the Vault keyring was implemented as a server plugin. In the Innovation series, MySQL is transitioning to a component infrastructure. This transition does not change the keyring&rsquo;s functionality. PXB 8.1.0-1 supports the component keyring_vault. The keyring_vault plugin is no longer supported. Only the keyring_file plugin is supported. This plugin is deprecated and may be removed in a later version.</li>
 </ul>
 <h2 id="deprecated-or-removed">Deprecated or removed<a class="headerlink" href="#deprecated-or-removed" title="Permanent link">&para;</a></h2>
 <p>The <code>--stats</code> mode of operation for the xtrabackup binary has been removed.</p>
@@ -3466,7 +3466,7 @@
   <small>
     
       Last update:
-      2023-11-02
+      2023-11-03
     
   </small>
 </div>
