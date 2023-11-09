@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.4b4a2bd9.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
@@ -512,7 +512,7 @@
             
   
   <span class="md-ellipsis">
-    2022
+    2022 (8.0.30-23 - 8.0.23-16)
   </span>
   
 
@@ -522,7 +522,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
-            2022
+            2022 (8.0.30-23 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -656,7 +656,7 @@
             
   
   <span class="md-ellipsis">
-    2021
+    2021 (8.0.26-18 - 8.0.23-16)
   </span>
   
 
@@ -666,7 +666,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
-            2021
+            2021 (8.0.26-18 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -760,7 +760,7 @@
             
   
   <span class="md-ellipsis">
-    2020
+    2020 (8.0.22-15 - 8.0.10)
   </span>
   
 
@@ -770,7 +770,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_10">
             <span class="md-nav__icon md-icon"></span>
-            2020
+            2020 (8.0.22-15 - 8.0.10)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -924,7 +924,7 @@
             
   
   <span class="md-ellipsis">
-    2019
+    2019 (8.0.9 - 8.0.5)
   </span>
   
 
@@ -934,7 +934,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_11">
             <span class="md-nav__icon md-icon"></span>
-            2019
+            2019 (8.0.9 - 8.0.5)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1068,7 +1068,7 @@
             
   
   <span class="md-ellipsis">
-    2018
+    2018 (8.0.4 - 8.0.3-rc1)
   </span>
   
 
@@ -1078,7 +1078,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_12">
             <span class="md-nav__icon md-icon"></span>
-            2018
+            2018 (8.0.4 - 8.0.3-rc1)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1833,26 +1833,6 @@
   
   <span class="md-ellipsis">
     The xtrabackup binary overview
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    The xtrabackup option reference
   </span>
   
 
@@ -4000,6 +3980,26 @@
   
   
     <li class="md-nav__item">
+      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xtrabackup option reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="xtrabackup-files.html" class="md-nav__link">
         
   
@@ -4212,7 +4212,7 @@
                 <!-- Markdown content -->
                 <h1 id="dictionary-cache">Dictionary cache<a class="headerlink" href="#dictionary-cache" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup is based on how <a href="https://dev.mysql.com/doc/refman/8.0/en/glossary.html#glos_crash_recovery"><code>crash recovery</code></a> works. Percona XtraBackup copies the InnoDB data files, which results in data that is internally inconsistent; then the <code>prepare</code> phase performs crash recovery on the files to make a consistent, usable database again.</p>
-<p>The <code>--prepare</code> phase has the following operations:</p>
+<p>The <a href="xtrabackup-option-reference.html#prepare">--prepare</a> phase has the following operations:</p>
 <ul>
 <li>Applies the redo log</li>
 <li>Applies the undo log</li>
@@ -4230,22 +4230,22 @@
 <p>After initializing the data dictionary engine and the data dictionary cache, the storage engine can request the <code>table_id</code> and uses this ID to fetch the table schema. An index search tuple (key) is created from the table schema and key fields from the undo log record. The server finds the record using the search tuple (key) and performs the undo operation.</p>
 <p>For example, InnoDB uses the <code>table_id</code> (also known as the <code>se_private_id</code>) for a table definition. Percona XtraBackup does not behave like a server and does not have access to the data dictionary. XtraBackup initializes the InnoDB engine and uses the <code>InnoDB table object</code> (<code>dict_table_t</code>) when needed. XtraBackup relies on Serialized Dictionary Information (SDI) that is stored in the tablespace. SDI is a JSON representation of a table.</p>
 <h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
-<p>Prior to Percona XtraBackup 8.0.33-28, XtraBackup loads the SDI from every <code>.IBD</code> file and all tables into cache as non-evictable. Making the tables non-evictable essentially disables the LRU cache. Every table remains in memory until the operation ends. </p>
+<p>Prior to Percona XtraBackup 8.0.33-28, XtraBackup loads the SDI from every <code>.IBD</code> file and all tables into cache as non-evictable. Making the tables non-evictable essentially disables the LRU cache. Every table remains in memory until the operation ends.</p>
 <p>This method has the following issues:</p>
 <ul>
 <li>Unnecessary IO operations from reading SDI pages to load the tables that are not required for rollback</li>
-<li>All tables loaded into the cache increases the time required in the <code>--prepare</code> phase</li>
+<li>All tables loaded into the cache increases the time required in the <a href="xtrabackup-option-reference.html#prepare">--prepare</a> phase</li>
 <li>Unnecessary tables can lead to out-of-memory errors</li>
-<li>Huge number of tables and IBD files may cause an exit in the <code>--prepare</code> phase</li>
+<li>Huge number of tables and IBD files may cause an exit in the <a href="xtrabackup-option-reference.html#prepare">--prepare</a> phase</li>
 </ul>
 <p>Percona XtraBackup 8.0.33-28 implements a new design and tables are loaded as <code>evictable</code>. XtraBackup scans the B-tree index of the data dictionary tables <code>mysql.indexes</code> and <code>mysql.index_partitions</code> to establish a relationship between the <code>table_id</code> and the tablespace(space_id). XtraBackup uses this relationship during transaction rollback. XtraBackup does not load user tables unless there is a transaction rollback on them.</p>
 <p>A background thread or a Percona XtraBackup main thread handles the cache eviction when the cache size limit is reached.</p>
-<p>This new design provides the following benefits during the <code>--prepare</code> phase:</p>
+<p>This new design provides the following benefits during the <a href="xtrabackup-option-reference.html#prepare">--prepare</a> phase:</p>
 <ul>
 <li>Uses less memory</li>
 <li>Uses less IO</li>
-<li>Improves the time taken in the <code>--prepare</code> phase</li>
-<li>Completes successfully, even if the <code>--prepare</code> phase has a huge number of tables</li>
+<li>Improves the time taken in the <a href="xtrabackup-option-reference.html#prepare">--prepare</a> phase</li>
+<li>Completes successfully, even if the <a href="xtrabackup-option-reference.html#prepare">--prepare</a> phase has a huge number of tables</li>
 <li>Completes the Percona XtraDB Cluster SST process faster</li>
 </ul>
 
@@ -4270,7 +4270,7 @@
   <small>
     
       Last update:
-      2023-07-07
+      2023-10-26
     
   </small>
 </div>
@@ -4396,7 +4396,7 @@
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="assets/javascripts/bundle.81fa17fe.min.js"></script>
       
         <script src="js/version-select.js"></script>
       

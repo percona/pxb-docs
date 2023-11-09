@@ -26,7 +26,7 @@ xtrabackup and the binary logs of the server.">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
     
     
       
@@ -34,7 +34,7 @@ xtrabackup and the binary logs of the server.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.4b4a2bd9.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
@@ -513,7 +513,7 @@ xtrabackup and the binary logs of the server.">
             
   
   <span class="md-ellipsis">
-    2022
+    2022 (8.0.30-23 - 8.0.23-16)
   </span>
   
 
@@ -523,7 +523,7 @@ xtrabackup and the binary logs of the server.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
-            2022
+            2022 (8.0.30-23 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -657,7 +657,7 @@ xtrabackup and the binary logs of the server.">
             
   
   <span class="md-ellipsis">
-    2021
+    2021 (8.0.26-18 - 8.0.23-16)
   </span>
   
 
@@ -667,7 +667,7 @@ xtrabackup and the binary logs of the server.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
-            2021
+            2021 (8.0.26-18 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -761,7 +761,7 @@ xtrabackup and the binary logs of the server.">
             
   
   <span class="md-ellipsis">
-    2020
+    2020 (8.0.22-15 - 8.0.10)
   </span>
   
 
@@ -771,7 +771,7 @@ xtrabackup and the binary logs of the server.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_10">
             <span class="md-nav__icon md-icon"></span>
-            2020
+            2020 (8.0.22-15 - 8.0.10)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -925,7 +925,7 @@ xtrabackup and the binary logs of the server.">
             
   
   <span class="md-ellipsis">
-    2019
+    2019 (8.0.9 - 8.0.5)
   </span>
   
 
@@ -935,7 +935,7 @@ xtrabackup and the binary logs of the server.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_11">
             <span class="md-nav__icon md-icon"></span>
-            2019
+            2019 (8.0.9 - 8.0.5)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1069,7 +1069,7 @@ xtrabackup and the binary logs of the server.">
             
   
   <span class="md-ellipsis">
-    2018
+    2018 (8.0.4 - 8.0.3-rc1)
   </span>
   
 
@@ -1079,7 +1079,7 @@ xtrabackup and the binary logs of the server.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_12">
             <span class="md-nav__icon md-icon"></span>
-            2018
+            2018 (8.0.4 - 8.0.3-rc1)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1788,26 +1788,6 @@ xtrabackup and the binary logs of the server.">
   
   <span class="md-ellipsis">
     The xtrabackup binary overview
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    The xtrabackup option reference
   </span>
   
 
@@ -3955,6 +3935,26 @@ xtrabackup and the binary logs of the server.">
   
   
     <li class="md-nav__item">
+      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xtrabackup option reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="xtrabackup-files.html" class="md-nav__link">
         
   
@@ -4145,15 +4145,13 @@ xtrabackup and the binary logs of the server.">
                 <!-- Markdown content -->
                 <h1 id="point-in-time-recovery">Point-in-time recovery<a class="headerlink" href="#point-in-time-recovery" title="Permanent link">&para;</a></h1>
 <p>Recovering up to particular moment in database’s history can be done with
-<em>xtrabackup</em> and the binary logs of the server.</p>
+xtrabackup and the binary logs of the server.</p>
 <p>Note that the binary log contains the operations that modified the database from
-a point in the past. You need a full datadir as a base, and then you can
-apply a series of operations from the binary log to make the data match what it
-was at the point in time you want.</p>
+a point in the past. You must have full data directory as a base. Apply a series of operations from the binary log to make the data match the point in time data.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
 $<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
 </code></pre></div>
-<p>For more details on these procedures, see Creating a backup and Preparing a backup.</p>
+<p>For more details on these procedures, see <a href="create-full-backup.html">Create a full backup</a> and <a href="prepare-full-backup.html">Prepare a full backup</a>.</p>
 <p>Now, suppose that some time has passed, and you want to restore the database to a
 certain point in the past, having in mind that there is the constraint of the
 point where the snapshot was taken.</p>
@@ -4173,7 +4171,7 @@ following queries:</p>
 +------------------+-----------+
 </code></pre></div>
 </details>
-<p>and</p>
+<p>This query returns the binary log names and file size.</p>
 <div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>MASTER<span class="w"> </span>STATUS<span class="p">;</span>
 </code></pre></div>
 <details class="example">
@@ -4185,10 +4183,8 @@ following queries:</p>
 +------------------+----------+--------------+------------------+
 </code></pre></div>
 </details>
-<p>The first query will tell you which files contain the binary log and the second
-one which file is currently being used to record changes, and the current
-position within it. Those files are stored usually in the datadir
-(unless other location is specified when the server is started with the
+<p>The query returns which file is currently being used to record changes, and the current
+position within it. Typically,the files are stored in the datadir, unless, when starting the server, another location is specified with the
 <code>--log-bin=</code> option).</p>
 <p>To find out the position of the snapshot taken, see the
 <code>xtrabackup_binlog_info</code> at the backup’s directory:</p>
@@ -4199,27 +4195,26 @@ position within it. Those files are stored usually in the datadir
 <div class="no-copy highlight"><pre><span></span><code>mysql-bin.000003      57
 </code></pre></div>
 </details>
-<p>This will tell you which file was used at moment of the backup for the binary
+<p>This result tells you which file was used at the moment of the backup for the binary
 log and its position. That position will be the effective one when you restore
 the backup:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
 </code></pre></div>
 <p>As the restoration will not affect the binary log files (you may need to adjust
-file permissions, see Restoring a Backup), the next step is
+file permissions, see <a href="restore-a-backup.html">Restore a backup</a>), the next step is
 extracting the queries from the binary log with <strong>mysqlbinlog</strong> starting
-from the position of the snapshot and redirecting it to a file</p>
+from the position of the snapshot and redirecting the results to a file.</p>
+<p>If you have multiple files for the binary log, as in the example, you
+must extract the queries with one process.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--start-position<span class="o">=</span><span class="m">57</span><span class="w"> </span>&gt;<span class="w"> </span>mybinlog.sql
 </code></pre></div>
-<p>Note that if you have multiple files for the binary log, as in the example, you
-have to extract the queries with one process, as shown above.</p>
 <p>Inspect the file with the queries to determine which position or date
-corresponds to the point-in-time wanted. Once determined, pipe it to the
-server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
+corresponds to the wanted point-in-time. Once determined, pipe it to the
+server. For example, if the point is <code>11-12-25 01:00:00</code>, the command moves the the database forward to that point-in-time.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--start-position<span class="o">=</span><span class="m">57</span><span class="w"> </span>--stop-datetime<span class="o">=</span><span class="s2">&quot;11-12-25 01:00:00&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
 </code></pre></div>
-<p>and the database will be rolled forward up to that Point-In-Time.</p>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -4242,7 +4237,7 @@ server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
   <small>
     
       Last update:
-      2023-06-12
+      2023-10-26
     
   </small>
 </div>
@@ -4368,7 +4363,7 @@ server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="assets/javascripts/bundle.81fa17fe.min.js"></script>
       
         <script src="js/version-select.js"></script>
       

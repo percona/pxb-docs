@@ -33,7 +33,7 @@ compact data storage.">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
     
     
       
@@ -41,7 +41,7 @@ compact data storage.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.4b4a2bd9.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
@@ -520,7 +520,7 @@ compact data storage.">
             
   
   <span class="md-ellipsis">
-    2022
+    2022 (8.0.30-23 - 8.0.23-16)
   </span>
   
 
@@ -530,7 +530,7 @@ compact data storage.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
-            2022
+            2022 (8.0.30-23 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -664,7 +664,7 @@ compact data storage.">
             
   
   <span class="md-ellipsis">
-    2021
+    2021 (8.0.26-18 - 8.0.23-16)
   </span>
   
 
@@ -674,7 +674,7 @@ compact data storage.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
-            2021
+            2021 (8.0.26-18 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -768,7 +768,7 @@ compact data storage.">
             
   
   <span class="md-ellipsis">
-    2020
+    2020 (8.0.22-15 - 8.0.10)
   </span>
   
 
@@ -778,7 +778,7 @@ compact data storage.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_10">
             <span class="md-nav__icon md-icon"></span>
-            2020
+            2020 (8.0.22-15 - 8.0.10)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -932,7 +932,7 @@ compact data storage.">
             
   
   <span class="md-ellipsis">
-    2019
+    2019 (8.0.9 - 8.0.5)
   </span>
   
 
@@ -942,7 +942,7 @@ compact data storage.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_11">
             <span class="md-nav__icon md-icon"></span>
-            2019
+            2019 (8.0.9 - 8.0.5)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1076,7 +1076,7 @@ compact data storage.">
             
   
   <span class="md-ellipsis">
-    2018
+    2018 (8.0.4 - 8.0.3-rc1)
   </span>
   
 
@@ -1086,7 +1086,7 @@ compact data storage.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_12">
             <span class="md-nav__icon md-icon"></span>
-            2018
+            2018 (8.0.4 - 8.0.3-rc1)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1783,26 +1783,6 @@ compact data storage.">
   
   <span class="md-ellipsis">
     The xtrabackup binary overview
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    The xtrabackup option reference
   </span>
   
 
@@ -3962,6 +3942,26 @@ compact data storage.">
   
   
     <li class="md-nav__item">
+      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xtrabackup option reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="xtrabackup-files.html" class="md-nav__link">
         
   
@@ -4177,30 +4177,26 @@ standard output.</p>
 decrypt encrypted files when extracting input stream. Supported values for
 this option are: <code>AES128</code>, <code>AES192</code>, and <code>AES256</code>. Either
 <code>--encrypt-key</code> or <code>--encrypt-key-file</code> options must be specified to
-provide encryption key, but not both. This option has been implemented in
-<em>Percona XtraBackup</em> 2.4.7.</p>
+provide encryption key, but not both. </p>
 </li>
 <li>
 <p>with the <code>--encrypt-threads</code> option you can specify the number of threads
-for parallel data encryption. The default value is <code>1</code>. This option has
-been implemented in <em>Percona XtraBackup</em> 2.4.7.</p>
+for parallel data encryption. The default value is <code>1</code>. </p>
 </li>
 <li>
 <p>the <code>--encrypt-key</code> option is used to specify the encryption key that will
 be used. It can’t be used with <code>--encrypt-key-file</code> option because they
-are mutually exclusive. This option has been implemented in <em>Percona
-XtraBackup</em> 2.4.7.</p>
+are mutually exclusive. </p>
 </li>
 <li>
 <p>the <code>--encrypt-key-file</code> option is used to specify the file that contains
 the encryption key. It can’t be used with <code>--encrypt-key</code> option.
-because they are mutually exclusive. This option has been implemented in
-<em>Percona XtraBackup</em> 2.4.7.</p>
+because they are mutually exclusive. </p>
 </li>
 </ul>
 <p>The utility also tries to minimize its impact on the OS page cache by using the
 appropriate <code>posix_fadvise()</code> calls when available.</p>
-<p>When compression is enabled with <em>xtrabackup</em> all data is being compressed,
+<p>When compression is enabled with xtrabackup all data is compressed,
 including the transaction log file and meta data files, using the specified
 compression algorithm. Read more about supported compression algorithms in the <a href="create-compressed-backup.html">Create a compressed backup</a> document.</p>
 
@@ -4225,7 +4221,7 @@ compression algorithm. Read more about supported compression algorithms in the <
   <small>
     
       Last update:
-      2023-08-21
+      2023-10-26
     
   </small>
 </div>
@@ -4351,7 +4347,7 @@ compression algorithm. Read more about supported compression algorithms in the <
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="assets/javascripts/bundle.81fa17fe.min.js"></script>
       
         <script src="js/version-select.js"></script>
       

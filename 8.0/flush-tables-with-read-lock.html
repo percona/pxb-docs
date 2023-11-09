@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.4b4a2bd9.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
@@ -512,7 +512,7 @@
             
   
   <span class="md-ellipsis">
-    2022
+    2022 (8.0.30-23 - 8.0.23-16)
   </span>
   
 
@@ -522,7 +522,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
-            2022
+            2022 (8.0.30-23 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -656,7 +656,7 @@
             
   
   <span class="md-ellipsis">
-    2021
+    2021 (8.0.26-18 - 8.0.23-16)
   </span>
   
 
@@ -666,7 +666,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
-            2021
+            2021 (8.0.26-18 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -760,7 +760,7 @@
             
   
   <span class="md-ellipsis">
-    2020
+    2020 (8.0.22-15 - 8.0.10)
   </span>
   
 
@@ -770,7 +770,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_10">
             <span class="md-nav__icon md-icon"></span>
-            2020
+            2020 (8.0.22-15 - 8.0.10)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -924,7 +924,7 @@
             
   
   <span class="md-ellipsis">
-    2019
+    2019 (8.0.9 - 8.0.5)
   </span>
   
 
@@ -934,7 +934,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_11">
             <span class="md-nav__icon md-icon"></span>
-            2019
+            2019 (8.0.9 - 8.0.5)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1068,7 +1068,7 @@
             
   
   <span class="md-ellipsis">
-    2018
+    2018 (8.0.4 - 8.0.3-rc1)
   </span>
   
 
@@ -1078,7 +1078,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_12">
             <span class="md-nav__icon md-icon"></span>
-            2018
+            2018 (8.0.4 - 8.0.3-rc1)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1851,26 +1851,6 @@
   
   <span class="md-ellipsis">
     The xtrabackup binary overview
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    The xtrabackup option reference
   </span>
   
 
@@ -4018,6 +3998,26 @@
   
   
     <li class="md-nav__item">
+      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xtrabackup option reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="xtrabackup-files.html" class="md-nav__link">
         
   
@@ -4286,20 +4286,20 @@ global lock from being acquired</p>
 </ul>
 <h2 id="wait-for-queries-to-finish">Wait for queries to finish<a class="headerlink" href="#wait-for-queries-to-finish" title="Permanent link">&para;</a></h2>
 <p>You should issue a global lock when no long queries are running. Waiting to issue the global lock for extended period of time is not a good method. The wait can extend the time needed for
-backup to take place. The –ftwrl-wait-timeout option can limit the
+backup to take place. The [–ftwrl-wait-timeout] option can limit the
 waiting time. If it cannot issue the lock during this
 time, <em>xtrabackup</em> stops the option, exits with an error message, and backup is
 not be taken.</p>
 <p>The default value for this option is zero (0) value which turns off the option.</p>
 <p>Another possibility is to specify the type of query to wait on. In this case
-<code>--ftwrl-wait-query-type</code>. Possible values are <code>all</code> and
+<a href="xtrabackup-option-reference.html#ftwrl-wait-query-typeallupdate">--ftwrl-wait-query-type</a>. Possible values are <code>all</code> and
 <code>update</code>. When <code>all</code> is used <em>xtrabackup</em> will wait for all long running
-queries (execution time longer than allowed by <code>--ftwrl-wait-threshold</code>)
+queries (execution time longer than allowed by <a href="xtrabackup-option-reference.html#ftwrl-wait-thresholdseconds">--ftwrl-wait-threshold</a>)
 to finish before running the <code>FLUSH TABLES WITH READ LOCK</code>. When <code>update</code> is
 used <em>xtrabackup</em> will wait on <code>UPDATE/ALTER/REPLACE/INSERT</code> queries to
 finish.</p>
-<p>The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. <em>xtrabackup</em> uses the value of
-–ftwrl-wait-threshold option to specify the long-running queries
+<p>The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. <em>xtrabackup</em> uses the value of the
+[–ftwrl-wait-threshold] option to specify the long-running queries
 and will block a global lock. In order to use this option
 xtrabackup user should have <code>PROCESS</code> and <code>SUPER</code> privileges.</p>
 <h2 id="kill-the-blocking-queries">Kill the blocking queries<a class="headerlink" href="#kill-the-blocking-queries" title="Permanent link">&para;</a></h2>
@@ -4307,38 +4307,38 @@ xtrabackup user should have <code>PROCESS</code> and <code>SUPER</code> privileg
 global lock. In this case, all queries which run longer than <code>FLUSH TABLES WITH
 READ LOCK</code> are potential blockers. Although all queries can be killed,
 additional time can be specified for the short running queries to finish using
-the <code>--kill-long-queries-timeout</code> option. This option
+the <a href="xtrabackup-option-reference.html#kill-long-queries-timeoutseconds">--kill-long-queries-timeout</a> option. This option
 specifies the time for queries to complete, after the value is reached, all the
 running queries will be killed. The default value is zero, which turns this
 feature off.</p>
-<p>The <code>--kill-long-query-type</code> option can be used to specify all or only
+<p>The <a href="xtrabackup-option-reference.html#kill-long-query-typeallselect">--kill-long-query-type</a> option can be used to specify all or only
 <code>SELECT</code> queries that are preventing global lock from being acquired. In order
 to use this option xtrabackup user should have <code>PROCESS</code> and <code>SUPER</code>
 privileges.</p>
 <h2 id="options-summary">Options summary<a class="headerlink" href="#options-summary" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><code>--ftwrl-wait-timeout</code> (seconds) - how long to wait for a
+<p><a href="xtrabackup-option-reference.html#ftwrl-wait-timeoutseconds">--ftwrl-wait-timeout</a> (seconds) - how long to wait for a
 good moment. Default is 0, not to wait.</p>
 </li>
 <li>
-<p><code>--ftwrl-wait-query-type</code> - which long queries
+<p><a href="xtrabackup-option-reference.html#ftwrl-wait-query-typeallupdate">--ftwrl-wait-query-type</a> - which long queries
 should be finished before <code>FLUSH TABLES WITH READ LOCK</code> is run. Default is
 all.</p>
 </li>
 <li>
-<p><code>--ftwrl-wait-threshold</code> (seconds) - how long query
+<p><a href="xtrabackup-option-reference.html#ftwrl-wait-thresholdseconds">--ftwrl-wait-threshold</a> (seconds) - how long query
 should be running before we consider it long running and potential blocker of
 global lock.</p>
 </li>
 <li>
-<p><code>--kill-long-queries-timeout</code> (seconds) - how many time
+<p><a href="xtrabackup-option-reference.html#kill-long-queries-timeoutseconds">--kill-long-queries-timeout</a> (seconds) - how many time
 we give for queries to complete after <code>FLUSH TABLES WITH READ LOCK</code> is
 issued before start to kill. Default if <code>0</code>, not to kill.</p>
 </li>
 <li>
-<p><code>--kill-long-query-type</code> - which queries should be killed once
-<code>kill-long-queries-timeout</code> has expired.</p>
+<p><a href="xtrabackup-option-reference.html#kill-long-query-typeallselect">--kill-long-query-type</a> - which queries should be killed once
+<a href="xtrabackup-option-reference.html#kill-long-queries-timeoutseconds">--kill-long-queries-timeout</a> has expired.</p>
 </li>
 </ul>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
@@ -4376,7 +4376,7 @@ READ LOCK</code>.</p>
   <small>
     
       Last update:
-      2023-06-12
+      2023-10-26
     
   </small>
 </div>
@@ -4502,7 +4502,7 @@ READ LOCK</code>.</p>
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="assets/javascripts/bundle.81fa17fe.min.js"></script>
       
         <script src="js/version-select.js"></script>
       

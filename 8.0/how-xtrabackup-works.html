@@ -28,7 +28,7 @@ consistent, usable database again.">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
     
     
       
@@ -36,7 +36,7 @@ consistent, usable database again.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.4b4a2bd9.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
@@ -515,7 +515,7 @@ consistent, usable database again.">
             
   
   <span class="md-ellipsis">
-    2022
+    2022 (8.0.30-23 - 8.0.23-16)
   </span>
   
 
@@ -525,7 +525,7 @@ consistent, usable database again.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
-            2022
+            2022 (8.0.30-23 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -659,7 +659,7 @@ consistent, usable database again.">
             
   
   <span class="md-ellipsis">
-    2021
+    2021 (8.0.26-18 - 8.0.23-16)
   </span>
   
 
@@ -669,7 +669,7 @@ consistent, usable database again.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
-            2021
+            2021 (8.0.26-18 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -763,7 +763,7 @@ consistent, usable database again.">
             
   
   <span class="md-ellipsis">
-    2020
+    2020 (8.0.22-15 - 8.0.10)
   </span>
   
 
@@ -773,7 +773,7 @@ consistent, usable database again.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_10">
             <span class="md-nav__icon md-icon"></span>
-            2020
+            2020 (8.0.22-15 - 8.0.10)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -927,7 +927,7 @@ consistent, usable database again.">
             
   
   <span class="md-ellipsis">
-    2019
+    2019 (8.0.9 - 8.0.5)
   </span>
   
 
@@ -937,7 +937,7 @@ consistent, usable database again.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_11">
             <span class="md-nav__icon md-icon"></span>
-            2019
+            2019 (8.0.9 - 8.0.5)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1071,7 +1071,7 @@ consistent, usable database again.">
             
   
   <span class="md-ellipsis">
-    2018
+    2018 (8.0.4 - 8.0.3-rc1)
   </span>
   
 
@@ -1081,7 +1081,7 @@ consistent, usable database again.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_12">
             <span class="md-nav__icon md-icon"></span>
-            2018
+            2018 (8.0.4 - 8.0.3-rc1)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1827,26 +1827,6 @@ consistent, usable database again.">
   
   <span class="md-ellipsis">
     The xtrabackup binary overview
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    The xtrabackup option reference
   </span>
   
 
@@ -3994,6 +3974,26 @@ consistent, usable database again.">
   
   
     <li class="md-nav__item">
+      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xtrabackup option reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="xtrabackup-files.html" class="md-nav__link">
         
   
@@ -4199,41 +4199,41 @@ consistent, usable database again.">
                 <!-- Markdown content -->
                 <h1 id="how-percona-xtrabackup-works">How Percona XtraBackup works<a class="headerlink" href="#how-percona-xtrabackup-works" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup is based on InnoDB’s crash-recovery functionality.
-It copies your <em>InnoDB</em> data files, which results in data that is internally
+It copies your InnoDB data files, which results in data that is internally
 inconsistent; but then it performs crash recovery on the files to make them a
 consistent, usable database again.</p>
-<p>This works because <em>InnoDB</em> maintains a redo log, also called the transaction
-log. This contains a record of every change to InnoDB data. When <em>InnoDB</em>
+<p>This works because InnoDB maintains a redo log, also called the transaction
+log. This contains a record of every change to InnoDB data. When InnoDB
 starts, it inspects the data files and the transaction log, and performs two
 steps. It applies committed transaction log entries to the data files, and it
 performs an undo operation on any transactions that modified data but did not
 commit.</p>
-<p><a href="release-notes/8.0/8.0.30-23.0.html">Percona XtraBackup 8.0.30-23</a> adds <code>--register-redo-log-consumer</code> parameter. The <code>--register-redo-log-consumer</code> parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.  </p>
-<p><em>Percona XtraBackup</em> works by remembering the LSN when it starts, and then copying away the data files. It takes some time to do
+<p><a href="release-notes/8.0/8.0.30-23.0.html">Percona XtraBackup 8.0.30-23</a> adds the <a href="xtrabackup-option-reference.html#register-redo-log-consumer">--register-redo-log-consumer</a> parameter. This parameter is disabled by default. When enabled, the parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.</p>
+<p>Percona XtraBackup works by remembering the LSN when it starts, and then copying away the data files. It takes some time to do
 this, so if the files are changing, then they reflect the state of the database
-at different points in time. At the same time, <em>Percona XtraBackup</em> runs a
+at different points in time. At the same time, Percona XtraBackup runs a
 background process that watches the transaction log files, and copies changes
-from it. <em>Percona XtraBackup</em> needs to do this continually because the
+from it. Percona XtraBackup needs to do this continually because the
 transaction logs are written in a round-robin fashion, and can be reused after a
-while. <em>Percona XtraBackup</em> needs the transaction log records for every change
+while. Percona XtraBackup needs the transaction log records for every change
 to the data files since it began execution.</p>
-<p><em>Percona XtraBackup</em> uses <a href="https://docs.percona.com/percona-server/8.0/backup-locks.html">Backup locks</a></p>
+<p>Percona XtraBackup uses <a href="https://docs.percona.com/percona-server/8.0/backup-locks.html">Backup locks</a></p>
 <p>where available as a lightweight alternative to <code>FLUSH TABLES WITH READ
-LOCK</code>. This feature is available in <em>Percona Server for MySQL</em> 5.6+. <em>MySQL</em> 8.0 allows
+LOCK</code>. This feature is available in Percona Server for MySQL 5.6+. MySQL 8.0 allows
 acquiring an instance level backup lock via the <code>LOCK INSTANCE FOR BACKUP</code>
 statement.</p>
-<p>Locking is only done for <em>MyISAM</em> and other non-InnoDB tables
-<strong>after</strong> <em>Percona XtraBackup</em> finishes backing up all InnoDB/XtraDB data and
-logs. <em>Percona XtraBackup</em> uses this automatically to copy non-InnoDB data to
-avoid blocking DML queries that modify <em>InnoDB</em> tables.</p>
+<p>Locking is only done for MyISAM and other non-InnoDB tables
+<strong>after</strong> Percona XtraBackup finishes backing up all InnoDB/XtraDB data and
+logs. Percona XtraBackup uses this automatically to copy non-InnoDB data to
+avoid blocking DML queries that modify InnoDB tables.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>The <code>BACKUP_ADMIN</code> privilege is required to query the 
 <code>performance_schema_log_status</code> for either <code>LOCK 
 INSTANCE FOR BACKUP</code> or <code>LOCK TABLES FOR BACKUP</code>.</p>
 </div>
-<p><em>xtrabackup</em> tries to avoid backup locks and <code>FLUSH TABLES WITH READ LOCK</code>
-when the instance contains only InnoDB tables. In this case, <em>xtrabackup</em>
+<p>xtrabackup tries to avoid backup locks and <code>FLUSH TABLES WITH READ LOCK</code>
+when the instance contains only InnoDB tables. In this case, xtrabackup
 obtains binary log coordinates from <code>performance_schema.log_status</code>. <code>FLUSH
 TABLES WITH READ LOCK</code> is still required in MySQL 8.0 when xtrabackup is
 started with the <code>--slave-info</code>. The <code>log_status</code> table in Percona
@@ -4241,55 +4241,55 @@ Server for MySQL 8.0 is extended to include the relay log coordinates, so no loc
 needed even with the <code>--slave-info</code> option.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
-<p><a href="https://dev.mysql.com/doc/refman/8.0/en/lock-instance-for-backup.html"><em>MySQL</em> Documentation: LOCK INSTANCE FOR BACKUP</a></p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/lock-instance-for-backup.html">MySQL Documentation: LOCK INSTANCE FOR BACKUP</a></p>
 </div>
-<p>When backup locks are supported by the server, <em>xtrabackup</em> first copies
-<em>InnoDB</em> data, runs the <code>LOCK TABLES FOR BACKUP</code> and then copies the <em>MyISAM</em>
+<p>When backup locks are supported by the server, xtrabackup first copies
+InnoDB data, runs the <code>LOCK TABLES FOR BACKUP</code> and then copies the MyISAM
 tables. Once this is done, the backup of the files will
 begin. It will backup .frm, .MRG, .MYD, .MYI, .CSM,
 .CSV, <code>.sdi</code> and <code>.par</code> files.</p>
-<p>After that <em>xtrabackup</em> will use <code>LOCK BINLOG FOR BACKUP</code> to block all
+<p>After that xtrabackup will use <code>LOCK BINLOG FOR BACKUP</code> to block all
 operations that might change either binary log position or
 <code>Exec_Master_Log_Pos</code> or <code>Exec_Gtid_Set</code> (i.e. source binary log coordinates
 corresponding to the current SQL thread state on a replication replica) as
-reported by <code>SHOW MASTER/SLAVE STATUS</code>. <em>xtrabackup</em> will then finish copying
+reported by <code>SHOW MASTER/SLAVE STATUS</code>. xtrabackup will then finish copying
 the REDO log files and fetch the binary log coordinates. After this is completed
-<em>xtrabackup</em> will unlock the binary log and tables.</p>
-<p>Finally, the binary log position will be printed to <code>STDERR</code> and <em>xtrabackup</em>
+xtrabackup will unlock the binary log and tables.</p>
+<p>Finally, the binary log position will be printed to <code>STDERR</code> and xtrabackup
 will exit returning 0 if all went OK.</p>
-<p>Note that the <code>STDERR</code> of <em>xtrabackup</em> is not written in any file. You will
+<p>Note that the <code>STDERR</code> of xtrabackup is not written in any file. You will
 have to redirect it to a file, e.g., <code>xtrabackup OPTIONS 2&gt; backupout.log</code>.</p>
 <p>It will also create the following files in the
 directory of the backup.</p>
-<p>During the <code>prepare</code> phase, <em>Percona XtraBackup</em> performs crash recovery against
+<p>During the <code>prepare</code> phase, Percona XtraBackup performs crash recovery against
 the copied data files, using the copied transaction log file. After this is
 done, the database is ready to restore and use.</p>
-<p>The backed-up <em>MyISAM</em> and <em>InnoDB</em> tables will be eventually consistent with
-each other, because after the prepare (recovery) process, <em>InnoDB</em>’s data is
+<p>The backed-up MyISAM and InnoDB tables will be eventually consistent with
+each other, because after the prepare (recovery) process, InnoDB’s data is
 rolled forward to the point at which the backup completed, not rolled back to
 the point at which it started. This point in time matches where the <code>FLUSH
-TABLES WITH READ LOCK</code> was taken, so the <em>MyISAM</em> data and the prepared
-<em>InnoDB</em> data are in sync.</p>
-<p>The <em>xtrabackup</em> offers many features not mentioned in the preceding
+TABLES WITH READ LOCK</code> was taken, so the MyISAM data and the prepared
+InnoDB data are in sync.</p>
+<p>The xtrabackup offers many features not mentioned in the preceding
 explanation. The functionality of each tool is explained in more
 detail further in this manual. In brief, though, the tools enable you
 to do operations such as streaming and incremental backups with
 various combinations of copying the data files, copying the log files,
 and applying the logs to the data.</p>
 <h2 id="restoring-a-backup">Restoring a backup<a class="headerlink" href="#restoring-a-backup" title="Permanent link">&para;</a></h2>
-<p>To restore a backup with <em>xtrabackup</em> you can use the <code>--copy-back</code> or
-<code>--move-back</code> options.</p>
-<p><em>xtrabackup</em> will read from the <code>my.cnf</code> the variables datadir,
+<p>To restore a backup with xtrabackup you can use the <a href="xtrabackup-option-reference.html#copy-back">--copy-back</a> or
+<a href="xtrabackup-option-reference.html#move-back">--move-back</a> options.</p>
+<p>xtrabackup will read from the <code>my.cnf</code> the variables datadir,
 innodb_data_home_dir, innodb_data_file_path,
 innodb_log_group_home_dir and check that the directories exist.</p>
-<p>It will copy the <em>MyISAM</em> tables, indexes, etc. (.MRG, .MYD,
+<p>It will copy the MyISAM tables, indexes, etc. (.MRG, .MYD,
 .MYI, .CSM, .CSV, <code>.sdi</code>,
-and <code>par</code> files) first, <em>InnoDB</em> tables and indexes next and the log files at
+and <code>par</code> files) first, InnoDB tables and indexes next and the log files at
 last. It will preserve file’s attributes when copying them, you may have to
 change the files’ ownership to <code>mysql</code> before starting the database server, as
 they will be owned by the user who created the backup.</p>
-<p>Alternatively, the <code>--move-back</code> option may be used to
-restore a backup. This option is similar to <code>--copy-back</code>
+<p>Alternatively, the <a href="xtrabackup-option-reference.html#move-back">--move-back</a> option may be used to
+restore a backup. This option is similar to <a href="xtrabackup-option-reference.html#copy-back">--copy-back</a>
 with the only difference that instead of copying files it moves them to their
 target locations. As this option removes backup files, it must be used with
 caution. It is useful in cases when there is not enough free disk space to hold
@@ -4316,7 +4316,7 @@ both data files and their backup copies.</p>
   <small>
     
       Last update:
-      2023-07-07
+      2023-10-26
     
   </small>
 </div>
@@ -4442,7 +4442,7 @@ both data files and their backup copies.</p>
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="assets/javascripts/bundle.81fa17fe.min.js"></script>
       
         <script src="js/version-select.js"></script>
       

@@ -27,7 +27,7 @@ duration of the backup. This lock does not affect DML statements.">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
     
     
       
@@ -35,7 +35,7 @@ duration of the backup. This lock does not affect DML statements.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.4b4a2bd9.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
@@ -514,7 +514,7 @@ duration of the backup. This lock does not affect DML statements.">
             
   
   <span class="md-ellipsis">
-    2022
+    2022 (8.0.30-23 - 8.0.23-16)
   </span>
   
 
@@ -524,7 +524,7 @@ duration of the backup. This lock does not affect DML statements.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
-            2022
+            2022 (8.0.30-23 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -658,7 +658,7 @@ duration of the backup. This lock does not affect DML statements.">
             
   
   <span class="md-ellipsis">
-    2021
+    2021 (8.0.26-18 - 8.0.23-16)
   </span>
   
 
@@ -668,7 +668,7 @@ duration of the backup. This lock does not affect DML statements.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
-            2021
+            2021 (8.0.26-18 - 8.0.23-16)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -762,7 +762,7 @@ duration of the backup. This lock does not affect DML statements.">
             
   
   <span class="md-ellipsis">
-    2020
+    2020 (8.0.22-15 - 8.0.10)
   </span>
   
 
@@ -772,7 +772,7 @@ duration of the backup. This lock does not affect DML statements.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_10">
             <span class="md-nav__icon md-icon"></span>
-            2020
+            2020 (8.0.22-15 - 8.0.10)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -926,7 +926,7 @@ duration of the backup. This lock does not affect DML statements.">
             
   
   <span class="md-ellipsis">
-    2019
+    2019 (8.0.9 - 8.0.5)
   </span>
   
 
@@ -936,7 +936,7 @@ duration of the backup. This lock does not affect DML statements.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_11">
             <span class="md-nav__icon md-icon"></span>
-            2019
+            2019 (8.0.9 - 8.0.5)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1070,7 +1070,7 @@ duration of the backup. This lock does not affect DML statements.">
             
   
   <span class="md-ellipsis">
-    2018
+    2018 (8.0.4 - 8.0.3-rc1)
   </span>
   
 
@@ -1080,7 +1080,7 @@ duration of the backup. This lock does not affect DML statements.">
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_12">
             <span class="md-nav__icon md-icon"></span>
-            2018
+            2018 (8.0.4 - 8.0.3-rc1)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1833,26 +1833,6 @@ duration of the backup. This lock does not affect DML statements.">
   
   <span class="md-ellipsis">
     The xtrabackup binary overview
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    The xtrabackup option reference
   </span>
   
 
@@ -4000,6 +3980,26 @@ duration of the backup. This lock does not affect DML statements.">
   
   
     <li class="md-nav__item">
+      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xtrabackup option reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="xtrabackup-files.html" class="md-nav__link">
         
   
@@ -4211,13 +4211,17 @@ duration of the backup. This lock does not affect DML statements.">
 
                 <!-- Markdown content -->
                 <h1 id="lock-ddl-per-table-option-improvements">lock-ddl-per-table option improvements<a class="headerlink" href="#lock-ddl-per-table-option-improvements" title="Permanent link">&para;</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The lock-ddl-per-table option is deprecated in Percona Server for MySQL 8.0. Use --lock-ddl instead of this variable.</p>
+</div>
 <p>To block DDL statements on an instance, Percona Server implemented LOCK
-TABLES FOR BACKUP. <em>Percona XtraBackup</em> uses this lock for the
+TABLES FOR BACKUP. Percona XtraBackup uses this lock for the
 duration of the backup. This lock does not affect DML statements.</p>
-<p><em>Percona XtraBackup</em> has also implemented <code>--lock-ddl-per-table</code>, which
+<p>Percona XtraBackup has also implemented <a href="xtrabackup-option-reference.html#lock-ddl-per-table">--lock-ddl-per-table</a>, which
 blocks DDL statements by using metadata locks (MDL).</p>
 <p>The following procedures describe a simplified backup operation when using
-<code>--lock-ddl-per-table</code>:</p>
+<a href="xtrabackup-option-reference.html#lock-ddl-per-table">--lock-ddl-per-table</a>:</p>
 <ol>
 <li>
 <p>Parse and copy all redo logs after the checkpoint mark</p>
@@ -4248,8 +4252,8 @@ event is found by the redo follow thread, the backup continues and assumes
 the backup is safe because the MDL protects tablespaces already copied and
 the MLOG_INDEX_LOAD event is for a tablespace that is not copied.</p>
 <p>These assumptions may not be correct and may lead to inconsistent backups.</p>
-<h2 id="-lock-ddl-per-table-redesign"><code>--lock-ddl-per-table</code> redesign<a class="headerlink" href="#-lock-ddl-per-table-redesign" title="Permanent link">&para;</a></h2>
-<p>Implemented in <em>Percona XtraBackup</em> version 8.0.22-15.0, the <code>--lock-ddl-per-table</code> has been redesigned to minimize inconsistent backups.</p>
+<h2 id="-lock-ddl-per-table-redesign"><a href="xtrabackup-option-reference.html#lock-ddl-per-table">--lock-ddl-per-table</a> redesign<a class="headerlink" href="#-lock-ddl-per-table-redesign" title="Permanent link">&para;</a></h2>
+<p>Implemented in Percona XtraBackup version 8.0.22-15.0, the <a href="xtrabackup-option-reference.html#lock-ddl-per-table">--lock-ddl-per-table</a> has been redesigned to minimize inconsistent backups.</p>
 <p>The following procedure reorders the steps:</p>
 <ul>
 <li>
@@ -4281,10 +4285,6 @@ the MLOG_INDEX_LOAD event is for a tablespace that is not copied.</p>
 <p>A <code>SELECT</code> query that acquires an MDL does not retrieve any data.</p>
 </li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The <code>lock-ddl-per-table</code> variable is deprecated in <em>Percona Server for MySQL</em> 8.0. Use <code>--lock-ddl</code> instead of this variable.</p>
-</div>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -4307,7 +4307,7 @@ the MLOG_INDEX_LOAD event is for a tablespace that is not copied.</p>
   <small>
     
       Last update:
-      2023-06-12
+      2023-10-26
     
   </small>
 </div>
@@ -4433,7 +4433,7 @@ the MLOG_INDEX_LOAD event is for a tablespace that is not copied.</p>
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="assets/javascripts/bundle.81fa17fe.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
