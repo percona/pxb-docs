@@ -16,7 +16,7 @@ Percona XtraBackup performs the backup procedure in two steps:
 
     To `prepare` a backup, Percona Xtrabackup uses InnoDB Buffer Pool memory. Percona Xtrabackup reserves memory to load 256 pages into the buffer pool. The remaining memory is used for hashing/categorizing the redo log entries.
 
-    The available memory is controlled by the `--use-memory` option. If the available memory on the buffer pool is insufficient, the work is performed in multiple batches. After the batch is processed, the memory is freed to release space for the next batch. This process greatly impacts performance as an InnoDB page holds data from multiple rows. If a change on a page happens in different batches, that page is fetched and evicted numerous times.
+    The available memory is controlled by the [--use-memory] option. If the available memory on the buffer pool is insufficient, the work is performed in multiple batches. After the batch is processed, the memory is freed to release space for the next batch. This process greatly impacts performance as an InnoDB page holds data from multiple rows. If a change on a page happens in different batches, that page is fetched and evicted numerous times.
 
 ## How does Smart memory estimation work
 
@@ -28,7 +28,7 @@ Starting with Percona XtraBackup 8.0.32-26, you can enable or disable the memory
 $ xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
-In the `prepare` phase, enable the [`--use-free-memory-pct`](xtrabackup-option-reference.md#use-free-memory-pct) option by specifying the percentage of free memory to be used to `prepare` a backup. The `--use-free-memory-pct` value must be larger than 0.
+In the `prepare` phase, enable the [--use-free-memory-pct] option by specifying the percentage of free memory to be used to `prepare` a backup. The [--use-free-memory-pct] value must be larger than 0.
 
 For example:
 
@@ -84,3 +84,6 @@ The results are the following:
 * **32 tables result** - prepare time dropped to ~8,2% of the original time. An improvement in recovery time of about 12x.
 
 * **64 tables result** - prepare time dropped to ~9.9% of the original time. An improvement in recovery time of about 10x.
+
+[--use-memory]: xtrabackup-option-reference.md#use-memory
+[--use-free-memory-pct]: xtrabackup-option-reference.md#use-free-memory-pct

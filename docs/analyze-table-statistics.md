@@ -2,12 +2,13 @@
 
 !!! note
 
-    As of *Percona XtraBackup* 8.0.30 the `--stats` option is deprecated and may be removed in future releases. We no longer support using the `--stats` option in *Percona XtraBackup* 8.0.29 and older versions.
+    As of *Percona XtraBackup* 8.0.30 the --stats option is deprecated and may be removed in future releases. 
+    We no longer support using the --stats option in *Percona XtraBackup* 8.0.29 and older versions.
 
 The *xtrabackup* binary can analyze InnoDB data files in read-only mode to give
-statistics about them. To do this, you should use the `--stats`
-option. You can combine this with the `--tables` option to limit the
-files to examine. It also uses the `--use-memory` option.
+statistics about them. To do this, you should use the [--stats]
+option. You can combine this with the [--tables] option to limit the
+files to examine. It also uses the [--use-memory] option.
 
 You can perform the analysis on a running server, with some chance of errors due
 to the data being changed during analysis. Or, you can analyze a backup copy of
@@ -154,3 +155,7 @@ that index, the number of pages not actually occupied by data, and the number of
 bytes of real data as a percentage of the total size of the pages of real
 data. The first line in the above output, in which the `INDEX` column is
 empty, is a summary of the entire table.
+
+[--stats]: xtrabackup-option-reference.md#stats
+[--tables]: xtrabackup-option-reference.md#tablesname
+[--use-memory]: xtrabackup-option-reference.md#use-memory

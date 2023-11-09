@@ -1,14 +1,18 @@
 # lock-ddl-per-table option improvements
 
+!!! important
+
+    The lock-ddl-per-table option is deprecated in Percona Server for MySQL 8.0. Use --lock-ddl instead of this variable.
+
 To block DDL statements on an instance, Percona Server implemented LOCK
-TABLES FOR BACKUP. *Percona XtraBackup* uses this lock for the
+TABLES FOR BACKUP. Percona XtraBackup uses this lock for the
 duration of the backup. This lock does not affect DML statements.
 
-*Percona XtraBackup* has also implemented `--lock-ddl-per-table`, which
+Percona XtraBackup has also implemented [--lock-ddl-per-table], which
 blocks DDL statements by using metadata locks (MDL).
 
 The following procedures describe a simplified backup operation when using
-`--lock-ddl-per-table`:
+[--lock-ddl-per-table]:
 
 1. Parse and copy all redo logs after the checkpoint mark
 
@@ -34,9 +38,9 @@ the MLOG_INDEX_LOAD event is for a tablespace that is not copied.
 
 These assumptions may not be correct and may lead to inconsistent backups.
 
-## `--lock-ddl-per-table` redesign
+## [--lock-ddl-per-table] redesign
 
-Implemented in *Percona XtraBackup* version 8.0.22-15.0, the `--lock-ddl-per-table` has been redesigned to minimize inconsistent backups.
+Implemented in Percona XtraBackup version 8.0.22-15.0, the [--lock-ddl-per-table] has been redesigned to minimize inconsistent backups.
 
 The following procedure reorders the steps:
 
@@ -60,6 +64,4 @@ The following improvements have been added:
 
 * A `SELECT` query that acquires an MDL does not retrieve any data.
 
-!!! warning
-   
-    The `lock-ddl-per-table` variable is deprecated in *Percona Server for MySQL* 8.0. Use `--lock-ddl` instead of this variable.
+[--lock-ddl-per-table]: xtrabackup-option-reference.md#lock-ddl-per-table
