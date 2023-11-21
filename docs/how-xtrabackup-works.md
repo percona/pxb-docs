@@ -111,4 +111,4 @@ caution. It is useful in cases when there is not enough free disk space to hold
 both data files and their backup copies.
 
 [MySQL Documentation: LOCK INSTANCE FOR BACKUP]: https://dev.mysql.com/doc/refman/{{vers}}/en/lock-instance-for-backup.html
-[Backup locks]: https://docs.percona.com/percona-server/{{vers}}/backup-locks.html
+[Backup locks]: https://docs.percona.com/percona-server/innovation-release/backup-locks.html

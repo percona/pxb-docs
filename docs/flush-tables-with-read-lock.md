@@ -103,5 +103,5 @@ After `FLUSH TABLES WITH READ LOCK` is issued, xtrabackup will wait for 20
 seconds for lock to be acquired. If lock is still not acquired after 20 seconds,
 it will kill all queries which are running longer that the `FLUSH TABLES WITH READ LOCK`.
 
-[backup locks]: https://docs.percona.com/percona-server/{{vers}}/backup-locks.html
-[Backup locks]: https://docs.percona.com/percona-server/{{vers}}/backup-locks.html
+[backup locks]: https://docs.percona.com/percona-server/innovation-release/backup-locks.html
+[Backup locks]: https://docs.percona.com/percona-server/innovation-release/backup-locks.html

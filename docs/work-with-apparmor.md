@@ -55,4 +55,4 @@ Run the backup as usual.
 
 No additional AppArmor-related actions are required to restore a backup.
 
-[Percona Server for MySQL - AppArmor]: https://www.percona.com/percona-server/{{vers}}/apparmor.html
+[Percona Server for MySQL - AppArmor]: https://www.percona.com/percona-server/innovation-release/apparmor.html

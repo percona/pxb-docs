@@ -526,7 +526,7 @@ In this scenario, the three stages of the backup process look as follows.
 [MySQL documentation on the component installation]: https://dev.mysql.com/doc/refman/{{vers}}/en/keyring-component-installation.html
 [Keyring Component Installation]: https://dev.mysql.com/doc/refman/{{vers}}/en/keyring-component-installation.html
 [performance_schema.keyring_component_status table]: https://dev.mysql.com/doc/refman/{{vers}}/en/performance-schema-keyring-component-status-table.html
-[Amazon Key Management Service (AWS KMS)]: https://docs.percona.com/percona-server/{{vers}}/using-amz-kms.html
-[Key Management Interoperability Protocol (KMIP)]: https://docs.percona.com/percona-server/{{vers}}/using-kmip.html?h=kmip
-[Use the keyring vault component]: https://docs.percona.com/percona-server/{{vers}}/use-keyring-vault-component.html
+[Amazon Key Management Service (AWS KMS)]: https://docs.percona.com/percona-server/innovation-release/using-amz-kms.html
+[Key Management Interoperability Protocol (KMIP)]: https://docs.percona.com/percona-server/innovation-release/using-kmip.html?h=kmip
+[Use the keyring vault component]: https://docs.percona.com/percona-server/innovation-release/use-keyring-vault-component.html
 [Using the keyring_file File-Based Keyring Plugin]: https://dev.mysql.com/doc/refman/{{vers}}/en/keyring-file-plugin.html
