@@ -27,7 +27,7 @@ consistent, usable database again.">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.7">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.10">
     
     
       
@@ -35,7 +35,7 @@ consistent, usable database again.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.4b4a2bd9.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.fad675c6.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.356b1318.min.css">
@@ -544,14 +544,18 @@ consistent, usable database again.">
       
         <li class="md-nav__item">
   <a href="#restoring-a-backup" class="md-nav__link">
-    Restoring a backup
+    <span class="md-ellipsis">
+      Restoring a backup
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
-    Get expert help
+    <span class="md-ellipsis">
+      Get expert help
+    </span>
   </a>
   
 </li>
@@ -3349,14 +3353,18 @@ consistent, usable database again.">
       
         <li class="md-nav__item">
   <a href="#restoring-a-backup" class="md-nav__link">
-    Restoring a backup
+    <span class="md-ellipsis">
+      Restoring a backup
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
-    Get expert help
+    <span class="md-ellipsis">
+      Get expert help
+    </span>
   </a>
   
 </li>
@@ -3405,7 +3413,7 @@ performs an undo operation on any transactions that modified data but did not
 commit.</p>
 <p>The <code>--register-redo-log-consumer</code> parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.  </p>
 <p>Percona XtraBackup remembers the LSN when it starts, and then copies the data files. The operation takes time, and the files may change, then LSN reflects the state of the database at different points in time. Percona XtraBackup also runs a background process that watches the transaction log files, and copies any changes. Percona XtraBackup does this continually. The transaction logs are written in a round-robin fashion, and can be reused.</p>
-<p>Percona XtraBackup uses <a href="https://docs.percona.com/percona-server/8.1/backup-locks.html">Backup locks</a></p>
+<p>Percona XtraBackup uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a></p>
 <p>where available as a lightweight alternative to <code>FLUSH TABLES WITH READ
 LOCK</code>. MySQL 8.1 allows
 acquiring an instance level backup lock via the <code>LOCK INSTANCE FOR BACKUP</code>
@@ -3498,7 +3506,7 @@ both data files and their backup copies.</p>
   <small>
     
       Last update:
-      2023-10-12
+      2023-11-21
     
   </small>
 </div>
@@ -3669,7 +3677,7 @@ both data files and their backup copies.</p>
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="assets/javascripts/bundle.6c14ae12.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
