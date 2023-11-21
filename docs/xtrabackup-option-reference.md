@@ -957,4 +957,4 @@ This option prints xtrabackup version and exits.
 The absolute path to the directory that contains the `keyring` plugin.
 
 [replicating temporary tables]: https://dev.mysql.com/doc/refman/{{vers}}/en/replication-features-temptables.html
-[Backup locks]: https://docs.percona.com/percona-server/{{vers}}/backup-locks.html
+[Backup locks]: https://docs.percona.com/percona-server/innovation-release/backup-locks.html

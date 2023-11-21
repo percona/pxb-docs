@@ -66,4 +66,4 @@ Percona XtraBackup uses these locks automatically to copy non-InnoDB data to avo
    
     This option cannot be used together with the `--stream` option.
 
-[Backup locks]: https://docs.percona.com/percona-server/{{vers}}/backup-locks.html
+[Backup locks]: https://docs.percona.com/percona-server/innovation-release/backup-locks.html

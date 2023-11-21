@@ -194,4 +194,4 @@ Percona XtraDB is an enhanced version of the InnoDB storage engine, designed to 
 
 
 [file-per-tablespace]: https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-file-per-table-tablespaces.html
-[The Percona XtraDB Storage Engine]: https://www.percona.com/doc/percona-server/{{vers}}/percona-xtradb.html
+[The Percona XtraDB Storage Engine]: https://www.percona.com/doc/percona-server/innovation-release/percona-xtradb.html
