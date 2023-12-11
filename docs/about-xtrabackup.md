@@ -49,7 +49,7 @@ with *XtraDB*, [*Percona Server for MySQL* 8.0](https://docs.percona.com/percona
 
 !!! admonition "See also"
    
-    [Percona TokuBackup](https://docs.percona.com/percona-server/latest/tokudb/toku_backup.html)
+    [Percona TokuBackup](https://docs.percona.com/percona-server/8.0/toku-backup.html)
 
 ## Limitations
 
