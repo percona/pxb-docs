@@ -371,11 +371,11 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.1.0-1.html" class="md-nav__link">
+      <a href="release-notes/8.2.0-1.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Percona XtraBackup 8.1.0-1 (2023-11-02)
+    Percona XtraBackup 8.2.0-1 (2023-12-11)
   </span>
   
 
@@ -1664,7 +1664,7 @@
         
   
   <span class="md-ellipsis">
-    Quickstart Guide for Percona XtraBackup 8.1
+    Quickstart Guide for Percona XtraBackup 8.2
   </span>
   
 
@@ -3311,9 +3311,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#does-percona-xtrabackup-81-support-making-backups-of-databases-in-versions-prior-to-81" class="md-nav__link">
+  <a href="#does-percona-xtrabackup-82-support-making-backups-of-databases-in-versions-prior-to-82" class="md-nav__link">
     <span class="md-ellipsis">
-      Does Percona XtraBackup 8.1 support making backups of databases in versions prior to 8.1?
+      Does Percona XtraBackup 8.2 support making backups of databases in versions prior to 8.2?
     </span>
   </a>
   
@@ -3509,9 +3509,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#does-percona-xtrabackup-81-support-making-backups-of-databases-in-versions-prior-to-81" class="md-nav__link">
+  <a href="#does-percona-xtrabackup-82-support-making-backups-of-databases-in-versions-prior-to-82" class="md-nav__link">
     <span class="md-ellipsis">
-      Does Percona XtraBackup 8.1 support making backups of databases in versions prior to 8.1?
+      Does Percona XtraBackup 8.2 support making backups of databases in versions prior to 8.2?
     </span>
   </a>
   
@@ -3606,9 +3606,9 @@
  Ask Satya/Marce to review and add/change as needed
  --->
 <h1 id="frequently-asked-questions">Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h1>
-<h2 id="does-percona-xtrabackup-81-support-making-backups-of-databases-in-versions-prior-to-81">Does Percona XtraBackup 8.1 support making backups of databases in versions prior to 8.1?<a class="headerlink" href="#does-percona-xtrabackup-81-support-making-backups-of-databases-in-versions-prior-to-81" title="Permanent link">&para;</a></h2>
-<p>Percona XtraBackup 8.1 does not support making backups of databases
-created in versions prior to 8.1 of MySQL, Percona Server for MySQL or
+<h2 id="does-percona-xtrabackup-82-support-making-backups-of-databases-in-versions-prior-to-82">Does Percona XtraBackup 8.2 support making backups of databases in versions prior to 8.2?<a class="headerlink" href="#does-percona-xtrabackup-82-support-making-backups-of-databases-in-versions-prior-to-82" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.2 does not support making backups of databases
+created in versions prior to 8.2 of MySQL, Percona Server for MySQL or
 Percona XtraDB Cluster. </p>
 <h2 id="are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around-percona-xtrabackup">Are you aware of any web-based backup management tools (commercial or not) built around Percona XtraBackup*?<a class="headerlink" href="#are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around-percona-xtrabackup" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.zmanda.com/zrm-community/">ZRM Community</a> is a community tool that uses Percona XtraBackup for Non-Blocking Backups:</p>
@@ -3653,7 +3653,7 @@ Percona XtraBackup will not be able to take a consistent backup. Retry the backu
 <p class="admonition-title">Note</p>
 <ul>
 <li>
-<p>Redo logging is disabled during a <a href="https://dev.mysql.com/doc/refman/8.1/en/sorted-index-builds.html">sorted index build</a>. To avoid this error, Percona XtraBackup can use metadata locks on tables while they are copied:</p>
+<p>Redo logging is disabled during a <a href="https://dev.mysql.com/doc/refman/8.2/en/sorted-index-builds.html">sorted index build</a>. To avoid this error, Percona XtraBackup can use metadata locks on tables while they are copied:</p>
 </li>
 <li>
 <p>To block all DDL operations, use the <code>--lock-ddl</code> option that issues <code>LOCK TABLES FOR BACKUP</code>.</p>
