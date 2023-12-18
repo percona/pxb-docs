@@ -1,4 +1,6 @@
-# Percona XtraBackup 2.4 Release notes index 
+# Percona XtraBackup 2.4 Release notes index
+
+* [Percona XtraBackup 2.4.29 (2023-12-18)](release-notes/2.4/2.4.29.md)
 
 * [Percona XtraBackup 2.4.28 (2023-04-04)](release-notes/2.4/2.4.28.md)
 
