@@ -9,34 +9,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Both the xtrabackup tool and the innobackupex tool support incremental backups. An incremental backup backs up only data that has changed since the last backup.">
+        <meta name="description" content="Percona XtraBackup for MySQL Databases enables MySQL backups without blocking user queries.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/2.4/backup_scenarios/incremental_backup.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/2.4/release-notes/2.4/2.4.29.html">
       
       
-        <link rel="prev" href="full_backup.html">
+        <link rel="prev" href="../../release-notes.html">
       
       
-        <link rel="next" href="compressed_backup.html">
+        <link rel="next" href="2.4.28.html">
       
       
-      <link rel="icon" href="../_static/percona-favicon.ico">
+      <link rel="icon" href="../../_static/percona-favicon.ico">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
     
     
       
-        <title>Incremental Backup - Percona XtraBackup</title>
+        <title>Percona XtraBackup 2.4.29 (2023-12-18) - Percona XtraBackup</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -59,11 +59,11 @@
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="../css/percona.css">
+      <link rel="stylesheet" href="../../css/percona.css">
     
-      <link rel="stylesheet" href="../css/nocopy.css">
+      <link rel="stylesheet" href="../../css/nocopy.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
               <!-- Google Tag Manager -->
               <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -86,7 +86,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Incremental Backup" />
+                 <meta property="og:title" content="Percona XtraBackup - Percona XtraBackup 2.4.29 (2023-12-18)" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/2.4/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/2.4/">
                 
@@ -109,7 +109,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#incremental-backup" class="md-skip">
+        <a href="#percona-xtrabackup-2429-2023-12-18" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +140,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://docs.percona.com" title="Percona XtraBackup" class="md-header__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
-  <img src="../_static/percona-logo.svg" alt="logo">
+  <img src="../../_static/percona-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -157,7 +157,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Incremental Backup
+              Percona XtraBackup 2.4.29 (2023-12-18)
             
           </span>
         </div>
@@ -272,7 +272,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://docs.percona.com" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
-  <img src="../_static/percona-logo.svg" alt="logo">
+  <img src="../../_static/percona-logo.svg" alt="logo">
 
     </a>
     Percona XtraBackup
@@ -304,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
+      <a href="../../index.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -366,7 +366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../intro.html" class="md-nav__link">
+      <a href="../../intro.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -387,7 +387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../how_xtrabackup_works.html" class="md-nav__link">
+      <a href="../../how_xtrabackup_works.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -408,7 +408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xtrabackup-version-numbers.html" class="md-nav__link">
+      <a href="../../xtrabackup-version-numbers.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -478,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation.html" class="md-nav__link">
+      <a href="../../installation.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -499,7 +499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/apt_repo.html" class="md-nav__link">
+      <a href="../../installation/apt_repo.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -520,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/yum_repo.html" class="md-nav__link">
+      <a href="../../installation/yum_repo.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -541,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/binary-tarball.html" class="md-nav__link">
+      <a href="../../installation/binary-tarball.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -562,7 +562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/compiling_xtrabackup.html" class="md-nav__link">
+      <a href="../../installation/compiling_xtrabackup.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -632,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/docker.html" class="md-nav__link">
+      <a href="../../installation/docker.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -702,7 +702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../using_xtrabackup/privileges.html" class="md-nav__link">
+      <a href="../../using_xtrabackup/privileges.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -723,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../using_xtrabackup/configuring.html" class="md-nav__link">
+      <a href="../../using_xtrabackup/configuring.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -753,21 +753,19 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -781,7 +779,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Backup Scenarios
@@ -795,7 +793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="full_backup.html" class="md-nav__link">
+      <a href="../../backup_scenarios/full_backup.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -813,30 +811,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Incremental Backup
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="incremental_backup.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../backup_scenarios/incremental_backup.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -845,46 +823,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#creating-an-incremental-backup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating an Incremental Backup
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#preparing-the-incremental-backups" class="md-nav__link">
-    <span class="md-ellipsis">
-      Preparing the Incremental Backups
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -897,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="compressed_backup.html" class="md-nav__link">
+      <a href="../../backup_scenarios/compressed_backup.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -918,7 +856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="encrypted_backup.html" class="md-nav__link">
+      <a href="../../backup_scenarios/encrypted_backup.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -988,7 +926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../manual.html" class="md-nav__link">
+      <a href="../../manual.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1058,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/throttling_backups.html" class="md-nav__link">
+      <a href="../../advanced/throttling_backups.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1079,7 +1017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/lockless_bin-log.html" class="md-nav__link">
+      <a href="../../advanced/lockless_bin-log.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1100,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/encrypted_innodb_tablespace_backups.html" class="md-nav__link">
+      <a href="../../advanced/encrypted_innodb_tablespace_backups.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1121,7 +1059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/locks.html" class="md-nav__link">
+      <a href="../../advanced/locks.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1191,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../how-tos.html" class="md-nav__link">
+      <a href="../../how-tos.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1221,19 +1159,21 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
@@ -1247,7 +1187,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             References
@@ -1258,19 +1198,21 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_1" checked>
         
           
           <label class="md-nav__link" for="__nav_10_1" id="__nav_10_1_label" tabindex="0">
@@ -1284,7 +1226,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10_1">
             <span class="md-nav__icon md-icon"></span>
             Release notes
@@ -1298,7 +1240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes.html" class="md-nav__link">
+      <a href="../../release-notes.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1316,10 +1258,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.29.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 2.4.29 (2023-12-18)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="2.4.29.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1328,6 +1290,46 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release highlights
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful links
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1340,7 +1342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.28.html" class="md-nav__link">
+      <a href="2.4.28.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1361,7 +1363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.27.html" class="md-nav__link">
+      <a href="2.4.27.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1382,7 +1384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.26.html" class="md-nav__link">
+      <a href="2.4.26.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1403,7 +1405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.25.html" class="md-nav__link">
+      <a href="2.4.25.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1424,7 +1426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.24.html" class="md-nav__link">
+      <a href="2.4.24.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1445,7 +1447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.23.html" class="md-nav__link">
+      <a href="2.4.23.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1466,7 +1468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.22.html" class="md-nav__link">
+      <a href="2.4.22.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1487,7 +1489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.21.html" class="md-nav__link">
+      <a href="2.4.21.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1508,7 +1510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.20.html" class="md-nav__link">
+      <a href="2.4.20.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1529,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.19.html" class="md-nav__link">
+      <a href="2.4.19.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1550,7 +1552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.18.html" class="md-nav__link">
+      <a href="2.4.18.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1571,7 +1573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.17.html" class="md-nav__link">
+      <a href="2.4.17.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1592,7 +1594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.16.html" class="md-nav__link">
+      <a href="2.4.16.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1613,7 +1615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.15.html" class="md-nav__link">
+      <a href="2.4.15.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1634,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.14.html" class="md-nav__link">
+      <a href="2.4.14.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1655,7 +1657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.13.html" class="md-nav__link">
+      <a href="2.4.13.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1676,7 +1678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.12.html" class="md-nav__link">
+      <a href="2.4.12.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1697,7 +1699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.11.html" class="md-nav__link">
+      <a href="2.4.11.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1718,7 +1720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.10.html" class="md-nav__link">
+      <a href="2.4.10.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1739,7 +1741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.9.html" class="md-nav__link">
+      <a href="2.4.9.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1760,7 +1762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.8.html" class="md-nav__link">
+      <a href="2.4.8.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1781,7 +1783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.7-2.html" class="md-nav__link">
+      <a href="2.4.7-2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1802,7 +1804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.7.html" class="md-nav__link">
+      <a href="2.4.7.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1823,7 +1825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.6.html" class="md-nav__link">
+      <a href="2.4.6.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1844,7 +1846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.5.html" class="md-nav__link">
+      <a href="2.4.5.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1865,7 +1867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.4.html" class="md-nav__link">
+      <a href="2.4.4.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1886,7 +1888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.3.html" class="md-nav__link">
+      <a href="2.4.3.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1907,7 +1909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.2.html" class="md-nav__link">
+      <a href="2.4.2.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1928,7 +1930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../release-notes/2.4/2.4.1.html" class="md-nav__link">
+      <a href="2.4.1.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1957,7 +1959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xtrabackup_bin/xbk_option_reference.html" class="md-nav__link">
+      <a href="../../xtrabackup_bin/xbk_option_reference.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1978,7 +1980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../innobackupex/innobackupex_option_reference.html" class="md-nav__link">
+      <a href="../../innobackupex/innobackupex_option_reference.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1999,7 +2001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud.html" class="md-nav__link">
+      <a href="../../xbcloud/xbcloud.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2020,7 +2022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud_exbackoff.html" class="md-nav__link">
+      <a href="../../xbcloud/xbcloud_exbackoff.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2041,7 +2043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcloud/xbcloud_azure.html" class="md-nav__link">
+      <a href="../../xbcloud/xbcloud_azure.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2062,7 +2064,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbcrypt/xbcrypt.html" class="md-nav__link">
+      <a href="../../xbcrypt/xbcrypt.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2083,7 +2085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xbstream/xbstream.html" class="md-nav__link">
+      <a href="../../xbstream/xbstream.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2104,7 +2106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../known_issues.html" class="md-nav__link">
+      <a href="../../known_issues.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2125,7 +2127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../faq.html" class="md-nav__link">
+      <a href="../../faq.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2146,7 +2148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../glossary.html" class="md-nav__link">
+      <a href="../../glossary.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2167,7 +2169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xtrabackup-files.html" class="md-nav__link">
+      <a href="../../xtrabackup-files.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2188,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trademark-policy.html" class="md-nav__link">
+      <a href="../../trademark-policy.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2209,7 +2211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../copyright-and-licensing-information.html" class="md-nav__link">
+      <a href="../../copyright-and-licensing-information.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2230,7 +2232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../version-check.html" class="md-nav__link">
+      <a href="../../version-check.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2287,18 +2289,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-an-incremental-backup" class="md-nav__link">
+  <a href="#release-highlights" class="md-nav__link">
     <span class="md-ellipsis">
-      Creating an Incremental Backup
+      Release highlights
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparing-the-incremental-backups" class="md-nav__link">
+  <a href="#useful-links" class="md-nav__link">
     <span class="md-ellipsis">
-      Preparing the Incremental Backups
+      Useful links
     </span>
   </a>
   
@@ -2322,14 +2324,14 @@
                   
                   
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/2.4/docs/backup_scenarios/incremental_backup.md"
+                    href="https://github.com/percona/pxb-docs/edit/2.4/docs/release-notes/2.4/2.4.29.md"
                     title="edit.link.title"
                     class="md-content__button md-icon"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
                   </a>
                   <a
-                    href="https://github.com/percona/pxb-docs/edit/2.4/docs/backup_scenarios/incremental_backup.md"
+                    href="https://github.com/percona/pxb-docs/edit/2.4/docs/release-notes/2.4/2.4.29.md"
                     title="View source of this page"
                     class="md-content__button md-icon"
                   >
@@ -2345,141 +2347,34 @@
                 
 
                 <!-- Markdown content -->
-                <h1 id="incremental-backup">Incremental Backup<a class="headerlink" href="#incremental-backup" title="Permanent link">&para;</a></h1>
-<p>Both the xtrabackup tool and the innobackupex tool support incremental backups. An incremental backup backs up only data that has changed since the last backup.</p>
-<p>You can take multiple incremental backups between each full backup. For example, you can take a full backup once a week and an incremental backup every day, or a full backup every day and incremental backups each hour.</p>
-<p>Incremental backups work because each <em>InnoDB</em> page contains a log sequence
-number (LSN). The <code>LSN</code> is the system version number for the
-entire database. Each page’s <code>LSN</code> shows how recently it was changed.</p>
-<p>An incremental backup copies each page whose <code>LSN</code> is newer than the
-previous incremental or full backup’s <code>LSN</code>. There are two algorithms in
-use to find the set of such pages to be copied. The first one, available with all the server types and versions, checks the page <code>LSN</code> directly by reading all the data pages. The second one, available with <em>Percona Server for MySQL</em>, enables the <a href="http://www.percona.com/doc/percona-server/5.7/management/changed_page_tracking.html">changed page tracking</a>
-feature on the server, which will note the pages as they are being changed.
-This information will be then written out in a compact separate so-called
-bitmap file. The xtrabackup binary uses that file to read only the data
-pages it needs for the incremental backup. This features potentially saves many read requests. The latter algorithm is enabled by default if the xtrabackup binary finds the bitmap file. It is possible to specify
-<code>xtrabackup --incremental-force-scan</code> to read all the pages even if the
-bitmap data is available.</p>
+                <h1 id="percona-xtrabackup-2429-2023-12-18">Percona XtraBackup 2.4.29 (2023-12-18)<a class="headerlink" href="#percona-xtrabackup-2429-2023-12-18" title="Permanent link">&para;</a></h1>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Incremental backups do not compare the data files to the previous backup&rsquo;s data files. For this reason, running an incremental backup after a <em>partial backup</em> may lead to inconsistent data.</p>
-<p>Incremental backups read the pages and compare their <code>LSN</code> to the last backup&rsquo;s <code>LSN</code>. You must have a full backup to recover the incremental changes. Without a full backup to act as a base, the incremental backups are useless.</p>
-<p>You can use the <code>--incremental-lsn</code> option to perform an incremental backup without even having the previous backup, if you know its <code>LSN</code>.</p>
-<p><strong>See also</strong>: <a href="../xtrabackup_bin/partial_backups.html#pxb-partial-backup">Partial Backups</a></p>
+<p>Percona XtraBackup 2.4.29 is the final release of the Percona XtraBackup 2.4 series.</p>
+<p>We recommend that you either upgrade to MySQL 8.0 or stay on 5.7; <a href="https://www.percona.com/navigating-mysql-5-7-end-of-life">we&rsquo;ll support you</a>.</p>
 </div>
-<h2 id="creating-an-incremental-backup">Creating an Incremental Backup<a class="headerlink" href="#creating-an-incremental-backup" title="Permanent link">&para;</a></h2>
-<p>To make an incremental backup, begin with a full backup as usual. The
-xtrabackup binary writes a file called <code>xtrabackup_checkpoints</code> into
-the backup’s target directory. This file contains a line showing the
-<code>to_lsn</code>, which is the database’s <code>LSN</code> at the end of the backup.
-<a href="full_backup.html#full-backup">Create the full backup</a> with a following command:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
-</code></pre></div>
-<p>If you look at the xtrabackup_checkpoints file, you should see similar
-content depending on your LSN nuber:</p>
-<div class="highlight"><pre><span></span><code>backup_type = full-backuped
-from_lsn = 0
-to_lsn = 1626007
-last_lsn = 1626007
-compact = 0
-recover_binlog_info = 1
-</code></pre></div>
-<p>Now that you have a full backup, you can make an incremental backup based on it. Use the following command:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/base
-</code></pre></div>
-<p>The /data/backups/inc1/ directory should now contain delta files, such
-as ibdata1.delta and test/table1.ibd.delta. These represent the
-changes since the <code>LSN 1626007</code>. If you examine the
-<code>xtrabackup_checkpoints</code> file in this directory, you should see similar
-content to the following:</p>
-<div class="highlight"><pre><span></span><code>backup_type = incremental
-from_lsn = 1626007
-to_lsn = 4124244
-last_lsn = 4124244
-compact = 0
-recover_binlog_info = 1
-</code></pre></div>
-<p><code>from_lsn</code> is the starting LSN of the backup and for incremental it has to be the same as <code>to_lsn</code> (if it is the last checkpoint) of the previous/base
-backup.</p>
-<p>It’s now possible to use this directory as the base for yet another incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/inc1
-</code></pre></div>
-<p>This folder also contains the <code>xtrabackup_checkpoints</code>:</p>
-<div class="highlight"><pre><span></span><code>backup_type = incremental
-from_lsn = 4124244
-to_lsn = 6938371
-last_lsn = 7110572
-compact = 0
-recover_binlog_info = 1
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In this case you can see that there is a difference between the <code>to_lsn</code> (last checkpoint LSN) and <code>last_lsn</code> (last copied LSN), this means that there was some traffic on the server during the backup process.</p>
-</div>
-<h2 id="preparing-the-incremental-backups">Preparing the Incremental Backups<a class="headerlink" href="#preparing-the-incremental-backups" title="Permanent link">&para;</a></h2>
-<p>The <code>xtrabackup --prepare</code> step for incremental backups is not the same
-as for full backups. In full backups, two types of operations are performed to make the database consistent: committed transactions are replayed from the log file against the data files, and uncommitted transactions are rolled back. You must skip the rollback of uncommitted transactions when preparing an incremental backup, because transactions that were uncommitted at the time of your backup may be in progress, and it’s likely that they will be committed in the next incremental backup. You should use the xtrabackup <code>--apply-log-only</code> option to prevent the rollback phase.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>If you do not use the</strong> <code>xtrabackup --apply-log-only</code> <strong>option to prevent the rollback phase, then your incremental backup is useless</strong>.After the transactions have been rolled back, further incremental backups cannot be applied.</p>
-</div>
-<p>Beginning with the full backup you created, you can prepare it, and then apply the incremental differences to it. Recall that you have the following backups:</p>
-<div class="highlight"><pre><span></span><code>/data/backups/base
-/data/backups/inc1
-/data/backups/inc2
-</code></pre></div>
-<p>To prepare the base backup, you need to run xtrabackup –prepare as
-usual, but prevent the rollback phase:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
-</code></pre></div>
-<p>The output should end with text similar to the following:</p>
-<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 1626007
-161011 12:41:04 completed OK!
-</code></pre></div>
-<p>The log sequence number should match the <code>to_lsn</code> of the base backup, which
-you saw previously.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This backup is safe to <a href="full_backup.html#restoring-a-backup">restore</a>, even though the operation skipped the rollback phase. If you restore it and start <em>MySQL</em>, <em>InnoDB</em> detects that the rollback phase was not performed, and it will do that in the background. This operation is the same as a crash recovery upon start. In addition, MySQL notifies you that the database was not shut down normally.</p>
-</div>
-<p>To apply the first incremental backup to the full backup, run the following
-command:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc1
-</code></pre></div>
-<p>This applies the delta files to the files in <code>/data/backups/base</code>, which
-rolls them forward in time to the time of the incremental backup. It then
-applies the redo log as usual to the result. The final data is in
-<code>/data/backups/base</code>, not in the incremental directory. You should see
-an output similar to:</p>
-<div class="highlight"><pre><span></span><code>incremental backup from 1626007 is enabled.
-xtrabackup: cd to /data/backups/base
-xtrabackup: This target seems to be already prepared with --apply-log-only.
-xtrabackup: xtrabackup_logfile detected: size=2097152, start_lsn=(4124244)
-...
-xtrabackup: page size for /tmp/backups/inc1/ibdata1.delta is 16384 bytes
-Applying /tmp/backups/inc1/ibdata1.delta to ./ibdata1...
-...
-161011 12:45:56 completed OK!
-</code></pre></div>
-<p>Again, the LSN should match what you saw from your earlier inspection of the first incremental backup. If you restore the files from
-<code>/data/backups/base</code>, you should see the state of the database as of the
-first incremental backup.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Percona XtraBackup does not support using the same incremental backup directory to prepare two copies of backup. Do not run <code>xtrabackup --prepare</code> with the same incremental backup directory (the value of <code>--incremental-dir</code>) more than once.</p>
-</div>
-<p>Preparing the second incremental backup is a similar process: apply the deltas to the (modified) base backup, and you will roll its data forward in time to the point of the second incremental backup:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc2
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code>xtrabackup --apply-log-only</code> should be used when merging all incrementals except the last one. That’s why the previous line doesn’t contain the xtrabackup <code>--apply-log-only</code> option. Even if the <code>xtrabackup --apply-log-only</code> was used on the last step, backup would still be consistent but in that case server would perform the rollback phase.</p>
-</div>
-<p>Once prepared, incremental backups are the same as the <a href="full_backup.html#full-backup">full backups</a> and they can be <a href="full_backup.html#restoring-a-backup">restored</a> in the same way.</p>
+<p><a href="https://www.percona.com/software/mysql-database/percona-xtrabackup">Percona XtraBackup for MySQL Databases</a> enables MySQL backups without blocking user queries.</p>
+<p>Percona XtraBackup 2.4 does not support making backups of databases created in MySQL 8.0 or higher, Percona Server for MySQL 8.0 or higher, or Percona XtraDB Cluster 8.0 or higher. Install <a href="https://docs.percona.com/percona-xtrabackup/8.0/installation.html">Percona XtraBackup 8.0</a> to make backups for these versions.</p>
+<h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<p>This release merges the MySQL 5.7.44 code base. This release does not contain new improvements or new bug fixes from Percona.</p>
+<h2 id="useful-links">Useful links<a class="headerlink" href="#useful-links" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="../../installation.html">Install Percona XtraBackup 2.4</a></p>
+</li>
+<li>
+<p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
+</li>
+<li>
+<p><a href="https://github.com/percona/pxb-docs/blob/8.0/contributing.md">Contribute to the documentation</a></p>
+</li>
+<li>
+<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p>
+</li>
+<li>
+<p>For <a href="https://www.percona.com/training">training</a>, contact <a href="https://learn.percona.com/contact-me">Percona Training - Start learning now</a>.</p>
+</li>
+</ul>
 
                 
 <div class="md-relbar2__inner md-grid">
@@ -2517,7 +2412,7 @@ first incremental backup.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    2022-11-10
+    2023-12-18
   </span>
 
     
@@ -2648,14 +2543,14 @@ first incremental backup.</p>
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
       
-        <script src="../js/version-select.js"></script>
+        <script src="../../js/version-select.js"></script>
       
-        <script src="../js/promptremover.js"></script>
+        <script src="../../js/promptremover.js"></script>
       
     
   </body>
