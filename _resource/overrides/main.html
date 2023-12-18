@@ -20,6 +20,10 @@ by adding marketing-requested elements
 </div>
 
 {%- endmacro %}
+
+                 {% block outdated %}
+                 <div><strong>Starting November 2023 Percona XtraBackup 2.4 has reached EOL status. If you have 5.7 databases, we encourage you to upgrade to 8.0 and then install Percona XtraBackup 8.0.<a href="https://www.percona.com/navigating-mysql-5-7-end-of-life"> <strong> Learn more </strong></a></div></strong></p></div> 
+                 {% endblock %}
               
                  {% block extrahead %}
                  {{ super() }}
