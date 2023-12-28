@@ -26,7 +26,7 @@ with *XtraDB*, [*Percona Server for MySQL* 8.0](https://docs.percona.com/percona
     determine if an earlier full or incremental backup 
     contains the same files. **Percona XtraBackup** copies all 
     MyRocks files each time it takes a backup.
-    **Percona XtraBackup** does not support the TokuDB storage engine. Find more information in [Percona TokuBackup](https://docs.percona.com/percona-server/latest/tokudb/toku_backup.html). 
+    **Percona XtraBackup** does not support the TokuDB storage engine. Find more information in [Percona TokuBackup](https://docs.percona.com/percona-server/8.0/toku-backup.html). 
 
 ### Limitations
 
