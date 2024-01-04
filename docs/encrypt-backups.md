@@ -1,98 +1,70 @@
 # Encrypt backups
-
-*Percona XtraBackup* supports encrypting and decrypting local and streaming
-backups with *xbstream* option adding another layer of protection. The
+Percona XtraBackup supports encrypting and decrypting local and streaming backups with the upstream option, adding another protection layer. The
 encryption is implemented using the `libgcrypt` library from GnuPG.
 
 ## Create encrypted backups
 
-To make an encrypted backup the following options need to be specified (options
-`--encrypt-key` and `--encrypt-key-file` are mutually exclusive,
-i.e. just one of them needs to be provided):
-
+The following options create encrypted backups. The
+`--encrypt-key` and `--encrypt-key-file` options specify the encryption key and are mutually exclusive. You should select one or the other.
 
 * `--encrypt`
 
-
 * `--encrypt-key`
-
 
 * `--encrypt-key-file`
 
-Both the `--encrypt-key` option and
-`--encrypt-key-file` option can be used to specify the
-encryption key. An encryption key can be generated with a command like
-`openssl rand -base64 24`
-
-```text
-U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=
-```
-
-This value then can be used as the encryption key
+For an encryption key, use a command, such as `openssl rand -base64 24`, to generate a random alphanumeric string.
 
 ### The `--encrypt-key` option
 
-Example of the *xtrabackup* command using the `--encrypt-key` should
-look like this:
+An example of the *xtrabackup* command using the `--encrypt-key`:
 
 ```{.bash data-prompt="$"}
-$  xtrabackup --backup --encrypt=AES256 --encrypt-key="U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=" --target-dir=/data/backup
+$  xtrabackup --backup --encrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup
 ```
 
 ### The `--encrypt-key-file` option
 
-Use the `--encrypt-key-file` option as follows:
+The recommended method uses the command line: `echo -n “{randomly-generated-alphanumeric-string}” > /data/backups/keyfile` to create the file.
+
+Remember that your text editor can automatically insert a CRLF (end of line) character in the `KEYFILE` when using the-- `encrypt-key-file` option. This inserted character invalidates the key because the size is wrong. 
+
+An example of using the `--encrypt-key-file` option:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 ```
 
-!!! note
-   
-    Depending on the text editor that you use to make the `KEYFILE`,
-    the editor can automatically insert the CRLF (end of line)
-    character. This will cause the key size to grow and thus making it
-    invalid. The suggested way to create the file is by using the
-    command line: `echo -n “U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=” > /data/backups/keyfile`.
-
 ## Optimize the encryption process
 
-Two new options are available for encrypted backups that can be used to speed up
-the encryption process. These are `--encrypt-threads` and
-`--encrypt-chunk-size`. By using the `--encrypt-threads` option
-multiple threads can be specified to be used for encryption in parallel. Option
-`--encrypt-chunk-size` can be used to specify the size (in bytes) of the
-working encryption buffer for each encryption thread (default is 64K).
+Additional encrypted backup options, `--encrypt-threads` and
+`--encrypt-chunk-size`, can speed up the encryption process. 
+
+Use the `--encrypt-threads` option to enable parallel encryption with multiple threads. 
+
+The `--encrypt-chunk-size` option specifies the size, in bytes, of the working encryption buffer for each encryption thread. The default size is 64K.
 
 ## Decrypt encrypted backups
 
-Backups can be decrypted with The xbcrypt binary. The following one-liner can be
-used to encrypt the whole folder:
+You can decrypt backups with the `xbcrypt` binary. The following example encrypts a backup.
+
+You can use the `--parallel` option and the `--decrypt` option to decrypt multiple files simultaneously.
 
 ```{.bash data-prompt="$"}
 $ for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 < $i > $(dirname $i)/$(basename $i .xbcrypt) && rm $i; done
 ```
 
-*Percona XtraBackup* `--decrypt` option has been implemented that can be
-used to decrypt the backups:
+The following example shows a decryption process.
 
 ```{.bash data-prompt="$"}
-$ xtrabackup --decrypt=AES256 --encrypt-key="U2FsdGVkX19VPN7VM+lwNI0fePhjgnhgqmDBqbF3Bvs=" --target-dir=/data/backup/
+$ xtrabackup --decrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup/
 ```
 
-*Percona XtraBackup* doesn’t automatically remove the encrypted files. In order
-to clean up the backup directory users should remove the `\*.xbcrypt` files.
-
-!!! note
-   
-    `--parallel` can be used with `--decrypt` option to decrypt multiple files simultaneously.
-
-When the files are decrypted, the backup can be prepared.
+Percona XtraBackup doesn’t automatically remove the encrypted files. You must remove the `\*.xbcrypt` files manually.
 
 ## Prepare encrypted backups
 
-After the backups have been decrypted, they can be prepared in the same way as
-the standard full backups with the `--prepare` option:
+After decrypting the backups, prepare the backups with the `--prepare` option:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/backup/
@@ -100,16 +72,15 @@ $ xtrabackup --prepare --target-dir=/data/backup/
 
 ## Restore encrypted backups
 
-*xtrabackup* offers the `--copy-back` option to restore a backup to the
-server’s datadir:
+*xtrabackup* offers the `--copy-back` option to restore a backup to the server’s datadir:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --copy-back --target-dir=/data/backup/
 ```
 
-It will copy all the data-related files back to the server’s datadir,
-determined by the server’s `my.cnf` configuration file. You should check
-the last line of the output for a success message:
+The option copies all the data-related files to the server’s datadir. The server’s `my.cnf` configuration file determines the location. 
+
+You should check the last line of the output for a success message:
 
 ??? example "Expected output"
 
