@@ -3871,27 +3871,27 @@ the tablespace key. The master encryption key is stored in a keyring. </p>
 <p>These components are stored in the <code>plugin</code> directory.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Enable only one keyring plugin or one keyring component at a time for each server instance. Enabling multiple keyring plugins or keyring components or mixing keyring plugins or keyring components is not supported and may result in data loss.</p>
+<p>Enable only one keyring plugin or one keyring component simultaneously for each server instance. Enabling multiple keyring plugins or keyring components or mixing keyring plugins or keyring components is not supported and may result in data loss.</p>
 </div>
 <h2 id="use-the-keyring-vault-component">Use the keyring vault component<a class="headerlink" href="#use-the-keyring-vault-component" title="Permanent link">&para;</a></h2>
 <p>The <code>keyring_vault</code> component extends the server capabilities. The server uses a manifest to load the component and the component has its own configuration file.</p>
 <p>The following example is a global manifest file that does not use local manifests:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w"> </span><span class="nt">&quot;read_local_manifest&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:///component_keyring_vault&quot;</span>
+<span class="w"> </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file://component_keyring_vault&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The following is an example of a global manifest file that points to a local manifest file:</p>
+<p>The following example of a global manifest file that points to a local manifest file:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w"> </span><span class="nt">&quot;read_local_manifest&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The following is an example of a local manifest file:</p>
+<p>The following example of a local manifest file:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w"> </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:///component_keyring_vault&quot;</span>
+<span class="w"> </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file://component_keyring_vault&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The configuration settings are either in a global configuration file or a local configuration file.</p>
+<p>The configuration settings can be in either a global or a local configuration file.</p>
 <details class="example">
 <summary>Example of a configuration file in JSON format</summary>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3918,14 +3918,11 @@ contains encrypted InnoDB tablespaces.</p>
 </code></pre></div>
 </details>
 <h3 id="prepare-the-backup-with-the-keyring-vault-component">Prepare the backup with the keyring vault component<a class="headerlink" href="#prepare-the-backup-with-the-keyring-vault-component" title="Permanent link">&para;</a></h3>
-<p>To prepare the backup, xtrabackup must access the keyring.
-xtrabackup does not communicate with the MySQL server or read the
-default <code>my.cnf</code> configuration file. Specify the keyring settings in the
-command line:</p>
+<p>To prepare the backup, the xtrabackup binary must access the keyring. The xtrabackup binary does not communicate with the MySQL server or read the
+default <code>my.cnf</code> configuration file. Specify the keyring settings in the command line:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--component-keyring-config<span class="o">==</span>/etc/vault.cnf
 </code></pre></div>
-<p>After xtrabackup completes the action, the following message confirms
-the action:</p>
+<p>The following message confirms that the xtrabackup binary completed the action:</p>
 <details class="example">
 <summary>Confirmation message</summary>
 <div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
@@ -3949,8 +3946,7 @@ tablespaces, specify the path to a keyring file as the value of the
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p>After xtrabackup takes the backup, the following
-message confirms the action:</p>
+<p>The following message confirms that the xtrabackup binary completed the action:</p>
 <details class="example">
 <summary>Confirmation message</summary>
 <div class="no-copy highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
@@ -3962,12 +3958,11 @@ message confirms the action:</p>
 <p>xtrabackup does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.</p>
 </div>
 <h3 id="prepare-the-backup-with-the-keyring-file-plugin">Prepare the backup with the keyring file plugin<a class="headerlink" href="#prepare-the-backup-with-the-keyring-file-plugin" title="Permanent link">&para;</a></h3>
-<p>To prepare the backup specify the keyring-file-data.</p>
+<p>To prepare the backup, specify the keyring-file-data.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p>After xtrabackup takes the backup, the following message confirms
-the action:</p>
+<p>The following message confirms that the xtrabackup binary completed the action:</p>
 <details class="example">
 <summary>Confirmation message</summary>
 <div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
@@ -3975,12 +3970,10 @@ the action:</p>
 </code></pre></div>
 </details>
 <p>The backup is now prepared and can be restored with the <code>--copy-back</code>
-option. In case the keyring has been rotated, you must restore the
-keyring used when the backup was taken and prepared.</p>
+option. You must restore the keyring used with the backup and prepare phases if the keyring has been rotated.</p>
 <h2 id="use-the-keyring-file-component">Use the keyring file component<a class="headerlink" href="#use-the-keyring-file-component" title="Permanent link">&para;</a></h2>
 <p>The <code>keyring_file</code> component is part of the component-based MySQL infrastructure which extends the server capabilities.</p>
-<p>The server uses a manifest to load the component and the component has its 
-own configuration file. See the <a href="https://dev.mysql.com/doc/refman/8.2/en/keyring-component-installation.html">MySQL documentation on the component 
+<p>The server uses a manifest to load the component, and the component has its own configuration file. See the <a href="https://dev.mysql.com/doc/refman/8.2/en/keyring-component-installation.html">MySQL documentation on the component 
 installation</a> for more information.</p>
 <p>An example of a manifest and a configuration file follows:</p>
 <p>An example of <code>./bin/mysqld.my</code>:</p>
@@ -4001,7 +3994,7 @@ when in use.</p>
 contains encrypted InnoDB tablespaces.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--user<span class="o">=</span>root
 </code></pre></div>
-<p>After xtrabackup completes the action, the following message confirms the action:</p>
+<p>The following message confirms that the xtrabackup binary completed the action:</p>
 <details class="example">
 <summary>Confirmation message</summary>
 <div class="no-copy highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
@@ -4022,7 +4015,7 @@ attribute <code>PATH</code> from the <code>xtrabackup_component_keyring_file.cnf
 --component-keyring-config<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>xtrabackup attempts to read <code>xtrabackup_component_keyring_file.cnf</code>. You can assign another keyring file component configuration by passing the <code>--component-keyring-config</code> option.</p>
-<p>After xtrabackup completes preparing the backup, the following message confirms the action:</p>
+<p>The following message confirms that the xtrabackup binary completed the action:</p>
 <details class="example">
 <summary>Confirmation message</summary>
 <div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
@@ -4033,18 +4026,15 @@ attribute <code>PATH</code> from the <code>xtrabackup_component_keyring_file.cnf
 If the keyring has been rotated, you must restore the specific keyring used
 to take and prepare the backup.</p>
 <h2 id="incremental-encrypted-innodb-tablespace-backups-with-keyring-file-plugin">Incremental encrypted InnoDB tablespace backups with keyring file plugin<a class="headerlink" href="#incremental-encrypted-innodb-tablespace-backups-with-keyring-file-plugin" title="Permanent link">&para;</a></h2>
-<p>The process of taking incremental backups with InnoDB tablespace encryption is similar to taking the Incremental Backups with unencrypted tablespace. </p>
+<p>The process of taking incremental backups with InnoDB tablespace encryption is similar to taking incremental backups with unencrypted tablespace. </p>
 <h2 id="create-an-incremental-backup">Create an incremental backup<a class="headerlink" href="#create-an-incremental-backup" title="Permanent link">&para;</a></h2>
-<p>To make an incremental backup, begin with a full backup. The xtrabackup binary
-writes a file called <code>xtrabackup_checkpoints</code> into the backup’s target
-directory. This file contains a line showing the <code>to_lsn</code>, which is the
-database’s LSN at the end of the backup. First you need to create a fullbackup with the following command:</p>
+<p>To make an incremental backup, begin with a full backup. The xtrabackup binary writes <code>xtrabackup_checkpoints</code> into the backup’s target
+directory. This file contains a line showing the <code>to_lsn</code>, which is the LSN of the database at the end of the backup. First, you need to create a full backup with the following command:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p>In order to prepare the backup, you must make a copy of the keyring file yourself. xtrabackup does not copy the keyring file into the backup directory. Restoring the backup after the keyring has been changed causes errors like <code>ERROR 3185 (HY000): Can't find master key from keyring, please check keyring plugin is loaded.</code> when the restore process tries accessing an encrypted table.</p>
-<p>If you look at the <code>xtrabackup_checkpoints</code> file, you should see
-the output similar to the following:</p>
+<p>To prepare the backup, you must make a copy of the keyring file yourself. The xtrabackup binary does not copy the keyring file into the backup directory. Restoring the backup after the keyring has been changed causes errors like <code>ERROR 3185 (HY000): Can't find master key from keyring, please check keyring plugin is loaded.</code> when the restore process tries accessing an encrypted table.</p>
+<p>If you look at the <code>xtrabackup_checkpoints</code> file, you should see the output similar to the following:</p>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>backup_type = full-backuped
@@ -4061,8 +4051,8 @@ on it. Use a command such as the following:</p>
 --incremental-basedir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p>To prepare the backup, you must copy the keyring file manually. xtrabackup does not copy the keyring file into the backup directory. </p>
-<p>If the keyring has not been rotated you can use the same as the one you’ve
+<p>To prepare the backup, you must copy the keyring file manually. The xtrabackup binary does not copy the keyring file into the backup directory. </p>
+<p>If the keyring has not been rotated you can use the same one you’ve
 backed-up with the base backup. If the keyring has been rotated, or you have 
 upgraded the plugin to a component, you must back up the keyring file. 
 Otherwise, you cannot prepare the backup.</p>
@@ -4087,23 +4077,22 @@ recover_binlog_info = 1
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <h3 id="prepare-incremental-backups">Prepare incremental backups<a class="headerlink" href="#prepare-incremental-backups" title="Permanent link">&para;</a></h3>
-<p>The <code>--prepare</code> step for incremental backups is not the same as for
-normal backups. In normal backups, two types of operations are performed to
-make
-the database consistent: committed transactions are replayed from the log
-file
-against the data files, and uncommitted transactions are rolled back. You
-must
-skip the rollback of uncommitted transactions when preparing a backup,
-because
-transactions that were uncommitted at the time of your backup may be in
-progress, and it’s likely that they will be committed in the next
-incremental
-backup. You should use the <code>--apply-log-only</code> option to prevent the
-rollback phase.</p>
-<p>If you do not use the <code>--apply-log-only</code> option to prevent the rollback phase, then your incremental backups are useless. After transactions have been rolled back, further incremental backups cannot be applied.</p>
+<p>The <code>--prepare</code> step for incremental backups is not the same as for normal backups. In normal backups, two types of operations are performed to
+make the database consistent: </p>
+<ul>
+<li>
+<p>Committed transactions are replayed from the log file against the data files</p>
+</li>
+<li>
+<p>Uncommitted transactions are rolled back</p>
+</li>
+</ul>
+<p>You must skip the rollback of uncommitted transactions when preparing a backup because transactions that were uncommitted at the time of your backup may be in
+progress, and they will likely be committed in the next
+incremental backup. Use the <code>-</code>-apply-log-only<code>option to prevent the rollback phase.
+Your incremental backups are useless if you do not use the</code>&ndash;apply-log-only` option to prevent the rollback phase. After transactions have been rolled back, further incremental backups cannot be applied.</p>
 <p>Beginning with the full backup you created, you can prepare it and then
-apply the incremental differences to it. Recall that you have the following backups:</p>
+apply the incremental differences. Recall that you have the following backups:</p>
 <div class="no-copy highlight"><pre><span></span><code>/data/backups/base
 /data/backups/inc1
 /data/backups/inc2
@@ -4126,7 +4115,7 @@ the following command:</p>
 --incremental-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p>The backup should be prepared with the keyring file and type that was used when backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup that you must use the keyring that was in use when the first incremental backup has been taken.</p>
+<p>The backup should be prepared with the keyring file and type that was used when the backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup, you must use the keyring used when the first incremental backup was taken.</p>
 <p>Preparing the second incremental backup is a similar process: apply the
 deltas
 to the (modified) base backup, and you will roll its data forward in 
@@ -4135,15 +4124,14 @@ time to the point of the second incremental backup:</p>
 --incremental-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
-Use <code>--apply-log-only</code> when merging all incremental backups except the last one. That’s why the previous line does not contain the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> was used on the last step, backup would still be consistent but in that case  server would perform the rollback phase.</p>
+Use <code>--apply-log-only</code> when merging all incremental backups except the last one. The previous line does not contain the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> option was used on the last step, the backup would still be consistent, but in that case, the server would perform the rollback phase.</p>
 <p>The backup is now prepared and can be restored with <code>--copy-back</code> option.
 In case the keyring has been rotated you’ll need to restore the keyring which was used to take and prepare the backup.</p>
 <h2 id="restore-a-backup-when-the-keyring-is-not-available">Restore a backup when the keyring is not available<a class="headerlink" href="#restore-a-backup-when-the-keyring-is-not-available" title="Permanent link">&para;</a></h2>
-<p>While the described restore method works, this method requires access to
-the same keyring that the server is using. It may not be possible if the backup is
+<p>While this works, the method requires access to the same keyring that the server is using. It may not be possible if the backup is
 prepared on a different server or at a much later time, when keys in the keyring are
-purged, or, in the case of a malfunction, when the keyring vault server is not available at all.</p>
-<p>The <code>--transition-key=&lt;passphrase&gt;</code> option should be used to make it possible for xtrabackup to process the backup without access to the keyring vault server. In this case, xtrabackup derives the AES encryption key from the specified passphrase and will use it to encrypt tablespace keys of tablespaces that are being backed up.</p>
+purged, or, in the case of a malfunction, when the keyring vault server is unavailable.</p>
+<p>The <code>--transition-key=&lt;passphrase&gt;</code> option should be used to make it possible for the xtrabackup binary to process the backup without access to the keyring vault server. In this case, the binary derives the AES encryption key from the specified passphrase and will use it to encrypt tablespace keys of tablespaces being backed up.</p>
 <h3 id="create-a-backup-with-a-passphrase">Create a backup with a passphrase<a class="headerlink" href="#create-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The following example illustrates how the backup can be created in this
 case:</p>
@@ -4178,9 +4166,9 @@ because xtrabackup does not talk to the keyring in this case.</p>
 --component-keyring-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 <p>xtrabackup generates a new master key, stores it in the target keyring
-vault server and re-encrypts the tablespace keys using this key.</p>
+vault server, and re-encrypts the tablespace keys using this key.</p>
 <h3 id="make-a-backup-with-a-stored-transition-key">Make a backup with a stored transition key<a class="headerlink" href="#make-a-backup-with-a-stored-transition-key" title="Permanent link">&para;</a></h3>
-<p>Finally, there is an option to store a transition key in the keyring. In this case, xtrabackup will need to access the same keyring file or vault server during prepare and copy-back but does not depend on whether the server keys have been purged.</p>
+<p>Finally, there is an option to store a transition key in the keyring. In this case, xtrabackup must access the same keyring file or vault server during prepare and copy-back steps, but does not depend on whether the server keys have been purged.</p>
 <p>In this scenario, the three stages of the backup process look as follows.</p>
 <ul>
 <li>Back up</li>
@@ -4247,7 +4235,7 @@ vault server and re-encrypts the tablespace keys using this key.</p>
   <small>
     
       Last update:
-      2023-11-21
+      2024-01-05
     
   </small>
 </div>
