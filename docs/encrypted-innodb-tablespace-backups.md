@@ -22,7 +22,7 @@ These components are stored in the `plugin` directory.
 
 !!! note
 
-    Enable only one keyring plugin or one keyring component at a time for each server instance. Enabling multiple keyring plugins or keyring components or mixing keyring plugins or keyring components is not supported and may result in data loss.
+    Enable only one keyring plugin or one keyring component simultaneously for each server instance. Enabling multiple keyring plugins or keyring components or mixing keyring plugins or keyring components is not supported and may result in data loss.
 
 ## Use the keyring vault component
 
@@ -33,11 +33,11 @@ The following example is a global manifest file that does not use local manifest
 ```json
 {
  "read_local_manifest": false,
- "components": "file:///component_keyring_vault"
+ "components": "file://component_keyring_vault"
 }
 ```
 
-The following is an example of a global manifest file that points to a local manifest file:
+The following example of a global manifest file that points to a local manifest file:
 
 ```json
 {
@@ -45,15 +45,15 @@ The following is an example of a global manifest file that points to a local man
 }
 ```
 
-The following is an example of a local manifest file:
+The following example of a local manifest file:
 
 ```json
 {
- "components": "file:///component_keyring_vault"
+ "components": "file://component_keyring_vault"
 }
 ```
 
-The configuration settings are either in a global configuration file or a local configuration file.
+The configuration settings can be in either a global or a local configuration file.
 
 ??? example "Example of a configuration file in JSON format"
 
@@ -90,17 +90,14 @@ After xtrabackup completes the action, the following message confirms the action
 
 ### Prepare the backup with the keyring vault component
 
-To prepare the backup, xtrabackup must access the keyring.
-xtrabackup does not communicate with the MySQL server or read the
-default `my.cnf` configuration file. Specify the keyring settings in the
-command line:
+To prepare the backup, the xtrabackup binary must access the keyring. The xtrabackup binary does not communicate with the MySQL server or read the
+default `my.cnf` configuration file. Specify the keyring settings in the command line:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/backup --component-keyring-config==/etc/vault.cnf
 ```
 
-After xtrabackup completes the action, the following message confirms
-the action:
+The following message confirms that the xtrabackup binary completed the action:
 
 ??? example "Confirmation message"
 
@@ -134,8 +131,7 @@ $ xtrabackup --backup --target-dir=/data/backup/ --user=root \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-After xtrabackup takes the backup, the following
-message confirms the action:
+The following message confirms that the xtrabackup binary completed the action:
 
 ??? example "Confirmation message"
 
@@ -150,15 +146,14 @@ message confirms the action:
 
 ### Prepare the backup with the keyring file plugin
 
-To prepare the backup specify the keyring-file-data.
+To prepare the backup, specify the keyring-file-data.
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-After xtrabackup takes the backup, the following message confirms
-the action:
+The following message confirms that the xtrabackup binary completed the action:
 
 ??? example "Confirmation message"
 
@@ -168,15 +163,13 @@ the action:
     ```
 
 The backup is now prepared and can be restored with the `--copy-back`
-option. In case the keyring has been rotated, you must restore the
-keyring used when the backup was taken and prepared.
+option. You must restore the keyring used with the backup and prepare phases if the keyring has been rotated.
 
 ## Use the keyring file component
 
 The `keyring_file` component is part of the component-based MySQL infrastructure which extends the server capabilities.
 
-The server uses a manifest to load the component and the component has its 
-own configuration file. See the [MySQL documentation on the component 
+The server uses a manifest to load the component, and the component has its own configuration file. See the [MySQL documentation on the component 
 installation] for more information.
 
 An example of a manifest and a configuration file follows:
@@ -210,7 +203,7 @@ contains encrypted InnoDB tablespaces.
 $ xtrabackup --backup --target-dir=/data/backup --user=root
 ```
 
-After xtrabackup completes the action, the following message confirms the action:
+The following message confirms that the xtrabackup binary completed the action:
 
 ??? example "Confirmation message"
 
@@ -240,7 +233,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 
 xtrabackup attempts to read `xtrabackup_component_keyring_file.cnf`. You can assign another keyring file component configuration by passing the `--component-keyring-config` option.
 
-After xtrabackup completes preparing the backup, the following message confirms the action:
+The following message confirms that the xtrabackup binary completed the action:
 
 ??? example "Confirmation message"
 
@@ -255,24 +248,21 @@ to take and prepare the backup.
 
 ## Incremental encrypted InnoDB tablespace backups with keyring file plugin
 
-The process of taking incremental backups with InnoDB tablespace encryption is similar to taking the Incremental Backups with unencrypted tablespace. 
+The process of taking incremental backups with InnoDB tablespace encryption is similar to taking incremental backups with unencrypted tablespace. 
 
 ## Create an incremental backup
 
-To make an incremental backup, begin with a full backup. The xtrabackup binary
-writes a file called `xtrabackup_checkpoints` into the backup’s target
-directory. This file contains a line showing the `to_lsn`, which is the
-database’s LSN at the end of the backup. First you need to create a fullbackup with the following command:
+To make an incremental backup, begin with a full backup. The xtrabackup binary writes `xtrabackup_checkpoints` into the backup’s target
+directory. This file contains a line showing the `to_lsn`, which is the LSN of the database at the end of the backup. First, you need to create a full backup with the following command:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-In order to prepare the backup, you must make a copy of the keyring file yourself. xtrabackup does not copy the keyring file into the backup directory. Restoring the backup after the keyring has been changed causes errors like `ERROR 3185 (HY000): Can't find master key from keyring, please check keyring plugin is loaded.` when the restore process tries accessing an encrypted table.
+To prepare the backup, you must make a copy of the keyring file yourself. The xtrabackup binary does not copy the keyring file into the backup directory. Restoring the backup after the keyring has been changed causes errors like `ERROR 3185 (HY000): Can't find master key from keyring, please check keyring plugin is loaded.` when the restore process tries accessing an encrypted table.
 
-If you look at the `xtrabackup_checkpoints` file, you should see
-the output similar to the following:
+If you look at the `xtrabackup_checkpoints` file, you should see the output similar to the following:
 
 ??? example "Expected output"
 
@@ -294,9 +284,9 @@ $ xtrabackup --backup --target-dir=/data/backups/inc1 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-To prepare the backup, you must copy the keyring file manually. xtrabackup does not copy the keyring file into the backup directory. 
+To prepare the backup, you must copy the keyring file manually. The xtrabackup binary does not copy the keyring file into the backup directory. 
 
-If the keyring has not been rotated you can use the same as the one you’ve
+If the keyring has not been rotated you can use the same one you’ve
 backed-up with the base backup. If the keyring has been rotated, or you have 
 upgraded the plugin to a component, you must back up the keyring file. 
 Otherwise, you cannot prepare the backup.
@@ -328,25 +318,20 @@ $ xtrabackup --backup --target-dir=/data/backups/inc2 \
 
 ### Prepare incremental backups
 
-The `--prepare` step for incremental backups is not the same as for
-normal backups. In normal backups, two types of operations are performed to
-make
-the database consistent: committed transactions are replayed from the log
-file
-against the data files, and uncommitted transactions are rolled back. You
-must
-skip the rollback of uncommitted transactions when preparing a backup,
-because
-transactions that were uncommitted at the time of your backup may be in
-progress, and it’s likely that they will be committed in the next
-incremental
-backup. You should use the `--apply-log-only` option to prevent the
-rollback phase.
+The `--prepare` step for incremental backups is not the same as for normal backups. In normal backups, two types of operations are performed to
+make the database consistent: 
 
-If you do not use the `--apply-log-only` option to prevent the rollback phase, then your incremental backups are useless. After transactions have been rolled back, further incremental backups cannot be applied.
+* Committed transactions are replayed from the log file against the data files
+
+* Uncommitted transactions are rolled back
+
+You must skip the rollback of uncommitted transactions when preparing a backup because transactions that were uncommitted at the time of your backup may be in
+progress, and they will likely be committed in the next
+incremental backup. Use the `-`-apply-log-only` option to prevent the rollback phase.
+Your incremental backups are useless if you do not use the `--apply-log-only` option to prevent the rollback phase. After transactions have been rolled back, further incremental backups cannot be applied.
 
 Beginning with the full backup you created, you can prepare it and then
-apply the incremental differences to it. Recall that you have the following backups:
+apply the incremental differences. Recall that you have the following backups:
 
 ```{.text .no-copy}
 /data/backups/base
@@ -379,7 +364,7 @@ $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-The backup should be prepared with the keyring file and type that was used when backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup that you must use the keyring that was in use when the first incremental backup has been taken.
+The backup should be prepared with the keyring file and type that was used when the backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup, you must use the keyring used when the first incremental backup was taken.
 
 Preparing the second incremental backup is a similar process: apply the
 deltas
@@ -391,19 +376,18 @@ $ xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
-Use `--apply-log-only` when merging all incremental backups except the last one. That’s why the previous line does not contain the `--apply-log-only` option. Even if the `--apply-log-only` was used on the last step, backup would still be consistent but in that case  server would perform the rollback phase.
+Use `--apply-log-only` when merging all incremental backups except the last one. The previous line does not contain the `--apply-log-only` option. Even if the `--apply-log-only` option was used on the last step, the backup would still be consistent, but in that case, the server would perform the rollback phase.
 
 The backup is now prepared and can be restored with `--copy-back` option.
 In case the keyring has been rotated you’ll need to restore the keyring which was used to take and prepare the backup.
 
 ## Restore a backup when the keyring is not available
 
-While the described restore method works, this method requires access to
-the same keyring that the server is using. It may not be possible if the backup is
+While this works, the method requires access to the same keyring that the server is using. It may not be possible if the backup is
 prepared on a different server or at a much later time, when keys in the keyring are
-purged, or, in the case of a malfunction, when the keyring vault server is not available at all.
+purged, or, in the case of a malfunction, when the keyring vault server is unavailable.
 
-The `--transition-key=<passphrase>` option should be used to make it possible for xtrabackup to process the backup without access to the keyring vault server. In this case, xtrabackup derives the AES encryption key from the specified passphrase and will use it to encrypt tablespace keys of tablespaces that are being backed up.
+The `--transition-key=<passphrase>` option should be used to make it possible for the xtrabackup binary to process the backup without access to the keyring vault server. In this case, the binary derives the AES encryption key from the specified passphrase and will use it to encrypt tablespace keys of tablespaces being backed up.
 
 ### Create a backup with a passphrase
 
@@ -461,11 +445,11 @@ $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 ```
 
 xtrabackup generates a new master key, stores it in the target keyring
-vault server and re-encrypts the tablespace keys using this key.
+vault server, and re-encrypts the tablespace keys using this key.
 
 ### Make a backup with a stored transition key
 
-Finally, there is an option to store a transition key in the keyring. In this case, xtrabackup will need to access the same keyring file or vault server during prepare and copy-back but does not depend on whether the server keys have been purged.
+Finally, there is an option to store a transition key in the keyring. In this case, xtrabackup must access the same keyring file or vault server during prepare and copy-back steps, but does not depend on whether the server keys have been purged.
 
 In this scenario, the three stages of the backup process look as follows.
 
