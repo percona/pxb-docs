@@ -1678,6 +1678,27 @@
   
   
     <li class="md-nav__item">
+      <a href="redo-log-archiving.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    InnoDB redo log archiving
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="smart-memory-estimation.html" class="md-nav__link">
         
   
@@ -7388,7 +7409,7 @@ copying the data files back to their original locations to restore them.</p>
 option only has effect with the <code>--prepare</code> and
 <code>--rebuild-indexes</code> options.</p>
 <h3 id="redo-log-arch-dirname">redo-log-arch-dir(=name)<a class="headerlink" href="#redo-log-arch-dirname" title="Permanent link">&para;</a></h3>
-<p>This option sets the redo log archive directory if this directory is not already set on the server.</p>
+<p>This option sets the redo log archive directory if this directory is not already set on the server. To use this option, you must run Percona XtraBackup as the owner of <code>mysqld</code>.</p>
 <p>Implemented in <a href="release-notes/8.0/8.0.34-29.0.html">Percona XtraBackup 8.0.34-29</a>.</p>
 <h3 id="register-redo-log-consumer">register-redo-log-consumer()<a class="headerlink" href="#register-redo-log-consumer" title="Permanent link">&para;</a></h3>
 <p>The <code>--register-redo-log-consumer</code> parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.</p>
@@ -7572,7 +7593,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2023-10-26
+      2024-01-08
     
   </small>
 </div>

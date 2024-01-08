@@ -8,19 +8,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The xtrabackup binary exits with the traditional success value of 0 after a backup when no error occurs. If an error occurs during the backup, the exit value is 1.">
+        <meta name="description" content="A physical backup contains raw copies of the database contents and any related files, such as configuration files or logs. During crash recovery, InnoDB corrects the data from incomplete transactions using the redo log. A redo log contains the entries necessary to bring the database back to a consistent state. An LSN value represents the data in the redo log.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/xtrabackup-exit-codes.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/redo-log-archiving.html">
       
       
-        <link rel="prev" href="error-message-instant.html">
+        <link rel="prev" href="lock-options.html">
       
       
-        <link rel="next" href="topic-index.html">
+        <link rel="next" href="smart-memory-estimation.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
@@ -28,7 +28,7 @@
     
     
       
-        <title>xtrabackup exit codes - Percona XtraBackup</title>
+        <title>InnoDB redo log archiving - Percona XtraBackup</title>
       
     
     
@@ -87,7 +87,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - xtrabackup exit codes" />
+                 <meta property="og:title" content="Percona XtraBackup - InnoDB redo log archiving" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
               
@@ -110,7 +110,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#xtrabackup-exit-codes" class="md-skip">
+        <a href="#innodb-redo-log-archiving" class="md-skip">
           Skip to content
         </a>
       
@@ -149,7 +149,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              xtrabackup exit codes
+              InnoDB redo log archiving
             
           </span>
         </div>
@@ -1293,19 +1293,21 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -1319,7 +1321,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Features
@@ -1675,10 +1677,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="redo-log-archiving.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    InnoDB redo log archiving
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="redo-log-archiving.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1687,6 +1709,64 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#redo-log-archiving" class="md-nav__link">
+    <span class="md-ellipsis">
+      redo log archiving
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#percona-xtrabackup-and-redo-log-archiving" class="md-nav__link">
+    <span class="md-ellipsis">
+      Percona XtraBackup and redo log archiving
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-of-reading-a-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example of reading a log
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-expert-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get expert help
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3988,21 +4068,19 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
@@ -4016,7 +4094,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshoot
@@ -4048,30 +4126,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    xtrabackup exit codes
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="xtrabackup-exit-codes.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="xtrabackup-exit-codes.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4080,37 +4138,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#get-expert-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get expert help
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4370,6 +4397,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#redo-log-archiving" class="md-nav__link">
+    <span class="md-ellipsis">
+      redo log archiving
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#percona-xtrabackup-and-redo-log-archiving" class="md-nav__link">
+    <span class="md-ellipsis">
+      Percona XtraBackup and redo log archiving
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-of-reading-a-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example of reading a log
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
     <span class="md-ellipsis">
       Get expert help
@@ -4393,7 +4447,7 @@
                   
 
   
-    <a href="https://github.com/percona/pxb-docs/edit/8.0/docs/xtrabackup-exit-codes.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/edit/8.0/docs/redo-log-archiving.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -4402,16 +4456,105 @@
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/8.0/docs/xtrabackup-exit-codes.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/8.0/docs/redo-log-archiving.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
     </a>
   
 
 
-<h1 id="xtrabackup-exit-codes">xtrabackup exit codes<a class="headerlink" href="#xtrabackup-exit-codes" title="Permanent link">&para;</a></h1>
-<p>The <em>xtrabackup</em> binary exits with the traditional success value of 0 after a backup when no error occurs. If an error occurs during the backup, the exit value is 1.</p>
-<p>In certain cases, the exit value can be something other than 0 or 1, due to the command-line option code included from the <em>MySQL</em> libraries. An unknown command-line option, for example, will cause an exit code of 255.</p>
+<h1 id="innodb-redo-log-archiving">InnoDB redo log archiving<a class="headerlink" href="#innodb-redo-log-archiving" title="Permanent link">&para;</a></h1>
+<p>A physical backup contains raw copies of the database contents and any related files, such as configuration files or logs. During crash recovery, InnoDB corrects the data from incomplete transactions using the redo log. A redo log contains the entries necessary to bring the database back to a consistent state. An LSN value represents the data in the redo log.</p>
+<p>Data in the redo log is always appended, and the movement of the checkpoint truncates old data. When a file is full, a new file is created and the movement of the checkpoint truncates the old files.
+If the MySQL server has significant activity during a backup operation and the redo log file storage media operates faster than the backup storage media, the backup operation may fail to keep pace with the redo log generation and cause data loss.</p>
+<p>Before the redo log archiving feature, the solutions were:</p>
+<ul>
+<li>
+<p>Increasing the redo log size</p>
+</li>
+<li>
+<p>Checking for I/O congestion if the read speed is slow</p>
+</li>
+<li>
+<p>Checking for I/O or network congestion if the write speed is slow</p>
+</li>
+<li>
+<p>Taking the backup at an off-peak time</p>
+</li>
+</ul>
+<h2 id="redo-log-archiving">redo log archiving<a class="headerlink" href="#redo-log-archiving" title="Permanent link">&para;</a></h2>
+<p>MySQL 8.0.17 added redo log archiving. To enable this feature, the following actions are required:</p>
+<ul>
+<li>
+<p>Create a directory for the archiving logs</p>
+</li>
+<li>
+<p>Call the function to start the archiving process</p>
+</li>
+</ul>
+<p>It would help if you created a directory for the redo log archives. The system user running <code>mysqld</code> must have access to this directory.</p>
+<p>You can verify if MySQL has configured the archive directory with the following command. The result provides the path or returns NULL, meaning you have not set the archiving directory.</p>
+<div class="highlight" data-prompt"="data-prompt""><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/mysql-redo-archive/backup1
+$<span class="w"> </span>chown<span class="w"> </span>mysql.<span class="w"> </span>-R<span class="w"> </span>/var/lib/mysql-redo-archive
+$<span class="w"> </span>chmod<span class="w"> </span>_R<span class="w"> </span><span class="m">700</span><span class="w"> </span>/var/lib/mysql-redo-archive/
+</code></pre></div>
+<p>The <code>innodb_redo_log_archive_dirs</code> global variable contains labeled directories. The format is <code>label:directory-path</code>. Multiple objects can be listed with a semi-colon between each set.</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SET<span class="w"> </span>PERSIST<span class="w"> </span><span class="nv">innodb_redo_log_archive_dirs</span><span class="o">=</span><span class="s1">&#39;backup1:/var/lib/mysql-redo-archive/&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>Verify that the archive was created with the following command:</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GLOBAL<span class="w"> </span>VARIABLES<span class="w"> </span>LIKE<span class="w"> </span><span class="s1">&#39;innodb_redo_log_ar%&#39;</span><span class="p">;</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>+------------------------------+--------------------------------------+
+| Variable_name                | Value                                |
++------------------------------+--------------------------------------+
+| innodb_redo_log_archive_dirs | backup1:/var/lib/mysql-redo-archive/ |
++------------------------------+--------------------------------------+
+1 row in set (0.0025 sec)
+</code></pre></div>
+</details>
+<p>Users with the <a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_innodb-redo-log-archive">INNODB_REDO_LOG_ARCHIVE</a> privilege can call the <code>innodb_redo_log_archive_start()</code> or <code>innodb_redo_log_archive_stop()</code> functions. to either start or stop archiving. </p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_start<span class="o">(</span><span class="s1">&#39;backup1&#39;</span>,<span class="s1">&#39;backup1&#39;</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>+-----------------------------------------------------+
+| innodb_redo_log_archive_start(&#39;backup1&#39;,&#39;backup1&#39;)  |
++------------------------------+----------------------+
+|                                                   0 |
++------------------- ---------------------------------+
+1 row in set (0.00225 sec)
+</code></pre></div>
+</details>
+<h2 id="percona-xtrabackup-and-redo-log-archiving">Percona XtraBackup and redo log archiving<a class="headerlink" href="#percona-xtrabackup-and-redo-log-archiving" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.0.34-29 added the <a href="xtrabackup-option-reference.html#-redo-log-arch-dirname">redo-log-arch-dir</a> option. If the archiving directory is not configured in MySQL, Percona XtraBackup creates a temporary directory for the archive file. To use this option, you must run Percona XtraBackup as the same owner as <code>mysqld</code>. If Percona XtraBackup does not have the appropriate permissions, the action generates a &ldquo;Permission denied&rdquo; error, and archiving is not used.</p>
+<h2 id="example-of-reading-a-log">Example of reading a log<a class="headerlink" href="#example-of-reading-a-log" title="Permanent link">&para;</a></h2>
+<div class="highlight" data-prompt="data-prompt"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>-u<span class="w"> </span>mysql<span class="w"> </span>bash
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class="o">=</span><span class="m">1</span><span class="w"> </span>--compress<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--host<span class="o">=</span>localhost<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span><span class="s1">&#39;password_string&#39;</span><span class="w"> </span>--backup<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/Backup/13oct<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
+</code></pre></div>
+<p>Verify that the archiving is used:</p>
+<div class="highlight" data-prompt="data-prompt"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql  
+[Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.0.34-29 based on MySQL server 8.0.34 Linux (x86_64) (revision id: 5ba706ee) 230822 13:36:02  version_check Connecting to MySQL server with DSN &#39;dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost&#39; as &#39;root&#39;  (using password: YES). 230822 13:36:02  version_check Connected to MySQL server 230822 13:36:02  version_check Executing a version check against the server... 230822 13:36:02  version_check Done. 
+[Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
+[Note] [MY-011825] [Xtrabackup] Using server version 8.0.34 
+.... 
+.... 
+[Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
+[Note] [MY-011825] [Xtrabackup] xtrabackup redo_log_arch_dir is set to backup1:/var/lib/mysql-redo-archive/ 
+[Note] [MY-011825] [Xtrabackup] Waiting for archive file &#39;/var/lib/mysql-redo-archive//1692711362986/archive.94f4ab58-3d1c-11ee-9e4f-0af1fd7c44c9.000001.log&#39; 
+[Note] [MY-011825] [Xtrabackup] &gt;&gt; log scanned up to (19630018) 
+.... 
+.... 
+[Note] [MY-011825] [Xtrabackup] Done: Compressing file /Backup/22Aug/xtrabackup_info.zst 
+[Note] [MY-011825] [Xtrabackup] Transaction log of lsn (19630018) to (19630028) was copied. 
+[Note] [MY-011825] [Xtrabackup] completed OK!
+</code></pre></div>
+</details>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
 <p>If you need assistance, visit the community forum for comprehensive and free database knowledge, or contact our Percona Database Experts for professional support and services.
@@ -4427,7 +4570,7 @@
   <small>
     
       Last update:
-      2023-06-12
+      2024-01-08
     
   </small>
 </div>
