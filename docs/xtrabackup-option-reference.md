@@ -739,7 +739,7 @@ option only has effect with the `--prepare` and
 
 ### redo-log-arch-dir(=name)
 
-This option sets the redo log archive directory if this directory is not already set on the server.
+This option sets the redo log archive directory if this directory is not already set on the server. To use this option, you must run Percona XtraBackup as the owner of `mysqld`.
 
 Implemented in [Percona XtraBackup 8.0.34-29](release-notes/8.0/8.0.34-29.0.md).
 
