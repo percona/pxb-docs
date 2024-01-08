@@ -35,7 +35,7 @@ global lock from being acquired
 ## Wait for queries to finish
 
 You should issue a global lock when no long queries are running. Waiting to issue the global lock for extended period of time is not a good method. The wait can extend the time needed for
-backup to take place. The –ftwrl-wait-timeout option can limit the
+backup to take place. The [–ftwrl-wait-timeout] option can limit the
 waiting time. If it cannot issue the lock during this
 time, *xtrabackup* stops the option, exits with an error message, and backup is
 not be taken.
@@ -43,15 +43,15 @@ not be taken.
 The default value for this option is zero (0) value which turns off the option.
 
 Another possibility is to specify the type of query to wait on. In this case
-`--ftwrl-wait-query-type`. Possible values are `all` and
+[--ftwrl-wait-query-type]. Possible values are `all` and
 `update`. When `all` is used *xtrabackup* will wait for all long running
-queries (execution time longer than allowed by `--ftwrl-wait-threshold`)
+queries (execution time longer than allowed by [--ftwrl-wait-threshold])
 to finish before running the `FLUSH TABLES WITH READ LOCK`. When `update` is
 used *xtrabackup* will wait on `UPDATE/ALTER/REPLACE/INSERT` queries to
 finish.
 
-The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. *xtrabackup* uses the value of
-–ftwrl-wait-threshold option to specify the long-running queries
+The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. *xtrabackup* uses the value of the
+[–ftwrl-wait-threshold] option to specify the long-running queries
 and will block a global lock. In order to use this option
 xtrabackup user should have `PROCESS` and `SUPER` privileges.
 
@@ -61,36 +61,36 @@ The second option is to kill all the queries which prevent from acquiring the
 global lock. In this case, all queries which run longer than `FLUSH TABLES WITH
 READ LOCK` are potential blockers. Although all queries can be killed,
 additional time can be specified for the short running queries to finish using
-the `--kill-long-queries-timeout` option. This option
+the [--kill-long-queries-timeout] option. This option
 specifies the time for queries to complete, after the value is reached, all the
 running queries will be killed. The default value is zero, which turns this
 feature off.
 
-The `--kill-long-query-type` option can be used to specify all or only
+The [--kill-long-query-type] option can be used to specify all or only
 `SELECT` queries that are preventing global lock from being acquired. In order
 to use this option xtrabackup user should have `PROCESS` and `SUPER`
 privileges.
 
 ## Options summary
 
-* `--ftwrl-wait-timeout` (seconds) - how long to wait for a
+* [--ftwrl-wait-timeout] (seconds) - how long to wait for a
 good moment. Default is 0, not to wait.
 
 
-* `--ftwrl-wait-query-type` - which long queries
+* [--ftwrl-wait-query-type] - which long queries
 should be finished before `FLUSH TABLES WITH READ LOCK` is run. Default is
 all.
 
-* `--ftwrl-wait-threshold` (seconds) - how long query
+* [--ftwrl-wait-threshold] (seconds) - how long query
 should be running before we consider it long running and potential blocker of
 global lock.
 
-* `--kill-long-queries-timeout` (seconds) - how many time
+* [--kill-long-queries-timeout] (seconds) - how many time
 we give for queries to complete after `FLUSH TABLES WITH READ LOCK` is
 issued before start to kill. Default if `0`, not to kill.
 
-* `--kill-long-query-type` - which queries should be killed once
-`kill-long-queries-timeout` has expired.
+* [--kill-long-query-type] - which queries should be killed once
+[--kill-long-queries-timeout] has expired.
 
 ### Example
 
@@ -109,3 +109,9 @@ After `FLUSH TABLES WITH READ LOCK` is issued, *xtrabackup* will wait for 20
 seconds for lock to be acquired. If lock is still not acquired after 20 seconds,
 it will kill all queries which are running longer that the `FLUSH TABLES WITH
 READ LOCK`.
+
+[--ftwrl-wait-timeout]: xtrabackup-option-reference.md#ftwrl-wait-timeoutseconds
+[--kill-long-query-type]: xtrabackup-option-reference.md#kill-long-query-typeallselect
+[--kill-long-queries-timeout]: xtrabackup-option-reference.md#kill-long-queries-timeoutseconds
+[--ftwrl-wait-threshold]: xtrabackup-option-reference.md#ftwrl-wait-thresholdseconds
+[--ftwrl-wait-query-type]: xtrabackup-option-reference.md#ftwrl-wait-query-typeallupdate

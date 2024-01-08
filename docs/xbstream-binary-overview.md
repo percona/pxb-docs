@@ -24,27 +24,23 @@ standard output.
 decrypt encrypted files when extracting input stream. Supported values for
 this option are: `AES128`, `AES192`, and `AES256`. Either
 `--encrypt-key` or `--encrypt-key-file` options must be specified to
-provide encryption key, but not both. This option has been implemented in
-*Percona XtraBackup* 2.4.7.
+provide encryption key, but not both. 
 
 * with the `--encrypt-threads` option you can specify the number of threads
-for parallel data encryption. The default value is `1`. This option has
-been implemented in *Percona XtraBackup* 2.4.7.
+for parallel data encryption. The default value is `1`. 
 
 * the `--encrypt-key` option is used to specify the encryption key that will
 be used. It can’t be used with `--encrypt-key-file` option because they
-are mutually exclusive. This option has been implemented in *Percona
-XtraBackup* 2.4.7.
+are mutually exclusive. 
 
 * the `--encrypt-key-file` option is used to specify the file that contains
 the encryption key. It can’t be used with `--encrypt-key` option.
-because they are mutually exclusive. This option has been implemented in
-*Percona XtraBackup* 2.4.7.
+because they are mutually exclusive. 
 
 The utility also tries to minimize its impact on the OS page cache by using the
 appropriate `posix_fadvise()` calls when available.
 
-When compression is enabled with *xtrabackup* all data is being compressed,
+When compression is enabled with xtrabackup all data is compressed,
 including the transaction log file and meta data files, using the specified
 compression algorithm. Read more about supported compression algorithms in the [Create a compressed backup](create-compressed-backup.md) document.
 
