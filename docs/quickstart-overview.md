@@ -20,26 +20,26 @@ In this section, container refers to the Docker container and instance refers to
 
 * [Install Docker](https://docs.docker.com/engine/install/) on your system.
 
-To take a backup of Percona Server for MySQL, you need to start Percona Server for MySQL in a Docker container and create a database, and a table in Percona Server for MySQL.
+To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database, and a table.
 
 * [Start Percona Server in a Docker container](https://docs.percona.com/percona-server/8.0/quickstart-docker.html)
 * [Create a database and table in Percona Server](https://docs.percona.com/percona-server/8.0/quickstart-database.html)
 
-### Supported storage engines
+### Limitations
 
-Percona XtraBackup 8.0 can back up data from InnoDB, XtraDB, MyISAM, and MyRocks tables.
+Percona XtraBackup 8.0 does not support making backups of databases created in versions before the 8.0 series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster or versions greater than 8.0, such as the 8.1 Innovation release. 
 
 ### Supported servers
 
 Percona XtraBackup 8.0 can back up data stored on MySQL servers, Percona Server for MySQL, and Percona XtraDB Cluster.
 
-### Limitations
+### Supported storage engines
 
-Percona XtraBackup 8.0 does not support making backups of databases created in versions before 8.0 of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster or versions greater than 8.0, such as the Innovation releases, 8.1 and 8.2.
+Percona XtraBackup 8.0 can back up data from InnoDB, XtraDB, MyISAM, and MyRocks tables.
 
 ## Steps to perform
 
-In this section, you will learn how to:
+In this Quickstart, you will learn how to:
 {.power-number}
 
 1. [Start a Docker container and take a backup](quickstart-docker.md)
