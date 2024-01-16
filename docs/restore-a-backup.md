@@ -1,4 +1,4 @@
-# Restore a backup
+# Restore full, incremental, compressed backups
 
 !!! warning
    
