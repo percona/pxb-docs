@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
     
     
       
@@ -1411,9 +1411,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#supported-storage-engines" class="md-nav__link">
+  <a href="#limitations" class="md-nav__link">
     <span class="md-ellipsis">
-      Supported storage engines
+      Limitations
     </span>
   </a>
   
@@ -1429,9 +1429,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#limitations" class="md-nav__link">
+  <a href="#supported-storage-engines" class="md-nav__link">
     <span class="md-ellipsis">
-      Limitations
+      Supported storage engines
     </span>
   </a>
   
@@ -4476,9 +4476,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#supported-storage-engines" class="md-nav__link">
+  <a href="#limitations" class="md-nav__link">
     <span class="md-ellipsis">
-      Supported storage engines
+      Limitations
     </span>
   </a>
   
@@ -4494,9 +4494,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#limitations" class="md-nav__link">
+  <a href="#supported-storage-engines" class="md-nav__link">
     <span class="md-ellipsis">
-      Limitations
+      Supported storage engines
     </span>
   </a>
   
@@ -4578,19 +4578,19 @@
 <ul>
 <li><a href="https://docs.docker.com/engine/install/">Install Docker</a> on your system.</li>
 </ul>
-<p>To take a backup of Percona Server for MySQL, you need to start Percona Server for MySQL in a Docker container and create a database, and a table in Percona Server for MySQL.</p>
+<p>To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database, and a table.</p>
 <ul>
 <li><a href="https://docs.percona.com/percona-server/8.0/quickstart-docker.html">Start Percona Server in a Docker container</a></li>
 <li><a href="https://docs.percona.com/percona-server/8.0/quickstart-database.html">Create a database and table in Percona Server</a></li>
 </ul>
-<h3 id="supported-storage-engines">Supported storage engines<a class="headerlink" href="#supported-storage-engines" title="Permanent link">&para;</a></h3>
-<p>Percona XtraBackup 8.0 can back up data from InnoDB, XtraDB, MyISAM, and MyRocks tables.</p>
+<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 8.0 does not support making backups of databases created in versions before the 8.0 series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster or versions greater than 8.0, such as the 8.1 Innovation release. </p>
 <h3 id="supported-servers">Supported servers<a class="headerlink" href="#supported-servers" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 8.0 can back up data stored on MySQL servers, Percona Server for MySQL, and Percona XtraDB Cluster.</p>
-<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
-<p>Percona XtraBackup 8.0 does not support making backups of databases created in versions before 8.0 of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster or versions greater than 8.0, such as the Innovation releases, 8.1 and 8.2.</p>
+<h3 id="supported-storage-engines">Supported storage engines<a class="headerlink" href="#supported-storage-engines" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 8.0 can back up data from InnoDB, XtraDB, MyISAM, and MyRocks tables.</p>
 <h2 id="steps-to-perform">Steps to perform<a class="headerlink" href="#steps-to-perform" title="Permanent link">&para;</a></h2>
-<p class="power-number">In this section, you will learn how to:</p>
+<p class="power-number">In this Quickstart, you will learn how to:</p>
 <ol>
 <li><a href="quickstart-docker.html">Start a Docker container and take a backup</a></li>
 <li><a href="quickstart-restore-backup.html">Restore a backup</a></li>
@@ -4614,7 +4614,7 @@
   <small>
     
       Last update:
-      2023-11-17
+      2024-01-16
     
   </small>
 </div>
@@ -4782,10 +4782,10 @@
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.d7c377c4.min.js"></script>
+      <script src="assets/javascripts/bundle.7389ff0e.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
