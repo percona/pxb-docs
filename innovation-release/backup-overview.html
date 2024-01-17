@@ -8,19 +8,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The xtrabackup binary integrates with the log_status table. This integration enables xtrabackup to print out the backup’s corresponding binary log position, so that you can use this binary log position to provision a new replica or perform point-in-time recovery.">
+        <meta name="description" content="Percona Xtrabackup is a tool that allows you to create backups of MySQL or MariaDB databases. It works by copying the data files and the binary log files of the server, while ensuring that the data is consistent and not corrupted by ongoing transactions. Percona Xtrabackup can also prepare the backup files for restoration, apply incremental backups, and stream the backup files to another server or storage device.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/innovation-release/working-with-binary-logs.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/innovation-release/backup-overview.html">
       
       
-        <link rel="prev" href="smart-memory-estimation.html">
-      
-      
-        <link rel="next" href="binaries-overview.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
@@ -28,7 +24,7 @@
     
     
       
-        <title>Work with binary logs - Percona XtraBackup</title>
+        <title>Backup process overview - Percona XtraBackup</title>
       
     
     
@@ -89,7 +85,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Work with binary logs" />
+                 <meta property="og:title" content="Percona XtraBackup - Backup process overview" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/innovation-release/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -112,7 +108,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#work-with-binary-logs" class="md-skip">
+        <a href="#backup-process-overview" class="md-skip">
           Skip to content
         </a>
       
@@ -151,7 +147,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Work with binary logs
+              Backup process overview
             
           </span>
         </div>
@@ -631,21 +627,19 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -659,7 +653,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Features
@@ -1036,30 +1030,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Work with binary logs
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="working-with-binary-logs.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="working-with-binary-logs.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1068,64 +1042,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#find-the-binary-log-position" class="md-nav__link">
-    <span class="md-ellipsis">
-      Find the binary log position
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#point-in-time-recovery" class="md-nav__link">
-    <span class="md-ellipsis">
-      Point-in-time recovery
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#set-up-a-new-replication-replica" class="md-nav__link">
-    <span class="md-ellipsis">
-      Set up a new replication replica
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-expert-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get expert help
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3502,27 +3418,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#find-the-binary-log-position" class="md-nav__link">
+  <a href="#backup-types" class="md-nav__link">
     <span class="md-ellipsis">
-      Find the binary log position
+      Backup types
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#point-in-time-recovery" class="md-nav__link">
+  <a href="#backup-restoration" class="md-nav__link">
     <span class="md-ellipsis">
-      Point-in-time recovery
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#set-up-a-new-replication-replica" class="md-nav__link">
-    <span class="md-ellipsis">
-      Set up a new replication replica
+      Backup restoration
     </span>
   </a>
   
@@ -3552,7 +3459,7 @@
                   
 
   
-    <a href="https://github.com/percona/pxb-docs/edit/innovation-release/docs/working-with-binary-logs.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/edit/innovation-release/docs/backup-overview.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -3561,31 +3468,49 @@
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/innovation-release/docs/working-with-binary-logs.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/innovation-release/docs/backup-overview.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
     </a>
   
 
 
-<h1 id="work-with-binary-logs">Work with binary logs<a class="headerlink" href="#work-with-binary-logs" title="Permanent link">&para;</a></h1>
-<p>The <code>xtrabackup</code> binary integrates with the <code>log_status table</code>. This integration enables <code>xtrabackup</code> to print out the backup’s corresponding binary log position, so that you can use this binary log position to provision a new replica or perform point-in-time recovery.</p>
-<h2 id="find-the-binary-log-position">Find the binary log position<a class="headerlink" href="#find-the-binary-log-position" title="Permanent link">&para;</a></h2>
-<p>You can find the binary log position corresponding to a backup after the backup has been taken. If your backup is from a server with binary logging enabled, <code>xtrabackup</code> creates a file named <code>xtrabackup_binlog_info</code> in the target directory. This file contains the binary log file name and position of the exact point when the backup was taken.</p>
-<details class="example">
-<summary>Expected output during the backup stage</summary>
-<div class="no-copy highlight"><pre><span></span><code>210715 14:14:59 Backup created in directory &#39;/backup/&#39;
-MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
-. . .
-210715 14:15:00 completed OK!
-</code></pre></div>
-</details>
-<h2 id="point-in-time-recovery">Point-in-time recovery<a class="headerlink" href="#point-in-time-recovery" title="Permanent link">&para;</a></h2>
-<p>To perform a point-in-time recovery from an <code>xtrabackup</code> backup, you should prepare and restore the backup, and then replay binary logs from the point shown in the <code>xtrabackup_binlog_info</code> file.</p>
-<p>Find a more detailed procedure in the <a href="point-in-time-recovery.html">Point-in-time recovery</a> document.</p>
-<h2 id="set-up-a-new-replication-replica">Set up a new replication replica<a class="headerlink" href="#set-up-a-new-replication-replica" title="Permanent link">&para;</a></h2>
-<p>To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the <a href="https://dev.mysql.com/doc/refman/8.2/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO with the appropriate options</a> command, use the binary log filename and position shown in the <code>xtrabackup_binlog_info</code> file to start replication.</p>
-<p>A more detailed procedure is found in  <a href="set-up-replication.html">How to setup a replica for replication in 6 simple steps with Percona XtraBackup</a>.</p>
+<h1 id="backup-process-overview">Backup process overview<a class="headerlink" href="#backup-process-overview" title="Permanent link">&para;</a></h1>
+<p>Percona Xtrabackup is a tool that allows you to create backups of MySQL or MariaDB databases. It works by copying the data files and the binary log files of the server, while ensuring that the data is consistent and not corrupted by ongoing transactions. Percona Xtrabackup can also prepare the backup files for restoration, apply incremental backups, and stream the backup files to another server or storage device.</p>
+<h2 id="backup-types">Backup types<a class="headerlink" href="#backup-types" title="Permanent link">&para;</a></h2>
+<p>You can take and prepare the following types of backups:</p>
+<ul>
+<li>
+<p><a href="create-full-backup.html">Full backup</a> - a backup of all the contents of the database</p>
+</li>
+<li>
+<p><a href="create-incremental-backup.html">Incremental backup</a> - a backup of only the files that have changed since the last full backup</p>
+</li>
+<li>
+<p><a href="create-compressed-backup.html">Compressed backup</a> - a backup of all the contents of the database with applying a compression algorithm that reduces the size of the data to be stored</p>
+</li>
+<li>
+<p><a href="create-partial-backup.html">Partial backup</a> - a backup of only the files that have changed in a specific folder or a set of folders, rather than the entire database</p>
+</li>
+<li>
+<p><a href="create-individual-partition-backup.html">Individual partitions backup</a> - a backup of an individual partition</p>
+</li>
+</ul>
+<h2 id="backup-restoration">Backup restoration<a class="headerlink" href="#backup-restoration" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="restore-a-backup.html">Restore full, incremental, compressed backups</a></p>
+</li>
+<li>
+<p><a href="restore-partial-backup.html">Restore a partial backup</a></p>
+</li>
+<li>
+<p><a href="restore-individual-partitions.html">Restore an individual partitions backup</a></p>
+</li>
+<li>
+<p><a href="restore-individual-tables.html">Restore individual tables</a></p>
+</li>
+</ul>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
 <p>If you need assistance, visit the community forum for comprehensive and free database knowledge, or contact our Percona Database Experts for professional support and services.
@@ -3601,7 +3526,7 @@ MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
   <small>
     
       Last update:
-      2023-10-12
+      2024-01-17
     
   </small>
 </div>
