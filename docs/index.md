@@ -29,4 +29,41 @@ Percona XtraBackup {{vers}} does not support making backups of databases
 created in versions before {{vers}} of MySQL, Percona Server for MySQL or
 Percona XtraDB Cluster.
 
+Taking your backup with Percona XtraBackup is easy. Follow our documentation guides, and you’ll be set up in quickly.
+
+<div data-grid markdown><div data-banner markdown>
+
+## :material-progress-download: Quickstart guide { .title }
+
+Get started quickly with our Quickstart guide.
+
+[Quickstart guide :material-arrow-right:](quickstart-overview.md){ .md-button }
+
+</div><div data-banner markdown>
+
+### :material-progress-download: Installation guides { .title }
+
+Find the best installation solution with our step-by-step installation instructions.
+
+[Installation instructions :material-arrow-right:](installation.md){ .md-button }
+
+</div><div data-banner markdown>
+
+## :fontawesome-solid-gears: Percona XtraBackup binaries { .title }
+
+Learn about Percona XtraBackup binaries.
+
+[Percona XtraBackup binaries :material-arrow-right:](binaries-overview.md){.md-button}
+
+</div><div data-banner markdown>
+
+### :material-backup-restore: Backup management { .title }
+
+Learn about different types of backups and how to take them.
+
+[Backup management :material-arrow-right:](backup-overview.md){ .md-button }
+
+</div>
+</div>
+
 

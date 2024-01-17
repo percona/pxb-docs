@@ -10,7 +10,7 @@ target directory does not exist, xtrabackup creates it. If the directory
 does
 exist and is empty, xtrabackup succeeds.
 
-xtrabackup does not overwrite existing files. it will fail with operating
+xtrabackup does not overwrite existing files. It will fail with operating
 system error 17, `file exists`.
 
 The following command starts the process:
