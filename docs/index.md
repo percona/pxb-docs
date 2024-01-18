@@ -62,7 +62,7 @@ Find the best installation solution with our step-by-step installation instructi
 
 ## :fontawesome-solid-gears: Percona XtraBackup binaries { .title }
 
-Learn about Percona XtraBackup binaries.
+Learn about the Percona XtraBackup binaries: xtrabackup, xbcloud, xbcrypt, and xbstream.
 
 [Percona XtraBackup binaries :material-arrow-right:](binaries-overview.md){.md-button}
 
