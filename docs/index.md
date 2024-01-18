@@ -5,13 +5,12 @@
 
     This documentation is for the latest release: Percona XtraBackup {{release}} ([Release Notes](release-notes/8.0/{{release}}.0.md)).
 
-*Percona XtraBackup* is an open source hot backup utility, for
-*MySQL* - based servers, that keeps your database fully available during planned maintenance windows.
+Percona XtraBackup is an open source hot backup utility, for MySQL-based servers, that keeps your database fully available during planned maintenance windows.
 
 Whether it is a 24x7 highly loaded server or a low-transaction-volume
-environment, *Percona XtraBackup* is designed to make backups a seamless
-procedure without disrupting the performance of the server in a production
-environment. Percona XtraBackup (PXB) is a 100% open source backup solution with a [commercial support](https://www.percona.com/mysql-support/) available for organizations who want to benefit from comprehensive, responsive, and cost-flexible database support for MySQL.
+Percona XtraBackup is designed to make backups seamless
+without disrupting the server's performance in a production
+environment. Percona XtraBackup (PXB) is a 100% open source backup solution with [commercial support](https://www.percona.com/mysql-support/) available for organizations who want to benefit from comprehensive, responsive, and cost-flexible database support for MySQL.
 
 ### Supported storage engines
 
@@ -43,6 +42,42 @@ Percona XtraDB Cluster.
 
 For more information, see [Percona XtraBackup 8.x and MySQL 8.0.20](https://www.percona.com/blog/2020/04/28/percona-xtrabackup-8-x-and-mysql-8-0-20/)
 
+Taking your backup with Percona XtraBackup is easy. Follow our documentation guides, and you’ll be set up in quickly.
+
+<div data-grid markdown><div data-banner markdown>
+
+## :material-progress-download: Quickstart guide { .title }
+
+Get started quickly with our Quickstart guide.
+
+[Quickstart guide :material-arrow-right:](quickstart-overview.md){ .md-button }
+
+</div><div data-banner markdown>
+
+### :material-progress-download: Installation guides { .title }
+
+Find the best installation solution with our step-by-step installation instructions.
+
+[Installation instructions :material-arrow-right:](installation.md){ .md-button }
+
+</div><div data-banner markdown>
+
+## :fontawesome-solid-gears: Percona XtraBackup binaries { .title }
+
+Learn about Percona XtraBackup binaries.
+
+[Percona XtraBackup binaries :material-arrow-right:](binaries-overview.md){.md-button}
+
+</div><div data-banner markdown>
+
+### :material-backup-restore: Backup management { .title }
+
+Learn about different types of backups and how to take them.
+
+[Backup management :material-arrow-right:](backup-overview.md){ .md-button }
+
+</div>
+</div>
 
 !!! admonition "Learn more about other Percona products"
 
