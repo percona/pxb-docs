@@ -10,9 +10,7 @@ Percona XtraBackup is an open source hot backup utility for
 MySQL-based servers that keep your database fully available during planned maintenance windows.
 
 Whether it is a 24x7 highly loaded server or a low-transaction-volume
-Percona XtraBackup is designed to make backups seamless
-without disrupting the server's performance in a production
-environment. Percona XtraBackup (PXB) is a 100% open source backup solution with [commercial support](https://www.percona.com/mysql-support/) available for organizations who want to benefit from comprehensive, responsive, and cost-flexible database support for MySQL.
+Percona XtraBackup is designed to make backups seamless without disrupting the performance of the server in a production environment. Percona XtraBackup (PXB) is a 100% open source backup solution with [commercial support](https://www.percona.com/mysql-support/) available for organizations who want to benefit from comprehensive, responsive, and cost-flexible database support for MySQL.
 
 This is an Innovation release. This type of release is only supported for a short time and is designed to be used in an environment with fast upgrade cycles. Developers and DBAs are exposed to the latest features and improvements.
 
@@ -51,7 +49,7 @@ Find the best installation solution with our step-by-step installation instructi
 
 ## :fontawesome-solid-gears: Percona XtraBackup binaries { .title }
 
-Learn about Percona XtraBackup binaries.
+Learn about the Percona XtraBackup binaries: xtrabackup, xbcloud, xbcrypt, and xbstream.
 
 [Percona XtraBackup binaries :material-arrow-right:](binaries-overview.md){.md-button}
 
@@ -59,7 +57,7 @@ Learn about Percona XtraBackup binaries.
 
 ### :material-backup-restore: Backup management { .title }
 
-Learn about different types of backups and how to take them.
+Learn about the different types of backups and how to take them.
 
 [Backup management :material-arrow-right:](backup-overview.md){ .md-button }
 
