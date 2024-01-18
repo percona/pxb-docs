@@ -14,19 +14,6 @@ Percona XtraBackup is designed to make backups seamless without disrupting the p
 
 This is an Innovation release. This type of release is only supported for a short time and is designed to be used in an environment with fast upgrade cycles. Developers and DBAs are exposed to the latest features and improvements.
 
-## Supported storage engines
-
-Percona XtraBackup can back up data from InnoDB, XtraDB,
-MyISAM, MyRocks tables on MySQL {{vers}} servers and Percona Server for MySQL with XtraDB, Percona Server for MySQL {{vers}}, and Percona XtraDB Cluster {{vers}}.
-
-Percona XtraBackup {{vers}} supports the MyRocks storage engine. An incremental backup on the MyRocks storage engine does not determine if an earlier full or incremental backup contains duplicate files. Percona XtraBackup copies all MyRocks files each time it takes a backup.
-
-### Limitations
-
-Percona XtraBackup {{vers}} does not support making backups of databases
-created in versions before {{vers}} of MySQL, Percona Server for MySQL or
-Percona XtraDB Cluster.
-
 Taking your backup with Percona XtraBackup is easy. Follow our documentation guides, and you’ll be set up in quickly.
 
 <div data-grid markdown><div data-banner markdown>
@@ -47,11 +34,11 @@ Find the best installation solution with our step-by-step installation instructi
 
 </div><div data-banner markdown>
 
-## :fontawesome-solid-gears: Percona XtraBackup binaries { .title }
+## :fontawesome-solid-gears: Binaries { .title }
 
 Learn about the Percona XtraBackup binaries: xtrabackup, xbcloud, xbcrypt, and xbstream.
 
-[Percona XtraBackup binaries :material-arrow-right:](binaries-overview.md){.md-button}
+[Binaries :material-arrow-right:](binaries-overview.md){.md-button}
 
 </div><div data-banner markdown>
 
@@ -63,5 +50,19 @@ Learn about the different types of backups and how to take them.
 
 </div>
 </div>
+
+## Supported storage engines
+
+Percona XtraBackup can back up data from InnoDB, XtraDB,
+MyISAM, MyRocks tables on MySQL {{vers}} servers and Percona Server for MySQL with XtraDB, Percona Server for MySQL {{vers}}, and Percona XtraDB Cluster {{vers}}.
+
+Percona XtraBackup {{vers}} supports the MyRocks storage engine. An incremental backup on the MyRocks storage engine does not determine if an earlier full or incremental backup contains duplicate files. Percona XtraBackup copies all MyRocks files each time it takes a backup.
+
+### Limitations
+
+Percona XtraBackup {{vers}} does not support making backups of databases
+created in versions before {{vers}} of MySQL, Percona Server for MySQL or
+Percona XtraDB Cluster.
+
 
 
