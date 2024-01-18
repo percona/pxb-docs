@@ -70,7 +70,7 @@ Learn about the Percona XtraBackup binaries: xtrabackup, xbcloud, xbcrypt, and x
 
 ### :material-backup-restore: Backup management { .title }
 
-Learn about different types of backups and how to take them.
+Learn about the different types of backups and how to take them.
 
 [Backup management :material-arrow-right:](backup-overview.md){ .md-button }
 
