@@ -35,10 +35,13 @@ xtrabackup and xbstream changed to 10M.
 
 To adjust the chunk size use [`--read-buffer-size`](xtrabackup-option-reference.md#--read-buffer-size). To adjust the chunk size for encrypted files, use `--read-buffer-size` and [`--encrypt-chunk-size`](xtrabackup-option-reference.md#--encrypt-chunk-size).
 
+
 xbcloud has three essential operations: *put*, *get*, and *delete*. With these
 operations, backups are created, stored, retrieved, restored, and
 deleted. xbcloud operations clearly map to similar operations within 
 the AWS Amazon S3 API.
+
+For details on the command-line options, see the [xbcloud command line options].
 
 The [Exponential Backoff](xbcloud-exbackoff.md) feature was implemented in Percona XtraBackup 8.0.26-18. During the backup, a chunk fails to upload or download operation; this feature adds an exponential backoff, a sleep time, and retries the operation. This feature increases the chances of completing a backup or a restore operation.
 
@@ -300,3 +303,5 @@ ibdata1 sakila/payment.ibd \
 
 $ xbstream -xv -C /storage/partial < /storage/partial/partial.xbs
 ```
+
+[xbcloud command line options]: xbcloud-options.md
