@@ -3,14 +3,16 @@
 
 * Information related to the backup and the server
 
-<table>
+<style> table { width=50%'; font-family: Chivo, Colfax, Franziska, Helvetica, Arial, sans-serif; } table td { border: 0px; padding: 8px; } tr:nth-child(even){ background-color:#f5f5f5 } tr:hover { background-color: #dddd; } </style>
+
+<table> 
     <tr>
         <th>File Name</th>
         <th>Description</th>
     </tr>
     <tr>
         <td><code><span class="pre">backup-my.cnf</span></code></td>
-        <td> This file contains information to start the mini instance 
+        <td> This file contains information to start the mini-instance 
 of InnoDB during the <code><span 
 class="pre">--prepare</span></code>. 
 This 
