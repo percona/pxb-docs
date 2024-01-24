@@ -25,14 +25,14 @@ compact data storage.">
         <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/xbstream-binary-overview.html">
       
       
-        <link rel="prev" href="xbcrypt-binary-overview.html">
+        <link rel="prev" href="xbcrypt-options.html">
       
       
-        <link rel="next" href="take-streaming-backup.html">
+        <link rel="next" href="xbstream-options.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.5">
     
     
       
@@ -2044,6 +2044,27 @@ compact data storage.">
   
   
     <li class="md-nav__item">
+      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xtrabackup command-line options
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="configure-xtrabackup.html" class="md-nav__link">
         
   
@@ -2093,6 +2114,43 @@ compact data storage.">
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    The xbcrypt binary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            The xbcrypt binary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="xbcrypt-binary-overview.html" class="md-nav__link">
         
@@ -2103,6 +2161,35 @@ compact data storage.">
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcrypt-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbcrypt command-line options
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2214,6 +2301,27 @@ compact data storage.">
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbstream-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbstream command-line options
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2354,6 +2462,27 @@ compact data storage.">
   
   
   
+    <li class="md-nav__item">
+      <a href="xbcloud-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbcloud command-line options
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -2364,10 +2493,10 @@ compact data storage.">
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_3" >
         
           
-          <label class="md-nav__link" for="__nav_6_5_2" id="__nav_6_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_5_3" id="__nav_6_5_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2378,8 +2507,8 @@ compact data storage.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_5_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_3">
             <span class="md-nav__icon md-icon"></span>
             Use the xbcloud binary
           </label>
@@ -4198,27 +4327,6 @@ compact data storage.">
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    The xtrabackup option reference
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="xtrabackup-files.html" class="md-nav__link">
         
   
@@ -4435,41 +4543,8 @@ advantages of xbstream over traditional streaming/archive format include
 ability to stream multiple files concurrently (so it is possible to use
 streaming in the xbstream format together with the –parallel option) and more
 compact data storage.</p>
-<p>This utility has a tar-like interface:</p>
-<ul>
-<li>
-<p>with the <code>-x</code> option it extracts files from the stream read from its
-standard input to the current directory unless specified otherwise with the
-<code>-c</code> option. Support for parallel extraction with the <code>--parallel</code>
-option has been implemented in <em>Percona XtraBackup</em> 2.4.7.</p>
-</li>
-<li>
-<p>with the <code>-c</code> option it streams files specified on the command line to its
-standard output.</p>
-</li>
-<li>
-<p>with the <code>--decrypt=ALGO</code> option specified xbstream will automatically
-decrypt encrypted files when extracting input stream. Supported values for
-this option are: <code>AES128</code>, <code>AES192</code>, and <code>AES256</code>. Either
-<code>--encrypt-key</code> or <code>--encrypt-key-file</code> options must be specified to
-provide encryption key, but not both. </p>
-</li>
-<li>
-<p>with the <code>--encrypt-threads</code> option you can specify the number of threads
-for parallel data encryption. The default value is <code>1</code>. </p>
-</li>
-<li>
-<p>the <code>--encrypt-key</code> option is used to specify the encryption key that will
-be used. It can’t be used with <code>--encrypt-key-file</code> option because they
-are mutually exclusive. </p>
-</li>
-<li>
-<p>the <code>--encrypt-key-file</code> option is used to specify the file that contains
-the encryption key. It can’t be used with <code>--encrypt-key</code> option.
-because they are mutually exclusive. </p>
-</li>
-</ul>
-<p>The utility also tries to minimize its impact on the OS page cache by using the
+<p>For details on the command-line options, see <a href="xbcloud-options.html">xbcloud command-line options</a>.</p>
+<p>The utility tries to minimize its impact on the OS page cache by using the
 appropriate <code>posix_fadvise()</code> calls when available.</p>
 <p>When compression is enabled with xtrabackup all data is compressed,
 including the transaction log file and meta data files, using the specified
@@ -4489,7 +4564,7 @@ compression algorithm. Read more about supported compression algorithms in the <
   <small>
     
       Last update:
-      2023-10-26
+      2024-01-19
     
   </small>
 </div>
@@ -4657,10 +4732,10 @@ compression algorithm. Read more about supported compression algorithms in the <
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.7389ff0e.min.js"></script>
+      <script src="assets/javascripts/bundle.c18c5fb9.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
