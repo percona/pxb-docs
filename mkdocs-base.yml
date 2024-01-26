@@ -48,10 +48,10 @@ theme:
     - search.highlight
     - navigation.top
     - content.tabs.link
-    - content.code.copy 
-    - navigation.tracking 
+    - content.code.copy
+    - navigation.tracking
     - content.action.edit
-    - content.action.view 
+    - content.action.view
 
 extra_css:
   - https://unicons.iconscout.com/release/v3.0.3/css/line.css
@@ -86,7 +86,7 @@ markdown_extensions:
   pymdownx.details: {}
   pymdownx.mark: {}
   pymdownx.smartsymbols: {}
-  pymdownx.tabbed: 
+  pymdownx.tabbed:
       {alternate_style: true}
   pymdownx.tilde: {}
   pymdownx.superfences: {}
@@ -108,7 +108,7 @@ markdown_extensions:
         - _resource/.icons
 
 plugins:
-  search: 
+  search:
     separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   git-revision-date: {}
   meta-descriptions:
@@ -139,13 +139,13 @@ plugins:
       canonical_version: null
 
 extra:
-  version: 
+  version:
     provider: mike
   homepage:
     https://docs.percona.com
   consent:
     title: Cookie consent
-    description: >- 
+    description: >-
       We use cookies to recognize your repeated visits and preferences, as well
       as to measure the effectiveness of our documentation and whether users
       find what they're searching for. With your consent, you're helping us to
@@ -155,12 +155,12 @@ extra:
 
 nav:
   - Home: index.md
-  - Release notes: 
+  - Release notes:
     - Release notes index: release-notes/release-notes.md
     - release-notes/8.2.0-1.md
     - release-notes/8.1.0-1.md
   - Quickstart Guide:
-      - quickstart-overview.md 
+      - quickstart-overview.md
   - How Percona XtraBackup works:
       - about-xtrabackup.md
       - features.md
@@ -186,18 +186,22 @@ nav:
   - Binaries:
     - Overview: binaries-overview.md
     - The xtrabackup binary:
-      - xtrabackup-binary-overview.md 
-      - xtrabackup-option-reference.md
+      - xtrabackup-binary-overview.md
       - xtrabackup-implementation-details.md
+      - xtrabackup-option-reference.md
       - configure-xtrabackup.md
-    - xbcrypt-binary-overview.md
-    - The xbstream binary: 
+    - The xbcrypt binary:
+      - xbcrypt-binary-overview.md
+      - xbcrypt-options.md
+    - The xbstream binary:
       - xbstream-binary-overview.md
+      - xbstream-options.md
       - take-streaming-backup.md
       - accelerate-backup-process.md
       - encrypt-backups.md
     - The xbcloud binary:
       - xbcloud-binary-overview.md
+      - xbcloud-options.md
       - Use the xbcloud binary:
         - xbcloud-s3.md
         - xbcloud-iam-profile.md
@@ -205,7 +209,6 @@ nav:
         - xbcloud-gcs.md
         - xbcloud-azure.md
         - xbcloud-minio.md
-      - update-curl-utility.md
       - xbcloud-binary-fifo-datasink.md
       - xbcloud-exbackoff.md
   - Install:
@@ -264,6 +267,7 @@ nav:
         - varify-backup.md
   - Troubleshoot:
       - xtrabackup-exit-codes.md
+      - update-curl-utility.md
   - Reference:
     - xtrabackup-files.md
     - faq.md
@@ -271,4 +275,3 @@ nav:
     - toolkit-version-check.md
     - trademark-policy.md
     - copyright-and-licensing-information.md
-
