@@ -101,6 +101,6 @@ then immediately runs it.
 ```{.bash data-prompt="$"}
 $ sudo docker run --name percona-xtrabackup --volumes-from percona-server-mysql \
 percona/percona-xtrabackup
-xtrabackup --backup --data-dir=/var/lib/mysql --target-dir=/backup --user=root --password=mysql
+xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/backup --user=root --password=mysql
 ```
 
