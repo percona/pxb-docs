@@ -76,7 +76,7 @@ available locally.
 $ sudo docker create --name percona-xtrabackup --volumes-from percona-server-mysql \
 percona/percona-xtrabackup  \
 xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup \
---user=root --password=mysql
+--user=root --password=root
 ```
 
 With parameter name you give a meaningful name to your new Docker container
@@ -101,6 +101,6 @@ then immediately runs it.
 ```{.bash data-prompt="$"}
 $ sudo docker run --name percona-xtrabackup --volumes-from percona-server-mysql \
 percona/percona-xtrabackup
-xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/backup --user=root --password=mysql
+xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/backup --user=root --password=root
 ```
 
