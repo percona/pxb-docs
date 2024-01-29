@@ -25,7 +25,7 @@ container.">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.5">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.6">
     
     
       
@@ -4654,7 +4654,7 @@ available locally.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
 percona/percona-xtrabackup<span class="w">  </span><span class="se">\</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql/<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span><span class="se">\</span>
---user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>mysql
+--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>root
 </code></pre></div>
 <p>With parameter name you give a meaningful name to your new Docker container
 so that you could easily locate it among your other containers.</p>
@@ -4670,7 +4670,7 @@ input/output streams, and opens an interactive shell.</p>
 then immediately runs it.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
 percona/percona-xtrabackup
-xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--data-dir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>mysql
+xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>root
 </code></pre></div>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
@@ -4687,7 +4687,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--data-dir<spa
   <small>
     
       Last update:
-      2023-06-12
+      2024-01-26
     
   </small>
 </div>
@@ -4858,7 +4858,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--data-dir<spa
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.c18c5fb9.min.js"></script>
+      <script src="assets/javascripts/bundle.e1c3ead8.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
