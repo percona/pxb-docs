@@ -3,7 +3,7 @@
 
 !!! note ""
 
-    This documentation is for the latest release: [Percona XtraBackup {{release}}](release-notes/8.0/{{release}}.0.md) release notes.
+    This documentation is for the latest release: [Percona XtraBackup {{release}}](release-notes/{{release}}.md) release notes.
     This is an Innovation release. This type of release is only supported for a short time and is designed to be used in an environment with fast upgrade cycles. Developers and DBAs are exposed to the latest features and improvements.
 
 Percona XtraBackup is an open source hot backup utility for
