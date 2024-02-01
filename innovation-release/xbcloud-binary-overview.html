@@ -3812,7 +3812,7 @@ put<span class="w"> </span><span class="o">[</span>options<span class="o">]</spa
 --target-dir<span class="o">=</span>/storage/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w">  </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>inc_backup
 </code></pre></div>
 <p>To prepare an incremental backup, you must first download the full backup with the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/full-backup
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/full-backup
 </code></pre></div>
 <p>You must prepare the full backup:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup
@@ -3964,7 +3964,7 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
   <small>
     
       Last update:
-      2023-08-28
+      2024-02-01
     
   </small>
 </div>
