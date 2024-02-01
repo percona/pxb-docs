@@ -100,7 +100,7 @@ $ xtrabackup --backup --stream=xbstream --incremental-basedir=/storage/backups \
 To prepare an incremental backup, you must first download the full backup with the following command:
 
 ```{.bash data-prompt="$"}
-$ xtrabackup get [options] full_backup | xbstream -xv -C /tmp/full-backup
+$ xbcloud get [options] full_backup | xbstream -xv -C /tmp/full-backup
 ```
 
 You must prepare the full backup:
