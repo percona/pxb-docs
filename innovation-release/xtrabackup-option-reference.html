@@ -17,18 +17,18 @@
         <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/innovation-release/xtrabackup-option-reference.html">
       
       
-        <link rel="prev" href="xtrabackup-binary-overview.html">
+        <link rel="prev" href="xtrabackup-implementation-details.html">
       
       
-        <link rel="next" href="xtrabackup-implementation-details.html">
+        <link rel="next" href="configure-xtrabackup.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.8">
     
     
       
-        <title>The xtrabackup option reference - Percona XtraBackup</title>
+        <title>The xtrabackup command-line options - Percona XtraBackup</title>
       
     
     
@@ -89,7 +89,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - The xtrabackup option reference" />
+                 <meta property="og:title" content="Percona XtraBackup - The xtrabackup command-line options" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/innovation-release/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -112,7 +112,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-xtrabackup-option-reference" class="md-skip">
+        <a href="#the-xtrabackup-command-line-options" class="md-skip">
           Skip to content
         </a>
       
@@ -151,7 +151,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              The xtrabackup option reference
+              The xtrabackup command-line options
             
           </span>
         </div>
@@ -1182,6 +1182,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="xtrabackup-implementation-details.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xtrabackup implementation details
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1198,7 +1219,7 @@
           
   
   <span class="md-ellipsis">
-    The xtrabackup option reference
+    The xtrabackup command-line options
   </span>
   
 
@@ -1209,7 +1230,7 @@
         
   
   <span class="md-ellipsis">
-    The xtrabackup option reference
+    The xtrabackup command-line options
   </span>
   
 
@@ -1267,1170 +1288,1161 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-apply-log-only" class="md-nav__link">
+  <a href="#apply-log-only" class="md-nav__link">
     <span class="md-ellipsis">
-      --apply-log-only()
+      apply-log-only
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-backup" class="md-nav__link">
+  <a href="#backup" class="md-nav__link">
     <span class="md-ellipsis">
-      --backup()
+      backup
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-backup-lock-timeout" class="md-nav__link">
+  <a href="#backup-lock-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --backup-lock-timeout()
+      backup-lock-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-backup-lock-retry-count" class="md-nav__link">
+  <a href="#backup-lock-retry-count" class="md-nav__link">
     <span class="md-ellipsis">
-      --backup-lock-retry-count()
+      backup-lock-retry-count
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-backup-locks" class="md-nav__link">
+  <a href="#backup-locks" class="md-nav__link">
     <span class="md-ellipsis">
-      --backup-locks()
+      backup-locks
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-check-privileges" class="md-nav__link">
+  <a href="#check-privileges" class="md-nav__link">
     <span class="md-ellipsis">
-      --check-privileges()
+      check-privileges
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-close-files" class="md-nav__link">
+  <a href="#close-files" class="md-nav__link">
     <span class="md-ellipsis">
-      --close-files()
+      close-files
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-compress" class="md-nav__link">
+  <a href="#compress" class="md-nav__link">
     <span class="md-ellipsis">
-      --compress()
+      compress
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-compress-chunk-size" class="md-nav__link">
+  <a href="#compress-chunk-size" class="md-nav__link">
     <span class="md-ellipsis">
-      --compress-chunk-size(=#)
+      compress-chunk-size
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-compress-threads" class="md-nav__link">
+  <a href="#compress-threads" class="md-nav__link">
     <span class="md-ellipsis">
-      --compress-threads(=#)
+      compress-threads
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-compress-zstd-level" class="md-nav__link">
+  <a href="#compress-zstd-level" class="md-nav__link">
     <span class="md-ellipsis">
-      --compress-zstd-level(=#)
+      compress-zstd-level
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-copy-back" class="md-nav__link">
+  <a href="#copy-back" class="md-nav__link">
     <span class="md-ellipsis">
-      --copy-back()
+      copy-back
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-core-file" class="md-nav__link">
+  <a href="#core-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --core-file()
+      core-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-databases" class="md-nav__link">
+  <a href="#databases" class="md-nav__link">
     <span class="md-ellipsis">
-      --databases(=#)
+      databases
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-databases-excludename" class="md-nav__link">
+  <a href="#databases-exclude" class="md-nav__link">
     <span class="md-ellipsis">
-      --databases-exclude(=name)
+      databases-exclude
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-databases-file" class="md-nav__link">
+  <a href="#databases-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --databases-file(=#)
+      databases-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-datadirdirectory" class="md-nav__link">
+  <a href="#datadir" class="md-nav__link">
     <span class="md-ellipsis">
-      --datadir(=DIRECTORY)
+      datadir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-debug-sleep-before-unlock" class="md-nav__link">
+  <a href="#debug-sleep-before-unlock" class="md-nav__link">
     <span class="md-ellipsis">
-      --debug-sleep-before-unlock(=#)
+      debug-sleep-before-unlock
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-debug-syncname" class="md-nav__link">
+  <a href="#debug-sync" class="md-nav__link">
     <span class="md-ellipsis">
-      --debug-sync(=name)
+      debug-sync
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-decompress" class="md-nav__link">
+  <a href="#decompress" class="md-nav__link">
     <span class="md-ellipsis">
-      --decompress()
+      decompress
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-decompress-threads" class="md-nav__link">
+  <a href="#decompress-threads" class="md-nav__link">
     <span class="md-ellipsis">
-      --decompress-threads(=#)
+      decompress-threads
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-decryptencryption-algorithm" class="md-nav__link">
+  <a href="#decrypt" class="md-nav__link">
     <span class="md-ellipsis">
-      --decrypt(=ENCRYPTION-ALGORITHM)
+      decrypt
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-defaults-extra-filemycnf" class="md-nav__link">
+  <a href="#defaults-extra-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --defaults-extra-file(=[MY.CNF])
+      defaults-extra-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-defaults-filemycnf" class="md-nav__link">
+  <a href="#defaults-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --defaults-file(=[MY.CNF])
+      defaults-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-defaults-groupgroup-name" class="md-nav__link">
+  <a href="#defaults-group" class="md-nav__link">
     <span class="md-ellipsis">
-      --defaults-group(=GROUP-NAME)
+      defaults-group
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-defaults-group-suffix" class="md-nav__link">
+  <a href="#defaults-group-suffix" class="md-nav__link">
     <span class="md-ellipsis">
-      --defaults-group-suffix(=#)
+      defaults-group-suffix
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-dump-innodb-buffer-pool" class="md-nav__link">
+  <a href="#dump-innodb-buffer-pool" class="md-nav__link">
     <span class="md-ellipsis">
-      --dump-innodb-buffer-pool()
+      dump-innodb-buffer-pool
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-dump-innodb-buffer-pool-timeout" class="md-nav__link">
+  <a href="#dump-innodb-buffer-pool-pct" class="md-nav__link">
     <span class="md-ellipsis">
-      --dump-innodb-buffer-pool-timeout()
+      dump-innodb-buffer-pool-pct
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-dump-innodb-buffer-pool-pct" class="md-nav__link">
+  <a href="#dump-innodb-buffer-pool-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --dump-innodb-buffer-pool-pct()
+      dump-innodb-buffer-pool-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-encryptencryption_algorithm" class="md-nav__link">
+  <a href="#encrypt" class="md-nav__link">
     <span class="md-ellipsis">
-      --encrypt(=ENCRYPTION_ALGORITHM)
+      encrypt
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-encrypt-keyencryption_key" class="md-nav__link">
+  <a href="#encrypt-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --encrypt-key(=ENCRYPTION_KEY)
+      encrypt-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-encrypt-key-fileencryption_key_file" class="md-nav__link">
+  <a href="#encrypt-key-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --encrypt-key-file(=ENCRYPTION_KEY_FILE)
+      encrypt-key-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-encrypt-threads" class="md-nav__link">
+  <a href="#encrypt-threads" class="md-nav__link">
     <span class="md-ellipsis">
-      --encrypt-threads(=#)
+      encrypt-threads
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-encrypt-chunk-size" class="md-nav__link">
+  <a href="#encrypt-chunk-size" class="md-nav__link">
     <span class="md-ellipsis">
-      --encrypt-chunk-size(=#)
+      encrypt-chunk-size
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-estimate-memory" class="md-nav__link">
+  <a href="#estimate-memory" class="md-nav__link">
     <span class="md-ellipsis">
-      --estimate-memory(=#)
+      estimate-memory
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-export" class="md-nav__link">
+  <a href="#export" class="md-nav__link">
     <span class="md-ellipsis">
-      --export()
+      export
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-extra-lsndirdirectory" class="md-nav__link">
+  <a href="#extra-lsndir" class="md-nav__link">
     <span class="md-ellipsis">
-      --extra-lsndir(=DIRECTORY)
+      extra-lsndir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-force-non-empty-directories" class="md-nav__link">
+  <a href="#force-non-empty-directories" class="md-nav__link">
     <span class="md-ellipsis">
-      --force-non-empty-directories()
+      force-non-empty-directories
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ftwrl-wait-timeoutseconds" class="md-nav__link">
+  <a href="#ftwrl-wait-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --ftwrl-wait-timeout(=SECONDS)
+      ftwrl-wait-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ftwrl-wait-thresholdseconds" class="md-nav__link">
+  <a href="#ftwrl-wait-threshold" class="md-nav__link">
     <span class="md-ellipsis">
-      --ftwrl-wait-threshold(=SECONDS)
+      ftwrl-wait-threshold
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ftwrl-wait-query-typeallupdate" class="md-nav__link">
+  <a href="#ftwrl-wait-query-type" class="md-nav__link">
     <span class="md-ellipsis">
-      --ftwrl-wait-query-type(=all|update)
+      ftwrl-wait-query-type
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-galera-info" class="md-nav__link">
+  <a href="#galera-info" class="md-nav__link">
     <span class="md-ellipsis">
-      --galera-info()
+      galera-info
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-generate-new-master-key" class="md-nav__link">
+  <a href="#generate-new-master-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --generate-new-master-key()
+      generate-new-master-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-generate-transition-key" class="md-nav__link">
+  <a href="#generate-transition-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --generate-transition-key()
+      generate-transition-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-get-server-public-key" class="md-nav__link">
+  <a href="#get-server-public-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --get-server-public-key()
+      get-server-public-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-help" class="md-nav__link">
+  <a href="#help" class="md-nav__link">
     <span class="md-ellipsis">
-      --help()
+      help
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-historyname" class="md-nav__link">
+  <a href="#history" class="md-nav__link">
     <span class="md-ellipsis">
-      --history(=NAME)
+      history
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-hosthost" class="md-nav__link">
+  <a href="#host" class="md-nav__link">
     <span class="md-ellipsis">
-      --host(=HOST)
+      host
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-basedirdirectory" class="md-nav__link">
+  <a href="#incremental-basedir" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-basedir(=DIRECTORY)
+      incremental-basedir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-dirdirectory" class="md-nav__link">
+  <a href="#incremental-dir" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-dir(=DIRECTORY)
+      incremental-dir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-force-scan" class="md-nav__link">
+  <a href="#incremental-force-scan" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-force-scan()
+      incremental-force-scan
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-history-namename" class="md-nav__link">
+  <a href="#incremental-history-name" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-history-name(=name)
+      incremental-history-name
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-history-uuidname" class="md-nav__link">
+  <a href="#incremental-history-uuid" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-history-uuid(=name)
+      incremental-history-uuid
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-lsnlsn" class="md-nav__link">
+  <a href="#incremental-lsn" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-lsn(=LSN)
+      incremental-lsn
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-innodbname" class="md-nav__link">
+  <a href="#innodb" class="md-nav__link">
     <span class="md-ellipsis">
-      --innodb([=name])
+      innodb
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-innodb-miscellaneous" class="md-nav__link">
+  <a href="#innodb-miscellaneous" class="md-nav__link">
     <span class="md-ellipsis">
-      --innodb-miscellaneous()
+      innodb-miscellaneous
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-keyring-file-datafilename" class="md-nav__link">
+  <a href="#keyring-file-data" class="md-nav__link">
     <span class="md-ellipsis">
-      --keyring-file-data(=FILENAME)
+      keyring-file-data
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-kill-long-queries-timeoutseconds" class="md-nav__link">
+  <a href="#kill-long-queries-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --kill-long-queries-timeout(=SECONDS)
+      kill-long-queries-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-kill-long-query-typeallselect" class="md-nav__link">
+  <a href="#kill-long-query-type" class="md-nav__link">
     <span class="md-ellipsis">
-      --kill-long-query-type(=all|select)
+      kill-long-query-type
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-lock-ddl" class="md-nav__link">
+  <a href="#lock-ddl" class="md-nav__link">
     <span class="md-ellipsis">
-      --lock-ddl()
+      lock-ddl
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-lock-ddl-per-table" class="md-nav__link">
+  <a href="#lock-ddl-per-table" class="md-nav__link">
     <span class="md-ellipsis">
-      --lock-ddl-per-table()
+      lock-ddl-per-table
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-lock-ddl-timeout" class="md-nav__link">
+  <a href="#lock-ddl-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --lock-ddl-timeout()
+      lock-ddl-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-log" class="md-nav__link">
+  <a href="#log" class="md-nav__link">
     <span class="md-ellipsis">
-      --log()
+      log
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-log-bin" class="md-nav__link">
+  <a href="#log-bin" class="md-nav__link">
     <span class="md-ellipsis">
-      --log-bin()
+      log-bin
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-log-bin-indexname" class="md-nav__link">
+  <a href="#log-bin-index" class="md-nav__link">
     <span class="md-ellipsis">
-      --log-bin-index(=name)
+      log-bin-index
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-log-copy-interval" class="md-nav__link">
+  <a href="#log-copy-interval" class="md-nav__link">
     <span class="md-ellipsis">
-      --log-copy-interval(=#)
+      log-copy-interval
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-login-path" class="md-nav__link">
+  <a href="#login-path" class="md-nav__link">
     <span class="md-ellipsis">
-      --login-path()
+      login-path
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-move-back" class="md-nav__link">
+  <a href="#move-back" class="md-nav__link">
     <span class="md-ellipsis">
-      --move-back()
+      move-back
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-no-backup-locks" class="md-nav__link">
+  <a href="#no-backup-locks" class="md-nav__link">
     <span class="md-ellipsis">
-      --no-backup-locks()
+      no-backup-locks
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-no-defaults" class="md-nav__link">
+  <a href="#no-defaults" class="md-nav__link">
     <span class="md-ellipsis">
-      --no-defaults()
+      no-defaults
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-no-lock" class="md-nav__link">
+  <a href="#no-lock" class="md-nav__link">
     <span class="md-ellipsis">
-      --no-lock()
+      no-lock
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-no-server-version-check" class="md-nav__link">
+  <a href="#no-server-version-check" class="md-nav__link">
     <span class="md-ellipsis">
-      --no-server-version-check()
+      no-server-version-check
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-no-version-check" class="md-nav__link">
+  <a href="#no-version-check" class="md-nav__link">
     <span class="md-ellipsis">
-      --no-version-check()
+      no-version-check
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-open-files-limit" class="md-nav__link">
+  <a href="#open-files-limit" class="md-nav__link">
     <span class="md-ellipsis">
-      --open-files-limit(=#)
+      open-files-limit
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-parallel" class="md-nav__link">
+  <a href="#parallel" class="md-nav__link">
     <span class="md-ellipsis">
-      --parallel(=#)
+      parallel
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-passwordpassword" class="md-nav__link">
+  <a href="#password" class="md-nav__link">
     <span class="md-ellipsis">
-      --password(=PASSWORD)
+      password
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-plugin-load" class="md-nav__link">
+  <a href="#plugin-load" class="md-nav__link">
     <span class="md-ellipsis">
-      --plugin-load()
+      plugin-load
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-portport" class="md-nav__link">
+  <a href="#port" class="md-nav__link">
     <span class="md-ellipsis">
-      --port(=PORT)
+      port
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-prepare" class="md-nav__link">
+  <a href="#prepare" class="md-nav__link">
     <span class="md-ellipsis">
-      --prepare()
+      prepare
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-print-defaults" class="md-nav__link">
+  <a href="#print-defaults" class="md-nav__link">
     <span class="md-ellipsis">
-      --print-defaults()
+      print-defaults
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-print-param" class="md-nav__link">
+  <a href="#print-param" class="md-nav__link">
     <span class="md-ellipsis">
-      --print-param()
+      print-param
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-read-buffer-size" class="md-nav__link">
+  <a href="#read-buffer-size" class="md-nav__link">
     <span class="md-ellipsis">
-      --read-buffer-size()
+      read-buffer-size
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rebuild-indexes" class="md-nav__link">
+  <a href="#rebuild-indexes" class="md-nav__link">
     <span class="md-ellipsis">
-      --rebuild-indexes()
+      rebuild-indexes
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rebuild-threads" class="md-nav__link">
+  <a href="#rebuild-threads" class="md-nav__link">
     <span class="md-ellipsis">
-      --rebuild-threads(=#)
+      rebuild-threads
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-register-redo-log-consumer" class="md-nav__link">
+  <a href="#register-redo-log-consumer" class="md-nav__link">
     <span class="md-ellipsis">
-      --register-redo-log-consumer()
+      register-redo-log-consumer
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-remove-original" class="md-nav__link">
+  <a href="#remove-original" class="md-nav__link">
     <span class="md-ellipsis">
-      --remove-original()
+      remove-original
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rocksdb-datadir" class="md-nav__link">
+  <a href="#rocksdb-datadir" class="md-nav__link">
     <span class="md-ellipsis">
-      --rocksdb-datadir()
+      rocksdb-datadir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rocksdb-wal-dir" class="md-nav__link">
+  <a href="#rocksdb-wal-dir" class="md-nav__link">
     <span class="md-ellipsis">
-      --rocksdb-wal-dir()
+      rocksdb-wal-dir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rocksdb-checkpoint-max-age" class="md-nav__link">
+  <a href="#rocksdb-checkpoint-max-age" class="md-nav__link">
     <span class="md-ellipsis">
-      --rocksdb-checkpoint-max-age()
+      rocksdb-checkpoint-max-age
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rocksdb-checkpoint-max-count" class="md-nav__link">
+  <a href="#rocksdb-checkpoint-max-count" class="md-nav__link">
     <span class="md-ellipsis">
-      --rocksdb-checkpoint-max-count()
+      rocksdb-checkpoint-max-count
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rollback-prepared-trx" class="md-nav__link">
+  <a href="#rollback-prepared-trx" class="md-nav__link">
     <span class="md-ellipsis">
-      --rollback-prepared-trx()
+      rollback-prepared-trx
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rsync" class="md-nav__link">
+  <a href="#rsync" class="md-nav__link">
     <span class="md-ellipsis">
-      --rsync()
+      rsync
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-safe-slave-backup" class="md-nav__link">
+  <a href="#safe-slave-backup" class="md-nav__link">
     <span class="md-ellipsis">
-      --safe-slave-backup()
+      safe-slave-backup
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-safe-slave-backup-timeoutseconds" class="md-nav__link">
+  <a href="#safe-slave-backup-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --safe-slave-backup-timeout(=SECONDS)
+      safe-slave-backup-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-secure-auth" class="md-nav__link">
+  <a href="#secure-auth" class="md-nav__link">
     <span class="md-ellipsis">
-      --secure-auth()
+      secure-auth
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-server-id" class="md-nav__link">
+  <a href="#server-id" class="md-nav__link">
     <span class="md-ellipsis">
-      --server-id(=#)
+      server-id
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-server-public-key-path" class="md-nav__link">
+  <a href="#server-public-key-path" class="md-nav__link">
     <span class="md-ellipsis">
-      --server-public-key-path()
+      server-public-key-path
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-skip-tables-compatibility-check" class="md-nav__link">
+  <a href="#skip-tables-compatibility-check" class="md-nav__link">
     <span class="md-ellipsis">
-      --skip-tables-compatibility-check()
+      skip-tables-compatibility-check
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-slave-info" class="md-nav__link">
+  <a href="#slave-info" class="md-nav__link">
     <span class="md-ellipsis">
-      --slave-info()
+      slave-info
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-socket" class="md-nav__link">
+  <a href="#socket" class="md-nav__link">
     <span class="md-ellipsis">
-      --socket()
+      socket
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl" class="md-nav__link">
+  <a href="#ssl" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl()
+      ssl
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-ca" class="md-nav__link">
+  <a href="#ssl-ca" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-ca()
+      ssl-ca
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-capath" class="md-nav__link">
+  <a href="#ssl-capath" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-capath()
+      ssl-capath
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-cert" class="md-nav__link">
+  <a href="#ssl-cert" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-cert()
+      ssl-cert
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-cipher" class="md-nav__link">
+  <a href="#ssl-cipher" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-cipher()
+      ssl-cipher
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-crl" class="md-nav__link">
+  <a href="#ssl-crl" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-crl()
+      ssl-crl
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-crlpath" class="md-nav__link">
+  <a href="#ssl-crlpath" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-crlpath()
+      ssl-crlpath
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-fips-mode" class="md-nav__link">
+  <a href="#ssl-fips-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-fips-mode()
+      ssl-fips-mode
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-key" class="md-nav__link">
+  <a href="#ssl-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-key()
+      ssl-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-mode" class="md-nav__link">
+  <a href="#ssl-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-mode()
+      ssl-mode
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-verify-server-cert" class="md-nav__link">
+  <a href="#ssl-verify-server-cert" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-verify-server-cert()
+      ssl-verify-server-cert
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-streamformat" class="md-nav__link">
+  <a href="#stream" class="md-nav__link">
     <span class="md-ellipsis">
-      --stream(=FORMAT)
+      stream
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-strict" class="md-nav__link">
+  <a href="#strict" class="md-nav__link">
     <span class="md-ellipsis">
-      --strict()
+      strict
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tablesname" class="md-nav__link">
+  <a href="#tables" class="md-nav__link">
     <span class="md-ellipsis">
-      --tables(=name)
+      tables
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tables-compatibility-check" class="md-nav__link">
+  <a href="#tables-compatibility-check" class="md-nav__link">
     <span class="md-ellipsis">
-      --tables-compatibility-check()
+      tables-compatibility-check
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tables-excludename" class="md-nav__link">
+  <a href="#tables-exclude" class="md-nav__link">
     <span class="md-ellipsis">
-      --tables-exclude(=name)
+      tables-exclude
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tables-filename" class="md-nav__link">
+  <a href="#tables-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --tables-file(=name)
+      tables-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-target-dirdirectory" class="md-nav__link">
+  <a href="#target-dir" class="md-nav__link">
     <span class="md-ellipsis">
-      --target-dir(=DIRECTORY)
+      target-dir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-innodb-temp-tablespaces-dirdirectory" class="md-nav__link">
+  <a href="#innodb-temp-tablespaces-dir" class="md-nav__link">
     <span class="md-ellipsis">
-      --innodb-temp-tablespaces-dir(=DIRECTORY)
+      innodb-temp-tablespaces-dir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-throttle" class="md-nav__link">
+  <a href="#throttle" class="md-nav__link">
     <span class="md-ellipsis">
-      --throttle(=#)
+      throttle
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tls-ciphersuites" class="md-nav__link">
+  <a href="#tls-ciphersuites" class="md-nav__link">
     <span class="md-ellipsis">
-      --tls-ciphersuites()
+      tls-ciphersuites
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tls-version" class="md-nav__link">
+  <a href="#tls-version" class="md-nav__link">
     <span class="md-ellipsis">
-      --tls-version()
+      tls-version
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tmpdirname" class="md-nav__link">
+  <a href="#tmpdir" class="md-nav__link">
     <span class="md-ellipsis">
-      --tmpdir(=name)
+      tmpdir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-transition-keyname" class="md-nav__link">
+  <a href="#transition-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --transition-key(=name)
+      transition-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-use-free-memory-pct" class="md-nav__link">
+  <a href="#use-free-memory-pct" class="md-nav__link">
     <span class="md-ellipsis">
-      --use-free-memory-pct()
+      use-free-memory-pct
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-use-memory" class="md-nav__link">
+  <a href="#use-memory" class="md-nav__link">
     <span class="md-ellipsis">
-      --use-memory()
+      use-memory
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-userusername" class="md-nav__link">
+  <a href="#user" class="md-nav__link">
     <span class="md-ellipsis">
-      --user(=USERNAME)
+      user
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-v" class="md-nav__link">
+  <a href="#version" class="md-nav__link">
     <span class="md-ellipsis">
-      -v()
+      version
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-version" class="md-nav__link">
+  <a href="#xtrabackup-plugin-dir" class="md-nav__link">
     <span class="md-ellipsis">
-      --version()
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-xtrabackup-plugin-dirdirname" class="md-nav__link">
-    <span class="md-ellipsis">
-      --xtrabackup-plugin-dir(=DIRNAME)
+      xtrabackup-plugin-dir
     </span>
   </a>
   
@@ -2454,27 +2466,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xtrabackup-implementation-details.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    xtrabackup implementation details
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -2515,6 +2506,43 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    The xbcrypt binary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            The xbcrypt binary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="xbcrypt-binary-overview.html" class="md-nav__link">
         
@@ -2525,6 +2553,35 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcrypt-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbcrypt command-line options
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2579,6 +2636,27 @@
   
   <span class="md-ellipsis">
     The xbstream binary overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbstream-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbstream command-line options
   </span>
   
 
@@ -2723,6 +2801,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="xbcloud-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbcloud command-line options
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -2733,10 +2832,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_3" >
         
           
-          <label class="md-nav__link" for="__nav_6_5_2" id="__nav_6_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_5_3" id="__nav_6_5_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2747,8 +2846,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_5_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_3">
             <span class="md-nav__icon md-icon"></span>
             Use the xbcloud binary
           </label>
@@ -2883,27 +2982,6 @@
           </ul>
         </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="update-curl-utility.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Update curl utility
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -4474,6 +4552,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="update-curl-utility.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Update curl utility
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4720,1170 +4819,1161 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-apply-log-only" class="md-nav__link">
+  <a href="#apply-log-only" class="md-nav__link">
     <span class="md-ellipsis">
-      --apply-log-only()
+      apply-log-only
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-backup" class="md-nav__link">
+  <a href="#backup" class="md-nav__link">
     <span class="md-ellipsis">
-      --backup()
+      backup
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-backup-lock-timeout" class="md-nav__link">
+  <a href="#backup-lock-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --backup-lock-timeout()
+      backup-lock-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-backup-lock-retry-count" class="md-nav__link">
+  <a href="#backup-lock-retry-count" class="md-nav__link">
     <span class="md-ellipsis">
-      --backup-lock-retry-count()
+      backup-lock-retry-count
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-backup-locks" class="md-nav__link">
+  <a href="#backup-locks" class="md-nav__link">
     <span class="md-ellipsis">
-      --backup-locks()
+      backup-locks
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-check-privileges" class="md-nav__link">
+  <a href="#check-privileges" class="md-nav__link">
     <span class="md-ellipsis">
-      --check-privileges()
+      check-privileges
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-close-files" class="md-nav__link">
+  <a href="#close-files" class="md-nav__link">
     <span class="md-ellipsis">
-      --close-files()
+      close-files
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-compress" class="md-nav__link">
+  <a href="#compress" class="md-nav__link">
     <span class="md-ellipsis">
-      --compress()
+      compress
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-compress-chunk-size" class="md-nav__link">
+  <a href="#compress-chunk-size" class="md-nav__link">
     <span class="md-ellipsis">
-      --compress-chunk-size(=#)
+      compress-chunk-size
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-compress-threads" class="md-nav__link">
+  <a href="#compress-threads" class="md-nav__link">
     <span class="md-ellipsis">
-      --compress-threads(=#)
+      compress-threads
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-compress-zstd-level" class="md-nav__link">
+  <a href="#compress-zstd-level" class="md-nav__link">
     <span class="md-ellipsis">
-      --compress-zstd-level(=#)
+      compress-zstd-level
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-copy-back" class="md-nav__link">
+  <a href="#copy-back" class="md-nav__link">
     <span class="md-ellipsis">
-      --copy-back()
+      copy-back
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-core-file" class="md-nav__link">
+  <a href="#core-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --core-file()
+      core-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-databases" class="md-nav__link">
+  <a href="#databases" class="md-nav__link">
     <span class="md-ellipsis">
-      --databases(=#)
+      databases
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-databases-excludename" class="md-nav__link">
+  <a href="#databases-exclude" class="md-nav__link">
     <span class="md-ellipsis">
-      --databases-exclude(=name)
+      databases-exclude
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-databases-file" class="md-nav__link">
+  <a href="#databases-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --databases-file(=#)
+      databases-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-datadirdirectory" class="md-nav__link">
+  <a href="#datadir" class="md-nav__link">
     <span class="md-ellipsis">
-      --datadir(=DIRECTORY)
+      datadir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-debug-sleep-before-unlock" class="md-nav__link">
+  <a href="#debug-sleep-before-unlock" class="md-nav__link">
     <span class="md-ellipsis">
-      --debug-sleep-before-unlock(=#)
+      debug-sleep-before-unlock
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-debug-syncname" class="md-nav__link">
+  <a href="#debug-sync" class="md-nav__link">
     <span class="md-ellipsis">
-      --debug-sync(=name)
+      debug-sync
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-decompress" class="md-nav__link">
+  <a href="#decompress" class="md-nav__link">
     <span class="md-ellipsis">
-      --decompress()
+      decompress
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-decompress-threads" class="md-nav__link">
+  <a href="#decompress-threads" class="md-nav__link">
     <span class="md-ellipsis">
-      --decompress-threads(=#)
+      decompress-threads
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-decryptencryption-algorithm" class="md-nav__link">
+  <a href="#decrypt" class="md-nav__link">
     <span class="md-ellipsis">
-      --decrypt(=ENCRYPTION-ALGORITHM)
+      decrypt
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-defaults-extra-filemycnf" class="md-nav__link">
+  <a href="#defaults-extra-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --defaults-extra-file(=[MY.CNF])
+      defaults-extra-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-defaults-filemycnf" class="md-nav__link">
+  <a href="#defaults-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --defaults-file(=[MY.CNF])
+      defaults-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-defaults-groupgroup-name" class="md-nav__link">
+  <a href="#defaults-group" class="md-nav__link">
     <span class="md-ellipsis">
-      --defaults-group(=GROUP-NAME)
+      defaults-group
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-defaults-group-suffix" class="md-nav__link">
+  <a href="#defaults-group-suffix" class="md-nav__link">
     <span class="md-ellipsis">
-      --defaults-group-suffix(=#)
+      defaults-group-suffix
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-dump-innodb-buffer-pool" class="md-nav__link">
+  <a href="#dump-innodb-buffer-pool" class="md-nav__link">
     <span class="md-ellipsis">
-      --dump-innodb-buffer-pool()
+      dump-innodb-buffer-pool
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-dump-innodb-buffer-pool-timeout" class="md-nav__link">
+  <a href="#dump-innodb-buffer-pool-pct" class="md-nav__link">
     <span class="md-ellipsis">
-      --dump-innodb-buffer-pool-timeout()
+      dump-innodb-buffer-pool-pct
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-dump-innodb-buffer-pool-pct" class="md-nav__link">
+  <a href="#dump-innodb-buffer-pool-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --dump-innodb-buffer-pool-pct()
+      dump-innodb-buffer-pool-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-encryptencryption_algorithm" class="md-nav__link">
+  <a href="#encrypt" class="md-nav__link">
     <span class="md-ellipsis">
-      --encrypt(=ENCRYPTION_ALGORITHM)
+      encrypt
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-encrypt-keyencryption_key" class="md-nav__link">
+  <a href="#encrypt-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --encrypt-key(=ENCRYPTION_KEY)
+      encrypt-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-encrypt-key-fileencryption_key_file" class="md-nav__link">
+  <a href="#encrypt-key-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --encrypt-key-file(=ENCRYPTION_KEY_FILE)
+      encrypt-key-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-encrypt-threads" class="md-nav__link">
+  <a href="#encrypt-threads" class="md-nav__link">
     <span class="md-ellipsis">
-      --encrypt-threads(=#)
+      encrypt-threads
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-encrypt-chunk-size" class="md-nav__link">
+  <a href="#encrypt-chunk-size" class="md-nav__link">
     <span class="md-ellipsis">
-      --encrypt-chunk-size(=#)
+      encrypt-chunk-size
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-estimate-memory" class="md-nav__link">
+  <a href="#estimate-memory" class="md-nav__link">
     <span class="md-ellipsis">
-      --estimate-memory(=#)
+      estimate-memory
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-export" class="md-nav__link">
+  <a href="#export" class="md-nav__link">
     <span class="md-ellipsis">
-      --export()
+      export
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-extra-lsndirdirectory" class="md-nav__link">
+  <a href="#extra-lsndir" class="md-nav__link">
     <span class="md-ellipsis">
-      --extra-lsndir(=DIRECTORY)
+      extra-lsndir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-force-non-empty-directories" class="md-nav__link">
+  <a href="#force-non-empty-directories" class="md-nav__link">
     <span class="md-ellipsis">
-      --force-non-empty-directories()
+      force-non-empty-directories
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ftwrl-wait-timeoutseconds" class="md-nav__link">
+  <a href="#ftwrl-wait-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --ftwrl-wait-timeout(=SECONDS)
+      ftwrl-wait-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ftwrl-wait-thresholdseconds" class="md-nav__link">
+  <a href="#ftwrl-wait-threshold" class="md-nav__link">
     <span class="md-ellipsis">
-      --ftwrl-wait-threshold(=SECONDS)
+      ftwrl-wait-threshold
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ftwrl-wait-query-typeallupdate" class="md-nav__link">
+  <a href="#ftwrl-wait-query-type" class="md-nav__link">
     <span class="md-ellipsis">
-      --ftwrl-wait-query-type(=all|update)
+      ftwrl-wait-query-type
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-galera-info" class="md-nav__link">
+  <a href="#galera-info" class="md-nav__link">
     <span class="md-ellipsis">
-      --galera-info()
+      galera-info
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-generate-new-master-key" class="md-nav__link">
+  <a href="#generate-new-master-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --generate-new-master-key()
+      generate-new-master-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-generate-transition-key" class="md-nav__link">
+  <a href="#generate-transition-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --generate-transition-key()
+      generate-transition-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-get-server-public-key" class="md-nav__link">
+  <a href="#get-server-public-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --get-server-public-key()
+      get-server-public-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-help" class="md-nav__link">
+  <a href="#help" class="md-nav__link">
     <span class="md-ellipsis">
-      --help()
+      help
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-historyname" class="md-nav__link">
+  <a href="#history" class="md-nav__link">
     <span class="md-ellipsis">
-      --history(=NAME)
+      history
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-hosthost" class="md-nav__link">
+  <a href="#host" class="md-nav__link">
     <span class="md-ellipsis">
-      --host(=HOST)
+      host
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-basedirdirectory" class="md-nav__link">
+  <a href="#incremental-basedir" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-basedir(=DIRECTORY)
+      incremental-basedir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-dirdirectory" class="md-nav__link">
+  <a href="#incremental-dir" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-dir(=DIRECTORY)
+      incremental-dir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-force-scan" class="md-nav__link">
+  <a href="#incremental-force-scan" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-force-scan()
+      incremental-force-scan
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-history-namename" class="md-nav__link">
+  <a href="#incremental-history-name" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-history-name(=name)
+      incremental-history-name
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-history-uuidname" class="md-nav__link">
+  <a href="#incremental-history-uuid" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-history-uuid(=name)
+      incremental-history-uuid
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-incremental-lsnlsn" class="md-nav__link">
+  <a href="#incremental-lsn" class="md-nav__link">
     <span class="md-ellipsis">
-      --incremental-lsn(=LSN)
+      incremental-lsn
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-innodbname" class="md-nav__link">
+  <a href="#innodb" class="md-nav__link">
     <span class="md-ellipsis">
-      --innodb([=name])
+      innodb
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-innodb-miscellaneous" class="md-nav__link">
+  <a href="#innodb-miscellaneous" class="md-nav__link">
     <span class="md-ellipsis">
-      --innodb-miscellaneous()
+      innodb-miscellaneous
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-keyring-file-datafilename" class="md-nav__link">
+  <a href="#keyring-file-data" class="md-nav__link">
     <span class="md-ellipsis">
-      --keyring-file-data(=FILENAME)
+      keyring-file-data
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-kill-long-queries-timeoutseconds" class="md-nav__link">
+  <a href="#kill-long-queries-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --kill-long-queries-timeout(=SECONDS)
+      kill-long-queries-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-kill-long-query-typeallselect" class="md-nav__link">
+  <a href="#kill-long-query-type" class="md-nav__link">
     <span class="md-ellipsis">
-      --kill-long-query-type(=all|select)
+      kill-long-query-type
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-lock-ddl" class="md-nav__link">
+  <a href="#lock-ddl" class="md-nav__link">
     <span class="md-ellipsis">
-      --lock-ddl()
+      lock-ddl
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-lock-ddl-per-table" class="md-nav__link">
+  <a href="#lock-ddl-per-table" class="md-nav__link">
     <span class="md-ellipsis">
-      --lock-ddl-per-table()
+      lock-ddl-per-table
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-lock-ddl-timeout" class="md-nav__link">
+  <a href="#lock-ddl-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --lock-ddl-timeout()
+      lock-ddl-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-log" class="md-nav__link">
+  <a href="#log" class="md-nav__link">
     <span class="md-ellipsis">
-      --log()
+      log
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-log-bin" class="md-nav__link">
+  <a href="#log-bin" class="md-nav__link">
     <span class="md-ellipsis">
-      --log-bin()
+      log-bin
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-log-bin-indexname" class="md-nav__link">
+  <a href="#log-bin-index" class="md-nav__link">
     <span class="md-ellipsis">
-      --log-bin-index(=name)
+      log-bin-index
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-log-copy-interval" class="md-nav__link">
+  <a href="#log-copy-interval" class="md-nav__link">
     <span class="md-ellipsis">
-      --log-copy-interval(=#)
+      log-copy-interval
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-login-path" class="md-nav__link">
+  <a href="#login-path" class="md-nav__link">
     <span class="md-ellipsis">
-      --login-path()
+      login-path
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-move-back" class="md-nav__link">
+  <a href="#move-back" class="md-nav__link">
     <span class="md-ellipsis">
-      --move-back()
+      move-back
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-no-backup-locks" class="md-nav__link">
+  <a href="#no-backup-locks" class="md-nav__link">
     <span class="md-ellipsis">
-      --no-backup-locks()
+      no-backup-locks
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-no-defaults" class="md-nav__link">
+  <a href="#no-defaults" class="md-nav__link">
     <span class="md-ellipsis">
-      --no-defaults()
+      no-defaults
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-no-lock" class="md-nav__link">
+  <a href="#no-lock" class="md-nav__link">
     <span class="md-ellipsis">
-      --no-lock()
+      no-lock
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-no-server-version-check" class="md-nav__link">
+  <a href="#no-server-version-check" class="md-nav__link">
     <span class="md-ellipsis">
-      --no-server-version-check()
+      no-server-version-check
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-no-version-check" class="md-nav__link">
+  <a href="#no-version-check" class="md-nav__link">
     <span class="md-ellipsis">
-      --no-version-check()
+      no-version-check
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-open-files-limit" class="md-nav__link">
+  <a href="#open-files-limit" class="md-nav__link">
     <span class="md-ellipsis">
-      --open-files-limit(=#)
+      open-files-limit
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-parallel" class="md-nav__link">
+  <a href="#parallel" class="md-nav__link">
     <span class="md-ellipsis">
-      --parallel(=#)
+      parallel
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-passwordpassword" class="md-nav__link">
+  <a href="#password" class="md-nav__link">
     <span class="md-ellipsis">
-      --password(=PASSWORD)
+      password
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-plugin-load" class="md-nav__link">
+  <a href="#plugin-load" class="md-nav__link">
     <span class="md-ellipsis">
-      --plugin-load()
+      plugin-load
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-portport" class="md-nav__link">
+  <a href="#port" class="md-nav__link">
     <span class="md-ellipsis">
-      --port(=PORT)
+      port
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-prepare" class="md-nav__link">
+  <a href="#prepare" class="md-nav__link">
     <span class="md-ellipsis">
-      --prepare()
+      prepare
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-print-defaults" class="md-nav__link">
+  <a href="#print-defaults" class="md-nav__link">
     <span class="md-ellipsis">
-      --print-defaults()
+      print-defaults
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-print-param" class="md-nav__link">
+  <a href="#print-param" class="md-nav__link">
     <span class="md-ellipsis">
-      --print-param()
+      print-param
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-read-buffer-size" class="md-nav__link">
+  <a href="#read-buffer-size" class="md-nav__link">
     <span class="md-ellipsis">
-      --read-buffer-size()
+      read-buffer-size
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rebuild-indexes" class="md-nav__link">
+  <a href="#rebuild-indexes" class="md-nav__link">
     <span class="md-ellipsis">
-      --rebuild-indexes()
+      rebuild-indexes
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rebuild-threads" class="md-nav__link">
+  <a href="#rebuild-threads" class="md-nav__link">
     <span class="md-ellipsis">
-      --rebuild-threads(=#)
+      rebuild-threads
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-register-redo-log-consumer" class="md-nav__link">
+  <a href="#register-redo-log-consumer" class="md-nav__link">
     <span class="md-ellipsis">
-      --register-redo-log-consumer()
+      register-redo-log-consumer
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-remove-original" class="md-nav__link">
+  <a href="#remove-original" class="md-nav__link">
     <span class="md-ellipsis">
-      --remove-original()
+      remove-original
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rocksdb-datadir" class="md-nav__link">
+  <a href="#rocksdb-datadir" class="md-nav__link">
     <span class="md-ellipsis">
-      --rocksdb-datadir()
+      rocksdb-datadir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rocksdb-wal-dir" class="md-nav__link">
+  <a href="#rocksdb-wal-dir" class="md-nav__link">
     <span class="md-ellipsis">
-      --rocksdb-wal-dir()
+      rocksdb-wal-dir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rocksdb-checkpoint-max-age" class="md-nav__link">
+  <a href="#rocksdb-checkpoint-max-age" class="md-nav__link">
     <span class="md-ellipsis">
-      --rocksdb-checkpoint-max-age()
+      rocksdb-checkpoint-max-age
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rocksdb-checkpoint-max-count" class="md-nav__link">
+  <a href="#rocksdb-checkpoint-max-count" class="md-nav__link">
     <span class="md-ellipsis">
-      --rocksdb-checkpoint-max-count()
+      rocksdb-checkpoint-max-count
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rollback-prepared-trx" class="md-nav__link">
+  <a href="#rollback-prepared-trx" class="md-nav__link">
     <span class="md-ellipsis">
-      --rollback-prepared-trx()
+      rollback-prepared-trx
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-rsync" class="md-nav__link">
+  <a href="#rsync" class="md-nav__link">
     <span class="md-ellipsis">
-      --rsync()
+      rsync
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-safe-slave-backup" class="md-nav__link">
+  <a href="#safe-slave-backup" class="md-nav__link">
     <span class="md-ellipsis">
-      --safe-slave-backup()
+      safe-slave-backup
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-safe-slave-backup-timeoutseconds" class="md-nav__link">
+  <a href="#safe-slave-backup-timeout" class="md-nav__link">
     <span class="md-ellipsis">
-      --safe-slave-backup-timeout(=SECONDS)
+      safe-slave-backup-timeout
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-secure-auth" class="md-nav__link">
+  <a href="#secure-auth" class="md-nav__link">
     <span class="md-ellipsis">
-      --secure-auth()
+      secure-auth
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-server-id" class="md-nav__link">
+  <a href="#server-id" class="md-nav__link">
     <span class="md-ellipsis">
-      --server-id(=#)
+      server-id
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-server-public-key-path" class="md-nav__link">
+  <a href="#server-public-key-path" class="md-nav__link">
     <span class="md-ellipsis">
-      --server-public-key-path()
+      server-public-key-path
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-skip-tables-compatibility-check" class="md-nav__link">
+  <a href="#skip-tables-compatibility-check" class="md-nav__link">
     <span class="md-ellipsis">
-      --skip-tables-compatibility-check()
+      skip-tables-compatibility-check
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-slave-info" class="md-nav__link">
+  <a href="#slave-info" class="md-nav__link">
     <span class="md-ellipsis">
-      --slave-info()
+      slave-info
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-socket" class="md-nav__link">
+  <a href="#socket" class="md-nav__link">
     <span class="md-ellipsis">
-      --socket()
+      socket
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl" class="md-nav__link">
+  <a href="#ssl" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl()
+      ssl
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-ca" class="md-nav__link">
+  <a href="#ssl-ca" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-ca()
+      ssl-ca
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-capath" class="md-nav__link">
+  <a href="#ssl-capath" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-capath()
+      ssl-capath
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-cert" class="md-nav__link">
+  <a href="#ssl-cert" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-cert()
+      ssl-cert
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-cipher" class="md-nav__link">
+  <a href="#ssl-cipher" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-cipher()
+      ssl-cipher
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-crl" class="md-nav__link">
+  <a href="#ssl-crl" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-crl()
+      ssl-crl
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-crlpath" class="md-nav__link">
+  <a href="#ssl-crlpath" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-crlpath()
+      ssl-crlpath
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-fips-mode" class="md-nav__link">
+  <a href="#ssl-fips-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-fips-mode()
+      ssl-fips-mode
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-key" class="md-nav__link">
+  <a href="#ssl-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-key()
+      ssl-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-mode" class="md-nav__link">
+  <a href="#ssl-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-mode()
+      ssl-mode
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ssl-verify-server-cert" class="md-nav__link">
+  <a href="#ssl-verify-server-cert" class="md-nav__link">
     <span class="md-ellipsis">
-      --ssl-verify-server-cert()
+      ssl-verify-server-cert
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-streamformat" class="md-nav__link">
+  <a href="#stream" class="md-nav__link">
     <span class="md-ellipsis">
-      --stream(=FORMAT)
+      stream
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-strict" class="md-nav__link">
+  <a href="#strict" class="md-nav__link">
     <span class="md-ellipsis">
-      --strict()
+      strict
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tablesname" class="md-nav__link">
+  <a href="#tables" class="md-nav__link">
     <span class="md-ellipsis">
-      --tables(=name)
+      tables
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tables-compatibility-check" class="md-nav__link">
+  <a href="#tables-compatibility-check" class="md-nav__link">
     <span class="md-ellipsis">
-      --tables-compatibility-check()
+      tables-compatibility-check
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tables-excludename" class="md-nav__link">
+  <a href="#tables-exclude" class="md-nav__link">
     <span class="md-ellipsis">
-      --tables-exclude(=name)
+      tables-exclude
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tables-filename" class="md-nav__link">
+  <a href="#tables-file" class="md-nav__link">
     <span class="md-ellipsis">
-      --tables-file(=name)
+      tables-file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-target-dirdirectory" class="md-nav__link">
+  <a href="#target-dir" class="md-nav__link">
     <span class="md-ellipsis">
-      --target-dir(=DIRECTORY)
+      target-dir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-innodb-temp-tablespaces-dirdirectory" class="md-nav__link">
+  <a href="#innodb-temp-tablespaces-dir" class="md-nav__link">
     <span class="md-ellipsis">
-      --innodb-temp-tablespaces-dir(=DIRECTORY)
+      innodb-temp-tablespaces-dir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-throttle" class="md-nav__link">
+  <a href="#throttle" class="md-nav__link">
     <span class="md-ellipsis">
-      --throttle(=#)
+      throttle
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tls-ciphersuites" class="md-nav__link">
+  <a href="#tls-ciphersuites" class="md-nav__link">
     <span class="md-ellipsis">
-      --tls-ciphersuites()
+      tls-ciphersuites
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tls-version" class="md-nav__link">
+  <a href="#tls-version" class="md-nav__link">
     <span class="md-ellipsis">
-      --tls-version()
+      tls-version
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-tmpdirname" class="md-nav__link">
+  <a href="#tmpdir" class="md-nav__link">
     <span class="md-ellipsis">
-      --tmpdir(=name)
+      tmpdir
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-transition-keyname" class="md-nav__link">
+  <a href="#transition-key" class="md-nav__link">
     <span class="md-ellipsis">
-      --transition-key(=name)
+      transition-key
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-use-free-memory-pct" class="md-nav__link">
+  <a href="#use-free-memory-pct" class="md-nav__link">
     <span class="md-ellipsis">
-      --use-free-memory-pct()
+      use-free-memory-pct
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-use-memory" class="md-nav__link">
+  <a href="#use-memory" class="md-nav__link">
     <span class="md-ellipsis">
-      --use-memory()
+      use-memory
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-userusername" class="md-nav__link">
+  <a href="#user" class="md-nav__link">
     <span class="md-ellipsis">
-      --user(=USERNAME)
+      user
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-v" class="md-nav__link">
+  <a href="#version" class="md-nav__link">
     <span class="md-ellipsis">
-      -v()
+      version
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-version" class="md-nav__link">
+  <a href="#xtrabackup-plugin-dir" class="md-nav__link">
     <span class="md-ellipsis">
-      --version()
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-xtrabackup-plugin-dirdirname" class="md-nav__link">
-    <span class="md-ellipsis">
-      --xtrabackup-plugin-dir(=DIRNAME)
+      xtrabackup-plugin-dir
     </span>
   </a>
   
@@ -5940,7 +6030,7 @@
   
 
 
-<h1 id="the-xtrabackup-option-reference">The xtrabackup option reference<a class="headerlink" href="#the-xtrabackup-option-reference" title="Permanent link">&para;</a></h1>
+<h1 id="the-xtrabackup-command-line-options">The xtrabackup command-line options<a class="headerlink" href="#the-xtrabackup-command-line-options" title="Permanent link">&para;</a></h1>
 <p>Here you can find all of the command-line options for the xtrabackup binary.</p>
 <h2 id="modes-of-operation">Modes of operation<a class="headerlink" href="#modes-of-operation" title="Permanent link">&para;</a></h2>
 <p>You invoke xtrabackup in one of the following modes:</p>
@@ -5952,9 +6042,7 @@
 <p><code>--prepare</code> mode to restore data from a backup (created in <code>--backup</code> mode)</p>
 </li>
 <li>
-<p><code>--copy-back</code> to copy data from a backup to the location
-that contained the original data; to move data instead of copying use
-the alternate <code>--move-back</code> mode.</p>
+<p><code>--copy-back</code> to copy data from a backup to the original location; to move the data instead of copying the data, use the alternate <code>--move-back</code> mode.</p>
 </li>
 </ul>
 <p>When you intend to run xtrabackup in any of these modes, use the following syntax:</p>
@@ -5979,404 +6067,419 @@ mysqld configuration groups from the following files in the given order:</p>
 <p><code>~/.my.cnf</code>.</p>
 </li>
 </ol>
-<p>As the first parameter to xtrabackup (in place of the <code>--defaults-file</code>,
+<p>As the first parameter to xtrabackup in place of the <code>--defaults-file</code>,
 you may supply one of the following:</p>
 <ul>
 <li>
-<p><code>--print-defaults</code> to have xtrabackup print the argument list and exit.</p>
+<p><code>--print-defaults</code> - prints the argument list and exit.</p>
 </li>
 <li>
-<p><code>--no-defaults</code> to forbid reading options from any file but the login file.</p>
+<p><code>--no-defaults</code> - forbids reading options from any file but the login file.</p>
 </li>
 <li>
-<p><code>--defaults-file</code>  to read the default options from the given file.</p>
+<p><code>--defaults-file</code> -  reads the default options from the given file.</p>
 </li>
 <li>
-<p><code>--defaults-extra-file</code> to read the specified additional file after
-the global files have been read.</p>
+<p><code>--defaults-extra-file</code> - reads the specified additional file after the global files.</p>
 </li>
 <li>
-<p><code>--defaults-group-suffix</code> to read the configuration groups with the
-given suffix. The effective group name is constructed by concatenating the default
-configuration groups (xtrabackup and mysqld) with the given suffix.</p>
+<p><code>--defaults-group-suffix</code> -  reads the configuration groups with the given suffix. The effective group name is constructed by concatenating the default configuration groups (xtrabackup and mysqld) with the given suffix.</p>
 </li>
 <li>
-<p><code>--login-path</code> to read the given path from the login file.</p>
+<p><code>--login-path</code> - reads the given path from the login file.</p>
 </li>
 </ul>
 <h3 id="innodb-options">InnoDB options<a class="headerlink" href="#innodb-options" title="Permanent link">&para;</a></h3>
-<p>There is a large group of InnoDB options that are normally read from the
-<code>my.cnf</code> configuration file, so that xtrabackup boots up its embedded
-InnoDB in the same configuration as your current server. You normally do not
+<p>A large group of InnoDB options is usually read from the <code>my.cnf</code> configuration file, so xtrabackup boots up its embedded InnoDB in the same configuration as your current server. You typically do not
 need to specify them explicitly. These options have the same behavior in InnoDB
-and XtraDB. See <code>--innodb-miscellaneous</code> for more information.</p>
+and XtraDB. See <a href="#innodb-miscellaneous"><code>--innodb-miscellaneous</code></a> for more information.</p>
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
-<h3 id="-apply-log-only">&ndash;apply-log-only()<a class="headerlink" href="#-apply-log-only" title="Permanent link">&para;</a></h3>
+<h3 id="apply-log-only">apply-log-only<a class="headerlink" href="#apply-log-only" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--apply-log-only</code></p>
 <p>This option causes only the redo stage to be performed when preparing a
-backup. It is very important for incremental backups.</p>
-<h3 id="-backup">&ndash;backup()<a class="headerlink" href="#-backup" title="Permanent link">&para;</a></h3>
-<p>Make a backup and place it in <code>--target-dir</code>. See
-Creating a backup.</p>
-<h3 id="-backup-lock-timeout">&ndash;backup-lock-timeout()<a class="headerlink" href="#-backup-lock-timeout" title="Permanent link">&para;</a></h3>
+backup. It is essential for incremental backups.</p>
+<h3 id="backup">backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup</code></p>
+<p>Make a backup and place it in <code>--target-dir</code>. See <a href="create-full-backup.html">Create a full backup</a></p>
+<h3 id="backup-lock-timeout">backup-lock-timeout<a class="headerlink" href="#backup-lock-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup-lock-timeout</code></p>
 <p>The timeout in seconds for attempts to acquire metadata locks.</p>
-<h3 id="-backup-lock-retry-count">&ndash;backup-lock-retry-count()<a class="headerlink" href="#-backup-lock-retry-count" title="Permanent link">&para;</a></h3>
+<h3 id="backup-lock-retry-count">backup-lock-retry-count<a class="headerlink" href="#backup-lock-retry-count" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup-lock-retry-count</code></p>
 <p>The number of attempts to acquire metadata locks.</p>
-<h3 id="-backup-locks">&ndash;backup-locks()<a class="headerlink" href="#-backup-locks" title="Permanent link">&para;</a></h3>
-<p>This option controls if backup locks should be used instead of <code>FLUSH TABLES
-WITH READ LOCK</code> on the backup stage. The option has no effect when backup
-locks are not supported by the server. This option is enabled by default,
-disable with <code>--no-backup-locks</code>.</p>
-<h3 id="-check-privileges">&ndash;check-privileges()<a class="headerlink" href="#-check-privileges" title="Permanent link">&para;</a></h3>
-<p>This option checks if Percona XtraBackup has all required privileges.
-If a missing privilege is required for the current operation,
-it will terminate and print out an error message.
-If a missing privilege is not required for the current operation,
-but may be necessary for some other XtraBackup operation,
-the process is not aborted and a warning is printed.</p>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: Error: missing required privilege LOCK TABLES on *.*
+<h3 id="backup-locks">backup-locks<a class="headerlink" href="#backup-locks" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup-locks</code></p>
+<p>This option controls if <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> are used instead of <code>FLUSH TABLES
+WITH READ LOCK</code> on the backup stage. The option has no effect when the server does not support backup locks. This option is enabled by default,
+disable with <a href="#no-backup-locks"><code>--no-backup-locks</code></a>.</p>
+<h3 id="check-privileges">check-privileges<a class="headerlink" href="#check-privileges" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>check-privileges</code></p>
+<p>This option checks if Percona XtraBackup has all the required privileges.
+If a required privilege is missing for the current operation,
+the operation terminates and prints an error message.
+If a privilege is not needed for the current operation but is missing and may be necessary for another XtraBackup operation, the operation is not aborted, and a warning is printed.</p>
+<details class="example">
+<summary>Example output</summary>
+<div class="highlight"><pre><span></span><code>```{.text .no-copy}
+xtrabackup: Error: missing required privilege LOCK TABLES on *.*
 xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
+```
 </code></pre></div>
-<h3 id="-close-files">&ndash;close-files()<a class="headerlink" href="#-close-files" title="Permanent link">&para;</a></h3>
-<p>Do not keep files opened. When xtrabackup opens tablespace it normally
-doesn’t close its file handle in order to handle the DDL operations
-correctly. However, if the number of tablespaces is really huge and can not
+</details>
+<h3 id="close-files">close-files<a class="headerlink" href="#close-files" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--close-files</code></p>
+<p>Do not keep files opened. When xtrabackup opens a tablespace, xtrabackup normally
+doesn’t close its file handle. This operation allows xtrabackup to handle the DDL operations
+correctly. However, if the number of tablespaces is huge and can not
 fit into any limit, there is an option to close file handles once they are
 no longer accessed. Percona XtraBackup can produce inconsistent backups
 with this option enabled. Use at your own risk.</p>
-<h3 id="-compress">&ndash;compress()<a class="headerlink" href="#-compress" title="Permanent link">&para;</a></h3>
+<h3 id="compress">compress<a class="headerlink" href="#compress" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--compress</code></p>
 <p>This option tells xtrabackup to compress all output data, including the
-transaction log file and meta data files, using either the <code>ZSTD</code> or <code>lz4</code> compression algorithm. <code>ZSTD</code> is the default compression algorithm.</p>
-<p><code>--compress</code> produces <code>\*.zst</code> files. You can extract the contents of
-these files by using the <code>--decompress</code> option. You can specify <code>ZSTD</code> compression level with the <code>--compress-zstd-level(=#)</code> option.</p>
+transaction log and metadata files, using either the <code>ZSTD</code> or the <code>lz4</code> compression algorithm. <code>ZSTD</code> is the default compression algorithm.</p>
+<p><code>--compress</code> produces <code>\*.zst</code> files. You can extract the contents of these files using the <code>--decompress</code> option. You can specify the <code>ZSTD</code> compression level with the <a href="#compress-zstd-level"><code>--compress-zstd-level</code></a> option.</p>
 <p><code>--compress=lz4</code> produces <code>\*.lz4</code> files. You can extract the contents of
-these files by using <code>lz4</code> program.</p>
-<h3 id="-compress-chunk-size">&ndash;compress-chunk-size(=#)<a class="headerlink" href="#-compress-chunk-size" title="Permanent link">&para;</a></h3>
+these files by using the <code>lz4</code> program.</p>
+<h3 id="compress-chunk-size">compress-chunk-size<a class="headerlink" href="#compress-chunk-size" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--compress-chunk-size=#</code></p>
 <p>Size of working buffer(s) for compression threads in bytes. The default
 value is 64K.</p>
-<h3 id="-compress-threads">&ndash;compress-threads(=#)<a class="headerlink" href="#-compress-threads" title="Permanent link">&para;</a></h3>
-<p>This option specifies the number of worker threads used by xtrabackup for
-parallel data compression. This option defaults to <code>1</code>. Parallel
-compression (<code>--compress-threads</code>) can be used together
-with parallel file copying (<code>--parallel</code>). For example,
-<code>--parallel=4 --compress --compress-threads=2</code> will create 4 I/O threads
-that will read the data and pipe it to 2 compression threads.</p>
-<h3 id="-compress-zstd-level">&ndash;compress-zstd-level(=#)<a class="headerlink" href="#-compress-zstd-level" title="Permanent link">&para;</a></h3>
-<p>This option specifies <code>ZSTD</code> compression level. Compression levels provide a trade-off between the speed of compression and the size of the compressed files. A lower compression level provides faster compression speed but larger file sizes. A higher compression level provides lower compression speed but smaller file sizes. For example, set level 1 if the compression speed is the most important for you. Set level 19 if the size of the compressed files is the most important.</p>
-<p>The default value is 1. Allowed range of values is from 1 to 19. </p>
-<h3 id="-copy-back">&ndash;copy-back()<a class="headerlink" href="#-copy-back" title="Permanent link">&para;</a></h3>
+<h3 id="compress-threads">compress-threads<a class="headerlink" href="#compress-threads" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--compress-threads=#</code></p>
+<p>This option specifies the number of worker threads xtrabackup uses for parallel data compression. This option defaults to <code>1</code> and can be used with <a href="#parallel">parallel</a> file copying.</p>
+<p>For example, <code>--parallel=4 --compress --compress-threads=2</code>
+creates four I/O threads that read and pipe the data to two compression threads.</p>
+<h3 id="compress-zstd-level">compress-zstd-level<a class="headerlink" href="#compress-zstd-level" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--compress-zstd-level=#</code></p>
+<p>This option specifies <code>ZSTD</code> compression level. Compression levels provide a trade-off between the compression speed and the compressed files&rsquo; size. A lower compression level provides faster compression speed but larger file sizes. A higher compression level provides lower compression speed but smaller file sizes. For example, set level 1 if the compression speed is the most important for you. Set level 19 if the size of the compressed files is the most important.</p>
+<p>The default value is 1. Allowed range of values is from 1 to 19.</p>
+<h3 id="copy-back">copy-back<a class="headerlink" href="#copy-back" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--copy-back</code></p>
 <p>Copy all the files in a previously made backup from the backup directory to
 their original locations. This option will not copy over existing files
-unless <code>--force-non-empty-directories</code> option is
-specified.</p>
-<h3 id="-core-file">&ndash;core-file()<a class="headerlink" href="#-core-file" title="Permanent link">&para;</a></h3>
+unless the <a href="#force-non-empty-directories"><code>--force-non-empty-directories</code></a> option is specified.</p>
+<h3 id="core-file">core-file<a class="headerlink" href="#core-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--core-file</code></p>
 <p>Write core on fatal signals.</p>
-<h3 id="-databases">&ndash;databases(=#)<a class="headerlink" href="#-databases" title="Permanent link">&para;</a></h3>
+<h3 id="databases">databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--databases=#</code></p>
 <p>This option specifies a list of databases and tables that should be backed
 up. The option accepts the list of the form <code>"databasename1[.table_name1]
 databasename2[.table_name2] . . ."</code>.</p>
-<h3 id="-databases-excludename">&ndash;databases-exclude(=name)<a class="headerlink" href="#-databases-excludename" title="Permanent link">&para;</a></h3>
-<p>Excluding databases based on name, Operates the same way
-as <code>--databases</code>, but matched names are excluded from
-backup. Note that this option has a higher priority than
-<code>--databases</code>.</p>
-<h3 id="-databases-file">&ndash;databases-file(=#)<a class="headerlink" href="#-databases-file" title="Permanent link">&para;</a></h3>
+<h3 id="databases-exclude">databases-exclude<a class="headerlink" href="#databases-exclude" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--databases-exclude=name</code></p>
+<p>Databases are excluded based on name. This option operates the same way as <code>--databases</code> but excludes the matched names from the backup.</p>
+<p>This option has a higher priority than <code>--databases</code>.</p>
+<h3 id="databases-file">databases-file<a class="headerlink" href="#databases-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--databases-file=#</code></p>
 <p>This option specifies the path to the file containing the list of databases
 and tables that should be backed up. The file can contain the list elements
 of the form <code>databasename1[.table_name1]</code>, one element per line.</p>
-<h3 id="-datadirdirectory">&ndash;datadir(=DIRECTORY)<a class="headerlink" href="#-datadirdirectory" title="Permanent link">&para;</a></h3>
+<h3 id="datadir">datadir<a class="headerlink" href="#datadir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--datadir=DIRECTORY</code></p>
 <p>The source directory for the backup. This should be the same as the datadir
-for your MySQL server, so it should be read from <code>my.cnf</code> if that
-exists; otherwise you must specify it on the command line.</p>
-<p>When combined with the <code>--copy-back</code> or
-<code>--move-back</code> option, <code>--datadir</code>
-refers to the destination directory.</p>
-<p>Once connected to the server, in order to perform a backup you will need
+for your server, so it should be read from <code>my.cnf</code> if that
+exists; otherwise, specify the directory on the command line.</p>
+<p>When combined with the <a href="#copy-back"><code>--copy-back</code></a> or the
+<a href="#move-back"><code>--move-back</code></a> option, this option refers to the destination directory.</p>
+<p>To perform a backup, you must have the
 <code>READ</code> and <code>EXECUTE</code> permissions at a filesystem level in the
 server’s datadir.</p>
-<h3 id="-debug-sleep-before-unlock">&ndash;debug-sleep-before-unlock(=#)<a class="headerlink" href="#-debug-sleep-before-unlock" title="Permanent link">&para;</a></h3>
-<p>This is a debug-only option used by the xtrabackup test suite.</p>
-<h3 id="-debug-syncname">&ndash;debug-sync(=name)<a class="headerlink" href="#-debug-syncname" title="Permanent link">&para;</a></h3>
-<p>The debug sync point. This option is only used by the xtrabackup test suite.</p>
-<h3 id="-decompress">&ndash;decompress()<a class="headerlink" href="#-decompress" title="Permanent link">&para;</a></h3>
+<h3 id="debug-sleep-before-unlock">debug-sleep-before-unlock<a class="headerlink" href="#debug-sleep-before-unlock" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--debug-sleep-before-unlock=#</code></p>
+<p>This option is only used by the xtrabackup test suite.</p>
+<h3 id="debug-sync">debug-sync<a class="headerlink" href="#debug-sync" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--debug-sync=name</code></p>
+<p>This option is only used by the xtrabackup test suite.</p>
+<h3 id="decompress">decompress<a class="headerlink" href="#decompress" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--decompress</code></p>
 <p>Decompresses all files in a backup previously
 made with the <code>--compress</code> option. The
-<code>--parallel</code> option will allow multiple files to be
-decrypted simultaneously. Percona XtraBackup does not
-automatically remove the compressed files. In order to clean up the backup
-directory users should use <code>--remove-original</code> option.</p>
-<h3 id="-decompress-threads">&ndash;decompress-threads(=#)<a class="headerlink" href="#-decompress-threads" title="Permanent link">&para;</a></h3>
-<p>Force xbstream to use the specified number of threads for
-decompressing.</p>
-<h3 id="-decryptencryption-algorithm">&ndash;decrypt(=ENCRYPTION-ALGORITHM)<a class="headerlink" href="#-decryptencryption-algorithm" title="Permanent link">&para;</a></h3>
-<p>Decrypts all files with the <code>.xbcrypt</code> extension in a backup
-previously made with <code>--encrypt</code> option. The
-<code>--parallel</code> option will allow multiple files to be
+<code>--parallel</code> option lets multiple files be
+decrypted simultaneously.</p>
+<p>Percona XtraBackup does not automatically remove the compressed files. Users should use the <code>--remove-original</code> option to clean up the backup directory.</p>
+<h3 id="decompress-threads">decompress-threads<a class="headerlink" href="#decompress-threads" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--decompress-threads=#</code></p>
+<p>Force xbstream to use the specified number of threads for decompressing.</p>
+<h3 id="decrypt">decrypt<a class="headerlink" href="#decrypt" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--decrypt=ENCRYPTION-ALGORITHM</code></p>
+<p>Decrypts all files with the <code>xbcrypt</code> extension in a backup
+previously made with <a href="#encrypt"><code>--encrypt</code></a> option. The
+<a href="#parallel"><code>--parallel</code></a> option lets multiple files be
 decrypted simultaneously. Percona XtraBackup doesn’t
-automatically remove the encrypted files. In order to clean up the backup
-directory users should use <code>--remove-original</code> option.</p>
-<h3 id="-defaults-extra-filemycnf">&ndash;defaults-extra-file(=[MY.CNF])<a class="headerlink" href="#-defaults-extra-filemycnf" title="Permanent link">&para;</a></h3>
-<p>Read this file after the global files are read. Must be given as the first
-option on the command-line.</p>
-<h3 id="-defaults-filemycnf">&ndash;defaults-file(=[MY.CNF])<a class="headerlink" href="#-defaults-filemycnf" title="Permanent link">&para;</a></h3>
-<p>Only read default options from the given file. Must be given as the first
-option on the command-line. Must be a real file; it cannot be a symbolic
-link.</p>
-<h3 id="-defaults-groupgroup-name">&ndash;defaults-group(=GROUP-NAME)<a class="headerlink" href="#-defaults-groupgroup-name" title="Permanent link">&para;</a></h3>
-<p>This option is to set the group which should be read from the configuration
-file. This is used by xtrabackup if you use the
-<code>--defaults-group</code> option. It is needed for
-<code>mysqld_multi</code> deployments.</p>
-<h3 id="-defaults-group-suffix">&ndash;defaults-group-suffix(=#)<a class="headerlink" href="#-defaults-group-suffix" title="Permanent link">&para;</a></h3>
+automatically remove the encrypted files; use <code>--</code>remove-original`](#remove-original) option.</p>
+<h3 id="defaults-extra-file">defaults-extra-file<a class="headerlink" href="#defaults-extra-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--defaults-extra-file=[MY.CNF]</code></p>
+<p>Read this file after the global files are read. The option must be the first
+option on the command line.</p>
+<h3 id="defaults-file">defaults-file<a class="headerlink" href="#defaults-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--defaults-file=[MY.CNF]</code></p>
+<p>Only read default options from the given file. The value must be the first
+option on the command line and cannot be a symbolic link.</p>
+<h3 id="defaults-group">defaults-group<a class="headerlink" href="#defaults-group" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--defaults-group=GROUP-NAME</code></p>
+<p>This option sets the group that should be read from the configuration file and is needed for <code>mysqld_multi</code> deployments.</p>
+<h3 id="defaults-group-suffix">defaults-group-suffix<a class="headerlink" href="#defaults-group-suffix" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--defaults-group-suffix=#</code></p>
 <p>Also reads groups with concat(group, suffix).</p>
-<h3 id="-dump-innodb-buffer-pool">&ndash;dump-innodb-buffer-pool()<a class="headerlink" href="#-dump-innodb-buffer-pool" title="Permanent link">&para;</a></h3>
-<p>This option controls whether or not a new dump of buffer pool
-content should be done.</p>
-<p>With <code>--dump-innodb-buffer-pool</code>, xtrabackup
-makes a request to the server to start the buffer pool dump (it
-takes some time to complete and is done in background) at the
-beginning of a backup provided the status variable
-<code>innodb_buffer_pool_dump_status</code> reports that the dump has been
+<h3 id="dump-innodb-buffer-pool">dump-innodb-buffer-pool<a class="headerlink" href="#dump-innodb-buffer-pool" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--dump-innodb-buffer-pool</code></p>
+<p>This option controls creating a new dump of the buffer pool content.</p>
+<p>The xtrabackup binary requests the server to start the buffer pool dump. This operation may take time to complete and is done in the background. The
+beginning of a backup with the option reports that the dump has been
 completed.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--dump-innodb-buffer-pool<span class="w"> </span>--target-dir<span class="o">=</span>/home/user/backup
 </code></pre></div>
 <p>By default, this option is set to OFF.</p>
-<p>If <code>innodb_buffer_pool_dump_status</code> reports that there is running
-dump of buffer pool, xtrabackup waits for the dump to complete
-using the value of <code>--dump-innodb-buffer-pool-timeout</code></p>
-<p>The file <code>ib_buffer_pool</code> stores tablespace ID and page ID
+<p>If <a href="https://dev.mysql.com/doc/refman/8.3/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
+using the value of <a href="#dump-innodb-buffer-pool-timeout"><code>--dump-innodb-buffer-pool-timeout</code></a></p>
+<p>The file <code>ib_buffer_pool</code> stores the tablespace ID and page ID
 data used to warm up the buffer pool sooner.</p>
-<h3 id="-dump-innodb-buffer-pool-timeout">&ndash;dump-innodb-buffer-pool-timeout()<a class="headerlink" href="#-dump-innodb-buffer-pool-timeout" title="Permanent link">&para;</a></h3>
-<p>This option contains the number of seconds that xtrabackup should
-monitor the value of <code>innodb_buffer_pool_dump_status</code> to
-determine if buffer pool dump has completed.</p>
-<p>This option is used in combination with
-<code>--dump-innodb-buffer-pool</code>. By default, it is set to 10
-seconds.</p>
-<h3 id="-dump-innodb-buffer-pool-pct">&ndash;dump-innodb-buffer-pool-pct()<a class="headerlink" href="#-dump-innodb-buffer-pool-pct" title="Permanent link">&para;</a></h3>
+<h3 id="dump-innodb-buffer-pool-pct">dump-innodb-buffer-pool-pct<a class="headerlink" href="#dump-innodb-buffer-pool-pct" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--dump-innodb-buffer-pool-pct</code></p>
 <p>This option contains the percentage of the most recently used buffer pool
 pages to dump.</p>
 <p>This option is effective if <code>--dump-innodb-buffer-pool</code> option is set
 to ON. If this option contains a value, xtrabackup sets the MySQL
-system variable <code>innodb_buffer_pool_dump_pct</code>. As soon as the buffer pool
-dump completes or it is stopped (see
+system variable <a href="https://dev.mysql.com/doc/refman/8.3/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct"><code>innodb_buffer_pool_dump_pct</code></a>. As soon as the buffer pool
+dump completes or is stopped (see
 <code>--dump-innodb-buffer-pool-timeout</code>), the value of the MySQL system
 variable is restored.</p>
-<h3 id="-encryptencryption_algorithm">&ndash;encrypt(=ENCRYPTION_ALGORITHM)<a class="headerlink" href="#-encryptencryption_algorithm" title="Permanent link">&para;</a></h3>
+<h3 id="dump-innodb-buffer-pool-timeout">dump-innodb-buffer-pool-timeout<a class="headerlink" href="#dump-innodb-buffer-pool-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--dump-innodb-buffer-pool-timeout</code></p>
+<p>This option contains the number of seconds that xtrabackup should
+monitor the value of <a href="https://dev.mysql.com/doc/refman/8.0/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> to
+determine if the buffer pool dump has been completed.</p>
+<p>This option is used in combination with
+<a href="#dump-innodb-buffer-pool"><code>--dump-innodb-buffer-pool</code></a>. By default, it is set to 10 seconds.</p>
+<h3 id="encrypt">encrypt<a class="headerlink" href="#encrypt" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--encrypt=ENCRYPTION_ALGORITHM</code></p>
 <p>This option instructs xtrabackup to encrypt backup copies of InnoDB data
 files using the algorithm specified in the ENCRYPTION_ALGORITHM. Currently
 supported algorithms are: <code>AES128</code>, <code>AES192</code> and <code>AES256</code></p>
-<h3 id="-encrypt-keyencryption_key">&ndash;encrypt-key(=ENCRYPTION_KEY)<a class="headerlink" href="#-encrypt-keyencryption_key" title="Permanent link">&para;</a></h3>
-<p>A proper length encryption key to use. It is not recommended to use this
-option where there is uncontrolled access to the machine as the command line
-and thus the key can be viewed as part of the process info.</p>
-<h3 id="-encrypt-key-fileencryption_key_file">&ndash;encrypt-key-file(=ENCRYPTION_KEY_FILE)<a class="headerlink" href="#-encrypt-key-fileencryption_key_file" title="Permanent link">&para;</a></h3>
+<h3 id="encrypt-key">encrypt-key<a class="headerlink" href="#encrypt-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--encrypt-key=ENCRYPTION_KEY</code></p>
+<p>A proper length encryption key to use. This key can be viewed as part of the process info. We do not recommend using this option with uncontrolled access to the machine.</p>
+<h3 id="encrypt-key-file">encrypt-key-file<a class="headerlink" href="#encrypt-key-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--encrypt-key-file=ENCRYPTION_KEY_FILE</code></p>
 <p>The name of a file where the raw key of the appropriate length can be read
 from. The file must be a simple binary (or text) file that contains exactly
 the key to be used.</p>
 <p>It is passed directly to the xtrabackup child process. See the
 xtrabackup documentation for more details.</p>
-<h3 id="-encrypt-threads">&ndash;encrypt-threads(=#)<a class="headerlink" href="#-encrypt-threads" title="Permanent link">&para;</a></h3>
+<h3 id="encrypt-threads">encrypt-threads<a class="headerlink" href="#encrypt-threads" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--encrypt-threads=#</code></p>
 <p>This option specifies the number of worker threads that will be used for
 parallel encryption/decryption.
 See the xtrabackup documentation for more details.</p>
-<h3 id="-encrypt-chunk-size">&ndash;encrypt-chunk-size(=#)<a class="headerlink" href="#-encrypt-chunk-size" title="Permanent link">&para;</a></h3>
+<h3 id="encrypt-chunk-size">encrypt-chunk-size<a class="headerlink" href="#encrypt-chunk-size" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--encrypt-chunk-size=#</code></p>
 <p>This option specifies the size of the internal working buffer for each
 encryption thread, measured in bytes. It is passed directly to the
 xtrabackup child process.</p>
-<p>To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <code>--encrypt-chunk-size</code>.</p>
-<h3 id="-estimate-memory">&ndash;estimate-memory(=#)<a class="headerlink" href="#-estimate-memory" title="Permanent link">&para;</a></h3>
-<p>This option is in <a href="glossary.html#tech-preview">tech preview</a>. Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.</p>
-<p>Implemented in Percona XtraBackup 8.0.32-26, the option lets you enable or disable the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The default value is OFF. Enable the feature by setting <code>--estimate-memory=ON</code> in the backup phase and setting the <code>--use-free-memory-pct</code> option in the <code>--prepare</code> phase. If the <code>--estimate-memory</code> setting is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
+<p>To adjust the chunk size for encrypted files, use <a href="#read-buffer-size"><code>--read-buffer-size</code></a> and this option.</p>
+<h3 id="estimate-memory">estimate-memory<a class="headerlink" href="#estimate-memory" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--estimate-memory=#</code></p>
+<p>This option is in <a href="glossary.html#tech-preview">tech preview</a>.</p>
+<p>The option lets you enable or disable the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The default value is OFF. Enable the feature by setting <code>--estimate-memory=ON</code> in the backup phase and setting the <code>--use-free-memory-pct</code> option in the <code>--prepare</code> phase. If the <code>--estimate-memory</code> setting is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
-<h3 id="-export">&ndash;export()<a class="headerlink" href="#-export" title="Permanent link">&para;</a></h3>
-<p>Create files necessary for exporting tables. See Restoring Individual
-Tables.</p>
-<h3 id="-extra-lsndirdirectory">&ndash;extra-lsndir(=DIRECTORY)<a class="headerlink" href="#-extra-lsndirdirectory" title="Permanent link">&para;</a></h3>
+<h3 id="export">export<a class="headerlink" href="#export" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--export</code></p>
+<p>Create files necessary for exporting tables. For more details, see <a href="restore-individual-tables.html">Restore individual tables</a>.</p>
+<h3 id="extra-lsndir">extra-lsndir<a class="headerlink" href="#extra-lsndir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--extra-lsndir=DIRECTORY</code></p>
 <p>(for –backup): save an extra copy of the <code>xtrabackup_checkpoints</code>
-and <code>xtrabackup_info</code> files in this directory.</p>
-<h3 id="-force-non-empty-directories">&ndash;force-non-empty-directories()<a class="headerlink" href="#-force-non-empty-directories" title="Permanent link">&para;</a></h3>
-<p>When specified, it makes <code>--copy-back</code> and
-<code>--move-back</code> option transfer files to non-empty
-directories. No existing files will be overwritten. If files that need to
+and <code>xtrabackup_info</code> files in the specified directory.</p>
+<h3 id="force-non-empty-directories">force-non-empty-directories<a class="headerlink" href="#force-non-empty-directories" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--force-non-empty-directories</code></p>
+<p>When specified, the <code>-</code>-copy-back<code>and</code>&ndash;move-back` options transfer files to non-empty directories. No existing files are overwritten. If files that need to
 be copied/moved from the backup directory already exist in the destination
-directory, it will still fail with an error.</p>
-<h3 id="-ftwrl-wait-timeoutseconds">&ndash;ftwrl-wait-timeout(=SECONDS)<a class="headerlink" href="#-ftwrl-wait-timeoutseconds" title="Permanent link">&para;</a></h3>
-<p>This option specifies time in seconds that xtrabackup should wait for
+directory, the operation fails with an error.</p>
+<h3 id="ftwrl-wait-timeout">ftwrl-wait-timeout<a class="headerlink" href="#ftwrl-wait-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ftwrl-wait-timeout=SECONDS</code></p>
+<p>This option specifies the time in seconds that xtrabackup should wait for
 queries that would block <code>FLUSH TABLES WITH READ LOCK</code> before running it.
 If there are still such queries when the timeout expires, xtrabackup
-terminates with an error. Default is <code>0</code>, in which case it does not wait
+terminates with an error.</p>
+<p>The default value is <code>0</code>, xtrabackup does not wait
 for queries to complete and starts <code>FLUSH TABLES WITH READ LOCK</code>
-immediately. Where supported xtrabackup will
-automatically use <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup Locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
-non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
-<h3 id="-ftwrl-wait-thresholdseconds">&ndash;ftwrl-wait-threshold(=SECONDS)<a class="headerlink" href="#-ftwrl-wait-thresholdseconds" title="Permanent link">&para;</a></h3>
+immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+non-InnoDB data to avoid blocking DML queries that modify the InnoDB tables.</p>
+<h3 id="ftwrl-wait-threshold">ftwrl-wait-threshold<a class="headerlink" href="#ftwrl-wait-threshold" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ftwrl-wait-threshold=SECONDS</code></p>
 <p>This option specifies the query run time threshold which is used by
 xtrabackup to detect long-running queries with a non-zero value of
 <code>--ftwrl-wait-timeout</code>. <code>FLUSH TABLES WITH READ LOCK</code>
-is not started until such long-running queries exist. This option has no
-effect if <code>--ftwrl-wait-timeout</code> is <code>0</code>. Default value
-is <code>60</code> seconds. Where supported xtrabackup will
-automatically use <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup Locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
-non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
-<h3 id="-ftwrl-wait-query-typeallupdate">&ndash;ftwrl-wait-query-type(=all|update)<a class="headerlink" href="#-ftwrl-wait-query-typeallupdate" title="Permanent link">&para;</a></h3>
-<p>This option specifies which types of queries are allowed to complete before
-xtrabackup will issue the global lock. Default is <code>all</code>.</p>
-<h3 id="-galera-info">&ndash;galera-info()<a class="headerlink" href="#-galera-info" title="Permanent link">&para;</a></h3>
-<p>This option creates the <code>xtrabackup_galera_info</code> file which contains
-the local node state at the time of the backup. Option should be used when
-performing the backup of Percona XtraDB Cluster. It has no effect when
-backup locks are used to create the backup.</p>
-<h3 id="-generate-new-master-key">&ndash;generate-new-master-key()<a class="headerlink" href="#-generate-new-master-key" title="Permanent link">&para;</a></h3>
+is not started until such long-running queries exist.</p>
+<p>This option has no effect if <code>--ftwrl-wait-timeout</code> is <code>0</code>. The default value
+is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+non-InnoDB data to avoid blocking DML queries that modify InnoDB tables when backup locks are supported.</p>
+<h3 id="ftwrl-wait-query-type">ftwrl-wait-query-type<a class="headerlink" href="#ftwrl-wait-query-type" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ftwrl-wait-query-type=all|update</code>This option specifies which queries can be completed before xtrabackup issues the global lock. The default value is <code>all</code>.</p>
+<h3 id="galera-info">galera-info<a class="headerlink" href="#galera-info" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--galera-info</code></p>
+<p>This option creates the <code>xtrabackup_galera_info</code> file, which contains the local node state at the backup time. This option should be used when
+performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> are used to create the backup.</p>
+<h3 id="generate-new-master-key">generate-new-master-key<a class="headerlink" href="#generate-new-master-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--generate-new-master-key</code></p>
 <p>Generate a new master key when doing a copy-back.</p>
-<h3 id="-generate-transition-key">&ndash;generate-transition-key()<a class="headerlink" href="#-generate-transition-key" title="Permanent link">&para;</a></h3>
+<h3 id="generate-transition-key">generate-transition-key<a class="headerlink" href="#generate-transition-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--generate-transition-key</code></p>
 <p>xtrabackup needs to access the same keyring file or vault server
-during prepare and copy-back but it should not depend on whether the
+during prepare and copy-back operations but it should not depend on whether the
 server keys have been purged.</p>
 <p><code>--generate-transition-key</code> creates and adds to the keyring
 a transition key for xtrabackup to use if the master key used for
-encryption is not found because it has been rotated and purged.</p>
-<h3 id="-get-server-public-key">&ndash;get-server-public-key()<a class="headerlink" href="#-get-server-public-key" title="Permanent link">&para;</a></h3>
+encryption is not found because that key has been rotated and purged.</p>
+<h3 id="get-server-public-key">get-server-public-key<a class="headerlink" href="#get-server-public-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--get-server-public-key</code></p>
 <p>Get the server public key</p>
-<h3 id="-help">&ndash;help()<a class="headerlink" href="#-help" title="Permanent link">&para;</a></h3>
-<p>When run with this option or without any options xtrabackup displays
-information about how to run the program on the command line along with all
-supported options and variables with default values where appropriate.</p>
-<h3 id="-historyname">&ndash;history(=NAME)<a class="headerlink" href="#-historyname" title="Permanent link">&para;</a></h3>
+<h3 id="help">help<a class="headerlink" href="#help" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--help</code></p>
+<p>This option displays information about how to run the program along with supported options and variables with the default values, where appropriate.</p>
+<h3 id="history">history<a class="headerlink" href="#history" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--history=NAME</code></p>
 <p>This option enables the tracking of backup history in the
-<code>PERCONA_SCHEMA.xtrabackup_history</code> table. An optional history series name
-may be specified that will be placed with the history record for the current
-backup being taken.</p>
-<h3 id="-hosthost">&ndash;host(=HOST)<a class="headerlink" href="#-hosthost" title="Permanent link">&para;</a></h3>
+<code>PERCONA_SCHEMA.xtrabackup_history</code> table. You can specify a history series name placed with the current backup&rsquo;s history record.</p>
+<h3 id="host">host<a class="headerlink" href="#host" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--host=HOST</code></p>
 <p>This option accepts a string argument that specifies the host to use when
 connecting to the database server with TCP/IP. It is passed to the mysql
 child process without alteration. See mysql &ndash;help for details.</p>
-<h3 id="-incremental-basedirdirectory">&ndash;incremental-basedir(=DIRECTORY)<a class="headerlink" href="#-incremental-basedirdirectory" title="Permanent link">&para;</a></h3>
-<p>When creating an incremental backup, this is the directory containing the
-full backup that is the base dataset for the incremental backups.</p>
-<h3 id="-incremental-dirdirectory">&ndash;incremental-dir(=DIRECTORY)<a class="headerlink" href="#-incremental-dirdirectory" title="Permanent link">&para;</a></h3>
-<p>When preparing an incremental backup, this is the directory where the
-incremental backup is combined with the full backup to make a new full
-backup.</p>
-<h3 id="-incremental-force-scan">&ndash;incremental-force-scan()<a class="headerlink" href="#-incremental-force-scan" title="Permanent link">&para;</a></h3>
+<h3 id="incremental-basedir">incremental-basedir<a class="headerlink" href="#incremental-basedir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-basedir=DIRECTORY</code></p>
+<p>This is the directory that contains the full backup, which is the base dataset for the incremental backups.</p>
+<h3 id="incremental-dir">incremental-dir<a class="headerlink" href="#incremental-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-dir=DIRECTORY</code></p>
+<p>This is the directory where the incremental backup is combined with the full backup to make a new full backup.</p>
+<h3 id="incremental-force-scan">incremental-force-scan<a class="headerlink" href="#incremental-force-scan" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-force-scan</code></p>
 <p>When creating an incremental backup, force a full scan of the data pages in
 that instance.</p>
-<h3 id="-incremental-history-namename">&ndash;incremental-history-name(=name)<a class="headerlink" href="#-incremental-history-namename" title="Permanent link">&para;</a></h3>
+<h3 id="incremental-history-name">incremental-history-name<a class="headerlink" href="#incremental-history-name" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-history-name=name</code></p>
 <p>This option specifies the name of the backup series stored in the
-<code>PERCONA_SCHEMA.xtrabackup_history</code> history record to base an incremental
-backup on. xtrabackup will search the history table looking for the most
-recent (highest <code>innodb_to_lsn</code>), successful backup in the series and take
-the to_lsn value to use as the starting <code>lsn</code> for the incremental
-backup. This will be mutually exclusive with
-<code>--incremental-history-uuid</code>, <code>--incremental-basedir</code> and
-<code>--incremental-lsn</code>. If no valid lsn can be found (no series by that
-name, no successful backups by that name) xtrabackup will return with an
-error. It is used with the <code>--incremental</code> option.</p>
-<h3 id="-incremental-history-uuidname">&ndash;incremental-history-uuid(=name)<a class="headerlink" href="#-incremental-history-uuidname" title="Permanent link">&para;</a></h3>
-<p>This option specifies the UUID of the specific history record stored in the
-<code>PERCONA_SCHEMA.xtrabackup_history</code> to base an incremental backup on.
-<code>--incremental-history-name</code>, <code>--incremental-basedir</code> and
-<code>--incremental-lsn</code>. If no valid lsn can be found (no success record
-with that UUID) xtrabackup will return with an error. It is used with
-the –incremental option.</p>
-<h3 id="-incremental-lsnlsn">&ndash;incremental-lsn(=LSN)<a class="headerlink" href="#-incremental-lsnlsn" title="Permanent link">&para;</a></h3>
+<code>PERCONA_SCHEMA.xtrabackup_history</code> used as a base for an incremental backup. xtrabackup searches the history table looking for the most
+recent (highest <code>innodb_to_lsn</code>), successful backup in the series and takes the <code>to_lsn`` value to use as the starting</code>lsn` for the incremental
+backup.</p>
+<p>This options is mutually exclusive with
+<a href="#incremental-history-uuid"><code>--incremental-history-uuid</code></a>, <a href="#incremental-basedir"><code>--incremental-basedir</code></a>, and
+<a href="#incremental-lsn"><code>--incremental-lsn</code></a>.</p>
+<p>If no valid lsn can be found, either no series by that
+name or no successful backups by that name, xtrabackup returns an
+error.</p>
+<p>The option is used with the <code>--incremental</code> option.</p>
+<h3 id="incremental-history-uuid">incremental-history-uuid<a class="headerlink" href="#incremental-history-uuid" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-history-uuid=name</code></p>
+<p>This option specifies the Universal Unique Identifier (UUID) of the history record in <code>PERCONA_SCHEMA.xtrabackup_history</code> used as the base for an incremental backup.</p>
+<p>This options is mutually exclusive with <a href="#incremental-history-name"><code>--incremental-history-name</code></a>, <a href="#incremental-basedir"><code>--incremental-basedir</code></a>, and
+<a href="#incremental-lsn"><code>--incremental-lsn</code></a>.</p>
+<p>If there is no success record with that UUID, xtrabackup returns an error.</p>
+<p>The option is used with the <code>-–incremental</code> option.</p>
+<h3 id="incremental-lsn">incremental-lsn<a class="headerlink" href="#incremental-lsn" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-lsn=LSN</code></p>
 <p>When creating an incremental backup, you can specify the log sequence number
-(LSN) instead of specifying
-<code>--incremental-basedir</code>. For databases created in 5.1 and
-later, specify the LSN as a single 64-bit integer. </p>
+(LSN), a single 64-bit integer, instead of the  <a href="#incremental-basedir"><code>--incremental-basedir</code></a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>If a wrong LSN value is specified (a user error which Percona XtraBackup does not detect), the backup is unusable. Be careful!</p>
+<p>Percona XtraBackup does not detect if an incorrect LSN value is specified; the backup is unusable. Be careful!</p>
 </div>
-<h3 id="-innodbname">&ndash;innodb([=name])<a class="headerlink" href="#-innodbname" title="Permanent link">&para;</a></h3>
+<h3 id="innodb">innodb<a class="headerlink" href="#innodb" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--innodb=name</code></p>
 <p>This option is ignored for MySQL option compatibility.</p>
-<h3 id="-innodb-miscellaneous">&ndash;innodb-miscellaneous()<a class="headerlink" href="#-innodb-miscellaneous" title="Permanent link">&para;</a></h3>
-<p>There is a large group of InnoDB options that are normally read from the
-<code>my.cnf</code> configuration file, so that xtrabackup boots up its
-embedded InnoDB in the same configuration as your current server. You
-normally do not need to specify these explicitly. These options have the
-same behavior in InnoDB and XtraDB:</p>
-<h3 id="-keyring-file-datafilename">&ndash;keyring-file-data(=FILENAME)<a class="headerlink" href="#-keyring-file-datafilename" title="Permanent link">&para;</a></h3>
-<p>The path to the keyring file. Combine this option with
-<code>--xtrabackup-plugin-dir</code>.</p>
-<h3 id="-kill-long-queries-timeoutseconds">&ndash;kill-long-queries-timeout(=SECONDS)<a class="headerlink" href="#-kill-long-queries-timeoutseconds" title="Permanent link">&para;</a></h3>
+<h3 id="innodb-miscellaneous">innodb-miscellaneous<a class="headerlink" href="#innodb-miscellaneous" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--innodb-miscellaneous
+xtrabackup boots up its embedded InnoDB with the same configuration as your current server using the InnoDB options read from that server's</code>my.cnf` file. You do not need to specify these options explicitly.</p>
+<p>These options behave the same in either InnoDB or XtraDB.</p>
+<h3 id="keyring-file-data">keyring-file-data<a class="headerlink" href="#keyring-file-data" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--keyring-file-data=FILENAME</code></p>
+<p>Defines the path to the keyring file. You can combine this option with
+<a href="#xtrabackup-plugin-dir"><code>--xtrabackup-plugin-dir</code></a>.</p>
+<h3 id="kill-long-queries-timeout">kill-long-queries-timeout<a class="headerlink" href="#kill-long-queries-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--kill-long-queries-timeout=SECONDS</code></p>
 <p>This option specifies the number of seconds xtrabackup waits between
 starting <code>FLUSH TABLES WITH READ LOCK</code> and killing those queries that block
-it. Default is 0 seconds, which means xtrabackup will not attempt to kill
-any queries. In order to use this option xtrabackup user should have the
-<code>PROCESS</code> and <code>SUPER</code> privileges. Where supported, xtrabackup
-automatically uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
-non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
-<h3 id="-kill-long-query-typeallselect">&ndash;kill-long-query-type(=all|select)<a class="headerlink" href="#-kill-long-query-typeallselect" title="Permanent link">&para;</a></h3>
-<p>This option specifies which types of queries should be killed to unblock the
-global lock. Default is “select”.</p>
-<h3 id="-lock-ddl">&ndash;lock-ddl()<a class="headerlink" href="#-lock-ddl" title="Permanent link">&para;</a></h3>
-<p>Issue <code>LOCK TABLES FOR BACKUP</code> if it is supported by server (otherwise use
-<code>LOCK INSTANCE FOR BACKUP</code>) at the beginning of the backup to block all DDL
-operations.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Prior to Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup stops the SQL replica thread after the InnoDB tables and before the non-InnoDB tables are backed up.</p>
-<p>As of Percona XtraBackup 8.0.22-15.0, using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
-</div>
-<h3 id="-lock-ddl-per-table">&ndash;lock-ddl-per-table()<a class="headerlink" href="#-lock-ddl-per-table" title="Permanent link">&para;</a></h3>
+it. The default value is 0 (zero) seconds, which means xtrabackup does not kill
+any queries.</p>
+<p>To use this option xtrabackup user should have the
+<code>PROCESS</code> and <code>SUPER</code> privileges.</p>
+<p>Where supported, xtrabackup
+automatically uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
+<h3 id="kill-long-query-type">kill-long-query-type<a class="headerlink" href="#kill-long-query-type" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--kill-long-query-type=all|select</code></p>
+<p>This option specifies which queries should be killed to unblock the
+global lock. The default value is “select”.</p>
+<h3 id="lock-ddl">lock-ddl<a class="headerlink" href="#lock-ddl" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--lock-ddl</code></p>
+<p>Enabled by default to ensure that any DDL event does not corrupt the backup. Any DML events continue to occur. A DDL lock protects table and view definitions.</p>
+<p>If the option is disabled, a backup continues while concurrent DDL events are executed. These backups are invalid and fail in the Prepare step.</p>
+<p>Use a <a href="#safe-slave-backup">safe-slave-backup</a> option to stop a SQL replica thread before copying the InnoDB files.</p>
+<h3 id="lock-ddl-per-table">lock-ddl-per-table<a class="headerlink" href="#lock-ddl-per-table" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--lock-ddl-per-table</code></p>
+<p>Deprecated. Use the <a href="#lock-ddl"><code>–lock-ddl</code></a> option instead</p>
+<!--26-1-24-->
 <p>Lock DDL for each table before xtrabackup starts to copy
 it and until the backup is completed.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>As of Percona XtraBackup 8.0.15, the <code>–lock-ddl-per-table</code> option is deprecated. Use the <code>–lock-ddl</code> option instead.</p>
-</div>
-<h3 id="-lock-ddl-timeout">&ndash;lock-ddl-timeout()<a class="headerlink" href="#-lock-ddl-timeout" title="Permanent link">&para;</a></h3>
+<h3 id="lock-ddl-timeout">lock-ddl-timeout<a class="headerlink" href="#lock-ddl-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--lock-ddl-timeout</code></p>
 <p>If <code>LOCK TABLES FOR BACKUP</code> or <code>LOCK INSTANCE FOR BACKUP</code> does not return
-within given timeout, abort the backup.</p>
-<h3 id="-log">&ndash;log()<a class="headerlink" href="#-log" title="Permanent link">&para;</a></h3>
+within a given time, abort the backup.</p>
+<h3 id="log">log<a class="headerlink" href="#log" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--log</code></p>
 <p>This option is ignored for MySQL</p>
-<h3 id="-log-bin">&ndash;log-bin()<a class="headerlink" href="#-log-bin" title="Permanent link">&para;</a></h3>
+<h3 id="log-bin">log-bin<a class="headerlink" href="#log-bin" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--log-bin</code></p>
 <p>The base name for the log sequence.</p>
-<h3 id="-log-bin-indexname">&ndash;log-bin-index(=name)<a class="headerlink" href="#-log-bin-indexname" title="Permanent link">&para;</a></h3>
-<p>File that holds the names for binary log files.</p>
-<h3 id="-log-copy-interval">&ndash;log-copy-interval(=#)<a class="headerlink" href="#-log-copy-interval" title="Permanent link">&para;</a></h3>
+<h3 id="log-bin-index">log-bin-index<a class="headerlink" href="#log-bin-index" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--log-bin-index=name</code></p>
+<p>The file that stores the names for binary log files.</p>
+<h3 id="log-copy-interval">log-copy-interval<a class="headerlink" href="#log-copy-interval" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--log-copy-interval=#</code></p>
 <p>This option specifies the time interval between checks done by the log
-copying thread in milliseconds (default is 1 second).</p>
-<h3 id="-login-path">&ndash;login-path()<a class="headerlink" href="#-login-path" title="Permanent link">&para;</a></h3>
+copying thread in milliseconds. The default value is 1 second.</p>
+<h3 id="login-path">login-path<a class="headerlink" href="#login-path" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--login-path</code></p>
 <p>Read the given path from the login file.</p>
-<h3 id="-move-back">&ndash;move-back()<a class="headerlink" href="#-move-back" title="Permanent link">&para;</a></h3>
-<p>Move all the files in a previously made backup from the backup directory to
-their original locations. As this option removes backup files, it must be
-used with caution.</p>
-<h3 id="-no-backup-locks">&ndash;no-backup-locks()<a class="headerlink" href="#-no-backup-locks" title="Permanent link">&para;</a></h3>
-<p>Explicity disables the <code>--backup-locks</code> option which is enabled by
-default.</p>
-<h3 id="-no-defaults">&ndash;no-defaults()<a class="headerlink" href="#-no-defaults" title="Permanent link">&para;</a></h3>
+<h3 id="move-back">move-back<a class="headerlink" href="#move-back" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--move-back</code></p>
+<p>Move all files in a previous backup from the backup directory to
+their original locations.</p>
+<p>Use this option with caution since the operation removes backup files.</p>
+<h3 id="no-backup-locks">no-backup-locks<a class="headerlink" href="#no-backup-locks" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--no-backup-locks</code></p>
+<p>Explicity disables the <a href="#backup-locks"><code>--backup-locks</code></a> option which is enabled by default.</p>
+<h3 id="no-defaults">no-defaults<a class="headerlink" href="#no-defaults" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--no-defaults</code></p>
 <p>The default options are only read from the login file.</p>
-<h3 id="-no-lock">&ndash;no-lock()<a class="headerlink" href="#-no-lock" title="Permanent link">&para;</a></h3>
-<p>Disables table lock with <code>FLUSH TABLES WITH READ
+<h3 id="no-lock">no-lock<a class="headerlink" href="#no-lock" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--no-lock</code></p>
+<p>Disables the table lock with <code>FLUSH TABLES WITH READ
 LOCK</code>. Use it only if all your tables are InnoDB and you do not care
-about the binary log position of the backup. This option shouldn’t be used if
-there are any <code>DDL</code> statements being executed or if any updates are
-happening on non-InnoDB tables (this includes the system MyISAM tables in the
-mysql database), otherwise it could lead to an inconsistent backup. Where
-supported xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
-non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.  If
-you are considering to use this because your backups are failing to acquire
-the lock, this could be because of incoming replication events are preventing
-the lock from succeeding. Please try using <code>--safe-slave-backup</code> to
-momentarily stop the replication replica thread, this may help the backup to
-succeed and you do not need to use this option.</p>
-<h3 id="-no-server-version-check">&ndash;no-server-version-check()<a class="headerlink" href="#-no-server-version-check" title="Permanent link">&para;</a></h3>
-<p>Implemented in Percona XtraBackup 8.0.21.</p>
+about the binary log position of the backup. This option shouldn’t be used if any DDL statements are being executed or updates are
+happening on non-InnoDB tables; this includes the system MyISAM tables in the
+mysql database. Otherwise, those operations could lead to an inconsistent backup.</p>
+<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
+<p>If you consider using this option because your backups fail to acquire
+the lock, maybe incoming replication events prevent
+the lock from succeeding. Try the <code>--safe-slave-backup</code> option to stop the replication replica thread momentarily. The <code>--safe-slave-backup</code> option may help the backup to succeed and avoid using this option.</p>
+<h3 id="no-server-version-check">no-server-version-check<a class="headerlink" href="#no-server-version-check" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--no-server-version-check</code></p>
 <p>The <code>--no-server-version-check</code> option disables the server version check.</p>
 <p>The default behavior runs a check that compares the source system version to the Percona XtraBackup version. If the source system version is higher than the XtraBackup version, the backup is aborted with a message.</p>
 <p>Adding the option overrides this check, and the backup proceeds, but there may be issues with the backup.</p>
-<p>See Server Version and Backup Version Comparison for more information.</p>
-<h3 id="-no-version-check">&ndash;no-version-check()<a class="headerlink" href="#-no-version-check" title="Permanent link">&para;</a></h3>
-<p>This option disables the version check. If you do not pass this option, the
-automatic version check is enabled implicitly when xtrabackup runs
-in the <code>--backup</code> mode. To disable the version check, you should pass
-explicitly the <code>--no-version-check</code> option when invoking xtrabackup.</p>
+<p>See <a href="server-backup-version-comparison.html">Server Version and Backup Version Comparison</a> for more information.</p>
+<h3 id="no-version-check">no-version-check<a class="headerlink" href="#no-version-check" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--no-version-check</code></p>
+<p>This option disables the version check. </p>
+<p>If you do not pass this option, xtrabackup implicitly enables the
+automatic version check in the <code>--backup</code> mode. </p>
+<p>To disable the version check, invoke xtrabackup and explicitly pass this option.</p>
 <p>When the automatic version check is enabled, xtrabackup performs a
 version check against the server on the backup stage after creating a server
 connection. xtrabackup sends the following information to the server:</p>
@@ -6394,205 +6497,231 @@ connection. xtrabackup sends the following information to the server:</p>
 <p>Perl version</p>
 </li>
 </ul>
-<p>Each piece of information has a unique identifier. This is a MD5 hash value
-that Percona Toolkit uses to obtain statistics about how it is used. This is
-a random UUID; no client information is either collected or stored.</p>
-<h3 id="-open-files-limit">&ndash;open-files-limit(=#)<a class="headerlink" href="#-open-files-limit" title="Permanent link">&para;</a></h3>
-<p>The maximum number of file descriptors to reserve with setrlimit().</p>
-<h3 id="-parallel">&ndash;parallel(=#)<a class="headerlink" href="#-parallel" title="Permanent link">&para;</a></h3>
+<p>Each piece of information has a unique identifier. This identifier is a MD5 hash value
+that Percona Toolkit uses to obtain statistics about its use. This information is
+a random UUID; no client information is collected or stored.</p>
+<h3 id="open-files-limit">open-files-limit<a class="headerlink" href="#open-files-limit" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--open-files-limit=#</code></p>
+<p>The maximum number of file descriptors to reserve with <a href="https://linux.die.net/man/2/setrlimit">setrlimit</a>git .</p>
+<h3 id="parallel">parallel<a class="headerlink" href="#parallel" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--parallel=#</code></p>
 <p>This option specifies the number of threads to use to copy multiple data
-files concurrently when creating a backup. The default value is 1 (i.e., no
-concurrent transfer). In Percona XtraBackup 2.3.10 and newer, this option
-can be used with the <code>--copy-back</code> option to copy the user
-data files in parallel (redo logs and system tablespaces are copied in the
-main thread).</p>
-<h3 id="-passwordpassword">&ndash;password(=PASSWORD)<a class="headerlink" href="#-passwordpassword" title="Permanent link">&para;</a></h3>
-<p>This option specifies the password to use when connecting to the database.
-It accepts a string argument. See mysql &ndash;help for details.</p>
-<h3 id="-plugin-load">&ndash;plugin-load()<a class="headerlink" href="#-plugin-load" title="Permanent link">&para;</a></h3>
-<p>List of plugins to load.</p>
-<h3 id="-portport">&ndash;port(=PORT)<a class="headerlink" href="#-portport" title="Permanent link">&para;</a></h3>
-<p>This option accepts a string argument that specifies the port to use when
-connecting to the database server with TCP/IP. It is passed to the
-mysql child process without alteration. See mysql
-&ndash;help for details.</p>
-<h3 id="-prepare">&ndash;prepare()<a class="headerlink" href="#-prepare" title="Permanent link">&para;</a></h3>
-<p>Makes xtrabackup perform a recovery on a backup created with
-<code>--backup</code>, so that it is ready to use. See
-preparing a backup.</p>
-<h3 id="-print-defaults">&ndash;print-defaults()<a class="headerlink" href="#-print-defaults" title="Permanent link">&para;</a></h3>
-<p>Print the program argument list and exit. Must be given as the first option
-on the command-line.</p>
-<h3 id="-print-param">&ndash;print-param()<a class="headerlink" href="#-print-param" title="Permanent link">&para;</a></h3>
-<p>Makes xtrabackup print out parameters that can be used for
-copying the data files back to their original locations to restore them.</p>
-<h3 id="-read-buffer-size">&ndash;read-buffer-size()<a class="headerlink" href="#-read-buffer-size" title="Permanent link">&para;</a></h3>
-<p>Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <code>--encrypt-chunk-size</code>.</p>
-<h3 id="-rebuild-indexes">&ndash;rebuild-indexes()<a class="headerlink" href="#-rebuild-indexes" title="Permanent link">&para;</a></h3>
-<p>Rebuilds indexes in a compact backup. This option only has effect when the
-<code>--prepare</code> and <code>--rebuild-threads</code> options are provided.</p>
-<h3 id="-rebuild-threads">&ndash;rebuild-threads(=#)<a class="headerlink" href="#-rebuild-threads" title="Permanent link">&para;</a></h3>
+files concurrently when creating a backup. The default value is 1, there is no
+concurrent transfer. This option can be used with the <code>--copy-back</code> option to copy the user data files in parallel. The redo logs and system tablespaces are copied in the main thread.</p>
+<h3 id="password">password<a class="headerlink" href="#password" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--password=PASSWORD</code></p>
+<p>This option accepts a string argument that specifies the password used when connecting to the database.</p>
+<h3 id="plugin-load">plugin-load<a class="headerlink" href="#plugin-load" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--plugin-load</code></p>
+<p>A list of plugins to load.</p>
+<h3 id="port">port<a class="headerlink" href="#port" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--port=PORT</code></p>
+<p>This option accepts a string argument specifying the TCP/IP port used to connect to the database server. This option is passed to the mysql child process without alteration.</p>
+<h3 id="prepare">prepare<a class="headerlink" href="#prepare" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--prepare</code></p>
+<p>Makes xtrabackup perform a recovery on a backup created with <code>--backup</code>, so that the backup data is ready to use.</p>
+<p>For details, see <a href="prepare-full-backup.html">Prepare a full backup</a>.</p>
+<h3 id="print-defaults">print-defaults<a class="headerlink" href="#print-defaults" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--print-defaults</code></p>
+<p>Prints the program argument list and exit and must be the first option on the command line.</p>
+<h3 id="print-param">print-param<a class="headerlink" href="#print-param" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--print-param</code></p>
+<p>Prints the parameters that can be used for copying the data files back to their original locations to restore them.</p>
+<h3 id="read-buffer-size">read-buffer-size<a class="headerlink" href="#read-buffer-size" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--read-buffer-size</code></p>
+<p>Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size.</p>
+<p>To adjust the chunk size for encrypted files, use <a href="#read-buffer-size"><code>--read-buffer-size</code></a> and <a href="#encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
+<h3 id="rebuild-indexes">rebuild-indexes<a class="headerlink" href="#rebuild-indexes" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rebuild-indexes</code></p>
+<p>Rebuilds indexes in a compact backup.</p>
+<p>This option only has effect when the <a href="#prepare"><code>--prepare</code></a> and <a href="#rebuild-threads"><code>--rebuild-threads</code></a> options are provided.</p>
+<h3 id="rebuild-threads">rebuild-threads<a class="headerlink" href="#rebuild-threads" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rebuild-threads=#</code></p>
 <p>Uses the given number of threads to rebuild indexes in a compact backup. This
-option only has effect with the <code>--prepare</code> and
-<code>--rebuild-indexes</code> options.</p>
-<h3 id="-register-redo-log-consumer">&ndash;register-redo-log-consumer()<a class="headerlink" href="#-register-redo-log-consumer" title="Permanent link">&para;</a></h3>
-<p>The <code>--register-redo-log-consumer</code> parameter is disabled by default. When enabled, this parameter lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. Based on the redo log consumption, the server determines when it can purge the log.</p>
-<h3 id="-remove-original">&ndash;remove-original()<a class="headerlink" href="#-remove-original" title="Permanent link">&para;</a></h3>
-<p>This option when specified will remove <code>.qp</code>, <code>.xbcrypt</code> and <code>.qp.xbcrypt</code> files after decryption and decompression.</p>
-<h3 id="-rocksdb-datadir">&ndash;rocksdb-datadir()<a class="headerlink" href="#-rocksdb-datadir" title="Permanent link">&para;</a></h3>
-<p>RocksDB data directory</p>
-<h3 id="-rocksdb-wal-dir">&ndash;rocksdb-wal-dir()<a class="headerlink" href="#-rocksdb-wal-dir" title="Permanent link">&para;</a></h3>
+option only affects the <code>-</code>-prepare<code>](#prepare) and
+[</code>&ndash;rebuild-indexes`](#rebuild-threads) options.</p>
+<h3 id="register-redo-log-consumer">register-redo-log-consumer<a class="headerlink" href="#register-redo-log-consumer" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--register-redo-log-consumer</code></p>
+<p>This option is disabled by default.</p>
+<p>When enabled, this options lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. The server determines when to purge the log based on the redo log consumption.</p>
+<h3 id="remove-original">remove-original<a class="headerlink" href="#remove-original" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--remove-original</code></p>
+<p>This option removes <code>.qp</code>, <code>.xbcrypt</code> and <code>.qp.xbcrypt</code> files after decryption and decompression.</p>
+<h3 id="rocksdb-datadir">rocksdb-datadir<a class="headerlink" href="#rocksdb-datadir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rocksdb-datadir</code></p>
+<p>Names the RocksDB data directory</p>
+<h3 id="rocksdb-wal-dir">rocksdb-wal-dir<a class="headerlink" href="#rocksdb-wal-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rocksdb-wal-dir</code></p>
 <p>RocksDB WAL directory.</p>
-<h3 id="-rocksdb-checkpoint-max-age">&ndash;rocksdb-checkpoint-max-age()<a class="headerlink" href="#-rocksdb-checkpoint-max-age" title="Permanent link">&para;</a></h3>
-<p>The checkpoint cannot be older than this number of seconds when the backup
-completes.</p>
-<h3 id="-rocksdb-checkpoint-max-count">&ndash;rocksdb-checkpoint-max-count()<a class="headerlink" href="#-rocksdb-checkpoint-max-count" title="Permanent link">&para;</a></h3>
-<p>Complete the backup even if the checkpoint age requirement has not been met after
-this number of checkpoints.</p>
-<h3 id="-rollback-prepared-trx">&ndash;rollback-prepared-trx()<a class="headerlink" href="#-rollback-prepared-trx" title="Permanent link">&para;</a></h3>
+<h3 id="rocksdb-checkpoint-max-age">rocksdb-checkpoint-max-age<a class="headerlink" href="#rocksdb-checkpoint-max-age" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rocksdb-checkpoint-max-age</code></p>
+<p>The checkpoint cannot be older than this number of seconds when the backup is complete.</p>
+<h3 id="rocksdb-checkpoint-max-count">rocksdb-checkpoint-max-count<a class="headerlink" href="#rocksdb-checkpoint-max-count" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rocksdb-checkpoint-max-count</code></p>
+<p>Complete the backup even if the checkpoint age requirement has not been met after this number of checkpoints.</p>
+<h3 id="rollback-prepared-trx">rollback-prepared-trx<a class="headerlink" href="#rollback-prepared-trx" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rollback-prepared-trx</code></p>
 <p>Force rollback prepared InnoDB transactions.</p>
-<h3 id="-rsync">&ndash;rsync()<a class="headerlink" href="#-rsync" title="Permanent link">&para;</a></h3>
-<p>Uses the rsync utility to optimize local file transfers. When this
-option is specified, xtrabackup uses rsync to copy
-all non-InnoDB files instead of spawning a separate cp for each
-file, which can be much faster for servers with a large number of databases
-or tables.  This option cannot be used together with <code>--stream</code>.</p>
-<h3 id="-safe-slave-backup">&ndash;safe-slave-backup()<a class="headerlink" href="#-safe-slave-backup" title="Permanent link">&para;</a></h3>
-<p>When specified, xtrabackup will stop the replica SQL thread just before
-running <code>FLUSH TABLES WITH READ LOCK</code> and wait to start backup until
-<code>Slave_open_temp_tables</code> in <code>SHOW STATUS</code> is zero. If there are no open
-temporary tables, the backup will take place, otherwise the SQL thread will
-be started and stopped until there are no open temporary tables. The backup
-will fail if <code>Slave_open_temp_tables</code> does not become zero after
-<code>--safe-slave-backup-timeout</code> seconds. The replication SQL
-thread will be restarted when the backup finishes. This option is
-implemented in order to deal with <a href="https://dev.mysql.com/doc/refman/8.2/en/replication-features-temptables.html">replicating temporary tables</a> and isn’t necessary with Row-Based-Replication.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<h3 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rsync</code></p>
+<p>Uses the rsync utility to optimize local file transfers. The xtrabackup binary uses rsync to copy all non-InnoDB files instead of spawning a separate cp for each file, which can be much faster for servers with many databases or tables.</p>
+<p>You cannot use this option with <a href="#stream"><code>--stream</code></a>.</p>
+<h3 id="safe-slave-backup">safe-slave-backup<a class="headerlink" href="#safe-slave-backup" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--safe-slave-backup</code></p>
+<p>When specified, xtrabackup stops the replica SQL thread just before
+running <code>FLUSH TABLES WITH READ LOCK</code> and waits to start the backup operation until <code>Slave_open_temp_tables`` in</code>SHOW STATUS` is zero.</p>
+<p>If there are no open temporary tables, the backup takes place, otherwise the SQL thread is started and stopped until there are no open temporary tables. The backup fails if <code>Slave_open_temp_tables</code> does not become zero after
+<a href="#safe-slave-backup-timeout"><code>--safe-slave-backup-timeout</code></a> seconds. The replication SQL thread is restarted when the backup is complete.
+This option is implemented to deal with <a href="https://dev.mysql.com/doc/refman/8.0/en/replication-features-temptables.html">replication and temporary tables</a> and isn’t necessary with row-based replication.</p>
 <p>Using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
-</div>
-<h3 id="-safe-slave-backup-timeoutseconds">&ndash;safe-slave-backup-timeout(=SECONDS)<a class="headerlink" href="#-safe-slave-backup-timeoutseconds" title="Permanent link">&para;</a></h3>
-<p>How many seconds <code>--safe-slave-backup</code> should wait for
-<code>Slave_open_temp_tables</code> to become zero. Defaults to 300 seconds.</p>
-<h3 id="-secure-auth">&ndash;secure-auth()<a class="headerlink" href="#-secure-auth" title="Permanent link">&para;</a></h3>
-<p>Refuse client connecting to server if it uses old (pre-4.1.1) protocol.
-(Enabled by default; use –skip-secure-auth to disable.)</p>
-<h3 id="-server-id">&ndash;server-id(=#)<a class="headerlink" href="#-server-id" title="Permanent link">&para;</a></h3>
+<h3 id="safe-slave-backup-timeout">safe-slave-backup-timeout<a class="headerlink" href="#safe-slave-backup-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--safe-slave-backup-timeout=SECONDS</code></p>
+<p>How many seconds the <code>--safe-slave-backup</code> option waits for the <code>Slave_open_temp_tables</code> to become zero. The default value is 300 seconds.</p>
+<h3 id="secure-auth">secure-auth<a class="headerlink" href="#secure-auth" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--secure-auth</code></p>
+<p>Refuse the client from connecting to the server if it uses the old protocol. This option is enabled by default. Disable this options with <code>–skip-secure-auth</code>.</p>
+<h3 id="server-id">server-id<a class="headerlink" href="#server-id" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--server-id=#</code></p>
 <p>The server instance being backed up.</p>
-<h3 id="-server-public-key-path">&ndash;server-public-key-path()<a class="headerlink" href="#-server-public-key-path" title="Permanent link">&para;</a></h3>
+<h3 id="server-public-key-path">server-public-key-path<a class="headerlink" href="#server-public-key-path" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--server-public-key-path</code></p>
 <p>The file path to the server public RSA key in the PEM format.</p>
-<h3 id="-skip-tables-compatibility-check">&ndash;skip-tables-compatibility-check()<a class="headerlink" href="#-skip-tables-compatibility-check" title="Permanent link">&para;</a></h3>
-<p>See <code>--tables-compatibility-check</code>.</p>
-<h3 id="-slave-info">&ndash;slave-info()<a class="headerlink" href="#-slave-info" title="Permanent link">&para;</a></h3>
+<h3 id="skip-tables-compatibility-check">skip-tables-compatibility-check<a class="headerlink" href="#skip-tables-compatibility-check" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--skip-tables-compatibility-check</code></p>
+<p>See <a href="#tables-compatibility-check"><code>--tables-compatibility-check</code></a>.</p>
+<h3 id="slave-info">slave-info<a class="headerlink" href="#slave-info" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--slave-info</code></p>
 <p>This option is useful when backing up a replication replica server. It prints
 the binary log position of the source server. It also writes the binary log
-coordinates to the <code>xtrabackup_slave_info</code> file as a <code>CHANGE MASTER</code>
-command. A new replica for this source can be set up by starting a replica server
-on this backup and issuing a <code>CHANGE MASTER</code> command with the binary log
+coordinates to the <code>xtrabackup_slave_info</code> file as a <a href="https://dev.mysql.com/doc/refman/8.3/en/change-master-to.html"><code>CHANGE MASTER</code></a>
+command.</p>
+<p>A new replica for this source can be set up by starting a replica server on this backup and issuing a <a href="https://dev.mysql.com/doc/refman/8.3/en/change-master-to.html"><code>CHANGE MASTER</code></a> command with the binary log
 position saved in the <code>xtrabackup_slave_info</code> file.</p>
-<h3 id="-socket">&ndash;socket()<a class="headerlink" href="#-socket" title="Permanent link">&para;</a></h3>
+<h3 id="socket">socket<a class="headerlink" href="#socket" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--socket</code></p>
 <p>This option accepts a string argument that specifies the socket to use when
 connecting to the local database server with a UNIX domain socket. It is
-passed to the mysql child process without alteration. See mysql
+passed to the MySQL child process without alteration. See mysql
 &ndash;help for details.</p>
-<h3 id="-ssl">&ndash;ssl()<a class="headerlink" href="#-ssl" title="Permanent link">&para;</a></h3>
+<h3 id="ssl">ssl<a class="headerlink" href="#ssl" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl</code></p>
 <p>Enable secure connection.</p>
-<h3 id="-ssl-ca">&ndash;ssl-ca()<a class="headerlink" href="#-ssl-ca" title="Permanent link">&para;</a></h3>
-<p>Path of the file which contains list of trusted SSL CAs.</p>
-<h3 id="-ssl-capath">&ndash;ssl-capath()<a class="headerlink" href="#-ssl-capath" title="Permanent link">&para;</a></h3>
-<p>Directory path that contains trusted SSL CA certificates in PEM format.</p>
-<h3 id="-ssl-cert">&ndash;ssl-cert()<a class="headerlink" href="#-ssl-cert" title="Permanent link">&para;</a></h3>
-<p>Path of the file which contains X509 certificate in PEM format.</p>
-<h3 id="-ssl-cipher">&ndash;ssl-cipher()<a class="headerlink" href="#-ssl-cipher" title="Permanent link">&para;</a></h3>
-<p>List of permitted ciphers to use for connection encryption.</p>
-<h3 id="-ssl-crl">&ndash;ssl-crl()<a class="headerlink" href="#-ssl-crl" title="Permanent link">&para;</a></h3>
-<p>Path of the file that contains certificate revocation lists.
-MySQL server documentation.</p>
-<h3 id="-ssl-crlpath">&ndash;ssl-crlpath()<a class="headerlink" href="#-ssl-crlpath" title="Permanent link">&para;</a></h3>
-<p>Path of directory that contains certificate revocation list files. </p>
-<h3 id="-ssl-fips-mode">&ndash;ssl-fips-mode()<a class="headerlink" href="#-ssl-fips-mode" title="Permanent link">&para;</a></h3>
-<p>SSL FIPS mode (applies only for OpenSSL); permitted values are: OFF, ON, STRICT.</p>
-<h3 id="-ssl-key">&ndash;ssl-key()<a class="headerlink" href="#-ssl-key" title="Permanent link">&para;</a></h3>
-<p>Path of file that contains X509 key in PEM format.</p>
-<h3 id="-ssl-mode">&ndash;ssl-mode()<a class="headerlink" href="#-ssl-mode" title="Permanent link">&para;</a></h3>
-<p>Security state of connection to server.</p>
-<h3 id="-ssl-verify-server-cert">&ndash;ssl-verify-server-cert()<a class="headerlink" href="#-ssl-verify-server-cert" title="Permanent link">&para;</a></h3>
-<p>Verify server certificate Common Name value against host name used when connecting to server.</p>
-<h3 id="-streamformat">&ndash;stream(=FORMAT)<a class="headerlink" href="#-streamformat" title="Permanent link">&para;</a></h3>
+<h3 id="ssl-ca">ssl-ca<a class="headerlink" href="#ssl-ca" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-ca</code></p>
+<p>The path of the file contains a list of trusted SSL CAs.</p>
+<h3 id="ssl-capath">ssl-capath<a class="headerlink" href="#ssl-capath" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-capath</code></p>
+<p>The directory path that contains trusted SSL CA files in PEM format.</p>
+<h3 id="ssl-cert">ssl-cert<a class="headerlink" href="#ssl-cert" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-cert</code></p>
+<p>The path of the file contains the X509 certificate in PEM format.</p>
+<h3 id="ssl-cipher">ssl-cipher<a class="headerlink" href="#ssl-cipher" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-cipher</code></p>
+<p>The list of the permitted ciphers to use for connection encryption.</p>
+<h3 id="ssl-crl">ssl-crl<a class="headerlink" href="#ssl-crl" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-crl</code></p>
+<p>The path of the file that contains certificate revocation lists.</p>
+<h3 id="ssl-crlpath">ssl-crlpath<a class="headerlink" href="#ssl-crlpath" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-crlpath</code></p>
+<p>The path of the directory that contains the certificate revocation list files.</p>
+<h3 id="ssl-fips-mode">ssl-fips-mode<a class="headerlink" href="#ssl-fips-mode" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-fips-mode</code></p>
+<p>The SSL FIPS mode applies only for OpenSSL; permitted values are OFF, ON, and STRICT.</p>
+<h3 id="ssl-key">ssl-key<a class="headerlink" href="#ssl-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-key</code></p>
+<p>The path of the file that contains the X509 key in PEM format.</p>
+<h3 id="ssl-mode">ssl-mode<a class="headerlink" href="#ssl-mode" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-mode</code></p>
+<p>The security state of connection to the server.</p>
+<h3 id="ssl-verify-server-cert">ssl-verify-server-cert<a class="headerlink" href="#ssl-verify-server-cert" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-verify-server-cert</code></p>
+<p>Verify the server certificate Common Name value against the hostname used when connecting to the server.</p>
+<h3 id="stream">stream<a class="headerlink" href="#stream" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--stream=FORMAT</code></p>
 <p>Stream all backup files to the standard output in the specified format.
 Currently, this option only supports the xbstream format.</p>
-<h3 id="-strict">&ndash;strict()<a class="headerlink" href="#-strict" title="Permanent link">&para;</a></h3>
+<h3 id="strict">strict<a class="headerlink" href="#strict" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--strict</code></p>
 <p>If this option is specified, xtrabackup fails with an error when invalid
 parameters are passed.</p>
-<h3 id="-tablesname">&ndash;tables(=name)<a class="headerlink" href="#-tablesname" title="Permanent link">&para;</a></h3>
-<p>A regular expression against which the full tablename, in
-<code>databasename.tablename</code> format, is matched. If the name matches, the
-table is backed up. See partial backups.</p>
-<h3 id="-tables-compatibility-check">&ndash;tables-compatibility-check()<a class="headerlink" href="#-tables-compatibility-check" title="Permanent link">&para;</a></h3>
+<h3 id="tables">tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tables=name</code></p>
+<p>A regular expression against which the full table name in the <code>databasename.tablename</code> format is matched. If the name matches, the
+table is backed up. See <a href="create-partial-backup.html">Create a partial backup</a>.</p>
+<h3 id="tables-compatibility-check">tables-compatibility-check<a class="headerlink" href="#tables-compatibility-check" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tables-compatibility-check</code></p>
 <p>Enables the engine compatibility warning. The default value is
-ON. To disable the engine compatibility warning use
-<code>--skip-tables-compatibility-check</code>.</p>
-<h3 id="-tables-excludename">&ndash;tables-exclude(=name)<a class="headerlink" href="#-tables-excludename" title="Permanent link">&para;</a></h3>
+<code>ON</code>. To disable the engine compatibility warning, use <code>--</code>skip-tables-compatibility-check`](#skip-tables-compatibility-check).</p>
+<h3 id="tables-exclude">tables-exclude<a class="headerlink" href="#tables-exclude" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tables-exclude=name</code></p>
 <p>Filtering by regexp for table names. Operates the same
-way as <code>--tables</code>, but matched names are excluded from
+way as <a href="#tables"><code>--tables</code></a>, but matched names are excluded from
 backup. Note that this option has a higher priority than
 <code>--tables</code>.</p>
-<h3 id="-tables-filename">&ndash;tables-file(=name)<a class="headerlink" href="#-tables-filename" title="Permanent link">&para;</a></h3>
-<p>A file containing one table name per line, in databasename.tablename format.
+<h3 id="tables-file">tables-file<a class="headerlink" href="#tables-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tables-file=name</code></p>
+<p>A file containing one table name per line in <code>databasename.tablename</code> format.
 The backup will be limited to the specified tables.</p>
-<h3 id="-target-dirdirectory">&ndash;target-dir(=DIRECTORY)<a class="headerlink" href="#-target-dirdirectory" title="Permanent link">&para;</a></h3>
+<h3 id="target-dir">target-dir<a class="headerlink" href="#target-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--target-dir=DIRECTORY</code></p>
 <p>This option specifies the destination directory for the backup. If the
 directory does not exist, xtrabackup creates it. If the directory
 does exist and is empty, xtrabackup will succeed.
-xtrabackup will not overwrite existing files, however; it will
-fail with operating system error 17, <code>file exists</code>.</p>
-<p>If this option is a relative path, it is interpreted as being relative to
+xtrabackup does not overwrite existing files, however, the operation fails with the operating system error 17, <code>file exists</code>.</p>
+<p>If this option is a relative path, it is interpreted as relative to
 the current working directory from which xtrabackup is executed.</p>
-<p>In order to perform a backup, you need <code>READ</code>, <code>WRITE</code>, and <code>EXECUTE</code>
+<p>To perform a backup, you need <code>READ</code>, <code>WRITE</code>, and <code>EXECUTE</code>
 permissions at a filesystem level for the directory that you supply as the
 value of <code>--target-dir</code>.</p>
-<h3 id="-innodb-temp-tablespaces-dirdirectory">&ndash;innodb-temp-tablespaces-dir(=DIRECTORY)<a class="headerlink" href="#-innodb-temp-tablespaces-dirdirectory" title="Permanent link">&para;</a></h3>
-<p>Directory where temp tablespace files live, this path can be absolute.</p>
-<h3 id="-throttle">&ndash;throttle(=#)<a class="headerlink" href="#-throttle" title="Permanent link">&para;</a></h3>
+<h3 id="innodb-temp-tablespaces-dir">innodb-temp-tablespaces-dir<a class="headerlink" href="#innodb-temp-tablespaces-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--innodb-temp-tablespaces-dir=DIRECTORY</code></p>
+<p>The location of the directory for the temp tablespace files. This path can be absolute.</p>
+<h3 id="throttle">throttle<a class="headerlink" href="#throttle" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--throttle=#</code></p>
 <p>This option limits the number of chunks copied per second. The chunk size is
-10 MB. </p>
+10 MB.</p>
 <p>To limit the bandwidth to 10 MB/s, set the option to 1.</p>
-<h3 id="-tls-ciphersuites">&ndash;tls-ciphersuites()<a class="headerlink" href="#-tls-ciphersuites" title="Permanent link">&para;</a></h3>
-<p>TLS v1.3 cipher to use.</p>
-<h3 id="-tls-version">&ndash;tls-version()<a class="headerlink" href="#-tls-version" title="Permanent link">&para;</a></h3>
-<p>TLS version to use, permitted values are: TLSv1, TLSv1.1,
+<h3 id="tls-ciphersuites">tls-ciphersuites<a class="headerlink" href="#tls-ciphersuites" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tls-ciphersuites</code></p>
+<p>The TLS v1.3 cipher to use.</p>
+<h3 id="tls-version">tls-version<a class="headerlink" href="#tls-version" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tls-version</code></p>
+<p>Defines which TLS version to use. The permitted values are: TLSv1, TLSv1.1,
 TLSv1.2, TLSv1.3.</p>
-<h3 id="-tmpdirname">&ndash;tmpdir(=name)<a class="headerlink" href="#-tmpdirname" title="Permanent link">&para;</a></h3>
-<p>Specify the directory that will be used to store temporary files during the
+<h3 id="tmpdir">tmpdir<a class="headerlink" href="#tmpdir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tmpdir=name</code></p>
+<p>Specify the directory used to store temporary files during the
 backup</p>
-<h3 id="-transition-keyname">&ndash;transition-key(=name)<a class="headerlink" href="#-transition-keyname" title="Permanent link">&para;</a></h3>
+<h3 id="transition-key">transition-key<a class="headerlink" href="#transition-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--transition-key=name</code></p>
 <p>This option is used to enable processing the backup without accessing the
 keyring vault server. In this case, xtrabackup derives the AES
-encryption key from the specified passphrase and uses it to encrypt
-tablespace keys of tablespaces being backed up.</p>
+encryption key from the specified passphrase and uses it to encrypt the tablespace keys of tablespaces being backed up.</p>
 <p>If <code>--transition-key</code> does not have any
 value, xtrabackup will ask for it. The same passphrase should be
 specified for the <code>--prepare</code> command.</p>
-<h3 id="-use-free-memory-pct">&ndash;use-free-memory-pct()<a class="headerlink" href="#-use-free-memory-pct" title="Permanent link">&para;</a></h3>
-<p>The <code>--use-free-memory-pct</code> is a <a href="glossary.html#tech-preview">tech preview</a> option. Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.</p>
-<p>Implemented in Percona XtraBackup 8.0.30-23, this option lets you configure the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The option controls the amount of free memory that can be used to <code>--prepare</code> a backup. The default value is 0 (zero) which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100. </p>
-<p>This option works, only if <code>--estimate-memory</code> option is enabled. If the <code>--estimate-memory</code> option is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
+<h3 id="use-free-memory-pct">use-free-memory-pct<a class="headerlink" href="#use-free-memory-pct" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--use-free-memory-pct</code></p>
+<p>The <code>--use-free-memory-pct</code> is a <a href="glossary.html#tech-preview">tech preview</a> option.</p>
+<p>This option lets you configure the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The option controls the amount of free memory that can be used to <code>--prepare</code> a backup. The default value is 0 (zero), which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100.</p>
+<p>This option works only if <code>--estimate-memory</code> option is enabled. If the <code>--estimate-memory</code> option is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
-<h3 id="-use-memory">&ndash;use-memory()<a class="headerlink" href="#-use-memory" title="Permanent link">&para;</a></h3>
-<p>This option affects how much memory is allocated and is similar to <code>innodb_buffer_pool_size</code>. This option is only relevant in the <code>--prepare</code> phase. The default value is 100MB. The recommended value is between 1GB to 2GB. Multiple values are supported if you provide the unit (for example, 1MB, 1M, 1GB, 1G).</p>
-<h3 id="-userusername">&ndash;user(=USERNAME)<a class="headerlink" href="#-userusername" title="Permanent link">&para;</a></h3>
-<p>This option specifies the MySQL username used when connecting to the server,
-if that’s not the current user. The option accepts a string argument. See
+<h3 id="use-memory">use-memory<a class="headerlink" href="#use-memory" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--use-memory</code></p>
+<p>This option affects how much memory is allocated and is similar to <code>innodb_buffer_pool_size</code>. This option is only relevant in the <code>--prepare</code> phase. The default value is 100MB. The recommended value is between 1GB to 2GB. Multiple values are supported if you provide the unit (1MB, 1M, 1GB, 1G).</p>
+<h3 id="user">user<a class="headerlink" href="#user" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--user=USERNAME</code></p>
+<p>This option specifies the MySQL username used when connecting to the server if that’s not the current user. The option accepts a string argument. See
 mysql –help for details.</p>
-<h3 id="-v">-v()<a class="headerlink" href="#-v" title="Permanent link">&para;</a></h3>
-<p>See <code>--version</code></p>
-<h3 id="-version">&ndash;version()<a class="headerlink" href="#-version" title="Permanent link">&para;</a></h3>
+<h3 id="version">version<a class="headerlink" href="#version" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--version</code></p>
 <p>This option prints xtrabackup version and exits.</p>
-<h3 id="-xtrabackup-plugin-dirdirname">&ndash;xtrabackup-plugin-dir(=DIRNAME)<a class="headerlink" href="#-xtrabackup-plugin-dirdirname" title="Permanent link">&para;</a></h3>
+<h3 id="xtrabackup-plugin-dir">xtrabackup-plugin-dir<a class="headerlink" href="#xtrabackup-plugin-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--xtrabackup-plugin-dir=DIRNAME</code></p>
 <p>The absolute path to the directory that contains the <code>keyring</code> plugin.</p>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
@@ -6609,7 +6738,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2023-11-21
+      2024-01-26
     
   </small>
 </div>
@@ -6780,7 +6909,7 @@ mysql –help for details.</p>
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.caa56a14.min.js"></script>
+      <script src="assets/javascripts/bundle.8fd75fb4.min.js"></script>
       
         <script src="js/version-select.js"></script>
       

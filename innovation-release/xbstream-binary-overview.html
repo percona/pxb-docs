@@ -8,15 +8,9 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="To support simultaneous compression and streaming, a new custom streaming
-format called xbstream was introduced to Percona XtraBackup in addition to
-the TAR format. That was required to overcome some limitations of traditional
-archive formats such as tar, cpio and others which did not allow streaming
-dynamically generated files, for example dynamically compressed files. Other
-advantages of xbstream over traditional streaming/archive format include
-ability to stream multiple files concurrently (so it is possible to use
-streaming in the xbstream format together with the –parallel option) and more
-compact data storage.">
+        <meta name="description" content="To support simultaneous compression and streaming, the xbstream binary was added to Percona XtraBackup, along with the xbstream format and tar format. These additions were required to overcome some limitations of traditional
+archive formats such as tar, cpio, and others, which did not allow streaming
+dynamically generated files.">
       
       
         <meta name="author" content="Percona LLC">
@@ -25,14 +19,14 @@ compact data storage.">
         <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/innovation-release/xbstream-binary-overview.html">
       
       
-        <link rel="prev" href="xbcrypt-binary-overview.html">
+        <link rel="prev" href="xbcrypt-options.html">
       
       
-        <link rel="next" href="take-streaming-backup.html">
+        <link rel="next" href="xbstream-options.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.8">
     
     
       
@@ -1191,11 +1185,11 @@ compact data storage.">
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+      <a href="xtrabackup-implementation-details.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    The xtrabackup option reference
+    xtrabackup implementation details
   </span>
   
 
@@ -1212,11 +1206,11 @@ compact data storage.">
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-implementation-details.html" class="md-nav__link">
+      <a href="xtrabackup-option-reference.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    xtrabackup implementation details
+    The xtrabackup command-line options
   </span>
   
 
@@ -1261,6 +1255,43 @@ compact data storage.">
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    The xbcrypt binary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            The xbcrypt binary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="xbcrypt-binary-overview.html" class="md-nav__link">
         
@@ -1271,6 +1302,35 @@ compact data storage.">
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcrypt-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbcrypt command-line options
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1370,24 +1430,6 @@ compact data storage.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#zstandard-zstd" class="md-nav__link">
-    <span class="md-ellipsis">
-      Zstandard (ZSTD)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lz4" class="md-nav__link">
-    <span class="md-ellipsis">
-      lz4
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
     <span class="md-ellipsis">
       Get expert help
@@ -1400,6 +1442,27 @@ compact data storage.">
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbstream-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbstream command-line options
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1540,6 +1603,27 @@ compact data storage.">
   
   
   
+    <li class="md-nav__item">
+      <a href="xbcloud-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbcloud command-line options
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -1550,10 +1634,10 @@ compact data storage.">
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_3" >
         
           
-          <label class="md-nav__link" for="__nav_6_5_2" id="__nav_6_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_5_3" id="__nav_6_5_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1564,8 +1648,8 @@ compact data storage.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_5_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_3">
             <span class="md-nav__icon md-icon"></span>
             Use the xbcloud binary
           </label>
@@ -1700,27 +1784,6 @@ compact data storage.">
           </ul>
         </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="update-curl-utility.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Update curl utility
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -3291,6 +3354,27 @@ compact data storage.">
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="update-curl-utility.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Update curl utility
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3503,24 +3587,6 @@ compact data storage.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#zstandard-zstd" class="md-nav__link">
-    <span class="md-ellipsis">
-      Zstandard (ZSTD)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lz4" class="md-nav__link">
-    <span class="md-ellipsis">
-      lz4
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
     <span class="md-ellipsis">
       Get expert help
@@ -3567,69 +3633,16 @@ compact data storage.">
 
 
 <h1 id="the-xbstream-binary-overview">The xbstream binary overview<a class="headerlink" href="#the-xbstream-binary-overview" title="Permanent link">&para;</a></h1>
-<p>To support simultaneous compression and streaming, a new custom streaming
-format called xbstream was introduced to Percona XtraBackup in addition to
-the TAR format. That was required to overcome some limitations of traditional
-archive formats such as tar, cpio and others which did not allow streaming
-dynamically generated files, for example dynamically compressed files. Other
-advantages of xbstream over traditional streaming/archive format include
-ability to stream multiple files concurrently (so it is possible to use
+<p>To support simultaneous compression and streaming, the xbstream binary was added to Percona XtraBackup, along with the xbstream format and tar format. These additions were required to overcome some limitations of traditional
+archive formats such as tar, cpio, and others, which did not allow streaming
+dynamically generated files. </p>
+<p>Other advantages of xbstream over traditional streaming/archive format include streaming multiple files concurrently (so it is possible to use
 streaming in the xbstream format together with the –parallel option) and more
 compact data storage.</p>
-<p>This utility has a tar-like interface:</p>
-<ul>
-<li>
-<p>with the <code>-x</code> option it extracts files from the stream read from its
-standard input to the current directory unless specified otherwise with the
-<code>-c</code> option. The parallel extraction is supported with the <code>--parallel</code>
-option.</p>
-</li>
-<li>
-<p>with the <code>-c</code> option it streams files specified on the command line to its
-standard output.</p>
-</li>
-<li>
-<p>with the <code>--decrypt=ALGO</code> option specified xbstream will automatically
-decrypt encrypted files when extracting input stream. Supported values for
-this option are: <code>AES128</code>, <code>AES192</code>, and <code>AES256</code>. Either
-<code>--encrypt-key</code> or <code>--encrypt-key-file</code> options must be specified to
-provide encryption key, but not both.</p>
-</li>
-<li>
-<p>with the <code>--encrypt-threads</code> option you can specify the number of threads
-for parallel data encryption. The default value is <code>1</code>.</p>
-</li>
-<li>
-<p>the <code>--encrypt-key</code> option is used to specify the encryption key that will
-be used. It can’t be used with <code>--encrypt-key-file</code> option because they
-are mutually exclusive. </p>
-</li>
-<li>
-<p>the <code>--encrypt-key-file</code> option is used to specify the file that contains
-the encryption key. It can’t be used with <code>--encrypt-key</code> option.
-because they are mutually exclusive. </p>
-</li>
-</ul>
-<p>The utility also tries to minimize its impact on the OS page cache by using the
-appropriate <code>posix_fadvise()</code> calls when available.</p>
-<p>When compression is enabled with <em>xtrabackup</em> all data is being compressed,
-including the transaction log file and meta data files, using the specified
-compression algorithm. Percona XtraBackup supports the following compression algorithms:</p>
-<h2 id="zstandard-zstd">Zstandard (ZSTD)<a class="headerlink" href="#zstandard-zstd" title="Permanent link">&para;</a></h2>
-<p>The Zstandard (ZSTD) is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. <code>ZSTD</code> is the default compression algorithm for the <code>--compress</code> option.</p>
-<p>To compress files using the <code>ZSTD</code> compression algorithm, use the <code>--compress</code> option:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
-</code></pre></div>
-<p>The resulting files have the <code>\*.zst</code> format.</p>
-<p>You can specify <code>ZSTD</code> compression level with the <a href="xtrabackup-option-reference.html#compress-zstd-level"><code>--compress-zstd-level(=#)</code></a> option. The default value is <code>1</code>.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>–backup<span class="w"> </span>–compress<span class="w"> </span>–compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>–target-dir<span class="o">=</span>/data/backup
-</code></pre></div>
-<h2 id="lz4">lz4<a class="headerlink" href="#lz4" title="Permanent link">&para;</a></h2>
-<p>To compress files using the <code>lz4</code> compression algorithm, set the <code>--compress</code> option to <code>lz4</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>lz4<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
-</code></pre></div>
-<p>The resulting files have the <code>\*.lz4</code> format. </p>
-<p>To decompress files, use the <code>--decompress</code> option. </p>
+<p>For details on the command-line options, see <a href="xbcloud-options.html">xbcloud command-line options</a>. When available, the utility tries to minimize its impact on the OS page cache by using the appropriate <code>posix_fadvise()</code> calls.</p>
+<p>When compression is enabled with xtrabackup all data is compressed,
+including the transaction log file and metadata files, using the specified
+compression algorithm. Read more about supported compression algorithms in the <a href="create-compressed-backup.html">Create a compressed backup</a> document.</p>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
 <p>If you need assistance, visit the community forum for comprehensive and free database knowledge, or contact our Percona Database Experts for professional support and services.
@@ -3645,7 +3658,7 @@ compression algorithm. Percona XtraBackup supports the following compression alg
   <small>
     
       Last update:
-      2023-10-10
+      2024-01-26
     
   </small>
 </div>
@@ -3816,7 +3829,7 @@ compression algorithm. Percona XtraBackup supports the following compression alg
     <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.caa56a14.min.js"></script>
+      <script src="assets/javascripts/bundle.8fd75fb4.min.js"></script>
       
         <script src="js/version-select.js"></script>
       

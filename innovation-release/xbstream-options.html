@@ -8,19 +8,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="To completely uninstall Percona XtraBackup, remove all the installed packages:">
+        <meta name="description" content="This utility has a tar-like interface.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/innovation-release/yum-uninstall-xtrabackup.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/innovation-release/xbstream-options.html">
       
       
-        <link rel="prev" href="work-with-selinux.html">
+        <link rel="prev" href="xbstream-binary-overview.html">
       
       
-        <link rel="next" href="binary-tarball.html">
+        <link rel="next" href="take-streaming-backup.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
@@ -28,7 +28,7 @@
     
     
       
-        <title>Uninstall - Percona XtraBackup</title>
+        <title>The xbstream command-line options - Percona XtraBackup</title>
       
     
     
@@ -89,7 +89,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Uninstall" />
+                 <meta property="og:title" content="Percona XtraBackup - The xbstream command-line options" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/innovation-release/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -112,7 +112,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#uninstall-percona-xtrabackup-82-on-red-hat-enterprise-linux-and-centos" class="md-skip">
+        <a href="#the-xbstream-command-line-options" class="md-skip">
           Skip to content
         </a>
       
@@ -151,7 +151,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Uninstall
+              The xbstream command-line options
             
           </span>
         </div>
@@ -1062,19 +1062,21 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1088,7 +1090,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Binaries
@@ -1336,19 +1338,21 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" checked>
         
           
           <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
@@ -1362,7 +1366,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_4">
             <span class="md-nav__icon md-icon"></span>
             The xbstream binary
@@ -1394,10 +1398,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="xbstream-options.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    The xbstream command-line options
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="xbstream-options.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1406,6 +1430,91 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      c
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      decrypt
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypt-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-key
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypt-key-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-key-file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypt-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-threads
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x" class="md-nav__link">
+    <span class="md-ellipsis">
+      x
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-expert-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get expert help
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1793,21 +1902,19 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1821,7 +1928,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Install
@@ -2132,21 +2239,19 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
         
           
           <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
@@ -2160,7 +2265,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_4">
             <span class="md-nav__icon md-icon"></span>
             Use YUM
@@ -2255,30 +2360,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Uninstall
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="yum-uninstall-xtrabackup.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="yum-uninstall-xtrabackup.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2287,37 +2372,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#get-expert-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get expert help
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3585,6 +3639,60 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      c
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      decrypt
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypt-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-key
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypt-key-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-key-file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypt-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-threads
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x" class="md-nav__link">
+    <span class="md-ellipsis">
+      x
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
     <span class="md-ellipsis">
       Get expert help
@@ -3614,7 +3722,7 @@
                   
 
   
-    <a href="https://github.com/percona/pxb-docs/edit/innovation-release/docs/yum-uninstall-xtrabackup.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/edit/innovation-release/docs/xbstream-options.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -3623,17 +3731,38 @@
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/innovation-release/docs/yum-uninstall-xtrabackup.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/innovation-release/docs/xbstream-options.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
     </a>
   
 
 
-<h1 id="uninstall-percona-xtrabackup-82-on-red-hat-enterprise-linux-and-centos">Uninstall Percona XtraBackup 8.2 on Red Hat Enterprise Linux and CentOS<a class="headerlink" href="#uninstall-percona-xtrabackup-82-on-red-hat-enterprise-linux-and-centos" title="Permanent link">&para;</a></h1>
-<p>To completely uninstall Percona XtraBackup, remove all the installed packages:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>remove<span class="w"> </span>percona-xtrabackup
-</code></pre></div>
+<h1 id="the-xbstream-command-line-options">The xbstream command-line options<a class="headerlink" href="#the-xbstream-command-line-options" title="Permanent link">&para;</a></h1>
+<p>This utility has a tar-like interface.</p>
+<p>The xbstream binary has the following options:</p>
+<h2 id="c">c<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
+<p>Usage: <code>-c</code></p>
+<p>Streams files specified on the command line to its standard output.</p>
+<h2 id="decrypt">decrypt<a class="headerlink" href="#decrypt" title="Permanent link">&para;</a></h2>
+<p>Usage: <code>--decrypt=ALGO</code></p>
+<p>Specifies that xbstream automatically decrypts encrypted files when extracting input stream. The supported values are: <code>AES128</code>, <code>AES192</code>, and <code>AES256</code>. </p>
+<p>You can specify either <code>--encrypt-key</code> or <code>--encrypt-key-file</code> to provide the encryption key, but do not use both options. </p>
+<h2 id="encrypt-key">encrypt-key<a class="headerlink" href="#encrypt-key" title="Permanent link">&para;</a></h2>
+<p>Usage: <code>--encrypt-key</code></p>
+<p>Specify the encryption key used. Do not use this option with <code>--encrypt-key-file</code>; the options are mutually exclusive.</p>
+<h2 id="encrypt-key-file">encrypt-key-file<a class="headerlink" href="#encrypt-key-file" title="Permanent link">&para;</a></h2>
+<p>Usage: <code>--encrypt-key-file</code></p>
+<p>Specify the file that contains the encryption key. Do not use this option with <code>--encrypt-key</code>; the options are mutually exclusive.</p>
+<h2 id="encrypt-threads">encrypt-threads<a class="headerlink" href="#encrypt-threads" title="Permanent link">&para;</a></h2>
+<p>Usage: <code>--encrypt-threads</code></p>
+<p>Specify the number of threads for parallel data encryption. The default value is <code>1</code>. </p>
+<h2 id="x">x<a class="headerlink" href="#x" title="Permanent link">&para;</a></h2>
+<p>Usage: <code>-x</code></p>
+<p>Extracts files from the stream read from its
+standard input to the current directory unless specified otherwise with the
+<code>-c</code> option. Support for parallel extraction with the <code>--parallel</code>
+option</p>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
 <p>If you need assistance, visit the community forum for comprehensive and free database knowledge, or contact our Percona Database Experts for professional support and services.
@@ -3649,7 +3778,7 @@
   <small>
     
       Last update:
-      2023-10-12
+      2024-01-26
     
   </small>
 </div>
