@@ -21,4 +21,3 @@ Percona also provides the following methods:
 * [Run in a Docker Container](installation/docker.md)
 
 Before installing Percona XtraBackup with any of these methods, we recommend that you review the [release notes](release-notes.md).
-
