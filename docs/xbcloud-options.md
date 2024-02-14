@@ -18,9 +18,9 @@ Usage: `--azure-access-key=name`
 
 The name of the Azure access-key
 
-## azure-container
+## azure-container-name
 
-Usage: `--azure-container=name`
+Usage: `--azure-container-name=name`
 
 The name of the Azure container
 
@@ -244,7 +244,7 @@ The possible values are:
 
 * GLACIER
 
-## storage name
+## storage
 
 Usage: `--storage=[S3|SWIFT|GOOGLE|AZURE]`
 
