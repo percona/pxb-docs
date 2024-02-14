@@ -6,7 +6,7 @@ For details on the command-line options,  see the [xbcloud command-line options]
 
 The following example shows how to make a full backup and upload it to Swift.
 
-```{.bash
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=swift \
 --swift-container=test \
@@ -17,7 +17,7 @@ xbcloud put --storage=swift \
 full_backup
 ```
 
-The following OpenStack environment variables are also recognized and mapped automatically to the corresponding swift parameters (`--storage=swift`):
+The following [OpenStack](https://docs.openstack.org/2023.2/) environment variables are also recognized and mapped automatically to the corresponding swift parameters (`--storage=swift`):
 
 * OS_AUTH_URL
 
@@ -45,13 +45,13 @@ The following OpenStack environment variables are also recognized and mapped aut
 
 ## Restore with Swift
 
-```{.bash
+```{.bash data-prompt="$"}
 $ xbcloud get [options] <name> [<list-of-files>] | xbstream -x
 ```
 
 The following example shows how to fetch and restore the backup from Swift:
 
-```{.bash
+```{.bash data-prompt="$"}
 $ xbcloud get --storage=swift \
 --swift-container=test \
 --swift-user=test:tester \
