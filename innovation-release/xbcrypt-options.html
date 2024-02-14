@@ -8,7 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The xbcrypt binary has the following command line options:">
+        <meta name="description" content="Usage:">
       
       
         <meta name="author" content="Percona LLC">
@@ -1342,18 +1342,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#encrypt-algo" class="md-nav__link">
+  <a href="#decrypt" class="md-nav__link">
     <span class="md-ellipsis">
-      encrypt-algo
+      decrypt
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#decrypt" class="md-nav__link">
+  <a href="#encrypt-algo" class="md-nav__link">
     <span class="md-ellipsis">
-      decrypt
+      encrypt-algo
     </span>
   </a>
   
@@ -1408,6 +1408,15 @@
   <a href="#output" class="md-nav__link">
     <span class="md-ellipsis">
       output
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-buffer-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      read-buffer-size
     </span>
   </a>
   
@@ -3606,18 +3615,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#encrypt-algo" class="md-nav__link">
+  <a href="#decrypt" class="md-nav__link">
     <span class="md-ellipsis">
-      encrypt-algo
+      decrypt
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#decrypt" class="md-nav__link">
+  <a href="#encrypt-algo" class="md-nav__link">
     <span class="md-ellipsis">
-      decrypt
+      encrypt-algo
     </span>
   </a>
   
@@ -3672,6 +3681,15 @@
   <a href="#output" class="md-nav__link">
     <span class="md-ellipsis">
       output
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-buffer-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      read-buffer-size
     </span>
   </a>
   
@@ -3733,32 +3751,38 @@
 
 
 <h1 id="the-xbcrypt-command-line-options">The xbcrypt command-line options<a class="headerlink" href="#the-xbcrypt-command-line-options" title="Permanent link">&para;</a></h1>
+<p>Usage: </p>
+<div class="no-copy highlight"><pre><span></span><code>$ xbcrypt[OPTIONS]
+</code></pre></div>
 <p>The <code>xbcrypt</code> binary has the following command line options:</p>
-<h3 id="encrypt-algo">encrypt-algo<a class="headerlink" href="#encrypt-algo" title="Permanent link">&para;</a></h3>
-<p>usage: <code>-a</code> <code>--encrypt-algo</code></p>
-<p>Defines the name of the encryption algorithm.</p>
 <h3 id="decrypt">decrypt<a class="headerlink" href="#decrypt" title="Permanent link">&para;</a></h3>
 <p>usage: <code>-d</code>  <code>--decrypt</code></p>
 <p>Decrypt data input to output.</p>
+<h3 id="encrypt-algo">encrypt-algo<a class="headerlink" href="#encrypt-algo" title="Permanent link">&para;</a></h3>
+<p>usage: <code>-a=name</code> <code>--encrypt-algo=name</code></p>
+<p>Defines the name of the encryption algorithm.</p>
 <h3 id="encrypt-chunk-size">encrypt-chunk-size<a class="headerlink" href="#encrypt-chunk-size" title="Permanent link">&para;</a></h3>
-<p>usage: <code>-s</code> <code>--encrypt-chunk-size</code></p>
+<p>usage: <code>-s=#</code> <code>--encrypt-chunk-size=#</code></p>
 <p>Defines the size of the working buffer for encryption in bytes. The default value is <code>64000</code>.</p>
 <h3 id="encrypt-key">encrypt-key<a class="headerlink" href="#encrypt-key" title="Permanent link">&para;</a></h3>
-<p>usage: <code>-k</code> <code>--encrypt-key</code></p>
+<p>usage: <code>-k=name</code> <code>--encrypt-key=name</code></p>
 <p>The name of the encryption key.</p>
 <h3 id="encrypt-key-file">encrypt-key-file<a class="headerlink" href="#encrypt-key-file" title="Permanent link">&para;</a></h3>
-<p>usage: <code>-f</code> <code>--encrypt-key-file</code></p>
+<p>usage: <code>-f=name</code> <code>--encrypt-key-file=name</code></p>
 <p>The name of the file that contains the encryption key.</p>
 <h3 id="encrypt-threads">encrypt-threads<a class="headerlink" href="#encrypt-threads" title="Permanent link">&para;</a></h3>
-<p>usage: <code>--encrypt-threads</code></p>
+<p>usage: <code>--encrypt-threads=#</code></p>
 <p>This option specifies the number of worker threads used for
-parallel encryption/decryption.</p>
+parallel encryption/decryption. The default value is 1.</p>
 <h3 id="input">input<a class="headerlink" href="#input" title="Permanent link">&para;</a></h3>
-<p>usage: <code>-i</code> <code>--input</code></p>
+<p>usage: <code>-i=name</code> <code>--input=name</code></p>
 <p>Defines the name of the optional input file. If the name is not specified, the input reads from the standard input.</p>
 <h3 id="output">output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
-<p>usage: <code>-o</code> <code>--output</code></p>
+<p>usage: <code>-o=name</code> <code>--output=name</code></p>
 <p>Defines the name of the optional output file. If this name is not specified, the output is written to the standard output.</p>
+<h3 id="read-buffer-size">read-buffer-size<a class="headerlink" href="#read-buffer-size" title="Permanent link">&para;</a></h3>
+<p>usage: <code>--read-buffer-size=#</code></p>
+<p>Read the buffer size. The default value is 10MB. </p>
 <h3 id="verbose">verbose<a class="headerlink" href="#verbose" title="Permanent link">&para;</a></h3>
 <p>usage: <code>-v</code> <code>--verbose</code></p>
 <p>Display status in verbose mode.</p>
@@ -3777,7 +3801,7 @@ parallel encryption/decryption.</p>
   <small>
     
       Last update:
-      2024-01-26
+      2024-02-14
     
   </small>
 </div>
