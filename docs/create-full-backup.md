@@ -86,3 +86,14 @@ The result should look like this:
 The backup can take a long time, depending on how large the database is. It is safe to cancel at any time, because *xtrabackup* does not modify the database.
 
 The next step is to [prepare](prepare-full-backup.md) the backup in order to restore it. 
+
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3857510,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
