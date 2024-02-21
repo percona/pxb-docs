@@ -50,7 +50,7 @@ The last thing you should see is something like the following, where the
 value of the `<LSN>` will be a number that depends on your system:
 
 ```{.bash data-prompt="$"}
-$ xtrabackup: Transaction log of lsn (<SLN>) to (<LSN>) was copied.
+$ xtrabackup: Transaction log of lsn (<LSN>) to (<LSN>) was copied.
 ```
 
 !!! note
