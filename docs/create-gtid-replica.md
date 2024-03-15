@@ -1,12 +1,9 @@
 # How to create a new (or repair a broken) GTID-based replica
 
-*MySQL* 5.6 introduced the Global Transaction
-ID ([GTID](http://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html))
-support in replication. *Percona XtraBackup* automatically
+The Global Transaction Identifier ([GTID](https://dev.mysql.com/doc/refman/8.4/en/replication-gtids-concepts.html)) supports replication. Percona XtraBackup automatically
 stores the `GTID` value in the `xtrabackup_binlog_info` when doing the
-backup of *MySQL* and *Percona Server for MySQL* 5.7 with the `GTID` mode
-enabled. This
-information can be used to create a new (or repair a broken) `GTID`-based
+backup of MySQL and Percona Server for MySQL with the `GTID` mode
+enabled. You can use this stored information to create a new or repair a broken `GTID`-based
 replica.
 
 ## 1. Take a backup from any server on the replication environment, source or replica
@@ -53,20 +50,20 @@ You need to select the path where your snapshot has been taken, for example
 `/data/backups/2013-05-07_08-33-33`. If everything is ok you should get the
 same OK message. Now, the transaction logs are applied to the data files,
 and new
-ones are created: your data files are ready to be used by the MySQL server.
+ones are created: your data files are ready to be used by the server.
 
 ## 3. Move the backup to the destination server
 
 Use **rsync** or **scp** to copy the data to the destination
 server. If you are synchronizing the data directly to the already running
 replica’s data
-directory it is advised to stop the *MySQL* server there.
+directory it is advised to stop the server there.
 
 ```{.bash data-prompt="$"}
-$ rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewSlave:/path/to/mysql/
+rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewSlave:/path/to/mysql/
 ```
 
-After you copy the data over, make sure *MySQL* has proper permissions to
+After you copy the data over, ensure the server has proper permissions to
 access them.
 
 ```{.bash data-prompt="$"}
@@ -77,7 +74,11 @@ $ chown mysql:mysql /path/to/mysql/datadir
 
 Set the `gtid_purged` variable to the `GTID` from
 `xtrabackup_binlog_info`. Then, update the information about the
-source node and, finally, start the replica. Run the following commands on
+source node and, finally, start the replica. 
+
+### Before 8.0.22
+
+Run the following commands on
 the replica if you are using a version before 8.0.22:
 
 ```{.bash data-prompt="#"}
@@ -94,11 +95,12 @@ the replica if you are using a version before 8.0.22:
  > START SLAVE;
 ```
 
-If you are using version 8.0.22 or later, use `START REPLICA` instead
-of `START SLAVE`. `START SLAVE` is deprecated as of that release. If you
-are using version 8.0.21 or earlier, use `START SLAVE`.
+### 8.0.22 or later
 
-If you are using a version 8.0.23 or later, run the following commands:
+If you are using version 8.0.22 or later, use `START REPLICA` instead
+of `START SLAVE`. `START SLAVE` is deprecated as of that release.
+
+Run the following commands:
 
 ```{.bash data-prompt="#"}
 # Using the mysql shell
@@ -114,8 +116,7 @@ If you are using a version 8.0.23 or later, run the following commands:
  > START REPLICA;
 ```
 
-If you are using version 8.0.23 or later,
-use [CHANGE_REPLICATION_SOURCE_TO and the appropriate options](https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html). `CHANGE_MASTER_TO` is deprecated as of that release.
+Use [CHANGE_REPLICATION_SOURCE_TO and the appropriate options](https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html). `CHANGE_MASTER_TO` is deprecated as of that release.
 
 !!! note
    
@@ -129,6 +130,11 @@ The following command returns the replica status:
 ```{.bash data-prompt="mysql>"}
 mysql> SHOW REPLICA STATUS\G
 ```
+
+!!! note
+   
+    The command [SHOW SLAVE STATUS](https://dev.mysql.com/doc/refman/8.0/en/show-slave-status.html) is deprecated. Use [SHOW REPLICA STATUS](https://dev.mysql.com/doc/refman/8.0/en/show-replica-status.html).
+    
 The results should be similar to the following:
 
 ??? example "Expected output"
@@ -142,12 +148,9 @@ The results should be similar to the following:
     Executed_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:1-5
     ```
 
-!!! note
-   
-    The command [SHOW SLAVE STATUS](https://dev.mysql.com/doc/refman/8.0/en/show-slave-status.html) is deprecated. Use [SHOW REPLICA STATUS](https://dev.mysql.com/doc/refman/8.0/en/show-replica-status.html).
 
-We can see that the replica has retrieved a new transaction with number 5,
-so transactions from 1 to 5 are already on this slave.
 
-We have created a new replica in our `GTID` based replication
-environment.
+We can see that the replica has retrieved a new transaction with the number 5,
+so transactions from 1 to 5 are already on this replica.
+
+We have created a new replica in our GTID-based replication environment.
