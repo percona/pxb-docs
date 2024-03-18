@@ -1,8 +1,8 @@
 # Binary tarball file names available
 
-Download the binary tarballs from [Percona Product Downloads](https://www.percona.com/downloads).
+Download the binary tarballs from [Percona Product Downloads](https://www.percona.com/downloads). For more information, see the [download instructions]. To install Percona XtraBackup, see [install with binary tarball].
 
-The following table lists the tarball types available in `Linux - Generic`. Select the *Percona XtraBackup* 8.0 version, the software or the operating system, and the type of tarball for your installation. Binary tarballs support all distributions.
+The following table lists the tarball types available in `Linux - Generic`. Select the Percona XtraBackup 8.0 version, the software or the operating system, and the tarball type for your installation. Binary tarballs support all AMD64 distributions.
 
 After you have downloaded the binary tarballs, extract the tarball in the file location of your choice.
 
@@ -15,3 +15,5 @@ After you have downloaded the binary tarballs, extract the tarball in the file l
 
 Select a different software, such as Ubuntu 20.04 (Focal Fossa), for a 
 tarball for that operating system. You can download the packages together or separately.
+
+[install with binary tarball]: binary-tarball.md
