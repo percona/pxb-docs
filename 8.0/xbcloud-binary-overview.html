@@ -28,7 +28,7 @@ needing a local storage.">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
     
     
       
@@ -36,7 +36,7 @@ needing a local storage.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.10ba22f1.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -4747,7 +4747,7 @@ put<span class="w"> </span><span class="o">[</span>options<span class="o">]</spa
 --target-dir<span class="o">=</span>/storage/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w">  </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>inc_backup
 </code></pre></div>
 <p>To prepare an incremental backup, you must first download the full backup with the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/full-backup
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/full-backup
 </code></pre></div>
 <p>You must prepare the full backup:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup
@@ -4898,7 +4898,7 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
   <small>
     
       Last update:
-      2024-01-19
+      2024-03-21
     
   </small>
 </div>
@@ -4998,7 +4998,7 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      <script src="assets/javascripts/bundle.bd41221c.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
