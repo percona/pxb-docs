@@ -1,7 +1,7 @@
 # Prepare an individual partitions backup
 
 For preparing partial backups, the procedure is analogous to restoring
-individual tables. Apply the logs and use xtrabackup --export:
+individual tables. Apply the logs and use xtrabackup `--export`:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --apply-log --export /mnt/backup/2012-08-28_10-29-09
