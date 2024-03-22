@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.10ba22f1.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -3616,7 +3616,7 @@ compression is achieved by piping the output to a compression utility. One of
 the benefits of streaming backups and using Unix pipes is that the backups can
 be automatically encrypted.</p>
 <p>To use the streaming feature, you must use the <code>--stream</code>,
-providing the format of the stream (<code>xbstream</code> ) and where to store
+providing the format of the stream (<code>xbstream</code>) and where to store
 the temporary files:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp
 </code></pre></div>
@@ -3659,7 +3659,7 @@ were both compressed and encrypted, they must be decrypted before they are uncom
 </tr>
 <tr>
 <td>Encrypt the backup</td>
-<td><code>$ xtrabackup --backup --stream=xbstream ./ &gt; backup.xbstream gzip -`` | openssl des3 -salt -k “password” backup.xbstream.gz.des3</code></td>
+<td><code>$ xtrabackup --backup --stream=xbstream &gt; backup.xbstream gzip -`` | openssl des3 -salt -k “password” backup.xbstream.gz.des3</code></td>
 </tr>
 <tr>
 <td>Unpack the backup to the current directory</td>
@@ -3671,19 +3671,19 @@ were both compressed and encrypted, they must be decrypted before they are uncom
 </tr>
 <tr>
 <td>Send the backup to another server using <code>netcat</code></td>
-<td>On the destination host:<br /><code>$ nc -l 9999 | cat - &gt; /data/backups/backup.xbstream</code><br /><br />On the source host:<br /><code>$ xtrabackup --backup --stream=xbstream ./ | nc desthost 9999</code></td>
+<td>On the destination host:<br /><code>$ nc -l 9999 | cat - &gt; /data/backups/backup.xbstream</code><br /><br />On the source host:<br /><code>$ xtrabackup --backup --stream=xbstream | nc desthost 9999</code></td>
 </tr>
 <tr>
 <td>Send the backup to another server using a one-liner</td>
-<td><code>$ ssh user@desthost “( nc -l 9999 &gt; /data/backups/backup.xbstream &amp; )” &amp;&amp; xtrabackup --backup --stream=xbstream ./ | nc desthost 9999</code></td>
+<td><code>$ ssh user@desthost “( nc -l 9999 &gt; /data/backups/backup.xbstream &amp; )” &amp;&amp; xtrabackup --backup --stream=xbstream | nc desthost 9999</code></td>
 </tr>
 <tr>
 <td>Throttle the throughput to 10MB/sec using the <a href="https://www.ivarch.com/programs/quickref/pv.shtml">pipe viewer</a> tool</td>
-<td><code>$ xtrabackup --backup --stream=xbstream ./ | pv -q -L10m ssh user@desthost “cat - &gt; /data/backups/backup.xbstream”</code></td>
+<td><code>$ xtrabackup --backup --stream=xbstream | pv -q -L10m ssh user@desthost “cat - &gt; /data/backups/backup.xbstream”</code></td>
 </tr>
 <tr>
 <td>Checksum the backup during the streaming</td>
-<td>On the destination host:<br /><code>$ nc -l 9999 | tee &gt;(sha1sum &gt; destination_checksum) &gt; /data/backups/backup.xbstream</code><br /><br />On the source host:<br /><code>$ xtrabackup --backup --stream=xbstream ./ | tee &gt;(sha1sum &gt; source_checksum) | nc desthost 9999</code><br /><br />Compare the checksums on the source host:<br /><code>$ cat source_checksum 65e4f916a49c1f216e0887ce54cf59bf3934dbad</code><br /><br />Compare the checksums on the destination host:<br /><code>$ cat destination_checksum 65e4f916a49c1f216e0887ce54cf59bf3934dbad</code></td>
+<td>On the destination host:<br /><code>$ nc -l 9999 | tee &gt;(sha1sum &gt; destination_checksum) &gt; /data/backups/backup.xbstream</code><br /><br />On the source host:<br /><code>$ xtrabackup --backup --stream=xbstream | tee &gt;(sha1sum &gt; source_checksum) | nc desthost 9999</code><br /><br />Compare the checksums on the source host:<br /><code>$ cat source_checksum 65e4f916a49c1f216e0887ce54cf59bf3934dbad</code><br /><br />Compare the checksums on the destination host:<br /><code>$ cat destination_checksum 65e4f916a49c1f216e0887ce54cf59bf3934dbad</code></td>
 </tr>
 <tr>
 <td>Parallel compression with parallel copying backup</td>
@@ -3709,7 +3709,7 @@ were both compressed and encrypted, they must be decrypted before they are uncom
   <small>
     
       Last update:
-      2023-10-12
+      2024-03-22
     
   </small>
 </div>
@@ -3809,7 +3809,7 @@ were both compressed and encrypted, they must be decrypted before they are uncom
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      <script src="assets/javascripts/bundle.bd41221c.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
