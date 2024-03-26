@@ -102,4 +102,4 @@ $ mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.00000
 
 [Create a full backup]: create-full-backup.md
 [Prepare a full backup]: prepare-full-backup.md
-[Restore a backup]: restore-a-backup.html
+[Restore a backup]: restore-a-backup.md
