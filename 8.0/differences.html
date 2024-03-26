@@ -8,20 +8,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Binary tarballs contain precompiled executable files, libraries, and other dependencies and are
-compressed tar archives. Extract the binary tarballs to any path.">
+        <meta name="description" content="You’ll notice several key differences when transitioning from a logical database to Percona XtraBackup.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/binary-tarball.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/differences.html">
       
       
-        <link rel="prev" href="yum-uninstall-xtrabackup.html">
+        <link rel="prev" href="how-xtrabackup-works.html">
       
       
-        <link rel="next" href="binary-tarball-names.html">
+        <link rel="next" href="xtrabackup-version-numbers.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
@@ -29,7 +28,7 @@ compressed tar archives. Extract the binary tarballs to any path.">
     
     
       
-        <title>Install with binary tarballs - Percona XtraBackup</title>
+        <title>Differences between a logical backup and Percona XtraBackup - Percona XtraBackup</title>
       
     
     
@@ -90,7 +89,7 @@ compressed tar archives. Extract the binary tarballs to any path.">
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Install with binary tarballs" />
+                 <meta property="og:title" content="Percona XtraBackup - Differences between a logical backup and Percona XtraBackup" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -113,7 +112,7 @@ compressed tar archives. Extract the binary tarballs to any path.">
     <div data-md-component="skip">
       
         
-        <a href="#install-percona-xtrabackup-80-from-a-binary-tarball" class="md-skip">
+        <a href="#differences-between-a-logical-backup-and-percona-xtrabackup" class="md-skip">
           Skip to content
         </a>
       
@@ -152,7 +151,7 @@ compressed tar archives. Extract the binary tarballs to any path.">
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install with binary tarballs
+              Differences between a logical backup and Percona XtraBackup
             
           </span>
         </div>
@@ -1324,17 +1323,19 @@ compressed tar archives. Extract the binary tarballs to any path.">
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -1348,7 +1349,7 @@ compressed tar archives. Extract the binary tarballs to any path.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             How Percona XtraBackup works
@@ -1401,10 +1402,30 @@ compressed tar archives. Extract the binary tarballs to any path.">
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="differences.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Differences between a logical backup and Percona XtraBackup
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="differences.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1413,6 +1434,37 @@ compressed tar archives. Extract the binary tarballs to any path.">
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get-expert-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get expert help
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2655,19 +2707,17 @@ compressed tar archives. Extract the binary tarballs to any path.">
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -2681,7 +2731,7 @@ compressed tar archives. Extract the binary tarballs to any path.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Install
@@ -3136,19 +3186,17 @@ compressed tar archives. Extract the binary tarballs to any path.">
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
         
           
           <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
@@ -3162,7 +3210,7 @@ compressed tar archives. Extract the binary tarballs to any path.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_5">
             <span class="md-nav__icon md-icon"></span>
             Use binary tarballs
@@ -3173,30 +3221,10 @@ compressed tar archives. Extract the binary tarballs to any path.">
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Install with binary tarballs
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="binary-tarball.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="binary-tarball.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3205,37 +3233,6 @@ compressed tar archives. Extract the binary tarballs to any path.">
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#get-expert-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get expert help
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4463,7 +4460,7 @@ compressed tar archives. Extract the binary tarballs to any path.">
                   
 
   
-    <a href="https://github.com/percona/pxb-docs/edit/8.0/docs/binary-tarball.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/edit/8.0/docs/differences.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -4472,20 +4469,78 @@ compressed tar archives. Extract the binary tarballs to any path.">
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/8.0/docs/binary-tarball.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/8.0/docs/differences.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
     </a>
   
 
 
-<h1 id="install-percona-xtrabackup-80-from-a-binary-tarball">Install Percona XtraBackup 8.0 from a binary tarball<a class="headerlink" href="#install-percona-xtrabackup-80-from-a-binary-tarball" title="Permanent link">&para;</a></h1>
-<p>Binary tarballs contain precompiled executable files, libraries, and other dependencies and are
-compressed <code>tar</code> archives. Extract the binary tarballs to any path.</p>
-<p>You can download the binary tarballs from the <code>Linux - Generic</code> section on the <a href="https://www.percona.com/downloads/">Percona Product Downloads</a>.</p>
-<p>The following command is an example of downloading the full tarball for Linux/Generic:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0.23-16/binary/tarball/percona-xtrabackup-8.0.23-16-Linux-x86_64.glibc2.17.tar.gz
-</code></pre></div>
+<h1 id="differences-between-a-logical-backup-and-percona-xtrabackup">Differences between a logical backup and Percona XtraBackup<a class="headerlink" href="#differences-between-a-logical-backup-and-percona-xtrabackup" title="Permanent link">&para;</a></h1>
+<p>You&rsquo;ll notice several key differences when transitioning from a logical database to Percona XtraBackup.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Logical backup</th>
+<th>Physical backup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Definition</td>
+<td>Contains logical data (tables, schemas, procedures).</td>
+<td>Copies entire database directories and files.</td>
+</tr>
+<tr>
+<td>Method</td>
+<td>Exported as binary files using EXPORT/IMPORT tools.</td>
+<td>Copies raw data files directly from the database.</td>
+</tr>
+<tr>
+<td>Data contents</td>
+<td>Includes data structure (schema, tables, procedures).</td>
+<td>Contains complete data (structure, tables, transactions)</td>
+</tr>
+<tr>
+<td>Instance Independence</td>
+<td>Can be restored on any other machine or environment.</td>
+<td>Tied to the specific database instance and environment.</td>
+</tr>
+<tr>
+<td>OS-level restoration</td>
+<td>Not suitable for OS-level restoration</td>
+<td>Suitable for full disaster recovery scenarios.</td>
+</tr>
+<tr>
+<td>Granularity</td>
+<td>Granular recovery of specific components.</td>
+<td>Restores the entire database.</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Slower due to SQL parsing and execution</td>
+<td>Faster due to direct file copying</td>
+</tr>
+<tr>
+<td>Use cases</td>
+<td>Data migration platform-independent copies</td>
+<td>Full database restoration, disaster recovery</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>Less secure</td>
+<td>More secure</td>
+</tr>
+</tbody>
+</table>
+<p>XtraBackup is designed to perform hot backups of MySQL, MariaDB, and Percona Server databases without interrupting database services. XtraBackup performs physical backups by copying the data files, ensuring minimal impact on server performance. XtraBackup includes advanced features such as backup compression and encryption, providing efficient and secure data protection. The tool also offers a streaming backup option, which is useful for backing up large databases or transferring backups to another server. XtraBackup integrates with Percona&rsquo;s additional tools like Percona Toolkit and Percona Monitoring and Management (PMM), offering a comprehensive database performance monitoring, management, and optimization solution. These features are not typically found in logical database backup solutions.</p>
+<p>Another difference is the support for incremental backups with XtraBackup. You can back up only the data that has changed since the last full backup, significantly reducing the time and storage requirements compared to a full logical backup.</p>
+<p>A logical backup contains copies of information about a database, such as tables, schemas, and procedures. Commonly, these backups are exported as binary files using EXPORT/IMPORT tools. Logical backups focus on the data structure and SQL statements, and you can back up a selected set of data or exclude specific data during the export, saving time and storage. They contain only structural information about the database, not instance-specific details. Logical backups are slower than physical backups because of the SQL parsing and execution. A logical backup does not preserve the file system-level security settings, user accounts, privileges, or authentication settings. During restoration, you must manually reconfigure these settings.</p>
+<p>You can restore a logical backup on any other machine and in different environments. Logical backups provide granular recovery capabilities to restore specific components, such as individual tables or schemas. The recovery process can be more difficult because it involves recreating the entire data structure.
+Use logical backups when restoring or moving a database copy to another environment.
+They are an option for platform-independent data migration.</p>
+<p>Unlike physical backups, logical backups are less secure because the data is unencrypted. Anyone with access to the backup could read sensitive information. </p>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
 <p>If you need assistance, visit the community forum for comprehensive and free database knowledge, or contact our Percona Database Experts for professional support and services.</p>
@@ -4500,7 +4555,7 @@ compressed <code>tar</code> archives. Extract the binary tarballs to any path.</
   <small>
     
       Last update:
-      2023-06-12
+      2024-03-20
     
   </small>
 </div>
