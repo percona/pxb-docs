@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.10ba22f1.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -371,6 +371,27 @@
   
   
     <li class="md-nav__item">
+      <a href="release-notes/8.3.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.3.0-1 (2024-03-27)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="release-notes/8.2.0-1.html" class="md-nav__link">
         
   
@@ -459,7 +480,7 @@
         
   
   <span class="md-ellipsis">
-    Quickstart Guide for Percona XtraBackup 8.2
+    Quickstart Guide for Percona XtraBackup 8.3
   </span>
   
 
@@ -3609,7 +3630,7 @@
 <p>An undo log record contains a <code>table_id</code>. Percona XtraBackup uses this <code>table_id</code> to find the table definition, and then uses that information to parse the records on an index page. The transaction rollback reads the undo log records and applies the changes. </p>
 <p>After initializing the data dictionary engine and the data dictionary cache, the storage engine can request the <code>table_id</code> and uses this ID to fetch the table schema. An index search tuple (key) is created from the table schema and key fields from the undo log record. The server finds the record using the search tuple (key) and performs the undo operation.</p>
 <p>For example, InnoDB uses the <code>table_id</code> (also known as the <code>se_private_id</code>) for a table definition. Percona XtraBackup does not behave like a server and does not have access to the data dictionary. XtraBackup initializes the InnoDB engine and uses the <code>InnoDB table object</code> (<code>dict_table_t</code>) when needed. XtraBackup relies on Serialized Dictionary Information (SDI) that is stored in the tablespace. SDI is a JSON representation of a table.</p>
-<p>In Percona XtraBackup 8.2.0-1, tables are loaded as <code>evictable</code>. XtraBackup scans the B-tree index of the data dictionary tables <code>mysql.indexes</code> and <code>mysql.index_partitions</code> to establish a relationship between the <code>table_id</code> and the <code>tablespace(space_id)</code>. XtraBackup uses this relationship during transaction rollback. XtraBackup does not load user tables unless there is a transaction rollback on them.</p>
+<p>In Percona XtraBackup 8.3.0-1, tables are loaded as <code>evictable</code>. XtraBackup scans the B-tree index of the data dictionary tables <code>mysql.indexes</code> and <code>mysql.index_partitions</code> to establish a relationship between the <code>table_id</code> and the <code>tablespace(space_id)</code>. XtraBackup uses this relationship during transaction rollback. XtraBackup does not load user tables unless there is a transaction rollback on them.</p>
 <p>A background thread or a Percona XtraBackup main thread handles the cache eviction when the cache size limit is reached.</p>
 <p>This  design provides the following benefits during the <code>--prepare</code> phase:</p>
 <ul>

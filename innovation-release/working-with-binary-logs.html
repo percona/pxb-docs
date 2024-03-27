@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.10ba22f1.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -371,6 +371,27 @@
   
   
     <li class="md-nav__item">
+      <a href="release-notes/8.3.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.3.0-1 (2024-03-27)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="release-notes/8.2.0-1.html" class="md-nav__link">
         
   
@@ -459,7 +480,7 @@
         
   
   <span class="md-ellipsis">
-    Quickstart Guide for Percona XtraBackup 8.2
+    Quickstart Guide for Percona XtraBackup 8.3
   </span>
   
 
@@ -3640,7 +3661,7 @@ MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
 <p>To perform a point-in-time recovery from an <code>xtrabackup</code> backup, you should prepare and restore the backup, and then replay binary logs from the point shown in the <code>xtrabackup_binlog_info</code> file.</p>
 <p>Find a more detailed procedure in the <a href="point-in-time-recovery.html">Point-in-time recovery</a> document.</p>
 <h2 id="set-up-a-new-replication-replica">Set up a new replication replica<a class="headerlink" href="#set-up-a-new-replication-replica" title="Permanent link">&para;</a></h2>
-<p>To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the <a href="https://dev.mysql.com/doc/refman/8.2/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO with the appropriate options</a> command, use the binary log filename and position shown in the <code>xtrabackup_binlog_info</code> file to start replication.</p>
+<p>To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the <a href="https://dev.mysql.com/doc/refman/8.3/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO with the appropriate options</a> command, use the binary log filename and position shown in the <code>xtrabackup_binlog_info</code> file to start replication.</p>
 <p>A more detailed procedure is found in  <a href="set-up-replication.html">How to setup a replica for replication in 6 simple steps with Percona XtraBackup</a>.</p>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>

@@ -25,7 +25,7 @@ consistent until they are prepared, because they were copied at different times 
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
     
     
       
@@ -33,7 +33,7 @@ consistent until they are prepared, because they were copied at different times 
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.10ba22f1.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -372,6 +372,27 @@ consistent until they are prepared, because they were copied at different times 
   
   
     <li class="md-nav__item">
+      <a href="release-notes/8.3.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.3.0-1 (2024-03-27)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="release-notes/8.2.0-1.html" class="md-nav__link">
         
   
@@ -460,7 +481,7 @@ consistent until they are prepared, because they were copied at different times 
         
   
   <span class="md-ellipsis">
-    Quickstart Guide for Percona XtraBackup 8.2
+    Quickstart Guide for Percona XtraBackup 8.3
   </span>
   
 
@@ -3596,8 +3617,8 @@ consistent until they are prepared, because they were copied at different times 
 consistent until they are prepared, because they were copied at different times as the program ran, and they might have been changed while this was happening.</p>
 <p>If you try to start InnoDB with these data files, it will detect corruption and stop working to avoid running on damaged data. The <code>--prepare</code> step makes the files perfectly consistent at a single instant in time, so you can run InnoDB on them.</p>
 <p>You can run the prepare operation on any machine; it does not need to be on the originating server or the server to which you intend to restore. You can copy the backup to a utility server and prepare it there.</p>
-<p>Note that Percona XtraBackup 8.2 can only prepare backups of MySQL
-8.2 and Percona Server for MySQL 8.2 databases. Releases prior to 8.2 are not supported.</p>
+<p>Note that Percona XtraBackup 8.3 can only prepare backups of MySQL
+8.3 and Percona Server for MySQL 8.3 databases. Releases prior to 8.3 are not supported.</p>
 <p>During the prepare operation, xtrabackup boots up a kind of modified embedded InnoDB (the libraries xtrabackup was linked against). The modifications are necessary to disable InnoDB standard safety checks, such as complaining about the log file not being the right size. This warning is not appropriate for working with backups. These modifications are only for the xtrabackup binary; you do not need a modified InnoDB to use xtrabackup for your backups.</p>
 <p>The prepare step uses this “embedded InnoDB” to perform crash recovery on the copied data files, using the copied log file. The <code>prepare</code> step is very simple to use: you simply run xtrabackup with the <code>--prepare</code> option and tell it which directory to prepare, for example, to prepare the previously taken backup run:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/

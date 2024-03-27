@@ -27,7 +27,7 @@ consistent, usable database again.">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
     
     
       
@@ -35,7 +35,7 @@ consistent, usable database again.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.10ba22f1.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -374,6 +374,27 @@ consistent, usable database again.">
   
   
     <li class="md-nav__item">
+      <a href="release-notes/8.3.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.3.0-1 (2024-03-27)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="release-notes/8.2.0-1.html" class="md-nav__link">
         
   
@@ -462,7 +483,7 @@ consistent, usable database again.">
         
   
   <span class="md-ellipsis">
-    Quickstart Guide for Percona XtraBackup 8.2
+    Quickstart Guide for Percona XtraBackup 8.3
   </span>
   
 
@@ -3606,7 +3627,7 @@ commit.</p>
 <p>Percona XtraBackup remembers the LSN when it starts, and then copies the data files. The operation takes time, and the files may change, then LSN reflects the state of the database at different points in time. Percona XtraBackup also runs a background process that watches the transaction log files, and copies any changes. Percona XtraBackup does this continually. The transaction logs are written in a round-robin fashion, and can be reused.</p>
 <p>Percona XtraBackup uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a></p>
 <p>where available as a lightweight alternative to <code>FLUSH TABLES WITH READ
-LOCK</code>. MySQL 8.2 allows
+LOCK</code>. MySQL 8.3 allows
 acquiring an instance level backup lock via the <code>LOCK INSTANCE FOR BACKUP</code>
 statement.</p>
 <p>Locking is only done for MyISAM and other non-InnoDB tables
@@ -3622,13 +3643,13 @@ INSTANCE FOR BACKUP</code> or <code>LOCK TABLES FOR BACKUP</code>.</p>
 <p>xtrabackup tries to avoid backup locks and <code>FLUSH TABLES WITH READ LOCK</code>
 when the instance contains only InnoDB tables. In this case, xtrabackup
 obtains binary log coordinates from <code>performance_schema.log_status</code>. <code>FLUSH
-TABLES WITH READ LOCK</code> is still required in MySQL 8.2 when xtrabackup is
+TABLES WITH READ LOCK</code> is still required in MySQL 8.3 when xtrabackup is
 started with the <code>--slave-info</code>. The <code>log_status</code> table in Percona
-Server for MySQL 8.2 is extended to include the relay log coordinates, so no locks are
+Server for MySQL 8.3 is extended to include the relay log coordinates, so no locks are
 needed even with the <code>--slave-info</code> option.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
-<p><a href="https://dev.mysql.com/doc/refman/8.2/en/lock-instance-for-backup.html">MySQL Documentation: LOCK INSTANCE FOR BACKUP</a></p>
+<p><a href="https://dev.mysql.com/doc/refman/8.3/en/lock-instance-for-backup.html">MySQL Documentation: LOCK INSTANCE FOR BACKUP</a></p>
 </div>
 <p>When backup locks are supported by the server, xtrabackup first copies
 InnoDB data, runs the <code>LOCK TABLES FOR BACKUP</code> and then copies the MyISAM

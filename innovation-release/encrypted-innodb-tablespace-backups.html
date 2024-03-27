@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.10ba22f1.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -371,6 +371,27 @@
   
   
     <li class="md-nav__item">
+      <a href="release-notes/8.3.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.3.0-1 (2024-03-27)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="release-notes/8.2.0-1.html" class="md-nav__link">
         
   
@@ -459,7 +480,7 @@
         
   
   <span class="md-ellipsis">
-    Quickstart Guide for Percona XtraBackup 8.2
+    Quickstart Guide for Percona XtraBackup 8.3
   </span>
   
 
@@ -3901,7 +3922,7 @@
 
 
 <h1 id="encrypted-innodb-tablespace-backups">Encrypted InnoDB tablespace backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups" title="Permanent link">&para;</a></h1>
-<p>InnoDB supports <a href="https://dev.mysql.com/doc/refman/8.2/en/innodb-data-encryption.html">data encryption for InnoDB tables</a> stored in file-per-table tablespaces. This feature provides an at-rest encryption for physical tablespace data files.</p>
+<p>InnoDB supports <a href="https://dev.mysql.com/doc/refman/8.3/en/innodb-data-encryption.html">data encryption for InnoDB tables</a> stored in file-per-table tablespaces. This feature provides an at-rest encryption for physical tablespace data files.</p>
 <p>For an authenticated user or an application to access an encrypted F
 tablespace, InnoDB uses the master encryption key to decrypt
 the tablespace key. The master encryption key is stored in a keyring. </p>
@@ -4028,7 +4049,7 @@ tablespaces, specify the path to a keyring file as the value of the
 option. You must restore the keyring used with the backup and prepare phases if the keyring has been rotated.</p>
 <h2 id="use-the-keyring-file-component">Use the keyring file component<a class="headerlink" href="#use-the-keyring-file-component" title="Permanent link">&para;</a></h2>
 <p>The <code>keyring_file</code> component is part of the component-based MySQL infrastructure which extends the server capabilities.</p>
-<p>The server uses a manifest to load the component, and the component has its own configuration file. See the <a href="https://dev.mysql.com/doc/refman/8.2/en/keyring-component-installation.html">MySQL documentation on the component 
+<p>The server uses a manifest to load the component, and the component has its own configuration file. See the <a href="https://dev.mysql.com/doc/refman/8.3/en/keyring-component-installation.html">MySQL documentation on the component 
 installation</a> for more information.</p>
 <p>An example of a manifest and a configuration file follows:</p>
 <p>An example of <code>./bin/mysqld.my</code>:</p>
@@ -4041,9 +4062,9 @@ installation</a> for more information.</p>
 <span class="w">   </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql-keyring/keyring_file&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;read_only&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>For more information, see <a href="https://dev.mysql.com/doc/refman/8.2/en/keyring-component-installation.html">Keyring Component Installation</a> and <a href="https://dev.mysql.com/doc/refman/8.2/en/keyring-file-plugin.html">Using the keyring_file File-Based Keyring Plugin</a>.</p>
+<p>For more information, see <a href="https://dev.mysql.com/doc/refman/8.3/en/keyring-component-installation.html">Keyring Component Installation</a> and <a href="https://dev.mysql.com/doc/refman/8.3/en/keyring-file-plugin.html">Using the keyring_file File-Based Keyring Plugin</a>.</p>
 <p>With the appropriate privilege, you can <code>SELECT</code> on
-the <a href="https://dev.mysql.com/doc/refman/8.2/en/performance-schema-keyring-component-status-table.html">performance_schema.keyring_component_status table</a> to view the attributes and status of the installed keyring component 
+the <a href="https://dev.mysql.com/doc/refman/8.3/en/performance-schema-keyring-component-status-table.html">performance_schema.keyring_component_status table</a> to view the attributes and status of the installed keyring component 
 when in use.</p>
 <p>The component has no special requirements for backing up a database that
 contains encrypted InnoDB tablespaces.</p>

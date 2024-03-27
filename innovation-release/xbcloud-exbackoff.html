@@ -28,7 +28,7 @@ upload or download.">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
     
     
       
@@ -36,7 +36,7 @@ upload or download.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.10ba22f1.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -375,6 +375,27 @@ upload or download.">
   
   
     <li class="md-nav__item">
+      <a href="release-notes/8.3.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.3.0-1 (2024-03-27)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="release-notes/8.2.0-1.html" class="md-nav__link">
         
   
@@ -463,7 +484,7 @@ upload or download.">
         
   
   <span class="md-ellipsis">
-    Quickstart Guide for Percona XtraBackup 8.2
+    Quickstart Guide for Percona XtraBackup 8.3
   </span>
   
 
@@ -3699,8 +3720,8 @@ user must add to retry on this error.</p>
 <p>The following is an example of a verbose output:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>210701 14:34:23 /work/pxb/ins/8.2/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-210701 14:34:23 /work/pxb/ins/8.2/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
+<div class="no-copy highlight"><pre><span></span><code>210701 14:34:23 /work/pxb/ins/8.3/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+210701 14:34:23 /work/pxb/ins/8.3/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
 </code></pre></div>
 </details>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
@@ -3728,19 +3749,19 @@ time between retries.</p>
 </ul>
 <details class="example">
 <summary>An example of the output for this setting</summary>
-<div class="no-copy highlight"><pre><span></span><code>210702 10:07:05 /work/pxb/ins/8.2/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-210702 10:07:05 /work/pxb/ins/8.2/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
+<div class="no-copy highlight"><pre><span></span><code>210702 10:07:05 /work/pxb/ins/8.3/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+210702 10:07:05 /work/pxb/ins/8.3/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
-210702 10:07:23 /work/pxb/ins/8.2/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
-210702 10:07:23 /work/pxb/ins/8.2/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
+210702 10:07:23 /work/pxb/ins/8.3/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
+210702 10:07:23 /work/pxb/ins/8.3/bin/xbcloud: Sleeping for 4387 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
-210702 10:07:52 /work/pxb/ins/8.2/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-210702 10:07:52 /work/pxb/ins/8.2/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
+210702 10:07:52 /work/pxb/ins/8.3/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
+210702 10:07:52 /work/pxb/ins/8.3/bin/xbcloud: Sleeping for 8691 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
-210702 10:08:47 /work/pxb/ins/8.2/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
-210702 10:08:47 /work/pxb/ins/8.2/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
+210702 10:08:47 /work/pxb/ins/8.3/bin/xbcloud: Operation failed. Error: Failed sending data to the peer
+210702 10:08:47 /work/pxb/ins/8.3/bin/xbcloud: Sleeping for 10000 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .
-210702 10:10:12 /work/pxb/ins/8.2/bin/xbcloud: successfully uploaded chunk: backup3/xtrabackup_logfile.00000000000000000006, size: 8388660
+210702 10:10:12 /work/pxb/ins/8.3/bin/xbcloud: successfully uploaded chunk: backup3/xtrabackup_logfile.00000000000000000006, size: 8388660
 </code></pre></div>
 </details>
 <div data-banner="data-banner">

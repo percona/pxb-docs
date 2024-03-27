@@ -8,7 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Percona XtraBackup can export a table that is contained in its own .ibd file. With Percona XtraBackup, you can export individual tables from any InnoDB database, and import them into Percona Server for MySQL with XtraDB or MySQL 8.2. The source doesn’t have to be XtraDB or MySQL 8.2, but the destination does. This method only works on individual .ibd files.">
+        <meta name="description" content="Percona XtraBackup can export a table that is contained in its own .ibd file. With Percona XtraBackup, you can export individual tables from any InnoDB database, and import them into Percona Server for MySQL with XtraDB or MySQL 8.3. The source doesn’t have to be XtraDB or MySQL 8.3, but the destination does. This method only works on individual .ibd files.">
       
       
         <meta name="author" content="Percona LLC">
@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.10ba22f1.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -371,6 +371,27 @@
   
   
     <li class="md-nav__item">
+      <a href="release-notes/8.3.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.3.0-1 (2024-03-27)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="release-notes/8.2.0-1.html" class="md-nav__link">
         
   
@@ -459,7 +480,7 @@
         
   
   <span class="md-ellipsis">
-    Quickstart Guide for Percona XtraBackup 8.2
+    Quickstart Guide for Percona XtraBackup 8.3
   </span>
   
 
@@ -3609,7 +3630,7 @@
 
 
 <h1 id="restore-individual-tables">Restore individual tables<a class="headerlink" href="#restore-individual-tables" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup can export a table that is contained in its own .ibd file. With Percona XtraBackup, you can export individual tables from any InnoDB database, and import them into Percona Server for MySQL with XtraDB or MySQL 8.2. The source doesn’t have to be XtraDB or MySQL 8.2, but the destination does. This method only works on individual .ibd files.</p>
+<p>Percona XtraBackup can export a table that is contained in its own .ibd file. With Percona XtraBackup, you can export individual tables from any InnoDB database, and import them into Percona Server for MySQL with XtraDB or MySQL 8.3. The source doesn’t have to be XtraDB or MySQL 8.3, but the destination does. This method only works on individual .ibd files.</p>
 <p>The following example exports and imports the following table:</p>
 <div class="highlight"><pre><span></span><code>CREATE TABLE export_test (
 a int(11) DEFAULT NULL
@@ -3628,13 +3649,13 @@ command. For example:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/table<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p>The following files are the only files required to import the table into a server running Percona Server for MySQL with XtraDB or MySQL 8.2. If the server uses InnoDB Tablespace Encryption, add the .cfp file, which contains the transfer key and an encrypted tablespace key.</p>
+<p>The following files are the only files required to import the table into a server running Percona Server for MySQL with XtraDB or MySQL 8.3. If the server uses InnoDB Tablespace Encryption, add the .cfp file, which contains the transfer key and an encrypted tablespace key.</p>
 <p>The files are located in the target directory:</p>
 <div class="highlight"><pre><span></span><code>/data/backups/mysql/test/export_test.ibd
 /data/backups/mysql/test/export_test.cfg
 </code></pre></div>
 <h2 id="import-the-table">Import the table<a class="headerlink" href="#import-the-table" title="Permanent link">&para;</a></h2>
-<p class="power-number">On the destination server running Percona Server for MySQL with XtraDB or MySQL 8.2, create a table with the same structure, and then perform the following steps:</p>
+<p class="power-number">On the destination server running Percona Server for MySQL with XtraDB or MySQL 8.3, create a table with the same structure, and then perform the following steps:</p>
 <ol>
 <li>
 <p>Run the <code>ALTER TABLE test.export_test DISCARD TABLESPACE;</code> command. If you see the following error message:</p>
