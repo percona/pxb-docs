@@ -8,20 +8,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="To support encryption and decryption of the backups, a new tool xbcrypt was
-introduced to Percona XtraBackup.">
+        <meta name="description" content="Percona XtraBackup is an open source hot backup utility, for MySQL - based servers, that keeps your database fully available during planned maintenance windows.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/xbcrypt-binary-overview.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/download-instructions.html">
       
       
-        <link rel="prev" href="analyze-table-statistics.html">
+        <link rel="prev" href="permissions.html">
       
       
-        <link rel="next" href="xbcrypt-options.html">
+        <link rel="next" href="apt-repo.html">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
@@ -29,7 +28,7 @@ introduced to Percona XtraBackup.">
     
     
       
-        <title>The xbcrypt binary overview - Percona XtraBackup</title>
+        <title>Percona Product Download Instructions - Percona XtraBackup</title>
       
     
     
@@ -90,7 +89,7 @@ introduced to Percona XtraBackup.">
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - The xbcrypt binary overview" />
+                 <meta property="og:title" content="Percona XtraBackup - Percona Product Download Instructions" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -113,7 +112,7 @@ introduced to Percona XtraBackup.">
     <div data-md-component="skip">
       
         
-        <a href="#the-xbcrypt-binary-overview" class="md-skip">
+        <a href="#percona-product-download-instructions" class="md-skip">
           Skip to content
         </a>
       
@@ -152,7 +151,7 @@ introduced to Percona XtraBackup.">
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              The xbcrypt binary overview
+              Percona Product Download Instructions
             
           </span>
         </div>
@@ -1894,19 +1893,17 @@ introduced to Percona XtraBackup.">
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1920,7 +1917,7 @@ introduced to Percona XtraBackup.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Binaries
@@ -2100,19 +2097,17 @@ introduced to Percona XtraBackup.">
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
         
           
           <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
@@ -2126,7 +2121,7 @@ introduced to Percona XtraBackup.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_3">
             <span class="md-nav__icon md-icon"></span>
             The xbcrypt binary
@@ -2137,30 +2132,10 @@ introduced to Percona XtraBackup.">
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    The xbcrypt binary overview
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="xbcrypt-binary-overview.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="xbcrypt-binary-overview.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2169,37 +2144,6 @@ introduced to Percona XtraBackup.">
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#get-expert-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get expert help
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2710,17 +2654,19 @@ introduced to Percona XtraBackup.">
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -2734,7 +2680,7 @@ introduced to Percona XtraBackup.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Install
@@ -2766,17 +2712,19 @@ introduced to Percona XtraBackup.">
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
         
           
           <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
@@ -2790,7 +2738,7 @@ introduced to Percona XtraBackup.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             Before you start
@@ -2864,10 +2812,30 @@ introduced to Percona XtraBackup.">
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="download-instructions.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Percona Product Download Instructions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="download-instructions.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -2876,6 +2844,64 @@ introduced to Percona XtraBackup.">
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#select-the-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Select the software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-to-a-local-computer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download to a local computer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-to-another-computer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download to another computer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-expert-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get expert help
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4455,6 +4481,33 @@ introduced to Percona XtraBackup.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#select-the-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Select the software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-to-a-local-computer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download to a local computer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-to-another-computer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download to another computer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
     <span class="md-ellipsis">
       Get expert help
@@ -4484,7 +4537,7 @@ introduced to Percona XtraBackup.">
                   
 
   
-    <a href="https://github.com/percona/pxb-docs/edit/8.0/docs/xbcrypt-binary-overview.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/edit/8.0/docs/download-instructions.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -4493,19 +4546,37 @@ introduced to Percona XtraBackup.">
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/8.0/docs/xbcrypt-binary-overview.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/8.0/docs/download-instructions.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
     </a>
   
 
 
-<h1 id="the-xbcrypt-binary-overview">The xbcrypt binary overview<a class="headerlink" href="#the-xbcrypt-binary-overview" title="Permanent link">&para;</a></h1>
-<p>To support encryption and decryption of the backups, a new tool <code>xbcrypt</code> was
-introduced to <em>Percona XtraBackup</em>.</p>
-<p><strong>Percona XtraBackup</strong> 8.0.28-20 implements the <code>XBCRYPT_ENCRYPTION_KEY</code> environment variable. The variable is only used in place of the <code>--encrypt_key=name</code> option. You can use the environment variable or command line option. If you use both, the command line option takes precedence over the value specified in the environment variable.</p>
-<p>This utility has been modeled after The <a href="xbstream-binary-overview.html">xbstream binary</a> to perform encryption and decryption outside of <em>Percona XtraBackup</em>. `</p>
-<p>For more details on the command-line options, see <a href="xbcrypt-options.html">xbcrypt command-line options</a></p>
+<h1 id="percona-product-download-instructions">Percona Product Download Instructions<a class="headerlink" href="#percona-product-download-instructions" title="Permanent link">&para;</a></h1>
+<h2 id="select-the-software">Select the software<a class="headerlink" href="#select-the-software" title="Permanent link">&para;</a></h2>
+<p>Do the following steps to select the software:</p>
+<ol>
+<li>Open <a href="https://www.percona.com/downloads">Percona Product Downloads</a></li>
+<li>Locate the Percona Software, for example, Percona Server for MySQL</li>
+<li>In <code>Select Product</code>, select which product, for example, Percona Server 8.0</li>
+<li>In <code>Select Product Version</code>, select the version, for example, PERCONA-SERVER-8.0.36-28</li>
+<li>In <code>Select Software</code>, select the operating system, for example, RED HAT ENTERPRISE LINUX / CENTOS/ ORACLE LINUX 9</li>
+</ol>
+<p>The easiest method is to download all packages.</p>
+<h2 id="download-to-a-local-computer">Download to a local computer<a class="headerlink" href="#download-to-a-local-computer" title="Permanent link">&para;</a></h2>
+<p>In <code>Package Download Options</code>, select a specific package or choose the <code>DOWNLOAD ALL PACKAGES</code> button. This action downloads the selected packages to the local computer.</p>
+<h2 id="download-to-another-computer">Download to another computer<a class="headerlink" href="#download-to-another-computer" title="Permanent link">&para;</a></h2>
+<p>In <code>Package Download Options</code>, you can do either of the following:</p>
+<ul>
+<li>
+<p>Select a specific package and right-click on the arrow next to <code>DOWNLOAD</code>, and in the drop-down menu, choose <code>Copy Link Address</code></p>
+</li>
+<li>
+<p>Select <code>DOWNLOAD ALL PACKAGES</code> and right-click on the arrow, and in the drop-down menu, choose <code>Copy Link Address</code></p>
+</li>
+</ul>
+<p>Paste the link in your terminal prompt to download the selected package.</p>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
 <p>If you need assistance, visit the community forum for comprehensive and free database knowledge, or contact our Percona Database Experts for professional support and services.</p>
@@ -4520,7 +4591,7 @@ introduced to <em>Percona XtraBackup</em>.</p>
   <small>
     
       Last update:
-      2024-01-19
+      2024-03-18
     
   </small>
 </div>

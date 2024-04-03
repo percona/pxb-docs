@@ -8,8 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Binary tarballs contain precompiled executable files, libraries, and other dependencies and are
-compressed tar archives. Extract the binary tarballs to any path.">
+        <meta name="description" content="Binary tarballs provide a ready-to-use application since they contain precompiled executables, libraries, and dependencies. Installing from a tarball is straightforward — extract the files to your desired location. Compiling or building from source is unnecessary, which saves time and effort. You avoid the compilation process, which can be time-consuming and error-prone.">
       
       
         <meta name="author" content="Percona LLC">
@@ -25,7 +24,7 @@ compressed tar archives. Extract the binary tarballs to any path.">
       
       
       <link rel="icon" href="_static/percona-favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
     
     
       
@@ -33,7 +32,7 @@ compressed tar archives. Extract the binary tarballs to any path.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.bcfcd587.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -2807,6 +2806,27 @@ compressed tar archives. Extract the binary tarballs to any path.">
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="download-instructions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona Product Download Instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3222,6 +3242,24 @@ compressed tar archives. Extract the binary tarballs to any path.">
       On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#download-the-tarball" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download the tarball
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extract-the-tarball" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract the tarball
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
@@ -4434,6 +4472,24 @@ compressed tar archives. Extract the binary tarballs to any path.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#download-the-tarball" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download the tarball
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extract-the-tarball" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract the tarball
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
     <span class="md-ellipsis">
       Get expert help
@@ -4480,12 +4536,65 @@ compressed tar archives. Extract the binary tarballs to any path.">
 
 
 <h1 id="install-percona-xtrabackup-80-from-a-binary-tarball">Install Percona XtraBackup 8.0 from a binary tarball<a class="headerlink" href="#install-percona-xtrabackup-80-from-a-binary-tarball" title="Permanent link">&para;</a></h1>
-<p>Binary tarballs contain precompiled executable files, libraries, and other dependencies and are
-compressed <code>tar</code> archives. Extract the binary tarballs to any path.</p>
-<p>You can download the binary tarballs from the <code>Linux - Generic</code> section on the <a href="https://www.percona.com/downloads/">Percona Product Downloads</a>.</p>
-<p>The following command is an example of downloading the full tarball for Linux/Generic:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0.23-16/binary/tarball/percona-xtrabackup-8.0.23-16-Linux-x86_64.glibc2.17.tar.gz
+<p>Binary tarballs provide a ready-to-use application since they contain precompiled executables, libraries, and dependencies. Installing from a tarball is straightforward — extract the files to your desired location. Compiling or building from source is unnecessary, which saves time and effort. You avoid the compilation process, which can be time-consuming and error-prone.</p>
+<p>Binary tarballs provide only the necessary files, reducing disk space usage. A binary tarball installation allows customization since you can choose installation paths, configure options, and tailor the application to your requirements. Binary tarballs often come with version numbers, letting you track and update the installed version as needed.</p>
+<p>Be aware of the following when installing from a binary tarball:</p>
+<ul>
+<li>
+<p>Binary tarballs bundle dependencies within themselves. If your system already has specific libraries or versions installed, you may have conflicts.</p>
+</li>
+<li>
+<p>Binary tarball installation bypasses the package manager. Package managers handle updates, dependencies, and conflict resolution. Manual management of updates becomes necessary.</p>
+</li>
+<li>
+<p>Binary tarballs may not receive security patches automatically. You must actively monitor and apply updates.</p>
+</li>
+<li>
+<p>Binary tarball custom installation can scatter files. It may not adhere to standard paths, which makes maintenance challenging.</p>
+</li>
+</ul>
+<h2 id="download-the-tarball">Download the tarball<a class="headerlink" href="#download-the-tarball" title="Permanent link">&para;</a></h2>
+<p>You can download the binary tarballs from the <code>Linux - Generic</code> section on the <a href="https://www.percona.com/downloads/">Percona Product Downloads</a>. For more information, see the <a href="download-instructions.html">download instructions</a>. For information on the available binary tarball names, see <a href="binary-tarball-names.html">binary tarball names</a>.</p>
+<p>The following command is an example of downloading a tarball for Linux/Generic:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-8.0/Percona-XtraBackup-8.0.35-30/binary/tarball/percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz
 </code></pre></div>
+<details class="example">
+<summary>Expected result</summary>
+<div class="no-copy highlight"><pre><span></span><code>--2024-03-18 11:34:50--  https://downloads.percona.com/downloads/Percona-XtraBackup-8.0/Percona-XtraBackup-8.0.35-30/binary/tarball/percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz
+Resolving downloads.percona.com (downloads.percona.com)... 147.135.54.159, 2604:2dc0:200:69f::2
+Connecting to downloads.percona.com (downloads.percona.com)|147.135.54.159|:443... connected.
+...
+percona-xtrabackup-8.0 100%[==========================&gt;] 448.02M  2.56MB/s    in 5m 5s
+2024-03-18 11:39:56 (1.47 MB/s) - &#39;percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz&#39; saved [469780148/469780148]
+</code></pre></div>
+</details>
+<h2 id="extract-the-tarball">Extract the tarball<a class="headerlink" href="#extract-the-tarball" title="Permanent link">&para;</a></h2>
+<p>After downloading the tarball to the selected location, use the following command to extract the tarball:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-xvf<span class="w"> </span>percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz
+</code></pre></div>
+<details class="example">
+<summary>Expected result</summary>
+<div class="no-copy highlight"><pre><span></span><code>percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17/
+percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17/bin/
+percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17/bin/xbcloud_osenv
+percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17/bin/xtrabackup
+percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17/bin/xbcrypt
+percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17/bin/xbstream
+percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17/bin/xbcloud
+...
+</code></pre></div>
+</details>
+<p>After the extraction, navigate to the <code>bin</code> directory to find the binary files. </p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17/bin
+</code></pre></div>
+<p>In the bin directory, run one of the binary files.</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./xtrabackup<span class="w"> </span>--version
+</code></pre></div>
+<details class="example">
+<summary>Expected result</summary>
+<div class="no-copy highlight"><pre><span></span><code>./xtrabackup version 8.0.35-30 based on MySQL server 8.0.35 Linux (x86_64) (revision id: 6beb4b49)
+</code></pre></div>
+</details>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
 <p>If you need assistance, visit the community forum for comprehensive and free database knowledge, or contact our Percona Database Experts for professional support and services.</p>
@@ -4500,7 +4609,7 @@ compressed <code>tar</code> archives. Extract the binary tarballs to any path.</
   <small>
     
       Last update:
-      2023-06-12
+      2024-03-18
     
   </small>
 </div>
@@ -4600,7 +4709,7 @@ compressed <code>tar</code> archives. Extract the binary tarballs to any path.</
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.bd41221c.min.js"></script>
+      <script src="assets/javascripts/bundle.1e8ae164.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
