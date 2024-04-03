@@ -66,7 +66,7 @@ hold values too long to fit in the row itself, such as long `BLOB` and
 100%. It will never reach 100% because of space reserved for page headers and
 footers.
 
-A more detailed example is posted as a MySQL Performance Blog [post](http://www.mysqlperformanceblog.com/2009/09/14/statistics-of-innodb-tables-and-indexes-available-in-xtrabackup/).
+A more detailed example is posted as a MySQL Performance Blog [post](https://www.percona.com/blog/statistics-of-innodb-tables-and-indexes-available-in-xtrabackup/).
 
 ## Script to format output
 

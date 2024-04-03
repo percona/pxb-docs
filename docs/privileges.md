@@ -84,7 +84,7 @@ mandatory), and optionally to see all threads which are running on the
 server (see FLUSH TABLES WITH READ LOCK option),
 
 * `SUPER` in order to start/stop the replication threads in a replication
-environment, use [XtraDB Changed Page Tracking](https://www.percona.com/doc/percona-server/8.0/management/changed_page_tracking.html)
+environment, use [XtraDB Changed Page Tracking](https://www.percona.com/doc/percona-server/8.0/changed-page-tracking.html)
 for Incremental Backups and for handling FLUSH TABLES WITH READ LOCK,
 
 * `CREATE` privilege in order to create the

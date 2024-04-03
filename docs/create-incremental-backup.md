@@ -17,7 +17,7 @@ previous incremental or full backup’s LSN. An algorithm finds the pages that m
 
 ### Use the changed page tracking algorithm 
 
-*Percona XtraBackup* 8.0.30 removes the algorithm that used the [changed page tracking](https://docs.percona.com/percona-server/8.0/management/changed_page_tracking.html) feature in *Percona Server for MySQL*. *Percona Server for MySQL* 8.0.27 deprecated the changed page tracking feature.
+*Percona XtraBackup* 8.0.30 removes the algorithm that used the [changed page tracking](https://docs.percona.com/percona-server/8.0/changed-page-tracking.html) feature in *Percona Server for MySQL*. *Percona Server for MySQL* 8.0.27 deprecated the changed page tracking feature.
 
 With PXB 8.0.27 or earlier, another algorithm enabled the *Percona Server for MySQL* changed page tracking feature. The algorithm generates a bitmap file. The *xtrabackup* binary uses that bitmap file to read only those pages needed for the incremental backup. This method potentially saves resources. The backup enables the algorithm by default if the *xtrabackup* binary discovers the bitmap file. You can override the algorithm with `--incremental-force-scan` which forces a read of all pages even if the bitmap file is available.
 
