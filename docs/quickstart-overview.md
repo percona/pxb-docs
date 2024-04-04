@@ -35,4 +35,4 @@ Percona Monitoring and Management (PMM) monitors and provides actionable perform
 [Install PMM and connect your MySQL instances to it](https://docs.percona.com/percona-monitoring-and-management/get-started/index.html).
 
 [Percona Server for MySQL]: https://docs.percona.com/percona-server/innovation-release/installation.html
-[Percona XtraDB Cluster]: https://docs.percona.com/percona-xtradb-cluster/8.0/install/index.html
+[Percona XtraDB Cluster]: https://docs.percona.com/percona-xtradb-cluster/8.0/install-index.html
