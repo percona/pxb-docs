@@ -4599,11 +4599,11 @@
 <h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
 <p>This release includes improvements and bug fixes. Percona has implemented a two-stage release process for each version. The first release primarily ensures compatibility with the latest MySQL version, to help those customers who need an updated version of Percona XtraBackup as soon as possible. The second release contains additional bug fixes and any improvements or new features. </p>
 <p>This release fixes the security vulnerability <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-25834">CVE-2022-25834</a> with <a href="https://jira.percona.com/browse/PXB-2977">PXB-2977</a>.</p>
-<p>This version adds the <a href="../../../../xtrabackup-option-reference.md#estimate-memory">&ndash;estimate-memory</a> parameter to enable/disable the <a href="../../smart-memory-estimation.html">Smart memory estimation</a> feature during the backup phase.</p>
+<p>This version adds the <a href="../../xtrabackup-option-reference.html#estimate-memory">&ndash;estimate-memory</a> parameter to enable/disable the <a href="../../smart-memory-estimation.html">Smart memory estimation</a> feature during the backup phase.</p>
 <h2 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
 <p><a href="https://jira.percona.com/browse/PXB-2882">PXB-2882</a>: Removes bitmap code and variables.</p>
 <p><a href="https://jira.percona.com/browse/PXB-2979">PXB-2979</a>: The Smart memory estimation feature parses metadata from the redo log to estimate the required memory to prepare a backup. On write-intensive workloads, this behavior caused the delay of the redo follow thread.</p>
-<p><a href="https://jira.percona.com/browse/PXB-2980">PXB-2980</a>: Adds the <a href="../../../../xtrabackup-option-reference.md#estimate-memory">&ndash;estimate-memory</a> parameter to enable/disable the Smart memory estimation feature during the backup phase.</p>
+<p><a href="https://jira.percona.com/browse/PXB-2980">PXB-2980</a>: Adds the <a href="../../xtrabackup-option-reference.html#estimate-memory">&ndash;estimate-memory</a> parameter to enable/disable the Smart memory estimation feature during the backup phase.</p>
 <h2 id="bug-fixes">Bug fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
 <p><a href="https://jira.percona.com/browse/PXB-2264">PXB-2264</a>: When a table with the next auto incremental value <code>2</code> was exported using Percona XtraBackup, the table got the next auto incremental value <code>1</code> instead of <code>2</code>.</p>
 <p><a href="https://jira.percona.com/browse/PXB-2954">PXB-2954</a>: During prepare phase Percona XtraBackup uses Serialized Dictionary information (SDI) to create the table metadata. If there was an orphan table, leftover from a upgrade, without SDI information, Percona XtraBackup failed to prepare a backup.</p>
@@ -4631,7 +4631,7 @@
   <small>
     
       Last update:
-      2023-10-26
+      2024-04-04
     
   </small>
 </div>

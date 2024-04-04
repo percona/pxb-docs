@@ -4548,7 +4548,7 @@ entire database. Each page’s LSN shows how recently it was changed.</p>
 <p>An incremental backup copies each page which LSN is newer than the
 previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.</p>
 <h3 id="use-the-changed-page-tracking-algorithm">Use the changed page tracking algorithm<a class="headerlink" href="#use-the-changed-page-tracking-algorithm" title="Permanent link">&para;</a></h3>
-<p><em>Percona XtraBackup</em> 8.0.30 removes the algorithm that used the <a href="https://docs.percona.com/percona-server/8.0/management/changed_page_tracking.html">changed page tracking</a> feature in <em>Percona Server for MySQL</em>. <em>Percona Server for MySQL</em> 8.0.27 deprecated the changed page tracking feature.</p>
+<p><em>Percona XtraBackup</em> 8.0.30 removes the algorithm that used the <a href="https://docs.percona.com/percona-server/8.0/changed-page-tracking.html">changed page tracking</a> feature in <em>Percona Server for MySQL</em>. <em>Percona Server for MySQL</em> 8.0.27 deprecated the changed page tracking feature.</p>
 <p>With PXB 8.0.27 or earlier, another algorithm enabled the <em>Percona Server for MySQL</em> changed page tracking feature. The algorithm generates a bitmap file. The <em>xtrabackup</em> binary uses that bitmap file to read only those pages needed for the incremental backup. This method potentially saves resources. The backup enables the algorithm by default if the <em>xtrabackup</em> binary discovers the bitmap file. You can override the algorithm with <code>--incremental-force-scan</code> which forces a read of all pages even if the bitmap file is available.</p>
 <h2 id="create-an-incremental-backup_1">Create an incremental backup<a class="headerlink" href="#create-an-incremental-backup_1" title="Permanent link">&para;</a></h2>
 <p>To make an incremental backup, begin with a full backup as usual. The
@@ -4624,7 +4624,7 @@ recover_binlog_info = 1
   <small>
     
       Last update:
-      2023-06-12
+      2024-04-04
     
   </small>
 </div>
