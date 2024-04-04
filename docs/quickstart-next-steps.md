@@ -16,7 +16,7 @@ Install [Percona Server for MySQL](https://docs.percona.com/percona-server/8.0/i
 
 Percona XtraDB Cluster (PXC) is a 100% open source, enterprise-grade, highly available clustering solution for MySQL multi-master setups based on Galera. PXC helps enterprises minimize unexpected downtime and data loss, reduce costs, and improve performance and scalability of your database environments supporting your critical business applications in the most demanding public, private, and hybrid cloud environments. 
 
-Install [Percona XtraDB Cluster](https://docs.percona.com/percona-xtradb-cluster/8.0/install/index.html).
+Install [Percona XtraDB Cluster](https://docs.percona.com/percona-xtradb-cluster/8.0/install-index.html).
 
 ### For Monitoring and Management
 

@@ -23,7 +23,7 @@ In this section, container refers to the Docker container and instance refers to
 To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database, and a table.
 
 * [Start Percona Server in a Docker container](https://docs.percona.com/percona-server/8.0/quickstart-docker.html)
-* [Create a database and table in Percona Server](https://docs.percona.com/percona-server/8.0/quickstart-database.html)
+* [Create a database and table in Percona Server](https://docs.percona.com/percona-server/8.0/quickstart-docker.html#create-a-database)
 
 ### Limitations
 
