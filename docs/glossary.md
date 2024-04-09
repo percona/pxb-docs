@@ -210,4 +210,4 @@ To support simultaneous compression and streaming, *Percona XtraBackup* uses the
 designed to better scale on modern hardware. *Percona XtraDB* includes a variety of
 other features useful in high performance environments. It is fully
 backwards compatible, and so can be used as a drop-in replacement for
-standard InnoDB. More information [here](https://www.percona.com/doc/percona-server/8.0/percona_xtradb.html).
+standard InnoDB. More information [here](https://docs.percona.com/percona-server/8.0/percona-xtradb.html).

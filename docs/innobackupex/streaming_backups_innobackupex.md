@@ -28,7 +28,7 @@ meta and non-InnoDB files which are not compressed, using the specified
 compression algorithm. The only currently supported algorithm is
 `quicklz`. The resulting files have the qpress archive format, i.e. every
 \*.qp file produced by xtrabackup is essentially a one-file qpress archive and
-can be extracted and uncompressed by the [qpress file archiver](http://www.quicklz.com/) which is available from Percona Software
+can be extracted and uncompressed by the qpress file archiver which is available from Percona Software
 repositories.
 
 Using *xbstream* as a stream option, backups can be copied and compressed in
