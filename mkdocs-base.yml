@@ -1,5 +1,3 @@
-# MkDocs configuration for Netlify builds
-
 site_name: Percona XtraBackup
 site_description: Percona XtraBackup is an open source hot backup utility, for MySQL - based servers, that keeps your database fully available during planned maintenance windows.
 site_author: Percona LLC
@@ -13,9 +11,8 @@ use_directory_urls: false
 # Theme setup
 theme:
   name: material
-  logo: _static/percona-logo.svg
-  favicon: _static/percona-favicon.ico
-  custom_dir: _resource/overrides/
+  logo: assets/mysql-mark.svg
+  favicon: assets/mysql-fav.svg
   font:
     text: Roboto
     code: Roboto Mono
@@ -24,24 +21,24 @@ theme:
     view: material/file-eye-outline
   
   palette:
-
-    # Light mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Color theme set to Automatic. Click to change
     - media: "(prefers-color-scheme: light)"
       scheme: percona-light
       primary: custom
       accent: custom
       toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-
-    # Dark mode
+        icon: material/brightness-7
+        name: Color theme set to Light Mode. Click to change
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+      scheme: percona-dark
       primary: custom
       accent: custom
       toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
+        icon: material/brightness-4
+        name: Color theme set to Dark Mode. Click to change
 
 # Theme features
 
@@ -57,10 +54,11 @@ theme:
 extra_css:
   - https://unicons.iconscout.com/release/v3.0.3/css/line.css
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css
-  - css/percona.css
-  - css/nocopy.css
   - css/design.css
   - css/osano.css
+  - css/extra.css
+  - css/nocopy.css
+  - css/mysql.css
 
 extra_javascript:
   - js/version-select.js
@@ -104,8 +102,6 @@ markdown_extensions:
     options:
       custom_icons:
         - _resource/.icons
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 
 plugins:
@@ -143,8 +139,6 @@ extra:
   version: 
     provider: mike
     default: latest
-  homepage:
-    https://docs.percona.com
   edit_page_text: '<i class="uil uil-pen"></i> <b>Edit this page</b>'
   updated_text: '<i class="uil uil-refresh"></i> Page updated'
 
