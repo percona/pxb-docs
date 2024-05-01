@@ -1,29 +1,29 @@
 # Take a streaming backup
 
-**Percona XtraBackup** supports streaming mode. Streaming mode sends a backup to `STDOUT` in the *xbstream* format instead of copying the files to the backup directory.
+Percona XtraBackup supports streaming mode. Streaming mode sends a backup to `STDOUT` in the xbstream format instead of copying the files to the backup directory.
 
-This method allows you to use other programs to filter the output of the backup,
-providing greater flexibility for storage of the backup. For example,
-compression is achieved by piping the output to a compression utility. One of
-the benefits of streaming backups and using Unix pipes is that the backups can
-be automatically encrypted.
+This method enables you to utilize other programs to filter the backup output, enhancing flexibility in backup storage. For instance, compression can be achieved by directing the output to a compression utility. One advantage of streaming backups and employing Unix pipes is that backups can be automatically encrypted.
 
-To use the streaming feature, you must use the `--stream`,
-providing the format of the stream (`xbstream` ) and where to store
-the temporary files:
+## Version changes
+
+Using `--encrypt` might create larger backups than expected when used with InnoDB Page Compression.
+
+To avoid this issue with compressed backups, use the `--compress` option with the `--xbstream` option in Percona XtraBackup 8.0.31-24 and later.
+
+## Use streaming
+
+To utilize the streaming feature, you need to employ the `--stream` option, specifying the stream format (xbstream ) and the location for storing temporary files:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --stream=xbstream --target-dir=/tmp
 ```
 
-*xtrabackup* uses *xbstream* to stream all of the data files to `STDOUT`, in a
-special `xbstream` format. After it finishes streaming all of the data files
-to `STDOUT`, it stops xtrabackup and streams the saved log file too.
+xtrabackup uses xbstream to stream all of the data files to `STDOUT`, in a
+special `xbstream` format. After all data is streamed, xtrabackup stops and also streams the saved transaction log.
 
-When compression is enabled, *xtrabackup* compresses the output data, except for the metadata, using the specified compression algorithm. Read about the supported compression algorithms in the [Create a compressed backup](create-compressed-backup.md) document.
+When compression is enabled, xtrabackup compresses the output data, except for the metadata, using the specified compression algorithm. Read about the supported compression algorithms in the [Create a compressed backup](create-compressed-backup.md) document.
 
-Using *xbstream* as a stream option, backups can be copied and compressed in parallel. This option can significantly improve the speed of the backup process. In case backups
-were both compressed and encrypted, they must be decrypted before they are uncompressed.
+With xbstream, backups can be copied and compressed simultaneously, significantly speeding up the process. However, if backups are both compressed and encrypted, they need to be decrypted before uncompressing.
 
 |Task  | Command  |
 |---------|------|
