@@ -2356,6 +2356,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use streaming
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
     <span class="md-ellipsis">
       Get expert help
@@ -4496,6 +4514,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use streaming
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
     <span class="md-ellipsis">
       Get expert help
@@ -4542,23 +4578,19 @@
 
 
 <h1 id="take-a-streaming-backup">Take a streaming backup<a class="headerlink" href="#take-a-streaming-backup" title="Permanent link">&para;</a></h1>
-<p><strong>Percona XtraBackup</strong> supports streaming mode. Streaming mode sends a backup to <code>STDOUT</code> in the <em>xbstream</em> format instead of copying the files to the backup directory.</p>
-<p>This method allows you to use other programs to filter the output of the backup,
-providing greater flexibility for storage of the backup. For example,
-compression is achieved by piping the output to a compression utility. One of
-the benefits of streaming backups and using Unix pipes is that the backups can
-be automatically encrypted.</p>
-<p>To use the streaming feature, you must use the <code>--stream</code>,
-providing the format of the stream (<code>xbstream</code> ) and where to store
-the temporary files:</p>
+<p>Percona XtraBackup supports streaming mode. Streaming mode sends a backup to <code>STDOUT</code> in the xbstream format instead of copying the files to the backup directory.</p>
+<p>This method enables you to utilize other programs to filter the backup output, enhancing flexibility in backup storage. For instance, compression can be achieved by directing the output to a compression utility. One advantage of streaming backups and employing Unix pipes is that backups can be automatically encrypted.</p>
+<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Using <code>--encrypt</code> might create larger backups than expected when used with InnoDB Page Compression.</p>
+<p>To avoid this issue with compressed backups, use the <code>--compress</code> option with the <code>--xbstream</code> option in Percona XtraBackup 8.0.31-24 and later.</p>
+<h2 id="use-streaming">Use streaming<a class="headerlink" href="#use-streaming" title="Permanent link">&para;</a></h2>
+<p>To utilize the streaming feature, you need to employ the <code>--stream</code> option, specifying the stream format (xbstream ) and the location for storing temporary files:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp
 </code></pre></div>
-<p><em>xtrabackup</em> uses <em>xbstream</em> to stream all of the data files to <code>STDOUT</code>, in a
-special <code>xbstream</code> format. After it finishes streaming all of the data files
-to <code>STDOUT</code>, it stops xtrabackup and streams the saved log file too.</p>
-<p>When compression is enabled, <em>xtrabackup</em> compresses the output data, except for the metadata, using the specified compression algorithm. Read about the supported compression algorithms in the <a href="create-compressed-backup.html">Create a compressed backup</a> document.</p>
-<p>Using <em>xbstream</em> as a stream option, backups can be copied and compressed in parallel. This option can significantly improve the speed of the backup process. In case backups
-were both compressed and encrypted, they must be decrypted before they are uncompressed.</p>
+<p>xtrabackup uses xbstream to stream all of the data files to <code>STDOUT</code>, in a
+special <code>xbstream</code> format. After all data is streamed, xtrabackup stops and also streams the saved transaction log.</p>
+<p>When compression is enabled, xtrabackup compresses the output data, except for the metadata, using the specified compression algorithm. Read about the supported compression algorithms in the <a href="create-compressed-backup.html">Create a compressed backup</a> document.</p>
+<p>With xbstream, backups can be copied and compressed simultaneously, significantly speeding up the process. However, if backups are both compressed and encrypted, they need to be decrypted before uncompressing.</p>
 <table>
 <thead>
 <tr>
@@ -4627,7 +4659,7 @@ were both compressed and encrypted, they must be decrypted before they are uncom
   <small>
     
       Last update:
-      2023-08-21
+      2024-04-30
     
   </small>
 </div>
