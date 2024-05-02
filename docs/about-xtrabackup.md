@@ -89,12 +89,7 @@ for more.
 
 * Backup MySQL without adding load to the server
 
-
 * Percona XtraBackup performs throttling based on the number of IO operations per second
-
-
-* Percona XtraBackup skips secondary index pages and recreates them when a compact backup is prepared
-
 
 * Percona XtraBackup can export individual tables even from a full backup, regardless of the InnoDB version
 
