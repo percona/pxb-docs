@@ -66,7 +66,6 @@ taken with `--history` option.
 | partial           | Is this a partial backup, if ``N`` that means that it's the full backup                                                             |
 | incremental       | Is this an incremental backup                                                                                                       |
 | format            | Description of result format (``xbstream``)                                                                                         |
-| compact           | Is this a compact backup                                                                                                            |
 | compressed        | Is this a compressed backup                                                                                                         |
 | encrypted         | Is this an encrypted backup                                                                                                         |
 

@@ -786,22 +786,6 @@ Set the read buffer size. The given value is scaled up to page size. The default
 
 To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-buffer-size) and [`--encrypt-chunk-size`](#encrypt-chunk-size).
 
-### rebuild-indexes
-
-Usage: `--rebuild-indexes`
-
-Rebuilds indexes in a compact backup.
-
-This option only has effect when the [`--prepare`](#prepare) and [`--rebuild-threads`](#rebuild-threads) options are provided.
-
-### rebuild-threads
-
-Usage: `--rebuild-threads=#`
-
-Uses the given number of threads to rebuild indexes in a compact backup. This
-option only affects the `-`-prepare`](#prepare) and
-[`--rebuild-indexes`](#rebuild-threads) options.
-
 ### register-redo-log-consumer
 
 Usage: `--register-redo-log-consumer`
