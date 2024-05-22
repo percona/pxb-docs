@@ -802,6 +802,12 @@ Uses the given number of threads to rebuild indexes in a compact backup. This
 option only affects the `-`-prepare`](#prepare) and
 [`--rebuild-indexes`](#rebuild-threads) options.
 
+### redo-log-arch-dir
+
+Usage: `--redo-log-arch-dir=name`
+
+This option sets the redo log archive directory if this directory is not already set on the server. To use this option, you must run Percona XtraBackup as the owner of `mysqld`. Additionally, the user must have at least one of the following privileges: `SUPER` or `SYSTEM_VARIABLES_ADMIN`.
+
 ### register-redo-log-consumer
 
 Usage: `--register-redo-log-consumer`
