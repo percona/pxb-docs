@@ -786,28 +786,6 @@ Set the read buffer size. The given value is scaled up to page size. The default
 
 To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-buffer-size) and [`--encrypt-chunk-size`](#encrypt-chunk-size).
 
-### rebuild-indexes
-
-Usage: `--rebuild-indexes`
-
-Rebuilds indexes in a compact backup.
-
-This option only has effect when the [`--prepare`](#prepare) and [`--rebuild-threads`](#rebuild-threads) options are provided.
-
-### rebuild-threads
-
-Usage: `--rebuild-threads=#`
-
-Uses the given number of threads to rebuild indexes in a compact backup. This
-option only affects the `-`-prepare`](#prepare) and
-[`--rebuild-indexes`](#rebuild-threads) options.
-
-### redo-log-arch-dir
-
-Usage: `--redo-log-arch-dir=name`
-
-This option sets the redo log archive directory if this directory is not already set on the server. To use this option, you must run Percona XtraBackup as the owner of `mysqld`. Additionally, the user must have at least one of the following privileges: `SUPER` or `SYSTEM_VARIABLES_ADMIN`.
-
 ### register-redo-log-consumer
 
 Usage: `--register-redo-log-consumer`
