@@ -838,20 +838,6 @@ Usage: `--read-buffer-size`
 
 Sets the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use `--read-buffer-size` and `--encrypt-chunk-size`.
 
-### rebuild-indexes
-
-Usage: `--rebuild-indexes`
-
-Rebuilds indexes in a compact backup. This option only has effect when the
-`--prepare` and `--rebuild-threads` options are provided.
-
-### rebuild-threads
-
-Usage: `--rebuild-threads=#`
-
-Uses the given number of threads to rebuild indexes in a compact backup. This
-option only has effect with the `--prepare` and
-`--rebuild-indexes` options.
 
 ### redo-log-arch-dir
 
