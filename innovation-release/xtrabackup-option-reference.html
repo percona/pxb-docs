@@ -2091,33 +2091,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rebuild-indexes" class="md-nav__link">
-    <span class="md-ellipsis">
-      rebuild-indexes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rebuild-threads" class="md-nav__link">
-    <span class="md-ellipsis">
-      rebuild-threads
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#redo-log-arch-dir" class="md-nav__link">
-    <span class="md-ellipsis">
-      redo-log-arch-dir
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#register-redo-log-consumer" class="md-nav__link">
     <span class="md-ellipsis">
       register-redo-log-consumer
@@ -5589,33 +5562,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rebuild-indexes" class="md-nav__link">
-    <span class="md-ellipsis">
-      rebuild-indexes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rebuild-threads" class="md-nav__link">
-    <span class="md-ellipsis">
-      rebuild-threads
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#redo-log-arch-dir" class="md-nav__link">
-    <span class="md-ellipsis">
-      redo-log-arch-dir
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#register-redo-log-consumer" class="md-nav__link">
     <span class="md-ellipsis">
       register-redo-log-consumer
@@ -6572,18 +6518,6 @@ concurrent transfer. This option can be used with the <code>--copy-back</code> o
 <p>Usage: <code>--read-buffer-size</code></p>
 <p>Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size.</p>
 <p>To adjust the chunk size for encrypted files, use <a href="#read-buffer-size"><code>--read-buffer-size</code></a> and <a href="#encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
-<h3 id="rebuild-indexes">rebuild-indexes<a class="headerlink" href="#rebuild-indexes" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--rebuild-indexes</code></p>
-<p>Rebuilds indexes in a compact backup.</p>
-<p>This option only has effect when the <a href="#prepare"><code>--prepare</code></a> and <a href="#rebuild-threads"><code>--rebuild-threads</code></a> options are provided.</p>
-<h3 id="rebuild-threads">rebuild-threads<a class="headerlink" href="#rebuild-threads" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--rebuild-threads=#</code></p>
-<p>Uses the given number of threads to rebuild indexes in a compact backup. This
-option only affects the <code>-</code>-prepare<code>](#prepare) and
-[</code>&ndash;rebuild-indexes`](#rebuild-threads) options.</p>
-<h3 id="redo-log-arch-dir">redo-log-arch-dir<a class="headerlink" href="#redo-log-arch-dir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--redo-log-arch-dir=name</code></p>
-<p>This option sets the redo log archive directory if this directory is not already set on the server. To use this option, you must run Percona XtraBackup as the owner of <code>mysqld</code>. Additionally, the user must have at least one of the following privileges: <code>SUPER</code> or <code>SYSTEM_VARIABLES_ADMIN</code>.</p>
 <h3 id="register-redo-log-consumer">register-redo-log-consumer<a class="headerlink" href="#register-redo-log-consumer" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--register-redo-log-consumer</code></p>
 <p>This option is disabled by default.</p>
@@ -6781,7 +6715,7 @@ mysql –help for details.</p>
   <small>
     
       Last update:
-      2024-05-22
+      2024-05-30
     
   </small>
 </div>
