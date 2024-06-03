@@ -60,7 +60,7 @@ replica’s data
 directory it is advised to stop the MySQL server there.
 
 ```{.bash data-prompt="$"}
-$ rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewSlave:/path/to/mysql/
+$ rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewReplica:/path/to/mysql/
 ```
 
 After you copy the data over, make sure MySQL has proper permissions to
@@ -79,18 +79,18 @@ source node and, finally, start the replica.
 !!! note
    
     The example above is applicable to Percona XtraDB Cluster.
-    The `wsrep_on` variable is set to 0 before resetting the source (`RESET MASTER`). The reason is that Percona XtraDB Cluster will not allow resetting the source if `wsrep_on=1`.
+    The `wsrep_on` variable is set to 0 before resetting the source (`RESET BINARY LOGS AND GTIDS`). The reason is that Percona XtraDB Cluster will not allow resetting the source if `wsrep_on=1`.
 
 ```{.bash data-prompt="#"}
 # Using the mysql shell
  > SET SESSION wsrep_on = 0;
- > RESET MASTER;
+ > RESET BINARY LOGS AND GTIDS;
  > SET SESSION wsrep_on = 1;
  > SET GLOBAL gtid_purged='<gtid_string_found_in_xtrabackup_binlog_info>';
  > CHANGE REPLICATION SOURCE TO
-             SOURCE_HOST="$masterip",
+             SOURCE_HOST="$sourceip",
              SOURCE_USER="repl",
-             SOURCE_PASSWORD="$slavepass",
+             SOURCE_PASSWORD="$replicapass",
              SOURCE_AUTO_POSITION = 1;
  > START REPLICA;
 ```
@@ -108,8 +108,8 @@ The results should be similar to the following:
 
     ```{.text .no-copy}
     [..]
-    Slave_IO_Running: Yes
-    Slave_SQL_Running: Yes
+    Replica_IO_Running: Yes
+    Replica_SQL_Running: Yes
     [...]
     Retrieved_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:5
     Executed_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:1-5

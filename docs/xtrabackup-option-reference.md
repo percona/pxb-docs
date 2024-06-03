@@ -843,12 +843,12 @@ You cannot use this option with [`--stream`](#stream).
 Usage: `--safe-slave-backup`
 
 When specified, xtrabackup stops the replica SQL thread just before
-running `FLUSH TABLES WITH READ LOCK` and waits to start the backup operation until `Slave_open_temp_tables`` in `SHOW STATUS` is zero.
+running `FLUSH TABLES WITH READ LOCK` and waits to start the backup operation until `Replica_open_temp_tables`` in `SHOW STATUS` is zero.
 
-If there are no open temporary tables, the backup takes place, otherwise the SQL thread is started and stopped until there are no open temporary tables. The backup fails if `Slave_open_temp_tables` does not become zero after
+If there are no open temporary tables, the backup takes place, otherwise the SQL thread is started and stopped until there are no open temporary tables. The backup fails if `Replica_open_temp_tables` does not become zero after
 [`--safe-slave-backup-timeout`](#safe-slave-backup-timeout
 ) seconds. The replication SQL thread is restarted when the backup is complete.
-This option is implemented to deal with [replication and temporary tables](https://dev.mysql.com/doc/refman/8.0/en/replication-features-temptables.html) and isn’t necessary with row-based replication.
+This option is implemented to deal with [replication and temporary tables](https://dev.mysql.com/doc/refman/{{vers}}/en/replication-features-temptables.html) and isn’t necessary with row-based replication.
 
 Using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
 
@@ -856,7 +856,7 @@ Using a safe-slave-backup option stops the SQL replica thread before copying the
 
 Usage: `--safe-slave-backup-timeout=SECONDS`
 
-How many seconds the `--safe-slave-backup` option waits for the `Slave_open_temp_tables` to become zero. The default value is 300 seconds.
+How many seconds the `--safe-slave-backup` option waits for the `Replica_open_temp_tables` to become zero. The default value is 300 seconds.
 
 ### secure-auth
 
@@ -888,10 +888,10 @@ Usage: `--slave-info`
 
 This option is useful when backing up a replication replica server. It prints
 the binary log position of the source server. It also writes the binary log
-coordinates to the `xtrabackup_slave_info` file as a [`CHANGE MASTER`](https://dev.mysql.com/doc/refman/8.3/en/change-master-to.html)
+coordinates to the `xtrabackup_slave_info` file as a [`CHANGE REPLICATION SOURCE TO`](https://dev.mysql.com/doc/refman/{{vers}}/en/change-replication-source-to.html)
 command.
 
-A new replica for this source can be set up by starting a replica server on this backup and issuing a [`CHANGE MASTER`](https://dev.mysql.com/doc/refman/8.3/en/change-master-to.html) command with the binary log
+A new replica for this source can be set up by starting a replica server on this backup and issuing a [`CHANGE REPLICATION SOURCE TO`](https://dev.mysql.com/doc/refman/{{vers}}/en/change-replication-source-to.html) command with the binary log
 position saved in the `xtrabackup_slave_info` file.
 
 ### socket

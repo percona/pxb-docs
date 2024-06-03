@@ -1,4 +1,3 @@
-
 # FLUSH TABLES WITH READ LOCK option
 
 The `FLUSH TABLES WITH READ LOCK` option does the following with a global read lock:
@@ -15,7 +14,7 @@ Release the lock with `UNLOCK TABLES`.
 
 To ensure consistent backups, use the `FLUSH TABLES WITH READ LOCK` option before taking a non-InnoDB file backup. The option does not affect long-running queries.
 
-Enabling `FLUSH TABLES WITH READ LOCK` when the server has long-running queries can leave the server in a read-only mode until the queries finish. If the server is in either the `Waiting for table flush` or the `Waiting for master to send event` state, stopping the `FLUSH TABLES WITH READ LOCK` operation does not help. Stop any long-running queries to return to normal operation.
+Enabling `FLUSH TABLES WITH READ LOCK` when the server has long-running queries can leave the server in a read-only mode until the queries finish. If the server is in either the `Waiting for table flush` or the `Waiting for source to send event` state, stopping the `FLUSH TABLES WITH READ LOCK` operation does not help. Stop any long-running queries to return to normal operation.
 
 To prevent the server staying in a read-only mode until the queries finish, xtrabackup does the following:
 
