@@ -27,7 +27,11 @@ To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a 
 
 ### Limitations
 
-Percona XtraBackup 8.0 does not support making backups of databases created in versions before the 8.0 series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster or versions greater than 8.0, such as the 8.1 Innovation release. 
+Percona XtraBackup 8.0 does not support making backups of databases created in versions before the 8.0 series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster or versions greater than 8.0, such as the 8.1 Innovation release.
+
+### Supported versions
+
+Check the latest list of all [Supported versions](supported-versions.md).
 
 ### Supported servers
 
