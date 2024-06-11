@@ -26,7 +26,7 @@ encryption for physical tablespace data files.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
     
     
       
@@ -274,7 +274,7 @@ encryption for physical tablespace data files.">
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -1974,9 +1974,9 @@ encryption for physical tablespace data files.">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prepare-the-backup-with-the-keyring_file-component" class="md-nav__link">
+  <a href="#prepare-the-backup-with-component-keyring-config" class="md-nav__link">
     <span class="md-ellipsis">
-      Prepare the backup with the keyring_file component
+      Prepare the backup with component-keyring-config
     </span>
   </a>
   
@@ -4817,9 +4817,9 @@ encryption for physical tablespace data files.">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prepare-the-backup-with-the-keyring_file-component" class="md-nav__link">
+  <a href="#prepare-the-backup-with-component-keyring-config" class="md-nav__link">
     <span class="md-ellipsis">
-      Prepare the backup with the keyring_file component
+      Prepare the backup with component-keyring-config
     </span>
   </a>
   
@@ -5099,21 +5099,11 @@ the action:</p>
 160401 10:25:51 completed OK!
 </code></pre></div>
 </details>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><em>xtrabackup</em> does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.</p>
-</div>
-<h3 id="prepare-the-backup-with-the-keyring_file-component">Prepare the backup with the <code>keyring_file</code> component<a class="headerlink" href="#prepare-the-backup-with-the-keyring_file-component" title="Permanent link">&para;</a></h3>
-<p><em>xtrabackup</em> reads the keyring_file component configuration
-from <code>xtrabackup_component_keyring_file.cnf</code>. You must specify the
-keyring_file data path if the <code>keyring-file-data</code> is not located in the
-attribute <code>PATH</code> from the xtrabackup_component_keyring_file.cnf.</p>
-<p>The following is an example of adding the location for the
-keyring-file-data:</p>
+<h3 id="prepare-the-backup-with-component-keyring-config">Prepare the backup with <code>component-keyring-config</code><a class="headerlink" href="#prepare-the-backup-with-component-keyring-config" title="Permanent link">&para;</a></h3>
+<p>You can copy the <code>component_keyring_file.cnf</code> file to the backup directory before starting the <code>prepare</code> step or add the <code>component_keyring_config</code> option. You must specify the path if the <code>component-keyring-config</code> is not in the default location.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+--component-keyring-config<span class="o">=</span>/usr/lib64/mysql/plugin/component_keyring_file.cnf
 </code></pre></div>
-<p>xtrabackup attempts to read <code>xtrabackup_component_keyring_file.cnf</code>. You can assign another keyring file component configuration by passing the <code>--component-keyring-file-config</code> option.</p>
 <p>After <em>xtrabackup</em> completes preparing the backup, the following message confirms
 the action:</p>
 <details class="example">
@@ -5351,7 +5341,7 @@ vault server and re-encrypt the tablespace keys using this key.</p>
   <small>
     
       Last update:
-      2023-06-12
+      2024-06-06
     
   </small>
 </div>
@@ -5452,7 +5442,7 @@ vault server and re-encrypt the tablespace keys using this key.</p>
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.081f42fc.min.js"></script>
+      <script src="assets/javascripts/bundle.ad660dcc.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
