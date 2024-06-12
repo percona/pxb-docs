@@ -4518,6 +4518,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../supported-versions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Supported versions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../toolkit-version-check.html" class="md-nav__link">
         
   
@@ -4725,7 +4746,8 @@
 <p>Get started with <a href="../../quickstart-overview.html">Quickstart Guide for Percona XtraBackup</a>.</p>
 <p><a href="https://www.percona.com/software/mysql-database/percona-xtrabackup">Percona XtraBackup (PXB)</a> is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems. Maintain fully available applications during planned maintenance windows with Percona XtraBackup.</p>
 <h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
-<p>Percona XtraBackup 8.0.34 allows taking backups of Percona Server for MySQL 8.0.35 and MySQL 8.0.35 and higher versions.</p>
+<p>Starting with Percona XtraBackup 8.0.34 you can take backups of Percona Server for MySQL 8.0.34, MySQL 8.0.34, and <strong>higher versions within the 8.0 series</strong>.</p>
+<p>Check the latest list of all <a href="../../supported-versions.html">Supported versions</a>.</p>
 <h3 id="compression">Compression<a class="headerlink" href="#compression" title="Permanent link">&para;</a></h3>
 <p>The <a href="../../create-compressed-backup.html">ZSTD compression algorithm</a> is moved to <a href="../../glossary.html#general-availability-ga">General Availability</a> and becomes the default compression algorithm for the <a href="../../create-compressed-backup.html"><code>--compress</code></a> option.</p>
 <p>The <code>QuickLZ</code> compression algorithm is removed and is not used for <code>--backup</code>. The <code>--decompress</code> option still uses <code>qpress</code> for backward compatibility to decompress backups taken by older versions of Percona XtraBackup.</p>
@@ -4773,7 +4795,7 @@ set the redo log archive destination directory. (Thanks to wangbincmss for provi
   <small>
     
       Last update:
-      2023-08-21
+      2024-06-12
     
   </small>
 </div>
