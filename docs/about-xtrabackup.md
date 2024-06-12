@@ -20,6 +20,8 @@ With *Percona XtraBackup*, you can achieve the following benefits:
 Server for MySQL, and *MySQL*. It performs streaming, compressed, and incremental *MySQL*
 backups.
 
+Check the latest list of all [Supported versions](supported-versions.md).
+
 !!! important
 
     **Percona XtraBackup** 2.4 supports *MySQL* and *Percona Server for MySQL* 
