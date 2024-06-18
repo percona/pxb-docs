@@ -16,7 +16,7 @@ Files with the `.exp` extension are created by **Percona XtraBackup** per each _
 
 For each table, the server will create a file with the `.frm` extension containing the table definition (for all storage engines).
 
-## General availability (GA)
+### General availability (GA)
 
 A finalized version of the product which is made available to the general public. It is the final stage in the software release cycle.
 
