@@ -4726,7 +4726,7 @@
 <h2 id="bug-fix">Bug fix<a class="headerlink" href="#bug-fix" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><a href="https://perconadev.atlassian.net/browse/PXB-3283">PXB-3283</a>: If backup contains tables with [temporal datatypes] (https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html) and their charset/collation changed (ALTER TABLE CONVERT CHARACTER SET) before the backup is taken, xtrabackup export couldn&rsquo;t generate the correct configuration (.cfg) files required by the import.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3283">PXB-3283</a>: If backup contains tables with <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html">temporal datatypes</a> and their charset/collation changed (ALTER TABLE CONVERT CHARACTER SET) before the backup is taken, xtrabackup export couldn&rsquo;t generate the correct configuration (.cfg) files required by the import.</p>
 </li>
 <li>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-2797">PXB-2797</a>: When you import a table with a full-text index from an XtraBackup backup, you might encounter a schema mismatch. This happens when the table&rsquo;s structure in the backup does not match the structure expected by the database.</p>
