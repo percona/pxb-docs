@@ -3222,6 +3222,15 @@ repositories and the download page. The Percona yum repository supports popular 
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-percona-xtrabackup-from-percona-yum-repository" class="md-nav__link">
     <span class="md-ellipsis">
       Install Percona XtraBackup from Percona yum repository
@@ -4610,6 +4619,15 @@ repositories and the download page. The Percona yum repository supports popular 
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-percona-xtrabackup-from-percona-yum-repository" class="md-nav__link">
     <span class="md-ellipsis">
       Install Percona XtraBackup from Percona yum repository
@@ -4669,8 +4687,9 @@ repositories and the download page. The Percona yum repository supports popular 
 repositories and the <a href="https://www.percona.com/downloads/">download page</a>. The Percona yum repository supports popular <code>RPM</code>-based operating systems, including the <code>Amazon Linux AMI</code>.</p>
 <p>The easiest way to install the Percona Yum repository is to install an <code>RPM</code> that configures yum and installs the <a href="https://www.percona.com/downloads/RPM-GPG-KEY-percona">Percona GPG key</a>.</p>
 <p>Specific information on the supported platforms, products, and versions is described in <a href="https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql">Percona Software and Platform Lifecycle</a>.</p>
-<p>Starting with Percona XtraBackup 8.0.35-31, the RPM builds for <em>RHEL</em> 8 and <em>RHEL</em> 9 contain ARM packages with the <code>aarch64.rpm</code> extension. This extension means that Percona XtraBackup is available for users on ARM-based systems.</p>
-<p>We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.</p>
+<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Starting with <a href="release-notes/8.0/8.0.35-31.0.html">Percona XtraBackup 8.0.35-31</a>, the RPM builds for RHEL 8 and RHEL 9 include ARM packages with the <code>aarch64.</code>rpm` extension. This extension means Percona XtraBackup is now available for users on ARM-based systems.</p>
+<p>We recommend downloading Percona XtraBackup for the same platform as your MySQL-compatible server. For instance, if your server runs on an ARM64 platform, you should download and use the Percona XtraBackup with the <code>aarch64.rpm</code> extension for that operating system.</p>
 <h2 id="install-percona-xtrabackup-from-percona-yum-repository">Install Percona XtraBackup from Percona <code>yum</code> repository<a class="headerlink" href="#install-percona-xtrabackup-from-percona-yum-repository" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -4733,7 +4752,7 @@ the upstream MySQL Server, you only need to enable the `tools repository: </p>
   <small>
     
       Last update:
-      2024-06-20
+      2024-06-21
     
   </small>
 </div>
