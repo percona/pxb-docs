@@ -5,7 +5,7 @@
 
     This documentation is for the latest release: [Percona XtraBackup {{release}}](release-notes/8.0/{{release}}.0.md) release notes.
 
-Percona XtraBackup is an open source hot backup utility, for MySQL-based servers, that keeps your database fully available during planned maintenance windows.
+Percona XtraBackup is an open source hot backup utility for MySQL-based servers, that keeps your database fully available during planned maintenance windows.
 
 Whether it is a 24x7 highly loaded server or a low-transaction-volume
 Percona XtraBackup is designed to make backups seamless without disrupting the performance of the server in a production environment. Percona XtraBackup (PXB) is a 100% open source backup solution with [commercial support](https://www.percona.com/mysql-support/) available for organizations who want to benefit from comprehensive, responsive, and cost-flexible database support for MySQL.
@@ -19,6 +19,8 @@ Percona XtraBackup {{release}} allows taking backups of MySQL-compatible databas
 * Percona Server for MySQL 8.0.35, and MySQL 8.0.35
 
 * Percona Server for MySQL 8.0.36 and MySQL 8.0.36
+
+For more information, see [Server version and backup version comparison](server-backup-version-comparison.md).
 
 Taking your backup with Percona XtraBackup is easy. Follow our documentation guides, and you’ll be set up in quickly.
 
@@ -90,3 +92,6 @@ For more information, see [Percona XtraBackup 8.x and MySQL 8.0.20](https://www.
 !!! admonition "Learn more about other Percona products"
 
     [Percona Distribution for MySQL 8.0](https://docs.percona.com/percona-distribution-for-mysql/8.0/) 
+
+
+[Server version and backup version comparison]: server-backup-version-comparison.md

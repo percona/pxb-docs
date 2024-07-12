@@ -1,50 +1,38 @@
 # Server version and backup version comparison
 
-A MySQL change to a feature, for example, changing the redo log
-record structure, can cause older versions of Percona XtraBackup to fail. To
-ensure that you can back up and restore your data, use a Percona
-XtraBackup version that is equal to or above your source server version.
+When the server undergoes internal changes, such as modifying the structure of the redo log records, older versions of Percona XtraBackup may either fail or produce corrupted backups. To prevent these issues, XtraBackup checks the version of the source system before starting the backup and compares it to the Percona XtraBackup version.
 
-!!! admonition "See also"
-   
-    [How XtraBackup works](how-xtrabackup-works.md)
+Here are the possible scenarios and the actions taken:
 
-## Version changes
+| Scenario                                                                                  | Actions Taken                                                                                                                                            |
+|----|----|
+| Server version is the same as Percona XtraBackup version                                  | The backup process continues without any issues. This is the ideal scenario because both the server and the backup tool are fully compatible.         |
+| Server version is older than Percona XtraBackup version                                  | The backup process continues without any issues. Percona XtraBackup is designed to handle older versions of the server without problems.             |
+| Server version is newer than Percona XtraBackup version                                  | The backup process stops with an error unless you explicitly override the version check. This happens because the backup tool may not support new features or changes introduced in the newer server version. |
+| Server version is newer than Percona XtraBackup version, and the version check is overridden | The backup process continues, but there is a risk of failure or corruption. Overriding the version check can be risky because the backup tool might not be able to handle new features or changes correctly. |
 
-With the release of Percona XtraBackup 8.0.34-29, Percona XtraBackup allows backups on version 8.0.35 and higher. 
+Until version 8.0.34, to ensure successful backups and restores, it is recommended to use a Percona XtraBackup version that matches or is newer than your server version. However, version 8.0.34 can back up newer server versions and older server versions if you set the `lock-ddl=ON` option.
 
-Percona XtraBackup 8.0.21 adds the `--no-server-version-check` option.
+## Version updates
 
-## Version check
+Percona XtraBackup 8.0.34: disabled the server-version-check.
 
-Before the backup starts, XtraBackup compares the source system version to
-the Percona XtraBackup version. If the source system version is greater than the XtraBackup version, XtraBackup stops the backup and returns an
-error message. This comparison prevents a failed or corrupted
-backup due to source system changes.
+Percona XtraBackup 8.0.22-15: introduced `--no-server-version-check`. This option allows you to override the version comparison process. This option is off by default, meaning the comparison occurs unless explicitly overridden.
 
-The parameter checks for the following scenarios:
+### Override Server Version check
 
-* The source system and the Percona XtraBackup version are the same; the backup proceeds
-
-* The source system is less than the Percona XtraBackup version, the backup proceeds
-
-* The source system is greater than the Percona XtraBackup version, and the parameter is not overridden; the backup is stopped and returns an error message
-
-* The source system is greater than the Percona XtraBackup version, and the parameter is  overridden; the backup proceeds
-
-
-### Override check
-
-Explicitly adding the `--no-server-version-check` option overrides the parameter, and the backup proceeds.
+You can add the `--no-server-version-check` option to your backup command to override the server version check and proceed with the backup. Here’s an example of how to use this option:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --no-server-version-check --target-dir=$mysql/backup1
 ```
 
-Using this option may cause the following events:
+## Additional resources
 
-* Backup fails
+For more details, refer to the documentation on [How XtraBackup Works].
 
-* Creates a corrupted backup
+For more information, refer to [Supported versions].
 
-* Backup successful
+[How XtraBackup Works]: how-xtrabackup-works.md
+
+[Supported versions]: supported-versions.md
