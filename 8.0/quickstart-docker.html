@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.76a95c52.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -1366,6 +1366,39 @@
       On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-docker-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Docker volume
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-percona-xtrabackup-8034-in-a-container-take-and-prepare-a-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start Percona XtraBackup 8.0.34 in a container, take and prepare a backup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Start Percona XtraBackup 8.0.34 in a container, take and prepare a backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect-the-percona-xtrabackup-container-to-the-percona-server-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect the Percona XtraBackup container to the Percona Server container
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
@@ -4607,6 +4640,39 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#create-a-docker-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Docker volume
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-percona-xtrabackup-8034-in-a-container-take-and-prepare-a-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start Percona XtraBackup 8.0.34 in a container, take and prepare a backup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Start Percona XtraBackup 8.0.34 in a container, take and prepare a backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect-the-percona-xtrabackup-container-to-the-percona-server-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect the Percona XtraBackup container to the Percona Server container
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       Next steps
@@ -4664,20 +4730,24 @@
 <h1 id="start-a-docker-container-and-take-a-backup">Start a Docker container and take a backup<a class="headerlink" href="#start-a-docker-container-and-take-a-backup" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup works in combination with a MySQL-compatible database, Percona Server for MySQL, in our scenario. To use Percona XtraBackup, run it in a separate Docker container and then connect the Percona XtraBackup container to the Percona Server for MySQL container. As soon as you <a href="https://docs.percona.com/percona-server/8.0/quickstart-docker.html">start Percona Server for MySQL in a Docker container</a> and <a href="https://docs.percona.com/percona-server/8.0/quickstart-docker.html#create-a-database">create a database and table in Percona Server for MySQL</a>, you are ready to backup your databes with Percona XtraBackup.</p>
 <p class="power-number">The following steps create a Docker volume, start Percona XtraBackup in a Docker continer, take and prepare a backup of Percona Server for MySQL database.</p>
-<ol>
+<h2 id="create-a-docker-volume">Create a Docker volume<a class="headerlink" href="#create-a-docker-volume" title="Permanent link">&para;</a></h2>
+<p>The benefits of using a Docker volume are the following:</p>
+<ul>
 <li>
-<p>Create a Docker volume</p>
-<p>One of the benefits of using a Docker volume for persistent storage with a database is that it allows you to keep your data safe and accessible across different containers. For example, if you want to upgrade your database image to a newer version, you can stop the old container and start a new one with the same volume attached without losing any data. Another benefit is that you can quickly backup and restore your data using the docker cp command or mount the volume to another container.</p>
+<p>You can keep your data safe and accessible across different containers. For example, if you want to upgrade your database image to a newer version, you can stop the old container and start a new one with the same volume attached without losing any data. </p>
+</li>
+<li>
+<p>You can quickly backup and restore your data using the <code>docker cp</code> command or mount the volume to another container.</p>
+</li>
+</ul>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>backupvol
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>backupvol
+<div class="no-copy highlight"><pre><span></span><code> backupvol
 </code></pre></div>
 </details>
-</li>
-<li>
-<p>Start Percona XtraBackup 8.0.34 in a container, take and prepare a backup</p>
+<h2 id="start-percona-xtrabackup-8034-in-a-container-take-and-prepare-a-backup">Start Percona XtraBackup 8.0.34 in a container, take and prepare a backup<a class="headerlink" href="#start-percona-xtrabackup-8034-in-a-container-take-and-prepare-a-backup" title="Permanent link">&para;</a></h2>
 <p>The <code>docker run</code> command creates and runs a new container from an image. The command modifies the container&rsquo;s behavior with options.</p>
 <p>In our example, the command has the following options:</p>
 <table>
@@ -4730,20 +4800,18 @@
 </tr>
 </tbody>
 </table>
-<p>If you do not add a tag, Docker uses <code>latest</code> as the default tag and downloads the newest image from <a href="https://hub.docker.com/r/percona/percona-xtrabackup">percona/percona-xtrabackup on the Docker Hub</a>. This image can be in a different series or version from what you expect since the latest image changes over time. The usage of tags ensures that you use <a href="quickstart-overview.html#limitations">compatible versions</a> of Percona Server for MySQL and Percona XtraBackup.</p>
-<p>To connect the Percona XtraBackup container to the Percona Server container, we recommend using the <code>–-user root</code> option in the Docker command.</p>
-<ul>
-<li>
+<p>If you do not add a tag, Docker uses <code>latest</code> as the default tag and downloads the newest image from <a href="https://hub.docker.com/r/percona/percona-xtrabackup">percona/percona-xtrabackup on the Docker Hub</a>. This image can be in a different series or version from what you expect since the latest image changes over time. If you are using Percona XtraBackup version prior to 8.0.34, use tags to ensure that you use <a href="server-backup-version-comparison.html">compatible versions</a> of Percona Server for MySQL and Percona XtraBackup. </p>
+<p>Starting with Percona XtraBackup 8.0.35-31, you can run the Docker ARM64 version of Percona XtraBackup. Use the <code>8.0.35-31-aarch64</code> tag instead of <code>8.0.35-31</code>.</p>
+<h3 id="connect-the-percona-xtrabackup-container-to-the-percona-server-container">Connect the Percona XtraBackup container to the Percona Server container<a class="headerlink" href="#connect-the-percona-xtrabackup-container-to-the-percona-server-container" title="Permanent link">&para;</a></h3>
+<p>We recommend using the <code>–-user root</code> option in the Docker command.</p>
 <p>Run a Docker container example</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>pxb<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_8034<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_8034 --user=root --password; xtrabackup --prepare --target-dir=/backup_8034&quot;</span>
 </code></pre></div>
-<p>You are prompted to enter the password, which is <code>secret</code>, in our example.</p>
+<p>You are prompted to enter the password. In our example, the password is <code>secret</code>.</p>
 <div class="no-copy highlight"><pre><span></span><code>2023-12-21T16:16:10.796716-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/2023-12-21T16:16:10.799979-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --backup=1 --target-dir=/backup_8034 --user=root --password
 
 Enter password:
 </code></pre></div>
-</li>
-</ul>
 <p>In this example of expected output, we provide the first and last section of the backup log and use ellipses instead of the entire backup log.</p>
 <details class="example">
 <summary>Expected output</summary>
@@ -4764,7 +4832,8 @@ xtrabackup version 8.0.34-29 based on MySQL server 8.0.34 Linux (x86_64) (revisi
 2023-12-14T15:45:20.619892-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK! 
 </code></pre></div>
 </details>
-<p>The command runs a Docker container <code>pxb</code> from the <code>percona/percona-xtrabackup:8.0.34</code> image and mounts two volumes: one from another container named <code>psmysql</code>, which contains Percona Server data directory, and another named <code>backupvol</code>, which is where the backup files are stored. The command also sets the user to root and prompts the user to enter the password. The command then executes two steps: </p>
+<p>The command runs a Docker container <code>pxb</code> from the <code>percona/percona-xtrabackup:8.0.34</code> image and mounts two volumes: one from another container named <code>psmysql</code>, which contains Percona Server data directory, and another named <code>backupvol</code>, which is where the backup files are stored. The command also sets the user to root and prompts the user to enter the password. </p>
+<p>The command then executes two steps: </p>
 <ul>
 <li>
 <p>Runs <code>xtrabackup</code> with the <code>--backup</code> option to copy the data files from <code>/var/lib/mysql/</code> to <code>/backup_8034</code></p>
@@ -4772,15 +4841,11 @@ xtrabackup version 8.0.34-29 based on MySQL server 8.0.34 Linux (x86_64) (revisi
 <li>
 <p>Runs <code>xtrabackup</code> with the <code>--prepare</code> option to apply the log files and make the backup consistent and ready for restore</p>
 </li>
-<li>
+</ul>
 <p>You can check the Xtrabackup logs with the <code>docker container logs &lt;container-name&gt;</code> command.</p>
 <p>For example:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>container<span class="w"> </span>logs<span class="w"> </span>pxb
 </code></pre></div>
-</li>
-</ul>
-</li>
-</ol>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="quickstart-restore-backup.html">Restore the backup <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg></span></a></p>
 <div data-banner="data-banner">
@@ -4797,7 +4862,7 @@ xtrabackup version 8.0.34-29 based on MySQL server 8.0.34 Linux (x86_64) (revisi
   <small>
     
       Last update:
-      2024-04-04
+      2024-07-17
     
   </small>
 </div>

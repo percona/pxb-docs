@@ -8,8 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Docker allows you to run applications in a lightweight unit called a
-container.">
+        <meta name="description" content="Docker containers are built from Docker images, which are snapshots of the configuration needed to run an applications, such as the code, and libraries. With Docker, you can build, deploy, run, update, and manage containers, which isolate applications from the host system. A Docker container lets you work with Percona XtraBackup without installing the product on a local drive. You may run Percona Server for MySQL in one container and Percona XtraBackup in another.">
       
       
         <meta name="author" content="Percona LLC">
@@ -25,7 +24,7 @@ container.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
     
     
       
@@ -33,7 +32,7 @@ container.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.76a95c52.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -3519,36 +3518,60 @@ container.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scope-of-this-section" class="md-nav__link">
+  <a href="#1-run-percona-server-for-mysql-container" class="md-nav__link">
     <span class="md-ellipsis">
-      Scope of this section
+      1. Run Percona Server for MySQL container
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-install-docker" class="md-nav__link">
+  <a href="#2-create-percona-xtrabackup-docker-container-and-connect-to-percona-server-for-mysql-container" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Install Docker
+      2. Create Percona XtraBackup Docker container and connect to Percona Server for MySQL container
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Create Percona XtraBackup Docker container and connect to Percona Server for MySQL container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#percona-xtrabackup-arm64" class="md-nav__link">
+    <span class="md-ellipsis">
+      Percona XtraBackup ARM64
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#2-connect-to-a-percona-server-for-mysql-container" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#start-the-percona-xtrabackup-container" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Connect to a Percona Server for MySQL container
+      Start the Percona XtraBackup container
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-run-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker run command
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#3-create-a-docker-container-from-percona-xtrabackup-image" class="md-nav__link">
+  <a href="#for-more-information" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Create a Docker container from Percona XtraBackup image
+      For more information
     </span>
   </a>
   
@@ -4637,36 +4660,60 @@ container.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scope-of-this-section" class="md-nav__link">
+  <a href="#1-run-percona-server-for-mysql-container" class="md-nav__link">
     <span class="md-ellipsis">
-      Scope of this section
+      1. Run Percona Server for MySQL container
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-install-docker" class="md-nav__link">
+  <a href="#2-create-percona-xtrabackup-docker-container-and-connect-to-percona-server-for-mysql-container" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Install Docker
+      2. Create Percona XtraBackup Docker container and connect to Percona Server for MySQL container
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Create Percona XtraBackup Docker container and connect to Percona Server for MySQL container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#percona-xtrabackup-arm64" class="md-nav__link">
+    <span class="md-ellipsis">
+      Percona XtraBackup ARM64
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#2-connect-to-a-percona-server-for-mysql-container" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#start-the-percona-xtrabackup-container" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Connect to a Percona Server for MySQL container
+      Start the Percona XtraBackup container
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-run-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker run command
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#3-create-a-docker-container-from-percona-xtrabackup-image" class="md-nav__link">
+  <a href="#for-more-information" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Create a Docker container from Percona XtraBackup image
+      For more information
     </span>
   </a>
   
@@ -4719,60 +4766,28 @@ container.">
 
 
 <h1 id="run-percona-xtrabackup-80-in-a-docker-container">Run Percona XtraBackup 8.0 in a Docker container<a class="headerlink" href="#run-percona-xtrabackup-80-in-a-docker-container" title="Permanent link">&para;</a></h1>
-<p>Docker allows you to run applications in a lightweight unit called a
-container.</p>
-<p>You can run <em>Percona XtraBackup</em> in a Docker container without installing
-the product. All required libraries are available in
-the container. Being a lightweight execution environment, Docker containers
-enable creating configurations where each program runs in a separate container. You may run
-<em>Percona Server for MySQL</em> in one container and <em>Percona XtraBackup</em> in
-another. Docker images offer a range of options.</p>
-<p>Create a Docker container based on a Docker image. Docker images for
-Percona XtraBackup are hosted publicly on <a href="https://hub.docker.com/r/percona/percona-xtrabackup">Docker Hub</a>.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>...<span class="w"> </span>percona/percona-xtrabackup<span class="w"> </span>--name<span class="w"> </span>xtrabackup<span class="w"> </span>...
-</code></pre></div>
-<h3 id="scope-of-this-section">Scope of this section<a class="headerlink" href="#scope-of-this-section" title="Permanent link">&para;</a></h3>
-<p>This section demonstrates how to back up data
-on a Percona Server for MySQL running in another Dockers container.</p>
-<h2 id="1-install-docker">1. Install Docker<a class="headerlink" href="#1-install-docker" title="Permanent link">&para;</a></h2>
-<p>Your operating system may already provide a package for <em>docker</em>. However,
-the versions of Docker provided by your operating system are likely to be
-outdated.</p>
-<p>Use the installation instructions for your operating system available from
-the Docker site to set up the latest version of <em>docker</em>.</p>
-<h2 id="2-connect-to-a-percona-server-for-mysql-container">2. Connect to a Percona Server for MySQL container<a class="headerlink" href="#2-connect-to-a-percona-server-for-mysql-container" title="Permanent link">&para;</a></h2>
-<p>Percona XtraBackup works in combination with a database server. When
-running a Docker container for Percona XtraBackup, you can make
-backups for a database server either installed on the host machine or
-running in a separate Docker container.</p>
-<p>To set up a database server on a host machine or in Docker
-container, follow the documentation of the supported product that you
-intend to use with <em>Percona XtraBackup</em>.</p>
-<div class="admonition admontion">
-<p class="admonition-title">See also</p>
-<p><a href="https://docs.docker.com/storage/volumes/">Docker volumes as container persistent data storage</a></p>
-<p><a href="https://docs.docker.com/config/containers/start-containers-automatically">More information about containers</a></p>
-</div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
--e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root<span class="w"> </span>percona/percona-server:8.0
-</code></pre></div>
-<p>As soon as Percona Server for MySQL runs, add some data to it. Now, you are
-ready to make backups with Percona XtraBackup.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>When running Percona XtraBackup from a container and connecting to a 
-MySQLserver container, we recommend using the –user root option in the 
-Docker command.</p>
-</div>
-<h2 id="3-create-a-docker-container-from-percona-xtrabackup-image">3. Create a Docker container from Percona XtraBackup image<a class="headerlink" href="#3-create-a-docker-container-from-percona-xtrabackup-image" title="Permanent link">&para;</a></h2>
+<p>Docker containers are built from Docker images, which are snapshots of the configuration needed to run an applications, such as the code, and libraries. With Docker, you can build, deploy, run, update, and manage containers, which isolate applications from the host system. A Docker container lets you work with Percona XtraBackup without installing the product on a local drive. You may run Percona Server for MySQL in one container and Percona XtraBackup in another.</p>
+<p>For this document, container refers to the Docker container and instance refers to the database server in the container.</p>
+<p>Percona XtraBackup has an official Docker image hosted on <a href="https://hub.docker.com/r/percona/percona-xtrabackup/">Docker Hub</a>. If you want the latest version, use the <code>latest</code> tag. You can reference a specific version using the <a href="https://registry.hub.docker.com/r/percona/percona-xtrabackup/tags?page=1&amp;name=8.0">Docker tag filter for the 8.0 versions</a>.</p>
+<p>Make sure that you are using the latest version of Docker. The <code>APT</code> and <code>YUM</code> versions may be outdated and cause errors. Use the <a href="https://docs.docker.com/engine/install/">installation instructions</a> to install Docker on your system.</p>
+<h2 id="1-run-percona-server-for-mysql-container">1. Run Percona Server for MySQL container<a class="headerlink" href="#1-run-percona-server-for-mysql-container" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup works in combination with a MySQL-compatible database, Percona Server for MySQL, in our example. To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database with data. Read the instructions on how to <a href="https://docs.percona.com/percona-server/8.0/docker.html">Run Percona Server for MySQL in a Docker Container</a>.</p>
+<p>As soon as Percona Server for MySQL runs and the database contains data, you are ready to connect the Percona XtraBackup container to the Percona Server for MySQL container and take a backup.</p>
+<h2 id="2-create-percona-xtrabackup-docker-container-and-connect-to-percona-server-for-mysql-container">2. Create Percona XtraBackup Docker container and connect to Percona Server for MySQL container<a class="headerlink" href="#2-create-percona-xtrabackup-docker-container-and-connect-to-percona-server-for-mysql-container" title="Permanent link">&para;</a></h2>
 <p>You can create a Docker container based on Percona XtraBackup image with
 either <code>docker create</code> or the <code>docker run</code> command. <code>docker create</code>
 creates a Docker container and makes it available for starting later.</p>
-<p>Docker downloads the Percona XtraBackup image from the Docker Hub. If it
+<p>Docker downloads the Percona XtraBackup 8.0 image from the Docker Hub. If it
 is not the first time you use the selected image, Docker uses the image
 available locally.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
-percona/percona-xtrabackup<span class="w">  </span><span class="se">\</span>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When running Percona XtraBackup from a container and connecting to a 
+MySQLserver container, we recommend using the &ndash;user=root option in the 
+Docker command.</p>
+</div>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql:8.0<span class="w"> </span><span class="se">\</span>
+percona/percona-xtrabackup:8.0<span class="w">  </span><span class="se">\</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql/<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span><span class="se">\</span>
 --user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>root
 </code></pre></div>
@@ -4780,18 +4795,24 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span
 so that you could easily locate it among your other containers.</p>
 <p>The <code>volumes-from</code> flag refers to Percona Server for MySQL and indicates
 that you intend to use the same data as the Percona Server for MySQL container.</p>
-<p>Run the container with exactly the same parameters that were used when the
-container was created:</p>
+<h3 id="percona-xtrabackup-arm64">Percona XtraBackup ARM64<a class="headerlink" href="#percona-xtrabackup-arm64" title="Permanent link">&para;</a></h3>
+<p>Starting with Percona XtraBackup 8.0.35-31, you can run the Docker ARM64 version of Percona XtraBackup. You can find the version and architecture on <a href="https://registry.hub.docker.com/r/percona/percona-xtrabackup/tags?page=1&amp;name=8.0">Docker Hub Percona/Percona-Server Tags</a>. The Docker images for ARM64 version contain <code>aarch64</code> in the tag name, for example, <code>8.0.35-aarch64</code>.</p>
+<p>We recommend that the architectures match. If the server is ARM64, you should also use Percona XtraBackup in ARM64.</p>
+<h3 id="start-the-percona-xtrabackup-container">Start the Percona XtraBackup container<a class="headerlink" href="#start-the-percona-xtrabackup-container" title="Permanent link">&para;</a></h3>
+<p>Start the Percona XtraBackup container with exactly the same parameters that were used when the container was created:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>percona-xtrabackup
 </code></pre></div>
-<p>This command starts the <em>percona-xtrabackup</em> container, attaches to its
+<p>This command starts the <code>percona-xtrabackup</code> container, attaches to its
 input/output streams, and opens an interactive shell.</p>
-<p>The <code>docker run</code> is a shortcut command that creates a Docker container and
+<h3 id="docker-run-command">Docker run command<a class="headerlink" href="#docker-run-command" title="Permanent link">&para;</a></h3>
+<p>The <code>docker run</code> command is a shortcut command that creates a Docker container and
 then immediately runs it.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
-percona/percona-xtrabackup
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql:8.0<span class="w"> </span><span class="se">\</span>
+percona/percona-xtrabackup:8.0
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>root
 </code></pre></div>
+<h2 id="for-more-information">For more information<a class="headerlink" href="#for-more-information" title="Permanent link">&para;</a></h2>
+<p>Review the <a href="https://docs.docker.com/">Docker Docs</a></p>
 <div data-banner="data-banner">
 <h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
 <p>If you need assistance, visit the community forum for comprehensive and free database knowledge, or contact our Percona Database Experts for professional support and services.</p>
@@ -4806,7 +4827,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span
   <small>
     
       Last update:
-      2024-01-26
+      2024-07-17
     
   </small>
 </div>
