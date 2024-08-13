@@ -15,7 +15,7 @@
 
     `xtrabackup_slave_info`
 
-    The `CHANGE MASTER` statement needed for setting up a replica.
+    The `CHANGE REPLICATION SOURCE TO` statement needed for setting up a replica.
 
 * Information related to the *Galera* and *Percona XtraDB Cluster* (if using the `--galera-info` option):
 

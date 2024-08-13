@@ -143,7 +143,7 @@ On the source, run the following command to add the appropriate grant. This
 grant allows the replica to be able to connect to source:
 
 ```{.bash data-prompt="mysql>"}
-mysql> GRANT REPLICATION SLAVE ON *.*  TO 'repl'@'$replicaip'
+mysql> GRANT REPLICATION REPLICA ON *.*  TO 'repl'@'$replicaip'
 IDENTIFIED BY '$replicapass';
 ```
 
@@ -232,12 +232,12 @@ The result shows the status:
 ??? example "Expected output"
 
     ```{.text .no-copy}
-    Slave_IO_Running: Yes
-    Slave_SQL_Running: Yes
-    Seconds_Behind_Master: 13
+    Replica_IO_Running: Yes
+    Replica_SQL_Running: Yes
+    Seconds_Behind_Source: 13
     ```
 
-Both `IO` and `SQL` threads need to be running. The `Seconds_Behind_Master`
+Both `IO` and `SQL` threads need to be running. The `Seconds_Behind_Source`
 means the `SQL` currently being executed has a `current_timestamp` of 13
 seconds ago. It is an estimation of the lag between the `Source` and
 the `Replica`. Note that at the beginning, a high value could be shown
@@ -284,7 +284,7 @@ For example, to set up a new user, `user2`, you add another grant on
 the Source:
 
 ```{.bash data-prompt=">"}
-> GRANT REPLICATION SLAVE ON *.*  TO 'user2'@'$newreplicaip'
+> GRANT REPLICATION REPLICA ON *.*  TO 'user2'@'$newreplicaip'
  IDENTIFIED BY '$replicapass';
 ```
 
@@ -328,6 +328,6 @@ server is replicating the `Source`.
 
 !!! admoniton "See also"
 
-    [How to create a new (or repair a broken) GTID based slave](create-gtid-replica.md)
+    [How to create a new (or repair a broken) GTID based replica](create-gtid-replica.md)
 
 [MySQL Configuration Utility]: https://dev.mysql.com/doc/refman/{{vers}}/en/mysql-config-editor.html
