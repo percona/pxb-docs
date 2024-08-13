@@ -31,7 +31,7 @@ With xbstream, backups can be copied and compressed simultaneously, significantl
 |---------|------|
 | Stream the backup into an archive named `backup.xbstream` | `xtrabackup --backup --stream=xbstream > backup.xbstream`|
 | Stream the backup into a compressed archive named `backup.xbstream`| `xtrabackup --backup --stream=xbstream --compress > backup.xbstream` |
-| Encrypt the backup | <code>xtrabackup --backup --stream=xbstream  | gzip | openssl des3 -salt -k 'password' -out backup.xbstream.gz.des3</code> |
+| Encrypt the backup | `xtrabackup --backup --stream=xbstream  \|`<br>`gzip \|`<br>`openssl des3 -salt -k 'password' -out backup.xbstream.gz.des3` |
 | Unpack the backup to the current directory | `xbstream -x <  backup.xbstream`
 | Send the backup compressed directly to another host and unpack it | `xtrabackup --backup --compress --stream=xbstream | ssh user@otherhost "xbstream -x"`|
 | Send the backup to another server using `netcat` | On the destination host:<br />`nc -l 9999 | cat - > /data/backups/backup.xbstream`<br /><br />On the source host:<br />`xtrabackup --backup --stream=xbstream | nc desthost 9999` |
