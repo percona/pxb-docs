@@ -14,11 +14,11 @@ To use the streaming feature, run the `--stream` option.
 $ xtrabackup --stream
 ```
 
-*xtrabackup* uses *xbstream* to stream all of the data files to `STDOUT`, in a
+xtrabackup uses xbstream to stream all of the data files to `STDOUT`, in a
 special `xbstream` format. After it finishes streaming all of the data files
 to `STDOUT`, it stops xtrabackup and streams the saved log file too.
 
-When compression is enabled, *xtrabackup* compresses the output data, except for the meta and non-InnoDB files which are not compressed, using the specified compression algorithm. Percona XtraBackup supports the following compression algorithms:
+When compression is enabled, xtrabackup compresses the output data, except for the meta and non-InnoDB files which are not compressed, using the specified compression algorithm. Percona XtraBackup supports the following compression algorithms:
 
 ## Zstandard (ZSTD)
 
@@ -56,7 +56,7 @@ In case backups were both compressed and encrypted, they must be decrypted befor
 |---------|------|
 | Stream the backup into an archive named `backup.xbstream` | `xtrabackup --backup --stream > backup.xbstream`|
 | Stream the backup into a compressed archive named `backup.xbstream`| `xtrabackup --backup --stream --compress > backup.xbstream` |
-| Encrypt the backup | `xtrabackup --backup --stream  |gzip  | openssl des3 -salt -k 'password' -out  backup.xbstream.gz.des3` | 
+| Encrypt the backup | `xtrabackup --backup --stream  \|gzip  \| openssl des3 -salt -k 'password' -out  backup.xbstream.gz.des3` | 
 | Unpack the backup to the current directory | `xbstream -x < backup.xbstream`
 | Send the backup compressed directly to another host and unpack it | `xtrabackup --backup --compress --stream | ssh user@otherhost "xbstream -x"`|
 | Send the backup to another server using `netcat` | On the destination host:<br />`nc -l 9999 | cat - > /data/backups/backup.xbstream`<br /><br />On the source host:<br />`xtrabackup --backup --stream | nc desthost 9999` |
