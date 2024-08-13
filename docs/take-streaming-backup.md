@@ -14,7 +14,7 @@ This method enables you to utilize other programs to filter the backup output, e
 
 ## Use streaming
 
-To utilize the streaming feature, run the `--stream` option.
+To utilize the streaming feature, you need to employ the `--stream` option, specifying the stream format (xbstream). Specifying the stream format (xbstream) is optional, starting with Percona XtraBackup 8.0.33-28.
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --stream=xbstream
@@ -29,9 +29,9 @@ With xbstream, backups can be copied and compressed simultaneously, significantl
 
 |Task  | Command  |
 |---------|------|
-| Stream the backup into an archived named `backup.xbstream` | `xtrabackup --backup --stream=xbstream > backup.xbstream`|
+| Stream the backup into an archive named `backup.xbstream` | `xtrabackup --backup --stream=xbstream > backup.xbstream`|
 | Stream the backup into a compressed archive named `backup.xbstream`| `xtrabackup --backup --stream=xbstream --compress > backup.xbstream` |
-| Encrypt the backup | `xtrabackup --backup --stream=xbstream  |gzip  | openssl des3 -salt -k 'password' -out  backup.xbstream.gz.des3 | 
+| Encrypt the backup | `xtrabackup --backup --stream=xbstream  \| gzip \| openssl des3 -salt -k 'password' -out backup.xbstream.gz.des3` |
 | Unpack the backup to the current directory | `xbstream -x <  backup.xbstream`
 | Send the backup compressed directly to another host and unpack it | `xtrabackup --backup --compress --stream=xbstream | ssh user@otherhost "xbstream -x"`|
 | Send the backup to another server using `netcat` | On the destination host:<br />`nc -l 9999 | cat - > /data/backups/backup.xbstream`<br /><br />On the source host:<br />`xtrabackup --backup --stream=xbstream | nc desthost 9999` |
