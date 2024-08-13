@@ -9,9 +9,9 @@ the prepared backup. Restoring partial backups should be done by importing the
 tables.
 
 There are three ways of specifying which part of the whole data will be backed
-up: regular expressions ( --tables), enumerating the
-tables in a file (--tables) or providing a list of
-databases (--databases).
+up: regular expressions (`--tables`), enumerating the
+tables in a file (`--tables-file`) or providing a list of
+databases (`--databases`).
 
 The regular expression provided to this option will be matched against the fully
 qualified database name and table name, in the form of
