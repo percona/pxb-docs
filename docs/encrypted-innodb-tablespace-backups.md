@@ -2,15 +2,11 @@
 
 InnoDB supports [data encryption for InnoDB tables] stored in file-per-table tablespaces. This feature provides an at-rest encryption for physical tablespace data files.
 
-For an authenticated user or an application to access an encrypted F
-tablespace, InnoDB uses the master encryption key to decrypt
-the tablespace key. The master encryption key is stored in a keyring. 
+For an authenticated user or an application to access an encrypted F tablespace, InnoDB uses the master encryption key to decrypt the tablespace key. The master encryption key is stored in a keyring. 
 
-Percona XtraBackup supports the following keyring components and plugins: 
+Percona XtraBackup supports the following keyring components which are stored in the `plugin` directory: 
 
 * [keyring_vault](#use-the-keyring-vault-component) component
-
-* [keyring_file](#use-the-keyring-file-plugin) plugin
 
 * [keyring_file](#use-the-keyring-file-component) component
 
@@ -18,11 +14,11 @@ Percona XtraBackup supports the following keyring components and plugins:
 
 * [Amazon Key Management Service (AWS KMS)]
 
-These components are stored in the `plugin` directory.
+Percona XtraBackup {{vers}} and later versions do not support any plugin versions of the security features.
 
 !!! note
 
-    Enable only one keyring plugin or one keyring component simultaneously for each server instance. Enabling multiple keyring plugins or keyring components or mixing keyring plugins or keyring components is not supported and may result in data loss.
+    Enable only one keyring component simultaneously for each server instance. Enabling multiple keyring components is not supported and may result in data loss.
 
 ## Use the keyring vault component
 
@@ -116,55 +112,6 @@ $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 --component-keyring-config=/etc/vault.cnf
 ```
 
-## Use the keyring file plugin
-
-!!! warning
-
-    The `keyring_file` plugin should not be used for regulatory compliance.
-
-In order to back up and prepare a database containing encrypted InnoDB  
-tablespaces, specify the path to a keyring file as the value of the
-`--keyring-file-data` option.
-
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backup/ --user=root \
---keyring-file-data=/var/lib/mysql-keyring/keyring
-```
-
-The following message confirms that the xtrabackup binary completed the action:
-
-??? example "Confirmation message"
-
-    ```{.text .no-copy}
-    xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
-    160401 10:25:51 completed OK!
-    ```
-
-!!! warning
-   
-    xtrabackup does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.
-
-### Prepare the backup with the keyring file plugin
-
-To prepare the backup, specify the keyring-file-data.
-
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backup \
---keyring-file-data=/var/lib/mysql-keyring/keyring
-```
-
-The following message confirms that the xtrabackup binary completed the action:
-
-??? example "Confirmation message"
-
-    ```{.text .no-copy}
-    InnoDB: Shutdown completed; log sequence number 5697064
-    160401 10:34:28 completed OK!
-    ```
-
-The backup is now prepared and can be restored with the `--copy-back`
-option. You must restore the keyring used with the backup and prepare phases if the keyring has been rotated.
-
 ## Use the keyring file component
 
 The `keyring_file` component is part of the component-based MySQL infrastructure which extends the server capabilities.
@@ -190,7 +137,7 @@ An example of `/lib/plugin/component_keyring_file.cnf`:
 }
 ```
 
-For more information, see [Keyring Component Installation] and [Using the keyring_file File-Based Keyring Plugin].
+For more information, see [Keyring Component Installation].
 
 With the appropriate privilege, you can `SELECT` on
 the [performance_schema.keyring_component_status table] to view the attributes and status of the installed keyring component 
@@ -246,21 +193,18 @@ The backup is prepared. To restore the backup use the `--copy-back` option.
 If the keyring has been rotated, you must restore the specific keyring used
 to take and prepare the backup.
 
-## Incremental encrypted InnoDB tablespace backups with keyring file plugin
+## Incremental encrypted InnoDB tablespace backups with keyring file component
 
-The process of taking incremental backups with InnoDB tablespace encryption is similar to taking incremental backups with unencrypted tablespace. 
+The process of taking incremental backups with InnoDB tablespace encryption is similar to taking incremental backups with unencrypted tablespace.
 
-## Create an incremental backup
+### Create an incremental backup
 
 To make an incremental backup, begin with a full backup. The xtrabackup binary writes `xtrabackup_checkpoints` into the backup’s target
 directory. This file contains a line showing the `to_lsn`, which is the LSN of the database at the end of the backup. First, you need to create a full backup with the following command:
 
 ```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backups/base \
---keyring-file-data=/var/lib/mysql-keyring/keyring
+$ xtrabackup --backup --target-dir=/data/backups/base
 ```
-
-To prepare the backup, you must make a copy of the keyring file yourself. The xtrabackup binary does not copy the keyring file into the backup directory. Restoring the backup after the keyring has been changed causes errors like `ERROR 3185 (HY000): Can't find master key from keyring, please check keyring plugin is loaded.` when the restore process tries accessing an encrypted table.
 
 If you look at the `xtrabackup_checkpoints` file, you should see the output similar to the following:
 
@@ -281,15 +225,7 @@ on it. Use a command such as the following:
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups/inc1 \
 --incremental-basedir=/data/backups/base \
---keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
-
-To prepare the backup, you must copy the keyring file manually. The xtrabackup binary does not copy the keyring file into the backup directory. 
-
-If the keyring has not been rotated you can use the same one you’ve
-backed-up with the base backup. If the keyring has been rotated, or you have 
-upgraded the plugin to a component, you must back up the keyring file. 
-Otherwise, you cannot prepare the backup.
 
 The `/data/backups/inc1/` directory should now contain delta files, such
 as `ibdata1.delta` and `test/table1.ibd.delta`. These represent the
@@ -313,7 +249,6 @@ Use this directory as the base for yet another incremental backup:
 ```{.bash data-prompt="$"}
 $ xtrabackup --backup --target-dir=/data/backups/inc2 \
 --incremental-basedir=/data/backups/inc1 \
---keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
 ### Prepare incremental backups
@@ -327,7 +262,7 @@ make the database consistent:
 
 You must skip the rollback of uncommitted transactions when preparing a backup because transactions that were uncommitted at the time of your backup may be in
 progress, and they will likely be committed in the next
-incremental backup. Use the `-`-apply-log-only` option to prevent the rollback phase.
+incremental backup. Use the `--apply-log-only` option to prevent the rollback phase.
 Your incremental backups are useless if you do not use the `--apply-log-only` option to prevent the rollback phase. After transactions have been rolled back, further incremental backups cannot be applied.
 
 Beginning with the full backup you created, you can prepare it and then
@@ -339,12 +274,19 @@ apply the incremental differences. Recall that you have the following backups:
 /data/backups/inc2
 ```
 
+To prepare the backup, you must copy the keyring file manually. The xtrabackup binary does not copy the keyring file into the backup directory. 
+
+If the keyring has not been rotated you can use the same one you’ve
+backed-up with the base backup. If the keyring has been rotated, or you have 
+upgraded the plugin to a component, you must back up the keyring file. 
+Otherwise, you cannot prepare the backup.
+
 To prepare the base backup, you need to run `--prepare` as usual, but
 prevent the rollback phase:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
---keyring-file-data=/var/lib/mysql-keyring/keyring
+--component-keyring-config=/var/lib/mysql-keyring/keyring
 ```
 
 ??? example "Expected output"
@@ -361,20 +303,17 @@ the following command:
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1 \
---keyring-file-data=/var/lib/mysql-keyring/keyring
+--component-keyring-config=/var/lib/mysql-keyring/keyring
 ```
 
 The backup should be prepared with the keyring file and type that was used when the backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup, you must use the keyring used when the first incremental backup was taken.
 
-Preparing the second incremental backup is a similar process: apply the
-deltas
-to the (modified) base backup, and you will roll its data forward in 
-time to the point of the second incremental backup:
+Preparing the second incremental backup is a similar process: apply the deltas to the (modified) base backup, and you will roll its data forward in time to the point of the second incremental backup:
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2 \
---keyring-file-data=/var/lib/mysql-keyring/keyring
+--component-keyring-config=/var/lib/mysql-keyring/keyring
 ```
 Use `--apply-log-only` when merging all incremental backups except the last one. The previous line does not contain the `--apply-log-only` option. Even if the `--apply-log-only` option was used on the last step, the backup would still be consistent, but in that case, the server would perform the rollback phase.
 
@@ -420,14 +359,6 @@ because xtrabackup does not talk to the keyring in this case.
 
 When restoring a backup you need to generate a new master key. 
 
-The example for `keyring_file` plugin:
-
-```{.bash data-prompt="$"}
-$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
---transition-key=MySecretKey --generate-new-master-key \
---keyring-file-data=/var/lib/mysql-keyring/keyring
-```
-
 The example for `keyring_file` component:
 
 ```{.bash data-prompt="$"}
@@ -462,13 +393,6 @@ In this scenario, the three stages of the backup process look as follows.
 
 * Prepare
 
-    - `keyring_file` plugin variant:
-
-      ```{.bash data-prompt="$"}
-      $ xtrabackup --prepare --target-dir=/data/backup \
-      --keyring-file-data=/var/lib/mysql-keyring/keyring
-      ```
-
     - `keyring_file` component variant:
 
       ```{.bash data-prompt="$"}
@@ -484,13 +408,6 @@ In this scenario, the three stages of the backup process look as follows.
       ```
 
 * Copy-back
-
-    - `keyring_file` plugin variant:
-
-      ```{.bash data-prompt="$"}
-      $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
-      --generate-new-master-key --keyring-file-data=/var/lib/mysql-keyring/keyring
-      ```
 
     - `keyring_file` component variant:
 
@@ -513,4 +430,3 @@ In this scenario, the three stages of the backup process look as follows.
 [Amazon Key Management Service (AWS KMS)]: https://docs.percona.com/percona-server/innovation-release/using-amz-kms.html
 [Key Management Interoperability Protocol (KMIP)]: https://docs.percona.com/percona-server/innovation-release/using-kmip.html?h=kmip
 [Use the keyring vault component]: https://docs.percona.com/percona-server/innovation-release/use-keyring-vault-component.html
-[Using the keyring_file File-Based Keyring Plugin]: https://dev.mysql.com/doc/refman/{{vers}}/en/keyring-file-plugin.html
