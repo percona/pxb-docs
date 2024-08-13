@@ -7,6 +7,12 @@ The easiest way to install the Percona Yum repository is to install an `RPM` tha
 
 Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
 
+## Version changes
+
+Starting with [Percona XtraBackup 8.0.35-31], the RPM builds for RHEL 8 and RHEL 9 include ARM packages with the `aarch64.rpm` extension. This extension means Percona XtraBackup is now available for users on ARM-based systems.
+
+We recommend downloading Percona XtraBackup for the same platform as your MySQL-compatible server. For instance, if your server runs on an ARM64 platform, you should download and use the Percona XtraBackup with the `aarch64.rpm` extension for that operating system.
+
 ## Install Percona XtraBackup from Percona `yum` repository
 
 1. Install the Percona yum repository by running the following command as the `root` user or with **sudo**: 
@@ -60,3 +66,4 @@ Specific information on the supported platforms, products, and versions is descr
 
     To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup](yum-uninstall-xtrabackup.md) 
 
+[Percona XtraBackup 8.0.35-31]: release-notes/8.0/8.0.35-31.0.md

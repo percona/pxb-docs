@@ -838,26 +838,12 @@ Usage: `--read-buffer-size`
 
 Sets the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size. To adjust the chunk size for encrypted files, use `--read-buffer-size` and `--encrypt-chunk-size`.
 
-### rebuild-indexes
-
-Usage: `--rebuild-indexes`
-
-Rebuilds indexes in a compact backup. This option only has effect when the
-`--prepare` and `--rebuild-threads` options are provided.
-
-### rebuild-threads
-
-Usage: `--rebuild-threads=#`
-
-Uses the given number of threads to rebuild indexes in a compact backup. This
-option only has effect with the `--prepare` and
-`--rebuild-indexes` options.
 
 ### redo-log-arch-dir
 
 Usage: `--redo-log-arch-dir=name`
 
-This option sets the redo log archive directory if this directory is not already set on the server. To use this option, you must run Percona XtraBackup as the owner of `mysqld`.
+This option sets the redo log archive directory if this directory is not already set on the server. To use this option, you must run Percona XtraBackup as the owner of `mysqld`. Additionally, the user must have at least one of the following privileges: `SUPER` or `SYSTEM_VARIABLES_ADMIN`.
 
 Implemented in [Percona XtraBackup 8.0.34-29](release-notes/8.0/8.0.34-29.0.md).
 

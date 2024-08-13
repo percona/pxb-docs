@@ -1,6 +1,6 @@
 # Frequently asked questions
 
-## Does Percona XtraBackup 8.0 support making backups of databases in versions prior to 8.0?
+## Does Percona XtraBackup 8.0 support taking backups of databases in versions prior to 8.0?
 
 *Percona XtraBackup* 8.0 does not support making backups of databases
 created in versions prior to 8.0 of *MySQL*, *Percona Server for MySQL* or
@@ -18,6 +18,18 @@ Percona XtraDB Cluster.
 
 For more information,
 see [Percona XtraBackup 8.x and MySQL 8.0.20](https://www.percona.com/blog/2020/04/28/percona-xtrabackup-8-x-and-mysql-8-0-20/)
+
+## Does Percona XtraBackup 8.0 support taking backups of databases in higher versions within the 8.0 series?
+
+Yes, starting with **Percona XtraBackup 8.0.34**, you can back up MySQL-compatible databases of **higher versions within the 8.0 series**.
+
+Check the latest list of all [Supported versions](supported-versions.md).
+
+## Does Percona XtraBackup 8.0 support taking backups of databases in lower versions within the 8.0 series?
+
+Yes, if you use **Percona XtraBackup 8.0.35** or higher, you can back up MySQL-compatible databases starting from version **8.0.34** or higher.
+
+Check the latest list of all [Supported versions](supported-versions.md).
 
 ## Why will `innobackupex` not run in Percona XtraBackup 8.0?
 

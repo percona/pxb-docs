@@ -183,27 +183,14 @@ the action:
     160401 10:25:51 completed OK!
     ```
 
-!!! warning
-   
-    *xtrabackup* does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.
+### Prepare the backup with `component-keyring-config`
 
-
-### Prepare the backup with the `keyring_file` component
-
-*xtrabackup* reads the keyring_file component configuration
-from `xtrabackup_component_keyring_file.cnf`. You must specify the
-keyring_file data path if the `keyring-file-data` is not located in the
-attribute `PATH` from the xtrabackup_component_keyring_file.cnf.
-
-The following is an example of adding the location for the
-keyring-file-data:
+You can copy the `component_keyring_file.cnf` file to the backup directory before starting the `prepare` step or add the `component_keyring_config` option. You must specify the path if the `component-keyring-config` is not in the default location.
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/backup \
---keyring-file-data=/var/lib/mysql-keyring/keyring
+--component-keyring-config=/usr/lib64/mysql/plugin/component_keyring_file.cnf
 ```
-
-xtrabackup attempts to read `xtrabackup_component_keyring_file.cnf`. You can assign another keyring file component configuration by passing the `--component-keyring-file-config` option.
 
 After *xtrabackup* completes preparing the backup, the following message confirms
 the action:

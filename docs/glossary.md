@@ -16,7 +16,7 @@ Files with the `.exp` extension are created by **Percona XtraBackup** per each _
 
 For each table, the server will create a file with the `.frm` extension containing the table definition (for all storage engines).
 
-## General availability (GA)
+### General availability (GA)
 
 A finalized version of the product which is made available to the general public. It is the final stage in the software release cycle.
 
@@ -186,7 +186,7 @@ To support simultaneous compression and streaming, **Percona XtraBackup** uses t
 
 ### XtraDB
 
-_Percona XtraDB_ is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. _Percona XtraDB_ includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see [The Percona XtraDB Storage Engine](https://www.percona.com/doc/percona-server/8.0/percona_xtradb.html).
+_Percona XtraDB_ is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. _Percona XtraDB_ includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see [The Percona XtraDB Storage Engine](https://www.percona.com/doc/percona-server/8.0/percona-xtradb.html).
 
 ### Zstandard (ZSTD)
 

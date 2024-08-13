@@ -6,7 +6,7 @@ To make a compressed backup, use the `--compress` option along with the `--backu
 
 ## Version updates
 
-??? note "From Percona XtraBackup 8.0.34-29"
+??? note "Percona XtraBackup 8.0.34-29 and later"
 
     Percona XtraBackup removes `qpress/QuickLZ` and moves the `ZSTD` compression method to [General Availability](glossary.md#general-availability-ga). With this version `ZSTD` becomes the default compression method for the `--compress` option.
 
@@ -62,7 +62,7 @@ To make a compressed backup, use the `--compress` option along with the `--backu
     
     To decompress files, use the `--decompress` option. 
 
-??? note "From Percona XtraBackup 8.0.31-24"
+??? note "Percona XtraBackup 8.0.31-24 to 8.0.34-29 "
 
     Using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either `LZ4` or Zstandard (`ZSTD`) compression algorithms. `ZSTD` compression algorithm is in [tech preview](glossary.md#tech-preview). 
 
@@ -75,6 +75,9 @@ To make a compressed backup, use the `--compress` option along with the `--backu
     $ sudo apt update
     $ sudo apt install qpress
     ```
+
+
+
 
     !!! note
    
@@ -143,6 +146,10 @@ To make a compressed backup, use the `--compress` option along with the `--backu
     xtrabackup: Transaction log of lsn (9291934) to (9291934) was copied.
     170223 13:00:39 completed OK!
     ```   
+
+Using `--encrypt` might create larger backups than expected when used with InnoDB Page Compression.
+
+To avoid this issue with compressed backups, use the `--compress` option with the `--xbstream` option in Percona XtraBackup 8.0.31-24 and later.
 
 The next step is to [prepare](prepare-compressed-backup.md) the backup in order to [restore](restore-a-backup.md) it. 
 
