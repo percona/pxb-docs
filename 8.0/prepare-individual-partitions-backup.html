@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
         <meta name="description" content="For preparing partial backups, the procedure is analogous to restoring
-individual tables. Apply the logs and use xtrabackup –export:">
+individual tables. Apply the logs and use xtrabackup --export:">
       
       
         <meta name="author" content="Percona LLC">
@@ -4648,7 +4648,7 @@ individual tables. Apply the logs and use xtrabackup –export:">
 
 <h1 id="prepare-an-individual-partitions-backup">Prepare an individual partitions backup<a class="headerlink" href="#prepare-an-individual-partitions-backup" title="Permanent link">&para;</a></h1>
 <p>For preparing partial backups, the procedure is analogous to restoring
-individual tables. Apply the logs and use xtrabackup &ndash;export:</p>
+individual tables. Apply the logs and use xtrabackup <code>--export</code>:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--apply-log<span class="w"> </span>--export<span class="w"> </span>/mnt/backup/2012-08-28_10-29-09
 </code></pre></div>
 <p>You may see warnings in the output about tables that do not exist. This happens
@@ -4671,7 +4671,7 @@ backup) from the data dictionary in order to avoid future warnings or errors.</p
   <small>
     
       Last update:
-      2023-06-12
+      2024-08-13
     
   </small>
 </div>

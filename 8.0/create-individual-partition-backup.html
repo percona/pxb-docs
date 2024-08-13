@@ -4655,9 +4655,9 @@ on the server.</p>
 the prepared backup. Restoring partial backups should be done by importing the
 tables.</p>
 <p>There are three ways of specifying which part of the whole data will be backed
-up: regular expressions ( &ndash;tables), enumerating the
-tables in a file (&ndash;tables) or providing a list of
-databases (&ndash;databases).</p>
+up: regular expressions (<code>--tables</code>), enumerating the
+tables in a file (<code>--tables-file</code>) or providing a list of
+databases (<code>--databases</code>).</p>
 <p>The regular expression provided to this option will be matched against the fully
 qualified database name and table name, in the form of
 <code>database-name.table-name</code>.</p>
@@ -4691,7 +4691,7 @@ created even if they are empty.</p>
   <small>
     
       Last update:
-      2023-06-12
+      2024-08-13
     
   </small>
 </div>
