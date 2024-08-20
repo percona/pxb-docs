@@ -1,0 +1,6789 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Here you can find all of the command-line options for the xtrabackup binary.">
+      
+      
+        <meta name="author" content="Percona LLC">
+      
+      
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html">
+      
+      
+        <link rel="prev" href="xtrabackup-implementation-details.html">
+      
+      
+        <link rel="next" href="configure-xtrabackup.html">
+      
+      
+      <link rel="icon" href="assets/mysql-fav.svg">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+    
+    
+      
+        <title>The xtrabackup command-line options - Percona XtraBackup</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.3/css/line.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="css/design.css">
+    
+      <link rel="stylesheet" href="css/osano.css">
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+      <link rel="stylesheet" href="css/nocopy.css">
+    
+      <link rel="stylesheet" href="css/mysql.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-J4J70BNH0G"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-J4J70BNH0G",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-J4J70BNH0G",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+                 
+                 
+                 
+                 
+                 <meta property="og:type" content="website" />
+                 <meta property="og:title" content="Percona XtraBackup - The xtrabackup command-line options" />
+                 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.4/_static/percona-mysql-logo.png">
+                 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-xtrabackup-command-line-options" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      <!-- Determine classes -->
+
+
+  
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow" data-md-component="header">
+
+  <!-- Super Nav -->
+  <div class="superNav">
+    <div class="md-header__inner md-grid">
+      <a href="https://docs.percona.com/percona-for-mysql/" title="Percona Documentation home page">
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <mask id="a" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+            <path d="M0 0h24v24H0z"/>
+          </mask>
+          <g mask="url(#a)">
+            <path d="m7.825 13 5.6 5.6L12 20l-8-8 8-8 1.425 1.4-5.6 5.6H20v2H7.825Z"/>
+          </g>
+        </svg>
+        <span>Percona Software for MySQL Documentation</span>
+      </a>
+    </div>
+  </div>
+
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+      href="index.html"
+      title="Percona XtraBackup"
+      class="md-header__button md-logo"
+      aria-label="Percona XtraBackup"
+      data-md-component="logo"
+    >
+      
+  <img src="assets/mysql-mark.svg" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title">
+      <div class="md-header__ellipsis">
+        <a href="index.html" class="md-header__topic">
+          <span class="md-ellipsis">
+            Percona XtraBackup
+          </span>
+        </a>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The xtrabackup command-line options
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Color theme set to Automatic. Click to change"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Color theme set to Automatic. Click to change" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="percona-light" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Color theme set to Light Mode. Click to change"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Color theme set to Light Mode. Click to change" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="percona-dark" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Color theme set to Dark Mode. Click to change"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Color theme set to Dark Mode. Click to change" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+
+    <!-- User preference: color palette -->
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+
+      <!-- Search interface -->
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+      <div class="md-header__source">
+        <a href="https://github.com/percona/pxb-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    percona/pxb-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
+      
+  <img src="assets/mysql-mark.svg" alt="logo">
+
+    </a>
+    Percona XtraBackup
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/percona/pxb-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    percona/pxb-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Release notes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Release notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/release-notes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release notes index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/8.4.0-1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.4.0-1 (2024-08-20)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Quickstart Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Quickstart Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart-overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quickstart Guide for Percona XtraBackup 8.4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    How Percona XtraBackup works
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            How Percona XtraBackup works
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="about-xtrabackup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Percona XtraBackup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="features.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="limitations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limitations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="how-xtrabackup-works.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How Percona XtraBackup works
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xtrabackup-version-numbers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand version numbers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Backup features
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Backup features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lru-dump-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LRU dump backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="throttling-backups.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Throttling backups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="store-backup-history.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Store backup history on the server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Prepare features
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Prepare features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dictionary-cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionary cache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Restore features
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Restore features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="point-in-time-recovery.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Point-in-time recovery
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="restore-individual-tables.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Restore individual tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="flush-tables-with-read-lock.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FLUSH TABLES WITH READ LOCK option
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="log-enhancements.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Improved log statements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lock-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lock-ddl-per-table option improvements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="smart-memory-estimation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Smart memory estimation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="working-with-binary-logs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Work with binary logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Binaries
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Binaries
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="binaries-overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    The xtrabackup binary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            The xtrabackup binary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xtrabackup-binary-overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xtrabackup binary overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xtrabackup-implementation-details.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xtrabackup implementation details
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    The xtrabackup command-line options
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="xtrabackup-option-reference.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    The xtrabackup command-line options
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modes-of-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modes of operation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modes of operation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#innodb-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      InnoDB options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apply-log-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      apply-log-only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-lock-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      backup-lock-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-lock-retry-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      backup-lock-retry-count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-locks" class="md-nav__link">
+    <span class="md-ellipsis">
+      backup-locks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      check-privileges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      close-files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compress" class="md-nav__link">
+    <span class="md-ellipsis">
+      compress
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compress-chunk-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      compress-chunk-size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compress-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      compress-threads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compress-zstd-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      compress-zstd-level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      copy-back
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      core-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases-exclude" class="md-nav__link">
+    <span class="md-ellipsis">
+      databases-exclude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      databases-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datadir" class="md-nav__link">
+    <span class="md-ellipsis">
+      datadir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-sleep-before-unlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      debug-sleep-before-unlock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      debug-sync
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decompress" class="md-nav__link">
+    <span class="md-ellipsis">
+      decompress
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decompress-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      decompress-threads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      decrypt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaults-extra-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaults-extra-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaults-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaults-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaults-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaults-group
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaults-group-suffix" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaults-group-suffix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump-innodb-buffer-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      dump-innodb-buffer-pool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump-innodb-buffer-pool-pct" class="md-nav__link">
+    <span class="md-ellipsis">
+      dump-innodb-buffer-pool-pct
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump-innodb-buffer-pool-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      dump-innodb-buffer-pool-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-key-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-key-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-threads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-chunk-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-chunk-size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estimate-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      estimate-memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    <span class="md-ellipsis">
+      export
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extra-lsndir" class="md-nav__link">
+    <span class="md-ellipsis">
+      extra-lsndir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-non-empty-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      force-non-empty-directories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftwrl-wait-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      ftwrl-wait-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftwrl-wait-threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      ftwrl-wait-threshold
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftwrl-wait-query-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      ftwrl-wait-query-type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#galera-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      galera-info
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-new-master-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate-new-master-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-transition-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate-transition-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-server-public-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      get-server-public-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#help" class="md-nav__link">
+    <span class="md-ellipsis">
+      help
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      history
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host" class="md-nav__link">
+    <span class="md-ellipsis">
+      host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-basedir" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-basedir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-force-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-force-scan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-history-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-history-name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-history-uuid" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-history-uuid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-lsn" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-lsn
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      innodb
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb-miscellaneous" class="md-nav__link">
+    <span class="md-ellipsis">
+      innodb-miscellaneous
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyring-file-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      keyring-file-data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kill-long-queries-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      kill-long-queries-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kill-long-query-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      kill-long-query-type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock-ddl" class="md-nav__link">
+    <span class="md-ellipsis">
+      lock-ddl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock-ddl-per-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      lock-ddl-per-table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock-ddl-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      lock-ddl-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log" class="md-nav__link">
+    <span class="md-ellipsis">
+      log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-bin" class="md-nav__link">
+    <span class="md-ellipsis">
+      log-bin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-bin-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      log-bin-index
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-copy-interval" class="md-nav__link">
+    <span class="md-ellipsis">
+      log-copy-interval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      login-path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      move-back
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-backup-locks" class="md-nav__link">
+    <span class="md-ellipsis">
+      no-backup-locks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      no-defaults
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-lock" class="md-nav__link">
+    <span class="md-ellipsis">
+      no-lock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-server-version-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      no-server-version-check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-version-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      no-version-check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-files-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      open-files-limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel" class="md-nav__link">
+    <span class="md-ellipsis">
+      parallel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password" class="md-nav__link">
+    <span class="md-ellipsis">
+      password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      plugin-load
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port" class="md-nav__link">
+    <span class="md-ellipsis">
+      port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare" class="md-nav__link">
+    <span class="md-ellipsis">
+      prepare
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      print-defaults
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      print-param
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-buffer-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      read-buffer-size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-redo-log-consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      register-redo-log-consumer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-original" class="md-nav__link">
+    <span class="md-ellipsis">
+      remove-original
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocksdb-datadir" class="md-nav__link">
+    <span class="md-ellipsis">
+      rocksdb-datadir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocksdb-wal-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      rocksdb-wal-dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocksdb-checkpoint-max-age" class="md-nav__link">
+    <span class="md-ellipsis">
+      rocksdb-checkpoint-max-age
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocksdb-checkpoint-max-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      rocksdb-checkpoint-max-count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback-prepared-trx" class="md-nav__link">
+    <span class="md-ellipsis">
+      rollback-prepared-trx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsync" class="md-nav__link">
+    <span class="md-ellipsis">
+      rsync
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safe-slave-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      safe-slave-backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safe-slave-backup-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      safe-slave-backup-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure-auth
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      server-id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-public-key-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      server-public-key-path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skip-tables-compatibility-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      skip-tables-compatibility-check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slave-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      slave-info
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#socket" class="md-nav__link">
+    <span class="md-ellipsis">
+      socket
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-ca
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-capath" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-capath
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-cert" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-cert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-cipher" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-cipher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-crl" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-crl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-crlpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-crlpath
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-fips-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-fips-mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-verify-server-cert" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-verify-server-cert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      stream
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict" class="md-nav__link">
+    <span class="md-ellipsis">
+      strict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-compatibility-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      tables-compatibility-check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-exclude" class="md-nav__link">
+    <span class="md-ellipsis">
+      tables-exclude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      tables-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      target-dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb-temp-tablespaces-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      innodb-temp-tablespaces-dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#throttle" class="md-nav__link">
+    <span class="md-ellipsis">
+      throttle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-ciphersuites" class="md-nav__link">
+    <span class="md-ellipsis">
+      tls-ciphersuites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      tls-version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmpdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      tmpdir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transition-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      transition-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-free-memory-pct" class="md-nav__link">
+    <span class="md-ellipsis">
+      use-free-memory-pct
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      use-memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      user
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xtrabackup-plugin-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      xtrabackup-plugin-dir
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-expert-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get expert help
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configure-xtrabackup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure xtrabackup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    The xbcrypt binary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            The xbcrypt binary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcrypt-binary-overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbcrypt binary overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcrypt-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbcrypt command-line options
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    The xbstream binary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            The xbstream binary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbstream-binary-overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbstream binary overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbstream-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbstream command-line options
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="take-streaming-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Take a streaming backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="accelerate-backup-process.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accelerate backup process
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encrypt-backups.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Encrypt backups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    The xbcloud binary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            The xbcloud binary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-binary-overview.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbcloud binary overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-options.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The xbcloud command-line options
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5_3" id="__nav_6_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Use the xbcloud binary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Use the xbcloud binary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-s3.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use the xbcloud binary with Amazon S3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-iam-profile.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use the xbcloud binary with an IAM instance profile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-swift.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use the xbcloud binary with Swift
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-gcs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use the xbcloud binary with Google Cloud Storage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-azure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use the xbcloud binary with Microsoft Azure Cloud Storage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-minio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use the xbcloud binary with MinIO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-binary-fifo-datasink.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FIFO data sink
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-exbackoff.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exponential backoff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Install
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Before you start
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Before you start
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="server-backup-version-comparison.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server version and backup version comparison
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="privileges.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connection and privileges needed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="permissions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Permissions needed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Use APT
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Use APT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apt-repo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use APT repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apt-files.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Files in DEB package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apt-download-deb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Downloaded DEB packages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apt-pinning.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apt pinning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="work-with-apparmor.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Work with AppArmor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apt-uninstall-xtrabackup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Use YUM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Use YUM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="yum-repo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use RPM repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="yum-files.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Files in RPM package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="yum-download-rpm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Downloaded RPM packages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="work-with-selinux.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Work with SELinux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="yum-uninstall-xtrabackup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uninstall
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Use binary tarballs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Use binary tarballs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="binary-tarball.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install with binary tarballs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="binary-tarball-names.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Binary tarballs available
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Compile from source
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            Compile from source
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="compile-xtrabackup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compile xtrabackup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docker.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run a Docker container
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    How to
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            How to
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Take a full backup
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            Take a full backup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="create-full-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a full backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prepare-full-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prepare a full backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Take an incremental backup
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Take an incremental backup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="create-incremental-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create an incremental backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prepare-incremental-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prepare an incremental backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="page-tracking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Take an incremental backup using page tracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Take a compressed backup
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            Take a compressed backup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="create-compressed-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a compressed backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prepare-compressed-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prepare the backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encrypted-innodb-tablespace-backups.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Encrypted InnoDB tablespace backups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_4" id="__nav_8_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Take a partial backup
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_4">
+            <span class="md-nav__icon md-icon"></span>
+            Take a partial backup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="create-partial-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create a partial backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prepare-partial-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prepare a partial backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Back up individual partitions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            Back up individual partitions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="create-individual-partition-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create an individual partitions backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prepare-individual-partitions-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prepare an individual partitions backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Restore a backup
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            Restore a backup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="restore-a-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Restore full, incremental, compressed backups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="restore-partial-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Restore a partial backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="restore-individual-partitions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Restore an individual partitions backup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Replicate
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_7">
+            <span class="md-nav__icon md-icon"></span>
+            Replicate
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="set-up-replication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to set up a replica for replication in 6 simple steps with Percona XtraBackup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="create-gtid-replica.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to create a new (or repair a broken) GTID-based replica
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="make-backup-in-replication-env.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Make backups in replication environments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="varify-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Verify backups with replication and pt-checksum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Troubleshoot
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshoot
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xtrabackup-exit-codes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xtrabackup exit codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="update-curl-utility.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Update curl utility
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xtrabackup-files.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index of files created by Percona XtraBackup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="faq.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Faq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="glossary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toolkit-version-check.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Percona Toolkit version checking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="trademark-policy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trademark policy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="copyright-and-licensing-information.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Copyright and licensing information
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                    <br>
+                    <label class="md-nav__title" for="__drawer">
+    <a href="https://learn.percona.com/download-manual-percona-xtrabackup-8.4" onclick="_gaq.push(['b._trackEvent', 'Percona XtraBackup', 'Download', 'Download Manual Percona XtraBackup']);" class="md-nav__link md-nav__link--active" style="font-size: .7rem;">
+      Download PDF
+    </a>
+  </label> 
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modes-of-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modes of operation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modes of operation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#innodb-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      InnoDB options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apply-log-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      apply-log-only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-lock-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      backup-lock-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-lock-retry-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      backup-lock-retry-count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-locks" class="md-nav__link">
+    <span class="md-ellipsis">
+      backup-locks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      check-privileges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      close-files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compress" class="md-nav__link">
+    <span class="md-ellipsis">
+      compress
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compress-chunk-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      compress-chunk-size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compress-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      compress-threads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compress-zstd-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      compress-zstd-level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      copy-back
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      core-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases-exclude" class="md-nav__link">
+    <span class="md-ellipsis">
+      databases-exclude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      databases-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datadir" class="md-nav__link">
+    <span class="md-ellipsis">
+      datadir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-sleep-before-unlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      debug-sleep-before-unlock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      debug-sync
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decompress" class="md-nav__link">
+    <span class="md-ellipsis">
+      decompress
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decompress-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      decompress-threads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      decrypt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaults-extra-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaults-extra-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaults-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaults-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaults-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaults-group
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaults-group-suffix" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaults-group-suffix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump-innodb-buffer-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      dump-innodb-buffer-pool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump-innodb-buffer-pool-pct" class="md-nav__link">
+    <span class="md-ellipsis">
+      dump-innodb-buffer-pool-pct
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump-innodb-buffer-pool-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      dump-innodb-buffer-pool-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-key-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-key-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-threads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypt-chunk-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      encrypt-chunk-size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estimate-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      estimate-memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    <span class="md-ellipsis">
+      export
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extra-lsndir" class="md-nav__link">
+    <span class="md-ellipsis">
+      extra-lsndir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-non-empty-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      force-non-empty-directories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftwrl-wait-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      ftwrl-wait-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftwrl-wait-threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      ftwrl-wait-threshold
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftwrl-wait-query-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      ftwrl-wait-query-type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#galera-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      galera-info
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-new-master-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate-new-master-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-transition-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate-transition-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-server-public-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      get-server-public-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#help" class="md-nav__link">
+    <span class="md-ellipsis">
+      help
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      history
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host" class="md-nav__link">
+    <span class="md-ellipsis">
+      host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-basedir" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-basedir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-force-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-force-scan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-history-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-history-name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-history-uuid" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-history-uuid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-lsn" class="md-nav__link">
+    <span class="md-ellipsis">
+      incremental-lsn
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      innodb
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb-miscellaneous" class="md-nav__link">
+    <span class="md-ellipsis">
+      innodb-miscellaneous
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyring-file-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      keyring-file-data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kill-long-queries-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      kill-long-queries-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kill-long-query-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      kill-long-query-type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock-ddl" class="md-nav__link">
+    <span class="md-ellipsis">
+      lock-ddl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock-ddl-per-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      lock-ddl-per-table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock-ddl-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      lock-ddl-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log" class="md-nav__link">
+    <span class="md-ellipsis">
+      log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-bin" class="md-nav__link">
+    <span class="md-ellipsis">
+      log-bin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-bin-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      log-bin-index
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-copy-interval" class="md-nav__link">
+    <span class="md-ellipsis">
+      log-copy-interval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      login-path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      move-back
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-backup-locks" class="md-nav__link">
+    <span class="md-ellipsis">
+      no-backup-locks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      no-defaults
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-lock" class="md-nav__link">
+    <span class="md-ellipsis">
+      no-lock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-server-version-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      no-server-version-check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-version-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      no-version-check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-files-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      open-files-limit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel" class="md-nav__link">
+    <span class="md-ellipsis">
+      parallel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password" class="md-nav__link">
+    <span class="md-ellipsis">
+      password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plugin-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      plugin-load
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port" class="md-nav__link">
+    <span class="md-ellipsis">
+      port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare" class="md-nav__link">
+    <span class="md-ellipsis">
+      prepare
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      print-defaults
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      print-param
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-buffer-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      read-buffer-size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-redo-log-consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      register-redo-log-consumer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-original" class="md-nav__link">
+    <span class="md-ellipsis">
+      remove-original
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocksdb-datadir" class="md-nav__link">
+    <span class="md-ellipsis">
+      rocksdb-datadir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocksdb-wal-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      rocksdb-wal-dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocksdb-checkpoint-max-age" class="md-nav__link">
+    <span class="md-ellipsis">
+      rocksdb-checkpoint-max-age
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocksdb-checkpoint-max-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      rocksdb-checkpoint-max-count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback-prepared-trx" class="md-nav__link">
+    <span class="md-ellipsis">
+      rollback-prepared-trx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsync" class="md-nav__link">
+    <span class="md-ellipsis">
+      rsync
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safe-slave-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      safe-slave-backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safe-slave-backup-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      safe-slave-backup-timeout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      secure-auth
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      server-id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-public-key-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      server-public-key-path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skip-tables-compatibility-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      skip-tables-compatibility-check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slave-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      slave-info
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#socket" class="md-nav__link">
+    <span class="md-ellipsis">
+      socket
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-ca
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-capath" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-capath
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-cert" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-cert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-cipher" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-cipher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-crl" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-crl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-crlpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-crlpath
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-fips-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-fips-mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-verify-server-cert" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssl-verify-server-cert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      stream
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict" class="md-nav__link">
+    <span class="md-ellipsis">
+      strict
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-compatibility-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      tables-compatibility-check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-exclude" class="md-nav__link">
+    <span class="md-ellipsis">
+      tables-exclude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      tables-file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      target-dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#innodb-temp-tablespaces-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      innodb-temp-tablespaces-dir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#throttle" class="md-nav__link">
+    <span class="md-ellipsis">
+      throttle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-ciphersuites" class="md-nav__link">
+    <span class="md-ellipsis">
+      tls-ciphersuites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      tls-version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tmpdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      tmpdir
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transition-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      transition-key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-free-memory-pct" class="md-nav__link">
+    <span class="md-ellipsis">
+      use-free-memory-pct
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      use-memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      user
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xtrabackup-plugin-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      xtrabackup-plugin-dir
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-expert-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get expert help
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+
+          <script>
+              !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+              posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https://eu.posthog.com'})
+          </script>
+
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/xtrabackup-option-reference.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/xtrabackup-option-reference.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="the-xtrabackup-command-line-options">The xtrabackup command-line options<a class="headerlink" href="#the-xtrabackup-command-line-options" title="Permanent link">&para;</a></h1>
+<p>Here you can find all of the command-line options for the xtrabackup binary.</p>
+<h2 id="modes-of-operation">Modes of operation<a class="headerlink" href="#modes-of-operation" title="Permanent link">&para;</a></h2>
+<p>You invoke xtrabackup in one of the following modes:</p>
+<ul>
+<li>
+<p><code>--backup</code> mode to make a backup in a target directory</p>
+</li>
+<li>
+<p><code>--prepare</code> mode to restore data from a backup (created in <code>--backup</code> mode)</p>
+</li>
+<li>
+<p><code>--copy-back</code> to copy data from a backup to the original location; to move the data instead of copying the data, use the alternate <code>--move-back</code> mode.</p>
+</li>
+</ul>
+<p>When you intend to run xtrabackup in any of these modes, use the following syntax:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span><span class="o">[</span>--defaults-file<span class="o">=</span><span class="c1">#] --backup|--prepare|--copy-back| [OPTIONS]</span>
+</code></pre></div>
+<p>For example, the <code>--prepare</code> mode is applied as follows:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/mysql/
+</code></pre></div>
+<p>For all modes, the default options are read from the xtrabackup and
+mysqld configuration groups from the following files in the given order:</p>
+<ol>
+<li>
+<p><code>/etc/my.cnf</code></p>
+</li>
+<li>
+<p><code>/etc/mysql/my.cnf</code></p>
+</li>
+<li>
+<p><code>/usr/etc/my.cnf</code></p>
+</li>
+<li>
+<p><code>~/.my.cnf</code>.</p>
+</li>
+</ol>
+<p>As the first parameter to xtrabackup in place of the <code>--defaults-file</code>,
+you may supply one of the following:</p>
+<ul>
+<li>
+<p><code>--print-defaults</code> - prints the argument list and exit.</p>
+</li>
+<li>
+<p><code>--no-defaults</code> - forbids reading options from any file but the login file.</p>
+</li>
+<li>
+<p><code>--defaults-file</code> -  reads the default options from the given file.</p>
+</li>
+<li>
+<p><code>--defaults-extra-file</code> - reads the specified additional file after the global files.</p>
+</li>
+<li>
+<p><code>--defaults-group-suffix</code> -  reads the configuration groups with the given suffix. The effective group name is constructed by concatenating the default configuration groups (xtrabackup and mysqld) with the given suffix.</p>
+</li>
+<li>
+<p><code>--login-path</code> - reads the given path from the login file.</p>
+</li>
+</ul>
+<h3 id="innodb-options">InnoDB options<a class="headerlink" href="#innodb-options" title="Permanent link">&para;</a></h3>
+<p>A large group of InnoDB options is usually read from the <code>my.cnf</code> configuration file, so xtrabackup boots up its embedded InnoDB in the same configuration as your current server. You typically do not
+need to specify them explicitly. These options have the same behavior in InnoDB
+and XtraDB. See <a href="#innodb-miscellaneous"><code>--innodb-miscellaneous</code></a> for more information.</p>
+<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
+<h3 id="apply-log-only">apply-log-only<a class="headerlink" href="#apply-log-only" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--apply-log-only</code></p>
+<p>This option causes only the redo stage to be performed when preparing a
+backup. It is essential for incremental backups.</p>
+<h3 id="backup">backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup</code></p>
+<p>Make a backup and place it in <code>--target-dir</code>. See <a href="create-full-backup.html">Create a full backup</a></p>
+<h3 id="backup-lock-timeout">backup-lock-timeout<a class="headerlink" href="#backup-lock-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup-lock-timeout</code></p>
+<p>The timeout in seconds for attempts to acquire metadata locks.</p>
+<h3 id="backup-lock-retry-count">backup-lock-retry-count<a class="headerlink" href="#backup-lock-retry-count" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup-lock-retry-count</code></p>
+<p>The number of attempts to acquire metadata locks.</p>
+<h3 id="backup-locks">backup-locks<a class="headerlink" href="#backup-locks" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup-locks</code></p>
+<p>This option controls if <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> are used instead of <code>FLUSH TABLES
+WITH READ LOCK</code> on the backup stage. The option has no effect when the server does not support backup locks. This option is enabled by default,
+disable with <a href="#no-backup-locks"><code>--no-backup-locks</code></a>.</p>
+<h3 id="check-privileges">check-privileges<a class="headerlink" href="#check-privileges" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>check-privileges</code></p>
+<p>This option checks if Percona XtraBackup has all the required privileges.
+If a required privilege is missing for the current operation,
+the operation terminates and prints an error message.
+If a privilege is not needed for the current operation but is missing and may be necessary for another XtraBackup operation, the operation is not aborted, and a warning is printed.</p>
+<details class="example">
+<summary>Example output</summary>
+<div class="highlight"><pre><span></span><code>```{.text .no-copy}
+xtrabackup: Error: missing required privilege LOCK TABLES on *.*
+xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
+```
+</code></pre></div>
+</details>
+<h3 id="close-files">close-files<a class="headerlink" href="#close-files" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--close-files</code></p>
+<p>Do not keep files opened. When xtrabackup opens a tablespace, xtrabackup normally
+doesn’t close its file handle. This operation allows xtrabackup to handle the DDL operations
+correctly. However, if the number of tablespaces is huge and can not
+fit into any limit, there is an option to close file handles once they are
+no longer accessed. Percona XtraBackup can produce inconsistent backups
+with this option enabled. Use at your own risk.</p>
+<h3 id="compress">compress<a class="headerlink" href="#compress" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--compress</code></p>
+<p>This option tells xtrabackup to compress all output data, including the
+transaction log and metadata files, using either the <code>ZSTD</code> or the <code>lz4</code> compression algorithm. <code>ZSTD</code> is the default compression algorithm.</p>
+<p><code>--compress</code> produces <code>\*.zst</code> files. You can extract the contents of these files using the <code>--decompress</code> option. You can specify the <code>ZSTD</code> compression level with the <a href="#compress-zstd-level"><code>--compress-zstd-level</code></a> option.</p>
+<p><code>--compress=lz4</code> produces <code>\*.lz4</code> files. You can extract the contents of
+these files by using the <code>lz4</code> program.</p>
+<h3 id="compress-chunk-size">compress-chunk-size<a class="headerlink" href="#compress-chunk-size" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--compress-chunk-size=#</code></p>
+<p>Size of working buffer(s) for compression threads in bytes. The default
+value is 64K.</p>
+<h3 id="compress-threads">compress-threads<a class="headerlink" href="#compress-threads" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--compress-threads=#</code></p>
+<p>This option specifies the number of worker threads xtrabackup uses for parallel data compression. This option defaults to <code>1</code> and can be used with <a href="#parallel">parallel</a> file copying.</p>
+<p>For example, <code>--parallel=4 --compress --compress-threads=2</code>
+creates four I/O threads that read and pipe the data to two compression threads.</p>
+<h3 id="compress-zstd-level">compress-zstd-level<a class="headerlink" href="#compress-zstd-level" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--compress-zstd-level=#</code></p>
+<p>This option specifies <code>ZSTD</code> compression level. Compression levels provide a trade-off between the compression speed and the compressed files&rsquo; size. A lower compression level provides faster compression speed but larger file sizes. A higher compression level provides lower compression speed but smaller file sizes. For example, set level 1 if the compression speed is the most important for you. Set level 19 if the size of the compressed files is the most important.</p>
+<p>The default value is 1. Allowed range of values is from 1 to 19.</p>
+<h3 id="copy-back">copy-back<a class="headerlink" href="#copy-back" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--copy-back</code></p>
+<p>Copy all the files in a previously made backup from the backup directory to
+their original locations. This option will not copy over existing files
+unless the <a href="#force-non-empty-directories"><code>--force-non-empty-directories</code></a> option is specified.</p>
+<h3 id="core-file">core-file<a class="headerlink" href="#core-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--core-file</code></p>
+<p>Write core on fatal signals.</p>
+<h3 id="databases">databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--databases=#</code></p>
+<p>This option specifies a list of databases and tables that should be backed
+up. The option accepts the list of the form <code>"databasename1[.table_name1]
+databasename2[.table_name2] . . ."</code>.</p>
+<h3 id="databases-exclude">databases-exclude<a class="headerlink" href="#databases-exclude" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--databases-exclude=name</code></p>
+<p>Databases are excluded based on name. This option operates the same way as <code>--databases</code> but excludes the matched names from the backup.</p>
+<p>This option has a higher priority than <code>--databases</code>.</p>
+<h3 id="databases-file">databases-file<a class="headerlink" href="#databases-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--databases-file=#</code></p>
+<p>This option specifies the path to the file containing the list of databases
+and tables that should be backed up. The file can contain the list elements
+of the form <code>databasename1[.table_name1]</code>, one element per line.</p>
+<h3 id="datadir">datadir<a class="headerlink" href="#datadir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--datadir=DIRECTORY</code></p>
+<p>The source directory for the backup. This should be the same as the datadir
+for your server, so it should be read from <code>my.cnf</code> if that
+exists; otherwise, specify the directory on the command line.</p>
+<p>When combined with the <a href="#copy-back"><code>--copy-back</code></a> or the
+<a href="#move-back"><code>--move-back</code></a> option, this option refers to the destination directory.</p>
+<p>To perform a backup, you must have the
+<code>READ</code> and <code>EXECUTE</code> permissions at a filesystem level in the
+server’s datadir.</p>
+<h3 id="debug-sleep-before-unlock">debug-sleep-before-unlock<a class="headerlink" href="#debug-sleep-before-unlock" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--debug-sleep-before-unlock=#</code></p>
+<p>This option is only used by the xtrabackup test suite.</p>
+<h3 id="debug-sync">debug-sync<a class="headerlink" href="#debug-sync" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--debug-sync=name</code></p>
+<p>This option is only used by the xtrabackup test suite.</p>
+<h3 id="decompress">decompress<a class="headerlink" href="#decompress" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--decompress</code></p>
+<p>Decompresses all files in a backup previously
+made with the <code>--compress</code> option. The
+<code>--parallel</code> option lets multiple files be
+decrypted simultaneously.</p>
+<p>Percona XtraBackup does not automatically remove the compressed files. Users should use the <code>--remove-original</code> option to clean up the backup directory.</p>
+<h3 id="decompress-threads">decompress-threads<a class="headerlink" href="#decompress-threads" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--decompress-threads=#</code></p>
+<p>Force xbstream to use the specified number of threads for decompressing.</p>
+<h3 id="decrypt">decrypt<a class="headerlink" href="#decrypt" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--decrypt=ENCRYPTION-ALGORITHM</code></p>
+<p>Decrypts all files with the <code>xbcrypt</code> extension in a backup
+previously made with <a href="#encrypt"><code>--encrypt</code></a> option. The
+<a href="#parallel"><code>--parallel</code></a> option lets multiple files be
+decrypted simultaneously. Percona XtraBackup doesn’t
+automatically remove the encrypted files; use <code>--</code>remove-original`](#remove-original) option.</p>
+<h3 id="defaults-extra-file">defaults-extra-file<a class="headerlink" href="#defaults-extra-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--defaults-extra-file=[MY.CNF]</code></p>
+<p>Read this file after the global files are read. The option must be the first
+option on the command line.</p>
+<h3 id="defaults-file">defaults-file<a class="headerlink" href="#defaults-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--defaults-file=[MY.CNF]</code></p>
+<p>Only read default options from the given file. The value must be the first
+option on the command line and cannot be a symbolic link.</p>
+<h3 id="defaults-group">defaults-group<a class="headerlink" href="#defaults-group" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--defaults-group=GROUP-NAME</code></p>
+<p>This option sets the group that should be read from the configuration file and is needed for <code>mysqld_multi</code> deployments.</p>
+<h3 id="defaults-group-suffix">defaults-group-suffix<a class="headerlink" href="#defaults-group-suffix" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--defaults-group-suffix=#</code></p>
+<p>Also reads groups with concat(group, suffix).</p>
+<h3 id="dump-innodb-buffer-pool">dump-innodb-buffer-pool<a class="headerlink" href="#dump-innodb-buffer-pool" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--dump-innodb-buffer-pool</code></p>
+<p>This option controls creating a new dump of the buffer pool content.</p>
+<p>The xtrabackup binary requests the server to start the buffer pool dump. This operation may take time to complete and is done in the background. The
+beginning of a backup with the option reports that the dump has been
+completed.</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--dump-innodb-buffer-pool<span class="w"> </span>--target-dir<span class="o">=</span>/home/user/backup
+</code></pre></div>
+<p>By default, this option is set to OFF.</p>
+<p>If <a href="https://dev.mysql.com/doc/refman/8.3/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
+using the value of <a href="#dump-innodb-buffer-pool-timeout"><code>--dump-innodb-buffer-pool-timeout</code></a></p>
+<p>The file <code>ib_buffer_pool</code> stores the tablespace ID and page ID
+data used to warm up the buffer pool sooner.</p>
+<h3 id="dump-innodb-buffer-pool-pct">dump-innodb-buffer-pool-pct<a class="headerlink" href="#dump-innodb-buffer-pool-pct" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--dump-innodb-buffer-pool-pct</code></p>
+<p>This option contains the percentage of the most recently used buffer pool
+pages to dump.</p>
+<p>This option is effective if <code>--dump-innodb-buffer-pool</code> option is set
+to ON. If this option contains a value, xtrabackup sets the MySQL
+system variable <a href="https://dev.mysql.com/doc/refman/8.3/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct"><code>innodb_buffer_pool_dump_pct</code></a>. As soon as the buffer pool
+dump completes or is stopped (see
+<code>--dump-innodb-buffer-pool-timeout</code>), the value of the MySQL system
+variable is restored.</p>
+<h3 id="dump-innodb-buffer-pool-timeout">dump-innodb-buffer-pool-timeout<a class="headerlink" href="#dump-innodb-buffer-pool-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--dump-innodb-buffer-pool-timeout</code></p>
+<p>This option contains the number of seconds that xtrabackup should
+monitor the value of <a href="https://dev.mysql.com/doc/refman/8.0/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> to
+determine if the buffer pool dump has been completed.</p>
+<p>This option is used in combination with
+<a href="#dump-innodb-buffer-pool"><code>--dump-innodb-buffer-pool</code></a>. By default, it is set to 10 seconds.</p>
+<h3 id="encrypt">encrypt<a class="headerlink" href="#encrypt" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--encrypt=ENCRYPTION_ALGORITHM</code></p>
+<p>This option instructs xtrabackup to encrypt backup copies of InnoDB data
+files using the algorithm specified in the ENCRYPTION_ALGORITHM. Currently
+supported algorithms are: <code>AES128</code>, <code>AES192</code> and <code>AES256</code></p>
+<h3 id="encrypt-key">encrypt-key<a class="headerlink" href="#encrypt-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--encrypt-key=ENCRYPTION_KEY</code></p>
+<p>A proper length encryption key to use. This key can be viewed as part of the process info. We do not recommend using this option with uncontrolled access to the machine.</p>
+<h3 id="encrypt-key-file">encrypt-key-file<a class="headerlink" href="#encrypt-key-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--encrypt-key-file=ENCRYPTION_KEY_FILE</code></p>
+<p>The name of a file where the raw key of the appropriate length can be read
+from. The file must be a simple binary (or text) file that contains exactly
+the key to be used.</p>
+<p>It is passed directly to the xtrabackup child process. See the
+xtrabackup documentation for more details.</p>
+<h3 id="encrypt-threads">encrypt-threads<a class="headerlink" href="#encrypt-threads" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--encrypt-threads=#</code></p>
+<p>This option specifies the number of worker threads that will be used for
+parallel encryption/decryption.
+See the xtrabackup documentation for more details.</p>
+<h3 id="encrypt-chunk-size">encrypt-chunk-size<a class="headerlink" href="#encrypt-chunk-size" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--encrypt-chunk-size=#</code></p>
+<p>This option specifies the size of the internal working buffer for each
+encryption thread, measured in bytes. It is passed directly to the
+xtrabackup child process.</p>
+<p>To adjust the chunk size for encrypted files, use <a href="#read-buffer-size"><code>--read-buffer-size</code></a> and this option.</p>
+<h3 id="estimate-memory">estimate-memory<a class="headerlink" href="#estimate-memory" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--estimate-memory=#</code></p>
+<p>This option is in <a href="glossary.html#tech-preview">tech preview</a>.</p>
+<p>The option lets you enable or disable the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The default value is OFF. Enable the feature by setting <code>--estimate-memory=ON</code> in the backup phase and setting the <code>--use-free-memory-pct</code> option in the <code>--prepare</code> phase. If the <code>--estimate-memory</code> setting is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
+<p>An example of how to enable the Smart memory estimation feature:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+</code></pre></div>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+</code></pre></div>
+<h3 id="export">export<a class="headerlink" href="#export" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--export</code></p>
+<p>Create files necessary for exporting tables. For more details, see <a href="restore-individual-tables.html">Restore individual tables</a>.</p>
+<h3 id="extra-lsndir">extra-lsndir<a class="headerlink" href="#extra-lsndir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--extra-lsndir=DIRECTORY</code></p>
+<p>(for –backup): save an extra copy of the <code>xtrabackup_checkpoints</code>
+and <code>xtrabackup_info</code> files in the specified directory.</p>
+<h3 id="force-non-empty-directories">force-non-empty-directories<a class="headerlink" href="#force-non-empty-directories" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--force-non-empty-directories</code></p>
+<p>When specified, the <code>-</code>-copy-back<code>and</code>&ndash;move-back` options transfer files to non-empty directories. No existing files are overwritten. If files that need to
+be copied/moved from the backup directory already exist in the destination
+directory, the operation fails with an error.</p>
+<h3 id="ftwrl-wait-timeout">ftwrl-wait-timeout<a class="headerlink" href="#ftwrl-wait-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ftwrl-wait-timeout=SECONDS</code></p>
+<p>This option specifies the time in seconds that xtrabackup should wait for
+queries that would block <code>FLUSH TABLES WITH READ LOCK</code> before running it.
+If there are still such queries when the timeout expires, xtrabackup
+terminates with an error.</p>
+<p>The default value is <code>0</code>, xtrabackup does not wait
+for queries to complete and starts <code>FLUSH TABLES WITH READ LOCK</code>
+immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+non-InnoDB data to avoid blocking DML queries that modify the InnoDB tables.</p>
+<h3 id="ftwrl-wait-threshold">ftwrl-wait-threshold<a class="headerlink" href="#ftwrl-wait-threshold" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ftwrl-wait-threshold=SECONDS</code></p>
+<p>This option specifies the query run time threshold which is used by
+xtrabackup to detect long-running queries with a non-zero value of
+<code>--ftwrl-wait-timeout</code>. <code>FLUSH TABLES WITH READ LOCK</code>
+is not started until such long-running queries exist.</p>
+<p>This option has no effect if <code>--ftwrl-wait-timeout</code> is <code>0</code>. The default value
+is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+non-InnoDB data to avoid blocking DML queries that modify InnoDB tables when backup locks are supported.</p>
+<h3 id="ftwrl-wait-query-type">ftwrl-wait-query-type<a class="headerlink" href="#ftwrl-wait-query-type" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ftwrl-wait-query-type=all|update</code>This option specifies which queries can be completed before xtrabackup issues the global lock. The default value is <code>all</code>.</p>
+<h3 id="galera-info">galera-info<a class="headerlink" href="#galera-info" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--galera-info</code></p>
+<p>This option creates the <code>xtrabackup_galera_info</code> file, which contains the local node state at the backup time. This option should be used when
+performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> are used to create the backup.</p>
+<h3 id="generate-new-master-key">generate-new-master-key<a class="headerlink" href="#generate-new-master-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--generate-new-master-key</code></p>
+<p>Generate a new master key when doing a copy-back.</p>
+<h3 id="generate-transition-key">generate-transition-key<a class="headerlink" href="#generate-transition-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--generate-transition-key</code></p>
+<p>xtrabackup needs to access the same keyring file or vault server
+during prepare and copy-back operations but it should not depend on whether the
+server keys have been purged.</p>
+<p><code>--generate-transition-key</code> creates and adds to the keyring
+a transition key for xtrabackup to use if the master key used for
+encryption is not found because that key has been rotated and purged.</p>
+<h3 id="get-server-public-key">get-server-public-key<a class="headerlink" href="#get-server-public-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--get-server-public-key</code></p>
+<p>Get the server public key</p>
+<h3 id="help">help<a class="headerlink" href="#help" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--help</code></p>
+<p>This option displays information about how to run the program along with supported options and variables with the default values, where appropriate.</p>
+<h3 id="history">history<a class="headerlink" href="#history" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--history=NAME</code></p>
+<p>This option enables the tracking of backup history in the
+<code>PERCONA_SCHEMA.xtrabackup_history</code> table. You can specify a history series name placed with the current backup&rsquo;s history record.</p>
+<h3 id="host">host<a class="headerlink" href="#host" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--host=HOST</code></p>
+<p>This option accepts a string argument that specifies the host to use when
+connecting to the database server with TCP/IP. It is passed to the mysql
+child process without alteration. See mysql &ndash;help for details.</p>
+<h3 id="incremental-basedir">incremental-basedir<a class="headerlink" href="#incremental-basedir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-basedir=DIRECTORY</code></p>
+<p>This is the directory that contains the full backup, which is the base dataset for the incremental backups.</p>
+<h3 id="incremental-dir">incremental-dir<a class="headerlink" href="#incremental-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-dir=DIRECTORY</code></p>
+<p>This is the directory where the incremental backup is combined with the full backup to make a new full backup.</p>
+<h3 id="incremental-force-scan">incremental-force-scan<a class="headerlink" href="#incremental-force-scan" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-force-scan</code></p>
+<p>When creating an incremental backup, force a full scan of the data pages in
+that instance.</p>
+<h3 id="incremental-history-name">incremental-history-name<a class="headerlink" href="#incremental-history-name" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-history-name=name</code></p>
+<p>This option specifies the name of the backup series stored in the
+<code>PERCONA_SCHEMA.xtrabackup_history</code> used as a base for an incremental backup. xtrabackup searches the history table looking for the most
+recent (highest <code>innodb_to_lsn</code>), successful backup in the series and takes the <code>to_lsn`` value to use as the starting</code>lsn` for the incremental
+backup.</p>
+<p>This options is mutually exclusive with
+<a href="#incremental-history-uuid"><code>--incremental-history-uuid</code></a>, <a href="#incremental-basedir"><code>--incremental-basedir</code></a>, and
+<a href="#incremental-lsn"><code>--incremental-lsn</code></a>.</p>
+<p>If no valid lsn can be found, either no series by that
+name or no successful backups by that name, xtrabackup returns an
+error.</p>
+<p>The option is used with the <code>--incremental</code> option.</p>
+<h3 id="incremental-history-uuid">incremental-history-uuid<a class="headerlink" href="#incremental-history-uuid" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-history-uuid=name</code></p>
+<p>This option specifies the Universal Unique Identifier (UUID) of the history record in <code>PERCONA_SCHEMA.xtrabackup_history</code> used as the base for an incremental backup.</p>
+<p>This options is mutually exclusive with <a href="#incremental-history-name"><code>--incremental-history-name</code></a>, <a href="#incremental-basedir"><code>--incremental-basedir</code></a>, and
+<a href="#incremental-lsn"><code>--incremental-lsn</code></a>.</p>
+<p>If there is no success record with that UUID, xtrabackup returns an error.</p>
+<p>The option is used with the <code>-–incremental</code> option.</p>
+<h3 id="incremental-lsn">incremental-lsn<a class="headerlink" href="#incremental-lsn" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--incremental-lsn=LSN</code></p>
+<p>When creating an incremental backup, you can specify the log sequence number
+(LSN), a single 64-bit integer, instead of the  <a href="#incremental-basedir"><code>--incremental-basedir</code></a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Percona XtraBackup does not detect if an incorrect LSN value is specified; the backup is unusable. Be careful!</p>
+</div>
+<h3 id="innodb">innodb<a class="headerlink" href="#innodb" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--innodb=name</code></p>
+<p>This option is ignored for MySQL option compatibility.</p>
+<h3 id="innodb-miscellaneous">innodb-miscellaneous<a class="headerlink" href="#innodb-miscellaneous" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--innodb-miscellaneous
+xtrabackup boots up its embedded InnoDB with the same configuration as your current server using the InnoDB options read from that server's</code>my.cnf` file. You do not need to specify these options explicitly.</p>
+<p>These options behave the same in either InnoDB or XtraDB.</p>
+<h3 id="keyring-file-data">keyring-file-data<a class="headerlink" href="#keyring-file-data" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--keyring-file-data=FILENAME</code></p>
+<p>Defines the path to the keyring file. You can combine this option with
+<a href="#xtrabackup-plugin-dir"><code>--xtrabackup-plugin-dir</code></a>.</p>
+<h3 id="kill-long-queries-timeout">kill-long-queries-timeout<a class="headerlink" href="#kill-long-queries-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--kill-long-queries-timeout=SECONDS</code></p>
+<p>This option specifies the number of seconds xtrabackup waits between
+starting <code>FLUSH TABLES WITH READ LOCK</code> and killing those queries that block
+it. The default value is 0 (zero) seconds, which means xtrabackup does not kill
+any queries.</p>
+<p>To use this option xtrabackup user should have the
+<code>PROCESS</code> and <code>SUPER</code> privileges.</p>
+<p>Where supported, xtrabackup
+automatically uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
+<h3 id="kill-long-query-type">kill-long-query-type<a class="headerlink" href="#kill-long-query-type" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--kill-long-query-type=all|select</code></p>
+<p>This option specifies which queries should be killed to unblock the
+global lock. The default value is “select”.</p>
+<h3 id="lock-ddl">lock-ddl<a class="headerlink" href="#lock-ddl" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--lock-ddl</code></p>
+<p>Enabled by default to ensure that any DDL event does not corrupt the backup. Any DML events continue to occur. A DDL lock protects table and view definitions.</p>
+<p>If the option is disabled, a backup continues while concurrent DDL events are executed. These backups are invalid and fail in the Prepare step.</p>
+<p>Use a <a href="#safe-slave-backup">safe-slave-backup</a> option to stop a SQL replica thread before copying the InnoDB files.</p>
+<h3 id="lock-ddl-per-table">lock-ddl-per-table<a class="headerlink" href="#lock-ddl-per-table" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--lock-ddl-per-table</code></p>
+<p>Deprecated. Use the <a href="#lock-ddl"><code>–lock-ddl</code></a> option instead</p>
+<!--26-1-24-->
+<p>Lock DDL for each table before xtrabackup starts to copy
+it and until the backup is completed.</p>
+<h3 id="lock-ddl-timeout">lock-ddl-timeout<a class="headerlink" href="#lock-ddl-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--lock-ddl-timeout</code></p>
+<p>If <code>LOCK TABLES FOR BACKUP</code> or <code>LOCK INSTANCE FOR BACKUP</code> does not return
+within a given time, abort the backup.</p>
+<h3 id="log">log<a class="headerlink" href="#log" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--log</code></p>
+<p>This option is ignored for MySQL</p>
+<h3 id="log-bin">log-bin<a class="headerlink" href="#log-bin" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--log-bin</code></p>
+<p>The base name for the log sequence.</p>
+<h3 id="log-bin-index">log-bin-index<a class="headerlink" href="#log-bin-index" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--log-bin-index=name</code></p>
+<p>The file that stores the names for binary log files.</p>
+<h3 id="log-copy-interval">log-copy-interval<a class="headerlink" href="#log-copy-interval" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--log-copy-interval=#</code></p>
+<p>This option specifies the time interval between checks done by the log
+copying thread in milliseconds. The default value is 1 second.</p>
+<h3 id="login-path">login-path<a class="headerlink" href="#login-path" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--login-path</code></p>
+<p>Read the given path from the login file.</p>
+<h3 id="move-back">move-back<a class="headerlink" href="#move-back" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--move-back</code></p>
+<p>Move all files in a previous backup from the backup directory to
+their original locations.</p>
+<p>Use this option with caution since the operation removes backup files.</p>
+<h3 id="no-backup-locks">no-backup-locks<a class="headerlink" href="#no-backup-locks" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--no-backup-locks</code></p>
+<p>Explicity disables the <a href="#backup-locks"><code>--backup-locks</code></a> option which is enabled by default.</p>
+<h3 id="no-defaults">no-defaults<a class="headerlink" href="#no-defaults" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--no-defaults</code></p>
+<p>The default options are only read from the login file.</p>
+<h3 id="no-lock">no-lock<a class="headerlink" href="#no-lock" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--no-lock</code></p>
+<p>Disables the table lock with <code>FLUSH TABLES WITH READ
+LOCK</code>. Use it only if all your tables are InnoDB and you do not care
+about the binary log position of the backup. This option shouldn’t be used if any DDL statements are being executed or updates are
+happening on non-InnoDB tables; this includes the system MyISAM tables in the
+mysql database. Otherwise, those operations could lead to an inconsistent backup.</p>
+<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
+<p>If you consider using this option because your backups fail to acquire
+the lock, maybe incoming replication events prevent
+the lock from succeeding. Try the <code>--safe-slave-backup</code> option to stop the replication replica thread momentarily. The <code>--safe-slave-backup</code> option may help the backup to succeed and avoid using this option.</p>
+<h3 id="no-server-version-check">no-server-version-check<a class="headerlink" href="#no-server-version-check" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--no-server-version-check</code></p>
+<p>The <code>--no-server-version-check</code> option disables the server version check.</p>
+<p>The default behavior runs a check that compares the source system version to the Percona XtraBackup version. If the source system version is higher than the XtraBackup version, the backup is aborted with a message.</p>
+<p>Adding the option overrides this check, and the backup proceeds, but there may be issues with the backup.</p>
+<p>See <a href="server-backup-version-comparison.html">Server Version and Backup Version Comparison</a> for more information.</p>
+<h3 id="no-version-check">no-version-check<a class="headerlink" href="#no-version-check" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--no-version-check</code></p>
+<p>This option disables the version check. </p>
+<p>If you do not pass this option, xtrabackup implicitly enables the
+automatic version check in the <code>--backup</code> mode. </p>
+<p>To disable the version check, invoke xtrabackup and explicitly pass this option.</p>
+<p>When the automatic version check is enabled, xtrabackup performs a
+version check against the server on the backup stage after creating a server
+connection. xtrabackup sends the following information to the server:</p>
+<ul>
+<li>
+<p>MySQL flavour and version</p>
+</li>
+<li>
+<p>Operating system name</p>
+</li>
+<li>
+<p>Percona Toolkit version</p>
+</li>
+<li>
+<p>Perl version</p>
+</li>
+</ul>
+<p>Each piece of information has a unique identifier. This identifier is a MD5 hash value
+that Percona Toolkit uses to obtain statistics about its use. This information is
+a random UUID; no client information is collected or stored.</p>
+<h3 id="open-files-limit">open-files-limit<a class="headerlink" href="#open-files-limit" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--open-files-limit=#</code></p>
+<p>The maximum number of file descriptors to reserve with <a href="https://linux.die.net/man/2/setrlimit">setrlimit</a>git .</p>
+<h3 id="parallel">parallel<a class="headerlink" href="#parallel" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--parallel=#</code></p>
+<p>This option specifies the number of threads to use to copy multiple data
+files concurrently when creating a backup. The default value is 1, there is no
+concurrent transfer. This option can be used with the <code>--copy-back</code> option to copy the user data files in parallel. The redo logs and system tablespaces are copied in the main thread.</p>
+<h3 id="password">password<a class="headerlink" href="#password" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--password=PASSWORD</code></p>
+<p>This option accepts a string argument that specifies the password used when connecting to the database.</p>
+<h3 id="plugin-load">plugin-load<a class="headerlink" href="#plugin-load" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--plugin-load</code></p>
+<p>A list of plugins to load.</p>
+<h3 id="port">port<a class="headerlink" href="#port" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--port=PORT</code></p>
+<p>This option accepts a string argument specifying the TCP/IP port used to connect to the database server. This option is passed to the mysql child process without alteration.</p>
+<h3 id="prepare">prepare<a class="headerlink" href="#prepare" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--prepare</code></p>
+<p>Makes xtrabackup perform a recovery on a backup created with <code>--backup</code>, so that the backup data is ready to use.</p>
+<p>For details, see <a href="prepare-full-backup.html">Prepare a full backup</a>.</p>
+<h3 id="print-defaults">print-defaults<a class="headerlink" href="#print-defaults" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--print-defaults</code></p>
+<p>Prints the program argument list and exit and must be the first option on the command line.</p>
+<h3 id="print-param">print-param<a class="headerlink" href="#print-param" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--print-param</code></p>
+<p>Prints the parameters that can be used for copying the data files back to their original locations to restore them.</p>
+<h3 id="read-buffer-size">read-buffer-size<a class="headerlink" href="#read-buffer-size" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--read-buffer-size</code></p>
+<p>Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size.</p>
+<p>To adjust the chunk size for encrypted files, use <a href="#read-buffer-size"><code>--read-buffer-size</code></a> and <a href="#encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
+<h3 id="register-redo-log-consumer">register-redo-log-consumer<a class="headerlink" href="#register-redo-log-consumer" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--register-redo-log-consumer</code></p>
+<p>This option is disabled by default.</p>
+<p>When enabled, this options lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. The server determines when to purge the log based on the redo log consumption.</p>
+<h3 id="remove-original">remove-original<a class="headerlink" href="#remove-original" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--remove-original</code></p>
+<p>This option removes <code>.qp</code>, <code>.xbcrypt</code> and <code>.qp.xbcrypt</code> files after decryption and decompression.</p>
+<h3 id="rocksdb-datadir">rocksdb-datadir<a class="headerlink" href="#rocksdb-datadir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rocksdb-datadir</code></p>
+<p>Names the RocksDB data directory</p>
+<h3 id="rocksdb-wal-dir">rocksdb-wal-dir<a class="headerlink" href="#rocksdb-wal-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rocksdb-wal-dir</code></p>
+<p>RocksDB WAL directory.</p>
+<h3 id="rocksdb-checkpoint-max-age">rocksdb-checkpoint-max-age<a class="headerlink" href="#rocksdb-checkpoint-max-age" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rocksdb-checkpoint-max-age</code></p>
+<p>The checkpoint cannot be older than this number of seconds when the backup is complete.</p>
+<h3 id="rocksdb-checkpoint-max-count">rocksdb-checkpoint-max-count<a class="headerlink" href="#rocksdb-checkpoint-max-count" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rocksdb-checkpoint-max-count</code></p>
+<p>Complete the backup even if the checkpoint age requirement has not been met after this number of checkpoints.</p>
+<h3 id="rollback-prepared-trx">rollback-prepared-trx<a class="headerlink" href="#rollback-prepared-trx" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rollback-prepared-trx</code></p>
+<p>Force rollback prepared InnoDB transactions.</p>
+<h3 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rsync</code></p>
+<p>Uses the rsync utility to optimize local file transfers. The xtrabackup binary uses rsync to copy all non-InnoDB files instead of spawning a separate cp for each file, which can be much faster for servers with many databases or tables.</p>
+<p>You cannot use this option with <a href="#stream"><code>--stream</code></a>.</p>
+<h3 id="safe-slave-backup">safe-slave-backup<a class="headerlink" href="#safe-slave-backup" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--safe-slave-backup</code></p>
+<p>When specified, xtrabackup stops the replica SQL thread just before
+running <code>FLUSH TABLES WITH READ LOCK</code> and waits to start the backup operation until <code>Replica_open_temp_tables`` in</code>SHOW STATUS` is zero.</p>
+<p>If there are no open temporary tables, the backup takes place, otherwise the SQL thread is started and stopped until there are no open temporary tables. The backup fails if <code>Replica_open_temp_tables</code> does not become zero after
+<a href="#safe-slave-backup-timeout"><code>--safe-slave-backup-timeout</code></a> seconds. The replication SQL thread is restarted when the backup is complete.
+This option is implemented to deal with <a href="https://dev.mysql.com/doc/refman/8.4/en/replication-features-temptables.html">replication and temporary tables</a> and isn’t necessary with row-based replication.</p>
+<p>Using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
+<h3 id="safe-slave-backup-timeout">safe-slave-backup-timeout<a class="headerlink" href="#safe-slave-backup-timeout" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--safe-slave-backup-timeout=SECONDS</code></p>
+<p>How many seconds the <code>--safe-slave-backup</code> option waits for the <code>Replica_open_temp_tables</code> to become zero. The default value is 300 seconds.</p>
+<h3 id="secure-auth">secure-auth<a class="headerlink" href="#secure-auth" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--secure-auth</code></p>
+<p>Refuse the client from connecting to the server if it uses the old protocol. This option is enabled by default. Disable this options with <code>–skip-secure-auth</code>.</p>
+<h3 id="server-id">server-id<a class="headerlink" href="#server-id" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--server-id=#</code></p>
+<p>The server instance being backed up.</p>
+<h3 id="server-public-key-path">server-public-key-path<a class="headerlink" href="#server-public-key-path" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--server-public-key-path</code></p>
+<p>The file path to the server public RSA key in the PEM format.</p>
+<h3 id="skip-tables-compatibility-check">skip-tables-compatibility-check<a class="headerlink" href="#skip-tables-compatibility-check" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--skip-tables-compatibility-check</code></p>
+<p>See <a href="#tables-compatibility-check"><code>--tables-compatibility-check</code></a>.</p>
+<h3 id="slave-info">slave-info<a class="headerlink" href="#slave-info" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--slave-info</code></p>
+<p>This option is useful when backing up a replication replica server. It prints
+the binary log position of the source server. It also writes the binary log
+coordinates to the <code>xtrabackup_slave_info</code> file as a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code></a>
+command.</p>
+<p>A new replica for this source can be set up by starting a replica server on this backup and issuing a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code></a> command with the binary log
+position saved in the <code>xtrabackup_slave_info</code> file.</p>
+<h3 id="socket">socket<a class="headerlink" href="#socket" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--socket</code></p>
+<p>This option accepts a string argument that specifies the socket to use when
+connecting to the local database server with a UNIX domain socket. It is
+passed to the MySQL child process without alteration. See mysql
+&ndash;help for details.</p>
+<h3 id="ssl">ssl<a class="headerlink" href="#ssl" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl</code></p>
+<p>Enable secure connection.</p>
+<h3 id="ssl-ca">ssl-ca<a class="headerlink" href="#ssl-ca" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-ca</code></p>
+<p>The path of the file contains a list of trusted SSL CAs.</p>
+<h3 id="ssl-capath">ssl-capath<a class="headerlink" href="#ssl-capath" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-capath</code></p>
+<p>The directory path that contains trusted SSL CA files in PEM format.</p>
+<h3 id="ssl-cert">ssl-cert<a class="headerlink" href="#ssl-cert" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-cert</code></p>
+<p>The path of the file contains the X509 certificate in PEM format.</p>
+<h3 id="ssl-cipher">ssl-cipher<a class="headerlink" href="#ssl-cipher" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-cipher</code></p>
+<p>The list of the permitted ciphers to use for connection encryption.</p>
+<h3 id="ssl-crl">ssl-crl<a class="headerlink" href="#ssl-crl" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-crl</code></p>
+<p>The path of the file that contains certificate revocation lists.</p>
+<h3 id="ssl-crlpath">ssl-crlpath<a class="headerlink" href="#ssl-crlpath" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-crlpath</code></p>
+<p>The path of the directory that contains the certificate revocation list files.</p>
+<h3 id="ssl-fips-mode">ssl-fips-mode<a class="headerlink" href="#ssl-fips-mode" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-fips-mode</code></p>
+<p>The SSL FIPS mode applies only for OpenSSL; permitted values are OFF, ON, and STRICT.</p>
+<h3 id="ssl-key">ssl-key<a class="headerlink" href="#ssl-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-key</code></p>
+<p>The path of the file that contains the X509 key in PEM format.</p>
+<h3 id="ssl-mode">ssl-mode<a class="headerlink" href="#ssl-mode" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-mode</code></p>
+<p>The security state of connection to the server.</p>
+<h3 id="ssl-verify-server-cert">ssl-verify-server-cert<a class="headerlink" href="#ssl-verify-server-cert" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--ssl-verify-server-cert</code></p>
+<p>Verify the server certificate Common Name value against the hostname used when connecting to the server.</p>
+<h3 id="stream">stream<a class="headerlink" href="#stream" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--stream=FORMAT</code></p>
+<p>Stream all backup files to the standard output in the specified format.
+Currently, this option only supports the xbstream format.</p>
+<h3 id="strict">strict<a class="headerlink" href="#strict" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--strict</code></p>
+<p>If this option is specified, xtrabackup fails with an error when invalid
+parameters are passed.</p>
+<h3 id="tables">tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tables=name</code></p>
+<p>A regular expression against which the full table name in the <code>databasename.tablename</code> format is matched. If the name matches, the
+table is backed up. See <a href="create-partial-backup.html">Create a partial backup</a>.</p>
+<h3 id="tables-compatibility-check">tables-compatibility-check<a class="headerlink" href="#tables-compatibility-check" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tables-compatibility-check</code></p>
+<p>Enables the engine compatibility warning. The default value is
+<code>ON</code>. To disable the engine compatibility warning, use <code>--</code>skip-tables-compatibility-check`](#skip-tables-compatibility-check).</p>
+<h3 id="tables-exclude">tables-exclude<a class="headerlink" href="#tables-exclude" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tables-exclude=name</code></p>
+<p>Filtering by regexp for table names. Operates the same
+way as <a href="#tables"><code>--tables</code></a>, but matched names are excluded from
+backup. Note that this option has a higher priority than
+<code>--tables</code>.</p>
+<h3 id="tables-file">tables-file<a class="headerlink" href="#tables-file" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tables-file=name</code></p>
+<p>A file containing one table name per line in <code>databasename.tablename</code> format.
+The backup will be limited to the specified tables.</p>
+<h3 id="target-dir">target-dir<a class="headerlink" href="#target-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--target-dir=DIRECTORY</code></p>
+<p>This option specifies the destination directory for the backup. If the
+directory does not exist, xtrabackup creates it. If the directory
+does exist and is empty, xtrabackup will succeed.
+xtrabackup does not overwrite existing files, however, the operation fails with the operating system error 17, <code>file exists</code>.</p>
+<p>If this option is a relative path, it is interpreted as relative to
+the current working directory from which xtrabackup is executed.</p>
+<p>To perform a backup, you need <code>READ</code>, <code>WRITE</code>, and <code>EXECUTE</code>
+permissions at a filesystem level for the directory that you supply as the
+value of <code>--target-dir</code>.</p>
+<h3 id="innodb-temp-tablespaces-dir">innodb-temp-tablespaces-dir<a class="headerlink" href="#innodb-temp-tablespaces-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--innodb-temp-tablespaces-dir=DIRECTORY</code></p>
+<p>The location of the directory for the temp tablespace files. This path can be absolute.</p>
+<h3 id="throttle">throttle<a class="headerlink" href="#throttle" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--throttle=#</code></p>
+<p>This option limits the number of chunks copied per second. The chunk size is
+10 MB.</p>
+<p>To limit the bandwidth to 10 MB/s, set the option to 1.</p>
+<h3 id="tls-ciphersuites">tls-ciphersuites<a class="headerlink" href="#tls-ciphersuites" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tls-ciphersuites</code></p>
+<p>The TLS v1.3 cipher to use.</p>
+<h3 id="tls-version">tls-version<a class="headerlink" href="#tls-version" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tls-version</code></p>
+<p>Defines which TLS version to use. The permitted values are: TLSv1, TLSv1.1,
+TLSv1.2, TLSv1.3.</p>
+<h3 id="tmpdir">tmpdir<a class="headerlink" href="#tmpdir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--tmpdir=name</code></p>
+<p>Specify the directory used to store temporary files during the
+backup</p>
+<h3 id="transition-key">transition-key<a class="headerlink" href="#transition-key" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--transition-key=name</code></p>
+<p>This option is used to enable processing the backup without accessing the
+keyring vault server. In this case, xtrabackup derives the AES
+encryption key from the specified passphrase and uses it to encrypt the tablespace keys of tablespaces being backed up.</p>
+<p>If <code>--transition-key</code> does not have any
+value, xtrabackup will ask for it. The same passphrase should be
+specified for the <code>--prepare</code> command.</p>
+<h3 id="use-free-memory-pct">use-free-memory-pct<a class="headerlink" href="#use-free-memory-pct" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--use-free-memory-pct</code></p>
+<p>The <code>--use-free-memory-pct</code> is a <a href="glossary.html#tech-preview">tech preview</a> option.</p>
+<p>This option lets you configure the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The option controls the amount of free memory that can be used to <code>--prepare</code> a backup. The default value is 0 (zero), which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100.</p>
+<p>This option works only if <code>--estimate-memory</code> option is enabled. If the <code>--estimate-memory</code> option is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
+<p>An example of how to enable the Smart memory estimation feature:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+</code></pre></div>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+</code></pre></div>
+<h3 id="use-memory">use-memory<a class="headerlink" href="#use-memory" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--use-memory</code></p>
+<p>This option affects how much memory is allocated and is similar to <code>innodb_buffer_pool_size</code>. This option is only relevant in the <code>--prepare</code> phase. The default value is 100MB. The recommended value is between 1GB to 2GB. Multiple values are supported if you provide the unit (1MB, 1M, 1GB, 1G).</p>
+<h3 id="user">user<a class="headerlink" href="#user" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--user=USERNAME</code></p>
+<p>This option specifies the MySQL username used when connecting to the server if that’s not the current user. The option accepts a string argument. See
+mysql –help for details.</p>
+<h3 id="version">version<a class="headerlink" href="#version" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--version</code></p>
+<p>This option prints xtrabackup version and exits.</p>
+<h3 id="xtrabackup-plugin-dir">xtrabackup-plugin-dir<a class="headerlink" href="#xtrabackup-plugin-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--xtrabackup-plugin-dir=DIRNAME</code></p>
+<p>The absolute path to the directory that contains the <code>keyring</code> plugin.</p>
+<div data-banner="data-banner">
+<p><svg style="display:block;margin:-1em 0 0.75em" width="78" height="69" viewBox="0 0 78 69" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M56.7281 30.7666C62.6528 26.8938 64.5914 18.9942 61.0059 12.7854C59.2094 9.67113 56.3053 7.44082 52.8311 6.50951C49.6122 5.64535 46.2502 5.99872 43.2912 7.49366L39.251 0.5L30.8648 15.0245L11.4811 48.5937H67.021L56.7281 30.7666ZM51.881 10.0674C54.4064 10.7401 56.5079 12.3616 57.8168 14.6194C60.3895 19.0701 59.053 24.7153 54.8808 27.5665L45.1362 10.6905C47.2355 9.68104 49.6034 9.46087 51.881 10.0674ZM39.251 7.87125L60.6339 44.907H48.1228L32.9927 18.7102L39.2499 7.87235L39.251 7.87125ZM17.8682 44.907L30.8637 22.4035L43.8592 44.907H17.8682Z" fill="url(#paint0_linear_2899_1968)"/><path style="fill:var(--md-typeset-color)" d="M4.981 64.943H3.157V68.207H.756V57.323H5.217C7.822 57.323 9.397 58.861 9.397 61.086V61.116C9.397 63.635 7.433 64.94 4.984 64.94L4.981 64.943V64.943ZM6.961 61.134C6.961 60.061 6.213 59.485 5.011 59.485H3.154V62.812H5.056C6.258 62.812 6.958 62.096 6.958 61.163V61.134H6.961ZM10.738 68.208V57.323H18.973V59.455H13.124V61.664H18.27V63.796H13.124V66.082H19.051V68.214H10.738V68.208 68.208ZM27.557 68.208 25.218 64.726H23.332V68.208H20.931V57.323H25.921C28.496 57.323 30.039 58.677 30.039 60.915V60.945C30.039 62.702 29.088 63.807 27.7 64.32L30.367 68.207H27.556L27.557 68.208ZM27.605 61.041C27.605 60.016 26.887 59.485 25.719 59.485H23.333V62.61H25.767C26.936 62.61 27.605 61.987 27.605 61.071V61.042 61.041ZM36.922 68.499C33.668 68.499 31.249 65.994 31.249 62.825V62.795C31.249 59.659 33.619 57.091 37.019 57.091 39.105 57.091 40.356 57.783 41.383 58.792L39.834 60.571C38.98 59.798 38.113 59.327 37.004 59.327 35.141 59.327 33.795 60.871 33.795 62.762V62.793C33.795 64.684 35.107 66.257 37.004 66.257 38.268 66.257 39.043 65.753 39.913 64.964L41.462 66.524C40.322 67.738 39.059 68.493 36.925 68.493L36.922 68.499ZM47.885 68.499C44.47 68.499 42.021 65.962 42.021 62.825V62.795C42.021 59.659 44.503 57.091 47.915 57.091 51.327 57.091 53.779 59.628 53.779 62.765V62.795C53.779 65.931 51.297 68.499 47.885 68.499ZM51.237 62.795C51.237 60.904 49.846 59.331 47.885 59.331 45.925 59.331 44.567 60.874 44.567 62.766V62.796C44.567 64.688 45.959 66.261 47.919 66.261 49.879 66.261 51.237 64.717 51.237 62.826V62.795 62.795ZM67.001 68.217 72.374 57.091 77.746 68.218H75.052L72.374 62.681 69.705 68.218H67.001V68.217ZM66.007 57.327V68.5L57.813 61.884V68.199H55.264V57.091L63.458 63.681V57.327H66.007Z"/><defs><linearGradient id="paint0_linear_2899_1968" x1="18.1513" y1="44.7152" x2="61.4356" y2="20.9786" gradientUnits="userSpaceOnUse"><stop stop-color="#FC3519"/><stop offset="1" stop-color="#F0D136"/></linearGradient></defs></svg></p>
+<h2 class="title" id="get-expert-help">Get expert help<a class="headerlink" href="#get-expert-help" title="Permanent link">&para;</a></h2>
+<p>If you need assistance, visit the community forum for comprehensive and free database knowledge, or contact our Percona Database Experts for professional support and services.</p>
+<div class="actions">
+<p><a href="https://forums.percona.com/" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 4v7H5.17L4 12.17V4h11m1-2H3a1 1 0 0 0-1 1v14l4-4h10a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1m5 4h-2v9H6v2a1 1 0 0 0 1 1h11l4 4V7a1 1 0 0 0-1-1Z"/></svg></span> Community Forum</a> <a href="https://www.percona.com/about/contact" target="_blank"><span class="twemoji"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19.3996 14.148C21.9082 12.5083 22.7289 9.16368 21.2109 6.53493C20.4502 5.21636 19.2207 4.27206 17.7497 3.87776C16.3868 3.51187 14.9634 3.6615 13.7106 4.29444L12 1.33337L8.44934 7.48295L0.242432 21.6959H23.7576L19.3996 14.148ZM17.3474 5.38416C18.4167 5.66894 19.3064 6.35548 19.8606 7.31143C20.9499 9.19582 20.384 11.5859 18.6176 12.7931L14.4917 5.64797C15.3806 5.22055 16.3831 5.12734 17.3474 5.38416ZM12 4.45432L21.0533 20.135H15.7562L9.35029 9.04341L11.9995 4.45478L12 4.45432ZM2.94667 20.135L8.44888 10.6071L13.9511 20.135H2.94667Z"/>
+</svg></span> Get a Percona Expert</a></p>
+</div>
+</div>
+<hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      2024-08-13
+    
+  </small>
+</div>
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              Thank you for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thank you for your feedback! Help us improve by following this <a href="https://docs.google.com/forms/d/1bkWACehjqlwA0AKf-qTJcXvYbOSYgze8iTPXjntqmNo/edit" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://www.percona.com/about">Percona LLC</a> and its affiliates &copy; 2024 — <a href="#" onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')">Cookie Preferences</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "navigation.top", "content.tabs.link", "content.code.copy", "navigation.tracking", "content.action.edit", "content.action.view"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+<script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
+
+      <script src="assets/javascripts/bundle.471ce7a9.min.js"></script>
+      
+        <script src="js/version-select.js"></script>
+      
+        <script src="js/promptremover.js"></script>
+      
+        <script src="js/consent.js"></script>
+      
+    
+
+  </body>
+</html>
