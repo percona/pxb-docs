@@ -8,7 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Download the binary tarballs from Percona Product Downloads.">
+        <meta name="description" content="For recent versions of Percona XtraBackup, the tar files are organized by the glibc2 version. You can find this version on your operating system with the following command:">
       
       
         <meta name="author" content="Percona LLC">
@@ -2377,6 +2377,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#binary-tarball-file-name-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binary tarball file name organization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
     <span class="md-ellipsis">
       Get expert help
@@ -3566,6 +3575,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#binary-tarball-file-name-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binary tarball file name organization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-expert-help" class="md-nav__link">
     <span class="md-ellipsis">
       Get expert help
@@ -3612,7 +3630,73 @@
 
 
 <h1 id="binary-tarball-file-names-available">Binary tarball file names available<a class="headerlink" href="#binary-tarball-file-names-available" title="Permanent link">&para;</a></h1>
-<p>Download the binary tarballs from <a href="https://www.percona.com/downloads">Percona Product Downloads</a>.</p>
+<p>For recent versions of Percona XtraBackup, the tar files are organized by the <code>glibc2</code> version. You can find this version on your operating system with the following command:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>ldd<span class="w"> </span>--version
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="highlight"><pre><span></span><code>ldd (Ubuntu GLIBC 2.35-0ubuntu3.1) 2.35
+Copyright (C) 2022 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+Written by Roland McGrath and Ulrich Drepper.
+</code></pre></div>
+</details>
+<p>If the <code>glibc2</code> version from your operating system is not listed, then this Percona Server for MySQL version does not support that operating system.</p>
+<h2 id="binary-tarball-file-name-organization">Binary tarball file name organization<a class="headerlink" href="#binary-tarball-file-name-organization" title="Permanent link">&para;</a></h2>
+<p>The following lists the platform and the associated full binary file name used by Percona Server for MySQL tar files 8.4.0-1.</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Percona XtraBackup tarball name</th>
+<th>glibc2 version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ubuntu 24.04</td>
+<td>Percona-XtraBackup-8.4.0-1-Linux.x86_64.glibc2.39.tar.gz</td>
+<td>glibc2.39</td>
+</tr>
+<tr>
+<td>Ubuntu 22.04</td>
+<td>Percona-XtraBackup-8.4.0-1-Linux.x86_64.glibc2.35.tar.gz</td>
+<td>glibc2.35</td>
+</tr>
+<tr>
+<td>Ubuntu 20.04</td>
+<td>Percona-XtraBackup-8.4.0-1-Linux.x86_64.glibc2.31.tar.gz</td>
+<td>glibc2.31</td>
+</tr>
+<tr>
+<td>Debian 12</td>
+<td>Percona-XtraBackup-8.4.0-1-Linux.x86_64.glibc2.36.tar.gz</td>
+<td>glibc2.36</td>
+</tr>
+<tr>
+<td>Debian 11</td>
+<td>Percona-XtraBackup-8.4.0-1-Linux.x86_64.glibc2.31.tar.gz</td>
+<td>glibc2.31</td>
+</tr>
+<tr>
+<td>Red Hat Enterprise 9</td>
+<td>Percona-XtraBackup-8.4.0-1-Linux.x86_64.glibc2.34.tar.gz</td>
+<td>glibc2.34</td>
+</tr>
+<tr>
+<td>Red Hat Enterprise 8</td>
+<td>Percona-XtraBackup-8.4.0-1-Linux.x86_64.glibc2.28.tar.gz</td>
+<td>glibc2.28</td>
+</tr>
+<tr>
+<td>Red Hat Enterprise 7</td>
+<td>Percona-XtraBackup-8.4.0-1-Linux.x86_64.glibc2.17.tar.gz</td>
+<td>glibc2.17</td>
+</tr>
+</tbody>
+</table>
+<p>Download the binary tarballs from <a href="https://www.percona.com/downloads">Percona Software Downloads</a>.</p>
 <p>The following table lists the tarball types available in <code>Linux - Generic</code>. Select the <em>Percona XtraBackup</em> 8.4 version, the software or the operating system, and the type of tarball for your installation. Binary tarballs support all distributions.</p>
 <p>After you have downloaded the binary tarballs, extract the tarball in the file location of your choice.</p>
 <table>
@@ -3668,7 +3752,7 @@ tarball for that operating system. You can download the packages together or sep
   <small>
     
       Last update:
-      2023-10-17
+      2024-08-20
     
   </small>
 </div>
