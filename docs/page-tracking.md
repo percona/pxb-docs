@@ -58,7 +58,7 @@ pages using page tracking.
 
 ### Limitations
 
-1. When creating the first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:
+* When creating the first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:
 
     ```{.text .no-copy}
     xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
@@ -67,9 +67,11 @@ pages using page tracking.
 
     Enable page tracking before creating the first backup to avoid this delay. This method ensures that the page tracking log sequence number (LSN) is higher than the checkpoint LSN of the server.
 
-2. If an Oracle MySQL Server uses page tracking and runs `LOCK=EXCLUSIVE` and `ALGORITHM=INPLACE` DDL operations, Percona XtraBackup may take an inconsistent backup. Oracle MySQL Server does not write these DDL operations (Oracle MySQL [bug 106163](https://bugs.mysql.com/bug.php?id=106163)) to the redo log, and Percona XtraBackup only detects the inconsistency during the `--prepare` phase.
+* If an Oracle MySQL Server uses page tracking and runs `LOCK=EXCLUSIVE` and `ALGORITHM=INPLACE` DDL operations, Percona XtraBackup may take an inconsistent backup. Oracle MySQL Server does not write these DDL operations (Oracle MySQL [bug 106163](https://bugs.mysql.com/bug.php?id=106163)) to the redo log, and Percona XtraBackup only detects the inconsistency during the `--prepare` phase.
 
-This bug does not influence Percona XtraBackup taking backup of Percona Server for MySQL because the bug is fixed in Percona Server for MySQL 8.0.27. 
+    This bug does not influence Percona XtraBackup taking backup of Percona Server for MySQL because the bug is fixed in Percona Server for MySQL 8.0.27.
+
+* The xtrabackup page tracking requires the system tablespace to be a single file (ibdata1 only). The page tracking feature does not work if the system tablespace is a multi-file tablespace.
 
 ## Start page tracking manually
 
