@@ -5,13 +5,13 @@ Download `DEB` packages of the desired series for your architecture from [Percon
 The following example downloads Percona XtraBackup {{release}} release package for Ubuntu 20.04:
 
 ```{.bash data-prompt="$"}
-$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-innovative-release/Percona-XtraBackup-{{release}}/binary/debian/focal/x86_64/percona-xtrabackup-{{pkg}}_{{release}}-1.focal_amd64.deb
+$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-innovative-release/Percona-XtraBackup-8.4.0-1/binary/debian/focal/x86_64/percona-xtrabackup-84_8.4.0-1-1.focal_amd64.deb
 ```
 
 Install Percona XtraBackup by using `dpkg`. Run this command as root or use the sudo command:
 
 ```{.bash data-prompt="$"}
-$ sudo dpkg -i percona-xtrabackup-{{pkg}}_{{release}}-1.focal_amd64.deb
+$ sudo dpkg -i percona-xtrabackup-84_8.4.0-1-1.focal_amd64.deb
 ```
 
 [Percona Product Downloads]: https://www.percona.com/downloads
