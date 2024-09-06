@@ -412,8 +412,7 @@ $ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 
 Usage: `--export`
 
-Create files necessary for exporting tables. See Restoring Individual
-Tables.
+Create files necessary for exporting tables. See [restore individual tables](restore-individual-tables.md).
 
 ### extra-lsndir
 
