@@ -30,7 +30,7 @@ The following lists the platform and the associated full binary file name used b
 | Debian 11            | Percona-XtraBackup-{{release}}-Linux.x86_64.glibc2.31.tar.gz     | glibc2.31 |
 | Red Hat Enterprise 9 | Percona-XtraBackup-{{release}}-Linux.x86_64.glibc2.34.tar.gz     | glibc2.34 |
 | Red Hat Enterprise 8 | Percona-XtraBackup-{{release}}-Linux.x86_64.glibc2.28.tar.gz     | glibc2.28 |
-| Red Hat Enterprise 7 | Percona-XtraBackup-{{release}}-Linux.x86_64.glibc2.17.tar.gz     | glibc2.17 |
+
 
 Download the binary tarballs from [Percona Software Downloads].
 
