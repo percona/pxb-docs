@@ -1,20 +1,55 @@
-# Decompress and prepare a compressed backup
+# Decompress and prepare a backup
 
-Before you can prepare the backup you’ll need to uncompress all the files.
-*Percona XtraBackup* has implemented `--decompress` option
-that can be used to decompress the backup.
+Before you can prepare the backup you need to decompress all the files.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --decompress --target-dir=/data/compressed/
-```
+## Decompress a backup
 
-!!! note
+* To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package for your package management system.
+
+    `Install on APT systems`
+
+    === "Install the `lz4` package"
+
+        ```{.bash data-prompt="$"}
+        $ sudo apt install lz4
+        ```
+
+    === "Install the `zstd` package"
+
+        ```{.bash data-prompt="$"}
+        $ sudo apt install zstd
+        ```
+
+    `Install on YUM systems`
+    
+    === "Install the `lz4` package"
+
+        ```{.bash data-prompt="$"}
+        $ sudo yum install lz4
+        ```
+
+    === "Install the `zstd` package"
+
+        ```{.bash data-prompt="$"}
+        $ sudo yum install zstd
+        ```
+
+
+*  Use the `--decompress` option to decompress the backup.
+
+    ```{.bash data-prompt="$"}
+    $ xtrabackup --decompress --target-dir=/data/compressed/
+    ```
+
+    !!! note
    
-    `--parallel` can be used with `--decompress` option to decompress multiple files simultaneously. 
+        `--parallel` can be used with `--decompress` option to decompress multiple files simultaneously. 
 
-*Percona XtraBackup* does not automatically remove the compressed files. In order to clean up the backup directory you should use `--remove-original` option. Even if they’re not removed these files will not be copied/moved over to the datadir if `--copy-back` or `--move-back` are used.
+    Percona XtraBackup does not automatically delete compressed files. To clean up the backup directory, use the `--remove-original` option. If you do not remove the compressed files, these files will not be copied or moved to the datadir when using the `--copy-back` or `--move-back` options.
 
-When the files are uncompressed you can prepare the backup with the `--prepare` option:
+## Prepare the backup
+
+When the files are decompressed you can prepare the backup with the `--prepare` option.
 
 ```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/compressed/
@@ -30,5 +65,5 @@ $ xtrabackup --prepare --target-dir=/data/compressed/
 
 Now the files in `/data/compressed/` are ready to be used by the server.
 
-The next step is  to [restore](restore-a-backup.md) the backup. 
+The next step is to [Restore a backup](restore-a-backup.md). 
 
