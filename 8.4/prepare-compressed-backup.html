@@ -8,9 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Before you can prepare the backup you’ll need to uncompress all the files.
-Percona XtraBackup has implemented --decompress option
-that can be used to decompress the backup.">
+        <meta name="description" content="Before you can prepare the backup you need to decompress all the files.">
       
       
         <meta name="author" content="Percona LLC">
@@ -30,7 +28,7 @@ that can be used to decompress the backup.">
     
     
       
-        <title>Prepare the backup - Percona XtraBackup</title>
+        <title>Decompress and prepare a backup - Percona XtraBackup</title>
       
     
     
@@ -93,7 +91,7 @@ that can be used to decompress the backup.">
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Prepare the backup" />
+                 <meta property="og:title" content="Percona XtraBackup - Decompress and prepare a backup" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.4/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -116,7 +114,7 @@ that can be used to decompress the backup.">
     <div data-md-component="skip">
       
         
-        <a href="#prepare-the-backup" class="md-skip">
+        <a href="#decompress-and-prepare-a-backup" class="md-skip">
           Skip to content
         </a>
       
@@ -191,7 +189,7 @@ that can be used to decompress the backup.">
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Prepare the backup
+              Decompress and prepare a backup
             
           </span>
         </div>
@@ -2790,7 +2788,7 @@ that can be used to decompress the backup.">
           
   
   <span class="md-ellipsis">
-    Prepare the backup
+    Decompress and prepare a backup
   </span>
   
 
@@ -2801,7 +2799,7 @@ that can be used to decompress the backup.">
         
   
   <span class="md-ellipsis">
-    Prepare the backup
+    Decompress and prepare a backup
   </span>
   
 
@@ -2823,6 +2821,24 @@ that can be used to decompress the backup.">
       On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#decompress-a-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decompress a backup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prepare the backup
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#next-step" class="md-nav__link">
@@ -3577,6 +3593,24 @@ that can be used to decompress the backup.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#decompress-a-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decompress a backup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prepare the backup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-step" class="md-nav__link">
     <span class="md-ellipsis">
       Next step
@@ -3631,18 +3665,52 @@ that can be used to decompress the backup.">
   
 
 
-<h1 id="prepare-the-backup">Prepare the backup<a class="headerlink" href="#prepare-the-backup" title="Permanent link">&para;</a></h1>
-<p>Before you can prepare the backup you’ll need to uncompress all the files.
-Percona XtraBackup has implemented <code>--decompress</code> option
-that can be used to decompress the backup.</p>
+<h1 id="decompress-and-prepare-a-backup">Decompress and prepare a backup<a class="headerlink" href="#decompress-and-prepare-a-backup" title="Permanent link">&para;</a></h1>
+<p>Before you can prepare the backup you need to decompress all the files.</p>
+<h2 id="decompress-a-backup">Decompress a backup<a class="headerlink" href="#decompress-a-backup" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>To decompress backups made using <code>LZ4</code> or <code>ZSTD</code> compression algorithm, install the corresponding package.</p>
+<p><code>Install on APT systems</code></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Install the <code>lz4</code> package</label><label for="__tabbed_1_2">Install the <code>zstd</code> package</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lz4
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstd
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><code>Install on YUM systems</code></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Install the <code>lz4</code> package</label><label for="__tabbed_2_2">Install the <code>zstd</code> package</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>lz4
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>zstd
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Use the <code>--decompress</code> option to decompress the backup.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--decompress<span class="w"> </span>--target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>--parallel</code> can be used with <code>--decompress</code> option to decompress multiple files simultaneously. </p>
 </div>
-<p>Percona XtraBackup does not automatically remove the compressed files. In order to clean up the backup directory you should use <code>--remove-original</code> option. Even if they’re not removed these files will not be copied/moved over to the datadir if <code>--copy-back</code> or <code>--move-back</code> are used.</p>
-<p>When the files are uncompressed you can prepare the backup with the <code>--prepare</code> option:</p>
+<p>Percona XtraBackup does not automatically delete compressed files. To clean up the backup directory, use the <code>--remove-original</code> option. If you do not remove the compressed files, these files will not be copied or moved to the datadir when using the <code>--copy-back</code> or <code>--move-back</code> options.</p>
+</li>
+</ul>
+<h2 id="prepare-the-backup">Prepare the backup<a class="headerlink" href="#prepare-the-backup" title="Permanent link">&para;</a></h2>
+<p>When the files are decompressed you can prepare the backup with the <code>--prepare</code> option.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
 <details class="example">
@@ -3670,7 +3738,7 @@ InnoDB: Shutdown completed; log sequence number 9293846
   <small>
     
       Last update:
-      2023-10-04
+      2024-09-12
     
   </small>
 </div>
