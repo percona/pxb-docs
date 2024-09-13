@@ -1,15 +1,28 @@
-# Apt pinning the Percona XtraBackup 8.0 packages
+# Pin packages in Debian-based systems
 
-In some cases you might need to `pin` the selected packages to avoid the upgrades from the distribution repositories. 
+You may need to keep a specific package at a certain version and prevent it from being automatically updated by your package manager. This action is called "pinning" a package.
+{.power-number}
 
-The pinning takes place in the `preference` file. To pin a package, set the `Pin-Priority` to higher numbers.
+1. Create a preference file, `00percona.pref`, in the `/etc/apt/preferences.d/` directory.
 
-Make a new file `/etc/apt/preferences.d/00percona.pref`. For example, add the following to the preference file:
+2. Set the Pinning priority
 
-```
-Package:
-Pin: release o=Percona Development Team
-Pin-Priority: 1001
-```
+    To pin a package, set the `Pin-Priority` to a higher number than the default priority of the packages. This setting makes the packages higher priority over the other sources.
+
+    For example, add the following lines to the preference file:
+
+    ```
+    Package: <package_name>
+    Pin: release o=Percona Development Team
+    Pin-Priority: 1001
+    ```
+
+    Replace the `<package_name>` with the package's name. 
+
+3. Save the `00percona.pref` file.
+
+You can pin multiple packages by adding separate entries to the file.
+
+Remove the entry from the file if you no longer want to pin the package.
 
 For more information about the pinning, check the official [debian wiki](http://wiki.debian.org/AptPreferences).
