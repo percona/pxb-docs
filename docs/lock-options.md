@@ -1,5 +1,9 @@
 # lock-ddl-per-table option improvements
 
+!!! important
+
+    The lock-ddl-per-table option is deprecated in Percona Server for MySQL 8.0. Use --lock-ddl instead of this variable.
+
 To block DDL statements on an instance, Percona Server implemented LOCK
 TABLES FOR BACKUP. Percona XtraBackup uses this lock for the
 duration of the backup. This lock does not affect DML statements.
