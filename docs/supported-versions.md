@@ -10,7 +10,7 @@ Specifically, Percona XtraBackup {{release}} supports taking backups of the foll
 
 * Percona Server for MySQL 8.0.36 and MySQL 8.0.36 (and any later versions in the 8.0 series)
 
-For more information, see [Server version and backup version comparison].
+For more information, see [Percona XtraBackup Version Compatibility and Server Version Checks].
 
 For details on the backup process, see [How XtraBackup Works].
 
@@ -18,4 +18,4 @@ For details on the backup process, see [How XtraBackup Works].
 
 [How XtraBackup Works]: how-xtrabackup-works.md
 
-[Server version and backup version comparison]: server-backup-version-comparison.md
+[Percona XtraBackup Version Compatibility and Server Version Checks]: server-backup-version-comparison.md
