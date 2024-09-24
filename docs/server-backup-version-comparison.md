@@ -1,4 +1,4 @@
-# Server version and backup version comparison
+# Percona XtraBackup Version Compatibility and Server Version Checks
 
 When the server undergoes internal changes, such as modifying the structure of the redo log records, older versions of Percona XtraBackup may either fail or produce corrupted backups. To prevent these issues, XtraBackup checks the version of the source system before starting the backup and compares it to the Percona XtraBackup version.
 
