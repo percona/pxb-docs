@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
         <meta name="description" content="Ready-to-use packages are available from the Percona XtraBackup software
-repositories and the download page. The Percona yum repository supports popular RPM-based operating systems, including the Amazon Linux AMI.">
+repositories and the download page. The Percona yum repository supports popular RPM-based operating systems, including the Amazon Linux AMI, which has reached its end of life. Amazon Linux 2 is not supported at this time.">
       
       
         <meta name="author" content="Percona LLC">
@@ -29,7 +29,7 @@ repositories and the download page. The Percona yum repository supports popular 
     
     
       
-        <title>Use RPM repositories - Percona XtraBackup</title>
+        <title>Percona release and YUM - Percona XtraBackup</title>
       
     
     
@@ -92,7 +92,7 @@ repositories and the download page. The Percona yum repository supports popular 
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Use RPM repositories" />
+                 <meta property="og:title" content="Percona XtraBackup - Percona release and YUM" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -115,7 +115,7 @@ repositories and the download page. The Percona yum repository supports popular 
     <div data-md-component="skip">
       
         
-        <a href="#use-a-yum-repository-to-install-percona-xtrabackup" class="md-skip">
+        <a href="#install-percona-xtrabackup-on-red-hat-based-systems" class="md-skip">
           Skip to content
         </a>
       
@@ -190,7 +190,7 @@ repositories and the download page. The Percona yum repository supports popular 
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Use RPM repositories
+              Percona release and YUM
             
           </span>
         </div>
@@ -3028,7 +3028,7 @@ repositories and the download page. The Percona yum repository supports popular 
         
   
   <span class="md-ellipsis">
-    Use APT repositories
+    Percona release and APT
   </span>
   
 
@@ -3070,7 +3070,7 @@ repositories and the download page. The Percona yum repository supports popular 
         
   
   <span class="md-ellipsis">
-    Downloaded DEB packages
+    Download DEB packages
   </span>
   
 
@@ -3091,7 +3091,7 @@ repositories and the download page. The Percona yum repository supports popular 
         
   
   <span class="md-ellipsis">
-    Apt pinning
+    Pin packages
   </span>
   
 
@@ -3208,7 +3208,7 @@ repositories and the download page. The Percona yum repository supports popular 
           
   
   <span class="md-ellipsis">
-    Use RPM repositories
+    Percona release and YUM
   </span>
   
 
@@ -3219,7 +3219,7 @@ repositories and the download page. The Percona yum repository supports popular 
         
   
   <span class="md-ellipsis">
-    Use RPM repositories
+    Percona release and YUM
   </span>
   
 
@@ -3252,9 +3252,36 @@ repositories and the download page. The Percona yum repository supports popular 
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-percona-xtrabackup-from-percona-yum-repository" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Percona XtraBackup from Percona yum repository
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-from-percona-yum-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install from Percona YUM repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify the installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshoot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshoot
     </span>
   </a>
   
@@ -3310,7 +3337,7 @@ repositories and the download page. The Percona yum repository supports popular 
         
   
   <span class="md-ellipsis">
-    Downloaded RPM packages
+    Download RPM packages
   </span>
   
 
@@ -4649,9 +4676,36 @@ repositories and the download page. The Percona yum repository supports popular 
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-percona-xtrabackup-from-percona-yum-repository" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Percona XtraBackup from Percona yum repository
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-from-percona-yum-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install from Percona YUM repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify the installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshoot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshoot
     </span>
   </a>
   
@@ -4703,40 +4757,87 @@ repositories and the download page. The Percona yum repository supports popular 
   
 
 
-<h1 id="use-a-yum-repository-to-install-percona-xtrabackup">Use a YUM repository to install Percona XtraBackup<a class="headerlink" href="#use-a-yum-repository-to-install-percona-xtrabackup" title="Permanent link">&para;</a></h1>
+<h1 id="install-percona-xtrabackup-on-red-hat-based-systems">Install Percona XtraBackup on Red Hat-based systems<a class="headerlink" href="#install-percona-xtrabackup-on-red-hat-based-systems" title="Permanent link">&para;</a></h1>
 <p>Ready-to-use packages are available from the Percona XtraBackup software
-repositories and the <a href="https://www.percona.com/downloads/">download page</a>. The Percona yum repository supports popular <code>RPM</code>-based operating systems, including the <code>Amazon Linux AMI</code>.</p>
+repositories and the <a href="https://www.percona.com/downloads/">download page</a>. The Percona yum repository supports popular <code>RPM</code>-based operating systems, including the <code>Amazon Linux AMI</code>, which has reached its end of life. <code>Amazon Linux 2</code> is not supported at this time. </p>
 <p>The easiest way to install the Percona Yum repository is to install an <code>RPM</code> that configures yum and installs the <a href="https://www.percona.com/downloads/RPM-GPG-KEY-percona">Percona GPG key</a>.</p>
 <p>Specific information on the supported platforms, products, and versions is described in <a href="https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql">Percona Software and Platform Lifecycle</a>.</p>
 <h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
 <p>Starting with <a href="release-notes/8.0/8.0.35-31.0.html">Percona XtraBackup 8.0.35-31</a>, the RPM builds for RHEL 8 and RHEL 9 include ARM packages with the <code>aarch64.rpm</code> extension. This extension means Percona XtraBackup is now available for users on ARM-based systems.</p>
 <p>We recommend downloading Percona XtraBackup for the same platform as your MySQL-compatible server. For instance, if your server runs on an ARM64 platform, you should download and use the Percona XtraBackup with the <code>aarch64.rpm</code> extension for that operating system.</p>
-<h2 id="install-percona-xtrabackup-from-percona-yum-repository">Install Percona XtraBackup from Percona <code>yum</code> repository<a class="headerlink" href="#install-percona-xtrabackup-from-percona-yum-repository" title="Permanent link">&para;</a></h2>
+<p>Make sure that you have the <code>libev</code> package installed before installing Percona XtraBackup on CentOS 6. For this operating system, the <code>libev</code> package is available from <a href="https://fedoraproject.org/wiki/EPEL">EPEL</a>.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Sudo or root access</p>
+</li>
+<li>
+<p>Internet connection</p>
+</li>
+</ul>
+<h2 id="install-from-percona-yum-repository">Install from Percona <code>YUM</code> repository<a class="headerlink" href="#install-from-percona-yum-repository" title="Permanent link">&para;</a></h2>
+<p class="power-number">The following procedure installs Percona XtraBackup 8.0.</p>
 <ol>
 <li>
-<p>Install the Percona yum repository by running the following command as the <code>root</code> user or with <strong>sudo</strong>: </p>
+<p>Install the Percona yum repository by running the following command as the <code>root</code> user or with sudo: </p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
 https://repo.percona.com/yum/percona-release-latest.<span class="se">\</span>
 noarch.rpm
 </code></pre></div>
+<details class="example">
+<summary>Example output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Oracle Linux 9 BaseOS Latest (x86_64)                                 6.6 MB/s |  35 MB     00:05
+Oracle Linux 9 Application Stream Packages (x86_64)                   8.5 MB/s |  41 MB     00:04
+Last metadata expiration check: 0:00:06 ago on Mon Sep 23 09:43:33 2024.
+percona-release-latest.noarch.rpm                                      49 kB/s |  27 kB     00:00
+Dependencies resolved.
+...
+For more information, please visit:
+https://docs.percona.com/percona-software-repositories/percona-release.html
+
+
+Verifying        : percona-release-1.0-29.noarch    
+                                            1/1
+
+Installed:
+percona-release-1.0-29.noarch
+
+Complete!
+</code></pre></div>
+</details>
 </li>
 <li>
 <p>Enable the repository: </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>percona-release<span class="w"> </span>enable-only<span class="w"> </span>tools<span class="w"> </span>release
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>pxb-80
 </code></pre></div>
-<p>If <em>Percona XtraBackup</em> is intended to be used in combination with
-the upstream MySQL Server, you only need to enable the `tools repository: </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>percona-release<span class="w"> </span>enable-only<span class="w"> </span>tools
+<details class="example">
+<summary>Example output</summary>
+<div class="highlight"><pre><span></span><code>```{.text .no-copy}
+* Enabling the Percona XtraBackup 8.0 repository
+&lt;*&gt; All done!
+```
 </code></pre></div>
+</details>
 </li>
 <li>
 <p>Install <em>Percona XtraBackup</em> by running:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-80
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Make sure that you have the <code>libev</code> package installed before installing <em>Percona XtraBackup</em> on CentOS 6. For this operating system, the <code>libev</code> package is available from the <a href="https://fedoraproject.org/wiki/EPEL">EPEL</a> repositories.</p>
-</div>
+<details class="example">
+<summary>Example output</summary>
+<div class="no-copy highlight"><pre><span></span><code>* Enabling the Percona XtraBackup 8.0 repository
+&lt;*&gt; All done!
+[root@e1dc549c0c65 /]# yum install percona-xtrabackup-80
+PMM2 Client release/x86_64 YUM repository                              13 kB/s | 6.4 kB     00:00
+Percona Release release/noarch YUM repository                         4.3 kB/s | 2.0 kB     00:00
+Percona XtraBackup 8.0 release/x86_64 YUM repository                  363 kB/s | 416 kB     00:01
+Percona Telemetry release/x86_64 YUM repository                       3.1 kB/s | 1.5 kB     00:00
+Dependencies resolved.
+...
+
+Complete!
+</code></pre></div>
+</details>
 </li>
 <li>
 <p>To decompress backups made using <code>LZ4</code> or <code>ZSTD</code> compression algorithm, install the corresponding package:</p>
@@ -4754,6 +4855,63 @@ the upstream MySQL Server, you only need to enable the `tools repository: </p>
 </div>
 </li>
 </ol>
+<h2 id="verify-the-installation">Verify the installation<a class="headerlink" href="#verify-the-installation" title="Permanent link">&para;</a></h2>
+<p>Run Percona XtraBackup:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--version
+</code></pre></div>
+<p>If this command fails, the installation is incomplete or incorrect.</p>
+<h2 id="troubleshoot">Troubleshoot<a class="headerlink" href="#troubleshoot" title="Permanent link">&para;</a></h2>
+<p class="power-number">To troubleshoot a Percona XtraBackup 8.0.x installation on a Red Hat-based system, follow these steps:</p>
+<ol>
+<li>
+<p>This command checks for missing libraries.</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>ldd<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>xtrabackup<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;not found&quot;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Install missing dependencies:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>&lt;missing-library-name&gt;
+</code></pre></div>
+</li>
+<li>
+<p>Examine log files:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>-xe<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>xtrabackup
+</code></pre></div>
+</li>
+<li>
+<p>Ensure the Percona repository is correctly set up:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/etc/yum.repos.d/percona-release.repo
+</code></pre></div>
+</li>
+<li>
+<p>Update the system to ensure all packages are current:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>update
+</code></pre></div>
+</li>
+<li>
+<p>If issues persist, try a clean reinstall:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>remove<span class="w"> </span>percona-xtrabackup-80<span class="w"> </span>
+$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>clean<span class="w"> </span>all<span class="w"> </span>
+$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-80
+</code></pre></div>
+</li>
+<li>
+<p>SELinux might block XtraBackup. Check its status:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>getenforce
+</code></pre></div>
+</li>
+<li>
+<p>Set SELinux to permissive temporarily:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>setenforce<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+</li>
+<li>
+<p>Create a backup to verify functionality:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/test_backup
+</code></pre></div>
+</li>
+</ol>
+<p>If problems continue, gather all error messages and logs, then consult Percona&rsquo;s documentation or support forums for further assistance.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
 <p>To install Percona XtraBackup using downloaded rpm packages, see <a href="yum-download-rpm.html">Install with package manager</a>.</p>
@@ -4774,7 +4932,7 @@ the upstream MySQL Server, you only need to enable the `tools repository: </p>
   <small>
     
       Last update:
-      2024-06-26
+      2024-09-13
     
   </small>
 </div>

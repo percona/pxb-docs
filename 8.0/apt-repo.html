@@ -29,7 +29,7 @@ repositories and the download page.">
     
     
       
-        <title>Use APT repositories - Percona XtraBackup</title>
+        <title>Percona release and APT - Percona XtraBackup</title>
       
     
     
@@ -92,7 +92,7 @@ repositories and the download page.">
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Use APT repositories" />
+                 <meta property="og:title" content="Percona XtraBackup - Percona release and APT" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -115,7 +115,7 @@ repositories and the download page.">
     <div data-md-component="skip">
       
         
-        <a href="#use-an-apt-repository-to-install-percona-xtrabackup-80" class="md-skip">
+        <a href="#install-percona-xtrabackup-on-debian-based-systems" class="md-skip">
           Skip to content
         </a>
       
@@ -190,7 +190,7 @@ repositories and the download page.">
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Use APT repositories
+              Percona release and APT
             
           </span>
         </div>
@@ -3039,7 +3039,7 @@ repositories and the download page.">
           
   
   <span class="md-ellipsis">
-    Use APT repositories
+    Percona release and APT
   </span>
   
 
@@ -3050,7 +3050,7 @@ repositories and the download page.">
         
   
   <span class="md-ellipsis">
-    Use APT repositories
+    Percona release and APT
   </span>
   
 
@@ -3074,9 +3074,36 @@ repositories and the download page.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#install-percona-xtrabackup-through-percona-release" class="md-nav__link">
+  <a href="#version-changes" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Percona XtraBackup through percona-release
+      Version changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
     </span>
   </a>
   
@@ -3132,7 +3159,7 @@ repositories and the download page.">
         
   
   <span class="md-ellipsis">
-    Downloaded DEB packages
+    Download DEB packages
   </span>
   
 
@@ -3153,7 +3180,7 @@ repositories and the download page.">
         
   
   <span class="md-ellipsis">
-    Apt pinning
+    Pin packages
   </span>
   
 
@@ -3259,7 +3286,7 @@ repositories and the download page.">
         
   
   <span class="md-ellipsis">
-    Use RPM repositories
+    Percona release and YUM
   </span>
   
 
@@ -3301,7 +3328,7 @@ repositories and the download page.">
         
   
   <span class="md-ellipsis">
-    Downloaded RPM packages
+    Download RPM packages
   </span>
   
 
@@ -4631,9 +4658,36 @@ repositories and the download page.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#install-percona-xtrabackup-through-percona-release" class="md-nav__link">
+  <a href="#version-changes" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Percona XtraBackup through percona-release
+      Version changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
     </span>
   </a>
   
@@ -4685,46 +4739,189 @@ repositories and the download page.">
   
 
 
-<h1 id="use-an-apt-repository-to-install-percona-xtrabackup-80">Use an APT repository to install Percona XtraBackup 8.0<a class="headerlink" href="#use-an-apt-repository-to-install-percona-xtrabackup-80" title="Permanent link">&para;</a></h1>
+<h1 id="install-percona-xtrabackup-on-debian-based-systems">Install Percona XtraBackup on Debian-based systems<a class="headerlink" href="#install-percona-xtrabackup-on-debian-based-systems" title="Permanent link">&para;</a></h1>
 <p>Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the <a href="https://www.percona.com/downloads">download page</a>.</p>
 <p>Specific information on the supported platforms, products, and versions is
 described in <a href="https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql">Percona Release Lifecycle Overview</a>.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
 <p>To prevent intermittent backup failures, <a href="update-curl-utility.html">update the curl utility in Debian 10</a>.</p>
-</div>
-<h2 id="install-percona-xtrabackup-through-percona-release">Install Percona XtraBackup through percona-release<a class="headerlink" href="#install-percona-xtrabackup-through-percona-release" title="Permanent link">&para;</a></h2>
-<p>Percona XtraBackup, like many other Percona products, is installed with the <em>percona-release</em> package configuration tool.</p>
+<p>This guide walks you through the process of installing Percona XtraBackup 8.0 on Debian-based systems using the Percona-release tool.</p>
+<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Starting with <a href="release-notes/8.0/8.0.35-31.0.html">Percona XtraBackup 8.0.35-31</a>, the APT builds for the following platforms include ARM packages with the <code>arm64.deb</code> extension:</p>
+<ul>
+<li>
+<p>Debian 12</p>
+</li>
+<li>
+<p>Debian 11</p>
+</li>
+<li>
+<p>Ubuntu 24.04</p>
+</li>
+<li>
+<p>Ubuntu 22.04</p>
+</li>
+<li>
+<p>Ubuntu 20.04</p>
+</li>
+</ul>
+<p>This extension means Percona XtraBackup is now available for users on ARM-based systems.</p>
+<p>We recommend downloading Percona XtraBackup for the same platform as your MySQL-compatible server. For instance, if your server runs on an ARM64 platform, you should download and use the Percona XtraBackup with the <code>arm64.deb</code> extension for that operating system.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Sudo or root access</p>
+</li>
+<li>
+<p>Internet connection</p>
+</li>
+</ul>
+<h2 id="installation-steps">Installation steps<a class="headerlink" href="#installation-steps" title="Permanent link">&para;</a></h2>
+<p class="power-number">The following procedure installs Percona XtraBackup 8.0.</p>
 <ol>
 <li>
-<p>Download a <code>DEB</code> package for <em>percona-release</em> the repository packages from Percona web:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://repo.percona.com/apt/percona-release_latest.<span class="k">$(</span>lsb_release<span class="w"> </span>-sc<span class="k">)</span>_all.deb
+<p>Update the system package list</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
+<details class="example">
+<summary>Example output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Get:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
+Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
+Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages [17.2 MB]
+Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1758 kB]
+Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [2400 kB]
+Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/multiverse arm64 Packages [29.5 kB]
+Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1379 kB]
+Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [2217 kB]
+Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-backports/universe arm64 Packages [31.8 kB]
+Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-backports/main arm64 Packages [81.0 kB]
+Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [1949 kB]
+Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [2330 kB]
+Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-security/multiverse arm64 Packages [24.1 kB]
+Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1096 kB]
+Fetched 31.4 MB in 7s (4264 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+9 packages can be upgraded. Run &#39;apt list --upgradable&#39; to see them.
+</code></pre></div>
+</details>
 </li>
 <li>
-<p>Install the downloaded package with <strong>dpkg</strong>. To do that, run the following commands as root or with <strong>sudo</strong>: <code>dpkg -i percona-release_latest.$(lsb_release -sc)_all.deb</code></p>
-<p>Once you install this package the Percona repositories should be added. You
-can check the repository setup in the <code>/etc/apt/sources.list.d/percona-release.list</code> file.</p>
+<p>Install the curl download utility if it&rsquo;s not installed:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
+</code></pre></div>
+<details class="example">
+<summary>Example output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  ca-certificates libbrotli1 libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5 librtmp1
+Suggested packages:
+...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.######################################################################...]
+Running hooks in /etc/ca-certificates/update.d...
+done.
+</code></pre></div>
+</details>
 </li>
 <li>
-<p>Enable the repository: <code>percona-release enable-only tools release</code></p>
-<p>If <em>Percona XtraBackup</em> is intended to be used in combination with
-the upstream MySQL Server, you only need to enable the <code>tools</code>
-repository: <code>percona-release enable-only tools</code>.</p>
+<p>Download the percona-release the repository package:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+</code></pre></div>
+<details class="example">
+<summary>Example output</summary>
+<div class="no-copy highlight"><pre><span></span><code>% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                Dload  Upload   Total   Spent    Left Speed
+100 16510  100 16510    0     0  31433      0 --:--:-- --:--:-- --:--:-- 31447
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Install the downloaded package and its dependencies using apt:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg2<span class="w"> </span>lsb-release<span class="w"> </span>./percona-release_latest.generic_all.deb
+</code></pre></div>
+<details class="example">
+<summary>Example output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Note, selecting &#39;percona-release&#39; instead of &#39;./percona-release_latest.generic_all.deb&#39;
+The following additional packages will be installed:
+</code></pre></div>
+</details>
 </li>
 <li>
 <p>Refresh the local cache to update the package information:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
+<details class="example">
+<summary>Example output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Hit:1 http://repo.percona.com/pmm2-client/apt jammy InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+Hit:3 http://repo.percona.com/prel/apt jammy InRelease
+...
+</code></pre></div>
+</details>
 </li>
 <li>
-<p>Install the <code>percona-xtrabackup-80</code> package:</p>
+<p>Enable the repository:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>percona-release<span class="w"> </span>setup<span class="w"> </span>pxb-80
+</code></pre></div>
+<details class="example">
+<summary>Example output</summary>
+<div class="no-copy highlight"><pre><span></span><code>* Disabling all Percona Repositories
+* Enabling the Percona XtraBackup 8.0 repository
+Hit:1 http://repo.percona.com/prel/apt jammy InRelease
+Get:2 http://repo.percona.com/pxb-80/apt jammy InRelease [18.7 kB]
+Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+Hit:5 http://repo.percona.com/telemetry/apt jammy InRelease
+Get:6 http://repo.percona.com/pxb-80/apt jammy/main Sources [3393 B]
+Get:7 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
+Get:8 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+Fetched 406 kB in 1s (274 kB/s)
+Reading package lists... Done
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Install the package:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-80
 </code></pre></div>
+<details class="example">
+<summary>Example output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libaio1 libcurl4-openssl-dev libdbd-mysql-perl libdbi-perl libev4 libgdbm-compat4 libgdbm6
+  libmysqlclient21 libperl5.34 libpopt0 mysql-common netbase perl perl-modules-5.34 rsync zstd
+...
+Setting up libdbd-mysql-perl:amd64 (4.050-5ubuntu0.22.04.1) ...##########################.........]
+Setting up percona-xtrabackup-80 (8.0.35-31-1.jammy) ...####################################......]
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...########################################....]
+</code></pre></div>
+</details>
 </li>
 <li>
-<p>To decompress backups made using <code>LZ4</code> or <code>ZSTD</code> compression algorithm, install the corresponding package:</p>
+<p>Verify the installation:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--version
+</code></pre></div>
+<details class="example">
+<summary>Example output</summary>
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 8.0.35-31 based on MySQL server 8.0.35 Linux (x86_64) (revision id: 55ec21d7)
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Install optional compression packages if you plan to use LZ4 or ZSTD compression:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Install the <code>lz4</code> package</label><label for="__tabbed_1_2">Install the <code>zstd</code> package</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -4739,12 +4936,15 @@ repository: <code>percona-release enable-only tools</code>.</p>
 </div>
 </li>
 </ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p>If you encounter any errors during the installation process, check your system&rsquo;s error logs:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span><span class="w"> </span>/var/log/syslog
+</code></pre></div>
+<p>Ensure your system meets the minimum requirements for Percona XtraBackup. </p>
+<p>If you encounter permission errors, ensure you&rsquo;re running the commands with <code>sudo</code> or have root access.</p>
 <p>For AppArmor profile information, see <a href="work-with-apparmor.html">Working with AppArmor</a>.</p>
-</div>
 <div class="admonition admonition">
-<p class="admonition-title">See also</p>
+<p class="admonition-title">Additional resources</p>
 <p>To install Percona XtraBackup using downloaded deb packages, see <a href="apt-download-deb.html">Install Percona XtraBackup 8.0</a>.</p>
 <p>To uninstall Percona XtraBackup, see <a href="apt-uninstall-xtrabackup.html">Uninstall Percona XtraBackup 8.0</a></p>
 </div>
@@ -4763,7 +4963,7 @@ repository: <code>percona-release enable-only tools</code>.</p>
   <small>
     
       Last update:
-      2023-06-30
+      2024-09-13
     
   </small>
 </div>
