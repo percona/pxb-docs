@@ -1,5 +1,23 @@
 # Install with DEB packages
 
+## Version changes
+
+Starting with [Percona XtraBackup 8.0.35-31](release-notes/8.0/8.0.35-31.0.md), the APT builds for the following platforms include ARM packages with the `arm64.deb` extension:
+
+* Debian 12
+
+* Debian 11
+
+* Ubuntu 24.04
+
+* Ubuntu 22.04
+
+* Ubuntu 20.04
+
+This `arm64.deb` extension means Percona XtraBackup is now available for users on ARM-based systems.
+
+We recommend downloading Percona XtraBackup for the same platform as your MySQL-compatible server. For instance, if your server runs on an ARM64 platform, you should download and use the Percona XtraBackup with the `arm64.deb` extension for that operating system.
+
 This guide walks you through installing Percona XtraBackup 8.0 using DEB packages on Ubuntu-based systems.
 {.power-number}
 
