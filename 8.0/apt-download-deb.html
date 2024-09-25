@@ -8,7 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="This guide walks you through installing Percona XtraBackup 8.0 using DEB packages on Ubuntu-based systems.">
+        <meta name="description" content="Percona XtraBackup is an open source hot backup utility, for MySQL - based servers, that keeps your database fully available during planned maintenance windows.">
       
       
         <meta name="author" content="Percona LLC">
@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.06209087.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.8c3ca2c6.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -3115,6 +3115,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-dependencies-for-percona-xtrabackup" class="md-nav__link">
     <span class="md-ellipsis">
       Common dependencies for Percona XtraBackup
@@ -4657,6 +4666,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#common-dependencies-for-percona-xtrabackup" class="md-nav__link">
     <span class="md-ellipsis">
       Common dependencies for Percona XtraBackup
@@ -4739,6 +4757,27 @@
 
 
 <h1 id="install-with-deb-packages">Install with DEB packages<a class="headerlink" href="#install-with-deb-packages" title="Permanent link">&para;</a></h1>
+<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Starting with <a href="release-notes/8.0/8.0.35-31.0.html">Percona XtraBackup 8.0.35-31</a>, the APT builds for the following platforms include ARM packages with the <code>arm64.deb</code> extension:</p>
+<ul>
+<li>
+<p>Debian 12</p>
+</li>
+<li>
+<p>Debian 11</p>
+</li>
+<li>
+<p>Ubuntu 24.04</p>
+</li>
+<li>
+<p>Ubuntu 22.04</p>
+</li>
+<li>
+<p>Ubuntu 20.04</p>
+</li>
+</ul>
+<p>This <code>arm64.deb</code> extension means Percona XtraBackup is now available for users on ARM-based systems.</p>
+<p>We recommend downloading Percona XtraBackup for the same platform as your MySQL-compatible server. For instance, if your server runs on an ARM64 platform, you should download and use the Percona XtraBackup with the <code>arm64.deb</code> extension for that operating system.</p>
 <p class="power-number">This guide walks you through installing Percona XtraBackup 8.0 using DEB packages on Ubuntu-based systems.</p>
 <ol>
 <li>
@@ -4843,7 +4882,7 @@
   <small>
     
       Last update:
-      2024-09-13
+      2024-09-25
     
   </small>
 </div>
@@ -4944,7 +4983,7 @@
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      <script src="assets/javascripts/bundle.d6f25eb3.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
