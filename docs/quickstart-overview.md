@@ -1,38 +1,65 @@
-# Quickstart Guide for Percona XtraBackup {{vers}}
+# Quickstart Overview
 
-Percona XtraBackup (PXB) is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems. Maintain fully available applications during planned maintenance windows with Percona XtraBackup.
+Percona XtraBackup is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems.
 
-## Install Percona XtraBackup:
+To quickly start with Percona XtraBackup, we recommend using Docker. This Quickstart guide focuses on this installation method. You can explore alternative installation options in the [Install](installation.md) section.
 
-You can install Percona XtraBackup using different methods:
+### Docker containers
 
-* [Use the Percona Repositories](installation.md)
+Docker containers are built from Docker images, which are configuration snapshots needed to run applications. With Docker, you can build, deploy, run, update, and manage containers, which isolate applications from the host system. A Docker container lets you work with Percona XtraBackup without installing the product on a local drive.
 
-* [Use APT](apt-repo.md)
+Using Docker has benefits:
 
-* [Use YUM](yum-repo.md)
+* Easily set up and use
+* Doesn't change anything on your computer
+* Simply remove it when you're done
 
-* [Use binary tarballs](binary-tarball.md)
+## Quickstart Purpose
 
-* [Use Docker](docker.md)
+This section provides you with the basic steps to start Percona XtraBackup in a Docker container, take a backup, prepare a backup and restore a backup of Percona Server for MySQL database.
 
-## For superior and optimized performance
+We use specific names in our examples, but feel free to change them if you want. Just remember that if you do, your results might be different from our guide.
 
-Percona Server for MySQL (PS) is a freely available, fully compatible, enhanced, and open source drop-in replacement for any MySQL database. It provides superior and optimized performance, greater scalability and availability, enhanced backups, increased visibility, and instrumentation. Percona Server for MySQL is trusted by thousands of enterprises to provide better performance and concurrency for their most demanding workloads.
+When we talk about a "container," we mean the Docker container where Percona XtraBackup is running. When we say "instance," we're talking about the MySQL database server inside that container.
 
-Install [Percona Server for MySQL].
+This guide will help you get started quickly, but there's a lot more to learn about database backups as you go along.
 
-## For high availability
+## Prerequisites
 
-Percona XtraDB Cluster (PXC) is a 100% open source, enterprise-grade, highly available clustering solution for MySQL multi-source setups based on Galera. PXC helps enterprises minimize unexpected downtime and data loss, reduce costs, and improve performance and scalability of your database environments supporting your critical business applications in the most demanding public, private, and hybrid cloud environments. 
+* [Install Docker](https://docs.docker.com/engine/install/) on your system.
 
-Install [Percona XtraDB Cluster].
+To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database, and a table.
 
-## For Monitoring and Management
+* [Start Percona Server in a Docker container](https://docs.percona.com/percona-server/8.4/quickstart-docker.html)
+* [Create a database and table in Percona Server](https://docs.percona.com/percona-server/8.4/quickstart-docker.html#create-a-database)
 
-Percona Monitoring and Management (PMM) monitors and provides actionable performance data for MySQL variants, including Percona Server for MySQL, Percona XtraDB Cluster, Oracle MySQL Community Edition, Oracle MySQL Enterprise Edition, and MariaDB. PMM captures metrics and data for the InnoDB, XtraDB, and MyRocks storage engines, and has specialized dashboards for specific engine details.
+### Limitations
 
-[Install PMM and connect your MySQL instances to it](https://docs.percona.com/percona-monitoring-and-management/get-started/index.html).
+Percona XtraBackup 8.4 does not support making backups of databases created in versions before the 8.4 series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster.
 
-[Percona Server for MySQL]: https://docs.percona.com/percona-server/innovation-release/installation.html
-[Percona XtraDB Cluster]: https://docs.percona.com/percona-xtradb-cluster/8.0/install-index.html
+### Support servers and storage engines
+
+Percona XtraBackup 8.4 supports backing up data from various MySQL-compatible servers and storage engines.
+
+Supported Servers:
+
+* MySQL Server
+* Percona Server for MySQL
+* Percona XtraDB Cluster
+
+Supported Storage Engines:
+
+* InnoDB
+* XtraDB
+* MyISAM
+* MyRocks
+
+## Steps to perform
+
+In this Quickstart, you will learn how to:
+{.power-number}
+
+1. [Start a Docker container and take a backup](quickstart-docker.md)
+2. [Restore a backup](quickstart-restore-backup.md)
+3. [Clean up](quickstart-exit.md)
+4. [Choose your next steps](quickstart-next-steps.md)
