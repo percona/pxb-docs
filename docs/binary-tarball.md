@@ -10,8 +10,7 @@ The following example downloads the tarball:
 $ wget https://downloads.percona.com/ \
 downloads/Percona-XtraBackup-{{vers}}/ \
 Percona-XtraBackup-{{release}}/binary/ \
-tarball/percona-xtrabackup-{{release}}- \
-Linux-x86_64.glibc2.28.tar.gz
+tarball/percona-xtrabackup-{{release}}-Linux-x86_64.glibc2.28.tar.gz
 ```
 
 The output displays the following information:
