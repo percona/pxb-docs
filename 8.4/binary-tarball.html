@@ -8,8 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Binary tarballs contain precompiled executable files, libraries, and other dependencies and are
-compressed tar archives. Extract the binary tarballs to any path.">
+        <meta name="description" content="Binary tarballs are compressed’ tar’ archives that contain precompiled executable files, libraries, and other dependencies. You can extract the binary tarballs to any path.">
       
       
         <meta name="author" content="Percona LLC">
@@ -3613,23 +3612,26 @@ compressed tar archives. Extract the binary tarballs to any path.">
 
 
 <h1 id="install-from-a-binary-tarball">Install from a binary tarball<a class="headerlink" href="#install-from-a-binary-tarball" title="Permanent link">&para;</a></h1>
-<p>Binary tarballs contain precompiled executable files, libraries, and other dependencies and are
-compressed <code>tar</code> archives. Extract the binary tarballs to any path.</p>
+<p>Binary tarballs are compressed&rsquo; tar&rsquo; archives that contain precompiled executable files, libraries, and other dependencies. You can extract the binary tarballs to any path.</p>
 <p>Download the binary tarballs from the <code>Linux - Generic</code> section on <a href="https://www.percona.com/downloads/">Percona Product Downloads</a>.</p>
-<p>The following example downloads the a tarball:</p>
+<p>The following example downloads the tarball:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-1/binary/tarball/percona-xtrabackup-8.4.0-1-Linux-x86_64.glibc2.28.tar.gz
 </code></pre></div>
 <p>The output displays the following information:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>--2023-10-20 05:56:30--  https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-1/binary/tarball/percona-xtrabackup-8.4.0-1-Linux-x86_64.glibc2.17.tar.gz
-Resolving downloads.percona.com (downloads.percona.com)... 2604:2dc0:200:69f::2, 147.135.54.159
-Connecting to downloads.percona.com (downloads.percona.com)|2604:2dc0:200:69f::2|:443... connected.
+<div class="no-copy highlight"><pre><span></span><code>--2024-10-09 04:44:36--  https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-       1/binary/tarball/percona-xtrabackup-8.4.0-1-Linux-x86_64.glibc2.28.tar.gz
+Resolving downloads.percona.com (downloads.percona.com)... 147.135.54.159, 2604:2dc0:200:69f::2
+Connecting to downloads.percona.com (downloads.percona.com)|147.135.54.159|:443... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 470358258 (449M) [application/gzip]
-Saving to: ‘percona-xtrabackup-8.4.0-1-Linux-x86_64.glibc2.17.tar.gz’
+Length: 439358509 (419M) [application/gzip]
+Saving to: ‘percona-xtrabackup-8.4.0-1-Linux-x86_64.glibc2.28.tar.gz’
 
-percona-xtrabackup   0%[                       ]   3.17M  1.54MB/s
+percona-xtrabackup-8.4.0-1-Linux-x86_6 100%  
+[============================================================================&gt;] 419.00M  6.67MB/s    in 94s
+
+2024-10-09 04:46:10 (4.48 MB/s) - ‘percona-xtrabackup-8.4.0-1-Linux-x86_64.glibc2.28.tar.gz’ saved 
+[439358509/439358509]
 </code></pre></div>
 </details>
 <div data-banner="data-banner">
