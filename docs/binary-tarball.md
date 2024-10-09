@@ -7,10 +7,7 @@ Download the binary tarballs from the `Linux - Generic` section on [Percona Prod
 The following example downloads the tarball:
 
 ```{.bash data-prompt="$"}
-$ wget https://downloads.percona.com/ \
-downloads/Percona-XtraBackup-{{vers}}/ \
-Percona-XtraBackup-{{release}}/binary/ \
-tarball/percona-xtrabackup-{{release}}-Linux-x86_64.glibc2.28.tar.gz
+$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-1/binary/tarball/percona-xtrabackup-8.4.0-1-Linux-x86_64.glibc2.28.tar.gz
 ```
 
 The output displays the following information:
