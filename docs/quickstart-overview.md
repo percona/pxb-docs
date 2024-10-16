@@ -2,25 +2,25 @@
 
 Percona XtraBackup is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems.
 
-To start with Percona XtraBackup quickly, we recommend using Docker and this Quickstart guide focuses on this installation method. You can explore alternative installation options in the [Install](installation.md) section.
+We recommend using Docker to quickly start with Percona XtraBackup. This Quickstart guide focuses on this installation method. You can explore alternative options in the [Install](installation.md) section.
 
 ### Why to start Percona XtraBackup in a Docker container
 
-Docker containers are built from Docker images, which are snapshots of the configuration needed to run an applications, such as the code, and libraries. With Docker, you can build, deploy, run, update, and manage containers, which isolate applications from the host system. A Docker container lets you work with Percona XtraBackup without installing the product on a local drive.
+Docker containers are built from Docker images, which are snapshots of the configuration needed to run applications, such as the code and libraries. With Docker, you can build, deploy, run, update, and manage containers, which isolate applications from the host system. A Docker container lets you work with Percona XtraBackup without installing the product on a local drive.
 
 ## Purpose of the Quickstart
 
-This section provides you with the basic steps to quiclky start Percona XtraBackup in a Docker continer, take a backup, prepare a backup and restore a backup of Percona Server for MySQL database.
+This section provides the basic steps to start Percona XtraBackup in a Docker container, take a backup, prepare a backup, and restore a backup of Percona Server for MySQL database.
 
 You are welcome to change the names of any items in commands. If you do, the results may vary from those we provide in this Quickstart guide.
 
-In this section, container refers to the Docker container and instance refers to the database server in the container.
+In this section, container refers to the Docker container, and instance refers to the database server in the container.
 
 ## Prerequisites
 
 * [Install Docker](https://docs.docker.com/engine/install/) on your system.
 
-To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database, and a table.
+To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database and a table.
 
 * [Start Percona Server in a Docker container](https://docs.percona.com/percona-server/8.0/quickstart-docker.html)
 * [Create a database and table in Percona Server](https://docs.percona.com/percona-server/8.0/quickstart-docker.html#create-a-database)
