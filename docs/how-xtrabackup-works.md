@@ -16,12 +16,7 @@ The `--register-redo-log-consumer` parameter is disabled by default. When enable
 
 Percona XtraBackup remembers the LSN when it starts, and then copies the data files. The operation takes time, and the files may change, then LSN reflects the state of the database at different points in time. Percona XtraBackup also runs a background process that watches the transaction log files, and copies any changes. Percona XtraBackup does this continually. The transaction logs are written in a round-robin fashion, and can be reused.
 
-Percona XtraBackup uses [Backup locks]
-
-where available as a lightweight alternative to `FLUSH TABLES WITH READ
-LOCK`. MySQL {{vers}} allows
-acquiring an instance level backup lock via the `LOCK INSTANCE FOR BACKUP`
-statement.
+Percona XtraBackup uses [Backup locks] where available as a lightweight alternative to `FLUSH TABLES WITH READ LOCK`. MySQL {{vers}} allows acquiring an instance level backup lock via the `LOCK INSTANCE FOR BACKUP` statement.
 
 Locking is only done for MyISAM and other non-InnoDB tables
 after Percona XtraBackup finishes backing up all InnoDB/XtraDB data and
@@ -87,7 +82,7 @@ to do operations such as streaming and incremental backups with
 various combinations of copying the data files, copying the log files,
 and applying the logs to the data.
 
-## Restoring a backup
+## Restore a backup
 
 To restore a backup with xtrabackup you can use the `--copy-back` or
 `--move-back` options.
