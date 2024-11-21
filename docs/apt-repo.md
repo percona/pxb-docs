@@ -1,5 +1,7 @@
 # Install with an APT repository
 
+--8<--- "pro-build-announcement.md"
+
 Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [download page].
 

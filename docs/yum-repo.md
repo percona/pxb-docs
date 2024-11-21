@@ -1,5 +1,7 @@
 # Use a YUM repository to install Percona XtraBackup
 
+--8<--- "pro-build-announcement.md"
+
 Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [download page](https://www.percona.com/downloads/). The Percona yum repository supports popular `RPM`-based operating systems, including the `Amazon Linux AMI`.
 

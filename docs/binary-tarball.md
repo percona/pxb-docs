@@ -1,6 +1,8 @@
 # Install from a binary tarball
 
-Binary tarballs are compressed' tar' archives that contain precompiled executable files, libraries, and other dependencies. You can extract the binary tarballs to any path.
+--8<--- "pro-build-announcement.md"
+
+Binary tarballs are compressed `tar` archives that contain precompiled executable files, libraries, and other dependencies. You can extract the binary tarballs to any path.
 
 Download the binary tarballs from the `Linux - Generic` section on [Percona Product Downloads].
 
