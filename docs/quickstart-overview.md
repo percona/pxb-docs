@@ -60,6 +60,6 @@ In this Quickstart, you will learn how to:
 {.power-number}
 
 1. [Start a Docker container and take a backup](quickstart-docker.md)
-2. [Restore a backup](quickstart-restore-backup.md)
+2. [Restore a backup](quickstart-restore-back.md)
 3. [Clean up](quickstart-exit.md)
 4. [Choose your next steps](quickstart-next-steps.md)
