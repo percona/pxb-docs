@@ -18,7 +18,7 @@ The `--lock-ddl=REDUCED` option features are as follows:
 
         While we strive to provide accurate performance benchmarks, real-world results may vary depending on your hardware and software configurations.
 
-        The following tables illustrate the approximate time differences between `--lock-ddl=ON` and `--lock-ddl=REDUCED` for local and cloud backups (Amazon S3). The "Improvement (X times)" column shows how many times faster the backup is when using `--lock-ddl=REDUCED` compared to `--lock-ddl=ON`.
+        The following tables illustrate the approximate time differences between `--lock-ddl=ON` and `--lock-ddl=REDUCED` for local and cloud backups (Amazon S3). The `Improvement (X times)` column shows how many times less the server is locked by xtrabackup using  `--lock-ddl=REDUCED` compared to `--lock-ddl=ON`.
 
         === "Local backup"
 
