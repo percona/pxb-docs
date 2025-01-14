@@ -2,7 +2,7 @@
 
 This guide is packed with information, but it can’t cover everything you need to know about Percona XtraBackup. It also won’t cover every scenario you might come across.
 
-Think of this guide as a solid starting point. There’s always more to learn, and you’ll keep discovering new things as you get hands-on experience. And remember, the more you experiment and work with Percona Server for MySQL, the more confident and skilled you’ll become. Don’t be afraid to try things out and ask questions when you get stuck.
+Think of this guide as a solid starting point. There’s always more to learn, and you’ll keep discovering new things as you get hands-on experience. And remember, the more you experiment and work with Percona XtraBackup, the more confident and skilled you’ll become. Don’t be afraid to try things out and ask questions when you get stuck.
 
 Managing database backups comes with its own set of challenges. You need to ensure data is stored securely and is always recoverable when something goes wrong. Backups must be consistent, capturing data accurately without disrupting the live system. As databases grow, backup processes can become slower, more complex, and resource-intensive.
 
