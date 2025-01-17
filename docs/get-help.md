@@ -1,4 +1,4 @@
-# Get more help
+# Get help from Percona
 
 This guide is packed with information but can’t cover everything you need to know about Percona XtraBackup or every scenario you might encounter.
 
