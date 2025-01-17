@@ -12,9 +12,9 @@
 
 The `--lock-ddl=REDUCED` option features are as follows:
 
-* Acquire and release the backup lock quickly: The backup process minimizes the time it holds the backup lock, allowing for concurrent DDL operations.
+* Acquire and release the backup lock quickly: The backup process minimizes the time the server holds the backup lock, allowing for concurrent DDL operations.
 
-    ??? note "Comparing the backup duration with --lock-ddl=REDUCED"
+    ??? note "Comparing the server lock duration with --lock-ddl=REDUCED"
 
         While we strive to provide accurate performance benchmarks, real-world results may vary depending on your hardware and software configurations.
 
@@ -22,7 +22,7 @@ The `--lock-ddl=REDUCED` option features are as follows:
 
         === "Local backup"
 
-	        | Data size in gigabytes | Backup duration with --lock-ddl=ON in seconds| Backup duration with --lock-ddl=REDUCED in seconds| Improvement (X times)  |
+	        | Data size in gigabytes | Server lock duration with --lock-ddl=ON in seconds| Server lock duration with --lock-ddl=REDUCED in seconds| Improvement (X times)  |
             |-----------------------------|---------------|--------------------|--------------------------|
             | 50 GB                       | 460.2 sec         | 2.169 sec             | 212.17                   |
             | 100 GB                      | 901.8 sec        | 1.305 sec             | 691.03                   |
@@ -32,7 +32,7 @@ The `--lock-ddl=REDUCED` option features are as follows:
 
         === "Cloud (Amazon s3) backup"
 
-            | Data size in gigabytes | Backup duration with --lock-ddl=ON in seconds | Backup duration with --lock-ddl=REDUCED in seconds | Improvement (X times) |
+            | Data size in gigabytes | Server lock duration with --lock-ddl=ON in seconds | Server lock duration with --lock-ddl=REDUCED in seconds | Improvement (X times) |
             |----------------------------|---------------|--------------------|--------------------------|
             | 50 GB                      | 469.8 sec         | 3.859 sec             | 121.74                   |
             | 100 GB                     | 927.6 sec         | 4.072 sec             | 227.80                   |
