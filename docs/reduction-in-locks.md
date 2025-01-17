@@ -4,7 +4,7 @@
 
 !!! important
 
-    The `--lock-ddl=REDUCED` option is a [tech preview](./glossary.md#tech-preview). Before using this option in production, we recommend that you test restoring production from physical backups in your environment, and also use the alternative backup method for redundancy.
+    The `--lock-ddl=REDUCED` option is a [tech preview](./glossary.md#tech-preview). Before using this option in production, test restoring from physical backups in your environment. Additionally, an alternative backup method should be set up for extra safety.
 
 [Percona XtraBackup 8.4.0-2](./release-notes/8.4.0-2.md) adds the [`--lock-ddl=REDUCED`](./xtrabackup-option-reference.md#lock-ddl) option to reduce the time the server remains locked by `xtrabackup` during full and incremental backups. Now, you can execute `Data Definition Language` (DDL) operations while the backup is in progress.
 
@@ -12,17 +12,17 @@
 
 The `--lock-ddl=REDUCED` option features are as follows:
 
-* Acquire and release the backup lock quickly: The backup process minimizes the time it holds the backup lock, allowing for concurrent DDL operations.
+* Acquire and release the backup lock quickly: The backup process minimizes the time the server holds the backup lock, allowing for concurrent DDL operations.
 
-    ??? note "Comparing the backup duration with --lock-ddl=REDUCED"
+    ??? note "Comparing the backup lock duration with --lock-ddl=REDUCED"
 
         While we strive to provide accurate performance benchmarks, real-world results may vary depending on your hardware and software configurations.
 
-        The following tables illustrate the approximate time differences between `--lock-ddl=ON` and `--lock-ddl=REDUCED` for local and cloud backups (Amazon S3). The `Improvement (X times)` column shows how many times less the server is locked by xtrabackup using  `--lock-ddl=REDUCED` compared to `--lock-ddl=ON`.
+        The following tables illustrate the approximate time differences between `--lock-ddl=ON` and `--lock-ddl=REDUCED` for local and cloud backups (Amazon S3). The `Improvement (X times)` column shows how many times less the server is locked by xtrabackup using `--lock-ddl=ON` compared to `--lock-ddl=REDUCED`.
 
         === "Local backup"
 
-	        | Data size in gigabytes | Backup duration with --lock-ddl=ON in seconds| Backup duration with --lock-ddl=REDUCED in seconds| Improvement (X times)  |
+	        | Data size in gigabytes | Backup lock duration with --lock-ddl=ON in seconds| Backup lock duration with --lock-ddl=REDUCED in seconds| Improvement (X times)  |
             |-----------------------------|---------------|--------------------|--------------------------|
             | 50 GB                       | 460.2 sec         | 2.169 sec             | 212.17                   |
             | 100 GB                      | 901.8 sec        | 1.305 sec             | 691.03                   |
@@ -32,7 +32,7 @@ The `--lock-ddl=REDUCED` option features are as follows:
 
         === "Cloud (Amazon s3) backup"
 
-            | Data size in gigabytes | Backup duration with --lock-ddl=ON in seconds | Backup duration with --lock-ddl=REDUCED in seconds | Improvement (X times) |
+            | Data size in gigabytes | Backup lock duration with --lock-ddl=ON in seconds | Backup lock duration with --lock-ddl=REDUCED in seconds | Improvement (X times) |
             |----------------------------|---------------|--------------------|--------------------------|
             | 50 GB                      | 469.8 sec         | 3.859 sec             | 121.74                   |
             | 100 GB                     | 927.6 sec         | 4.072 sec             | 227.80                   |
@@ -48,7 +48,7 @@ The `--lock-ddl=REDUCED` option features are as follows:
 
 ### Limitations
 
-* Certain DDL operations consume significant resources, and xtrabackup simultaneously requires I/O to copy and read files. This requirement can increase resource demand from DDL operations during the backup process.
+* Certain DDL operations consume significant resources, and xtrabackup requires I/O to copy and read files simultaneously. This requirement can increase resource demand from DDL operations during the backup process.
 
 * The master key rotation with the `ALTER INSTANCE ROTATE INNODB MASTER KEY` is prohibited while backup is in progress.
 
