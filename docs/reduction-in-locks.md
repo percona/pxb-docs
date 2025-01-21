@@ -68,7 +68,7 @@ Taking backup with the `--lock-ddl=REDUCED` option includes the following phases
 
 !!! warning
 
-    Do not execute the `ALTER INSTANCE ROTATE MASTER KEY` command during `Phase 1` if there are encrypted tables. This prevents backup failures.
+    If your database contains encrypted tables, do not use the `ALTER INSTANCE ROTATE MASTER KEY` command during Phase 1. Running this command with encrypted tables present can cause backup operations to fail.
 
 The following operations are performed without the lock:
 { .power-number }
