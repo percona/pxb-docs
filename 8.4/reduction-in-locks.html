@@ -4118,7 +4118,7 @@
 <h3 id="phase-1-operations-performed-without-the-lock">Phase 1: Operations performed without the lock<a class="headerlink" href="#phase-1-operations-performed-without-the-lock" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Do not execute the <code>ALTER INSTANCE ROTATE MASTER KEY</code> command during <code>Phase 1</code> if there are encrypted tables. This prevents backup failures.</p>
+<p>If your database contains encrypted tables, do not use the <code>ALTER INSTANCE ROTATE MASTER KEY</code> command during Phase 1. Running this command with encrypted tables present can cause backup operations to fail.</p>
 </div>
 <p class="power-number">The following operations are performed without the lock:</p>
 <ol>
@@ -4191,7 +4191,7 @@
   <small>
     
       Last update:
-      2025-01-17
+      2025-01-21
     
   </small>
 </div>
