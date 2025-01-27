@@ -40,11 +40,12 @@ The `--lock-ddl=REDUCED` option features are as follows:
             | 400 GB                     | 3888 sec         | 3.948 sec             | 984.80                   |
             | 500 GB                     | 4896 sec         | 4.065 sec             | 1204.43                  |
         
-        Using `--lock-ddl=REDUCED` leads to a dramatic reduction in backup lock time compared to `--lock-ddl=ON`, especially with larger data sizes.
+        Using `--lock-ddl=REDUCED` significantly reduces the time DDL operations are blocked during backup, although the total backup time remains unchanged. The data size particularly impacts the lock duration - larger databases benefit more from this reduced locking approach.
  
 * Track changes with redo logs: Redo logs record all file-level changes, ensuring data consistency during the backup process.
 * Handle DDL operations: The backup process generates metadata files to account for any DDL operations that occur while the backup is in progress.
 * Ensure consistency: The `--prepare` step processes generated metadata files and uses redo and undo logs to create a consistent database state.
+* Reduce the time the SQL thread is stopped on a replica: When backups are taken with `--safe-slave-backup` and `--lock-ddl=reduced` enabled, the SQL thread on the replica server is stopped for less time, reducing replication lag.
 
 ### Limitations
 
