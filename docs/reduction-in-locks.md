@@ -40,7 +40,7 @@ The `--lock-ddl=REDUCED` option features are as follows:
             | 400 GB                     | 3888 sec         | 3.948 sec             | 984.80                   |
             | 500 GB                     | 4896 sec         | 4.065 sec             | 1204.43                  |
         
-        Using `--lock-ddl=REDUCED` leads to a dramatic reduction in backup time compared to `--lock-ddl=ON`, especially with larger data sizes.
+        Using `--lock-ddl=REDUCED` leads to a dramatic reduction in backup lock time compared to `--lock-ddl=ON`, especially with larger data sizes.
  
 * Track changes with redo logs: Redo logs record all file-level changes, ensuring data consistency during the backup process.
 * Handle DDL operations: The backup process generates metadata files to account for any DDL operations that occur while the backup is in progress.
