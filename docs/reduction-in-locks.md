@@ -45,7 +45,7 @@ The `--lock-ddl=REDUCED` option features are as follows:
 * Track changes with redo logs: Redo logs record all file-level changes, ensuring data consistency during the backup process.
 * Handle DDL operations: The backup process generates metadata files to account for any DDL operations that occur while the backup is in progress.
 * Ensure consistency: The `--prepare` step processes generated metadata files and uses redo and undo logs to create a consistent database state.
-* Reduce the time the SQL thread is stopped on a replica: When backups are taken with `--safe-slave-backup` and `--lock-ddl=reduced` enabled, the SQL thread on the replica server is stopped for less time, reducing replication lag.
+* Reduce replication lag: When backups are taken with `--safe-slave-backup` and `--lock-ddl=reduced` enabled, the SQL thread on the replica server is stopped for less time, reducing replication lag.
 
 ### Limitations
 
