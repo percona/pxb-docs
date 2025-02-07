@@ -9,6 +9,14 @@ The easiest way to install the Percona Yum repository is to install an `RPM` tha
 
 Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
 
+### Percona XtraBackup PRO 
+
+This document provides guidelines on how to install Percona XtraBackup PRO packages from the Percona repositories.
+
+--8<--- "pro-build-announcement.md"
+
+[Percona XtraBackup Pro on Amazon Linux 2023 installation](install-pro.md){.md-button}
+
 ## Install Percona XtraBackup from Percona `yum` repository
 
 To install Percona XtraBackup from Percona `yum` repository, do the following steps:

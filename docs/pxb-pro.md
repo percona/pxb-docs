@@ -9,6 +9,7 @@ Find the list of capabilities available in Percona XtraBackup Pro:
 | Name                                | Version | Description  | 
 | ----------------------------------- | ------------- | -------------|
 | [Reduced backup lock time](reduction-in-locks.md)| 8.4.0-2 | Reduces the time the server remains locked by `xtrabackup` during full and incremental backups. Allows `Data Definition Language` (DDL) operations on the server while the backup is in progress.|
+| Install [Amazon Linux 2023](install-pro.md)| 8.4.0-2 | Install Percona XtraBackup Pro on Amazon Linux 2023. We support both AMD64 and ARM64 versions of Amazon Linux 2023.|
 
 ## What's in it for you?
 
