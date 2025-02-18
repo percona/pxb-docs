@@ -159,12 +159,16 @@ nav:
       - features.md
       - limitations.md
       - how-xtrabackup-works.md
-      - xtrabackup-version-numbers.md
+
   - Features:
       - Backup features:
         - lru-dump-backup.md
         - throttling-backups.md
         - store-backup-history.md
+
+        - xbstream features: 
+          - take-streaming-backup.md
+          - accelerate-backup-process.md
       - Prepare features:
         - dictionary-cache.md
       - Restore features:
@@ -176,6 +180,9 @@ nav:
       - log-enhancements.md
       - smart-memory-estimation.md
       - working-with-binary-logs.md
+      - xbcloud features:
+        - xbcloud-binary-fifo-datasink.md
+        - xbcloud-exbackoff.md
   - Binaries:
     - Overview: binaries-overview.md
     - The xtrabackup binary:
@@ -189,9 +196,7 @@ nav:
     - The xbstream binary:
       - xbstream-binary-overview.md
       - xbstream-options.md
-      - take-streaming-backup.md
-      - accelerate-backup-process.md
-      - encrypt-backups.md
+
     - The xbcloud binary:
       - xbcloud-binary-overview.md
       - xbcloud-options.md
@@ -202,8 +207,7 @@ nav:
         - xbcloud-gcs.md
         - xbcloud-azure.md
         - xbcloud-minio.md
-      - xbcloud-binary-fifo-datasink.md
-      - xbcloud-exbackoff.md
+
   - Install:
       - installation.md
       - Before you start:
@@ -247,6 +251,8 @@ nav:
         - create-compressed-backup.md
         - prepare-compressed-backup.md
         - encrypted-innodb-tablespace-backups.md
+      - Take an encrypted backup:
+        - encrypt-backups.md
       - Take a partial backup:
         - create-partial-backup.md
         - prepare-partial-backup.md
@@ -267,8 +273,10 @@ nav:
       - update-curl-utility.md
   - Reference:
     - xtrabackup-files.md
+    - xtrabackup-version-numbers.md
     - faq.md
     - glossary.md
     - toolkit-version-check.md
     - trademark-policy.md
     - copyright-and-licensing-information.md
+  - Topic Index: index-contents.md
