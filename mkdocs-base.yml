@@ -195,7 +195,7 @@ nav:
       - how-xtrabackup-works.md
       - server-backup-version-comparison.md
       - differences.md
-      - xtrabackup-version-numbers.md
+
       - backup-strategy.md
       - example-full-incr.md
   - Features:
@@ -203,6 +203,9 @@ nav:
         - lru-dump-backup.md
         - throttling-backups.md
         - store-backup-history.md
+        - take-streaming-backup.md
+        - accelerate-backup-process.md
+
       - Prepare features:
         - dictionary-cache.md
       - Restore features:
@@ -215,6 +218,11 @@ nav:
       - redo-log-archiving.md
       - smart-memory-estimation.md
       - working-with-binary-logs.md
+      - analyze-table-statistics.md
+      - xbcloud features:
+        - xbcloud-binary-fifo-datasink.md
+        - xbcloud-exbackoff.md
+
   - Binaries:
     - Overview: binaries-overview.md
     - The xtrabackup binary:
@@ -222,16 +230,14 @@ nav:
       - xtrabackup-implementation-details.md
       - xtrabackup-option-reference.md
       - configure-xtrabackup.md
-      - analyze-table-statistics.md
+
     - The xbcrypt binary:
       - xbcrypt-binary-overview.md
       - xbcrypt-options.md
     - The xbstream binary:
       - xbstream-binary-overview.md 
       - xbstream-options.md
-      - take-streaming-backup.md
-      - accelerate-backup-process.md
-      - encrypt-backups.md
+
     - The xbcloud binary:
       - xbcloud-binary-overview.md
       - xbcloud-options.md
@@ -244,8 +250,7 @@ nav:
         - xbcloud-minio.md
 
       - update-curl-utility.md
-      - xbcloud-binary-fifo-datasink.md
-      - xbcloud-exbackoff.md
+
   - Install:
       - installation.md
       - Before you start:
@@ -286,6 +291,9 @@ nav:
       - Take a compressed backup:
         - create-compressed-backup.md
         - prepare-compressed-backup.md
+      - Take an encrypted backup:
+        - encrypt-backups.md
+
       - Take a partial backup:
         - create-partial-backup.md
         - prepare-partial-backup.md
@@ -307,10 +315,12 @@ nav:
   - Reference:
     - topic-index.md
     - xtrabackup-files.md
+    - xtrabackup-version-numbers.md
     - faq.md
     - glossary.md
     - supported-versions.md
     - toolkit-version-check.md
     - trademark-policy.md
     - copyright-and-licensing-information.md
+  - Topic Index: index-contents.md
 
