@@ -20,14 +20,14 @@ files to examine. It also uses the –use-memory option.">
         <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/analyze-table-statistics.html">
       
       
-        <link rel="prev" href="configure-xtrabackup.html">
+        <link rel="prev" href="working-with-binary-logs.html">
       
       
-        <link rel="next" href="xbcrypt-binary-overview.html">
+        <link rel="next" href="xbcloud-binary-fifo-datasink.html">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
     
     
       
@@ -35,7 +35,7 @@ files to examine. It also uses the –use-memory option.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.d7758b05.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -1644,28 +1644,6 @@ files to examine. It also uses the –use-memory option.">
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-version-numbers.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Understand version numbers
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="backup-strategy.html" class="md-nav__link">
         
   
@@ -1714,17 +1692,19 @@ files to examine. It also uses the –use-memory option.">
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1739,7 +1719,7 @@ files to examine. It also uses the –use-memory option.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Features
@@ -1838,6 +1818,50 @@ files to examine. It also uses the –use-memory option.">
   
   <span class="md-ellipsis">
     Store backup history on the server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="take-streaming-backup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Take a streaming backup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="accelerate-backup-process.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accelerate the backup process
     
   </span>
   
@@ -2164,6 +2188,183 @@ files to examine. It also uses the –use-memory option.">
 
               
             
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Analyze table statistics
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="analyze-table-statistics.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Analyze table statistics
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#script-to-format-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Script to format output
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Script to format output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-script-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sample script output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_12" id="__nav_6_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    xbcloud features
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_12">
+            <span class="md-nav__icon md-icon"></span>
+            xbcloud features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-binary-fifo-datasink.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FIFO data sink
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-exbackoff.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exponential backoff
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2175,19 +2376,17 @@ files to examine. It also uses the –use-memory option.">
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -2202,7 +2401,7 @@ files to examine. It also uses the –use-memory option.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Binaries
@@ -2235,19 +2434,17 @@ files to examine. It also uses the –use-memory option.">
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
         
           
           <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
@@ -2262,7 +2459,7 @@ files to examine. It also uses the –use-memory option.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             The xtrabackup binary
@@ -2352,95 +2549,6 @@ files to examine. It also uses the –use-memory option.">
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Analyze table statistics
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="analyze-table-statistics.html" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Analyze table statistics
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#script-to-format-output" class="md-nav__link">
-    <span class="md-ellipsis">
-      Script to format output
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Script to format output">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sample-script-output" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sample script output
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2612,72 +2720,6 @@ files to examine. It also uses the –use-memory option.">
   
   <span class="md-ellipsis">
     The xbstream command-line options
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="take-streaming-backup.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Take a streaming backup
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="accelerate-backup-process.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Accelerate the backup process
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="encrypt-backups.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Encrypt backups
     
   </span>
   
@@ -2964,50 +3006,6 @@ files to examine. It also uses the –use-memory option.">
   
   <span class="md-ellipsis">
     Update curl utility
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xbcloud-binary-fifo-datasink.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    FIFO data sink
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="xbcloud-exbackoff.html" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Exponential backoff
     
   </span>
   
@@ -4101,7 +4099,7 @@ files to examine. It also uses the –use-memory option.">
             
   
   <span class="md-ellipsis">
-    Take a partial backup
+    Take an encrypted backup
     
   </span>
   
@@ -4111,6 +4109,72 @@ files to examine. It also uses the –use-memory option.">
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            Take an encrypted backup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encrypt-backups.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Encrypt backups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Take a partial backup
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_5">
             <span class="md-nav__icon md-icon"></span>
             Take a partial backup
           </label>
@@ -4182,10 +4246,10 @@ files to examine. It also uses the –use-memory option.">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" >
         
           
-          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4197,8 +4261,8 @@ files to examine. It also uses the –use-memory option.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_6">
             <span class="md-nav__icon md-icon"></span>
             Back up individual partitions
           </label>
@@ -4270,10 +4334,10 @@ files to examine. It also uses the –use-memory option.">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_7" >
         
           
-          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_7" id="__nav_9_7_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4285,8 +4349,8 @@ files to examine. It also uses the –use-memory option.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_7">
             <span class="md-nav__icon md-icon"></span>
             Restore a backup
           </label>
@@ -4380,10 +4444,10 @@ files to examine. It also uses the –use-memory option.">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" >
         
           
-          <label class="md-nav__link" for="__nav_9_7" id="__nav_9_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -4395,8 +4459,8 @@ files to examine. It also uses the –use-memory option.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_8">
             <span class="md-nav__icon md-icon"></span>
             Replicate
           </label>
@@ -4679,6 +4743,28 @@ files to examine. It also uses the –use-memory option.">
   
   
     <li class="md-nav__item">
+      <a href="xtrabackup-version-numbers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand version numbers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="faq.html" class="md-nav__link">
         
   
@@ -4807,6 +4893,27 @@ files to examine. It also uses the –use-memory option.">
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index-contents.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Topic Index
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -5180,7 +5287,7 @@ empty, is a summary of the entire table.</p>
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.f13b1293.min.js"></script>
+      <script src="assets/javascripts/bundle.f1b6f286.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
