@@ -93,34 +93,45 @@ directory:
     $ cd build
     ```
 
-3. Run cmake or cmake3. In either case, the options you need to use are the
-same.
+3. If you use a regular build, run cmake or cmake3. In either case, the options you need to use are the same.
 
 !!! note
  
-    You can build *Percona XtraBackup* with man pages but this requires
-    `python-sphinx` package which isn’t available from that main repositories
-    for every distribution. If you installed the `python-sphinx` package you
-    need to remove the `-DWITH_MAN_PAGES=OFF` from previous command.
+    You can build Percona XtraBackup with man pages but this requires
+    `python-sphinx` package which isn’t available from the main repositories
+    for every distribution. If you installed the `python-sphinx` package, remove `-DWITH_MAN_PAGES=OFF` from this command.
 
 ```{.bash data-prompt="$"}
 $ cmake -DWITH_BOOST=PATH-TO-BOOST-LIBRARY -DDOWNLOAD_BOOST=ON \
 -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF -B ..
 ```
 
-### Parameter Information
-
-| **Parameter** | **Description** |
+| Parameter | Description |
 |---------------|-----------------|
 | `-DWITH_BOOST` | For the `-DWITH_BOOST` parameter, specify the name of a directory to download the boost library to. This directory is created automatically in your current directory. |
+| `-DBUILD_CONFIG` |  This flag allows you to define a build configuration, such as "debug" or "release", which can be used to control which parts of the source code are compiled. |
 | `-DWITH_MAN_PAGES` | To build **Percona XtraBackup** man pages, use `ON` or remove this parameter from the command line (it is `ON` by default). To install the man pages, install the python3-sphinx package first. |
-| `-B` (--build)| **Percona XtraBackup** is configured to forbid generating the build    pipeline for make in the same directory where you store your sources. The `-B` parameter refers to the directory that contains the source code. In this example, we use the relative path to the parent directory (..). |
+| `-B` (--build) | **Percona XtraBackup** is configured to forbid generating the build    pipeline for make in the same directory where you store your sources. The `-B` parameter refers to the directory that contains the source code. In this example, we use the relative path to the parent directory (..). |
 
 !!! important
  
     CMake Error at CMakeLists.txt:367 (MESSAGE): Please do not build in-source. Out-of source builds are highly recommended: you can have multiple builds for the same source, and there is an easy way to do cleanup, simply remove the build directory (note that ‘make clean’ or ‘make distclean’ does `not` work)
     
     You `can` force in-source build by invoking cmake with `-DFORCE_INSOURCE_BUILD=1`.
+
+<!--     
+If you use [Pro builds](./pxb-pro.md), run the following command:
+
+```{.bash data-prompt="$"}
+$ cmake -DPROBUILD=1 -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF ..
+```
+
+| Parameter | Description |
+|---------------|-----------------|
+| `-DPROBUILD=1` | This option enables a Pro build. |
+| `-DBUILD_CONFIG` | This option builds a release/optimized version of the xtrabackup binary. |
+| `-DWITH_MAN_PAGES` | To build Percona XtraBackup man pages, use `ON` or remove this parameter from the command line (it is `ON` by default). To install the man pages, install the python3-sphinx package first. |
+-->
 
 ## 4. Compile the source code
 
