@@ -1,8 +1,10 @@
-# Restore full, incremental, compressed backups
+# Restore full, incremental, and compressed backups
 
 !!! warning
    
     Backup needs to be prepared before it can be restored.
+
+The restore backup procedure is the same for full, incremental, and compressed backups.
 
 For convenience, *xtrabackup* binary has the `--copy-back` option to copy the backup to the datadir of the server:
 
