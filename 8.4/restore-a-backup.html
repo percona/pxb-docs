@@ -8,7 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="For convenience, xtrabackup binary has the --copy-back option to copy the backup to the datadir of the server:">
+        <meta name="description" content="The restore backup procedure is the same for full, incremental, and compressed backups.">
       
       
         <meta name="author" content="Percona LLC">
@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
     
     
       
@@ -114,7 +114,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#restore-full-incremental-compressed-backups" class="md-skip">
+        <a href="#restore-full-incremental-and-compressed-backups" class="md-skip">
           Skip to content
         </a>
       
@@ -4098,11 +4098,12 @@
   
 
 
-<h1 id="restore-full-incremental-compressed-backups">Restore full, incremental, compressed backups<a class="headerlink" href="#restore-full-incremental-compressed-backups" title="Permanent link">&para;</a></h1>
+<h1 id="restore-full-incremental-and-compressed-backups">Restore full, incremental, and compressed backups<a class="headerlink" href="#restore-full-incremental-and-compressed-backups" title="Permanent link">&para;</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Backup needs to be prepared before it can be restored.</p>
 </div>
+<p>The restore backup procedure is the same for full, incremental, and compressed backups.</p>
 <p>For convenience, <em>xtrabackup</em> binary has the <code>--copy-back</code> option to copy the backup to the datadir of the server:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
@@ -4127,7 +4128,7 @@ can look like this:</p>
   <small>
     
       Last update:
-      2024-01-17
+      2025-03-07
     
   </small>
 </div>
@@ -4228,7 +4229,7 @@ can look like this:</p>
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.f1b6f286.min.js"></script>
+      <script src="assets/javascripts/bundle.c8b220af.min.js"></script>
       
         <script src="js/version-select.js"></script>
       
