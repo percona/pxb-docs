@@ -8,7 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="For convenience, xtrabackup binary has the --copy-back option to copy the backup to the datadir of the server:">
+        <meta name="description" content="The restore backup procedure is the same for full, incremental, and compressed backups.">
       
       
         <meta name="author" content="Percona LLC">
@@ -114,7 +114,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#restore-a-backup" class="md-skip">
+        <a href="#restore-full-incremental-and-compressed-backups" class="md-skip">
           Skip to content
         </a>
       
@@ -5044,11 +5044,12 @@
   
 
 
-<h1 id="restore-a-backup">Restore a backup<a class="headerlink" href="#restore-a-backup" title="Permanent link">&para;</a></h1>
+<h1 id="restore-full-incremental-and-compressed-backups">Restore full, incremental, and compressed backups<a class="headerlink" href="#restore-full-incremental-and-compressed-backups" title="Permanent link">&para;</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Backup needs to be prepared before it can be restored.</p>
 </div>
+<p>The restore backup procedure is the same for full, incremental, and compressed backups.</p>
 <p>For convenience, <em>xtrabackup</em> binary has the <code>--copy-back</code> option to copy the backup to the datadir of the server:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
@@ -5073,7 +5074,7 @@ can look like this:</p>
   <small>
     
       Last update:
-      2024-06-12
+      2025-03-07
     
   </small>
 </div>
