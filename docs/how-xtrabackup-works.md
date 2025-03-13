@@ -64,23 +64,30 @@ have to redirect it to a file, for example, `xtrabackup OPTIONS 2> backupout.log
 It will also create the following files in the
 directory of the backup.
 
-During the `prepare` phase, Percona XtraBackup performs crash recovery against
-the copied data files, using the copied transaction log file. After this is
-done, the database is ready to restore and use.
+## Prepare phase
 
-The backed-up MyISAM and InnoDB tables will be eventually consistent with
-each other, because after the prepare (recovery) process, InnoDB’s data is
-rolled forward to the point at which the backup completed, not rolled back to
-the point at which it started. This point in time matches where the `FLUSH
-TABLES WITH READ LOCK` was taken, so the MyISAM data and the prepared
-InnoDB data are in sync.
+This phase involves two primary operations: applying the redo log and the undo log.
 
-The xtrabackup offers many features not mentioned in the preceding
-explanation. The functionality of each tool is explained in more
-detail further in this manual. In brief, though, the tools enable you
-to do operations such as streaming and incremental backups with
-various combinations of copying the data files, copying the log files,
-and applying the logs to the data.
+### Redo Log Application (Physical Operation)
+
+XtraBackup directly applies changes recorded in the redo log to specific page offsets within the tablespace (IBD file). This is a physical operation, meaning it works at the page level, without regard for rows or transactions.
+
+It's important to understand that the redo log might contain uncommitted transactions, as the server can flush or write these to the log. Therefore, the redo log application doesn't inherently guarantee transactional consistency.
+
+### Undo Log Application (Logical Operation)
+
+Following the redo log application, XtraBackup uses the undo log to logically roll back changes from any uncommitted transactions present in the redo log.
+Undo log records are of two types: `INSERT` and `UPDATE`. Each record contains a `table_id`, which XtraBackup uses to locate the table definition.
+
+To perform the rollback, XtraBackup initializes the InnoDB engine and data dictionary, then uses Serialized Dictionary Information (SDI) from the tablespace (a JSON representation of the table) to parse index pages and apply undo operations.
+
+Tables are loaded as evictable, and XtraBackup scans data dictionary indexes to relate `table_id` to tablespace, which is used during rollback. User tables are loaded only when needed for rollback. This design significantly reduces memory and I/O usage, speeds up the `--prepare` phase, and improves Percona XtraDB Cluster SST performance.
+
+### Achieving Consistency: Redo, Undo, and MyISAM
+
+The `--prepare` phase ensures that InnoDB tables are rolled forward to the point where the backup completed, not rolled back to where it began. This point aligns with the time a `FLUSH TABLES WITH READ LOCK` was taken, which is crucial for maintaining consistency with MyISAM tables.
+
+Therefore, after the `--prepare` phase, both InnoDB and MyISAM tables are eventually consistent with each other.
 
 ## Restore a backup
 
