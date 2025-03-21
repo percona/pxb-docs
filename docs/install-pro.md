@@ -4,6 +4,7 @@
 
 This document provides guidelines how to install Pro packages of Percona XtraBackup from Percona repositories. [Check files in packages built for Percona XtraBackup Pro :material-arrow-right:](pro-files.md){.md-button}
 
+
 ## Procedure
 
 !!! note 
@@ -17,6 +18,9 @@ This document provides guidelines how to install Pro packages of Percona XtraBac
     * Ubuntu (24.04)
 
     * Debian (12)
+    
+    * Amazon Linux 2023 - we support both AMD64 and ARM64 architectures.
+      
 
 1. Request the access to the pro repository from Percona Support. You will receive the client ID and the access token which you use when downloading the packages.
 
@@ -92,12 +96,12 @@ This document provides guidelines how to install Pro packages of Percona XtraBac
                 $ sudo apt install zstd
                 ```
 
-    === "On RHEL or derivatives"
+    === "On RHEL or Amazon Linux 2023 or derivatives"
 
         1. Install the Percona yum repository by running the following command as the `root` user or with **sudo**: 
 
             ```{.bash data-prompt="$"}
-            $ sudo yum install \
+            $ sudo dnf install \
             https://repo.percona.com/yum/percona-release-latest.\
             noarch.rpm
             ```
@@ -111,7 +115,7 @@ This document provides guidelines how to install Pro packages of Percona XtraBac
         3. Install Percona XtraBackup:
 
             ```{.bash data-prompt="$"}
-            $ sudo yum install percona-xtrabackup-pro-84
+            $ sudo dnf install percona-xtrabackup-pro-84
             ```
 
         4. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:
@@ -119,11 +123,12 @@ This document provides guidelines how to install Pro packages of Percona XtraBac
             === "Install the `lz4` package"
 
                 ```{.bash data-prompt="$"}
-                $ sudo yum install lz4
+                $ sudo dnf install lz4
                 ```
 
             === "Install the `zstd` package"
 
                 ```{.bash data-prompt="$"}
-                $ sudo yum install zstd
+                $ sudo dnf install zstd
                 ```
+
