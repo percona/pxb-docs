@@ -1,8 +1,8 @@
-# Move single tables between databases
+# Restore single tables between databases
 
-Sometimes, you must move just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to move specific tables between different database systems while keeping your data safe.
+Sometimes, you must restore just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to restore specific tables between different database systems while keeping your data safe.
 
-This process only works with InnoDB tables that use the `file-per-table` setup. This setup stores each table's data in its `.ibd` file. You can move these tables to systems running Percona Server for MySQL with XtraDB or MySQL 8.0. Your source database can be any type, but the target database must be XtraDB or MySQL 8.0.
+This process only works with InnoDB tables that use the `file-per-table` setup. This setup stores each table's data in its `.ibd` file. You can restore these tables to systems running Percona Server for MySQL with XtraDB or MySQL 8.0. Your source database can be any type, but the target database must be XtraDB or MySQL 8.0.
 
 When moving tables, you'll work with several important files. Each file has a specific job in the restoration process:
 
@@ -69,9 +69,9 @@ After these commands finish successfully, you'll need these files for the table 
 /data/backups/mysql/test/export_test.cfp
 ```
 
-## Import the table
+## Restore the table
 
-Now that we've exported the table, we can move it to the destination system. You need to follow these steps in order on the target server:
+Now that we've exported the table, we can restore it to the destination system. You need to follow these steps in order on the target server:
 
 * Use the saved schema definition to create an empty table at the destination. This schema provides the framework for your imported data.
 
@@ -97,12 +97,12 @@ The following is the detailed process:
 
 3. Copy all the table files (export_test.ibd, export_test.cfp, and export_test.cfg) from the source directory to the matching destination schema directory inside the server data directory.
 
-4. Run this SQL command to attach the moved tablespace to the destination table, finishing the data move:
+4. Run this SQL command to attach the restored tablespace to the destination table, finishing the data restore:
 
     ```{.bash data-prompt="mysql>"}
     mysql> ALTER TABLE test.export_test IMPORT TABLESPACE;
     ```
 
-After these steps are finished successfully, your table move is complete and the data is ready to use. You can run a `SELECT` query on the newly imported table to check that the imported data is correct.
+After these steps are finished successfully, your table restore is complete and the data is ready to use. You can run a `SELECT` query on the newly imported table to check that the imported data is correct.
     
 [--export]: xtrabackup-option-reference.md#export
