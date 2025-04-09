@@ -8,15 +8,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="We can’t find the page you are looking for. Try using the Search or return to the homepage.">
+        <meta name="description" content="This script is designed to dump the schemas of all tables from each database in a MySQL server instance, excluding the system databases, into separate files.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/404.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.0/dump-schema.html">
       
       
+        <link rel="prev" href="glossary.html">
+      
+      
+        <link rel="next" href="supported-versions.html">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
@@ -24,7 +28,7 @@
     
     
       
-        <title>404 - Not Found - Percona XtraBackup</title>
+        <title>Dump schema for all tables - Percona XtraBackup</title>
       
     
     
@@ -87,7 +91,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - 404 - Not Found" />
+                 <meta property="og:title" content="Percona XtraBackup - Dump schema for all tables" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -110,7 +114,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#404-not-found" class="md-skip">
+        <a href="#dump-schema-for-all-tables" class="md-skip">
           Skip to content
         </a>
       
@@ -185,7 +189,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              404 - Not Found
+              Dump schema for all tables
             
           </span>
         </div>
@@ -4891,18 +4895,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
         
           
           <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
@@ -4918,7 +4924,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             Reference
@@ -5044,10 +5050,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="dump-schema.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Dump schema for all tables
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="dump-schema.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -5058,6 +5086,46 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5212,6 +5280,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                   <div class="md-sidebar__inner">
@@ -5243,7 +5337,7 @@
 
 
   
-    <a href="https://github.com/percona/pxb-docs/edit/8.0/docs/404.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/edit/8.0/docs/dump-schema.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -5252,21 +5346,214 @@
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/8.0/docs/404.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/8.0/docs/dump-schema.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="404-not-found">404 - Not Found<a class="headerlink" href="#404-not-found" title="Permanent link">&para;</a></h1>
-<p>We can’t find the page you are looking for. Try using the Search or return to the <a href="index.html">homepage</a>.</p>
+<h1 id="dump-schema-for-all-tables">Dump schema for all tables<a class="headerlink" href="#dump-schema-for-all-tables" title="Permanent link">&para;</a></h1>
+<p>This script is designed to dump the schemas of all tables from each database in a MySQL server instance, excluding the system databases, into separate files.</p>
+<p>The script should be modified for your specific use case before you run it. For example, you may want to exclude certain tables or databases, or specify a different output directory.</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="ch">#!/bin/{.bash data-prompt=&quot;$&quot;}</span>
+print_usage<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> [--defaults-file=&lt;file&gt;] [--destination-dir=&lt;directory&gt;]&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --defaults-file=&lt;file&gt;      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --destination-dir=&lt;directory&gt; (Optional) Directory to save the schema dumps (default: schema_dumps)&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="o">}</span>
+
+<span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">HARDCODED_PASSWORD</span><span class="o">=</span><span class="s2">&quot;test2&quot;</span>
+<span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">&quot;schema_dumps&quot;</span>
+
+<span class="c1"># Check for -h or --help option</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;-h&quot;</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;--help&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>print_usage
+<span class="k">fi</span>
+
+<span class="c1"># Parse arguments using a loop to check for --defaults-file and --destination-dir options</span>
+<span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$#</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">        </span>--defaults-file<span class="o">=</span>*<span class="o">)</span>
+<span class="w">            </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;--defaults-file=</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using provided defaults file: </span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>--destination-dir<span class="o">=</span>*<span class="o">)</span>
+<span class="w">            </span><span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Saving schema dumps in: </span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>*<span class="o">)</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Error: Invalid option &#39;</span><span class="nv">$1</span><span class="s2">&#39;&quot;</span>
+<span class="w">            </span>print_usage
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">    </span><span class="k">esac</span>
+<span class="w">    </span><span class="nb">shift</span>
+<span class="k">done</span>
+
+<span class="c1"># Default behavior if no defaults-file is provided</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEFAULTS_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MYSQL_PWD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using password from environment variable MYSQL_PWD&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;--password=</span><span class="nv">$HARDCODED_PASSWORD</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using hardcoded password in the script&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;-uroot&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using hardcoded user: </span><span class="nv">$USER</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># Root directory for schema dumps</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Schema will be saved in: </span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span>
+
+<span class="c1"># Get the list of all databases, excluding system databases</span>
+<span class="nv">databases</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SHOW DATABASES&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-Ev<span class="w"> </span><span class="s2">&quot;^(information_schema|performance_schema|mysql|sys)</span>$<span class="s2">&quot;</span><span class="k">)</span>
+
+<span class="k">for</span><span class="w"> </span>db<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$databases</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Dumping schemas for database: </span><span class="nv">$db</span><span class="s2">&quot;</span>
+
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># Create a directory for each database</span>
+
+<span class="w">    </span><span class="c1"># Dump only the database creation statement</span>
+<span class="w">    </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--databases<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/create_database_</span><span class="si">${</span><span class="nv">db</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+
+<span class="w">    </span><span class="c1"># Get the list of tables for the current database</span>
+<span class="w">    </span><span class="nv">tables</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SHOW TABLES FROM </span><span class="nv">$db</span><span class="s2">&quot;</span><span class="k">)</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span>table<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$tables</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  Dumping schema for table: </span><span class="nv">$table</span><span class="s2">&quot;</span>
+
+<span class="w">        </span><span class="c1"># Ensure `USE &lt;database&gt;;` is at the top of each table&#39;s schema file</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;USE \`</span><span class="nv">$db</span><span class="s2">\`;&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+
+<span class="w">        </span><span class="c1"># Append the table schema dump</span>
+<span class="w">        </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--skip-add-drop-table<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$table</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="k">done</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Schema dumps are saved in the &#39;</span><span class="nv">$DEST_DIR</span><span class="s2">&#39; directory.&quot;</span>
+</code></pre></div>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>To use this script, follow these steps:</p>
+<ol>
+<li>
+<p>Save the script  </p>
+<ul>
+<li>
+<p>Copy the script to your local machine.  </p>
+</li>
+<li>
+<p>Save the file with a <code>.sh</code> extension, such as <code>dump_schemas.sh</code>.  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>Make the script executable  </p>
+<ul>
+<li>Run the following command to make the script executable:  </li>
+</ul>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>dump_schemas.sh
+</code></pre></div>
+</li>
+<li>
+<p>Verify dependencies  </p>
+<ul>
+<li>Check if <code>mysqldump</code> is installed by running:  </li>
+</ul>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>which<span class="w"> </span>mysqldump
+</code></pre></div>
+<ul>
+<li>If <code>mysqldump</code> is not installed or not available in your PATH, install it using:  </li>
+</ul>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mysql-client
+</code></pre></div>
+</li>
+<li>
+<p>Use one of the following commands to execute the script:</p>
+<ul>
+<li>
+<p>See the usage instructions, run:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>--help
+</code></pre></div>
+</li>
+<li>
+<p>Specify a MySQL defaults file (for example, <code>~/.my.cnf</code>) and destination directory for the schema dumps, run:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>--defaults-file<span class="o">=</span>/path/to/my.cnf<span class="w"> </span>--destination-dir<span class="o">=</span>/path/to/output
+</code></pre></div>
+</li>
+<li>
+<p>If you do not have a <code>defaults-file</code>, use the script defaults of a hardcoded password or an environment variable, if set. Specify only the destination directory:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>--destination-dir<span class="o">=</span>/path/to/output
+</code></pre></div>
+</li>
+<li>
+<p>To use the hardcoded password and default destination directory, <code>schema_dumps</code>, use:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>
+</code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Inspect the output  </p>
+<ul>
+<li>
+<p>The script creates a <code>schema_dumps</code> directory in the current working directory.  </p>
+</li>
+<li>
+<p>The dumped schemas are organized as follows:  </p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>.
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>.
+./test
+./test/t4.sql
+./test/t3.sql
+./test/create_database_test.sql
+./test2
+./test2/create_database_test2.sql
+./test2/create_database_test2.sql
+./test2/t1.sql
+...
+</code></pre></div>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p>Review logs for errors or warnings  </p>
+<ul>
+<li>After execution, check the terminal output for any errors or warnings that may indicate issues with the backup process.  </li>
+</ul>
+</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p>If you encounter any issues while using this script, please check the following:</p>
+<ul>
+<li>
+<p>Ensure that <code>mysqldump</code> is installed and available in your PATH.</p>
+</li>
+<li>
+<p>Verify that the MySQL root user and password are correct.</p>
+</li>
+<li>
+<p>Check the permissions of the output directory and ensure that the script has write access.</p>
+</li>
+<li>
+<p>Ensure that the MySQL server is running and accessible.</p>
+</li>
+<li>
+<p>Ensure that the MySQL server is configured to accept remote connections.</p>
+</li>
+</ul>
 <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      2022-09-19
+      2025-03-20
     
   </small>
 </div>
