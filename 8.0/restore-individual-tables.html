@@ -8,7 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Sometimes, you must move just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to move specific tables between different database systems while keeping your data safe.">
+        <meta name="description" content="Sometimes, you must restore just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to restore specific tables between different database systems while keeping your data safe.">
       
       
         <meta name="author" content="Percona LLC">
@@ -28,7 +28,7 @@
     
     
       
-        <title>Move individual tables - Percona XtraBackup</title>
+        <title>Restore individual tables - Percona XtraBackup</title>
       
     
     
@@ -91,7 +91,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Move individual tables" />
+                 <meta property="og:title" content="Percona XtraBackup - Restore individual tables" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.0/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -114,7 +114,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#move-single-tables-between-databases" class="md-skip">
+        <a href="#restore-single-tables-between-databases" class="md-skip">
           Skip to content
         </a>
       
@@ -189,7 +189,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Move individual tables
+              Restore individual tables
             
           </span>
         </div>
@@ -4655,7 +4655,7 @@
   
   
   <span class="md-ellipsis">
-    Move individual tables
+    Restore individual tables
     
   </span>
   
@@ -4668,7 +4668,7 @@
   
   
   <span class="md-ellipsis">
-    Move individual tables
+    Restore individual tables
     
   </span>
   
@@ -4711,9 +4711,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#import-the-table" class="md-nav__link">
+  <a href="#restore-the-table" class="md-nav__link">
     <span class="md-ellipsis">
-      Import the table
+      Restore the table
     </span>
   </a>
   
@@ -5314,9 +5314,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#import-the-table" class="md-nav__link">
+  <a href="#restore-the-table" class="md-nav__link">
     <span class="md-ellipsis">
-      Import the table
+      Restore the table
     </span>
   </a>
   
@@ -5371,9 +5371,9 @@
   
 
 
-<h1 id="move-single-tables-between-databases">Move single tables between databases<a class="headerlink" href="#move-single-tables-between-databases" title="Permanent link">&para;</a></h1>
-<p>Sometimes, you must move just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to move specific tables between different database systems while keeping your data safe.</p>
-<p>This process only works with InnoDB tables that use the <code>file-per-table</code> setup. This setup stores each table&rsquo;s data in its <code>.ibd</code> file. You can move these tables to systems running Percona Server for MySQL with XtraDB or MySQL 8.0. Your source database can be any type, but the target database must be XtraDB or MySQL 8.0.</p>
+<h1 id="restore-single-tables-between-databases">Restore single tables between databases<a class="headerlink" href="#restore-single-tables-between-databases" title="Permanent link">&para;</a></h1>
+<p>Sometimes, you must restore just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to restore specific tables between different database systems while keeping your data safe.</p>
+<p>This process only works with InnoDB tables that use the <code>file-per-table</code> setup. This setup stores each table&rsquo;s data in its <code>.ibd</code> file. You can restore these tables to systems running Percona Server for MySQL with XtraDB or MySQL 8.0. Your source database can be any type, but the target database must be XtraDB or MySQL 8.0.</p>
 <p>When moving tables, you&rsquo;ll work with several important files. Each file has a specific job in the restoration process:</p>
 <table>
 <thead>
@@ -5446,8 +5446,8 @@ a<span class="w"> </span>int<span class="o">(</span><span class="m">11</span><sp
 /data/backups/mysql/test/export_test.cfg
 /data/backups/mysql/test/export_test.cfp
 </code></pre></div>
-<h2 id="import-the-table">Import the table<a class="headerlink" href="#import-the-table" title="Permanent link">&para;</a></h2>
-<p>Now that we&rsquo;ve exported the table, we can move it to the destination system. You need to follow these steps in order on the target server:</p>
+<h2 id="restore-the-table">Restore the table<a class="headerlink" href="#restore-the-table" title="Permanent link">&para;</a></h2>
+<p>Now that we&rsquo;ve exported the table, we can restore it to the destination system. You need to follow these steps in order on the target server:</p>
 <ul>
 <li>
 <p>Use the saved schema definition to create an empty table at the destination. This schema provides the framework for your imported data.</p>
@@ -5474,18 +5474,18 @@ $<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </s
 <p>Copy all the table files (export_test.ibd, export_test.cfp, and export_test.cfg) from the source directory to the matching destination schema directory inside the server data directory.</p>
 </li>
 <li>
-<p>Run this SQL command to attach the moved tablespace to the destination table, finishing the data move:</p>
+<p>Run this SQL command to attach the restored tablespace to the destination table, finishing the data restore:</p>
 <div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>test.export_test<span class="w"> </span>IMPORT<span class="w"> </span>TABLESPACE<span class="p">;</span>
 </code></pre></div>
 </li>
 </ol>
-<p>After these steps are finished successfully, your table move is complete and the data is ready to use. You can run a <code>SELECT</code> query on the newly imported table to check that the imported data is correct.</p>
+<p>After these steps are finished successfully, your table restore is complete and the data is ready to use. You can run a <code>SELECT</code> query on the newly imported table to check that the imported data is correct.</p>
 <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      2025-03-20
+      2025-04-09
     
   </small>
 </div>
