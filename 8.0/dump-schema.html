@@ -5355,9 +5355,8 @@
 
 <h1 id="dump-schema-for-all-tables">Dump schema for all tables<a class="headerlink" href="#dump-schema-for-all-tables" title="Permanent link">&para;</a></h1>
 <p>This script is designed to dump the schemas of all tables from each database in a MySQL server instance, excluding the system databases, into separate files.</p>
-<p>The script should be modified for your specific use case before you run it. For example, you may want to exclude certain tables or databases, or specify a different output directory.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="ch">#!/bin/{.bash data-prompt=&quot;$&quot;}</span>
-print_usage<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<p>Before you run the script, modify it for your specific use case. For example, you may want to exclude certain tables or databases or specify a different output directory.</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>print_usage<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> [--defaults-file=&lt;file&gt;] [--destination-dir=&lt;directory&gt;]&quot;</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --defaults-file=&lt;file&gt;      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)&quot;</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --destination-dir=&lt;directory&gt; (Optional) Directory to save the schema dumps (default: schema_dumps)&quot;</span>
@@ -5553,7 +5552,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
   <small>
     
       Last update:
-      2025-03-20
+      2025-04-09
     
   </small>
 </div>
