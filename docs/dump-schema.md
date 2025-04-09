@@ -2,10 +2,10 @@
 
 This script is designed to dump the schemas of all tables from each database in a MySQL server instance, excluding the system databases, into separate files.
 
-The script should be modified for your specific use case before you run it. For example, you may want to exclude certain tables or databases, or specify a different output directory.
+Before you run the script, modify it for your specific use case. For example, you may want to exclude certain tables or databases or specify a different output directory.
 
 ```{.bash data-prompt="$"}
-#!/bin/{.bash data-prompt="$"}
+
 print_usage() {
     echo "Usage: $0 [--defaults-file=<file>] [--destination-dir=<directory>]"
     echo "  --defaults-file=<file>      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)"
