@@ -5595,10 +5595,14 @@ permissions to access them.</p>
 datadir, you must put these files in their proper place after the logs have
 been applied.</p>
 <h2 id="3-configure-the-sources-mysql-server">3. Configure the Source’s MySQL server<a class="headerlink" href="#3-configure-the-sources-mysql-server" title="Permanent link">&para;</a></h2>
-<p>On the source, run the following command to add the appropriate grant. This
-grant allows the replica to be able to connect to source:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>SLAVE<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w">  </span>TO<span class="w"> </span><span class="s1">&#39;repl&#39;</span>@<span class="s1">&#39;$replicaip&#39;</span>
-IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
+<p>On the source, create a user specifically for replication tasks. Use the following command to define the user and set a secure password:</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;repl&#39;</span>@<span class="s1">&#39;$replicaip&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>Grant the replication privileges to the newly created user to allow the replica to connect to the source server:</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>SLAVE<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w"> </span>TO<span class="w"> </span><span class="s1">&#39;repl&#39;</span>@<span class="s1">&#39;$replicaip&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>Apply the changes:</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
 </code></pre></div>
 <p>Also make sure that firewall rules are correct and that the <code>Replica</code> can
 connect to the <code>Source</code>. Run the following command on the Replica to test
@@ -5750,7 +5754,7 @@ server is replicating the <code>Source</code>.</p>
   <small>
     
       Last update:
-      2023-06-22
+      2025-04-10
     
   </small>
 </div>
