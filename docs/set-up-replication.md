@@ -139,12 +139,22 @@ been applied.
 
 ## 3. Configure the Source’s MySQL server
 
-On the source, run the following command to add the appropriate grant. This
-grant allows the replica to be able to connect to source:
+On the source, create a user specifically for replication tasks. Use the following command to define the user and set a secure password:
 
 ```{.bash data-prompt="mysql>"}
-mysql> GRANT REPLICATION REPLICA ON *.*  TO 'repl'@'$replicaip'
-IDENTIFIED BY '$replicapass';
+mysql> CREATE USER 'repl'@'$replicaip' IDENTIFIED BY '$replicapass';
+```
+
+Grant the replication privileges to the newly created user to allow the replica to connect to the source server:
+
+```{.bash data-prompt="mysql>"}
+mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl'@'$replicaip';
+```
+
+Apply the changes:
+
+```{.bash data-prompt="mysql>"}
+mysql> FLUSH PRIVILEGES;
 ```
 
 Also make sure that firewall rules are correct and that the `Replica` can
