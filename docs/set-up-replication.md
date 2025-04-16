@@ -54,7 +54,7 @@ The backup tool we will use. It should be installed in both computers for conven
 
 The 8.0.23 version deprecates the `CHANGE_MASTER_TO` command. In that 
 version and later, use
-the [CHANGE_REPLICATION_SOURCE_TO and the appropriate options](https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html) instead.
+the [CHANGE REPLICATION SOURCE TO and the appropriate options](https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html) instead.
 
 The 8.0.22 version deprecates the`START SLAVE` command. In that version or 
 later, use `START REPLICA` instead.
@@ -225,7 +225,7 @@ The results should resemble the following:
 MySQL console and use the username and
 password you’ve set up in STEP 3 :
 
-* Version 8.0.23 or later, use the `CHANGE_REPLICATION_SOURCE_TO` statement
+* Version 8.0.23 or later, use the `CHANGE REPLICATION SOURCE TO` statement
 
 * Before 8.0.23, use the `CHANGE MASTER` statement
 
@@ -349,7 +349,7 @@ source and the log file for the NewReplica:
 [The term `master` is deprecated](#version-updates). Do the following 
 and then start the replica:
 
-* Version 8.0.23 or later, use the `CHANGE_REPLICATION_SOURCE_TO` statement
+* Version 8.0.23 or later, use the `CHANGE REPLICATION SOURCE TO` statement
 
 * Before 8.0.23, use the `CHANGE MASTER` statement
 
