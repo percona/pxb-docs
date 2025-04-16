@@ -6,9 +6,9 @@
 
 Find the list of capabilities available in Percona XtraBackup Pro:
 
-| Name                                | Version | Description  | 
+| Name                                | Available since | Description  | 
 | ----------------------------------- | ------------- | -------------|
-|  Available on [Amazon Linux 2023](install-pro.md#installamazonlinux2023) | 8.0.35-32 | Amazon Linux 2023 is a purpose-built Linux distribution optimized for AWS. It's designed for performance, security, and seamless integration with the broader AWS ecosystem. We support both AMD64 and ARM64 versions of Amazon Linux 2023. |
+| [Amazon Linux 2023](install-pro.md#installamazonlinux2023) | 8.0.35-32 | Amazon Linux 2023 is a purpose-built Linux distribution optimized for AWS. It's designed for performance, security, and seamless integration with the broader AWS ecosystem. We support both AMD64 and ARM64 versions of Amazon Linux 2023. |
 
 ## What's in it for you?
 
