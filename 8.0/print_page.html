@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
@@ -16707,7 +16707,7 @@ we did about <code>Source</code>, except that the server-id on <code>Replica</co
 <h2 id="set-up-replication-version-updates">Version updates<a class="headerlink" href="#set-up-replication-version-updates" title="Permanent link">&para;</a></h2>
 <p>The 8.0.23 version deprecates the <code>CHANGE_MASTER_TO</code> command. In that 
 version and later, use
-the <a href="https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO and the appropriate options</a> instead.</p>
+the <a href="https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html">CHANGE REPLICATION SOURCE TO and the appropriate options</a> instead.</p>
 <p>The 8.0.22 version deprecates the<code>START SLAVE</code> command. In that version or 
 later, use <code>START REPLICA</code> instead.</p>
 <h2 id="set-up-replication-1-make-a-backup-on-the-source-and-prepare-it">1. Make a backup on the <code>Source</code> and prepare it<a class="headerlink" href="#set-up-replication-1-make-a-backup-on-the-source-and-prepare-it" title="Permanent link">&para;</a></h2>
@@ -16815,7 +16815,7 @@ MySQL console and use the username and
 password you’ve set up in STEP 3 :</p>
 <ul>
 <li>
-<p>Version 8.0.23 or later, use the <code>CHANGE_REPLICATION_SOURCE_TO</code> statement</p>
+<p>Version 8.0.23 or later, use the <code>CHANGE REPLICATION SOURCE TO</code> statement</p>
 </li>
 <li>
 <p>Before 8.0.23, use the <code>CHANGE MASTER</code> statement</p>
@@ -16904,7 +16904,7 @@ source and the log file for the NewReplica:</p>
 and then start the replica:</p>
 <ul>
 <li>
-<p>Version 8.0.23 or later, use the <code>CHANGE_REPLICATION_SOURCE_TO</code> statement</p>
+<p>Version 8.0.23 or later, use the <code>CHANGE REPLICATION SOURCE TO</code> statement</p>
 </li>
 <li>
 <p>Before 8.0.23, use the <code>CHANGE MASTER</code> statement</p>
