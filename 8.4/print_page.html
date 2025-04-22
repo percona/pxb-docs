@@ -1321,8 +1321,6 @@
       
         
       
-        
-      
     
     
     
@@ -1367,29 +1365,6 @@
   
   <span class="md-ellipsis">
     Point-in-time recovery
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="restore-individual-tables.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Restore individual tables
     
   </span>
   
@@ -3247,6 +3222,8 @@
       
         
       
+        
+      
     
     
     
@@ -4020,6 +3997,29 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="restore-individual-tables.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Restore individual tables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -4039,10 +4039,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_9" >
         
           
-          <label class="md-nav__link" for="__nav_10_8" id="__nav_10_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_10_9" id="__nav_10_9_label" tabindex="0">
             
   
   
@@ -4055,8 +4055,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10_9">
             <span class="md-nav__icon md-icon"></span>
             Replicate
           </label>
@@ -4289,6 +4289,8 @@
       
         
       
+        
+      
     
     
     
@@ -4425,6 +4427,29 @@
   
   <span class="md-ellipsis">
     Percona Toolkit version checking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dump-schema.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dump schema for all tables
     
   </span>
   
@@ -4869,15 +4894,6 @@
   <a href="#point-in-time-recovery" class="md-nav__link">
     <span class="md-ellipsis">
       Point-in-time recovery
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#restore-individual-tables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Restore individual tables
     </span>
   </a>
   
@@ -5765,7 +5781,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#section-10-8" class="md-nav__link">
+  <a href="#restore-individual-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restore individual tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-10-9" class="md-nav__link">
     <span class="md-ellipsis">
       Replicate
     </span>
@@ -5903,6 +5928,15 @@
   <a href="#toolkit-version-check" class="md-nav__link">
     <span class="md-ellipsis">
       Percona Toolkit version checking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dump schema for all tables
     </span>
   </a>
   
@@ -7626,53 +7660,7 @@ server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--start-position<span class="o">=</span><span class="m">57</span><span class="w"> </span>--stop-datetime<span class="o">=</span><span class="s2">&quot;11-12-25 01:00:00&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
 </code></pre></div>
-<p>and the database will be rolled forward up to that Point-In-Time.</p></section><section class="print-page" id="restore-individual-tables" heading-number="7.2.2"><h1 id="restore-individual-tables-restore-individual-tables">Restore individual tables<a class="headerlink" href="#restore-individual-tables-restore-individual-tables" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup can export a table that is contained in its own .ibd file. With Percona XtraBackup, you can export individual tables from any InnoDB database, and import them into Percona Server for MySQL with XtraDB or MySQL 8.4. The source doesn’t have to be XtraDB or MySQL 8.4, but the destination does. This method only works on individual .ibd files.</p>
-<p>The following example exports and imports the following table:</p>
-<div class="highlight"><pre><span></span><code>CREATE TABLE export_test (
-a int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-</code></pre></div>
-<h2 id="restore-individual-tables-export-the-table">Export the table<a class="headerlink" href="#restore-individual-tables-export-the-table" title="Permanent link">&para;</a></h2>
-<p>To generate an .ibd file in the target directory, create the table using the <code>innodb_file_per_table</code> mode:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>/data/backups/mysql/<span class="w"> </span>-name<span class="w"> </span>export_test.*
-/data/backups/mysql/test/export_test.ibd
-</code></pre></div>
-<p>During the <code>--prepare</code> step, add the <code>--export</code> option to the
-command. For example:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/mysql/
-</code></pre></div>
-<p>When restoring an encrypted InnoDB tablespace table, add the keyring file:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/table<span class="w"> </span><span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
-</code></pre></div>
-<p>The following files are the only files required to import the table into a server running Percona Server for MySQL with XtraDB or MySQL 8.4. If the server uses InnoDB Tablespace Encryption, add the .cfp file, which contains the transfer key and an encrypted tablespace key.</p>
-<p>The files are located in the target directory:</p>
-<div class="highlight"><pre><span></span><code>/data/backups/mysql/test/export_test.ibd
-/data/backups/mysql/test/export_test.cfg
-</code></pre></div>
-<h2 id="restore-individual-tables-import-the-table">Import the table<a class="headerlink" href="#restore-individual-tables-import-the-table" title="Permanent link">&para;</a></h2>
-<p class="power-number">On the destination server running Percona Server for MySQL with XtraDB or MySQL 8.4, create a table with the same structure, and then perform the following steps:</p>
-<ol>
-<li>
-<p>Run the <code>ALTER TABLE test.export_test DISCARD TABLESPACE;</code> command. If you see the following error message:</p>
-<details class="example">
-<summary>Error message</summary>
-<div class="no-copy highlight"><pre><span></span><code>ERROR 1809 (HY000): Table &#39;test/export_test&#39; in system tablespace
-</code></pre></div>
-</details>
-<p>enable <code>innodb_file_per_table</code> option on the server and create the table again.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="nb">set</span><span class="w"> </span>global<span class="w"> </span><span class="nv">innodb_file_per_table</span><span class="o">=</span>ON<span class="p">;</span>
-</code></pre></div>
-</li>
-<li>
-<p>Copy the exported files to the <code>test/</code> subdirectory of the destination server’s data directory.</p>
-</li>
-<li>
-<p>Run <code>ALTER TABLE test.export_test IMPORT TABLESPACE;</code></p>
-<p>The table is imported, and you can run a <code>SELECT</code> to see the imported data.</p>
-</li>
-</ol></section></section>
+<p>and the database will be rolled forward up to that Point-In-Time.</p></section></section>
                     <section class='print-page md-section' id='section-7-3' heading-number='7.3'>
                         <h1>Pro build features<a class='headerlink' href='#section-7-3' title='Permanent link'></a>
                         </h1>
@@ -12399,11 +12387,119 @@ that table:</p>
 </div>
 <p>The last step is to import the tablespace:</p>
 <div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>name_p4<span class="w"> </span>IMPORT<span class="w"> </span>TABLESPACE<span class="p">;</span>
-</code></pre></div></section></section>
-                    <section class='print-page md-section' id='section-10-8' heading-number='10.8'>
-                        <h1>Replicate<a class='headerlink' href='#section-10-8' title='Permanent link'></a>
+</code></pre></div></section></section><section class="print-page" id="restore-individual-tables" heading-number="10.8"><h1 id="restore-individual-tables-restore-single-tables-between-databases">Restore single tables between databases<a class="headerlink" href="#restore-individual-tables-restore-single-tables-between-databases" title="Permanent link">&para;</a></h1>
+<p>Sometimes, you must restore just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to restore specific tables between different database systems while keeping your data safe.</p>
+<p>This process only works with InnoDB tables that use the <code>file-per-table</code> setup. This setup stores each table&rsquo;s data in its <code>.ibd</code> file. You can restore these tables to systems running Percona Server for MySQL with XtraDB or MySQL 8.0. Your source database can be any type, but the target database must be XtraDB or MySQL 8.0.</p>
+<p>When moving tables, you&rsquo;ll work with several important files. Each file has a specific job in the restoration process:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ibdata1</td>
+<td>The main system file in InnoDB that holds necessary metadata and sometimes table data. You need this file for any InnoDB restoration, including when recovering just one table.</td>
+</tr>
+<tr>
+<td>undo_001 and undo_002</td>
+<td>Files that help undo transactions that weren&rsquo;t finished. These files help recover from crashes during the preparation phase. They&rsquo;re an essential part of a complete backup plan.</td>
+</tr>
+<tr>
+<td>mysql.ibd</td>
+<td>A file that contains table definitions and structure information. This file is necessary when restoring individual tables.</td>
+</tr>
+<tr>
+<td>xtrabackup_info</td>
+<td>A file with information about the backup, including which server version was used and when the backup was made.</td>
+</tr>
+<tr>
+<td>xtrabackup_checkpoints</td>
+<td>A file that keeps track of important points in the backup process. These checkpoints help with crash recovery.</td>
+</tr>
+<tr>
+<td>xtrabackup_logfile</td>
+<td>The transaction log that records all database changes. This log ensures your backup stays consistent throughout the restoration.</td>
+</tr>
+<tr>
+<td>xtrabackup_tablespaces</td>
+<td>This is a list of tablespaces stored outside the main data directory. During restoration, XtraBackup tries to rebuild file paths to match their original locations.</td>
+</tr>
+<tr>
+<td>.ibd from all tables you want to restore</td>
+<td>The most critical files for single-table restoration. Each InnoDB table in file-per-table mode has its .ibd file containing data and indexes. You must have the .ibd file for each table you want to restore.</td>
+</tr>
+</tbody>
+</table>
+<p>The following example shows the export and import process for a table called <code>export_test</code>:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>mysql<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE DATABASE create_database_test;&quot;</span>
+</code></pre></div>
+<div class="highlight" data-prompt="$"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>TABLE<span class="w"> </span>export_test<span class="w"> </span><span class="o">(</span>
+a<span class="w"> </span>int<span class="o">(</span><span class="m">11</span><span class="o">)</span><span class="w"> </span>DEFAULT<span class="w"> </span>NULL
+<span class="o">)</span><span class="w"> </span><span class="nv">ENGINE</span><span class="o">=</span>InnoDB<span class="w"> </span>DEFAULT<span class="w"> </span><span class="nv">CHARSET</span><span class="o">=</span>latin1<span class="p">;</span>
+</code></pre></div>
+<h2 id="restore-individual-tables-save-the-schema">Save the schema<a class="headerlink" href="#restore-individual-tables-save-the-schema" title="Permanent link">&para;</a></h2>
+<p>Before importing any table, you must save the schema definition for all tables you want to restore. Think of the schema as a blueprint for your table. XtraBackup only backs up data files, not these blueprints. Without the original schema, MySQL won&rsquo;t be able to use the restored .ibd files.</p>
+<p>When you back up your database, you may not know which tables to restore later. This operation prepares you for any future restoration needs. Also, table structures might change between the time when you create the backup and when you use mysqldump. Saving the most current structure helps ensure everything works during restoration.</p>
+<p>Review the script in <a href="#dump-schema">Dump schema for all tables</a> for an easier way to save schemas. You&rsquo;ll likely need to adjust this script to fit your setup.</p>
+<p>By saving schemas ahead of time, you ensure that all the table blueprints are ready when you start restoring from backups, making data recovery go more smoothly.</p>
+<h2 id="restore-individual-tables-export-the-table">Export the table<a class="headerlink" href="#restore-individual-tables-export-the-table" title="Permanent link">&para;</a></h2>
+<p>First, create the table using the <code>innodb_file_per_table</code> setting. This setting tells MySQL to create a separate <code>.ibd</code> file for each table in your source directory. Run this command to find the created file in your system:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>/data/backups/mysql/<span class="w"> </span>-name<span class="w"> </span>export_test.*
+/data/backups/mysql/test/export_test.ibd
+</code></pre></div>
+<p>Next, when you run the <code>--prepare</code> phase, add the <a href="#xtrabackup-option-reference-export">&ndash;export</a> option to your command. This option tells XtraBackup to create any extra files needed for moving the table:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/mysql/
+</code></pre></div>
+<p>If you&rsquo;re working with encrypted tables (ones that use transparent data encryption), you&rsquo;ll need extra security settings. You must include the keyring file that has the encryption keys:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/table<span class="w"> </span><span class="se">\</span>
+--keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+</code></pre></div>
+<p>After these commands finish successfully, you&rsquo;ll need these files for the table import.</p>
+<div class="highlight"><pre><span></span><code>/data/backups/mysql/test/export_test.ibd
+/data/backups/mysql/test/export_test.cfg
+/data/backups/mysql/test/export_test.cfp
+</code></pre></div>
+<h2 id="restore-individual-tables-restore-the-table">Restore the table<a class="headerlink" href="#restore-individual-tables-restore-the-table" title="Permanent link">&para;</a></h2>
+<p>Now that we&rsquo;ve exported the table, we can restore it to the destination system. You need to follow these steps in order on the target server:</p>
+<ul>
+<li>
+<p>Use the saved schema definition to create an empty table at the destination. This schema provides the framework for your imported data.</p>
+</li>
+<li>
+<p>Copy all three important files (.ibd, .cfp, and .cfg) from your source directory to the matching directory in the destination system.</p>
+</li>
+</ul>
+<p>The following is the detailed process:</p>
+<ol>
+<li>
+<p>Use the schema and create an empty table copy in the new location on your target server (which must be running Percona Server for MySQL with XtraDB or MySQL 8.0).</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/create_database_test.sql<span class="p">;</span>
+$<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/export_test.sql<span class="p">;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Run this SQL command to disconnect the new table from its default tablespace. This command prepares it to receive the imported data:</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>test.export_test<span class="w"> </span>DISCARD<span class="w"> </span>TABLESPACE<span class="p">;</span>
+</code></pre></div>
+<p>If you see an error like “ERROR 1809 (HY000): Table ‘test/export_test’ in the system tablespace, &rdquo; the <code>innodb_file_per_table</code> setting is disabled on your target server. Enable this in your server setup, then try the steps again.</p>
+</li>
+<li>
+<p>Copy all the table files (export_test.ibd, export_test.cfp, and export_test.cfg) from the source directory to the matching destination schema directory inside the server data directory.</p>
+</li>
+<li>
+<p>Run this SQL command to attach the restored tablespace to the destination table, finishing the data restore:</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>test.export_test<span class="w"> </span>IMPORT<span class="w"> </span>TABLESPACE<span class="p">;</span>
+</code></pre></div>
+</li>
+</ol>
+<p>After these steps are finished successfully, your table restore is complete and the data is ready to use. You can run a <code>SELECT</code> query on the newly imported table to check that the imported data is correct.</p></section>
+                    <section class='print-page md-section' id='section-10-9' heading-number='10.9'>
+                        <h1>Replicate<a class='headerlink' href='#section-10-9' title='Permanent link'></a>
                         </h1>
-                    <section class="print-page" id="set-up-replication" heading-number="10.8.1"><h1 id="set-up-replication-how-to-set-up-a-replica-for-replication-in-6-simple-steps-with-percona-xtrabackup">How to set up a replica for replication in 6 simple steps with Percona XtraBackup<a class="headerlink" href="#set-up-replication-how-to-set-up-a-replica-for-replication-in-6-simple-steps-with-percona-xtrabackup" title="Permanent link">&para;</a></h1>
+                    <section class="print-page" id="set-up-replication" heading-number="10.9.1"><h1 id="set-up-replication-how-to-set-up-a-replica-for-replication-in-6-simple-steps-with-percona-xtrabackup">How to set up a replica for replication in 6 simple steps with Percona XtraBackup<a class="headerlink" href="#set-up-replication-how-to-set-up-a-replica-for-replication-in-6-simple-steps-with-percona-xtrabackup" title="Permanent link">&para;</a></h1>
 <p>Data is, by far, the most valuable part of a system. Having a backup done
 systematically and available for a rapid recovery in case of failure is
 admittedly essential to a system. However, it is not common practice
@@ -12630,7 +12726,7 @@ server is replicating the <code>Source</code>.</p>
 <div class="admonition admoniton">
 <p class="admonition-title">See also</p>
 <p><a href="#create-gtid-replica">How to create a new (or repair a broken) GTID based replica</a></p>
-</div></section><section class="print-page" id="create-gtid-replica" heading-number="10.8.2"><h1 id="create-gtid-replica-how-to-create-a-new-or-repair-a-broken-gtid-based-replica">How to create a new (or repair a broken) GTID-based replica<a class="headerlink" href="#create-gtid-replica-how-to-create-a-new-or-repair-a-broken-gtid-based-replica" title="Permanent link">&para;</a></h1>
+</div></section><section class="print-page" id="create-gtid-replica" heading-number="10.9.2"><h1 id="create-gtid-replica-how-to-create-a-new-or-repair-a-broken-gtid-based-replica">How to create a new (or repair a broken) GTID-based replica<a class="headerlink" href="#create-gtid-replica-how-to-create-a-new-or-repair-a-broken-gtid-based-replica" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup automatically
 stores the <code>GTID</code> value in the <code>xtrabackup_binlog_info</code> when doing the
 backup of MySQL and Percona Server for MySQL 8.4 with the <code>GTID</code> mode
@@ -12717,7 +12813,7 @@ Executed_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:1-5
 <p>We can see that the replica has retrieved a new transaction with step 5,
 so transactions from 1 to 5 are already on the replica.</p>
 <p>We have created a new replica in our <code>GTID</code> based replication
-environment.</p></section><section class="print-page" id="make-backup-in-replication-env" heading-number="10.8.3"><h1 id="make-backup-in-replication-env-make-backups-in-replication-environments">Make backups in replication environments<a class="headerlink" href="#make-backup-in-replication-env-make-backups-in-replication-environments" title="Permanent link">&para;</a></h1>
+environment.</p></section><section class="print-page" id="make-backup-in-replication-env" heading-number="10.9.3"><h1 id="make-backup-in-replication-env-make-backups-in-replication-environments">Make backups in replication environments<a class="headerlink" href="#make-backup-in-replication-env-make-backups-in-replication-environments" title="Permanent link">&para;</a></h1>
 <p>There are options specific to back up from a replication replica.</p>
 <h2 id="make-backup-in-replication-env-the-slave-info-option">The <code>--slave-info</code> option<a class="headerlink" href="#make-backup-in-replication-env-the-slave-info-option" title="Permanent link">&para;</a></h2>
 <p>This option is useful when backing up a replication replica server. It prints the
@@ -12746,7 +12842,7 @@ the backup finishes.</p>
 <p class="admonition-title">Warning</p>
 <p>Make sure your replica is a true replica of the source before using it as a
 source for backup. A good tool to validate a replica is <a href="https://docs.percona.com/percona-toolkit/pt-table-checksum.html">pt-table-checksum</a>.</p>
-</div></section><section class="print-page" id="varify-backup" heading-number="10.8.4"><h1 id="varify-backup-verify-backups-with-replication-and-pt-checksum">Verify backups with replication and pt-checksum<a class="headerlink" href="#varify-backup-verify-backups-with-replication-and-pt-checksum" title="Permanent link">&para;</a></h1>
+</div></section><section class="print-page" id="varify-backup" heading-number="10.9.4"><h1 id="varify-backup-verify-backups-with-replication-and-pt-checksum">Verify backups with replication and pt-checksum<a class="headerlink" href="#varify-backup-verify-backups-with-replication-and-pt-checksum" title="Permanent link">&para;</a></h1>
 <p>One way to verify if the backup is consistent is by setting up the
 replication and running <a href="http://www.percona.com/doc/percona-toolkit/pt-table-checksum.html">pt-table-checksum</a>. This can be used to verify any type of backups, but before setting up
 replication, backup should be prepared and be able to run (this means that
@@ -13215,7 +13311,200 @@ not being covered by operating system wide check for updates.</p>
 <h3 id="toolkit-version-check-why-do-you-send-more-information-than-just-the-version-of-software-being-run-as-a-part-of-version-check-service">Why do you send more information than just the version of software being run as a part of version check service?<a class="headerlink" href="#toolkit-version-check-why-do-you-send-more-information-than-just-the-version-of-software-being-run-as-a-part-of-version-check-service" title="Permanent link">&para;</a></h3>
 <p>Compatibility problems can be caused by versions of various components in the
 environment, for example problematic versions of Perl, DBD or MySQL could cause
-operational problems with Percona Toolkit.</p></section><section class="print-page" id="trademark-policy" heading-number="12.6"><h1 id="trademark-policy-trademark-policy">Trademark policy<a class="headerlink" href="#trademark-policy-trademark-policy" title="Permanent link">&para;</a></h1>
+operational problems with Percona Toolkit.</p></section><section class="print-page" id="dump-schema" heading-number="12.6"><h1 id="dump-schema-dump-schema-for-all-tables">Dump schema for all tables<a class="headerlink" href="#dump-schema-dump-schema-for-all-tables" title="Permanent link">&para;</a></h1>
+<p>This script is designed to dump the schemas of all tables from each database in a MySQL server instance, excluding the system databases, into separate files.</p>
+<p>The script should be modified for your specific use case before you run it. For example, you may want to exclude certain tables or databases, or specify a different output directory.</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>print_usage<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> [--defaults-file=&lt;file&gt;] [--destination-dir=&lt;directory&gt;]&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --defaults-file=&lt;file&gt;      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --destination-dir=&lt;directory&gt; (Optional) Directory to save the schema dumps (default: schema_dumps)&quot;</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="o">}</span>
+
+<span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">HARDCODED_PASSWORD</span><span class="o">=</span><span class="s2">&quot;test2&quot;</span>
+<span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">&quot;schema_dumps&quot;</span>
+
+<span class="c1"># Check for -h or --help option</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;-h&quot;</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;--help&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>print_usage
+<span class="k">fi</span>
+
+<span class="c1"># Parse arguments using a loop to check for --defaults-file and --destination-dir options</span>
+<span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$#</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">        </span>--defaults-file<span class="o">=</span>*<span class="o">)</span>
+<span class="w">            </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;--defaults-file=</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using provided defaults file: </span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>--destination-dir<span class="o">=</span>*<span class="o">)</span>
+<span class="w">            </span><span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Saving schema dumps in: </span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">        </span>*<span class="o">)</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Error: Invalid option &#39;</span><span class="nv">$1</span><span class="s2">&#39;&quot;</span>
+<span class="w">            </span>print_usage
+<span class="w">            </span><span class="p">;;</span>
+<span class="w">    </span><span class="k">esac</span>
+<span class="w">    </span><span class="nb">shift</span>
+<span class="k">done</span>
+
+<span class="c1"># Default behavior if no defaults-file is provided</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEFAULTS_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MYSQL_PWD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using password from environment variable MYSQL_PWD&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;--password=</span><span class="nv">$HARDCODED_PASSWORD</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using hardcoded password in the script&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;-uroot&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using hardcoded user: </span><span class="nv">$USER</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># Root directory for schema dumps</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Schema will be saved in: </span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span>
+
+<span class="c1"># Get the list of all databases, excluding system databases</span>
+<span class="nv">databases</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SHOW DATABASES&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-Ev<span class="w"> </span><span class="s2">&quot;^(information_schema|performance_schema|mysql|sys)</span>$<span class="s2">&quot;</span><span class="k">)</span>
+
+<span class="k">for</span><span class="w"> </span>db<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$databases</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Dumping schemas for database: </span><span class="nv">$db</span><span class="s2">&quot;</span>
+
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># Create a directory for each database</span>
+
+<span class="w">    </span><span class="c1"># Dump only the database creation statement</span>
+<span class="w">    </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--databases<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/create_database_</span><span class="si">${</span><span class="nv">db</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+
+<span class="w">    </span><span class="c1"># Get the list of tables for the current database</span>
+<span class="w">    </span><span class="nv">tables</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SHOW TABLES FROM </span><span class="nv">$db</span><span class="s2">&quot;</span><span class="k">)</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span>table<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$tables</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  Dumping schema for table: </span><span class="nv">$table</span><span class="s2">&quot;</span>
+
+<span class="w">        </span><span class="c1"># Ensure `USE &lt;database&gt;;` is at the top of each table&#39;s schema file</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;USE \`</span><span class="nv">$db</span><span class="s2">\`;&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+
+<span class="w">        </span><span class="c1"># Append the table schema dump</span>
+<span class="w">        </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--skip-add-drop-table<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$table</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="k">done</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Schema dumps are saved in the &#39;</span><span class="nv">$DEST_DIR</span><span class="s2">&#39; directory.&quot;</span>
+</code></pre></div>
+<h2 id="dump-schema-usage">Usage<a class="headerlink" href="#dump-schema-usage" title="Permanent link">&para;</a></h2>
+<p>To use this script, follow these steps:</p>
+<ol>
+<li>
+<p>Save the script  </p>
+<ul>
+<li>
+<p>Copy the script to your local machine.  </p>
+</li>
+<li>
+<p>Save the file with a <code>.sh</code> extension, such as <code>dump_schemas.sh</code>.  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>Make the script executable  </p>
+<ul>
+<li>Run the following command to make the script executable:  </li>
+</ul>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>dump_schemas.sh
+</code></pre></div>
+</li>
+<li>
+<p>Verify dependencies  </p>
+<ul>
+<li>Check if <code>mysqldump</code> is installed by running:  </li>
+</ul>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>which<span class="w"> </span>mysqldump
+</code></pre></div>
+<ul>
+<li>If <code>mysqldump</code> is not installed or not available in your PATH, install it using:  </li>
+</ul>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mysql-client
+</code></pre></div>
+</li>
+<li>
+<p>Use one of the following commands to execute the script:</p>
+<ul>
+<li>
+<p>See the usage instructions, run:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>--help
+</code></pre></div>
+</li>
+<li>
+<p>Specify a MySQL defaults file (for example, <code>~/.my.cnf</code>) and destination directory for the schema dumps, run:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>--defaults-file<span class="o">=</span>/path/to/my.cnf<span class="w"> </span>--destination-dir<span class="o">=</span>/path/to/output
+</code></pre></div>
+</li>
+<li>
+<p>If you do not have a <code>defaults-file</code>, use the script defaults of a hardcoded password or an environment variable, if set. Specify only the destination directory:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>--destination-dir<span class="o">=</span>/path/to/output
+</code></pre></div>
+</li>
+<li>
+<p>To use the hardcoded password and default destination directory, <code>schema_dumps</code>, use:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>
+</code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Inspect the output  </p>
+<ul>
+<li>
+<p>The script creates a <code>schema_dumps</code> directory in the current working directory.  </p>
+</li>
+<li>
+<p>The dumped schemas are organized as follows:  </p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>.
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>.
+./test
+./test/t4.sql
+./test/t3.sql
+./test/create_database_test.sql
+./test2
+./test2/create_database_test2.sql
+./test2/create_database_test2.sql
+./test2/t1.sql
+...
+</code></pre></div>
+</details>
+</li>
+</ul>
+</li>
+<li>
+<p>Review logs for errors or warnings  </p>
+<ul>
+<li>After execution, check the terminal output for any errors or warnings that may indicate issues with the backup process.  </li>
+</ul>
+</li>
+</ol>
+<h2 id="dump-schema-troubleshooting">Troubleshooting<a class="headerlink" href="#dump-schema-troubleshooting" title="Permanent link">&para;</a></h2>
+<p>If you encounter any issues while using this script, please check the following:</p>
+<ul>
+<li>
+<p>Ensure that <code>mysqldump</code> is installed and available in your PATH.</p>
+</li>
+<li>
+<p>Verify that the MySQL root user and password are correct.</p>
+</li>
+<li>
+<p>Check the permissions of the output directory and ensure that the script has write access.</p>
+</li>
+<li>
+<p>Ensure that the MySQL server is running and accessible.</p>
+</li>
+<li>
+<p>Ensure that the MySQL server is configured to accept remote connections.</p>
+</li>
+</ul></section><section class="print-page" id="trademark-policy" heading-number="12.7"><h1 id="trademark-policy-trademark-policy">Trademark policy<a class="headerlink" href="#trademark-policy-trademark-policy" title="Permanent link">&para;</a></h1>
 <p>This <a href="https://www.percona.com/trademark-policy">Trademark Policy</a> is to ensure that users of Percona-branded products or
 services know that what they receive has really been developed, approved,
 tested and maintained by Percona. Trademarks help to prevent confusion in the
@@ -13269,7 +13558,7 @@ brevity on the second and subsequent uses, where such omission does not cause
 confusion.</p>
 <p>In the event of doubt as to any of the conditions or exceptions outlined in
 this Trademark Policy, please contact <a href="mailto:trademarks@percona.com">trademarks@percona.com</a> for assistance and
-we will do our very best to be helpful.</p></section><section class="print-page" id="copyright-and-licensing-information" heading-number="12.7"><h1 id="copyright-and-licensing-information-copyright-and-licensing-information">Copyright and licensing information<a class="headerlink" href="#copyright-and-licensing-information-copyright-and-licensing-information" title="Permanent link">&para;</a></h1>
+we will do our very best to be helpful.</p></section><section class="print-page" id="copyright-and-licensing-information" heading-number="12.8"><h1 id="copyright-and-licensing-information-copyright-and-licensing-information">Copyright and licensing information<a class="headerlink" href="#copyright-and-licensing-information-copyright-and-licensing-information" title="Permanent link">&para;</a></h1>
 <h2 id="copyright-and-licensing-information-documentation-licensing">Documentation licensing<a class="headerlink" href="#copyright-and-licensing-information-documentation-licensing" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup documentation is (C)2009-2023 Percona LLC and/or its affiliates and is distributed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p></section></section><section class="print-page" id="index-contents" heading-number="13"><h1 id="index-contents-index">Index<a class="headerlink" href="#index-contents-index" title="Permanent link">&para;</a></h1>
 <ul>
@@ -13280,6 +13569,7 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 <li><a href="#backup-overview">Backup process overview</a></li>
 <li><a href="#working-with-binary-logs">Work with binary logs</a></li>
 <li><a href="#binary-tarball-names">Binary tarball file names available</a></li>
+<li><a href="#quickstart-exit">Clean up</a></li>
 <li><a href="#compile-xtrabackup">Compile and install from source</a></li>
 <li><a href="#configure-xtrabackup">Configure xtrabackup</a></li>
 <li><a href="#privileges">Connection and privileges needed</a></li>
@@ -13290,11 +13580,12 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 <li><a href="#create-incremental-backup">Create an incremental backup</a></li>
 <li><a href="#create-individual-partition-backup">Create an individual partitions backup</a></li>
 <li><a href="#prepare-compressed-backup">Decompress and prepare a backup</a></li>
-<li><a href="#dictionary-cache.md">Dictionary cache</a></li>
+<li><a href="#dump-schema">Dump schema for all tables</a></li>
 <li><a href="#encrypt-backups">Encrypt backups</a></li>
 <li><a href="#encrypted-innodb-tablespace-backups">Encrypted InnoDB tablespace backups</a></li>
 <li><a href="#xbcloud-exbackoff">Exponential backoff</a></li>
 <li><a href="#xbcloud-binary-fifo-datasink">FIFO data sink</a></li>
+<li><a href="#pro-files-amzn">Files in packages built for Percona XtraBackup Pro</a></li>
 <li><a href="#pro-files">Files in packages built for Percona XtraBackup Pro</a></li>
 <li><a href="#apt-files">Files in the DEB package</a></li>
 <li><a href="#yum-files">Files in the RPM package built for Percona XtraBackup 8.4</a></li>
@@ -13332,8 +13623,8 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 <li><a href="#quickstart-overview">Quickstart Overview</a></li>
 <li><a href="#reduction-in-locks">Reduced backup lock time</a></li>
 <li><a href="#restore-partial-backup">Restore a partial backup</a></li>
-<li><a href="#restore-a-backup">Restore full, incremental, compressed backups</a></li>
-<li><a href="#restore-individual-tables">Restore individual tables</a></li>
+<li><a href="#restore-a-backup">Restore full, incremental, and compressed backups</a></li>
+<li><a href="#restore-individual-tables">Restore single tables between databases</a></li>
 <li><a href="#quickstart-restore-back">Restore the backup</a></li>
 <li><a href="#restore-individual-partitions">Restore the partition from the backup</a></li>
 <li><a href="#docker">Run a Docker container</a></li>
@@ -13430,8 +13721,6 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 
 .print-site-enumerate-headings #section-7-2 > h1:before { content: '7.2 ' }
 .print-site-enumerate-headings #point-in-time-recovery > h1:before { content: '7.2.1 ' }
-
-.print-site-enumerate-headings #restore-individual-tables > h1:before { content: '7.2.2 ' }
 
 .print-site-enumerate-headings #section-7-3 > h1:before { content: '7.3 ' }
 .print-site-enumerate-headings #reduction-in-locks > h1:before { content: '7.3.1 ' }
@@ -13574,14 +13863,16 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 
 .print-site-enumerate-headings #restore-individual-partitions > h1:before { content: '10.7.3 ' }
 
-.print-site-enumerate-headings #section-10-8 > h1:before { content: '10.8 ' }
-.print-site-enumerate-headings #set-up-replication > h1:before { content: '10.8.1 ' }
+.print-site-enumerate-headings #restore-individual-tables > h1:before { content: '10.8 ' }
 
-.print-site-enumerate-headings #create-gtid-replica > h1:before { content: '10.8.2 ' }
+.print-site-enumerate-headings #section-10-9 > h1:before { content: '10.9 ' }
+.print-site-enumerate-headings #set-up-replication > h1:before { content: '10.9.1 ' }
 
-.print-site-enumerate-headings #make-backup-in-replication-env > h1:before { content: '10.8.3 ' }
+.print-site-enumerate-headings #create-gtid-replica > h1:before { content: '10.9.2 ' }
 
-.print-site-enumerate-headings #varify-backup > h1:before { content: '10.8.4 ' }
+.print-site-enumerate-headings #make-backup-in-replication-env > h1:before { content: '10.9.3 ' }
+
+.print-site-enumerate-headings #varify-backup > h1:before { content: '10.9.4 ' }
 
 .print-site-enumerate-headings #section-11 > h1:before { content: '11 ' }
 .print-site-enumerate-headings #xtrabackup-exit-codes > h1:before { content: '11.1 ' }
@@ -13599,9 +13890,11 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 
 .print-site-enumerate-headings #toolkit-version-check > h1:before { content: '12.5 ' }
 
-.print-site-enumerate-headings #trademark-policy > h1:before { content: '12.6 ' }
+.print-site-enumerate-headings #dump-schema > h1:before { content: '12.6 ' }
 
-.print-site-enumerate-headings #copyright-and-licensing-information > h1:before { content: '12.7 ' }
+.print-site-enumerate-headings #trademark-policy > h1:before { content: '12.7 ' }
+
+.print-site-enumerate-headings #copyright-and-licensing-information > h1:before { content: '12.8 ' }
 
 .print-site-enumerate-headings #index-contents > h1:before { content: '13 ' }
 
