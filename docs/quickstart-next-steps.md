@@ -22,7 +22,7 @@ Install [Percona XtraDB Cluster](https://docs.percona.com/percona-xtradb-cluster
 
 Percona Monitoring and Management (PMM) monitors and provides actionable performance data for MySQL variants, including Percona Server for MySQL, Percona XtraDB Cluster, Oracle MySQL Community Edition, Oracle MySQL Enterprise Edition, and MariaDB. PMM captures metrics and data for the InnoDB, XtraDB, and MyRocks storage engines, and has specialized dashboards for specific engine details.
 
-[Install PMM and connect your MySQL instances to it](https://docs.percona.com/percona-monitoring-and-management/get-started/index.html).
+[Install PMM and connect your MySQL instances to it](https://docs.percona.com/percona-monitoring-and-management/3/quickstart/quickstart.html#connect-database).
 
 ### Advanced command-line tools
 
@@ -30,4 +30,3 @@ Percona Toolkit is a collection of advanced command-line tools used by the Perco
 
 [Percona Toolkit documentation](https://docs.percona.com/percona-toolkit/)
 
-[Install PMM and connect your MySQL instances to it](https://docs.percona.com/percona-monitoring-and-management/get-started/index.html).
