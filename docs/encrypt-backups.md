@@ -1,7 +1,5 @@
 # Encrypt backups
 
-# Encrypt backups
-
 Percona XtraBackup supports encrypting and decrypting local and streaming backups with the upstream option, adding another protection layer. The
 encryption is implemented using the `libgcrypt` library from GnuPG.
 
@@ -18,7 +16,7 @@ The following options create encrypted backups. The
 
 For an encryption key, use a command, such as `openssl rand -base64 24`, to generate a random alphanumeric string.
 
-### The `--encrypt-key` option
+### encrypt-key option
 
 An example of the *xtrabackup* command using the `--encrypt-key`:
 
@@ -26,7 +24,7 @@ An example of the *xtrabackup* command using the `--encrypt-key`:
 $  xtrabackup --backup --encrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup
 ```
 
-### The `--encrypt-key-file` option
+### encrypt-key-file option
 
 The recommended method uses the command line: `echo -n “{randomly-generated-alphanumeric-string}” > /data/backups/keyfile` to create the file.
 Remember that using the-- encrypt-key-file option, your text editor can automatically insert a CRLF (end of line) character in the `KEYFILE`. This inserted character invalidates the key because the size is wrong. 
