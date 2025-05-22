@@ -4,7 +4,7 @@
 
 ## Capabilities
 
-Find the list of capabilities available in Percona XtraBackup Pro:
+The following capabilities have been tested for {{release}} and are available in Percona XtraBackup Pro:
 
 | Name                                | Available since | Description  | 
 | ----------------------------------- | ------------- | -------------|
