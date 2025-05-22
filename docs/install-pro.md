@@ -6,11 +6,9 @@ This document provides guidelines how to install Pro packages of Percona XtraBac
 
 ## Install Amazon Linux 2023
 
-!!! note 
-    
-    Percona XtraBackup 8.0.35-32 Pro build is available for the following platforms:
-    
-    * Amazon Linux 2023 (AL2023) - We support both AMD64 and ARM64 versions of Amazon Linux 2023.
+Percona XtraBackup {{release}} Pro build is available for Amazon Linux 2023 (AL2023) - We support both AMD64 and ARM64 versions of Amazon Linux 2023.
+
+To set up the Percona Pro repository and gain access to its packages, follow these steps carefully. This process involves obtaining the necessary credentials from Percona Support and configuring the repository on your system.
     
 1. Request the access to the pro repository from Percona Support. You will receive the client ID and the access token which you use when downloading the packages.
 
