@@ -9,34 +9,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Sometimes, you must restore just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to restore specific tables between different database systems while keeping your data safe.">
+        <meta name="description" content="Get started with Quickstart Guide for Percona XtraBackup.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/restore-individual-tables.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-3.html">
       
       
-        <link rel="prev" href="restore-individual-partitions.html">
+        <link rel="prev" href="release-notes.html">
       
       
-        <link rel="next" href="set-up-replication.html">
+        <link rel="next" href="8.4.0-2.html">
       
       
-      <link rel="icon" href="assets/mysql-fav.svg">
+      <link rel="icon" href="../assets/mysql-fav.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Restore individual tables - Percona XtraBackup</title>
+        <title>Percona XtraBackup 8.4.0-3 (2025-05-29) - Percona XtraBackup</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -55,25 +55,25 @@
       
     
     
-      <link rel="stylesheet" href="css/print-site.css">
+      <link rel="stylesheet" href="../css/print-site.css">
     
-      <link rel="stylesheet" href="css/print-site-material.css">
+      <link rel="stylesheet" href="../css/print-site-material.css">
     
       <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.3/css/line.css">
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="css/design.css">
+      <link rel="stylesheet" href="../css/design.css">
     
-      <link rel="stylesheet" href="css/osano.css">
+      <link rel="stylesheet" href="../css/osano.css">
     
-      <link rel="stylesheet" href="css/extra.css">
+      <link rel="stylesheet" href="../css/extra.css">
     
-      <link rel="stylesheet" href="css/nocopy.css">
+      <link rel="stylesheet" href="../css/nocopy.css">
     
-      <link rel="stylesheet" href="css/mysql.css">
+      <link rel="stylesheet" href="../css/mysql.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -109,7 +109,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#restore-single-tables-between-databases" class="md-skip">
+        <a href="#percona-xtrabackup-840-3-2025-05-29" class="md-skip">
           Skip to content
         </a>
       
@@ -178,14 +178,14 @@
 
     <!-- Link to home -->
     <a
-      href="index.html"
+      href="../index.html"
       title="Percona XtraBackup"
       class="md-header__button md-logo"
       aria-label="Percona XtraBackup"
       data-md-component="logo"
     >
       
-  <img src="assets/mysql-mark.svg" alt="logo">
+  <img src="../assets/mysql-mark.svg" alt="logo">
 
     </a>
 
@@ -198,7 +198,7 @@
     <!-- Header title -->
     <div class="md-header__title">
       <div class="md-header__ellipsis">
-        <a href="index.html" class="md-header__topic">
+        <a href="../index.html" class="md-header__topic">
           <span class="md-ellipsis">
             Percona XtraBackup
           </span>
@@ -206,7 +206,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Restore individual tables
+              Percona XtraBackup 8.4.0-3 (2025-05-29)
             
           </span>
         </div>
@@ -350,9 +350,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
+    <a href="../index.html" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
-  <img src="assets/mysql-mark.svg" alt="logo">
+  <img src="../assets/mysql-mark.svg" alt="logo">
 
     </a>
     Percona XtraBackup
@@ -379,7 +379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index.html" class="md-nav__link">
+      <a href="../index.html" class="md-nav__link">
         
   
   
@@ -447,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pxb-pro.html" class="md-nav__link">
+      <a href="../pxb-pro.html" class="md-nav__link">
         
   
   
@@ -514,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install-pro.html" class="md-nav__link">
+      <a href="../install-pro.html" class="md-nav__link">
         
   
   
@@ -537,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pro-files.html" class="md-nav__link">
+      <a href="../pro-files.html" class="md-nav__link">
         
   
   
@@ -610,7 +610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reduction-in-locks.html" class="md-nav__link">
+      <a href="../reduction-in-locks.html" class="md-nav__link">
         
   
   
@@ -648,7 +648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="get-help.html" class="md-nav__link">
+      <a href="../get-help.html" class="md-nav__link">
         
   
   
@@ -667,8 +667,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -684,11 +686,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -704,7 +706,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Release notes
@@ -718,7 +720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/release-notes.html" class="md-nav__link">
+      <a href="release-notes.html" class="md-nav__link">
         
   
   
@@ -738,10 +740,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="release-notes/8.4.0-3.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.4.0-3 (2025-05-29)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="8.4.0-3.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -752,6 +776,73 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release highlights
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Improvements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug fixes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pro-build-bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pro build bug fixes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -764,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.4.0-2.html" class="md-nav__link">
+      <a href="8.4.0-2.html" class="md-nav__link">
         
   
   
@@ -787,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.4.0-1.html" class="md-nav__link">
+      <a href="8.4.0-1.html" class="md-nav__link">
         
   
   
@@ -867,7 +958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-overview.html" class="md-nav__link">
+      <a href="../quickstart-overview.html" class="md-nav__link">
         
   
   
@@ -890,7 +981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-docker.html" class="md-nav__link">
+      <a href="../quickstart-docker.html" class="md-nav__link">
         
   
   
@@ -913,7 +1004,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-restore-back.html" class="md-nav__link">
+      <a href="../quickstart-restore-back.html" class="md-nav__link">
         
   
   
@@ -936,7 +1027,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-exit.html" class="md-nav__link">
+      <a href="../quickstart-exit.html" class="md-nav__link">
         
   
   
@@ -959,7 +1050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-next-steps.html" class="md-nav__link">
+      <a href="../quickstart-next-steps.html" class="md-nav__link">
         
   
   
@@ -1035,7 +1126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="about-xtrabackup.html" class="md-nav__link">
+      <a href="../about-xtrabackup.html" class="md-nav__link">
         
   
   
@@ -1058,7 +1149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features.html" class="md-nav__link">
+      <a href="../features.html" class="md-nav__link">
         
   
   
@@ -1081,7 +1172,7 @@
   
   
     <li class="md-nav__item">
-      <a href="how-xtrabackup-works.html" class="md-nav__link">
+      <a href="../how-xtrabackup-works.html" class="md-nav__link">
         
   
   
@@ -1213,7 +1304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lru-dump-backup.html" class="md-nav__link">
+      <a href="../lru-dump-backup.html" class="md-nav__link">
         
   
   
@@ -1236,7 +1327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="throttling-backups.html" class="md-nav__link">
+      <a href="../throttling-backups.html" class="md-nav__link">
         
   
   
@@ -1259,7 +1350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="store-backup-history.html" class="md-nav__link">
+      <a href="../store-backup-history.html" class="md-nav__link">
         
   
   
@@ -1326,7 +1417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="take-streaming-backup.html" class="md-nav__link">
+      <a href="../take-streaming-backup.html" class="md-nav__link">
         
   
   
@@ -1349,7 +1440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="accelerate-backup-process.html" class="md-nav__link">
+      <a href="../accelerate-backup-process.html" class="md-nav__link">
         
   
   
@@ -1430,7 +1521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="point-in-time-recovery.html" class="md-nav__link">
+      <a href="../point-in-time-recovery.html" class="md-nav__link">
         
   
   
@@ -1461,7 +1552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="flush-tables-with-read-lock.html" class="md-nav__link">
+      <a href="../flush-tables-with-read-lock.html" class="md-nav__link">
         
   
   
@@ -1484,7 +1575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="log-enhancements.html" class="md-nav__link">
+      <a href="../log-enhancements.html" class="md-nav__link">
         
   
   
@@ -1507,7 +1598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="smart-memory-estimation.html" class="md-nav__link">
+      <a href="../smart-memory-estimation.html" class="md-nav__link">
         
   
   
@@ -1530,7 +1621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="working-with-binary-logs.html" class="md-nav__link">
+      <a href="../working-with-binary-logs.html" class="md-nav__link">
         
   
   
@@ -1597,7 +1688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-binary-fifo-datasink.html" class="md-nav__link">
+      <a href="../xbcloud-binary-fifo-datasink.html" class="md-nav__link">
         
   
   
@@ -1620,7 +1711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-exbackoff.html" class="md-nav__link">
+      <a href="../xbcloud-exbackoff.html" class="md-nav__link">
         
   
   
@@ -1708,7 +1799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="binaries-overview.html" class="md-nav__link">
+      <a href="../binaries-overview.html" class="md-nav__link">
         
   
   
@@ -1779,7 +1870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-binary-overview.html" class="md-nav__link">
+      <a href="../xtrabackup-binary-overview.html" class="md-nav__link">
         
   
   
@@ -1802,7 +1893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-implementation-details.html" class="md-nav__link">
+      <a href="../xtrabackup-implementation-details.html" class="md-nav__link">
         
   
   
@@ -1825,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+      <a href="../xtrabackup-option-reference.html" class="md-nav__link">
         
   
   
@@ -1848,7 +1939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="configure-xtrabackup.html" class="md-nav__link">
+      <a href="../configure-xtrabackup.html" class="md-nav__link">
         
   
   
@@ -1923,7 +2014,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcrypt-binary-overview.html" class="md-nav__link">
+      <a href="../xbcrypt-binary-overview.html" class="md-nav__link">
         
   
   
@@ -1946,7 +2037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcrypt-options.html" class="md-nav__link">
+      <a href="../xbcrypt-options.html" class="md-nav__link">
         
   
   
@@ -2021,7 +2112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbstream-binary-overview.html" class="md-nav__link">
+      <a href="../xbstream-binary-overview.html" class="md-nav__link">
         
   
   
@@ -2044,7 +2135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbstream-options.html" class="md-nav__link">
+      <a href="../xbstream-options.html" class="md-nav__link">
         
   
   
@@ -2121,7 +2212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-binary-overview.html" class="md-nav__link">
+      <a href="../xbcloud-binary-overview.html" class="md-nav__link">
         
   
   
@@ -2144,7 +2235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-options.html" class="md-nav__link">
+      <a href="../xbcloud-options.html" class="md-nav__link">
         
   
   
@@ -2219,7 +2310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-s3.html" class="md-nav__link">
+      <a href="../xbcloud-s3.html" class="md-nav__link">
         
   
   
@@ -2242,7 +2333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-iam-profile.html" class="md-nav__link">
+      <a href="../xbcloud-iam-profile.html" class="md-nav__link">
         
   
   
@@ -2265,7 +2356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-swift.html" class="md-nav__link">
+      <a href="../xbcloud-swift.html" class="md-nav__link">
         
   
   
@@ -2288,7 +2379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-gcs.html" class="md-nav__link">
+      <a href="../xbcloud-gcs.html" class="md-nav__link">
         
   
   
@@ -2311,7 +2402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-azure.html" class="md-nav__link">
+      <a href="../xbcloud-azure.html" class="md-nav__link">
         
   
   
@@ -2334,7 +2425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-minio.html" class="md-nav__link">
+      <a href="../xbcloud-minio.html" class="md-nav__link">
         
   
   
@@ -2434,7 +2525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="installation.html" class="md-nav__link">
+      <a href="../installation.html" class="md-nav__link">
         
   
   
@@ -2503,7 +2594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="server-backup-version-comparison.html" class="md-nav__link">
+      <a href="../server-backup-version-comparison.html" class="md-nav__link">
         
   
   
@@ -2526,7 +2617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="privileges.html" class="md-nav__link">
+      <a href="../privileges.html" class="md-nav__link">
         
   
   
@@ -2549,7 +2640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="permissions.html" class="md-nav__link">
+      <a href="../permissions.html" class="md-nav__link">
         
   
   
@@ -2632,7 +2723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-repo.html" class="md-nav__link">
+      <a href="../apt-repo.html" class="md-nav__link">
         
   
   
@@ -2655,7 +2746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-files.html" class="md-nav__link">
+      <a href="../apt-files.html" class="md-nav__link">
         
   
   
@@ -2678,7 +2769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-download-deb.html" class="md-nav__link">
+      <a href="../apt-download-deb.html" class="md-nav__link">
         
   
   
@@ -2701,7 +2792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-pinning.html" class="md-nav__link">
+      <a href="../apt-pinning.html" class="md-nav__link">
         
   
   
@@ -2724,7 +2815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="work-with-apparmor.html" class="md-nav__link">
+      <a href="../work-with-apparmor.html" class="md-nav__link">
         
   
   
@@ -2747,7 +2838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-uninstall-xtrabackup.html" class="md-nav__link">
+      <a href="../apt-uninstall-xtrabackup.html" class="md-nav__link">
         
   
   
@@ -2828,7 +2919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-repo.html" class="md-nav__link">
+      <a href="../yum-repo.html" class="md-nav__link">
         
   
   
@@ -2851,7 +2942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-files.html" class="md-nav__link">
+      <a href="../yum-files.html" class="md-nav__link">
         
   
   
@@ -2874,7 +2965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-download-rpm.html" class="md-nav__link">
+      <a href="../yum-download-rpm.html" class="md-nav__link">
         
   
   
@@ -2897,7 +2988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="work-with-selinux.html" class="md-nav__link">
+      <a href="../work-with-selinux.html" class="md-nav__link">
         
   
   
@@ -2920,7 +3011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-uninstall-xtrabackup.html" class="md-nav__link">
+      <a href="../yum-uninstall-xtrabackup.html" class="md-nav__link">
         
   
   
@@ -2995,7 +3086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="binary-tarball.html" class="md-nav__link">
+      <a href="../binary-tarball.html" class="md-nav__link">
         
   
   
@@ -3018,7 +3109,7 @@
   
   
     <li class="md-nav__item">
-      <a href="binary-tarball-names.html" class="md-nav__link">
+      <a href="../binary-tarball-names.html" class="md-nav__link">
         
   
   
@@ -3091,7 +3182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="compile-xtrabackup.html" class="md-nav__link">
+      <a href="../compile-xtrabackup.html" class="md-nav__link">
         
   
   
@@ -3164,7 +3255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="docker.html" class="md-nav__link">
+      <a href="../docker.html" class="md-nav__link">
         
   
   
@@ -3199,10 +3290,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -3228,11 +3317,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
@@ -3248,7 +3337,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             How to
@@ -3306,7 +3395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-full-backup.html" class="md-nav__link">
+      <a href="../create-full-backup.html" class="md-nav__link">
         
   
   
@@ -3329,7 +3418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-full-backup.html" class="md-nav__link">
+      <a href="../prepare-full-backup.html" class="md-nav__link">
         
   
   
@@ -3406,7 +3495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-incremental-backup.html" class="md-nav__link">
+      <a href="../create-incremental-backup.html" class="md-nav__link">
         
   
   
@@ -3429,7 +3518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-incremental-backup.html" class="md-nav__link">
+      <a href="../prepare-incremental-backup.html" class="md-nav__link">
         
   
   
@@ -3452,7 +3541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="page-tracking.html" class="md-nav__link">
+      <a href="../page-tracking.html" class="md-nav__link">
         
   
   
@@ -3529,7 +3618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-compressed-backup.html" class="md-nav__link">
+      <a href="../create-compressed-backup.html" class="md-nav__link">
         
   
   
@@ -3552,7 +3641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-compressed-backup.html" class="md-nav__link">
+      <a href="../prepare-compressed-backup.html" class="md-nav__link">
         
   
   
@@ -3575,7 +3664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="encrypted-innodb-tablespace-backups.html" class="md-nav__link">
+      <a href="../encrypted-innodb-tablespace-backups.html" class="md-nav__link">
         
   
   
@@ -3648,7 +3737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="encrypt-backups.html" class="md-nav__link">
+      <a href="../encrypt-backups.html" class="md-nav__link">
         
   
   
@@ -3723,7 +3812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-partial-backup.html" class="md-nav__link">
+      <a href="../create-partial-backup.html" class="md-nav__link">
         
   
   
@@ -3746,7 +3835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-partial-backup.html" class="md-nav__link">
+      <a href="../prepare-partial-backup.html" class="md-nav__link">
         
   
   
@@ -3821,7 +3910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-individual-partition-backup.html" class="md-nav__link">
+      <a href="../create-individual-partition-backup.html" class="md-nav__link">
         
   
   
@@ -3844,7 +3933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-individual-partitions-backup.html" class="md-nav__link">
+      <a href="../prepare-individual-partitions-backup.html" class="md-nav__link">
         
   
   
@@ -3921,7 +4010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-a-backup.html" class="md-nav__link">
+      <a href="../restore-a-backup.html" class="md-nav__link">
         
   
   
@@ -3944,7 +4033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-partial-backup.html" class="md-nav__link">
+      <a href="../restore-partial-backup.html" class="md-nav__link">
         
   
   
@@ -3967,7 +4056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-individual-partitions.html" class="md-nav__link">
+      <a href="../restore-individual-partitions.html" class="md-nav__link">
         
   
   
@@ -3995,32 +4084,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Restore individual tables
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="restore-individual-tables.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../restore-individual-tables.html" class="md-nav__link">
         
   
   
@@ -4031,55 +4098,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#save-the-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      Save the schema
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#export-the-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      Export the table
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#restore-the-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      Restore the table
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4140,7 +4158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="set-up-replication.html" class="md-nav__link">
+      <a href="../set-up-replication.html" class="md-nav__link">
         
   
   
@@ -4163,7 +4181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-gtid-replica.html" class="md-nav__link">
+      <a href="../create-gtid-replica.html" class="md-nav__link">
         
   
   
@@ -4186,7 +4204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="make-backup-in-replication-env.html" class="md-nav__link">
+      <a href="../make-backup-in-replication-env.html" class="md-nav__link">
         
   
   
@@ -4209,7 +4227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="verify-backup.html" class="md-nav__link">
+      <a href="../verify-backup.html" class="md-nav__link">
         
   
   
@@ -4291,7 +4309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-exit-codes.html" class="md-nav__link">
+      <a href="../xtrabackup-exit-codes.html" class="md-nav__link">
         
   
   
@@ -4314,7 +4332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="update-curl-utility.html" class="md-nav__link">
+      <a href="../update-curl-utility.html" class="md-nav__link">
         
   
   
@@ -4400,7 +4418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-files.html" class="md-nav__link">
+      <a href="../xtrabackup-files.html" class="md-nav__link">
         
   
   
@@ -4423,7 +4441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-version-numbers.html" class="md-nav__link">
+      <a href="../xtrabackup-version-numbers.html" class="md-nav__link">
         
   
   
@@ -4446,7 +4464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="faq.html" class="md-nav__link">
+      <a href="../faq.html" class="md-nav__link">
         
   
   
@@ -4469,7 +4487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="glossary.html" class="md-nav__link">
+      <a href="../glossary.html" class="md-nav__link">
         
   
   
@@ -4492,7 +4510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="toolkit-version-check.html" class="md-nav__link">
+      <a href="../toolkit-version-check.html" class="md-nav__link">
         
   
   
@@ -4515,7 +4533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dump-schema.html" class="md-nav__link">
+      <a href="../dump-schema.html" class="md-nav__link">
         
   
   
@@ -4538,7 +4556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="trademark-policy.html" class="md-nav__link">
+      <a href="../trademark-policy.html" class="md-nav__link">
         
   
   
@@ -4561,7 +4579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="copyright-and-licensing-information.html" class="md-nav__link">
+      <a href="../copyright-and-licensing-information.html" class="md-nav__link">
         
   
   
@@ -4591,7 +4609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index-contents.html" class="md-nav__link">
+      <a href="../index-contents.html" class="md-nav__link">
         
   
   
@@ -4641,27 +4659,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#save-the-schema" class="md-nav__link">
+  <a href="#release-highlights" class="md-nav__link">
     <span class="md-ellipsis">
-      Save the schema
+      Release highlights
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#export-the-table" class="md-nav__link">
+  <a href="#improvements" class="md-nav__link">
     <span class="md-ellipsis">
-      Export the table
+      Improvements
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#restore-the-table" class="md-nav__link">
+  <a href="#bug-fixes" class="md-nav__link">
     <span class="md-ellipsis">
-      Restore the table
+      Bug fixes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pro-build-bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pro build bug fixes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional resources
     </span>
   </a>
   
@@ -4696,7 +4732,7 @@
 
 
   
-    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/restore-individual-tables.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/release-notes/8.4.0-3.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4705,122 +4741,31 @@
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/restore-individual-tables.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/release-notes/8.4.0-3.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="restore-single-tables-between-databases">Restore single tables between databases<a class="headerlink" href="#restore-single-tables-between-databases" title="Permanent link">&para;</a></h1>
-<p>Sometimes, you must restore just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to restore specific tables between different database systems while keeping your data safe.</p>
-<p>This process only works with InnoDB tables that use the <code>file-per-table</code> setup. This setup stores each table&rsquo;s data in its <code>.ibd</code> file. You can restore these tables to systems running Percona Server for MySQL with XtraDB or MySQL 8.0. Your source database can be any type, but the target database must be XtraDB or MySQL 8.0.</p>
-<p>When moving tables, you&rsquo;ll work with several important files. Each file has a specific job in the restoration process:</p>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ibdata1</td>
-<td>The main system file in InnoDB that holds necessary metadata and sometimes table data. You need this file for any InnoDB restoration, including when recovering just one table.</td>
-</tr>
-<tr>
-<td>undo_001 and undo_002</td>
-<td>Files that help undo transactions that weren&rsquo;t finished. These files help recover from crashes during the preparation phase. They&rsquo;re an essential part of a complete backup plan.</td>
-</tr>
-<tr>
-<td>mysql.ibd</td>
-<td>A file that contains table definitions and structure information. This file is necessary when restoring individual tables.</td>
-</tr>
-<tr>
-<td>xtrabackup_info</td>
-<td>A file with information about the backup, including which server version was used and when the backup was made.</td>
-</tr>
-<tr>
-<td>xtrabackup_checkpoints</td>
-<td>A file that keeps track of important points in the backup process. These checkpoints help with crash recovery.</td>
-</tr>
-<tr>
-<td>xtrabackup_logfile</td>
-<td>The transaction log that records all database changes. This log ensures your backup stays consistent throughout the restoration.</td>
-</tr>
-<tr>
-<td>xtrabackup_tablespaces</td>
-<td>This is a list of tablespaces stored outside the main data directory. During restoration, XtraBackup tries to rebuild file paths to match their original locations.</td>
-</tr>
-<tr>
-<td>.ibd from all tables you want to restore</td>
-<td>The most critical files for single-table restoration. Each InnoDB table in file-per-table mode has its .ibd file containing data and indexes. You must have the .ibd file for each table you want to restore.</td>
-</tr>
-</tbody>
-</table>
-<p>The following example shows the export and import process for a table called <code>export_test</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>mysql<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE DATABASE create_database_test;&quot;</span>
-</code></pre></div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>TABLE<span class="w"> </span>export_test<span class="w"> </span><span class="o">(</span>
-a<span class="w"> </span>int<span class="o">(</span><span class="m">11</span><span class="o">)</span><span class="w"> </span>DEFAULT<span class="w"> </span>NULL
-<span class="o">)</span><span class="w"> </span><span class="nv">ENGINE</span><span class="o">=</span>InnoDB<span class="w"> </span>DEFAULT<span class="w"> </span><span class="nv">CHARSET</span><span class="o">=</span>latin1<span class="p">;</span>
-</code></pre></div>
-<h2 id="save-the-schema">Save the schema<a class="headerlink" href="#save-the-schema" title="Permanent link">&para;</a></h2>
-<p>Before importing any table, you must save the schema definition for all tables you want to restore. Think of the schema as a blueprint for your table. XtraBackup only backs up data files, not these blueprints. Without the original schema, MySQL won&rsquo;t be able to use the restored .ibd files.</p>
-<p>When you back up your database, you may not know which tables to restore later. This operation prepares you for any future restoration needs. Also, table structures might change between the time when you create the backup and when you use mysqldump. Saving the most current structure helps ensure everything works during restoration.</p>
-<p>Review the script in <a href="dump-schema.html">Dump schema for all tables</a> for an easier way to save schemas. You&rsquo;ll likely need to adjust this script to fit your setup.</p>
-<p>By saving schemas ahead of time, you ensure that all the table blueprints are ready when you start restoring from backups, making data recovery go more smoothly.</p>
-<h2 id="export-the-table">Export the table<a class="headerlink" href="#export-the-table" title="Permanent link">&para;</a></h2>
-<p>First, create the table using the <code>innodb_file_per_table</code> setting. This setting tells MySQL to create a separate <code>.ibd</code> file for each table in your source directory. Run this command to find the created file in your system:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>/data/backups/mysql/<span class="w"> </span>-name<span class="w"> </span>export_test.*
-/data/backups/mysql/test/export_test.ibd
-</code></pre></div>
-<p>Next, when you run the <code>--prepare</code> phase, add the <a href="xtrabackup-option-reference.html#export">&ndash;export</a> option to your command. This option tells XtraBackup to create any extra files needed for moving the table:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/mysql/
-</code></pre></div>
-<p>If you&rsquo;re working with encrypted tables (ones that use transparent data encryption), you&rsquo;ll need extra security settings. You must include the keyring file that has the encryption keys:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/table<span class="w"> </span><span class="se">\</span>
---keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
-</code></pre></div>
-<p>After these commands finish successfully, you&rsquo;ll need these files for the table import.</p>
-<div class="highlight"><pre><span></span><code>/data/backups/mysql/test/export_test.ibd
-/data/backups/mysql/test/export_test.cfg
-/data/backups/mysql/test/export_test.cfp
-</code></pre></div>
-<h2 id="restore-the-table">Restore the table<a class="headerlink" href="#restore-the-table" title="Permanent link">&para;</a></h2>
-<p>Now that we&rsquo;ve exported the table, we can restore it to the destination system. You need to follow these steps in order on the target server:</p>
+<h1 id="percona-xtrabackup-840-3-2025-05-29">Percona XtraBackup 8.4.0-3 (2025-05-29)<a class="headerlink" href="#percona-xtrabackup-840-3-2025-05-29" title="Permanent link">&para;</a></h1>
+<p>Get started with <a href="../quickstart-overview.html">Quickstart Guide for Percona XtraBackup</a>.</p>
+<h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<p>This release provides improvements and bug fixes.</p>
+<p>We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.</p>
+<h2 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3427">PXB-3427</a>: Percona XtraBackup now prepares incremental backups faster. The <code>--prepare</code> command directly applies the <code>.delta</code> files. To speed up this process, use the <code>--parallel=X</code> option, replacing <code>X</code> with the number of threads you want to use simultaneously. This option applies the delta files concurrently.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3199">PXB-3199</a>: The <code>xbcloud put</code> operations were updated to include support for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">ObjectLock-enabled AWS S3 buckets</a> (Thanks to volver for contributing the fix for this issue.)</p>
+<h2 id="bug-fixes">Bug fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p>Use the saved schema definition to create an empty table at the destination. This schema provides the framework for your imported data.</p>
-</li>
-<li>
-<p>Copy all three important files (.ibd, .cfp, and .cfg) from your source directory to the matching directory in the destination system.</p>
-</li>
+<li><a href="https://perconadev.atlassian.net/browse/PXB-3426">PXB-3426</a>: Fix xtrabackup crashes caused by Key Management Interoperability Protocol (KMIP) component keyring usage.</li>
 </ul>
-<p>The following is the detailed process:</p>
-<ol>
-<li>
-<p>Use the schema and create an empty table copy in the new location on your target server (which must be running Percona Server for MySQL with XtraDB or MySQL 8.0).</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/create_database_test.sql<span class="p">;</span>
-$<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/export_test.sql<span class="p">;</span>
-</code></pre></div>
-</li>
-<li>
-<p>Run this SQL command to disconnect the new table from its default tablespace. This command prepares it to receive the imported data:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>test.export_test<span class="w"> </span>DISCARD<span class="w"> </span>TABLESPACE<span class="p">;</span>
-</code></pre></div>
-<p>If you see an error like “ERROR 1809 (HY000): Table ‘test/export_test’ in the system tablespace, &rdquo; the <code>innodb_file_per_table</code> setting is disabled on your target server. Enable this in your server setup, then try the steps again.</p>
-</li>
-<li>
-<p>Copy all the table files (export_test.ibd, export_test.cfp, and export_test.cfg) from the source directory to the matching destination schema directory inside the server data directory.</p>
-</li>
-<li>
-<p>Run this SQL command to attach the restored tablespace to the destination table, finishing the data restore:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>test.export_test<span class="w"> </span>IMPORT<span class="w"> </span>TABLESPACE<span class="p">;</span>
-</code></pre></div>
-</li>
-</ol>
-<p>After these steps are finished successfully, your table restore is complete and the data is ready to use. You can run a <code>SELECT</code> query on the newly imported table to check that the imported data is correct.</p>
+<h2 id="pro-build-bug-fixes">Pro build bug fixes<a class="headerlink" href="#pro-build-bug-fixes" title="Permanent link">&para;</a></h2>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3279">PXB-3279</a>: Removed the requirement for the <code>--lock-ddl=reduced</code> option to configure the number of open file handles to match the number of files in the server data directory. This limitation previously made the feature difficult to use on large instances with millions of IBD files.</p>
+<h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<p>Install <a href="../installation.html">Percona XtraBackup 8.4.0-3</a></p>
+<p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
+<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p>
 
 
 
@@ -4841,7 +4786,7 @@ $<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </s
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    2025-04-09
+    2025-05-29
   </span>
 
     
@@ -4975,18 +4920,18 @@ $<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </s
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
-        <script src="js/print-site.js"></script>
+        <script src="../js/print-site.js"></script>
       
-        <script src="js/version-select.js"></script>
+        <script src="../js/version-select.js"></script>
       
-        <script src="js/promptremover.js"></script>
+        <script src="../js/promptremover.js"></script>
       
-        <script src="js/consent.js"></script>
+        <script src="../js/consent.js"></script>
       
     
   </body>
