@@ -16,8 +16,7 @@ To set up the Percona Pro repository and gain access to its packages, follow the
 
     ```{.bash data-prompt="$"}
     $ sudo dnf install \
-    https://repo.percona.com/dnf/percona-release-latest.\
-    noarch.rpm
+    https://repo.percona.com/yum/percona-release-latest.noarch.rpm
     ```
 
 3. Enable the repository: 
