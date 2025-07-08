@@ -753,7 +753,7 @@ a random UUID; no client information is collected or stored.
 
 Usage: `--open-files-limit=#`
 
-The maximum number of file descriptors to reserve with [setrlimit](https://linux.die.net/man/2/setrlimit)git .
+The maximum number of file descriptors to reserve with [setrlimit]( https://man7.org/linux/man-pages/man2/setrlimit.2.html)git .
 
 ### parallel
 
