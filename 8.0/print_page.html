@@ -3434,7 +3434,7 @@
   
   
   <span class="md-ellipsis">
-    Update curl utility
+    Update the curl utility in Debian 10
     
   </span>
   
@@ -6717,7 +6717,7 @@
           <li class="md-nav__item">
   <a href="#update-curl-utility" class="md-nav__link">
     <span class="md-ellipsis">
-      Update curl utility
+      Update the curl utility in Debian 10
     </span>
   </a>
   
@@ -7605,7 +7605,7 @@ Percona XtraDB Cluster.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="#install-pro-installamazonlinux2023">Amazon Linux 2023</a></td>
+<td><a href="#install-pro-install-amazon-linux-2023">Amazon Linux 2023</a></td>
 <td>8.0.35-32</td>
 <td>Amazon Linux 2023 is a purpose-built Linux distribution optimized for AWS. It&rsquo;s designed for performance, security, and seamless integration with the broader AWS ecosystem. We support both AMD64 and ARM64 versions of Amazon Linux 2023.</td>
 </tr>
@@ -8312,7 +8312,7 @@ set the redo log archive destination directory. (Thanks to wangbincmss for provi
 <p><a href="https://jira.percona.com/browse/PXB-2729">PXB-2729</a>: Percona XtraBackup compilation failed if GTest packages are installed.</p>
 <p><a href="https://jira.percona.com/browse/PXB-2810">PXB-2810</a>: Percona XtraBackup crashed when AIO initialization failed (Thanks to Yan Huang for the patch.) </p>
 <p><a href="https://jira.percona.com/browse/PXB-2840">PXB-2840</a>: Xbcloud attempted to create a non-existing bucket. </p>
-<p><a href="https://jira.percona.com/browse/PXB-2874">PXB-2874</a>: When Percona XtraBackup generated a new master key on <a href="#..-..-xtrabackup-option-reference.md-copy-back">&ndash;copy-back</a> or <a href="#..-..-xtrabackup-option-reference.md-move-back">&ndash;move-back</a>, the master key id was reset back to 1.</p>
+<p><a href="https://jira.percona.com/browse/PXB-2874">PXB-2874</a>: When Percona XtraBackup generated a new master key on <a href="#xtrabackup-option-reference-copy-back">&ndash;copy-back</a> or <a href="#xtrabackup-option-reference-move-back">&ndash;move-back</a>, the master key id was reset back to 1.</p>
 <p><a href="https://jira.percona.com/browse/PXB-2809">PXB-2809</a>: <code>wsrep_sync_wait&lt;&gt;0</code> caused <code>Lock wait timeout exceeded; try restarting transaction</code> error (Thanks to Frank Well for providing the initial patch.)</p>
 <h2 id="release-notes-8.0-8.0.30-23.0-platform-support">Platform support<a class="headerlink" href="#release-notes-8.0-8.0.30-23.0-platform-support" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 8.0.30 supports Oracle Linux/Red Hat Enterprise Linux 9.</p>
@@ -10533,27 +10533,27 @@ PERCONA_SCHEMA.XTRABACKUP_HISTORY table.</p>
 <p>To use this feature the following options are available:</p>
 <ul>
 <li>
-<p><a href="#xtrabackup-option-reference-historyname">&ndash;history</a> = &#60;name&#62; : This option enables the history
+<p><a href="#xtrabackup-option-reference-history">&ndash;history</a> = &#60;name&#62; : This option enables the history
 feature and allows the user to specify a backup series name that will be
 placed within the history record.</p>
 </li>
 <li>
-<p><a href="#xtrabackup-option-reference-incremental-history-namename">&ndash;incremental-history-name</a> =&#60;name&#62; : This option allows an
+<p><a href="#xtrabackup-option-reference-incremental-history-name">&ndash;incremental-history-name</a> =&#60;name&#62; : This option allows an
 incremental backup to be made based on a specific history series by
 name. <em>xtrabackup</em> will search the history table looking for the most recent
 (highest <code>to_lsn</code>) backup in the series and take the <code>to_lsn</code> value to use
 as it’s starting lsn. This is mutually exclusive with
-<a href="#xtrabackup-option-reference-incremental-history-uuidname">&ndash;incremental-history-uuid</a>, <a href="#xtrabackup-option-reference-incremental-basedirdirectory">&ndash;incremental-basedir</a> and
-<a href="#xtrabackup-option-reference-incremental-lsnlsn">&ndash;incremental-lsn</a> options. If no valid LSN can be found
+<a href="#xtrabackup-option-reference-incremental-history-uuid">&ndash;incremental-history-uuid</a>, <a href="#xtrabackup-option-reference-incremental-basedir">&ndash;incremental-basedir</a> and
+<a href="#xtrabackup-option-reference-incremental-lsn">&ndash;incremental-lsn</a> options. If no valid LSN can be found
 (no series by that name) <em>xtrabackup</em> will return with an error.</p>
 </li>
 <li>
-<p><a href="#xtrabackup-option-reference-incremental-history-uuidname">&ndash;incremental-history-uuid</a> =&#60;uuid&#62; : Allows an incremental backup to
+<p><a href="#xtrabackup-option-reference-incremental-history-uuid">&ndash;incremental-history-uuid</a> =&#60;uuid&#62; : Allows an incremental backup to
 be made based on a specific history record identified by UUID. <em>xtrabackup</em>
 will search the history table looking for the record matching UUID and take
 the <code>to_lsn</code> value to use as it’s starting LSN. This options is mutually
-exclusive with <a href="#xtrabackup-option-reference-incremental-basedirdirectory">&ndash;incremental-basedir</a>, <a href="#xtrabackup-option-reference-incremental-lsnlsn">&ndash;incremental-lsn</a>
-and <a href="#xtrabackup-option-reference-incremental-history-namename">&ndash;incremental-history-name</a> options. If no valid LSN can be found
+exclusive with <a href="#xtrabackup-option-reference-incremental-basedir">&ndash;incremental-basedir</a>, <a href="#xtrabackup-option-reference-incremental-lsn">&ndash;incremental-lsn</a>
+and <a href="#xtrabackup-option-reference-incremental-history-name">&ndash;incremental-history-name</a> options. If no valid LSN can be found
 (no record by that UUID or missing <code>to_lsn</code>), <em>xtrabackup</em> will return
 with an error.</p>
 </li>
@@ -10572,7 +10572,7 @@ completes and store the results with you backup set.</p>
 <h3 id="store-backup-history-percona_schemaxtrabackup_history-table">PERCONA_SCHEMA.XTRABACKUP_HISTORY table<a class="headerlink" href="#store-backup-history-percona_schemaxtrabackup_history-table" title="Permanent link">&para;</a></h3>
 <p>This table contains the information about the previous server
 backups. Information about the backups will only be written if the backup was
-taken with <a href="#xtrabackup-option-reference-historyname">&ndash;history</a> option.</p>
+taken with <a href="#xtrabackup-option-reference-history">&ndash;history</a> option.</p>
 <table>
 <thead>
 <tr>
@@ -10595,7 +10595,7 @@ taken with <a href="#xtrabackup-option-reference-historyname">&ndash;history</a>
 </tr>
 <tr>
 <td>tool_command</td>
-<td>Exact command line given to the tool with <a href="#xtrabackup-option-reference-passwordpassword">&ndash;password</a> and <a href="#xtrabackup-option-reference-encrypt-keyencryption_key">&ndash;encrypt_key</a> obfuscated</td>
+<td>Exact command line given to the tool with <a href="#xtrabackup-option-reference-password">&ndash;password</a> and [&ndash;encrypt_key] obfuscated</td>
 </tr>
 <tr>
 <td>tool_version</td>
@@ -10658,10 +10658,10 @@ taken with <a href="#xtrabackup-option-reference-historyname">&ndash;history</a>
 <h3 id="store-backup-history-limitations">Limitations<a class="headerlink" href="#store-backup-history-limitations" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
-<p><a href="#xtrabackup-option-reference-historyname">&ndash;history</a> option must be specified only on the command line and not within a configuration file in order to be effective.</p>
+<p><a href="#xtrabackup-option-reference-history">&ndash;history</a> option must be specified only on the command line and not within a configuration file in order to be effective.</p>
 </li>
 <li>
-<p><a href="#xtrabackup-option-reference-incremental-history-namename">&ndash;incremental-history-name</a> and <a href="#xtrabackup-option-reference-incremental-history-uuidname">&ndash;incremental-history-uuid</a>
+<p><a href="#xtrabackup-option-reference-incremental-history-name">&ndash;incremental-history-name</a> and <a href="#xtrabackup-option-reference-incremental-history-uuid">&ndash;incremental-history-uuid</a>
 options must be specified only on the command line and not within
 a configuration file in order to be effective.</p>
 </li>
@@ -11303,9 +11303,9 @@ time, <em>xtrabackup</em> stops the option, exits with an error message, and bac
 not be taken.</p>
 <p>The default value for this option is zero (0) value which turns off the option.</p>
 <p>Another possibility is to specify the type of query to wait on. In this case
-<a href="#xtrabackup-option-reference-ftwrl-wait-query-typeallupdate">&ndash;ftwrl-wait-query-type</a>. Possible values are <code>all</code> and
+<a href="#xtrabackup-option-reference-ftwrl-wait-query-type">&ndash;ftwrl-wait-query-type</a>. Possible values are <code>all</code> and
 <code>update</code>. When <code>all</code> is used <em>xtrabackup</em> will wait for all long running
-queries (execution time longer than allowed by <a href="#xtrabackup-option-reference-ftwrl-wait-thresholdseconds">&ndash;ftwrl-wait-threshold</a>)
+queries (execution time longer than allowed by <a href="#xtrabackup-option-reference-ftwrl-wait-threshold">&ndash;ftwrl-wait-threshold</a>)
 to finish before running the <code>FLUSH TABLES WITH READ LOCK</code>. When <code>update</code> is
 used <em>xtrabackup</em> will wait on <code>UPDATE/ALTER/REPLACE/INSERT</code> queries to
 finish.</p>
@@ -11318,38 +11318,38 @@ xtrabackup user should have <code>PROCESS</code> and <code>SUPER</code> privileg
 global lock. In this case, all queries which run longer than <code>FLUSH TABLES WITH
 READ LOCK</code> are potential blockers. Although all queries can be killed,
 additional time can be specified for the short running queries to finish using
-the <a href="#xtrabackup-option-reference-kill-long-queries-timeoutseconds">&ndash;kill-long-queries-timeout</a> option. This option
+the <a href="#xtrabackup-option-reference-kill-long-queries-timeout">&ndash;kill-long-queries-timeout</a> option. This option
 specifies the time for queries to complete, after the value is reached, all the
 running queries will be killed. The default value is zero, which turns this
 feature off.</p>
-<p>The <a href="#xtrabackup-option-reference-kill-long-query-typeallselect">&ndash;kill-long-query-type</a> option can be used to specify all or only
+<p>The <a href="#xtrabackup-option-reference-kill-long-query-type">&ndash;kill-long-query-type</a> option can be used to specify all or only
 <code>SELECT</code> queries that are preventing global lock from being acquired. In order
 to use this option xtrabackup user should have <code>PROCESS</code> and <code>SUPER</code>
 privileges.</p>
 <h2 id="flush-tables-with-read-lock-options-summary">Options summary<a class="headerlink" href="#flush-tables-with-read-lock-options-summary" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><a href="#xtrabackup-option-reference-ftwrl-wait-timeoutseconds">&ndash;ftwrl-wait-timeout</a> (seconds) - how long to wait for a
+<p><a href="#xtrabackup-option-reference-ftwrl-wait-timeout">&ndash;ftwrl-wait-timeout</a> (seconds) - how long to wait for a
 good moment. Default is 0, not to wait.</p>
 </li>
 <li>
-<p><a href="#xtrabackup-option-reference-ftwrl-wait-query-typeallupdate">&ndash;ftwrl-wait-query-type</a> - which long queries
+<p><a href="#xtrabackup-option-reference-ftwrl-wait-query-type">&ndash;ftwrl-wait-query-type</a> - which long queries
 should be finished before <code>FLUSH TABLES WITH READ LOCK</code> is run. Default is
 all.</p>
 </li>
 <li>
-<p><a href="#xtrabackup-option-reference-ftwrl-wait-thresholdseconds">&ndash;ftwrl-wait-threshold</a> (seconds) - how long query
+<p><a href="#xtrabackup-option-reference-ftwrl-wait-threshold">&ndash;ftwrl-wait-threshold</a> (seconds) - how long query
 should be running before we consider it long running and potential blocker of
 global lock.</p>
 </li>
 <li>
-<p><a href="#xtrabackup-option-reference-kill-long-queries-timeoutseconds">&ndash;kill-long-queries-timeout</a> (seconds) - how many time
+<p><a href="#xtrabackup-option-reference-kill-long-queries-timeout">&ndash;kill-long-queries-timeout</a> (seconds) - how many time
 we give for queries to complete after <code>FLUSH TABLES WITH READ LOCK</code> is
 issued before start to kill. Default if <code>0</code>, not to kill.</p>
 </li>
 <li>
-<p><a href="#xtrabackup-option-reference-kill-long-query-typeallselect">&ndash;kill-long-query-type</a> - which queries should be killed once
-<a href="#xtrabackup-option-reference-kill-long-queries-timeoutseconds">&ndash;kill-long-queries-timeout</a> has expired.</p>
+<p><a href="#xtrabackup-option-reference-kill-long-query-type">&ndash;kill-long-query-type</a> - which queries should be killed once
+<a href="#xtrabackup-option-reference-kill-long-queries-timeout">&ndash;kill-long-queries-timeout</a> has expired.</p>
 </li>
 </ul>
 <h3 id="flush-tables-with-read-lock-example">Example<a class="headerlink" href="#flush-tables-with-read-lock-example" title="Permanent link">&para;</a></h3>
@@ -11581,7 +11581,7 @@ $<span class="w"> </span>chmod<span class="w"> </span>_R<span class="w"> </span>
 </code></pre></div>
 </details>
 <h2 id="redo-log-archiving-percona-xtrabackup-and-redo-log-archiving">Percona XtraBackup and redo log archiving<a class="headerlink" href="#redo-log-archiving-percona-xtrabackup-and-redo-log-archiving" title="Permanent link">&para;</a></h2>
-<p>Percona XtraBackup 8.0.34-29 added the <a href="#xtrabackup-option-reference--redo-log-arch-dirname">redo-log-arch-dir</a> option. If the archiving directory is not configured in MySQL, Percona XtraBackup creates a temporary directory for the archive file. To use this option, you must run Percona XtraBackup as the same owner as <code>mysqld</code>. If Percona XtraBackup does not have the appropriate permissions, the action generates a &ldquo;Permission denied&rdquo; error, and archiving is not used.</p>
+<p>Percona XtraBackup 8.0.34-29 added the <a href="#xtrabackup-option-reference-redo-log-arch-dir">redo-log-arch-dir</a> option. If the archiving directory is not configured in MySQL, Percona XtraBackup creates a temporary directory for the archive file. To use this option, you must run Percona XtraBackup as the same owner as <code>mysqld</code>. If Percona XtraBackup does not have the appropriate permissions, the action generates a &ldquo;Permission denied&rdquo; error, and archiving is not used.</p>
 <h2 id="redo-log-archiving-example-of-reading-a-log">Example of reading a log<a class="headerlink" href="#redo-log-archiving-example-of-reading-a-log" title="Permanent link">&para;</a></h2>
 <div class="highlight" data-prompt="data-prompt"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>-u<span class="w"> </span>mysql<span class="w"> </span>bash
 $<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class="o">=</span><span class="m">1</span><span class="w"> </span>--compress<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--host<span class="o">=</span>localhost<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span><span class="s1">&#39;password_string&#39;</span><span class="w"> </span>--backup<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/Backup/13oct<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
@@ -11736,7 +11736,7 @@ We no longer support using the &ndash;stats option in <em>Percona XtraBackup</em
 </div>
 <p>The <em>xtrabackup</em> binary can analyze InnoDB data files in read-only mode to give
 statistics about them. To do this, you should use the <a href="#xtrabackup-option-reference-stats">&ndash;stats</a>
-option. You can combine this with the <a href="#xtrabackup-option-reference-tablesname">&ndash;tables</a> option to limit the
+option. You can combine this with the <a href="#xtrabackup-option-reference-tables">&ndash;tables</a> option to limit the
 files to examine. It also uses the <a href="#xtrabackup-option-reference-use-memory">&ndash;use-memory</a> option.</p>
 <p>You can perform the analysis on a running server, with some chance of errors due
 to the data being changed during analysis. Or, you can analyze a backup copy of
@@ -13119,7 +13119,7 @@ $<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><sp
 <code>backup_name/database/table.ibd.NNN...</code>, where <code>NNN...</code> is a
 0-padded serial number of chunk within a file. The size of chunk produced by
 xtrabackup and xbstream changed to 10M.</p>
-<p>To adjust the chunk size use <a href="#xtrabackup-option-reference---read-buffer-size"><code>--read-buffer-size</code></a>. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <a href="#xtrabackup-option-reference---encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
+<p>To adjust the chunk size use <a href="#xtrabackup-option-reference-read-buffer-size"><code>--read-buffer-size</code></a>. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <a href="#xtrabackup-option-reference-encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
 <p>xbcloud has three essential operations: <em>put</em>, <em>get</em>, and <em>delete</em>. With these
 operations, backups are created, stored, retrieved, restored, and
 deleted. xbcloud operations clearly map to similar operations within 
@@ -13886,7 +13886,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 --s3-bucket<span class="o">=</span><span class="s1">&#39;mysql_backups&#39;</span>
 --parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="k">$(</span>date<span class="w"> </span>-I<span class="k">)</span>-full_backup
-</code></pre></div></section></section><section class="print-page" id="update-curl-utility" heading-number="8.5.4"><h1 id="update-curl-utility-update-curl-utility">Update curl utility</h1><h2 id="update-the-curl-utility-in-debian-10">Update the curl utility in Debian 10<a class="headerlink" href="#update-curl-utility-update-the-curl-utility-in-debian-10" title="Permanent link">&para;</a></h2>
+</code></pre></div></section></section><section class="print-page" id="update-curl-utility" heading-number="8.5.4"><h1 id="update-curl-utility-update-the-curl-utility-in-debian-10">Update the curl utility in Debian 10<a class="headerlink" href="#update-curl-utility-update-the-curl-utility-in-debian-10" title="Permanent link">&para;</a></h1>
 <p>The default curl version, 7.64.0, in Debian 10 has known issues when
 attempting to reuse an already closed connection. This issue directly
 affects <code>xbcloud</code> and users may see intermittent backup failures.</p>
@@ -17588,7 +17588,7 @@ Use the <code>--lock-ddl</code> option.</p>
 <h3 id="glossary-csv">.CSV<a class="headerlink" href="#glossary-csv" title="Permanent link">&para;</a></h3>
 <p>Each table with the <strong>CSV Storage</strong> engine has <code>.CSV</code> file which contains the data of it (which is a standard Comma Separated Value file).</p>
 <h3 id="glossary-exp">.exp<a class="headerlink" href="#glossary-exp" title="Permanent link">&para;</a></h3>
-<p>Files with the <code>.exp</code> extension are created by <strong>Percona XtraBackup</strong> per each <em>InnoDB</em> tablespace when the <a href="#xtrabackup-option-reference-–-export"><code>--export</code></a> option is used on prepare. See <a href="#restore-individual-tables">restore individual tables</a>.</p>
+<p>Files with the <code>.exp</code> extension are created by <strong>Percona XtraBackup</strong> per each <em>InnoDB</em> tablespace when the <a href="#xtrabackup-option-reference-export"><code>--export</code></a> option is used on prepare. See <a href="#restore-individual-tables">restore individual tables</a>.</p>
 <h3 id="glossary-frm">.frm<a class="headerlink" href="#glossary-frm" title="Permanent link">&para;</a></h3>
 <p>For each table, the server will create a file with the <code>.frm</code> extension containing the table definition (for all storage engines).</p>
 <h3 id="glossary-general-availability-ga">General availability (GA)<a class="headerlink" href="#glossary-general-availability-ga" title="Permanent link">&para;</a></h3>
