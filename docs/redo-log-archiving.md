@@ -73,7 +73,7 @@ mysql> SELECT innodb_redo_log_archive_start('backup1','backup1');
 
 ## Percona XtraBackup and redo log archiving
 
-Percona XtraBackup 8.0.34-29 added the [redo-log-arch-dir](xtrabackup-option-reference.md#-redo-log-arch-dirname) option. If the archiving directory is not configured in MySQL, Percona XtraBackup creates a temporary directory for the archive file. To use this option, you must run Percona XtraBackup as the same owner as `mysqld`. If Percona XtraBackup does not have the appropriate permissions, the action generates a "Permission denied" error, and archiving is not used.
+Percona XtraBackup 8.0.34-29 added the [redo-log-arch-dir](xtrabackup-option-reference.md#redo-log-arch-dir) option. If the archiving directory is not configured in MySQL, Percona XtraBackup creates a temporary directory for the archive file. To use this option, you must run Percona XtraBackup as the same owner as `mysqld`. If Percona XtraBackup does not have the appropriate permissions, the action generates a "Permission denied" error, and archiving is not used.
 
 ## Example of reading a log
 
