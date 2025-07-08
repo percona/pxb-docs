@@ -157,5 +157,5 @@ data. The first line in the above output, in which the `INDEX` column is
 empty, is a summary of the entire table.
 
 [--stats]: xtrabackup-option-reference.md#stats
-[--tables]: xtrabackup-option-reference.md#tablesname
+[--tables]: xtrabackup-option-reference.md#tables
 [--use-memory]: xtrabackup-option-reference.md#use-memory

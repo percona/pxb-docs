@@ -76,10 +76,10 @@ taken with [--history] option.
 options must be specified only on the command line and not within
 a configuration file in order to be effective.
 
-[--history]: xtrabackup-option-reference.md#historyname
-[--incremental-history-name]: xtrabackup-option-reference.md#incremental-history-namename
-[--incremental-history-uuid]: xtrabackup-option-reference.md#incremental-history-uuidname
-[--incremental-basedir]: xtrabackup-option-reference.md#incremental-basedirdirectory
-[--incremental-lsn]: xtrabackup-option-reference.md#incremental-lsnlsn
-[--password]: xtrabackup-option-reference.md#passwordpassword
-[--encrypt_key]: xtrabackup-option-reference.md#encrypt-keyencryption_key
+[--history]: xtrabackup-option-reference.md#history
+[--incremental-history-name]: xtrabackup-option-reference.md#incremental-history-name
+[--incremental-history-uuid]: xtrabackup-option-reference.md#incremental-history-uuid
+[--incremental-basedir]: xtrabackup-option-reference.md#incremental-basedir
+[--incremental-lsn]: xtrabackup-option-reference.md#incremental-lsn
+[--password]: xtrabackup-option-reference.md#password
+[--encrypt-key]: xtrabackup-option-reference.md#encrypt-key
