@@ -1,4 +1,4 @@
-## Update the curl utility in Debian 10
+# Update the curl utility in Debian 10
 
 The default curl version, 7.64.0, in Debian 10 has known issues when
 attempting to reuse an already closed connection. This issue directly

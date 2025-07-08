@@ -10,7 +10,7 @@ Each table with the CSV Storage engine has `.CSV` file which contains the data o
 
 ## .exp
 
-Files with the `.exp` extension are created by Percona XtraBackup per each InnoDB tablespace when the [`--export`](xtrabackup-option-reference.md#–-export) option is used on prepare. See [restore individual tables](restore-individual-tables.md).
+Files with the `.exp` extension are created by Percona XtraBackup per each InnoDB tablespace when the [`--export`](xtrabackup-option-reference.md#export) option is used on prepare. See [restore individual tables](restore-individual-tables.md).
 
 ## .frm
 
