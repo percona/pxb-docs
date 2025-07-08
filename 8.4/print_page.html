@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -4258,7 +4258,7 @@
   
   
   <span class="md-ellipsis">
-    Update curl utility
+    Update the curl utility in Debian 10
     
   </span>
   
@@ -5877,7 +5877,7 @@
           <li class="md-nav__item">
   <a href="#update-curl-utility" class="md-nav__link">
     <span class="md-ellipsis">
-      Update curl utility
+      Update the curl utility in Debian 10
     </span>
   </a>
   
@@ -6638,7 +6638,7 @@ noarch.rpm
 <p>Get started with <a href="#quickstart-overview">Quickstart Guide for Percona XtraBackup</a>.</p>
 <h2 id="release-notes-8.4.0-2-release-highlights">Release highlights<a class="headerlink" href="#release-notes-8.4.0-2-release-highlights" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 8.4.0-2 merges the MySQL 8.4 code base and introduces Percona XtraBackup 8.4.0-2 Pro build, in addition to the regular community builds.</p>
-<p>Percona XtraBackup 8.4.0-2 Pro build includes the <a href="#release-notes-pxb-pro.md-capabilities">capabilities</a> that are typically requested by large enterprises. These Pro builds are specifically created and tested by Percona, and the corresponding packages are supported only for Percona customers with a valid subscription. </p>
+<p>Percona XtraBackup 8.4.0-2 Pro build includes the <a href="#pxb-pro-capabilities">capabilities</a> that are typically requested by large enterprises. These Pro builds are specifically created and tested by Percona, and the corresponding packages are supported only for Percona customers with a valid subscription. </p>
 <p>Percona XtraBackup 8.4.0-2 Pro build is available for the following platforms:</p>
 <ul>
 <li>
@@ -8951,7 +8951,7 @@ that Percona Toolkit uses to obtain statistics about its use. This information i
 a random UUID; no client information is collected or stored.</p>
 <h3 id="xtrabackup-option-reference-open-files-limit">open-files-limit<a class="headerlink" href="#xtrabackup-option-reference-open-files-limit" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--open-files-limit=#</code></p>
-<p>The maximum number of file descriptors to reserve with <a href="https://linux.die.net/man/2/setrlimit">setrlimit</a>git .</p>
+<p>The maximum number of file descriptors to reserve with <a href="https://man7.org/linux/man-pages/man2/setrlimit.2.html">setrlimit</a>git .</p>
 <h3 id="xtrabackup-option-reference-parallel">parallel<a class="headerlink" href="#xtrabackup-option-reference-parallel" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--parallel=#</code></p>
 <p>This option specifies the number of threads to use to copy multiple data
@@ -9346,7 +9346,7 @@ $<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><sp
 <code>backup_name/database/table.ibd.NNN...</code>, where <code>NNN...</code> is a
 0-padded serial number of chunk within a file. The size of chunk produced by
 xtrabackup and xbstream changed to 10M.</p>
-<p>To adjust the chunk size use <a href="#xtrabackup-option-reference---read-buffer-size"><code>--read-buffer-size</code></a>. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <a href="#xtrabackup-option-reference---encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
+<p>To adjust the chunk size use <a href="#xtrabackup-option-reference-read-buffer-size"><code>--read-buffer-size</code></a>. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <a href="#xtrabackup-option-reference-encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
 <p>xbcloud has three essential operations: <em>put</em>, <em>get</em>, and <em>delete</em>. With these
 operations, backups are created, stored, retrieved, restored, and
 deleted. xbcloud operations clearly map to similar operations within 
@@ -10655,7 +10655,7 @@ Pin-Priority: 1001
 <p>For more information about the pinning, check the official <a href="http://wiki.debian.org/AptPreferences">debian wiki</a>.</p></section><section class="print-page" id="work-with-apparmor" heading-number="9.3.5"><h1 id="work-with-apparmor-work-with-apparmor">Work with AppArmor<a class="headerlink" href="#work-with-apparmor-work-with-apparmor" title="Permanent link">&para;</a></h1>
 <p>The Linux Security Module implements mandatory access controls (MAC) with AppArmor. Debian and Ubuntu systems install AppArmor by default. AppArmor uses profiles which define which files and permissions are needed for application.</p>
 <p>Percona XtraBackup does not have a profile and is not confined by AppArmor.</p>
-<p>For a list of common AppArmor commands, see <a href="https://docs.percona.com/percona-server/innovation-release/apparmor.html">Percona Server for MySQL - AppArmor</a>.</p>
+<p>For a list of common AppArmor commands, see <a href="https://docs.percona.com/percona-server/8.4/apparmor.html">Percona Server for MySQL - AppArmor</a>.</p>
 <h2 id="work-with-apparmor-develop-a-profile">Develop a profile<a class="headerlink" href="#work-with-apparmor-develop-a-profile" title="Permanent link">&para;</a></h2>
 <p>Download the profile from:</p>
 <p><a href="https://github.com/percona/percona-xtrabackup/tree/trunk/packaging/percona/apparmor/apparmor.d">https://github.com/percona/percona-xtrabackup/tree/trunk/packaging/percona/apparmor/apparmor.d</a></p>
@@ -12973,7 +12973,7 @@ be found in the <em>pt-table-checksum</em> <a href="https://docs.percona.com/per
                         </h1>
                     <section class="print-page" id="xtrabackup-exit-codes" heading-number="11.1"><h1 id="xtrabackup-exit-codes-xtrabackup-exit-codes">xtrabackup exit codes<a class="headerlink" href="#xtrabackup-exit-codes-xtrabackup-exit-codes" title="Permanent link">&para;</a></h1>
 <p>The <em>xtrabackup</em> binary exits with the traditional success value of 0 after a backup when no error occurs. If an error occurs during the backup, the exit value is 1.</p>
-<p>In certain cases, the exit value can be something other than 0 or 1, due to the command-line option code included from the <em>MySQL</em> libraries. An unknown command-line option, for example, will cause an exit code of 255.</p></section><section class="print-page" id="update-curl-utility" heading-number="11.2"><h1 id="update-curl-utility-update-curl-utility">Update curl utility</h1><h2 id="update-the-curl-utility-in-debian-10">Update the curl utility in Debian 10<a class="headerlink" href="#update-curl-utility-update-the-curl-utility-in-debian-10" title="Permanent link">&para;</a></h2>
+<p>In certain cases, the exit value can be something other than 0 or 1, due to the command-line option code included from the <em>MySQL</em> libraries. An unknown command-line option, for example, will cause an exit code of 255.</p></section><section class="print-page" id="update-curl-utility" heading-number="11.2"><h1 id="update-curl-utility-update-the-curl-utility-in-debian-10">Update the curl utility in Debian 10<a class="headerlink" href="#update-curl-utility-update-the-curl-utility-in-debian-10" title="Permanent link">&para;</a></h1>
 <p>The default curl version, 7.64.0, in Debian 10 has known issues when
 attempting to reuse an already closed connection. This issue directly
 affects <code>xbcloud</code> and users may see intermittent backup failures.</p>
@@ -13148,7 +13148,7 @@ Percona XtraBackup will not be able to take a consistent backup. Retry the backu
 <h2 id="glossary-csv">.CSV<a class="headerlink" href="#glossary-csv" title="Permanent link">&para;</a></h2>
 <p>Each table with the CSV Storage engine has <code>.CSV</code> file which contains the data of it (which is a standard Comma Separated Value file).</p>
 <h2 id="glossary-exp">.exp<a class="headerlink" href="#glossary-exp" title="Permanent link">&para;</a></h2>
-<p>Files with the <code>.exp</code> extension are created by Percona XtraBackup per each InnoDB tablespace when the <a href="#xtrabackup-option-reference-–-export"><code>--export</code></a> option is used on prepare. See <a href="#restore-individual-tables">restore individual tables</a>.</p>
+<p>Files with the <code>.exp</code> extension are created by Percona XtraBackup per each InnoDB tablespace when the <a href="#xtrabackup-option-reference-export"><code>--export</code></a> option is used on prepare. See <a href="#restore-individual-tables">restore individual tables</a>.</p>
 <h2 id="glossary-frm">.frm<a class="headerlink" href="#glossary-frm" title="Permanent link">&para;</a></h2>
 <p>For each table, the server will create a file with the <code>.frm</code> extension containing the table definition (for all storage engines).</p>
 <h2 id="glossary-general-availability-ga">General availability (GA)<a class="headerlink" href="#glossary-general-availability-ga" title="Permanent link">&para;</a></h2>
@@ -13624,7 +13624,7 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 <li><a href="#encrypted-innodb-tablespace-backups">Encrypted InnoDB tablespace backups</a></li>
 <li><a href="#xbcloud-exbackoff">Exponential backoff</a></li>
 <li><a href="#xbcloud-binary-fifo-datasink">FIFO data sink</a></li>
-<li><a href="#pro-files-amzn">Files in packages built for Percona XtraBackup Pro</a></li>
+<li><a href="#pro-files-amzn.md">Files in packages built for Percona XtraBackup Pro</a></li>
 <li><a href="#pro-files">Files in packages built for Percona XtraBackup Pro</a></li>
 <li><a href="#apt-files">Files in the DEB package</a></li>
 <li><a href="#yum-files">Files in the RPM package built for Percona XtraBackup 8.4</a></li>
@@ -13643,7 +13643,6 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 <li><a href="#yum-download-rpm">Install Percona XtraBackup 8.4 using downloaded RPM packages</a></li>
 <li><a href="#apt-download-deb">Install using downloaded DEB packages</a></li>
 <li><a href="#apt-repo">Install with the Percona-release Tool on Debian-based Systems</a></li>
-<li><a href="#limitations.md">Limitations</a></li>
 <li><a href="#lock-options">lock-ddl-per-table option improvements</a></li>
 <li><a href="#lru-dump-backup">LRU dump backup</a></li>
 <li><a href="#make-backup-in-replication-env">Make backups in replication environments</a></li>
@@ -13687,7 +13686,7 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 <li><a href="#xbcloud-azure">Use the xbcloud binary with Microsoft Azure Cloud Storage</a></li>
 <li><a href="#xbcloud-minio">Use the xbcloud binary with MinIO</a></li>
 <li><a href="#xbcloud-swift">Use the xbcloud binary with Swift</a></li>
-<li><a href="#varify-backup.md">Verify backups with replication and pt-checksum</a></li>
+<li><a href="#verify-backup">Verify backups with replication and pt-checksum</a></li>
 <li><a href="#xbcloud-binary-overview">The xbcloud binary overview</a></li>
 <li><a href="#xbcloud-options">The xbcloud command-line options</a></li>
 <li><a href="#xbcrypt-binary-overview">The xbcrypt binary overview</a></li>
@@ -14083,7 +14082,7 @@ we will do our very best to be helpful.</p></section><section class="print-page"
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="js/print-site.js"></script>
       
