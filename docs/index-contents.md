@@ -23,7 +23,6 @@
   - [Encrypted InnoDB tablespace backups](encrypted-innodb-tablespace-backups.md)
   - [Exponential backoff](xbcloud-exbackoff.md)
   - [FIFO data sink](xbcloud-binary-fifo-datasink.md)
-  - [Files in packages built for Percona XtraBackup Pro](pro-files-amzn.md)
   - [Files in packages built for Percona XtraBackup Pro](pro-files.md)
   - [Files in the DEB package](apt-files.md)
   - [Files in the RPM package built for Percona XtraBackup {{vers}}](yum-files.md)
