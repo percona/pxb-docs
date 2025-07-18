@@ -30,7 +30,7 @@ You can verify if MySQL has configured the archive directory with the following 
 ```{.bash data-prompt"}
 $ mkdir -p /var/lib/mysql-redo-archive/backup1
 $ chown mysql. -R /var/lib/mysql-redo-archive
-$ chmod _R 700 /var/lib/mysql-redo-archive/
+$ chmod -R 700 /var/lib/mysql-redo-archive/
 ```
 
 The `innodb_redo_log_archive_dirs` global variable contains labeled directories. The format is `label:directory-path`. Multiple objects can be listed with a semi-colon between each set.
