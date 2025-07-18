@@ -316,7 +316,7 @@ variable is restored.
 Usage: `--dump-innodb-buffer-pool-timeout`
 
 This option contains the number of seconds that xtrabackup should
-monitor the value of [`innodb_buffer_pool_dump_status`](https://dev.mysql.com/doc/refman/8.0/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status) to
+monitor the value of [`innodb_buffer_pool_dump_status`](https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status) to
 determine if the buffer pool dump has been completed.
 
 This option is used in combination with
@@ -1145,4 +1145,4 @@ Usage: `--xtrabackup-plugin-dir=DIRNAME`
 The absolute path to the directory that contains the `keyring` plugin.
 
 [replicating temporary tables]: https://dev.mysql.com/doc/refman/{{vers}}/en/replication-features-temptables.html
-[Backup locks]: https://docs.percona.com/percona-server/innovation-release/backup-locks.html
+[Backup locks]: https://docs.percona.com/percona-server/{{vers}}/backup-locks.html
