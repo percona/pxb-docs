@@ -2,7 +2,7 @@
 
 A physical backup includes raw copies of database contents and related files, such as configuration files and logs. During crash recovery, InnoDB uses the redo log to correct data from incomplete transactions. The redo log contains entries that restore the database to a consistent state. An LSN value identifies the position of data in the redo log.
 
-InnoDB appends data to the redo log continuously. When a file fills, InnoDB creates a new file. The checkpoint process truncates old data and removes obsolete files.
+InnoDB continuously appends data to the redo log. When a file fills, InnoDB creates a new file. The checkpoint process truncates old data and removes obsolete files.
 
 If the server generates redo logs faster than the backup system can store them, the backup may fall behind and risk data loss. This can happen when the server is under heavy load or when the backup storage is slower than the redo log storage.
 
@@ -115,7 +115,7 @@ If successful, the function returns `0`. A non-zero value indicates an error.
 
 To stop redo log archiving, call `innodb_redo_log_archive_stop()`. This function halts the archiving process for the specified label and closes the associated archive stream.
 
-You must use the same label that was used to start archiving. The function requires the `INNODB_REDO_LOG_ARCHIVE` privilege.
+You must use the same label as when you started archiving. The function requires the `INNODB_REDO_LOG_ARCHIVE` privilege.
 
 ```{.bash data-prompt="mysql>"}
 mysql> SELECT innodb_redo_log_archive_stop('backup1');
@@ -168,7 +168,7 @@ $ cat /tmp/b0-with-redo-archiving-as-mysql-os-user.log
 ??? example "Expected output"
     ```{.text .no-copy}
     [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql
-    [Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.0.34-29 based on MySQL server 8.4.0-3 Linux (aarch64) (revision id: cccec763) 250721 13:36:02  version_check Connecting to MySQL server with DSN 'dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost' as 'root'  (using password: YES). 250721 13:36:02  version_check Connected to MySQL server 250721 13:36:02  version_check Executing a version check against the server... 250721 13:36:02  version_check Done. 
+    [Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.4.0-3 based on MySQL server 8.4.0-3 Linux (aarch64) (revision id: cccec763) 250721 13:36:02  version_check Connecting to MySQL server with DSN 'dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost' as 'root'  (using password: YES). 250721 13:36:02  version_check Connected to MySQL server 250721 13:36:02  version_check Executing a version check against the server... 250721 13:36:02  version_check Done. 
        [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
        [Note] [MY-011825] [Xtrabackup] Using server version 8.4.0-3 
     ...
