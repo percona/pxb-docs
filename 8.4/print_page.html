@@ -1139,6 +1139,8 @@
       
         
       
+        
+      
     
     
     
@@ -1519,6 +1521,29 @@
   
   
     <li class="md-nav__item">
+      <a href="redo-log-archiving.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    InnoDB Redo Log Archiving
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="smart-memory-estimation.html" class="md-nav__link">
         
   
@@ -1579,10 +1604,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_8" >
         
           
-          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="0">
             
   
   
@@ -1595,8 +1620,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_8">
             <span class="md-nav__icon md-icon"></span>
             xbcloud features
           </label>
@@ -4957,6 +4982,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#redo-log-archiving" class="md-nav__link">
+    <span class="md-ellipsis">
+      InnoDB Redo Log Archiving
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#smart-memory-estimation" class="md-nav__link">
     <span class="md-ellipsis">
       Smart memory estimation
@@ -4975,7 +5009,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#section-7-7" class="md-nav__link">
+  <a href="#section-7-8" class="md-nav__link">
     <span class="md-ellipsis">
       xbcloud features
     </span>
@@ -8085,7 +8119,177 @@ or review the log to diagnose issues.</p>
 2022-03-22T19:15:36.152021+05:30 0 [Note] [MY-011825] [Xtrabackup] Starting InnoDB instance for recovery.
 2022-03-22T19:15:36.152035+05:30 0 [Note] [MY-011825] [Xtrabackup] Using 104857600 bytes for buffer pool (set by --use-memory parameter)
 </code></pre></div>
-</details></section><section class="print-page" id="smart-memory-estimation" heading-number="7.5"><h1 id="smart-memory-estimation-smart-memory-estimation">Smart memory estimation<a class="headerlink" href="#smart-memory-estimation-smart-memory-estimation" title="Permanent link">&para;</a></h1>
+</details></section><section class="print-page" id="redo-log-archiving" heading-number="7.5"><h1 id="redo-log-archiving-innodb-redo-log-archiving">InnoDB Redo Log Archiving<a class="headerlink" href="#redo-log-archiving-innodb-redo-log-archiving" title="Permanent link">&para;</a></h1>
+<p>A physical backup includes raw copies of database contents and related files, such as configuration files and logs. During crash recovery, InnoDB uses the redo log to correct data from incomplete transactions. The redo log contains entries that restore the database to a consistent state. An LSN value identifies the position of data in the redo log.</p>
+<p>InnoDB appends data to the redo log continuously. When a file fills, InnoDB creates a new file. The checkpoint process truncates old data and removes obsolete files.</p>
+<p>If the server generates redo logs faster than the backup system can store them, the backup may fall behind and risk data loss. This can happen when the server is under heavy load or when the backup storage is slower than the redo log storage.</p>
+<h2 id="redo-log-archiving-pre-archiving-strategies">Pre-archiving strategies<a class="headerlink" href="#redo-log-archiving-pre-archiving-strategies" title="Permanent link">&para;</a></h2>
+<p>Before redo log archiving, users relied on the following strategies:</p>
+<ul>
+<li>
+<p>Increase the redo log size</p>
+</li>
+<li>
+<p>Check for I/O congestion if read speed is slow</p>
+</li>
+<li>
+<p>Check for I/O or network congestion if write speed is slow</p>
+</li>
+<li>
+<p>Schedule backups during off-peak hours</p>
+</li>
+</ul>
+<h2 id="redo-log-archiving-when-to-use-redo-log-archiving">When to Use Redo Log Archiving<a class="headerlink" href="#redo-log-archiving-when-to-use-redo-log-archiving" title="Permanent link">&para;</a></h2>
+<p>Use redo log archiving when:</p>
+<ul>
+<li>
+<p>You see heavy write activity during backups.</p>
+</li>
+<li>
+<p>Increasing redo log size alone does not prevent wrap-around during long backups.</p>
+</li>
+<li>
+<p>I/O congestion slows read or write throughput to the backup target.</p>
+</li>
+<li>
+<p>You cannot schedule backups during low-traffic periods.</p>
+</li>
+</ul>
+<h2 id="redo-log-archiving-enable-redo-log-archiving">Enable redo log archiving<a class="headerlink" href="#redo-log-archiving-enable-redo-log-archiving" title="Permanent link">&para;</a></h2>
+<p>Redo log archiving allows the server to write redo logs to a separate directory for backup purposes. To enable archiving, follow these steps:</p>
+<ol>
+<li>
+<p>Create one or more archive directories and set ownership and permissions so the <code>mysqld</code> OS user can write to them.</p>
+</li>
+<li>
+<p>Register those directories with the <code>innodb_redo_log_archive_dirs</code> global variable, then start archiving with the <code>innodb_redo_log_archive_start()</code> function.</p>
+</li>
+</ol>
+<h3 id="redo-log-archiving-create-an-archive-directory">Create an archive directory<a class="headerlink" href="#redo-log-archiving-create-an-archive-directory" title="Permanent link">&para;</a></h3>
+<p>Before enabling redo log archiving, create a directory to store archived redo logs. The system user running <code>mysqld</code> must own the directory and have read and write access.</p>
+<p>Use the following commands to create and secure the directory:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/mysql-redo-archive/backup1
+$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>mysql:mysql<span class="w"> </span>/var/lib/mysql-redo-archive
+$<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">700</span><span class="w"> </span>/var/lib/mysql-redo-archive/
+</code></pre></div>
+<ul>
+<li>
+<p><code>mkdir -p</code> creates the directory and any missing parent directories</p>
+</li>
+<li>
+<p><code>chown</code> assigns ownership to the mysql user</p>
+</li>
+<li>
+<p><code>chmod</code> restricts access to the owner only</p>
+</li>
+</ul>
+<p>Ensure that the path you use matches the label and directory in your <code>innodb_redo_log_archive_dirs</code> configuration.</p>
+<p>Adjust <code>mysql:mysql</code> if your MySQL server runs under a different user or group.</p>
+<h3 id="redo-log-archiving-register-the-archive-directory">Register the Archive Directory<a class="headerlink" href="#redo-log-archiving-register-the-archive-directory" title="Permanent link">&para;</a></h3>
+<p>The <code>innodb_redo_log_archive_dirs</code> variable defines labeled archive paths. Use a semicolon to separate multiple entries. Each entry uses the format <code>label:/path/to/archive</code>.</p>
+<p>Set and persist the variable:</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SET<span class="w"> </span>PERSIST<span class="w"> </span><span class="nv">innodb_redo_log_archive_dirs</span><span class="o">=</span><span class="s1">&#39;backup1:/var/lib/mysql-redo-archive/&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>Verify the configuration:</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GLOBAL<span class="w"> </span>VARIABLES<span class="w"> </span>LIKE<span class="w"> </span><span class="s1">&#39;innodb_redo_log_ar%&#39;</span><span class="p">;</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>+------------------------------+--------------------------------------+
+| Variable_name                | Value                                |
++------------------------------+--------------------------------------+
+| innodb_redo_log_archive_dirs | backup1:/var/lib/mysql-redo-archive/ |
++------------------------------+--------------------------------------+
+1 row in set (0.0025 sec)
+</code></pre></div>
+</details>
+<h2 id="redo-log-archiving-start-and-stop-archiving">Start and stop archiving<a class="headerlink" href="#redo-log-archiving-start-and-stop-archiving" title="Permanent link">&para;</a></h2>
+<p>Users with the <code>INNODB_REDO_LOG_ARCHIVE</code> privilege can start or stop archiving with the following functions:</p>
+<ul>
+<li>
+<p><code>innodb_redo_log_archive_start(label, label)</code></p>
+</li>
+<li>
+<p><code>innodb_redo_log_archive_stop(label)</code></p>
+</li>
+</ul>
+<h3 id="redo-log-archiving-start-archiving">Start archiving<a class="headerlink" href="#redo-log-archiving-start-archiving" title="Permanent link">&para;</a></h3>
+<p>To begin archiving redo logs, call <code>innodb_redo_log_archive_start()</code>. This function activates the archiving process for the specified label and writes redo log data to the associated directory.</p>
+<p>Use the same label defined in the <code>innodb_redo_log_archive_dirs</code> variable. The function requires the <code>INNODB_REDO_LOG_ARCHIVE</code> privilege.</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_start<span class="o">(</span><span class="s1">&#39;backup1&#39;</span>,<span class="s1">&#39;backup1&#39;</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>
+<p>The first argument is the label used in the configuration</p>
+</li>
+<li>
+<p>The second argument is the destination label for the archive stream</p>
+</li>
+</ul>
+<p>If successful, the function returns <code>0</code>. A non-zero value indicates an error.</p>
+<h3 id="redo-log-archiving-stop-archiving">Stop archiving<a class="headerlink" href="#redo-log-archiving-stop-archiving" title="Permanent link">&para;</a></h3>
+<p>To stop redo log archiving, call <code>innodb_redo_log_archive_stop()</code>. This function halts the archiving process for the specified label and closes the associated archive stream.</p>
+<p>You must use the same label that was used to start archiving. The function requires the <code>INNODB_REDO_LOG_ARCHIVE</code> privilege.</p>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_stop<span class="o">(</span><span class="s1">&#39;backup1&#39;</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>The argument is the label defined in the archive configuration</li>
+</ul>
+<p>If successful, the function returns <code>0</code>. A non-zero value indicates an error.</p>
+<h2 id="redo-log-archiving-troubleshooting-redo-log-archiving">Troubleshooting redo log archiving<a class="headerlink" href="#redo-log-archiving-troubleshooting-redo-log-archiving" title="Permanent link">&para;</a></h2>
+<p>If redo log archiving fails or behaves unexpectedly, check the following:</p>
+<ul>
+<li>
+<p>Confirm that the archive directory exists and is writable by the <code>mysqld</code> user</p>
+</li>
+<li>
+<p>Verify that the label matches the one defined in <code>innodb_redo_log_archive_dirs</code></p>
+</li>
+<li>
+<p>Ensure that the user calling the function has the <code>INNODB_REDO_LOG_ARCHIVE</code> privilege</p>
+</li>
+<li>
+<p>Check for SELinux or AppArmor restrictions that may block access to the archive path</p>
+</li>
+<li>
+<p>Review the MySQL error log for messages related to archiving failures</p>
+</li>
+<li>
+<p>If using Percona XtraBackup, run it as the same user that owns the mysqld process</p>
+</li>
+<li>
+<p>Look for &ldquo;Permission denied&rdquo; errors in the backup log output</p>
+</li>
+</ul>
+<p>The archiving functions return <code>0</code> on success. Any other value indicates a failure that requires investigation.</p>
+<h2 id="redo-log-archiving-run-percona-xtrabackup-with-archiving">Run Percona XtraBackup with archiving<a class="headerlink" href="#redo-log-archiving-run-percona-xtrabackup-with-archiving" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup supports redo log archiving. If the archive directory is not configured, XtraBackup creates a temporary directory. Run XtraBackup as the same user that owns the mysqld process. If permissions are incorrect, XtraBackup returns a &ldquo;Permission denied&rdquo; error and skips archiving.</p>
+<p>Run XtraBackup as the mysql user:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>-u<span class="w"> </span>mysql<span class="w"> </span>bash
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class="o">=</span><span class="m">1</span><span class="w"> </span>--compress<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--host<span class="o">=</span>localhost<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span><span class="s1">&#39;password_string&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--backup<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/Backup/13oct<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="m">2</span>&gt;<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
+</code></pre></div>
+<p>Use the following command to verify that archiving has occurred:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql
+[Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.0.34-29 based on MySQL server 8.4.0-3 Linux (aarch64) (revision id: cccec763) 250721 13:36:02  version_check Connecting to MySQL server with DSN &#39;dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost&#39; as &#39;root&#39;  (using password: YES). 250721 13:36:02  version_check Connected to MySQL server 250721 13:36:02  version_check Executing a version check against the server... 250721 13:36:02  version_check Done. 
+   [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
+   [Note] [MY-011825] [Xtrabackup] Using server version 8.4.0-3 
+...
+[Note] [MY-011825] [Xtrabackup] xtrabackup redo_log_arch_dir is set to 
+backup1:/var/lib/mysql-redo-archive/  
+[Note] [MY-011825] [Xtrabackup] Waiting for archive file 
+&#39;/var/lib/mysql-redo-archive//1692711362986/archive.94f4ab58-3d1c-11ee-9e4f-0af1fd7c44c9.000001.log&#39;  
+[Note] [MY-011825] [Xtrabackup] &gt;&gt; log scanned up to (19630018)
+...
+</code></pre></div>
+</details>
+<p>Look for messages confirming the use of the archive directory and successful log scanning.</p></section><section class="print-page" id="smart-memory-estimation" heading-number="7.6"><h1 id="smart-memory-estimation-smart-memory-estimation">Smart memory estimation<a class="headerlink" href="#smart-memory-estimation-smart-memory-estimation" title="Permanent link">&para;</a></h1>
 <p>The Smart memory estimation is <a href="#glossary-tech-preview">tech preview</a> feature. Before using Smart memory estimation in production, we recommend that you test restoring production from physical backups in your environment and also use the alternative backup method for redundancy.</p>
 <p>Percona XtraBackup supports the Smart memory estimation feature. With this feature, Percona XtraBackup computes the memory required for <code>prepare</code> phase, while copying redo log entries during the <code>backup</code> phase. Percona XtraBackup also considers the number of InnoDB pages to be fetched from the disk.  </p>
 <p>Percona XtraBackup performs the backup procedure in two steps: </p>
@@ -8175,7 +8379,7 @@ or review the log to diagnose issues.</p>
 <li>
 <p>64 tables result - prepare time dropped to ~9.9% of the original time. An improvement in recovery time of about 10x.</p>
 </li>
-</ul></section><section class="print-page" id="working-with-binary-logs" heading-number="7.6"><h1 id="working-with-binary-logs-work-with-binary-logs">Work with binary logs<a class="headerlink" href="#working-with-binary-logs-work-with-binary-logs" title="Permanent link">&para;</a></h1>
+</ul></section><section class="print-page" id="working-with-binary-logs" heading-number="7.7"><h1 id="working-with-binary-logs-work-with-binary-logs">Work with binary logs<a class="headerlink" href="#working-with-binary-logs-work-with-binary-logs" title="Permanent link">&para;</a></h1>
 <p>The <code>xtrabackup</code> binary integrates with the <code>log_status table</code>. This integration enables <code>xtrabackup</code> to print out the backup’s corresponding binary log position, so that you can use this binary log position to provision a new replica or perform point-in-time recovery.</p>
 <h2 id="working-with-binary-logs-find-the-binary-log-position">Find the binary log position<a class="headerlink" href="#working-with-binary-logs-find-the-binary-log-position" title="Permanent link">&para;</a></h2>
 <p>You can find the binary log position corresponding to a backup after the backup has been taken. If your backup is from a server with binary logging enabled, <code>xtrabackup</code> creates a file named <code>xtrabackup_binlog_info</code> in the target directory. This file contains the binary log file name and position of the exact point when the backup was taken.</p>
@@ -8193,10 +8397,10 @@ MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
 <h2 id="working-with-binary-logs-set-up-a-new-replication-replica">Set up a new replication replica<a class="headerlink" href="#working-with-binary-logs-set-up-a-new-replication-replica" title="Permanent link">&para;</a></h2>
 <p>To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO with the appropriate options</a> command, use the binary log filename and position shown in the <code>xtrabackup_binlog_info</code> file to start replication.</p>
 <p>A more detailed procedure is found in  <a href="#set-up-replication">How to setup a replica for replication in 6 simple steps with Percona XtraBackup</a>.</p></section>
-                    <section class='print-page md-section' id='section-7-7' heading-number='7.7'>
-                        <h1>xbcloud features<a class='headerlink' href='#section-7-7' title='Permanent link'></a>
+                    <section class='print-page md-section' id='section-7-8' heading-number='7.8'>
+                        <h1>xbcloud features<a class='headerlink' href='#section-7-8' title='Permanent link'></a>
                         </h1>
-                    <section class="print-page" id="xbcloud-binary-fifo-datasink" heading-number="7.7.1"><h1 id="xbcloud-binary-fifo-datasink-fifo-data-sink">FIFO data sink<a class="headerlink" href="#xbcloud-binary-fifo-datasink-fifo-data-sink" title="Permanent link">&para;</a></h1>
+                    <section class="print-page" id="xbcloud-binary-fifo-datasink" heading-number="7.8.1"><h1 id="xbcloud-binary-fifo-datasink-fifo-data-sink">FIFO data sink<a class="headerlink" href="#xbcloud-binary-fifo-datasink-fifo-data-sink" title="Permanent link">&para;</a></h1>
 <p>The feature is in <a href="#glossary-tech-preview">tech preview</a>.</p>
 <p>Percona XtraBackup implements a data sink that uses the first in, first out (FIFO) method. With the <code>FIFO</code> data sink feature, users with a streaming capacity of 10Gbps (typically on a Local Area Network (LAN)) can benefit from faster backups by streaming data in parallel to an object storage.</p>
 <h2 id="xbcloud-binary-fifo-datasink-fifo-data-sink-options">FIFO data sink options<a class="headerlink" href="#xbcloud-binary-fifo-datasink-fifo-data-sink-options" title="Permanent link">&para;</a></h2>
@@ -8231,7 +8435,7 @@ $<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </sp
 <ul>
 <li>The <code>STDOUT</code> method takes 01:25:24 to push 1TB of data using 239 MBps (1.8 Gbps).</li>
 <li>The <code>FIFO</code> method, using 8 streams, takes 00:16:01 to push 1TB of data using 1.15 GBps (9.2 Gbps).</li>
-</ul></section><section class="print-page" id="xbcloud-exbackoff" heading-number="7.7.2"><h1 id="xbcloud-exbackoff-exponential-backoff">Exponential backoff<a class="headerlink" href="#xbcloud-exbackoff-exponential-backoff" title="Permanent link">&para;</a></h1>
+</ul></section><section class="print-page" id="xbcloud-exbackoff" heading-number="7.8.2"><h1 id="xbcloud-exbackoff-exponential-backoff">Exponential backoff<a class="headerlink" href="#xbcloud-exbackoff-exponential-backoff" title="Permanent link">&para;</a></h1>
 <p>Exponential backoff increases the chances for the completion of a backup or
 a restore operation. For example, a chunk upload or download may fail if
 you have an unstable network connection or other network issues. This
@@ -13766,14 +13970,16 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 
 .print-site-enumerate-headings #log-enhancements > h1:before { content: '7.4 ' }
 
-.print-site-enumerate-headings #smart-memory-estimation > h1:before { content: '7.5 ' }
+.print-site-enumerate-headings #redo-log-archiving > h1:before { content: '7.5 ' }
 
-.print-site-enumerate-headings #working-with-binary-logs > h1:before { content: '7.6 ' }
+.print-site-enumerate-headings #smart-memory-estimation > h1:before { content: '7.6 ' }
 
-.print-site-enumerate-headings #section-7-7 > h1:before { content: '7.7 ' }
-.print-site-enumerate-headings #xbcloud-binary-fifo-datasink > h1:before { content: '7.7.1 ' }
+.print-site-enumerate-headings #working-with-binary-logs > h1:before { content: '7.7 ' }
 
-.print-site-enumerate-headings #xbcloud-exbackoff > h1:before { content: '7.7.2 ' }
+.print-site-enumerate-headings #section-7-8 > h1:before { content: '7.8 ' }
+.print-site-enumerate-headings #xbcloud-binary-fifo-datasink > h1:before { content: '7.8.1 ' }
+
+.print-site-enumerate-headings #xbcloud-exbackoff > h1:before { content: '7.8.2 ' }
 
 .print-site-enumerate-headings #section-8 > h1:before { content: '8 ' }
 .print-site-enumerate-headings #binaries-overview > h1:before { content: '8.1 ' }
