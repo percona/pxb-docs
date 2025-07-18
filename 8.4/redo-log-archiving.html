@@ -4899,7 +4899,7 @@
 
 <h1 id="innodb-redo-log-archiving">InnoDB Redo Log Archiving<a class="headerlink" href="#innodb-redo-log-archiving" title="Permanent link">&para;</a></h1>
 <p>A physical backup includes raw copies of database contents and related files, such as configuration files and logs. During crash recovery, InnoDB uses the redo log to correct data from incomplete transactions. The redo log contains entries that restore the database to a consistent state. An LSN value identifies the position of data in the redo log.</p>
-<p>InnoDB appends data to the redo log continuously. When a file fills, InnoDB creates a new file. The checkpoint process truncates old data and removes obsolete files.</p>
+<p>InnoDB continuously appends data to the redo log. When a file fills, InnoDB creates a new file. The checkpoint process truncates old data and removes obsolete files.</p>
 <p>If the server generates redo logs faster than the backup system can store them, the backup may fall behind and risk data loss. This can happen when the server is under heavy load or when the backup storage is slower than the redo log storage.</p>
 <h2 id="pre-archiving-strategies">Pre-archiving strategies<a class="headerlink" href="#pre-archiving-strategies" title="Permanent link">&para;</a></h2>
 <p>Before redo log archiving, users relied on the following strategies:</p>
@@ -5007,7 +5007,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </spa
 <p>If successful, the function returns <code>0</code>. A non-zero value indicates an error.</p>
 <h3 id="stop-archiving">Stop archiving<a class="headerlink" href="#stop-archiving" title="Permanent link">&para;</a></h3>
 <p>To stop redo log archiving, call <code>innodb_redo_log_archive_stop()</code>. This function halts the archiving process for the specified label and closes the associated archive stream.</p>
-<p>You must use the same label that was used to start archiving. The function requires the <code>INNODB_REDO_LOG_ARCHIVE</code> privilege.</p>
+<p>You must use the same label as when you started archiving. The function requires the <code>INNODB_REDO_LOG_ARCHIVE</code> privilege.</p>
 <div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_stop<span class="o">(</span><span class="s1">&#39;backup1&#39;</span><span class="o">)</span><span class="p">;</span>
 </code></pre></div>
 <ul>
@@ -5055,7 +5055,7 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class=
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>[Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql
-[Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.0.34-29 based on MySQL server 8.4.0-3 Linux (aarch64) (revision id: cccec763) 250721 13:36:02  version_check Connecting to MySQL server with DSN &#39;dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost&#39; as &#39;root&#39;  (using password: YES). 250721 13:36:02  version_check Connected to MySQL server 250721 13:36:02  version_check Executing a version check against the server... 250721 13:36:02  version_check Done. 
+[Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.4.0-3 based on MySQL server 8.4.0-3 Linux (aarch64) (revision id: cccec763) 250721 13:36:02  version_check Connecting to MySQL server with DSN &#39;dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost&#39; as &#39;root&#39;  (using password: YES). 250721 13:36:02  version_check Connected to MySQL server 250721 13:36:02  version_check Executing a version check against the server... 250721 13:36:02  version_check Done. 
    [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
    [Note] [MY-011825] [Xtrabackup] Using server version 8.4.0-3 
 ...

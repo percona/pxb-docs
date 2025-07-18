@@ -8121,7 +8121,7 @@ or review the log to diagnose issues.</p>
 </code></pre></div>
 </details></section><section class="print-page" id="redo-log-archiving" heading-number="7.5"><h1 id="redo-log-archiving-innodb-redo-log-archiving">InnoDB Redo Log Archiving<a class="headerlink" href="#redo-log-archiving-innodb-redo-log-archiving" title="Permanent link">&para;</a></h1>
 <p>A physical backup includes raw copies of database contents and related files, such as configuration files and logs. During crash recovery, InnoDB uses the redo log to correct data from incomplete transactions. The redo log contains entries that restore the database to a consistent state. An LSN value identifies the position of data in the redo log.</p>
-<p>InnoDB appends data to the redo log continuously. When a file fills, InnoDB creates a new file. The checkpoint process truncates old data and removes obsolete files.</p>
+<p>InnoDB continuously appends data to the redo log. When a file fills, InnoDB creates a new file. The checkpoint process truncates old data and removes obsolete files.</p>
 <p>If the server generates redo logs faster than the backup system can store them, the backup may fall behind and risk data loss. This can happen when the server is under heavy load or when the backup storage is slower than the redo log storage.</p>
 <h2 id="redo-log-archiving-pre-archiving-strategies">Pre-archiving strategies<a class="headerlink" href="#redo-log-archiving-pre-archiving-strategies" title="Permanent link">&para;</a></h2>
 <p>Before redo log archiving, users relied on the following strategies:</p>
@@ -8229,7 +8229,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </spa
 <p>If successful, the function returns <code>0</code>. A non-zero value indicates an error.</p>
 <h3 id="redo-log-archiving-stop-archiving">Stop archiving<a class="headerlink" href="#redo-log-archiving-stop-archiving" title="Permanent link">&para;</a></h3>
 <p>To stop redo log archiving, call <code>innodb_redo_log_archive_stop()</code>. This function halts the archiving process for the specified label and closes the associated archive stream.</p>
-<p>You must use the same label that was used to start archiving. The function requires the <code>INNODB_REDO_LOG_ARCHIVE</code> privilege.</p>
+<p>You must use the same label as when you started archiving. The function requires the <code>INNODB_REDO_LOG_ARCHIVE</code> privilege.</p>
 <div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_stop<span class="o">(</span><span class="s1">&#39;backup1&#39;</span><span class="o">)</span><span class="p">;</span>
 </code></pre></div>
 <ul>
@@ -8277,7 +8277,7 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class=
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>[Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql
-[Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.0.34-29 based on MySQL server 8.4.0-3 Linux (aarch64) (revision id: cccec763) 250721 13:36:02  version_check Connecting to MySQL server with DSN &#39;dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost&#39; as &#39;root&#39;  (using password: YES). 250721 13:36:02  version_check Connected to MySQL server 250721 13:36:02  version_check Executing a version check against the server... 250721 13:36:02  version_check Done. 
+[Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.4.0-3 based on MySQL server 8.4.0-3 Linux (aarch64) (revision id: cccec763) 250721 13:36:02  version_check Connecting to MySQL server with DSN &#39;dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost&#39; as &#39;root&#39;  (using password: YES). 250721 13:36:02  version_check Connected to MySQL server 250721 13:36:02  version_check Executing a version check against the server... 250721 13:36:02  version_check Done. 
    [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
    [Note] [MY-011825] [Xtrabackup] Using server version 8.4.0-3 
 ...
@@ -8716,7 +8716,7 @@ backup. It is essential for incremental backups.</p>
 <p>The number of attempts to acquire metadata locks.</p>
 <h3 id="xtrabackup-option-reference-backup-locks">backup-locks<a class="headerlink" href="#xtrabackup-option-reference-backup-locks" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup-locks</code></p>
-<p>This option controls if <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> are used instead of <code>FLUSH TABLES
+<p>This option controls if <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> are used instead of <code>FLUSH TABLES
 WITH READ LOCK</code> on the backup stage. The option has no effect when the server does not support backup locks. This option is enabled by default,
 disable with <a href="#xtrabackup-option-reference-no-backup-locks"><code>--no-backup-locks</code></a>.</p>
 <h3 id="xtrabackup-option-reference-check-privileges">check-privileges<a class="headerlink" href="#xtrabackup-option-reference-check-privileges" title="Permanent link">&para;</a></h3>
@@ -8856,7 +8856,7 @@ variable is restored.</p>
 <h3 id="xtrabackup-option-reference-dump-innodb-buffer-pool-timeout">dump-innodb-buffer-pool-timeout<a class="headerlink" href="#xtrabackup-option-reference-dump-innodb-buffer-pool-timeout" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--dump-innodb-buffer-pool-timeout</code></p>
 <p>This option contains the number of seconds that xtrabackup should
-monitor the value of <a href="https://dev.mysql.com/doc/refman/8.0/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> to
+monitor the value of <a href="https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> to
 determine if the buffer pool dump has been completed.</p>
 <p>This option is used in combination with
 <a href="#xtrabackup-option-reference-dump-innodb-buffer-pool"><code>--dump-innodb-buffer-pool</code></a>. By default, it is set to 10 seconds.</p>
@@ -8915,7 +8915,7 @@ If there are still such queries when the timeout expires, xtrabackup
 terminates with an error.</p>
 <p>The default value is <code>0</code>, xtrabackup does not wait
 for queries to complete and starts <code>FLUSH TABLES WITH READ LOCK</code>
-immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify the InnoDB tables.</p>
 <h3 id="xtrabackup-option-reference-ftwrl-wait-threshold">ftwrl-wait-threshold<a class="headerlink" href="#xtrabackup-option-reference-ftwrl-wait-threshold" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--ftwrl-wait-threshold=SECONDS</code></p>
@@ -8924,14 +8924,14 @@ xtrabackup to detect long-running queries with a non-zero value of
 <code>--ftwrl-wait-timeout</code>. <code>FLUSH TABLES WITH READ LOCK</code>
 is not started until such long-running queries exist.</p>
 <p>This option has no effect if <code>--ftwrl-wait-timeout</code> is <code>0</code>. The default value
-is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables when backup locks are supported.</p>
 <h3 id="xtrabackup-option-reference-ftwrl-wait-query-type">ftwrl-wait-query-type<a class="headerlink" href="#xtrabackup-option-reference-ftwrl-wait-query-type" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--ftwrl-wait-query-type=all|update</code>This option specifies which queries can be completed before xtrabackup issues the global lock. The default value is <code>all</code>.</p>
 <h3 id="xtrabackup-option-reference-galera-info">galera-info<a class="headerlink" href="#xtrabackup-option-reference-galera-info" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--galera-info</code></p>
 <p>This option creates the <code>xtrabackup_galera_info</code> file, which contains the local node state at the backup time. This option should be used when
-performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> are used to create the backup.</p>
+performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> are used to create the backup.</p>
 <h3 id="xtrabackup-option-reference-generate-new-master-key">generate-new-master-key<a class="headerlink" href="#xtrabackup-option-reference-generate-new-master-key" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--generate-new-master-key</code></p>
 <p>Generate a new master key when doing a copy-back.</p>
@@ -9016,7 +9016,7 @@ any queries.</p>
 <p>To use this option xtrabackup user should have the
 <code>PROCESS</code> and <code>SUPER</code> privileges.</p>
 <p>Where supported, xtrabackup
-automatically uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
+automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <h3 id="xtrabackup-option-reference-kill-long-query-type">kill-long-query-type<a class="headerlink" href="#xtrabackup-option-reference-kill-long-query-type" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--kill-long-query-type=all|select</code></p>
 <p>This option specifies which queries should be killed to unblock the
@@ -9116,7 +9116,7 @@ LOCK</code>. Use it only if all your tables are InnoDB and you do not care
 about the binary log position of the backup. This option shouldn’t be used if any DDL statements are being executed or updates are
 happening on non-InnoDB tables; this includes the system MyISAM tables in the
 mysql database. Otherwise, those operations could lead to an inconsistent backup.</p>
-<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <p>If you consider using this option because your backups fail to acquire
 the lock, maybe incoming replication events prevent

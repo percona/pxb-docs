@@ -7138,7 +7138,7 @@ backup. It is essential for incremental backups.</p>
 <p>The number of attempts to acquire metadata locks.</p>
 <h3 id="backup-locks">backup-locks<a class="headerlink" href="#backup-locks" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup-locks</code></p>
-<p>This option controls if <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> are used instead of <code>FLUSH TABLES
+<p>This option controls if <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> are used instead of <code>FLUSH TABLES
 WITH READ LOCK</code> on the backup stage. The option has no effect when the server does not support backup locks. This option is enabled by default,
 disable with <a href="#no-backup-locks"><code>--no-backup-locks</code></a>.</p>
 <h3 id="check-privileges">check-privileges<a class="headerlink" href="#check-privileges" title="Permanent link">&para;</a></h3>
@@ -7278,7 +7278,7 @@ variable is restored.</p>
 <h3 id="dump-innodb-buffer-pool-timeout">dump-innodb-buffer-pool-timeout<a class="headerlink" href="#dump-innodb-buffer-pool-timeout" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--dump-innodb-buffer-pool-timeout</code></p>
 <p>This option contains the number of seconds that xtrabackup should
-monitor the value of <a href="https://dev.mysql.com/doc/refman/8.0/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> to
+monitor the value of <a href="https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> to
 determine if the buffer pool dump has been completed.</p>
 <p>This option is used in combination with
 <a href="#dump-innodb-buffer-pool"><code>--dump-innodb-buffer-pool</code></a>. By default, it is set to 10 seconds.</p>
@@ -7337,7 +7337,7 @@ If there are still such queries when the timeout expires, xtrabackup
 terminates with an error.</p>
 <p>The default value is <code>0</code>, xtrabackup does not wait
 for queries to complete and starts <code>FLUSH TABLES WITH READ LOCK</code>
-immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify the InnoDB tables.</p>
 <h3 id="ftwrl-wait-threshold">ftwrl-wait-threshold<a class="headerlink" href="#ftwrl-wait-threshold" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--ftwrl-wait-threshold=SECONDS</code></p>
@@ -7346,14 +7346,14 @@ xtrabackup to detect long-running queries with a non-zero value of
 <code>--ftwrl-wait-timeout</code>. <code>FLUSH TABLES WITH READ LOCK</code>
 is not started until such long-running queries exist.</p>
 <p>This option has no effect if <code>--ftwrl-wait-timeout</code> is <code>0</code>. The default value
-is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables when backup locks are supported.</p>
 <h3 id="ftwrl-wait-query-type">ftwrl-wait-query-type<a class="headerlink" href="#ftwrl-wait-query-type" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--ftwrl-wait-query-type=all|update</code>This option specifies which queries can be completed before xtrabackup issues the global lock. The default value is <code>all</code>.</p>
 <h3 id="galera-info">galera-info<a class="headerlink" href="#galera-info" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--galera-info</code></p>
 <p>This option creates the <code>xtrabackup_galera_info</code> file, which contains the local node state at the backup time. This option should be used when
-performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> are used to create the backup.</p>
+performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> are used to create the backup.</p>
 <h3 id="generate-new-master-key">generate-new-master-key<a class="headerlink" href="#generate-new-master-key" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--generate-new-master-key</code></p>
 <p>Generate a new master key when doing a copy-back.</p>
@@ -7438,7 +7438,7 @@ any queries.</p>
 <p>To use this option xtrabackup user should have the
 <code>PROCESS</code> and <code>SUPER</code> privileges.</p>
 <p>Where supported, xtrabackup
-automatically uses <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
+automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <h3 id="kill-long-query-type">kill-long-query-type<a class="headerlink" href="#kill-long-query-type" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--kill-long-query-type=all|select</code></p>
 <p>This option specifies which queries should be killed to unblock the
@@ -7538,7 +7538,7 @@ LOCK</code>. Use it only if all your tables are InnoDB and you do not care
 about the binary log position of the backup. This option shouldn’t be used if any DDL statements are being executed or updates are
 happening on non-InnoDB tables; this includes the system MyISAM tables in the
 mysql database. Otherwise, those operations could lead to an inconsistent backup.</p>
-<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/innovation-release/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <p>If you consider using this option because your backups fail to acquire
 the lock, maybe incoming replication events prevent
@@ -7809,7 +7809,7 @@ mysql –help for details.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    2025-07-08
+    2025-07-18
   </span>
 
     
