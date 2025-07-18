@@ -11549,7 +11549,7 @@ If the MySQL server has significant activity during a backup operation and the r
 <p>You can verify if MySQL has configured the archive directory with the following command. The result provides the path or returns NULL, meaning you have not set the archiving directory.</p>
 <div class="highlight" data-prompt"="data-prompt""><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/mysql-redo-archive/backup1
 $<span class="w"> </span>chown<span class="w"> </span>mysql.<span class="w"> </span>-R<span class="w"> </span>/var/lib/mysql-redo-archive
-$<span class="w"> </span>chmod<span class="w"> </span>_R<span class="w"> </span><span class="m">700</span><span class="w"> </span>/var/lib/mysql-redo-archive/
+$<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">700</span><span class="w"> </span>/var/lib/mysql-redo-archive/
 </code></pre></div>
 <p>The <code>innodb_redo_log_archive_dirs</code> global variable contains labeled directories. The format is <code>label:directory-path</code>. Multiple objects can be listed with a semi-colon between each set.</p>
 <div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SET<span class="w"> </span>PERSIST<span class="w"> </span><span class="nv">innodb_redo_log_archive_dirs</span><span class="o">=</span><span class="s1">&#39;backup1:/var/lib/mysql-redo-archive/&#39;</span><span class="p">;</span>
