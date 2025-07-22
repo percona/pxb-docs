@@ -30,7 +30,7 @@ Taking your backup with Percona XtraBackup is easy. Follow our documentation gui
 
 Get started quickly with our Quickstart guide.
 
-[Quickstart guide :material-arrow-right:](quickstart-overview.md){ .md-button }
+[Quickstart guide](quickstart-overview.md){ .md-button }
 
 </div><div data-banner markdown>
 
@@ -38,7 +38,7 @@ Get started quickly with our Quickstart guide.
 
 Find the best installation solution with our step-by-step installation instructions.
 
-[Installation instructions :material-arrow-right:](installation.md){ .md-button }
+[Installation instructions](installation.md){ .md-button }
 
 </div><div data-banner markdown>
 
@@ -46,7 +46,7 @@ Find the best installation solution with our step-by-step installation instructi
 
 Learn about the Percona XtraBackup binaries: xtrabackup, xbcloud, xbcrypt, and xbstream.
 
-[Binaries :material-arrow-right:](binaries-overview.md){.md-button}
+[Binaries](binaries-overview.md){.md-button}
 
 </div><div data-banner markdown>
 
@@ -54,7 +54,7 @@ Learn about the Percona XtraBackup binaries: xtrabackup, xbcloud, xbcrypt, and x
 
 Learn about the different types of backups and how to take them.
 
-[Backup management :material-arrow-right:](backup-overview.md){ .md-button }
+[Backup management](backup-overview.md){ .md-button }
 
 </div>
 </div>

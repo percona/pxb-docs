@@ -53,5 +53,5 @@ In this Quickstart, you will learn how to:
 
 ## Next steps
 
-[Start a Docker container and take a backup :material-arrow-right:](quickstart-docker.md){.md-button}
+[Start a Docker container and take a backup](quickstart-docker.md){.md-button}
 

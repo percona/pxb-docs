@@ -255,4 +255,4 @@ This section describes the backup validation steps assuming that you backed up `
 
 ## Next steps
 
-[Clean up :material-arrow-right:](quickstart-exit.md){.md-button}
+[Clean up](quickstart-exit.md){.md-button}
