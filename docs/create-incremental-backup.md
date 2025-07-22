@@ -93,7 +93,7 @@ This folder also contains the `xtrabackup_checkpoints`:
 
 ## Next step
 
-[Prepare the backup :material-arrow-right:](prepare-incremental-backup.md){.md-button}
+[Prepare the backup](prepare-incremental-backup.md){.md-button}
 
 
 

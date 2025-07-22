@@ -41,4 +41,4 @@ created even if they are empty.
 
 ## Next step
 
-[Prepare an individual partitions backup :material-arrow-right:](prepare-individual-partitions-backup.md){.md-button}
+[Prepare an individual partitions backup](prepare-individual-partitions-backup.md){.md-button}

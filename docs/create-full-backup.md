@@ -88,4 +88,4 @@ The backup can take a long time, depending on how large the database is. It is s
 
 ## Next step
 
-[Prepare the backup :material-arrow-right:](prepare-full-backup.md){.md-button}
+[Prepare the backup](prepare-full-backup.md){.md-button}

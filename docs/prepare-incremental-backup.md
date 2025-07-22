@@ -102,4 +102,4 @@ $ xtrabackup --prepare --target-dir=/data/backups/base \
 
 ## Next step
 
-[Restore the backup :material-arrow-right:](restore-a-backup.md){.md-button}
+[Restore the backup](restore-a-backup.md){.md-button}

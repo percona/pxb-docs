@@ -105,5 +105,5 @@ $ docker container logs pxb
 
 ## Next steps
 
-[Restore the backup :material-arrow-right:](quickstart-restore-back.md){.md-button}
+[Restore the backup](quickstart-restore-back.md){.md-button}
 
