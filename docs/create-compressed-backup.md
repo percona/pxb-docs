@@ -76,5 +76,5 @@ $ xtrabackup --backup --compress --compress-threads=4 \
 
 ## Next step
 
-[Prepare the backup :material-arrow-right:](prepare-compressed-backup.md){.md-button}
+[Prepare the backup](prepare-compressed-backup.md){.md-button}
 

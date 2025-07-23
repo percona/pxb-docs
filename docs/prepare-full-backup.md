@@ -44,5 +44,5 @@ It is not recommended to interrupt xtrabackup process while preparing backup bec
 
 ## Next step
 
-[Restore the backup :material-arrow-right:](restore-a-backup.md){.md-button}
+[Restore the backup](restore-a-backup.md){.md-button}
 

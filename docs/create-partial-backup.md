@@ -93,4 +93,4 @@ The following examples assume a database named `test` that contains tables named
 
 ## Next step
 
-[Prepare the backup :material-arrow-right:](prepare-partial-backup.md){.md-button}
+[Prepare the backup](prepare-partial-backup.md){.md-button}

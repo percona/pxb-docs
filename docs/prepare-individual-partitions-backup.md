@@ -14,5 +14,5 @@ backup) from the data dictionary in order to avoid future warnings or errors.
 
 ## Next step
 
-[Restore the partition from the backup :material-arrow-right:](restore-individual-partitions.md){.md-button}
+[Restore the partition from the backup](restore-individual-partitions.md){.md-button}
 
