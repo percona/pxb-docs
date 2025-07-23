@@ -2,7 +2,7 @@
 
 --8<--- "pro-build-announcement.md"
 
-This document provides guidelines how to install Pro packages of Percona XtraBackup from Percona repositories. [Check files in packages built for Percona XtraBackup Pro :material-arrow-right:](pro-files.md){.md-button}
+This document provides guidelines how to install Pro packages of Percona XtraBackup from Percona repositories. [Check files in packages built for Percona XtraBackup Pro](pro-files.md){.md-button}
 
 ## Install Amazon Linux 2023
 

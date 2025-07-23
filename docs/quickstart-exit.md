@@ -113,4 +113,4 @@ The steps are as follows:
 
 ## Next step
 
-[Next steps :material-arrow-right:](quickstart-next-steps.md){.md-button}
+[Next steps](quickstart-next-steps.md){.md-button}
