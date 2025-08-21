@@ -9,34 +9,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="In some cases you might need to pin the selected packages to avoid the upgrades from the distribution repositories.">
+        <meta name="description" content="Get started with Quickstart Guide for Percona XtraBackup.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/apt-pinning.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-4.html">
       
       
-        <link rel="prev" href="apt-download-deb.html">
+        <link rel="prev" href="release-notes.html">
       
       
-        <link rel="next" href="work-with-apparmor.html">
+        <link rel="next" href="8.4.0-3.html">
       
       
-      <link rel="icon" href="assets/mysql-fav.svg">
+      <link rel="icon" href="../assets/mysql-fav.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
     
     
       
-        <title>Apt pinning - Percona XtraBackup</title>
+        <title>Percona XtraBackup 8.4.0-4 (2025-08-21) - Percona XtraBackup</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -55,25 +55,25 @@
       
     
     
-      <link rel="stylesheet" href="css/print-site.css">
+      <link rel="stylesheet" href="../css/print-site.css">
     
-      <link rel="stylesheet" href="css/print-site-material.css">
+      <link rel="stylesheet" href="../css/print-site-material.css">
     
       <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.3/css/line.css">
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="css/design.css">
+      <link rel="stylesheet" href="../css/design.css">
     
-      <link rel="stylesheet" href="css/osano.css">
+      <link rel="stylesheet" href="../css/osano.css">
     
-      <link rel="stylesheet" href="css/extra.css">
+      <link rel="stylesheet" href="../css/extra.css">
     
-      <link rel="stylesheet" href="css/nocopy.css">
+      <link rel="stylesheet" href="../css/nocopy.css">
     
-      <link rel="stylesheet" href="css/mysql.css">
+      <link rel="stylesheet" href="../css/mysql.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -96,7 +96,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Apt pinning" />
+                 <meta property="og:title" content="Percona XtraBackup - Percona XtraBackup 8.4.0-4 (2025-08-21)" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.4/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -119,7 +119,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#apt-pinning-packages" class="md-skip">
+        <a href="#percona-xtrabackup-840-4-2025-08-21" class="md-skip">
           Skip to content
         </a>
       
@@ -188,14 +188,14 @@
 
     <!-- Link to home -->
     <a
-      href="index.html"
+      href="../index.html"
       title="Percona XtraBackup"
       class="md-header__button md-logo"
       aria-label="Percona XtraBackup"
       data-md-component="logo"
     >
       
-  <img src="assets/mysql-mark.svg" alt="logo">
+  <img src="../assets/mysql-mark.svg" alt="logo">
 
     </a>
 
@@ -208,7 +208,7 @@
     <!-- Header title -->
     <div class="md-header__title">
       <div class="md-header__ellipsis">
-        <a href="index.html" class="md-header__topic">
+        <a href="../index.html" class="md-header__topic">
           <span class="md-ellipsis">
             Percona XtraBackup
           </span>
@@ -216,7 +216,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Apt pinning
+              Percona XtraBackup 8.4.0-4 (2025-08-21)
             
           </span>
         </div>
@@ -360,9 +360,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
+    <a href="../index.html" title="Percona XtraBackup" class="md-nav__button md-logo" aria-label="Percona XtraBackup" data-md-component="logo">
       
-  <img src="assets/mysql-mark.svg" alt="logo">
+  <img src="../assets/mysql-mark.svg" alt="logo">
 
     </a>
     Percona XtraBackup
@@ -389,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index.html" class="md-nav__link">
+      <a href="../index.html" class="md-nav__link">
         
   
   
@@ -457,7 +457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pxb-pro.html" class="md-nav__link">
+      <a href="../pxb-pro.html" class="md-nav__link">
         
   
   
@@ -524,7 +524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install-pro.html" class="md-nav__link">
+      <a href="../install-pro.html" class="md-nav__link">
         
   
   
@@ -547,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pro-files.html" class="md-nav__link">
+      <a href="../pro-files.html" class="md-nav__link">
         
   
   
@@ -620,7 +620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reduction-in-locks.html" class="md-nav__link">
+      <a href="../reduction-in-locks.html" class="md-nav__link">
         
   
   
@@ -658,7 +658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="get-help.html" class="md-nav__link">
+      <a href="../get-help.html" class="md-nav__link">
         
   
   
@@ -677,8 +677,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -696,11 +698,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -716,7 +718,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Release notes
@@ -730,7 +732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/release-notes.html" class="md-nav__link">
+      <a href="release-notes.html" class="md-nav__link">
         
   
   
@@ -750,10 +752,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="release-notes/8.4.0-4.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Percona XtraBackup 8.4.0-4 (2025-08-21)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="8.4.0-4.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -764,6 +788,64 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release highlights
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug fixes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform support
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -776,7 +858,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.4.0-3.html" class="md-nav__link">
+      <a href="8.4.0-3.html" class="md-nav__link">
         
   
   
@@ -799,7 +881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.4.0-2.html" class="md-nav__link">
+      <a href="8.4.0-2.html" class="md-nav__link">
         
   
   
@@ -822,7 +904,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes/8.4.0-1.html" class="md-nav__link">
+      <a href="8.4.0-1.html" class="md-nav__link">
         
   
   
@@ -902,7 +984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-overview.html" class="md-nav__link">
+      <a href="../quickstart-overview.html" class="md-nav__link">
         
   
   
@@ -925,7 +1007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-docker.html" class="md-nav__link">
+      <a href="../quickstart-docker.html" class="md-nav__link">
         
   
   
@@ -948,7 +1030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-restore-back.html" class="md-nav__link">
+      <a href="../quickstart-restore-back.html" class="md-nav__link">
         
   
   
@@ -971,7 +1053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-exit.html" class="md-nav__link">
+      <a href="../quickstart-exit.html" class="md-nav__link">
         
   
   
@@ -994,7 +1076,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quickstart-next-steps.html" class="md-nav__link">
+      <a href="../quickstart-next-steps.html" class="md-nav__link">
         
   
   
@@ -1070,7 +1152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="about-xtrabackup.html" class="md-nav__link">
+      <a href="../about-xtrabackup.html" class="md-nav__link">
         
   
   
@@ -1093,7 +1175,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features.html" class="md-nav__link">
+      <a href="../features.html" class="md-nav__link">
         
   
   
@@ -1116,7 +1198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="how-xtrabackup-works.html" class="md-nav__link">
+      <a href="../how-xtrabackup-works.html" class="md-nav__link">
         
   
   
@@ -1250,7 +1332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lru-dump-backup.html" class="md-nav__link">
+      <a href="../lru-dump-backup.html" class="md-nav__link">
         
   
   
@@ -1273,7 +1355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="throttling-backups.html" class="md-nav__link">
+      <a href="../throttling-backups.html" class="md-nav__link">
         
   
   
@@ -1296,7 +1378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="store-backup-history.html" class="md-nav__link">
+      <a href="../store-backup-history.html" class="md-nav__link">
         
   
   
@@ -1363,7 +1445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="take-streaming-backup.html" class="md-nav__link">
+      <a href="../take-streaming-backup.html" class="md-nav__link">
         
   
   
@@ -1386,7 +1468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="accelerate-backup-process.html" class="md-nav__link">
+      <a href="../accelerate-backup-process.html" class="md-nav__link">
         
   
   
@@ -1467,7 +1549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="point-in-time-recovery.html" class="md-nav__link">
+      <a href="../point-in-time-recovery.html" class="md-nav__link">
         
   
   
@@ -1498,7 +1580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="flush-tables-with-read-lock.html" class="md-nav__link">
+      <a href="../flush-tables-with-read-lock.html" class="md-nav__link">
         
   
   
@@ -1521,7 +1603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="log-enhancements.html" class="md-nav__link">
+      <a href="../log-enhancements.html" class="md-nav__link">
         
   
   
@@ -1544,7 +1626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="redo-log-archiving.html" class="md-nav__link">
+      <a href="../redo-log-archiving.html" class="md-nav__link">
         
   
   
@@ -1567,7 +1649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="smart-memory-estimation.html" class="md-nav__link">
+      <a href="../smart-memory-estimation.html" class="md-nav__link">
         
   
   
@@ -1590,7 +1672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="working-with-binary-logs.html" class="md-nav__link">
+      <a href="../working-with-binary-logs.html" class="md-nav__link">
         
   
   
@@ -1657,7 +1739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-binary-fifo-datasink.html" class="md-nav__link">
+      <a href="../xbcloud-binary-fifo-datasink.html" class="md-nav__link">
         
   
   
@@ -1680,7 +1762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-exbackoff.html" class="md-nav__link">
+      <a href="../xbcloud-exbackoff.html" class="md-nav__link">
         
   
   
@@ -1768,7 +1850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="binaries-overview.html" class="md-nav__link">
+      <a href="../binaries-overview.html" class="md-nav__link">
         
   
   
@@ -1839,7 +1921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-binary-overview.html" class="md-nav__link">
+      <a href="../xtrabackup-binary-overview.html" class="md-nav__link">
         
   
   
@@ -1862,7 +1944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-implementation-details.html" class="md-nav__link">
+      <a href="../xtrabackup-implementation-details.html" class="md-nav__link">
         
   
   
@@ -1885,7 +1967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-option-reference.html" class="md-nav__link">
+      <a href="../xtrabackup-option-reference.html" class="md-nav__link">
         
   
   
@@ -1908,7 +1990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="configure-xtrabackup.html" class="md-nav__link">
+      <a href="../configure-xtrabackup.html" class="md-nav__link">
         
   
   
@@ -1983,7 +2065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcrypt-binary-overview.html" class="md-nav__link">
+      <a href="../xbcrypt-binary-overview.html" class="md-nav__link">
         
   
   
@@ -2006,7 +2088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcrypt-options.html" class="md-nav__link">
+      <a href="../xbcrypt-options.html" class="md-nav__link">
         
   
   
@@ -2081,7 +2163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbstream-binary-overview.html" class="md-nav__link">
+      <a href="../xbstream-binary-overview.html" class="md-nav__link">
         
   
   
@@ -2104,7 +2186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbstream-options.html" class="md-nav__link">
+      <a href="../xbstream-options.html" class="md-nav__link">
         
   
   
@@ -2181,7 +2263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-binary-overview.html" class="md-nav__link">
+      <a href="../xbcloud-binary-overview.html" class="md-nav__link">
         
   
   
@@ -2204,7 +2286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-options.html" class="md-nav__link">
+      <a href="../xbcloud-options.html" class="md-nav__link">
         
   
   
@@ -2279,7 +2361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-s3.html" class="md-nav__link">
+      <a href="../xbcloud-s3.html" class="md-nav__link">
         
   
   
@@ -2302,7 +2384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-iam-profile.html" class="md-nav__link">
+      <a href="../xbcloud-iam-profile.html" class="md-nav__link">
         
   
   
@@ -2325,7 +2407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-swift.html" class="md-nav__link">
+      <a href="../xbcloud-swift.html" class="md-nav__link">
         
   
   
@@ -2348,7 +2430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-gcs.html" class="md-nav__link">
+      <a href="../xbcloud-gcs.html" class="md-nav__link">
         
   
   
@@ -2371,7 +2453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-azure.html" class="md-nav__link">
+      <a href="../xbcloud-azure.html" class="md-nav__link">
         
   
   
@@ -2394,7 +2476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xbcloud-minio.html" class="md-nav__link">
+      <a href="../xbcloud-minio.html" class="md-nav__link">
         
   
   
@@ -2437,10 +2519,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -2462,11 +2542,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
@@ -2482,7 +2562,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             Install
@@ -2496,7 +2576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="installation.html" class="md-nav__link">
+      <a href="../installation.html" class="md-nav__link">
         
   
   
@@ -2565,7 +2645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="server-backup-version-comparison.html" class="md-nav__link">
+      <a href="../server-backup-version-comparison.html" class="md-nav__link">
         
   
   
@@ -2588,7 +2668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="privileges.html" class="md-nav__link">
+      <a href="../privileges.html" class="md-nav__link">
         
   
   
@@ -2611,7 +2691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="permissions.html" class="md-nav__link">
+      <a href="../permissions.html" class="md-nav__link">
         
   
   
@@ -2639,10 +2719,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -2662,11 +2740,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" >
         
           
           <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="0">
@@ -2682,7 +2760,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9_3">
             <span class="md-nav__icon md-icon"></span>
             Use APT
@@ -2696,7 +2774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-repo.html" class="md-nav__link">
+      <a href="../apt-repo.html" class="md-nav__link">
         
   
   
@@ -2719,7 +2797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-files.html" class="md-nav__link">
+      <a href="../apt-files.html" class="md-nav__link">
         
   
   
@@ -2742,7 +2820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-download-deb.html" class="md-nav__link">
+      <a href="../apt-download-deb.html" class="md-nav__link">
         
   
   
@@ -2762,19 +2840,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="apt-pinning.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../apt-pinning.html" class="md-nav__link">
         
   
   
@@ -2785,7 +2854,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -2798,7 +2866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="work-with-apparmor.html" class="md-nav__link">
+      <a href="../work-with-apparmor.html" class="md-nav__link">
         
   
   
@@ -2821,7 +2889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="apt-uninstall-xtrabackup.html" class="md-nav__link">
+      <a href="../apt-uninstall-xtrabackup.html" class="md-nav__link">
         
   
   
@@ -2902,7 +2970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-repo.html" class="md-nav__link">
+      <a href="../yum-repo.html" class="md-nav__link">
         
   
   
@@ -2925,7 +2993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-files.html" class="md-nav__link">
+      <a href="../yum-files.html" class="md-nav__link">
         
   
   
@@ -2948,7 +3016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-download-rpm.html" class="md-nav__link">
+      <a href="../yum-download-rpm.html" class="md-nav__link">
         
   
   
@@ -2971,7 +3039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="work-with-selinux.html" class="md-nav__link">
+      <a href="../work-with-selinux.html" class="md-nav__link">
         
   
   
@@ -2994,7 +3062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="yum-uninstall-xtrabackup.html" class="md-nav__link">
+      <a href="../yum-uninstall-xtrabackup.html" class="md-nav__link">
         
   
   
@@ -3069,7 +3137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="binary-tarball.html" class="md-nav__link">
+      <a href="../binary-tarball.html" class="md-nav__link">
         
   
   
@@ -3092,7 +3160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="binary-tarball-names.html" class="md-nav__link">
+      <a href="../binary-tarball-names.html" class="md-nav__link">
         
   
   
@@ -3165,7 +3233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="compile-xtrabackup.html" class="md-nav__link">
+      <a href="../compile-xtrabackup.html" class="md-nav__link">
         
   
   
@@ -3238,7 +3306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="docker.html" class="md-nav__link">
+      <a href="../docker.html" class="md-nav__link">
         
   
   
@@ -3378,7 +3446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-full-backup.html" class="md-nav__link">
+      <a href="../create-full-backup.html" class="md-nav__link">
         
   
   
@@ -3401,7 +3469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-full-backup.html" class="md-nav__link">
+      <a href="../prepare-full-backup.html" class="md-nav__link">
         
   
   
@@ -3478,7 +3546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-incremental-backup.html" class="md-nav__link">
+      <a href="../create-incremental-backup.html" class="md-nav__link">
         
   
   
@@ -3501,7 +3569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-incremental-backup.html" class="md-nav__link">
+      <a href="../prepare-incremental-backup.html" class="md-nav__link">
         
   
   
@@ -3524,7 +3592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="page-tracking.html" class="md-nav__link">
+      <a href="../page-tracking.html" class="md-nav__link">
         
   
   
@@ -3601,7 +3669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-compressed-backup.html" class="md-nav__link">
+      <a href="../create-compressed-backup.html" class="md-nav__link">
         
   
   
@@ -3624,7 +3692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-compressed-backup.html" class="md-nav__link">
+      <a href="../prepare-compressed-backup.html" class="md-nav__link">
         
   
   
@@ -3647,7 +3715,7 @@
   
   
     <li class="md-nav__item">
-      <a href="encrypted-innodb-tablespace-backups.html" class="md-nav__link">
+      <a href="../encrypted-innodb-tablespace-backups.html" class="md-nav__link">
         
   
   
@@ -3720,7 +3788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="encrypt-backups.html" class="md-nav__link">
+      <a href="../encrypt-backups.html" class="md-nav__link">
         
   
   
@@ -3795,7 +3863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-partial-backup.html" class="md-nav__link">
+      <a href="../create-partial-backup.html" class="md-nav__link">
         
   
   
@@ -3818,7 +3886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-partial-backup.html" class="md-nav__link">
+      <a href="../prepare-partial-backup.html" class="md-nav__link">
         
   
   
@@ -3893,7 +3961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-individual-partition-backup.html" class="md-nav__link">
+      <a href="../create-individual-partition-backup.html" class="md-nav__link">
         
   
   
@@ -3916,7 +3984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="prepare-individual-partitions-backup.html" class="md-nav__link">
+      <a href="../prepare-individual-partitions-backup.html" class="md-nav__link">
         
   
   
@@ -3993,7 +4061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-a-backup.html" class="md-nav__link">
+      <a href="../restore-a-backup.html" class="md-nav__link">
         
   
   
@@ -4016,7 +4084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-partial-backup.html" class="md-nav__link">
+      <a href="../restore-partial-backup.html" class="md-nav__link">
         
   
   
@@ -4039,7 +4107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-individual-partitions.html" class="md-nav__link">
+      <a href="../restore-individual-partitions.html" class="md-nav__link">
         
   
   
@@ -4070,7 +4138,7 @@
   
   
     <li class="md-nav__item">
-      <a href="restore-individual-tables.html" class="md-nav__link">
+      <a href="../restore-individual-tables.html" class="md-nav__link">
         
   
   
@@ -4141,7 +4209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="set-up-replication.html" class="md-nav__link">
+      <a href="../set-up-replication.html" class="md-nav__link">
         
   
   
@@ -4164,7 +4232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="create-gtid-replica.html" class="md-nav__link">
+      <a href="../create-gtid-replica.html" class="md-nav__link">
         
   
   
@@ -4187,7 +4255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="make-backup-in-replication-env.html" class="md-nav__link">
+      <a href="../make-backup-in-replication-env.html" class="md-nav__link">
         
   
   
@@ -4210,7 +4278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="verify-backup.html" class="md-nav__link">
+      <a href="../verify-backup.html" class="md-nav__link">
         
   
   
@@ -4292,7 +4360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-exit-codes.html" class="md-nav__link">
+      <a href="../xtrabackup-exit-codes.html" class="md-nav__link">
         
   
   
@@ -4315,7 +4383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="update-curl-utility.html" class="md-nav__link">
+      <a href="../update-curl-utility.html" class="md-nav__link">
         
   
   
@@ -4401,7 +4469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-files.html" class="md-nav__link">
+      <a href="../xtrabackup-files.html" class="md-nav__link">
         
   
   
@@ -4424,7 +4492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="xtrabackup-version-numbers.html" class="md-nav__link">
+      <a href="../xtrabackup-version-numbers.html" class="md-nav__link">
         
   
   
@@ -4447,7 +4515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="faq.html" class="md-nav__link">
+      <a href="../faq.html" class="md-nav__link">
         
   
   
@@ -4470,7 +4538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="glossary.html" class="md-nav__link">
+      <a href="../glossary.html" class="md-nav__link">
         
   
   
@@ -4493,7 +4561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="toolkit-version-check.html" class="md-nav__link">
+      <a href="../toolkit-version-check.html" class="md-nav__link">
         
   
   
@@ -4516,7 +4584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dump-schema.html" class="md-nav__link">
+      <a href="../dump-schema.html" class="md-nav__link">
         
   
   
@@ -4539,7 +4607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="trademark-policy.html" class="md-nav__link">
+      <a href="../trademark-policy.html" class="md-nav__link">
         
   
   
@@ -4562,7 +4630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="copyright-and-licensing-information.html" class="md-nav__link">
+      <a href="../copyright-and-licensing-information.html" class="md-nav__link">
         
   
   
@@ -4592,7 +4660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index-contents.html" class="md-nav__link">
+      <a href="../index-contents.html" class="md-nav__link">
         
   
   
@@ -4635,6 +4703,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release highlights
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug fixes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform support
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                     </div>
                     <div class="md-sidebar__inner">
@@ -4662,7 +4774,7 @@
 
 
   
-    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/apt-pinning.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/release-notes/8.4.0-4.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4671,22 +4783,29 @@
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/apt-pinning.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/release-notes/8.4.0-4.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="apt-pinning-packages">Apt pinning packages<a class="headerlink" href="#apt-pinning-packages" title="Permanent link">&para;</a></h1>
-<p>In some cases you might need to <code>pin</code> the selected packages to avoid the upgrades from the distribution repositories. </p>
-<p>The pinning takes place in the <code>preference</code> file. To pin a package, set the <code>Pin-Priority</code> to higher numbers.</p>
-<p>Make a new file <code>/etc/apt/preferences.d/00percona.pref</code>. For example, add the following to the preference file:</p>
-<div class="highlight"><pre><span></span><code>Package:
-Pin: release o=Percona Development Team
-Pin-Priority: 1001
-</code></pre></div>
-<p>For more information about the pinning, check the official <a href="http://wiki.debian.org/AptPreferences">debian wiki</a>.</p>
+<h1 id="percona-xtrabackup-840-4-2025-08-21">Percona XtraBackup 8.4.0-4 (2025-08-21)<a class="headerlink" href="#percona-xtrabackup-840-4-2025-08-21" title="Permanent link">&para;</a></h1>
+<p>Get started with <a href="../quickstart-overview.html">Quickstart Guide for Percona XtraBackup</a>.</p>
+<h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<p>This release provides improvements and bug fixes.</p>
+<p>We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.</p>
+<h2 id="bug-fixes">Bug fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3571">PXB-3571</a>: If you use transition keys with <code>--lock-ddl=reduced</code>, XtraBackup does not save the encrypted tablespace keys in the <code>xtrabackup_keys</code> file. Consequently, XtraBackup prepare fails when it later attempts to open the encrypted tablespace.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3470">PXB-3470</a>: When streaming a backup that has been compressed (using <code>lz4</code> or <code>zstd</code> with the <code>--compress</code> option), the decompression process, whether performed by <code>xbstream --decompress</code> or <code>xtrabackup --decompress</code>, requires a significant amount of time.</p>
+<h2 id="platform-support">Platform support<a class="headerlink" href="#platform-support" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Percona XtraBackup 8.4.0-4 supports Red Hat Enterprise Linux 10.</li>
+</ul>
+<h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<p>Install <a href="../installation.html">Percona XtraBackup 8.4.0-4</a></p>
+<p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
+<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p>
 
 
 
@@ -4707,7 +4826,7 @@ Pin-Priority: 1001
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    2023-10-23
+    2025-07-31
   </span>
 
     
@@ -4846,20 +4965,20 @@ Pin-Priority: 1001
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.92b07e13.min.js"></script>
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
       
-        <script src="js/print-site.js"></script>
+        <script src="../js/print-site.js"></script>
       
-        <script src="js/version-select.js"></script>
+        <script src="../js/version-select.js"></script>
       
-        <script src="js/promptremover.js"></script>
+        <script src="../js/promptremover.js"></script>
       
-        <script src="js/consent.js"></script>
+        <script src="../js/consent.js"></script>
       
     
 
