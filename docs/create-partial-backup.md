@@ -78,7 +78,7 @@ $ xtrabackup --backup --tables-file=/tmp/tables.txt
 ## The `--databases` and `-–databases-file` options
 
 The \` –databases\` option accepts a space-separated list of the databases
-and tables to backup in the `databasename[.tablename]` format. In addition to
+and tables to back up in the `databasename[.tablename]` format. In addition to
 this list, make sure to specify the `mysql`, `sys`, and
 
 `performance_schema` databases. These databases are required when restoring
