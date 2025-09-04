@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
     
     
       
@@ -9341,7 +9341,7 @@ option could roll back uncommitted transactions</p>
 </ol>
 <h2 id="quickstart-overview-next-steps">Next steps<a class="headerlink" href="#quickstart-overview-next-steps" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="#quickstart-docker">Start a Docker container and take a backup</a></p></section><section class="print-page" id="quickstart-docker" heading-number="5.2"><h1 id="quickstart-docker-start-a-docker-container-and-take-a-backup">Start a Docker container and take a backup<a class="headerlink" href="#quickstart-docker-start-a-docker-container-and-take-a-backup" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup works in combination with a MySQL-compatible database, Percona Server for MySQL, in our scenario. To use Percona XtraBackup, run it in a separate Docker container and then connect the Percona XtraBackup container to the Percona Server for MySQL container. As soon as you <a href="https://docs.percona.com/percona-server/8.0/quickstart-docker.html">start Percona Server for MySQL in a Docker container</a> and <a href="https://docs.percona.com/percona-server/8.0/quickstart-docker.html#create-a-database">create a database and table in Percona Server for MySQL</a>, you are ready to backup your database with Percona XtraBackup.</p>
+<p>In this scenario, Percona XtraBackup works in combination with a MySQL-compatible database instance. To use the tool, you must run Percona XtraBackup in a separate Docker container and then connect the Percona XtraBackup container directly to the Percona Server for MySQL container. This allows the backup tool access to the database for backup and restore operations.</p>
 <p class="power-number">The following steps create a Docker volume, start Percona XtraBackup in a Docker continer, take and prepare a backup of Percona Server for MySQL database.</p>
 <h2 id="quickstart-docker-create-a-docker-volume">Create a Docker volume<a class="headerlink" href="#quickstart-docker-create-a-docker-volume" title="Permanent link">&para;</a></h2>
 <p>The benefits of using a Docker volume are the following:</p>
@@ -12118,7 +12118,7 @@ time between retries.</p>
 <p>Percona XtraBackup is a set of the following binaries:</p>
 <ul>
 <li>
-<p><a href="#xtrabackup-binary-overview">xtrabackup</a> - a compiled <em>C</em> binary that provides functionality to backup a whole <em>MySQL</em> database instance with <em>MyISAM</em>, <em>InnoDB</em>, and <em>XtraDB</em> tables.</p>
+<p><a href="#xtrabackup-binary-overview">xtrabackup</a> - a compiled <em>C</em> binary that provides functionality to back up a <em>MySQL</em> database instance with <em>MyISAM</em>, <em>InnoDB</em>, and <em>XtraDB</em> tables.</p>
 </li>
 <li>
 <p><a href="#xbcrypt-binary-overview">xbcrypt</a> - a utility used for encrypting and decrypting backup files.</p>
@@ -13264,6 +13264,24 @@ s3-api-version=4
 <p>If you explicitly use a parameter on the command line, in a configuration
 file, and the corresponding environment variable contains a value, xbcloud
 uses the value provided on the command line or in the configuration file.</p>
+<p>Check the available options and corresponding environment variables for each supported cloud storage type below:</p>
+<ul>
+<li>
+<p>OpenStack Object Storage (Swift) - see <a href="#xbcloud-swift-create-a-full-backup-with-swift">Using the xbcloud binary with Swift</a></p>
+</li>
+<li>
+<p>Amazon Simple Storage (S3) - see <a href="#xbcloud-s3-environment-variables">Using the xbcloud binary with Amazon S3</a></p>
+</li>
+<li>
+<p>Azure Cloud Storage - see <a href="#xbcloud-azure-options">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></p>
+</li>
+<li>
+<p>Google Cloud Storage (gcs) - see <a href="#xbcloud-gcs">Using the xbcloud binary with Google Cloud Storage</a></p>
+</li>
+<li>
+<p>MinIO - see <a href="#xbcloud-minio">Using the xbcloud binary with MinIO</a></p>
+</li>
+</ul>
 <h3 id="xbcloud-binary-overview-shortcuts">Shortcuts<a class="headerlink" href="#xbcloud-binary-overview-shortcuts" title="Permanent link">&para;</a></h3>
 <p>For all operations (put, get, and delete), you can use a shortcut to specify the
 storage type, bucket name, and backup name as one parameter instead of using
@@ -16493,7 +16511,7 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="
 </code></pre></div>
 <h2 id="create-partial-backup-the-databases-and-databases-file-options">The <code>--databases</code> and <code>-–databases-file</code> options<a class="headerlink" href="#create-partial-backup-the-databases-and-databases-file-options" title="Permanent link">&para;</a></h2>
 <p>The ` –databases` option accepts a space-separated list of the databases
-and tables to backup in the <code>databasename[.tablename]</code> format. In addition to
+and tables to back up in the <code>databasename[.tablename]</code> format. In addition to
 this list, make sure to specify the <code>mysql</code>, <code>sys</code>, and</p>
 <p><code>performance_schema</code> databases. These databases are required when restoring
 the databases using xtrabackup –copy-back.</p>
@@ -18672,12 +18690,12 @@ we will do our very best to be helpful.</p></section><section class="print-page"
     
     
       
-      <script id="__config" type="application/json">{"base": "/percona-xtrabackup/8.0", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "/percona-xtrabackup/8.0", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="assets/javascripts/bundle.92b07e13.min.js"></script>
       
         <script src="js/print-site.js"></script>
       
