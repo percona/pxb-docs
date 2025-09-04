@@ -16,7 +16,7 @@ xtrabackup supports taking partial backups when the
 
 The xtrabackup binary fails if you delete any of the matched or listed tables during the backup.
 
-There are multiple ways of specifying which part of the whole data is backed up:
+There are multiple ways of specifying which part of data is backed up:
 
 * Use the `--tables` option to list the table names
 
@@ -64,7 +64,7 @@ The following examples assume a database named `test` that contains tables named
 === "`--databases` option"
 
     The \` –databases\` option accepts a space-separated list of the databases
-    and tables to backup in the `databasename[.tablename]` format. In addition to
+    and tables to back up in the `databasename[.tablename]` format. In addition to
     this list, make sure to specify the `mysql`, `sys`, and
     
     `performance_schema` databases. These databases are required when restoring
