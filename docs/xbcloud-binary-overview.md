@@ -164,6 +164,18 @@ If you explicitly use a parameter on the command line, in a configuration
 file, and the corresponding environment variable contains a value, xbcloud
 uses the value provided on the command line or in the configuration file.
 
+Check the available options and corresponding environment variables for each supported cloud storage type below:
+
+* OpenStack Object Storage (Swift) - see [Using the xbcloud binary with Swift](xbcloud-swift.md#create-a-full-backup-with-swift)
+
+* Amazon Simple Storage (S3) - see [Using the xbcloud binary with Amazon S3](xbcloud-s3.md#environment-variables)
+
+* Azure Cloud Storage - see [Using the xbcloud binary with Microsoft Azure Cloud Storage](xbcloud-azure.md#options)
+
+* Google Cloud Storage (gcs) - see [Using the xbcloud binary with Google Cloud Storage](xbcloud-gcs.md)
+
+* MinIO - see [Using the xbcloud binary with MinIO](xbcloud-minio.md)
+
 ### Shortcuts
 
 For all operations (put, get, and delete), you can use a shortcut to specify the
