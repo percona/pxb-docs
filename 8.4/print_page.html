@@ -7002,7 +7002,7 @@ for reporting this issue.)</p>
 <li><a href="#quickstart-exit">Clean up</a></li>
 <li><a href="#quickstart-next-steps">Choose your next steps</a></li>
 </ol></section><section class="print-page" id="quickstart-docker" heading-number="5.2"><h1 id="quickstart-docker-start-a-docker-container-and-take-a-backup">Start a Docker container and take a backup<a class="headerlink" href="#quickstart-docker-start-a-docker-container-and-take-a-backup" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup works in combination with a MySQL-compatible database, Percona Server for MySQL, in our scenario. To use Percona XtraBackup, run it in a separate Docker container and then connect the Percona XtraBackup container to the Percona Server for MySQL container. As soon as you <a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html">start Percona Server for MySQL in a Docker container</a> and <a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html#create-a-database">create a database and table in Percona Server for MySQL</a>, you are ready to backup your databes with Percona XtraBackup.</p>
+<p>In this scenario, Percona XtraBackup works in combination with a MySQL-compatible database instance. To use the tool, you must run Percona XtraBackup in a separate Docker container and then connect the Percona XtraBackup container directly to the Percona Server for MySQL container. This connection lets the backup tool access the database for backup and restore operations.</p>
 <p class="power-number">The following steps create a Docker volume, start Percona XtraBackup in a Docker continer, take and prepare a backup of Percona Server for MySQL database.</p>
 <h2 id="quickstart-docker-create-a-docker-volume">Create a Docker volume<a class="headerlink" href="#quickstart-docker-create-a-docker-volume" title="Permanent link">&para;</a></h2>
 <p>The benefits of using a Docker volume are the following:</p>
@@ -8755,7 +8755,7 @@ time between retries.</p>
 <p>Percona XtraBackup contains a set of the following binaries:</p>
 <ul>
 <li>
-<p><a href="#xtrabackup-binary-overview">xtrabackup</a> - a compiled C binary that provides functionality to backup a whole MySQL database instance with MyISAM, InnoDB, and XtraDB tables.</p>
+<p><a href="#xtrabackup-binary-overview">xtrabackup</a> - a compiled C binary that provides functionality to back up a MySQL database instance with MyISAM, InnoDB, and XtraDB tables.</p>
 </li>
 <li>
 <p><a href="#xbcrypt-binary-overview">xbcrypt</a> - a utility used for encrypting and decrypting backup files.</p>
@@ -9825,6 +9825,24 @@ s3-api-version=4
 <p>If you explicitly use a parameter on the command line, in a configuration
 file, and the corresponding environment variable contains a value, xbcloud
 uses the value provided on the command line or in the configuration file.</p>
+<p>Check the available options and corresponding environment variables for each supported cloud storage type below:</p>
+<ul>
+<li>
+<p>OpenStack Object Storage (Swift) - see <a href="#xbcloud-swift-create-a-full-backup-with-swift">Using the xbcloud binary with Swift</a></p>
+</li>
+<li>
+<p>Amazon Simple Storage (S3) - see <a href="#xbcloud-s3-environment-variables">Using the xbcloud binary with Amazon S3</a></p>
+</li>
+<li>
+<p>Azure Cloud Storage - see <a href="#xbcloud-azure-options">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></p>
+</li>
+<li>
+<p>Google Cloud Storage (gcs) - see <a href="#xbcloud-gcs">Using the xbcloud binary with Google Cloud Storage</a></p>
+</li>
+<li>
+<p>MinIO - see <a href="#xbcloud-minio">Using the xbcloud binary with MinIO</a></p>
+</li>
+</ul>
 <h3 id="xbcloud-binary-overview-shortcuts">Shortcuts<a class="headerlink" href="#xbcloud-binary-overview-shortcuts" title="Permanent link">&para;</a></h3>
 <p>For all operations (put, get, and delete), you can use a shortcut to specify the
 storage type, bucket name, and backup name as one parameter instead of using
@@ -12598,7 +12616,7 @@ inconsistencies.</p>
 backup.</p>
 </div>
 <p>The xtrabackup binary fails if you delete any of the matched or listed tables during the backup.</p>
-<p>There are multiple ways of specifying which part of the whole data is backed up:</p>
+<p>There are multiple ways of specifying which part of data is backed up:</p>
 <ul>
 <li>
 <p>Use the <code>--tables</code> option to list the table names</p>
@@ -12641,7 +12659,7 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="
 </div>
 <div class="tabbed-block">
 <p>The ` –databases` option accepts a space-separated list of the databases
-and tables to backup in the <code>databasename[.tablename]</code> format. In addition to
+and tables to back up in the <code>databasename[.tablename]</code> format. In addition to
 this list, make sure to specify the <code>mysql</code>, <code>sys</code>, and</p>
 <p><code>performance_schema</code> databases. These databases are required when restoring
 the databases using xtrabackup –copy-back.</p>
