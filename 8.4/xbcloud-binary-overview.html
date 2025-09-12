@@ -9,11 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The purpose of xbcloud is to download from the cloud and upload to 
-the cloud the full or part of an xbstream archive. xbcloud will not 
-overwrite the backup with the same name. xbcloud accepts input via a pipe from xbstream so that it can be
-invoked as a pipeline with xtrabackup to stream directly to the cloud without
-needing a local storage.">
+        <meta name="description" content="xbcloud is a cloud storage utility that works with Percona XtraBackup to upload, download, and manage database backups in cloud storage. It enables you to stream backups directly to cloud storage without requiring local disk space, making it ideal for large database environments.">
       
       
         <meta name="author" content="Percona LLC">
@@ -25,11 +21,11 @@ needing a local storage.">
         <link rel="prev" href="xbstream-options.html">
       
       
-        <link rel="next" href="xbcloud-options.html">
+        <link rel="next" href="xbcloud-env.html">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -2176,6 +2172,8 @@ needing a local storage.">
       
         
       
+        
+      
     
     
     
@@ -2266,11 +2264,71 @@ needing a local storage.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#supported-cloud-storage-types" class="md-nav__link">
+  <a href="#whats-in-this-document" class="md-nav__link">
     <span class="md-ellipsis">
-      Supported cloud storage types
+      What&rsquo;s in this document
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-xbcloud-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      What xbcloud does
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-cloud-storage-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported cloud storage providers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streaming-backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming backups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chunked-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chunked storage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2280,6 +2338,48 @@ needing a local storage.">
       Usage
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-full-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a full backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-incremental-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an incremental backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoring-from-cloud-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restoring from cloud storage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partial restore
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2335,28 +2435,28 @@ needing a local storage.">
 </li>
       
         <li class="md-nav__item">
-  <a href="#incremental-backups" class="md-nav__link">
+  <a href="#advanced-usage-patterns" class="md-nav__link">
     <span class="md-ellipsis">
-      Incremental backups
+      Advanced usage patterns
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Incremental backups">
+    <nav class="md-nav" aria-label="Advanced usage patterns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preparing-incremental-backups" class="md-nav__link">
+  <a href="#incremental-backup-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Preparing incremental backups
+      Incremental backup workflow
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#partial-download-of-the-cloud-backup" class="md-nav__link">
+  <a href="#partial-restore_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Partial download of the cloud backup
+      Partial restore
     </span>
   </a>
   
@@ -2367,10 +2467,42 @@ needing a local storage.">
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="xbcloud-env.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using environment variable files (.env) with xbcloud
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2428,10 +2560,10 @@ needing a local storage.">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5_4" >
         
           
-          <label class="md-nav__link" for="__nav_8_5_3" id="__nav_8_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_5_4" id="__nav_8_5_4_label" tabindex="0">
             
   
   
@@ -2444,8 +2576,8 @@ needing a local storage.">
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_5_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_5_3">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5_4">
             <span class="md-nav__icon md-icon"></span>
             Use the xbcloud binary
           </label>
@@ -4807,11 +4939,71 @@ needing a local storage.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#supported-cloud-storage-types" class="md-nav__link">
+  <a href="#whats-in-this-document" class="md-nav__link">
     <span class="md-ellipsis">
-      Supported cloud storage types
+      What&rsquo;s in this document
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-xbcloud-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      What xbcloud does
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-cloud-storage-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported cloud storage providers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streaming-backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming backups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chunked-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chunked storage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4821,6 +5013,48 @@ needing a local storage.">
       Usage
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-full-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a full backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-incremental-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an incremental backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoring-from-cloud-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restoring from cloud storage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partial restore
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4876,28 +5110,28 @@ needing a local storage.">
 </li>
       
         <li class="md-nav__item">
-  <a href="#incremental-backups" class="md-nav__link">
+  <a href="#advanced-usage-patterns" class="md-nav__link">
     <span class="md-ellipsis">
-      Incremental backups
+      Advanced usage patterns
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Incremental backups">
+    <nav class="md-nav" aria-label="Advanced usage patterns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preparing-incremental-backups" class="md-nav__link">
+  <a href="#incremental-backup-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Preparing incremental backups
+      Incremental backup workflow
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#partial-download-of-the-cloud-backup" class="md-nav__link">
+  <a href="#partial-restore_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Partial download of the cloud backup
+      Partial restore
     </span>
   </a>
   
@@ -4905,6 +5139,15 @@ needing a local storage.">
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
   
 </li>
       
@@ -4954,11 +5197,89 @@ needing a local storage.">
 
 
 <h1 id="the-xbcloud-binary-overview">The xbcloud binary overview<a class="headerlink" href="#the-xbcloud-binary-overview" title="Permanent link">&para;</a></h1>
-<p>The purpose of xbcloud is to download from the cloud and upload to 
-the cloud the full or part of an xbstream archive. xbcloud will not 
-overwrite the backup with the same name. xbcloud accepts input via a pipe from xbstream so that it can be
-invoked as a pipeline with xtrabackup to stream directly to the cloud without
-needing a local storage.</p>
+<p>xbcloud is a cloud storage utility that works with Percona XtraBackup to upload, download, and manage database backups in cloud storage. It enables you to stream backups directly to cloud storage without requiring local disk space, making it ideal for large database environments.</p>
+<h2 id="whats-in-this-document">What&rsquo;s in this document<a class="headerlink" href="#whats-in-this-document" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#what-xbcloud-does">What xbcloud does</a> - Core operations and capabilities</li>
+<li><a href="#supported-cloud-storage-providers">Supported cloud storage providers</a> - Available storage options</li>
+<li><a href="#key-features">Key features</a> - Streaming, chunking, and advanced features</li>
+<li><a href="#usage">Usage</a> - Common usage patterns and examples</li>
+<li><a href="#supplying-parameters">Supplying parameters</a> - Configuration methods</li>
+<li><a href="#advanced-usage-patterns">Advanced usage patterns</a> - Incremental backups and partial restore</li>
+</ul>
+<h2 id="what-xbcloud-does">What xbcloud does<a class="headerlink" href="#what-xbcloud-does" title="Permanent link">&para;</a></h2>
+<p>xbcloud provides three essential operations:</p>
+<ul>
+<li><strong>put</strong> - Upload backups to cloud storage</li>
+<li><strong>get</strong> - Download backups from cloud storage  </li>
+<li><strong>delete</strong> - Remove backups from cloud storage</li>
+</ul>
+<p>These operations work seamlessly with xtrabackup&rsquo;s streaming capabilities, allowing you to create a complete backup pipeline that streams data directly from your database to cloud storage.</p>
+<h2 id="supported-cloud-storage-providers">Supported cloud storage providers<a class="headerlink" href="#supported-cloud-storage-providers" title="Permanent link">&para;</a></h2>
+<p>xbcloud supports multiple cloud storage providers:</p>
+<ul>
+<li>Amazon S3 and S3-compatible services (MinIO, Wasabi, Digital Ocean Spaces)</li>
+<li>OpenStack Swift</li>
+<li>Google Cloud Storage</li>
+<li>Microsoft Azure</li>
+</ul>
+<p>For detailed configuration instructions, see the individual provider guides:</p>
+<ul>
+<li><a href="xbcloud-s3.html">Using the xbcloud binary with Amazon S3</a></li>
+<li><a href="xbcloud-swift.html">Using the xbcloud binary with Swift</a>  </li>
+<li><a href="xbcloud-gcs.html">Using the xbcloud binary with Google Cloud Storage</a></li>
+<li><a href="xbcloud-azure.html">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></li>
+<li><a href="xbcloud-minio.html">Using the xbcloud binary with MinIO</a></li>
+</ul>
+<h2 id="key-features">Key features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="streaming-backups">Streaming backups<a class="headerlink" href="#streaming-backups" title="Permanent link">&para;</a></h3>
+<p>xbcloud accepts input via pipes from xbstream, enabling direct streaming from xtrabackup to cloud storage without requiring local storage space.</p>
+<h3 id="chunked-storage">Chunked storage<a class="headerlink" href="#chunked-storage" title="Permanent link">&para;</a></h3>
+<p>Backups are stored as separate objects with names like <code>backup_name/database/table.ibd.NNN...</code>, where <code>NNN...</code> is a zero-padded serial number. The default chunk size is 10MB, which you can adjust using <a href="xtrabackup-option-reference.html#read-buffer-size"><code>--read-buffer-size</code></a>.</p>
+<h3 id="advanced-features">Advanced features<a class="headerlink" href="#advanced-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="xbcloud-exbackoff.html">Exponential Backoff</a> - Automatically retries failed operations with increasing delays</li>
+<li><a href="xbcloud-binary-fifo-datasink.html">FIFO data sink</a> - Enables parallel streaming for high-bandwidth networks (10Gbps+)</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>To prevent intermittent backup failures, <a href="update-curl-utility.html">update the curl utility in Debian 10</a>.</p>
+</div>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>This section shows common xbcloud usage patterns. All examples use Amazon S3 for consistency, but the same principles apply to other storage providers.</p>
+<h3 id="creating-a-full-backup">Creating a full backup<a class="headerlink" href="#creating-a-full-backup" title="Permanent link">&para;</a></h3>
+<p>A full backup captures the entire database at a point in time. The following command creates a full backup and uploads it to S3:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>full_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
+</code></pre></div>
+<p>This command:
+1. Creates a backup using xtrabackup in streaming mode
+2. Pipes the backup data to xbcloud
+3. Uploads the backup to the S3 bucket with a timestamped name</p>
+<h3 id="creating-an-incremental-backup">Creating an incremental backup<a class="headerlink" href="#creating-an-incremental-backup" title="Permanent link">&para;</a></h3>
+<p>An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/tmp/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>inc_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M<span class="k">)</span>
+</code></pre></div>
+<h3 id="restoring-from-cloud-storage">Restoring from cloud storage<a class="headerlink" href="#restoring-from-cloud-storage" title="Permanent link">&para;</a></h3>
+<p>To restore a backup, download it from cloud storage and prepare it:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Download the backup</span>
+$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>full_backup_20240101<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/restore
+
+<span class="c1"># Prepare the backup for use</span>
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
+</code></pre></div>
+<h3 id="partial-restore">Partial restore<a class="headerlink" href="#partial-restore" title="Permanent link">&para;</a></h3>
+<p>You can restore specific tables without downloading the entire backup:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Download only specific tables</span>
+$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+full_backup_20240101<span class="w"> </span>ibdata1<span class="w"> </span>sakila/payment.ibd<span class="w"> </span>&gt;<span class="w"> </span>/tmp/partial.xbs
+
+<span class="c1"># Extract the partial backup</span>
+$<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/partial<span class="w"> </span>&lt;<span class="w"> </span>/tmp/partial.xbs
+</code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In a Bash shell, the <code>$?</code> parameter returns the exit code
@@ -4979,79 +5300,6 @@ $<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><sp
 <span class="m">0</span><span class="w"> </span><span class="m">1</span>
 </code></pre></div>
 </div>
-<p>The xbcloud binary stores each chunk as a separate object with a name
-<code>backup_name/database/table.ibd.NNN...</code>, where <code>NNN...</code> is a
-0-padded serial number of chunk within a file. The size of chunk produced by
-xtrabackup and xbstream changed to 10M.</p>
-<p>To adjust the chunk size use <a href="xtrabackup-option-reference.html#read-buffer-size"><code>--read-buffer-size</code></a>. To adjust the chunk size for encrypted files, use <code>--read-buffer-size</code> and <a href="xtrabackup-option-reference.html#encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
-<p>xbcloud has three essential operations: <em>put</em>, <em>get</em>, and <em>delete</em>. With these
-operations, backups are created, stored, retrieved, restored, and
-deleted. xbcloud operations clearly map to similar operations within 
-the AWS Amazon S3 API.</p>
-<p>The <a href="xbcloud-exbackoff.html">Exponential Backoff</a> feature increases the chances for the completion of a backup or
-a restore operation. When taking a backup, a chunk upload or download may fail if you have an unstable network connection or other network issues. This feature adds an exponential backoff, a sleep time, and retries the operations.</p>
-<p>With the <a href="xbcloud-binary-fifo-datasink.html">FIFO data sink</a> feature, users with a streaming capacity of 10Gbps (typically on a Local Area Network (LAN)) can benefit from faster backups by streaming data in parallel to object storage.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>To prevent intermittent backup failures, <a href="update-curl-utility.html">update the curl utility in Debian 10</a>.</p>
-</div>
-<h2 id="supported-cloud-storage-types">Supported cloud storage types<a class="headerlink" href="#supported-cloud-storage-types" title="Permanent link">&para;</a></h2>
-<p>The following cloud storage types are supported:</p>
-<ul>
-<li>
-<p>OpenStack Object Storage (Swift) - see <a href="xbcloud-swift.html">Using the xbcloud binary with Swift</a></p>
-</li>
-<li>
-<p>Amazon Simple Storage (S3) - see <a href="xbcloud-s3.html">Using the xbcloud binary with Amazon S3</a></p>
-</li>
-<li>
-<p>Azure Cloud Storage - see <a href="xbcloud-azure.html">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></p>
-</li>
-<li>
-<p>Google Cloud Storage (gcs) - see <a href="xbcloud-gcs.html">Using the xbcloud binary with Google Cloud Storage</a></p>
-</li>
-<li>
-<p>MinIO - see <a href="xbcloud-minio.html">Using the xbcloud binary with MinIO</a></p>
-</li>
-</ul>
-<p>In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, xbcloud supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.</p>
-<div class="admonition admonition">
-<p class="admonition-title">See also</p>
-<p><a href="https://wiki.openstack.org/wiki/Swift">OpenStack Object Storage(&ldquo;Swift&rdquo;)</a></p>
-<p><a href="https://aws.amazon.com/s3/">Amazon Simple Storage Service</a></p>
-<p><a href="https://min.io/">MinIO</a></p>
-<p><a href="https://cloud.google.com/storage/">Google Cloud Storage</a></p>
-<p><a href="https://wasabi.com/">Wasabi</a></p>
-<p><a href="https://www.digitalocean.com/products/spaces">Digital Ocean Spaces</a></p>
-</div>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>The following sample command creates a full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span>--extra-lsndirk<span class="o">=</span>/storage/backups/<span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span><span class="se">\</span>
-put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup
-</code></pre></div>
-<p>An incremental backup only includes the changes since the last backup. The last backup can be either a full or incremental backup.</p>
-<p>The following sample command creates an incremental backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/storage/backups<span class="w"> </span><span class="se">\</span>
---target-dir<span class="o">=</span>/storage/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w">  </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>inc_backup
-</code></pre></div>
-<p>To prepare an incremental backup, you must first download the full backup with the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/full-backup
-</code></pre></div>
-<p>You must prepare the full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup
-</code></pre></div>
-<p>After the full backup has been prepared, download the incremental backup:</p>
-<div class="highlight"><pre><span></span><code>xbcloud get [options] inc_backup | xbstream -xv -C /tmp/inc-backup
-</code></pre></div>
-<p>The downloaded backup is prepared by running the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup<span class="w"> </span>--incremental-dir<span class="o">=</span>/tmp/inc-backup
-</code></pre></div>
-<p>You do not need the full backup to restore only a specific database. You can specify only the tables to be restored:</p>
-<p><div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>ibdata1<span class="w"> </span>sakila/payment.ibd<span class="w"> </span>/tmp/partial/partial.xbs
-</code></pre></div>
-An example of the code: </p>
-<div class="highlight"><pre><span></span><code>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/partial<span class="w"> </span>&lt;<span class="w"> </span>/tmp/partial/partial.xbs
-</code></pre></div>
 <h2 id="supplying-parameters">Supplying parameters<a class="headerlink" href="#supplying-parameters" title="Permanent link">&para;</a></h2>
 <p>Each storage type has mandatory parameters that you can supply on the command
 line, in a configuration file, and via environment variables.</p>
@@ -5073,25 +5321,100 @@ s3-api-version=4
 <p>If you explicitly use a parameter on the command line and in a configuration file, xbcloud uses the value provided on the command line.</p>
 </div>
 <h3 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
-<p>If you explicitly use a parameter on the command line, in a configuration
-file, and the corresponding environment variable contains a value, xbcloud
-uses the value provided on the command line or in the configuration file.</p>
-<p>Check the available options and corresponding environment variables for each supported cloud storage type below:</p>
+<p>Environment variables provide a secure way to configure xbcloud without exposing credentials in command lines or scripts. xbcloud automatically maps environment variables to their corresponding command-line parameters.</p>
+<h4 id="how-precedence-works">How precedence works<a class="headerlink" href="#how-precedence-works" title="Permanent link">&para;</a></h4>
+<p>When the same parameter is specified in multiple ways, xbcloud uses this precedence order (highest to lowest):</p>
+<ol>
+<li>Command-line parameters</li>
+<li>Configuration file values  </li>
+<li>Environment variables</li>
+</ol>
+<h4 id="common-environment-variables">Common environment variables<a class="headerlink" href="#common-environment-variables" title="Permanent link">&para;</a></h4>
+<p>Each storage provider uses different environment variable names:</p>
+<ul>
+<li><strong>Amazon S3</strong>: <code>AWS_ACCESS_KEY_ID</code>, <code>AWS_SECRET_ACCESS_KEY</code>, <code>AWS_DEFAULT_REGION</code></li>
+<li><strong>OpenStack Swift</strong>: <code>OS_AUTH_URL</code>, <code>OS_USERNAME</code>, <code>OS_PASSWORD</code></li>
+<li><strong>Microsoft Azure</strong>: <code>AZURE_STORAGE_ACCOUNT</code>, <code>AZURE_CONTAINER_NAME</code>, <code>AZURE_ACCESS_KEY</code></li>
+<li><strong>Google Cloud</strong>: <code>GOOGLE_ACCESS_KEY</code>, <code>GOOGLE_SECRET_KEY</code>, <code>GOOGLE_BUCKET_NAME</code></li>
+</ul>
+<h4 id="example-usage">Example usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h4>
+<p>Set environment variables for your storage provider:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># For Amazon S3</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">&quot;your-access-key&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">&quot;your-secret-key&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span><span class="s2">&quot;us-west-2&quot;</span>
+
+<span class="c1"># Now use xbcloud without specifying credentials</span>
+xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
+</code></pre></div>
+<p>For complete environment variable reference and advanced usage patterns, see <a href="xbcloud-env.html">Using environment variable files (.env) with xbcloud</a>.</p>
+<h4 id="security-best-practices">Security best practices<a class="headerlink" href="#security-best-practices" title="Permanent link">&para;</a></h4>
+<p>Environment variable files (<code>.env</code>) provide a secure way to manage xbcloud credentials without exposing sensitive information in command lines or scripts. These files store your cloud storage credentials and configuration settings, making them easy to manage and share across different environments while keeping them out of version control.</p>
+<p>For detailed guidance on using <code>.env</code> files with xbcloud, including setup instructions, security best practices, and troubleshooting tips, see <a href="xbcloud-env.html">Using environment variable files (.env) with xbcloud</a>.</p>
 <ul>
 <li>
-<p>OpenStack Object Storage (Swift) - see <a href="xbcloud-swift.html#create-a-full-backup-with-swift">Using the xbcloud binary with Swift</a></p>
+<p>Never commit environment variables to version control</p>
 </li>
 <li>
-<p>Amazon Simple Storage (S3) - see <a href="xbcloud-s3.html#environment-variables">Using the xbcloud binary with Amazon S3</a></p>
+<p>Use environment variable files (<code>.env</code>) that are excluded from version control</p>
 </li>
 <li>
-<p>Azure Cloud Storage - see <a href="xbcloud-azure.html#options">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></p>
+<p>Set appropriate file permissions on environment variable files (600 or 400)</p>
 </li>
 <li>
-<p>Google Cloud Storage (gcs) - see <a href="xbcloud-gcs.html">Using the xbcloud binary with Google Cloud Storage</a></p>
+<p>Use IAM roles and instance profiles when possible instead of access keys</p>
 </li>
 <li>
-<p>MinIO - see <a href="xbcloud-minio.html">Using the xbcloud binary with MinIO</a></p>
+<p>Rotate credentials regularly</p>
+</li>
+<li>
+<p>Use temporary credentials (session tokens) for short-term access</p>
+</li>
+</ul>
+<h4 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h4>
+<p>Environment variables not being recognized:</p>
+<ul>
+<li>
+<p>Verify the variable name matches exactly (case-sensitive)</p>
+</li>
+<li>
+<p>Check that the variable is exported: <code>export VARIABLE_NAME="value"</code></p>
+</li>
+<li>
+<p>Confirm the variable is set: <code>echo $VARIABLE_NAME</code></p>
+</li>
+<li>
+<p>Test with a simple command first</p>
+</li>
+</ul>
+<p>Common issues:</p>
+<ul>
+<li>
+<p>Mixed authentication methods: Avoid mixing environment variables with command-line parameters for the same setting</p>
+</li>
+<li>
+<p>Incorrect variable names: Double-check the exact environment variable names for your storage type</p>
+</li>
+<li>
+<p>Missing exports: Ensure variables are exported, not just set locally</p>
+</li>
+</ul>
+<p>For detailed examples and storage-specific configuration, see the individual storage provider documentation:</p>
+<ul>
+<li>
+<p><a href="xbcloud-s3.html#environment-variables">Using the xbcloud binary with Amazon S3</a></p>
+</li>
+<li>
+<p><a href="xbcloud-swift.html#create-a-full-backup-with-swift">Using the xbcloud binary with Swift</a></p>
+</li>
+<li>
+<p><a href="xbcloud-azure.html#options">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></p>
+</li>
+<li>
+<p><a href="xbcloud-gcs.html">Using the xbcloud binary with Google Cloud Storage</a></p>
+</li>
+<li>
+<p><a href="xbcloud-minio.html">Using the xbcloud binary with MinIO</a></p>
 </li>
 </ul>
 <h3 id="shortcuts">Shortcuts<a class="headerlink" href="#shortcuts" title="Permanent link">&para;</a></h3>
@@ -5132,64 +5455,74 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://operator-testing/
 </code></pre></div>
 <p>The <code>--header</code> parameter is also useful to set the access control list (ACL)
 permissions: <code>--header="x-amz-acl: bucket-owner-full-control</code></p>
-<h2 id="incremental-backups">Incremental backups<a class="headerlink" href="#incremental-backups" title="Permanent link">&para;</a></h2>
-<p>First, you need to make the full backup on which the incremental one is going to
-be based:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="se">\</span>
---target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="se">\</span>
---storage<span class="o">=</span>swift<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
---swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
---swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
-full_backup
+<h2 id="advanced-usage-patterns">Advanced usage patterns<a class="headerlink" href="#advanced-usage-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="incremental-backup-workflow">Incremental backup workflow<a class="headerlink" href="#incremental-backup-workflow" title="Permanent link">&para;</a></h3>
+<p>Incremental backups capture only changes since the last backup, making them faster and more storage-efficient. Here&rsquo;s the complete workflow using S3:</p>
+<h4 id="step-1-create-the-base-full-backup">Step 1: Create the base full backup<a class="headerlink" href="#step-1-create-the-base-full-backup" title="Permanent link">&para;</a></h4>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/base<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+full_backup_20240101
 </code></pre></div>
-<p>Then you can make the incremental backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--incremental-basedir<span class="o">=</span>/storage/backups<span class="w"> </span><span class="se">\</span>
---stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/inc_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="se">\</span>
---storage<span class="o">=</span>swift<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
---swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
---swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
-inc_backup
+<h4 id="step-2-create-incremental-backups">Step 2: Create incremental backups<a class="headerlink" href="#step-2-create-incremental-backups" title="Permanent link">&para;</a></h4>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/tmp/base<span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+inc_backup_20240101_1200
 </code></pre></div>
-<h3 id="preparing-incremental-backups">Preparing incremental backups<a class="headerlink" href="#preparing-incremental-backups" title="Permanent link">&para;</a></h3>
-<p>To prepare a backup you first need to download the full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
---swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
---swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
-full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/downloaded_full
-</code></pre></div>
-<p>Once you download the full backup it should be prepared:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full
-</code></pre></div>
-<p>After the full backup has been prepared you can download the incremental
-backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
---swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
---swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
-inc_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/downloaded_inc
-</code></pre></div>
-<p>Once the incremental backup has been downloaded you can prepare it by running:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
---target-dir<span class="o">=</span>/storage/downloaded_full<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/storage/downloaded_inc
+<h4 id="step-3-restore-incremental-backups">Step 3: Restore incremental backups<a class="headerlink" href="#step-3-restore-incremental-backups" title="Permanent link">&para;</a></h4>
+<p>To restore from incremental backups, you must download and prepare them in sequence:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Download and prepare the full backup</span>
+$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+full_backup_20240101<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/restore
 
-$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full
-</code></pre></div>
-<h3 id="partial-download-of-the-cloud-backup">Partial download of the cloud backup<a class="headerlink" href="#partial-download-of-the-cloud-backup" title="Permanent link">&para;</a></h3>
-<p>If you do not want to download the entire backup to restore the specific
-database you can specify only the tables you want to restore:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup
---swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
---swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
---swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>full_backup<span class="w"> </span><span class="se">\</span>
-ibdata1<span class="w"> </span>sakila/payment.ibd<span class="w"> </span><span class="se">\</span>
-&gt;<span class="w"> </span>/storage/partial/partial.xbs
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
 
-$<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/partial<span class="w"> </span>&lt;<span class="w"> </span>/storage/partial/partial.xbs
+<span class="c1"># Download and apply the incremental backup</span>
+$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+inc_backup_20240101_1200<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/inc1
+
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/tmp/inc1
+
+<span class="c1"># Final prepare step</span>
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
 </code></pre></div>
+<h3 id="partial-restore_1">Partial restore<a class="headerlink" href="#partial-restore_1" title="Permanent link">&para;</a></h3>
+<p>You can restore specific tables without downloading the entire backup:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Download only specific tables</span>
+$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+full_backup_20240101<span class="w"> </span>ibdata1<span class="w"> </span>sakila/payment.ibd<span class="w"> </span>&gt;<span class="w"> </span>/tmp/partial.xbs
+
+<span class="c1"># Extract the partial backup</span>
+$<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/partial<span class="w"> </span>&lt;<span class="w"> </span>/tmp/partial.xbs
+</code></pre></div>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>Now that you understand the basics of xbcloud, here are the recommended next steps:</p>
+<ol>
+<li>
+<p><strong>Choose your storage provider</strong> - Review the <a href="#supported-cloud-storage-providers">supported cloud storage providers</a> and select the one that best fits your needs</p>
+</li>
+<li>
+<p><strong>Set up authentication</strong> - Follow the provider-specific guide to configure credentials:</p>
+</li>
+<li><a href="xbcloud-s3.html">Using the xbcloud binary with Amazon S3</a></li>
+<li><a href="xbcloud-swift.html">Using the xbcloud binary with Swift</a></li>
+<li><a href="xbcloud-gcs.html">Using the xbcloud binary with Google Cloud Storage</a></li>
+<li><a href="xbcloud-azure.html">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></li>
+<li>
+<p><a href="xbcloud-minio.html">Using the xbcloud binary with MinIO</a></p>
+</li>
+<li>
+<p><strong>Configure security</strong> - Learn about secure credential management with <a href="xbcloud-env.html">Using environment variable files (.env) with xbcloud</a></p>
+</li>
+<li>
+<p><strong>Explore advanced features</strong> - Review the <a href="xbcloud-options.html">xbcloud command-line options</a> for detailed parameter reference</p>
+</li>
+<li>
+<p><strong>Test your setup</strong> - Start with a simple full backup using the examples in the <a href="#usage">Usage</a> section</p>
+</li>
+</ol>
+<p>For troubleshooting and additional help, see the <a href="troubleshoot.md">Troubleshoot</a> section or contact <a href="get-help.html">Percona support</a>.</p>
 
 
 
