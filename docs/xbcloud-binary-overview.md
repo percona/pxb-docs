@@ -1,10 +1,112 @@
 # The xbcloud binary overview
 
-The purpose of xbcloud is to download from the cloud and upload to 
-the cloud the full or part of an xbstream archive. xbcloud will not 
-overwrite the backup with the same name. xbcloud accepts input via a pipe from xbstream so that it can be
-invoked as a pipeline with xtrabackup to stream directly to the cloud without
-needing a local storage.
+xbcloud is a cloud storage utility that works with Percona XtraBackup to upload, download, and manage database backups in cloud storage. It enables you to stream backups directly to cloud storage without requiring local disk space, making it ideal for large database environments.
+
+## What's in this document
+
+* [What xbcloud does](#what-xbcloud-does) - Core operations and capabilities
+* [Supported cloud storage providers](#supported-cloud-storage-providers) - Available storage options
+* [Key features](#key-features) - Streaming, chunking, and advanced features
+* [Usage](#usage) - Common usage patterns and examples
+* [Supplying parameters](#supplying-parameters) - Configuration methods
+* [Advanced usage patterns](#advanced-usage-patterns) - Incremental backups and partial restore
+
+## What xbcloud does
+
+xbcloud provides three essential operations:
+
+* **put** - Upload backups to cloud storage
+* **get** - Download backups from cloud storage  
+* **delete** - Remove backups from cloud storage
+
+These operations work seamlessly with xtrabackup's streaming capabilities, allowing you to create a complete backup pipeline that streams data directly from your database to cloud storage.
+
+## Supported cloud storage providers
+
+xbcloud supports multiple cloud storage providers:
+
+* Amazon S3 and S3-compatible services (MinIO, Wasabi, Digital Ocean Spaces)
+* OpenStack Swift
+* Google Cloud Storage
+* Microsoft Azure
+
+For detailed configuration instructions, see the individual provider guides:
+
+* [Using the xbcloud binary with Amazon S3](xbcloud-s3.md)
+* [Using the xbcloud binary with Swift](xbcloud-swift.md)  
+* [Using the xbcloud binary with Google Cloud Storage](xbcloud-gcs.md)
+* [Using the xbcloud binary with Microsoft Azure Cloud Storage](xbcloud-azure.md)
+* [Using the xbcloud binary with MinIO](xbcloud-minio.md)
+
+## Key features
+
+### Streaming backups
+xbcloud accepts input via pipes from xbstream, enabling direct streaming from xtrabackup to cloud storage without requiring local storage space.
+
+### Chunked storage
+Backups are stored as separate objects with names like `backup_name/database/table.ibd.NNN...`, where `NNN...` is a zero-padded serial number. The default chunk size is 10MB, which you can adjust using [`--read-buffer-size`](xtrabackup-option-reference.md#read-buffer-size).
+
+### Advanced features
+* [Exponential Backoff](xbcloud-exbackoff.md) - Automatically retries failed operations with increasing delays
+* [FIFO data sink](xbcloud-binary-fifo-datasink.md) - Enables parallel streaming for high-bandwidth networks (10Gbps+)
+
+!!! important
+
+    To prevent intermittent backup failures, [update the curl utility in Debian 10](update-curl-utility.md).
+
+## Usage
+
+This section shows common xbcloud usage patterns. All examples use Amazon S3 for consistency, but the same principles apply to other storage providers.
+
+### Creating a full backup
+
+A full backup captures the entire database at a point in time. The following command creates a full backup and uploads it to S3:
+
+```{.bash data-prompt="$"}
+$ xtrabackup --backup --stream=xbstream --target-dir=/tmp/backup | \
+xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 full_backup_$(date +%Y%m%d)
+```
+
+This command:
+1. Creates a backup using xtrabackup in streaming mode
+2. Pipes the backup data to xbcloud
+3. Uploads the backup to the S3 bucket with a timestamped name
+
+### Creating an incremental backup
+
+An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:
+
+```{.bash data-prompt="$"}
+$ xtrabackup --backup --stream=xbstream --incremental-basedir=/tmp/backup \
+--target-dir=/tmp/inc-backup | \
+xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 inc_backup_$(date +%Y%m%d_%H%M)
+```
+
+### Restoring from cloud storage
+
+To restore a backup, download it from cloud storage and prepare it:
+
+```{.bash data-prompt="$"}
+# Download the backup
+$ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 full_backup_20240101 | \
+xbstream -xv -C /tmp/restore
+
+# Prepare the backup for use
+$ xtrabackup --prepare --target-dir=/tmp/restore
+```
+
+### Partial restore
+
+You can restore specific tables without downloading the entire backup:
+
+```{.bash data-prompt="$"}
+# Download only specific tables
+$ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
+full_backup_20240101 ibdata1 sakila/payment.ibd > /tmp/partial.xbs
+
+# Extract the partial backup
+$ xbstream -xv -C /tmp/partial < /tmp/partial.xbs
+```
 
 !!! note
    
@@ -27,110 +129,6 @@ needing a local storage.
     $ echo ${PIPESTATUS[0]} ${PIPESTATUS[1]}
     0 1
     ```
-
-The xbcloud binary stores each chunk as a separate object with a name
-`backup_name/database/table.ibd.NNN...`, where `NNN...` is a
-0-padded serial number of chunk within a file. The size of chunk produced by
-xtrabackup and xbstream changed to 10M.
-
-To adjust the chunk size use [`--read-buffer-size`](xtrabackup-option-reference.md#read-buffer-size). To adjust the chunk size for encrypted files, use `--read-buffer-size` and [`--encrypt-chunk-size`](xtrabackup-option-reference.md#encrypt-chunk-size).
-
-xbcloud has three essential operations: *put*, *get*, and *delete*. With these
-operations, backups are created, stored, retrieved, restored, and
-deleted. xbcloud operations clearly map to similar operations within 
-the AWS Amazon S3 API.
-
-The [Exponential Backoff](xbcloud-exbackoff.md) feature increases the chances for the completion of a backup or
-a restore operation. When taking a backup, a chunk upload or download may fail if you have an unstable network connection or other network issues. This feature adds an exponential backoff, a sleep time, and retries the operations.
-
-With the [FIFO data sink](xbcloud-binary-fifo-datasink.md) feature, users with a streaming capacity of 10Gbps (typically on a Local Area Network (LAN)) can benefit from faster backups by streaming data in parallel to object storage.
-
-!!! important
-
-    To prevent intermittent backup failures, [update the curl utility in Debian 10](update-curl-utility.md).
-
-## Supported cloud storage types
-
-The following cloud storage types are supported:
-
-* OpenStack Object Storage (Swift) - see [Using the xbcloud binary with Swift](xbcloud-swift.md)
-
-* Amazon Simple Storage (S3) - see [Using the xbcloud binary with Amazon S3](xbcloud-s3.md)
-
-* Azure Cloud Storage - see [Using the xbcloud binary with Microsoft Azure Cloud Storage](xbcloud-azure.md)
-
-* Google Cloud Storage (gcs) - see [Using the xbcloud binary with Google Cloud Storage](xbcloud-gcs.md)
-
-* MinIO - see [Using the xbcloud binary with MinIO](xbcloud-minio.md)
-
-In addition to OpenStack Object Storage (Swift), which has been the only option for storing backups in a cloud storage until Percona XtraBackup 2.4.14, xbcloud supports Amazon S3, MinIO, and Google Cloud Storage. Other Amazon S3-compatible storages, such as Wasabi or Digital Ocean Spaces, are also supported.
-
-!!! admonition "See also"
-
-    [OpenStack Object Storage("Swift")](https://wiki.openstack.org/wiki/Swift)
-
-    [Amazon Simple Storage Service](https://aws.amazon.com/s3/)
-
-    [MinIO](https://min.io/)
-
-    [Google Cloud Storage](https://cloud.google.com/storage/)
-
-    [Wasabi](https://wasabi.com/)
-
-    [Digital Ocean Spaces](https://www.digitalocean.com/products/spaces)
-
-## Usage
-
-The following sample command creates a full backup:
-
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ --extra-lsndirk=/storage/backups/| xbcloud \
-put [options] full_backup
-```
-
-An incremental backup only includes the changes since the last backup. The last backup can be either a full or incremental backup.
-
-The following sample command creates an incremental backup:
-
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --incremental-basedir=/storage/backups \
---target-dir=/storage/inc-backup | xbcloud  put [options] inc_backup
-```
-
-To prepare an incremental backup, you must first download the full backup with the following command:
-
-```{.bash data-prompt="$"}
-$ xbcloud get [options] full_backup | xbstream -xv -C /tmp/full-backup
-```
-
-You must prepare the full backup:
-
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --apply-log-only --target-dir=/tmp/full-backup
-```
-
-After the full backup has been prepared, download the incremental backup:
-
-```
-xbcloud get [options] inc_backup | xbstream -xv -C /tmp/inc-backup
-```
-
-The downloaded backup is prepared by running the following command:
-
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/tmp/full-backup --incremental-dir=/tmp/inc-backup
-```
-
-You do not need the full backup to restore only a specific database. You can specify only the tables to be restored:
-
-```shell
-xbcloud get [options] ibdata1 sakila/payment.ibd /tmp/partial/partial.xbs
-```
-An example of the code: 
-
-```shell
-xbstream -xv -C /tmp/partial < /tmp/partial/partial.xbs
-```
 
 ## Supplying parameters
 
@@ -160,21 +158,90 @@ s3-api-version=4
 
 ### Environment variables
 
-If you explicitly use a parameter on the command line, in a configuration
-file, and the corresponding environment variable contains a value, xbcloud
-uses the value provided on the command line or in the configuration file.
+Environment variables provide a secure way to configure xbcloud without exposing credentials in command lines or scripts. xbcloud automatically maps environment variables to their corresponding command-line parameters.
 
-Check the available options and corresponding environment variables for each supported cloud storage type below:
+#### How precedence works
 
-* OpenStack Object Storage (Swift) - see [Using the xbcloud binary with Swift](xbcloud-swift.md#create-a-full-backup-with-swift)
+When the same parameter is specified in multiple ways, xbcloud uses this precedence order (highest to lowest):
 
-* Amazon Simple Storage (S3) - see [Using the xbcloud binary with Amazon S3](xbcloud-s3.md#environment-variables)
+1. Command-line parameters
+2. Configuration file values  
+3. Environment variables
 
-* Azure Cloud Storage - see [Using the xbcloud binary with Microsoft Azure Cloud Storage](xbcloud-azure.md#options)
+#### Common environment variables
 
-* Google Cloud Storage (gcs) - see [Using the xbcloud binary with Google Cloud Storage](xbcloud-gcs.md)
+Each storage provider uses different environment variable names:
 
-* MinIO - see [Using the xbcloud binary with MinIO](xbcloud-minio.md)
+* **Amazon S3**: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_DEFAULT_REGION`
+* **OpenStack Swift**: `OS_AUTH_URL`, `OS_USERNAME`, `OS_PASSWORD`
+* **Microsoft Azure**: `AZURE_STORAGE_ACCOUNT`, `AZURE_CONTAINER_NAME`, `AZURE_ACCESS_KEY`
+* **Google Cloud**: `GOOGLE_ACCESS_KEY`, `GOOGLE_SECRET_KEY`, `GOOGLE_BUCKET_NAME`
+
+#### Example usage
+
+Set environment variables for your storage provider:
+
+```bash
+# For Amazon S3
+export AWS_ACCESS_KEY_ID="your-access-key"
+export AWS_SECRET_ACCESS_KEY="your-secret-key"
+export AWS_DEFAULT_REGION="us-west-2"
+
+# Now use xbcloud without specifying credentials
+xtrabackup --backup --stream=xbstream | xbcloud put s3://my-bucket/backup-$(date +%Y%m%d)
+```
+
+For complete environment variable reference and advanced usage patterns, see [Using environment variable files (.env) with xbcloud](xbcloud-env.md).
+
+#### Security best practices
+
+Environment variable files (`.env`) provide a secure way to manage xbcloud credentials without exposing sensitive information in command lines or scripts. These files store your cloud storage credentials and configuration settings, making them easy to manage and share across different environments while keeping them out of version control.
+
+For detailed guidance on using `.env` files with xbcloud, including setup instructions, security best practices, and troubleshooting tips, see [Using environment variable files (.env) with xbcloud](xbcloud-env.md).
+
+* Never commit environment variables to version control
+
+* Use environment variable files (`.env`) that are excluded from version control
+
+* Set appropriate file permissions on environment variable files (600 or 400)
+
+* Use IAM roles and instance profiles when possible instead of access keys
+
+* Rotate credentials regularly
+
+* Use temporary credentials (session tokens) for short-term access
+
+#### Troubleshooting
+
+Environment variables not being recognized:
+
+* Verify the variable name matches exactly (case-sensitive)
+
+* Check that the variable is exported: `export VARIABLE_NAME="value"`
+
+* Confirm the variable is set: `echo $VARIABLE_NAME`
+
+* Test with a simple command first
+
+Common issues:
+
+* Mixed authentication methods: Avoid mixing environment variables with command-line parameters for the same setting
+
+* Incorrect variable names: Double-check the exact environment variable names for your storage type
+
+* Missing exports: Ensure variables are exported, not just set locally
+
+For detailed examples and storage-specific configuration, see the individual storage provider documentation:
+
+* [Using the xbcloud binary with Amazon S3](xbcloud-s3.md#environment-variables)
+
+* [Using the xbcloud binary with Swift](xbcloud-swift.md#create-a-full-backup-with-swift)
+
+* [Using the xbcloud binary with Microsoft Azure Cloud Storage](xbcloud-azure.md#options)
+
+* [Using the xbcloud binary with Google Cloud Storage](xbcloud-gcs.md)
+
+* [Using the xbcloud binary with MinIO](xbcloud-minio.md)
 
 ### Shortcuts
 
@@ -232,84 +299,81 @@ xbcloud put s3://operator-testing/bak-enc/ \
 The `--header` parameter is also useful to set the access control list (ACL)
 permissions: `--header="x-amz-acl: bucket-owner-full-control`
 
-## Incremental backups
+## Advanced usage patterns
 
-First, you need to make the full backup on which the incremental one is going to
-be based:
+### Incremental backup workflow
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --extra-lsndir=/storage/backups/ \
---target-dir=/storage/backups/ | xbcloud put \
---storage=swift --swift-container=test_backup \
---swift-auth-version=2.0 --swift-user=admin \
---swift-tenant=admin --swift-password=xoxoxoxo \
---swift-auth-url=http://127.0.0.1:35357/ --parallel=10 \
-full_backup
-```
+Incremental backups capture only changes since the last backup, making them faster and more storage-efficient. Here's the complete workflow using S3:
 
-Then you can make the incremental backup:
+#### Step 1: Create the base full backup
 
 ```{.bash data-prompt="$"}
-$ xtrabackup --backup --incremental-basedir=/storage/backups \
---stream=xbstream --target-dir=/storage/inc_backup | xbcloud put \
---storage=swift --swift-container=test_backup \
---swift-auth-version=2.0 --swift-user=admin \
---swift-tenant=admin --swift-password=xoxoxoxo \
---swift-auth-url=http://127.0.0.1:35357/ --parallel=10 \
-inc_backup
+$ xtrabackup --backup --stream=xbstream --target-dir=/tmp/base | \
+xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
+full_backup_20240101
 ```
 
-### Preparing incremental backups
-
-To prepare a backup you first need to download the full backup:
+#### Step 2: Create incremental backups
 
 ```{.bash data-prompt="$"}
-$ xbcloud get --swift-container=test_backup \
---swift-auth-version=2.0 --swift-user=admin \
---swift-tenant=admin --swift-password=xoxoxoxo \
---swift-auth-url=http://127.0.0.1:35357/ --parallel=10 \
-full_backup | xbstream -xv -C /storage/downloaded_full
+$ xtrabackup --backup --stream=xbstream --incremental-basedir=/tmp/base \
+--target-dir=/tmp/inc1 | \
+xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
+inc_backup_20240101_1200
 ```
 
-Once you download the full backup it should be prepared:
+#### Step 3: Restore incremental backups
+
+To restore from incremental backups, you must download and prepare them in sequence:
 
 ```{.bash data-prompt="$"}
-$ xtrabackup --prepare --apply-log-only --target-dir=/storage/downloaded_full
+# Download and prepare the full backup
+$ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
+full_backup_20240101 | xbstream -xv -C /tmp/restore
+
+$ xtrabackup --prepare --apply-log-only --target-dir=/tmp/restore
+
+# Download and apply the incremental backup
+$ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
+inc_backup_20240101_1200 | xbstream -xv -C /tmp/inc1
+
+$ xtrabackup --prepare --apply-log-only --target-dir=/tmp/restore \
+--incremental-dir=/tmp/inc1
+
+# Final prepare step
+$ xtrabackup --prepare --target-dir=/tmp/restore
 ```
 
-After the full backup has been prepared you can download the incremental
-backup:
+### Partial restore
+
+You can restore specific tables without downloading the entire backup:
 
 ```{.bash data-prompt="$"}
-$ xbcloud get --swift-container=test_backup \
---swift-auth-version=2.0 --swift-user=admin \
---swift-tenant=admin --swift-password=xoxoxoxo \
---swift-auth-url=http://127.0.0.1:35357/ --parallel=10 \
-inc_backup | xbstream -xv -C /storage/downloaded_inc
+# Download only specific tables
+$ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
+full_backup_20240101 ibdata1 sakila/payment.ibd > /tmp/partial.xbs
+
+# Extract the partial backup
+$ xbstream -xv -C /tmp/partial < /tmp/partial.xbs
 ```
 
-Once the incremental backup has been downloaded you can prepare it by running:
+## Next steps
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --apply-log-only \
---target-dir=/storage/downloaded_full \
---incremental-dir=/storage/downloaded_inc
+Now that you understand the basics of xbcloud, here are the recommended next steps:
 
-$ xtrabackup --prepare --target-dir=/storage/downloaded_full
-```
+1. **Choose your storage provider** - Review the [supported cloud storage providers](#supported-cloud-storage-providers) and select the one that best fits your needs
 
-### Partial download of the cloud backup
+2. **Set up authentication** - Follow the provider-specific guide to configure credentials:
+   * [Using the xbcloud binary with Amazon S3](xbcloud-s3.md)
+   * [Using the xbcloud binary with Swift](xbcloud-swift.md)
+   * [Using the xbcloud binary with Google Cloud Storage](xbcloud-gcs.md)
+   * [Using the xbcloud binary with Microsoft Azure Cloud Storage](xbcloud-azure.md)
+   * [Using the xbcloud binary with MinIO](xbcloud-minio.md)
 
-If you do not want to download the entire backup to restore the specific
-database you can specify only the tables you want to restore:
+3. **Configure security** - Learn about secure credential management with [Using environment variable files (.env) with xbcloud](xbcloud-env.md)
 
-```{.bash data-prompt="$"}
-$ xbcloud get --swift-container=test_backup
---swift-auth-version=2.0 --swift-user=admin \
---swift-tenant=admin --swift-password=xoxoxoxo \
---swift-auth-url=http://127.0.0.1:35357/ full_backup \
-ibdata1 sakila/payment.ibd \
-> /storage/partial/partial.xbs
+4. **Explore advanced features** - Review the [xbcloud command-line options](xbcloud-options.md) for detailed parameter reference
 
-$ xbstream -xv -C /storage/partial < /storage/partial/partial.xbs
-```
+5. **Test your setup** - Start with a simple full backup using the examples in the [Usage](#usage) section
+
+For troubleshooting and additional help, see the [Troubleshoot](troubleshoot.md) section or contact [Percona support](get-help.md).
