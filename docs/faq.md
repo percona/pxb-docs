@@ -2,19 +2,11 @@
 
 ## Does Percona XtraBackup 8.0 support taking backups of databases in versions prior to 8.0?
 
-*Percona XtraBackup* 8.0 does not support making backups of databases
-created in versions prior to 8.0 of *MySQL*, *Percona Server for MySQL* or
-*Percona XtraDB Cluster*. As the changes that *MySQL* 8.0 introduced
-in *data dictionaries*, *redo log* and *undo log* are incompatible
-with previous versions, it is currently impossible for *Percona XtraBackup*
-8.0 to also support versions prior to 8.0.
+Percona XtraBackup 8.0 can back up only MySQL, Percona Server for MySQL, or Percona XtraDB Cluster instances currently running version 8.0. The data‑dictionary, redo‑log, and undo‑log formats introduced in MySQL 8.0 are incompatible with pre‑8.0 releases, so XtraBackup 8.0 does not work with older servers. 
 
-Due to changes in MySQL 8.0.20 released by Oracle at the end of April 2020,
-*Percona XtraBackup* 8.0, up to version 8.0.11, is not compatible with
-MySQL version 8.0.20 or
-higher, or Percona products that are based on it: Percona Server for MySQL
-and
-Percona XtraDB Cluster.
+The internal structures are converted after an in‑place upgrade to MySQL 8.0 (or the equivalent Percona 8.0 product). 
+
+After the in-place upgrade, XtraBackup 8.0 can back up the database without restriction, regardless of its original creation version.
 
 For more information,
 see [Percona XtraBackup 8.x and MySQL 8.0.20](https://www.percona.com/blog/2020/04/28/percona-xtrabackup-8-x-and-mysql-8-0-20/)
