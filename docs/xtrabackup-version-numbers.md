@@ -1,6 +1,6 @@
 # Understand version numbers
 
-A version number identifies the innovtion product release. The product contains the latest features, improvements, and bug fixes at the time of that release.
+A version number identifies the product release. The product contains the latest features, improvements, and bug fixes at the time of that release.
 
 | {{vers}}.0 | -1 |
 |---|---|
