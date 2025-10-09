@@ -6507,10 +6507,6 @@ noarch.rpm
                     <section class="print-page" id="reduction-in-locks" heading-number="2.3.1"><h1 id="reduction-in-locks-reduced-backup-lock-time">Reduced backup lock time<a class="headerlink" href="#reduction-in-locks-reduced-backup-lock-time" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup Pro includes the <a href="#pxb-pro-capabilities">capabilities</a> that are typically requested by large enterprises. Percona XtraBackup Pro contains packages created and tested by Percona. These packages are supported only for Percona Customers with a subscription.</p>
 <p><a class="md-button" href="https://www.percona.com/about/contact">Become a Percona Customer</a></p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>The <code>--lock-ddl=REDUCED</code> option is a <a href="#glossary-tech-preview">tech preview</a>. Before using this option in production, test restoring from physical backups in your environment. Additionally, an alternative backup method should be set up for extra safety.</p>
-</div>
 <p><a href="#release-notes-8.4.0-2">Percona XtraBackup 8.4.0-2</a> adds the <a href="#xtrabackup-option-reference-lock-ddl"><code>--lock-ddl=REDUCED</code></a> option to reduce the time the server remains locked by <code>xtrabackup</code> during full and incremental backups. Now, you can execute <code>Data Definition Language</code> (DDL) operations while the backup is in progress.</p>
 <h3 id="reduction-in-locks-benefits">Benefits<a class="headerlink" href="#reduction-in-locks-benefits" title="Permanent link">&para;</a></h3>
 <p>The <code>--lock-ddl=REDUCED</code> option features are as follows:</p>
@@ -9272,7 +9268,7 @@ global lock. The default value is “select”.</p>
 </tr>
 <tr>
 <td><code>--lock-ddl=REDUCED</code></td>
-<td>This option value is a <a href="#glossary-tech-preview">tech preview</a>. <br><br> The option value has been added in <a href="#release-notes-8.4.0-2">Percona XtraBackup 8.4.0-2</a> to reduce the time the instance remains under backup lock. The backup lock is taken after copying the <code>.ibd</code> files and before copying the <code>non-InnoDB</code> files.</td>
+<td>The option value has been added in <a href="#release-notes-8.4.0-2">Percona XtraBackup 8.4.0-2</a> to reduce the time the instance remains under backup lock. The backup lock is taken after copying the <code>.ibd</code> files and before copying the <code>non-InnoDB</code> files.</td>
 </tr>
 </tbody>
 </table>
