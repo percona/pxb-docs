@@ -603,7 +603,7 @@ The available values are the following:
 |-------|-----------|
 |`--lock-ddl=ON`| The backup lock is enabled and is taken at the beginning of the backup.|
 |`--lock-ddl=OFF`|The backup lock is not taken.|
-|`--lock-ddl=REDUCED`|This option value is a [tech preview](./glossary.md#tech-preview). <br><br> The option value has been added in [Percona XtraBackup 8.4.0-2](./release-notes/8.4.0-2.md) to reduce the time the instance remains under backup lock. The backup lock is taken after copying the `.ibd` files and before copying the `non-InnoDB` files.|
+|`--lock-ddl=REDUCED`|The option value has been added in [Percona XtraBackup 8.4.0-2](./release-notes/8.4.0-2.md) to reduce the time the instance remains under backup lock. The backup lock is taken after copying the `.ibd` files and before copying the `non-InnoDB` files.|
 
 With the `--lock-ddl=ON` option the backup process is as follows:
 { .power-number }
