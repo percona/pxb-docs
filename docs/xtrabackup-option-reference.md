@@ -878,15 +878,21 @@ RocksDB WAL directory.
 
 Usage: `--rocksdb-checkpoint-max-age`
 
-The checkpoint cannot be older than this number of seconds when the backup
-completes.
+When backing up MyRocks datadir, Percona XtraBackup creates a checkpoint, measured in seconds, captures binlog coordinates, and then copies the `.SST` files into the backup. Copying may take a while, especially for large datasets. Then, if you want to set up a new replica or apply binary logs on top of the backup, the size of binary logs may become large because the binlog coordinates were captured at the start of the backup, before the file copying began.
+
+This feature provides a way to minimize the size of binary logs and to move binary coordinates closer to the moment when file copying completes. The process works by creating the checkpoint and copying `.SST` files. If the copy takes a while, Percona XtraBackup creates the next checkpoint and copies only new `.SST` files. The second copy should take less time. Percona XtraBackup repeats the process until the copy time falls within an acceptable range, determined by this parameter.
+
+Use `--rocksdb-checkpoint-max-age` to specify the maximum age (in seconds) that a checkpoint can be when the backup completes. If the checkpoint is older than this threshold, Percona XtraBackup creates another checkpoint and copies the additional `.SST` files that were created since the previous checkpoint.
+
+Implemented in [Percona XtraBackup 8.0.8](release-notes/8.0/8.0.8.md).
 
 ### rocksdb-checkpoint-max-count
 
 Usage: `--rocksdb-checkpoint-max-count`
 
-Complete the backup even if the checkpoint age requirement has not been met after
-this number of checkpoints.
+This option works together with `--rocksdb-checkpoint-max-age` to control the MyRocks checkpoint renewal process. If the checkpoint age requirement specified by `--rocksdb-checkpoint-max-age` has not been met after this number of checkpoint iterations, Percona XtraBackup completes the backup regardless of the checkpoint age. This action prevents the backup from continuing indefinitely if the system is under heavy write load.
+
+Implemented in [Percona XtraBackup 8.0.8](release-notes/8.0/8.0.8.md).
 
 ### rollback-prepared-trx
 
