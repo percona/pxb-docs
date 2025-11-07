@@ -1873,7 +1873,7 @@
   
   
   <span class="md-ellipsis">
-    The xtrabackup binary overview
+    Overview of the xtrabackup binary
     
   </span>
   
@@ -5418,7 +5418,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
           <li class="md-nav__item">
   <a href="#xtrabackup-binary-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      The xtrabackup binary overview
+      Overview of the xtrabackup binary
     </span>
   </a>
   
@@ -9297,19 +9297,112 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span clas
                     <section class='print-page md-section' id='section-8-2' heading-number='8.2'>
                         <h1>The xtrabackup binary<a class='headerlink' href='#section-8-2' title='Permanent link'></a>
                         </h1>
-                    <section class="print-page" id="xtrabackup-binary-overview" heading-number="8.2.1"><h1 id="xtrabackup-binary-overview-the-xtrabackup-binary-overview">The xtrabackup binary overview<a class="headerlink" href="#xtrabackup-binary-overview-the-xtrabackup-binary-overview" title="Permanent link">&para;</a></h1>
-<p>The <em>xtrabackup</em> binary is a compiled C program that is linked with the <em>InnoDB</em>
-libraries and the standard <em>MySQL</em> client libraries.</p>
-<p><em>xtrabackup</em> enables point-in-time backups of <em>InnoDB</em> / <em>XtraDB</em> tables
-together with the schema definitions, <em>MyISAM</em> tables, and other portions of the
-server.</p>
-<p>The <em>InnoDB</em> libraries provide the functionality to apply a log to data
-files. The <em>MySQL</em> client libraries are used to parse command-line options and
-configuration file.</p>
-<p>The tool runs in either <code>--backup</code> or <code>--prepare</code> mode,
-corresponding to the two main functions it performs. There are several
-variations on these functions to accomplish different tasks, and there is one
-less commonly used mode, <code>--print-param</code>.</p></section><section class="print-page" id="xtrabackup-implementation-details" heading-number="8.2.2"><h1 id="xtrabackup-implementation-details-xtrabackup-implementation-details">xtrabackup implementation details<a class="headerlink" href="#xtrabackup-implementation-details-xtrabackup-implementation-details" title="Permanent link">&para;</a></h1>
+                    <section class="print-page" id="xtrabackup-binary-overview" heading-number="8.2.1"><h1 id="xtrabackup-binary-overview-overview-of-the-xtrabackup-binary">Overview of the xtrabackup binary<a class="headerlink" href="#xtrabackup-binary-overview-overview-of-the-xtrabackup-binary" title="Permanent link">&para;</a></h1>
+<p>The xtrabackup binary compiles in C and connects directly to InnoDB libraries and standard MySQL client libraries. The tool performs point-in-time backups for InnoDB and XtraDB tables and captures schema definitions, MyISAM tables, and other server components.</p>
+<p>The InnoDB libraries apply logs to data files and preserve data consistency during the backup process. The MySQL client libraries parse command-line options and configuration files and simplify user interaction.</p>
+<p>The xtrabackup binary runs in three modes:</p>
+<ul>
+<li>
+<p>Backup mode captures data and logs</p>
+</li>
+<li>
+<p>Prepare mode applies logs to create a consistent snapshot</p>
+</li>
+<li>
+<p>Print-param mode displays internal parameters and supports debugging and configuration validation</p>
+</li>
+</ul>
+<p>Beginner DevOps users benefit from the tool’s automation and reliability, while seasoned DBAs leverage its precision and flexibility to manage complex backup strategies across production environments.</p>
+<h2 id="xtrabackup-binary-overview-key-features">Key features<a class="headerlink" href="#xtrabackup-binary-overview-key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Hot backups enable backup operations without locking the database and allow uninterrupted access</p>
+</li>
+<li>
+<p>Incremental backups capture only changes since the last backup and reduce time and storage requirements</p>
+</li>
+<li>
+<p>Compression reduces backup file size and accelerates transfer speeds</p>
+</li>
+<li>
+<p>Encryption secures backup data and protects sensitive information during storage and transmission</p>
+</li>
+</ul>
+<h2 id="xtrabackup-binary-overview-benefits">Benefits<a class="headerlink" href="#xtrabackup-binary-overview-benefits" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Data integrity supports point-in-time recovery and minimizes the risk of data loss</p>
+</li>
+<li>
+<p>Broad compatibility backs up both InnoDB and MyISAM tables and includes schema definitions</p>
+</li>
+<li>
+<p>Streamlined recovery simplifies the restoration process and reduces downtime during critical events</p>
+</li>
+</ul>
+<h2 id="xtrabackup-binary-overview-use-cases">Use cases<a class="headerlink" href="#xtrabackup-binary-overview-use-cases" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Production backups support live environments that require consistent, non-disruptive backup strategies. DevOps teams schedule hot backups during peak hours to avoid downtime, while DBAs monitor performance and validate backup integrity</p>
+</li>
+<li>
+<p>Disaster recovery enables rapid restoration after hardware failures, data corruption, or security breaches. Teams use xtrabackup to maintain offsite replicas or cloud-based archives that reduce recovery time objectives</p>
+</li>
+<li>
+<p>Development and testing provides clean, restorable datasets for staging environments. Developers reset databases to known states for testing schema changes, debugging, or validating migrations</p>
+</li>
+<li>
+<p>Cloud migration simplifies the transfer of large datasets between on-premises and cloud platforms. Administrators use xtrabackup to create consistent snapshots and restore them across different infrastructure layers</p>
+</li>
+<li>
+<p>Compliance auditing preserves historical data states for regulatory reviews. Organizations retain encrypted backups to meet retention policies and demonstrate data governance practices</p>
+</li>
+</ul>
+<h2 id="xtrabackup-binary-overview-security-considerations">Security considerations<a class="headerlink" href="#xtrabackup-binary-overview-security-considerations" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>File protection requires strong encryption during backup creation and secure storage afterward. Administrators configure encryption keys and enforce access controls to prevent unauthorized access.</p>
+</li>
+<li>
+<p>Access management defines roles and permissions for backup operations. Only authorized users should initiate backups, restore data, or access archived files</p>
+</li>
+<li>
+<p>Data masking removes or obfuscates sensitive fields before exporting backups for non-production use. DevOps teams sanitize personally identifiable information to comply with privacy regulations such as GDPR or HIPAA</p>
+</li>
+<li>
+<p>Transport security ensures encrypted transmission of backup files over networks. Teams use secure protocols like SCP, SFTP, or HTTPS to prevent interception during transfer</p>
+</li>
+<li>
+<p>Organizations rotate keys regularly and store them in secure vaults or hardware security modules to reduce exposure risks.</p>
+</li>
+</ul>
+<h2 id="xtrabackup-binary-overview-community-contributions">Community contributions<a class="headerlink" href="#xtrabackup-binary-overview-community-contributions" title="Permanent link">&para;</a></h2>
+<p>Users engage with the Percona community to share tips, ask questions, and exchange experiences. The Percona Forum provides a space for discussion and collaboration: <a href="https://forums.percona.com/c/mysql-mariadb/percona-xtrabackup/10">https://forums.percona.com/c/mysql-mariadb/percona-xtrabackup/10</a></p>
+<h2 id="xtrabackup-binary-overview-limitations">Limitations<a class="headerlink" href="#xtrabackup-binary-overview-limitations" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Learning curve challenges new users with a wide range of options and modes. DevOps teams benefit from guided documentation and community support to accelerate onboarding</p>
+</li>
+<li>
+<p>Resource consumption affects system performance during backup operations, especially on large datasets. DBAs monitor system load and schedule backups during low-traffic periods to minimize impact</p>
+</li>
+<li>
+<p>Library dependencies introduce potential issues when InnoDB or MySQL client libraries encounter problems. Teams validate library versions and test compatibility before deployment</p>
+</li>
+</ul>
+<h2 id="xtrabackup-binary-overview-additional-resources">Additional resources<a class="headerlink" href="#xtrabackup-binary-overview-additional-resources" title="Permanent link">&para;</a></h2>
+<p>Explore the following sections for more guidance:</p>
+<ul>
+<li>
+<p>Configuration options appear on <a href="#configure-xtrabackup">configure xtrabackup</a></p>
+</li>
+<li>
+<p>Command-line options: A comprehensive list of command-line options is available on <a href="#xtrabackup-option-reference">xtrabackup option reference</a></p>
+</li>
+<li>
+<p>Implementation details: Review technical insights and architecture on <a href="#xtrabackup-implementation-details">xtrabackup implementation details</a></p>
+</li>
+</ul></section><section class="print-page" id="xtrabackup-implementation-details" heading-number="8.2.2"><h1 id="xtrabackup-implementation-details-xtrabackup-implementation-details">xtrabackup implementation details<a class="headerlink" href="#xtrabackup-implementation-details-xtrabackup-implementation-details" title="Permanent link">&para;</a></h1>
 <p>This page contains notes on various internal aspects of the <em>xtrabackup</em> tool&rsquo;s
 operation.</p>
 <h2 id="xtrabackup-implementation-details-file-permissions">File permissions<a class="headerlink" href="#xtrabackup-implementation-details-file-permissions" title="Permanent link">&para;</a></h2>
@@ -10232,12 +10325,24 @@ option</p>
 <p>xbcloud is a cloud storage utility that works with Percona XtraBackup to upload, download, and manage database backups in cloud storage. It enables you to stream backups directly to cloud storage without requiring local disk space, making it ideal for large database environments.</p>
 <h2 id="xbcloud-binary-overview-whats-in-this-document">What&rsquo;s in this document<a class="headerlink" href="#xbcloud-binary-overview-whats-in-this-document" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="#xbcloud-binary-overview-what-xbcloud-does">What xbcloud does</a> - Core operations and capabilities</li>
-<li><a href="#xbcloud-binary-overview-supported-cloud-storage-providers">Supported cloud storage providers</a> - Available storage options</li>
-<li><a href="#xbcloud-binary-overview-key-features">Key features</a> - Streaming, chunking, and advanced features</li>
-<li><a href="#xbcloud-binary-overview-usage">Usage</a> - Common usage patterns and examples</li>
-<li><a href="#xbcloud-binary-overview-supplying-parameters">Supplying parameters</a> - Configuration methods</li>
-<li><a href="#xbcloud-binary-overview-advanced-usage-patterns">Advanced usage patterns</a> - Incremental backups and partial restore</li>
+<li>
+<p><a href="#xbcloud-binary-overview-what-xbcloud-does">What xbcloud does</a> - Core operations and capabilities</p>
+</li>
+<li>
+<p><a href="#xbcloud-binary-overview-supported-cloud-storage-providers">Supported cloud storage providers</a> - Available storage options</p>
+</li>
+<li>
+<p><a href="#xbcloud-binary-overview-key-features">Key features</a> - Streaming, chunking, and advanced features</p>
+</li>
+<li>
+<p><a href="#xbcloud-binary-overview-usage">Usage</a> - Common usage patterns and examples</p>
+</li>
+<li>
+<p><a href="#xbcloud-binary-overview-supplying-parameters">Supplying parameters</a> - Configuration methods</p>
+</li>
+<li>
+<p><a href="#xbcloud-binary-overview-advanced-usage-patterns">Advanced usage patterns</a> - Incremental backups and partial restore</p>
+</li>
 </ul>
 <h2 id="xbcloud-binary-overview-what-xbcloud-does">What xbcloud does<a class="headerlink" href="#xbcloud-binary-overview-what-xbcloud-does" title="Permanent link">&para;</a></h2>
 <p>xbcloud provides three essential operations:</p>
@@ -10530,31 +10635,38 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
 </code></pre></div>
 <h2 id="xbcloud-binary-overview-next-steps">Next steps<a class="headerlink" href="#xbcloud-binary-overview-next-steps" title="Permanent link">&para;</a></h2>
 <p>Now that you understand the basics of xbcloud, here are the recommended next steps:</p>
-<ol>
+<ul>
 <li>
-<p><strong>Choose your storage provider</strong> - Review the <a href="#xbcloud-binary-overview-supported-cloud-storage-providers">supported cloud storage providers</a> and select the one that best fits your needs</p>
+<p>Choose your storage provider
+  Review the <a href="#xbcloud-binary-overview-supported-cloud-storage-providers">supported cloud storage providers</a> and select the one that best fits your needs</p>
 </li>
 <li>
-<p><strong>Set up authentication</strong> - Follow the provider-specific guide to configure credentials:</p>
+<p>Set up authentication
+  Follow the provider-specific guide to configure credentials:</p>
 </li>
-<li><a href="#xbcloud-s3">Using the xbcloud binary with Amazon S3</a></li>
-<li><a href="#xbcloud-swift">Using the xbcloud binary with Swift</a></li>
-<li><a href="#xbcloud-gcs">Using the xbcloud binary with Google Cloud Storage</a></li>
-<li><a href="#xbcloud-azure">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></li>
+<li>
+<p><a href="#xbcloud-s3">Using the xbcloud binary with Amazon S3</a>  </p>
+</li>
+<li><a href="#xbcloud-swift">Using the xbcloud binary with Swift</a>  </li>
+<li><a href="#xbcloud-gcs">Using the xbcloud binary with Google Cloud Storage</a>  </li>
+<li><a href="#xbcloud-azure">Using the xbcloud binary with Microsoft Azure Cloud Storage</a>  </li>
 <li>
 <p><a href="#xbcloud-minio">Using the xbcloud binary with MinIO</a></p>
 </li>
 <li>
-<p><strong>Configure security</strong> - Learn about secure credential management with <a href="#xbcloud-env">Using environment variable files (.env) with xbcloud</a></p>
+<p>Configure security
+  Learn about secure credential management with <a href="#xbcloud-env">Using environment variable files (.env) with xbcloud</a></p>
 </li>
 <li>
-<p><strong>Explore advanced features</strong> - Review the <a href="#xbcloud-options">xbcloud command-line options</a> for detailed parameter reference</p>
+<p>Explore advanced features
+  Review the <a href="#xbcloud-options">xbcloud command-line options</a> for detailed parameter reference</p>
 </li>
 <li>
-<p><strong>Test your setup</strong> - Start with a simple full backup using the examples in the <a href="#xbcloud-binary-overview-usage">Usage</a> section</p>
+<p>Test your setup
+  Start with a simple full backup using the examples in the <a href="#xbcloud-binary-overview-usage">Usage</a> section</p>
 </li>
-</ol>
-<p>For troubleshooting and additional help, see the <a href="#troubleshoot.md">Troubleshoot</a> section or contact <a href="#get-help">Percona support</a>.</p></section><section class="print-page" id="xbcloud-env" heading-number="8.5.2"><h1 id="xbcloud-env-using-environment-variable-files-env-with-xbcloud">Using environment variable files (.env) with xbcloud<a class="headerlink" href="#xbcloud-env-using-environment-variable-files-env-with-xbcloud" title="Permanent link">&para;</a></h1>
+</ul>
+<p>For troubleshooting and additional help, see the <a href="#xbcloud-binary-overview-troubleshooting">Troubleshooting</a> section or contact <a href="#get-help">Percona support</a>.</p></section><section class="print-page" id="xbcloud-env" heading-number="8.5.2"><h1 id="xbcloud-env-using-environment-variable-files-env-with-xbcloud">Using environment variable files (.env) with xbcloud<a class="headerlink" href="#xbcloud-env-using-environment-variable-files-env-with-xbcloud" title="Permanent link">&para;</a></h1>
 <p>Environment variable files (<code>.env</code>) are a common way to manage configuration settings and sensitive credentials. Here&rsquo;s how to use them with xbcloud:</p>
 <h2 id="xbcloud-env-creating-a-env-file">Creating a .env file<a class="headerlink" href="#xbcloud-env-creating-a-env-file" title="Permanent link">&para;</a></h2>
 <p>Create a <code>.env</code> file in your project directory or a secure location:</p>

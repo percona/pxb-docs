@@ -1873,7 +1873,7 @@
   
   
   <span class="md-ellipsis">
-    The xtrabackup binary overview
+    Overview of the xtrabackup binary
     
   </span>
   
@@ -5149,12 +5149,24 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>xbcloud is a cloud storage utility that works with Percona XtraBackup to upload, download, and manage database backups in cloud storage. It enables you to stream backups directly to cloud storage without requiring local disk space, making it ideal for large database environments.</p>
 <h2 id="whats-in-this-document">What&rsquo;s in this document<a class="headerlink" href="#whats-in-this-document" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="#what-xbcloud-does">What xbcloud does</a> - Core operations and capabilities</li>
-<li><a href="#supported-cloud-storage-providers">Supported cloud storage providers</a> - Available storage options</li>
-<li><a href="#key-features">Key features</a> - Streaming, chunking, and advanced features</li>
-<li><a href="#usage">Usage</a> - Common usage patterns and examples</li>
-<li><a href="#supplying-parameters">Supplying parameters</a> - Configuration methods</li>
-<li><a href="#advanced-usage-patterns">Advanced usage patterns</a> - Incremental backups and partial restore</li>
+<li>
+<p><a href="#what-xbcloud-does">What xbcloud does</a> - Core operations and capabilities</p>
+</li>
+<li>
+<p><a href="#supported-cloud-storage-providers">Supported cloud storage providers</a> - Available storage options</p>
+</li>
+<li>
+<p><a href="#key-features">Key features</a> - Streaming, chunking, and advanced features</p>
+</li>
+<li>
+<p><a href="#usage">Usage</a> - Common usage patterns and examples</p>
+</li>
+<li>
+<p><a href="#supplying-parameters">Supplying parameters</a> - Configuration methods</p>
+</li>
+<li>
+<p><a href="#advanced-usage-patterns">Advanced usage patterns</a> - Incremental backups and partial restore</p>
+</li>
 </ul>
 <h2 id="what-xbcloud-does">What xbcloud does<a class="headerlink" href="#what-xbcloud-does" title="Permanent link">&para;</a></h2>
 <p>xbcloud provides three essential operations:</p>
@@ -5447,31 +5459,38 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
 </code></pre></div>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p>Now that you understand the basics of xbcloud, here are the recommended next steps:</p>
-<ol>
+<ul>
 <li>
-<p><strong>Choose your storage provider</strong> - Review the <a href="#supported-cloud-storage-providers">supported cloud storage providers</a> and select the one that best fits your needs</p>
+<p>Choose your storage provider
+  Review the <a href="#supported-cloud-storage-providers">supported cloud storage providers</a> and select the one that best fits your needs</p>
 </li>
 <li>
-<p><strong>Set up authentication</strong> - Follow the provider-specific guide to configure credentials:</p>
+<p>Set up authentication
+  Follow the provider-specific guide to configure credentials:</p>
 </li>
-<li><a href="xbcloud-s3.html">Using the xbcloud binary with Amazon S3</a></li>
-<li><a href="xbcloud-swift.html">Using the xbcloud binary with Swift</a></li>
-<li><a href="xbcloud-gcs.html">Using the xbcloud binary with Google Cloud Storage</a></li>
-<li><a href="xbcloud-azure.html">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></li>
+<li>
+<p><a href="xbcloud-s3.html">Using the xbcloud binary with Amazon S3</a>  </p>
+</li>
+<li><a href="xbcloud-swift.html">Using the xbcloud binary with Swift</a>  </li>
+<li><a href="xbcloud-gcs.html">Using the xbcloud binary with Google Cloud Storage</a>  </li>
+<li><a href="xbcloud-azure.html">Using the xbcloud binary with Microsoft Azure Cloud Storage</a>  </li>
 <li>
 <p><a href="xbcloud-minio.html">Using the xbcloud binary with MinIO</a></p>
 </li>
 <li>
-<p><strong>Configure security</strong> - Learn about secure credential management with <a href="xbcloud-env.html">Using environment variable files (.env) with xbcloud</a></p>
+<p>Configure security
+  Learn about secure credential management with <a href="xbcloud-env.html">Using environment variable files (.env) with xbcloud</a></p>
 </li>
 <li>
-<p><strong>Explore advanced features</strong> - Review the <a href="xbcloud-options.html">xbcloud command-line options</a> for detailed parameter reference</p>
+<p>Explore advanced features
+  Review the <a href="xbcloud-options.html">xbcloud command-line options</a> for detailed parameter reference</p>
 </li>
 <li>
-<p><strong>Test your setup</strong> - Start with a simple full backup using the examples in the <a href="#usage">Usage</a> section</p>
+<p>Test your setup
+  Start with a simple full backup using the examples in the <a href="#usage">Usage</a> section</p>
 </li>
-</ol>
-<p>For troubleshooting and additional help, see the <a href="troubleshoot.md">Troubleshoot</a> section or contact <a href="get-help.html">Percona support</a>.</p>
+</ul>
+<p>For troubleshooting and additional help, see the <a href="#troubleshooting">Troubleshooting</a> section or contact <a href="get-help.html">Percona support</a>.</p>
 
 
 
@@ -5494,7 +5513,7 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 5, 2025 16:15:02 UTC">September 5, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2025 10:40:19 UTC">September 15, 2025</span>
   </span>
 
     
@@ -5509,6 +5528,44 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
 
     
     
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
+          
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
+        </a>
+      
+        <a href="https://github.com/silentred" class="md-author" title="@silentred">
+          
+          <img src="https://avatars.githubusercontent.com/u/3345293?v=4&size=72" alt="silentred">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
     
   </aside>
 
