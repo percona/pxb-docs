@@ -5,10 +5,15 @@ xbcloud is a cloud storage utility that works with Percona XtraBackup to upload,
 ## What's in this document
 
 * [What xbcloud does](#what-xbcloud-does) - Core operations and capabilities
+
 * [Supported cloud storage providers](#supported-cloud-storage-providers) - Available storage options
+
 * [Key features](#key-features) - Streaming, chunking, and advanced features
+
 * [Usage](#usage) - Common usage patterns and examples
+
 * [Supplying parameters](#supplying-parameters) - Configuration methods
+
 * [Advanced usage patterns](#advanced-usage-patterns) - Incremental backups and partial restore
 
 ## What xbcloud does
@@ -361,19 +366,27 @@ $ xbstream -xv -C /tmp/partial < /tmp/partial.xbs
 
 Now that you understand the basics of xbcloud, here are the recommended next steps:
 
-1. **Choose your storage provider** - Review the [supported cloud storage providers](#supported-cloud-storage-providers) and select the one that best fits your needs
 
-2. **Set up authentication** - Follow the provider-specific guide to configure credentials:
-   * [Using the xbcloud binary with Amazon S3](xbcloud-s3.md)
-   * [Using the xbcloud binary with Swift](xbcloud-swift.md)
-   * [Using the xbcloud binary with Google Cloud Storage](xbcloud-gcs.md)
-   * [Using the xbcloud binary with Microsoft Azure Cloud Storage](xbcloud-azure.md)
-   * [Using the xbcloud binary with MinIO](xbcloud-minio.md)
+* Choose your storage provider
+  Review the [supported cloud storage providers](#supported-cloud-storage-providers) and select the one that best fits your needs
 
-3. **Configure security** - Learn about secure credential management with [Using environment variable files (.env) with xbcloud](xbcloud-env.md)
+* Set up authentication
+  Follow the provider-specific guide to configure credentials:
 
-4. **Explore advanced features** - Review the [xbcloud command-line options](xbcloud-options.md) for detailed parameter reference
+  * [Using the xbcloud binary with Amazon S3](xbcloud-s3.md)  
+  * [Using the xbcloud binary with Swift](xbcloud-swift.md)  
+  * [Using the xbcloud binary with Google Cloud Storage](xbcloud-gcs.md)  
+  * [Using the xbcloud binary with Microsoft Azure Cloud Storage](xbcloud-azure.md)  
+  * [Using the xbcloud binary with MinIO](xbcloud-minio.md)
 
-5. **Test your setup** - Start with a simple full backup using the examples in the [Usage](#usage) section
+* Configure security
+  Learn about secure credential management with [Using environment variable files (.env) with xbcloud](xbcloud-env.md)
 
-For troubleshooting and additional help, see the [Troubleshoot](troubleshoot.md) section or contact [Percona support](get-help.md).
+* Explore advanced features
+  Review the [xbcloud command-line options](xbcloud-options.md) for detailed parameter reference
+
+* Test your setup
+  Start with a simple full backup using the examples in the [Usage](#usage) section
+
+
+For troubleshooting and additional help, see the [Troubleshooting](#troubleshooting) section or contact [Percona support](get-help.md).
