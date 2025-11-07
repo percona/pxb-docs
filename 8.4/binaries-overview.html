@@ -9,7 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Percona XtraBackup contains a set of the following binaries:">
+        <meta name="description" content="Percona XtraBackup provides a comprehensive suite of command-line tools for MySQL database backup and recovery operations. This document introduces the four core binaries that form the foundation of Percona XtraBackup’s functionality, helping you understand when and how to use each tool effectively.">
       
       
         <meta name="author" content="Percona LLC">
@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
     
     
       
@@ -1806,6 +1806,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="binaries-overview.html" class="md-nav__link md-nav__link--active">
         
   
@@ -1817,6 +1830,81 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-binaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core binaries
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common workflows
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related documentation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4930,6 +5018,68 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-binaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core binaries
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common workflows
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related documentation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                     </div>
                   </div>
@@ -4958,22 +5108,282 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
 <h1 id="percona-xtrabackup-binaries-overview">Percona XtraBackup binaries overview<a class="headerlink" href="#percona-xtrabackup-binaries-overview" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup contains a set of the following binaries:</p>
+<p>Percona XtraBackup provides a comprehensive suite of command-line tools for MySQL database backup and recovery operations. This document introduces the four core binaries that form the foundation of Percona XtraBackup&rsquo;s functionality, helping you understand when and how to use each tool effectively.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Before using Percona XtraBackup binaries, ensure you have:</p>
 <ul>
 <li>
-<p><a href="xtrabackup-binary-overview.html">xtrabackup</a> - a compiled C binary that provides functionality to back up a MySQL database instance with MyISAM, InnoDB, and XtraDB tables.</p>
+<p>Appropriate database privileges for backup operations</p>
 </li>
 <li>
-<p><a href="xbcrypt-binary-overview.html">xbcrypt</a> - a utility used for encrypting and decrypting backup files.</p>
+<p>Sufficient disk space for backup storage</p>
 </li>
 <li>
-<p><a href="xbstream-binary-overview.html">xbstream</a> - a utility that allows streaming and extracting files to or from the xbstream format.</p>
-</li>
-<li>
-<p><a href="xbcloud-binary-overview.html">xbcloud</a> - a utility used for downloading and uploading full or part of xbstream archive from or to cloud.</p>
+<p>Network access (for cloud storage operations)</p>
 </li>
 </ul>
-<p>The recommended way to take the backup is by using the xtrabackup script. For more information on script options, see <a href="xtrabackup-binary-overview.html">xtrabackup</a>.</p>
+<h2 id="core-binaries">Core binaries<a class="headerlink" href="#core-binaries" title="Permanent link">&para;</a></h2>
+<h3 id="xtrabackup">xtrabackup<a class="headerlink" href="#xtrabackup" title="Permanent link">&para;</a></h3>
+<p>Purpose: The primary backup and restore utility for MySQL databases.</p>
+<p>Key Capabilities:</p>
+<ul>
+<li>
+<p>Creates hot backups without locking tables</p>
+</li>
+<li>
+<p>Supports full, incremental, and compressed backups</p>
+</li>
+<li>
+<p>Handles InnoDB, MyISAM, and other storage engines</p>
+</li>
+<li>
+<p>Provides point-in-time recovery capabilities</p>
+</li>
+</ul>
+<p>Common Use Cases:</p>
+<ul>
+<li>
+<p>Daily full database backups</p>
+</li>
+<li>
+<p>Incremental backup strategies</p>
+</li>
+<li>
+<p>Database migration and cloning</p>
+</li>
+<li>
+<p>Disaster recovery preparation</p>
+</li>
+</ul>
+<p>Basic Syntax:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Create a full backup</span>
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
+
+<span class="c1"># Create an incremental backup</span>
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backup/inc1<span class="w"> </span>--incremental-basedir<span class="o">=</span>/backup/full
+
+<span class="c1"># Prepare a backup for restore</span>
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
+</code></pre></div>
+<p>Documentation: <a href="xtrabackup-binary-overview.html">xtrabackup Overview</a></p>
+<p>Command Line Options: <a href="xtrabackup-option-reference.html">xtrabackup Options</a></p>
+<h3 id="xbcloud">xbcloud<a class="headerlink" href="#xbcloud" title="Permanent link">&para;</a></h3>
+<p>Purpose: Cloud storage management for backup files.</p>
+<p>Key Capabilities:</p>
+<ul>
+<li>
+<p>Uploads and downloads backups to/from cloud providers</p>
+</li>
+<li>
+<p>Supports Amazon S3, Google Cloud Storage, Azure Blob Storage, and MinIO</p>
+</li>
+<li>
+<p>Handles large backup files efficiently</p>
+</li>
+<li>
+<p>Provides parallel upload/download operations</p>
+</li>
+</ul>
+<p>Common Use Cases:</p>
+<ul>
+<li>
+<p>Off-site backup storage</p>
+</li>
+<li>
+<p>Cross-region backup replication</p>
+</li>
+<li>
+<p>Cloud-based disaster recovery</p>
+</li>
+<li>
+<p>Backup archival and long-term storage</p>
+</li>
+</ul>
+<p>Basic Syntax:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Upload backup to S3</span>
+$<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup/<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-bucket
+
+<span class="c1"># Download backup from S3</span>
+$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://my-bucket/backup/<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-bucket
+</code></pre></div>
+<p>Documentation: <a href="xbcloud-binary-overview.html">xbcloud Overview</a></p>
+<p>Command Line Options: <a href="xbcloud-options.html">xbcloud Options</a></p>
+<h3 id="xbcrypt">xbcrypt<a class="headerlink" href="#xbcrypt" title="Permanent link">&para;</a></h3>
+<p>Purpose: Encryption and decryption of backup files.</p>
+<p>Key Capabilities:</p>
+<ul>
+<li>
+<p>Encrypts backup files using AES encryption</p>
+</li>
+<li>
+<p>Supports multiple encryption algorithms</p>
+</li>
+<li>
+<p>Provides secure key management</p>
+</li>
+<li>
+<p>Handles both individual files and backup streams</p>
+</li>
+</ul>
+<p>Common Use Cases:</p>
+<ul>
+<li>
+<p>Securing sensitive database backups</p>
+</li>
+<li>
+<p>Compliance with data protection regulations</p>
+</li>
+<li>
+<p>Secure backup transmission</p>
+</li>
+<li>
+<p>Long-term encrypted storage</p>
+</li>
+</ul>
+<p>Basic Syntax:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Encrypt a backup file</span>
+$<span class="w"> </span>xbcrypt<span class="w"> </span>--encrypt<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/path/to/keyfile<span class="w"> </span>--input<span class="o">=</span>/backup/backup.xbstream
+
+<span class="c1"># Decrypt a backup file</span>
+$<span class="w"> </span>xbcrypt<span class="w"> </span>--decrypt<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/path/to/keyfile<span class="w"> </span>--input<span class="o">=</span>/backup/backup.xbstream.encrypted
+</code></pre></div>
+<p>Documentation: <a href="xbcrypt-binary-overview.html">xbcrypt Overview</a></p>
+<p>Command Line Options: <a href="xbcrypt-options.html">xbcrypt Options</a></p>
+<h3 id="xbstream">xbstream<a class="headerlink" href="#xbstream" title="Permanent link">&para;</a></h3>
+<p>Purpose: Streaming backup data for efficient handling of large files.</p>
+<p>Key Capabilities:</p>
+<ul>
+<li>
+<p>Streams backup data to and from files</p>
+</li>
+<li>
+<p>Supports compression and decompression</p>
+</li>
+<li>
+<p>Handles backup streaming over networks</p>
+</li>
+<li>
+<p>Works with standard Unix pipes and redirection</p>
+</li>
+</ul>
+<p>Common Use Cases:</p>
+<ul>
+<li>
+<p>Streaming backups over network connections</p>
+</li>
+<li>
+<p>Real-time backup processing</p>
+</li>
+<li>
+<p>Integration with other backup tools</p>
+</li>
+<li>
+<p>Efficient handling of large backup files</p>
+</li>
+</ul>
+<p>Basic Syntax:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Extract a streamed backup</span>
+$<span class="w"> </span>xbstream<span class="w"> </span>-x<span class="w"> </span>-C<span class="w"> </span>/restore/directory<span class="w"> </span>&lt;<span class="w"> </span>backup.xbstream
+
+<span class="c1"># Create a streamed backup</span>
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-c<span class="w"> </span>-C<span class="w"> </span>/backup/directory
+</code></pre></div>
+<p>Documentation: <a href="https://docs.percona.com/percona-xtrabackup/8.4/xbstream.html">xbstream Overview</a></p>
+<p>Command Line Options: <a href="xbstream-options.html">xbstream Options</a></p>
+<h2 id="common-workflows">Common workflows<a class="headerlink" href="#common-workflows" title="Permanent link">&para;</a></h2>
+<h3 id="basic-backup-workflow">Basic backup workflow<a class="headerlink" href="#basic-backup-workflow" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Create a full backup using <code>xtrabackup</code></p>
+</li>
+<li>
+<p>Optionally encrypt using <code>xbcrypt</code></p>
+</li>
+<li>
+<p>Upload to cloud storage using <code>xbcloud</code></p>
+</li>
+<li>
+<p>Verify backup integrity</p>
+</li>
+</ol>
+<h3 id="incremental-backup-strategy">Incremental backup strategy<a class="headerlink" href="#incremental-backup-strategy" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Create initial full backup</p>
+</li>
+<li>
+<p>Create incremental backups based on the full backup</p>
+</li>
+<li>
+<p>Stream incremental backups using <code>xbstream</code></p>
+</li>
+<li>
+<p>Store encrypted backups in cloud storage</p>
+</li>
+</ol>
+<h3 id="disaster-recovery-workflow">Disaster recovery workflow<a class="headerlink" href="#disaster-recovery-workflow" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Download backup from cloud storage</p>
+</li>
+<li>
+<p>Decrypt backup files if necessary</p>
+</li>
+<li>
+<p>Prepare backup using <code>xtrabackup --prepare</code></p>
+</li>
+<li>
+<p>Restore database from prepared backup</p>
+</li>
+</ol>
+<h2 id="code-examples">Code examples<a class="headerlink" href="#code-examples" title="Permanent link">&para;</a></h2>
+<h3 id="complete-backup-and-upload-workflow">Complete backup and upload workflow<a class="headerlink" href="#complete-backup-and-upload-workflow" title="Permanent link">&para;</a></h3>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Create encrypted backup</span>
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/etc/mysql/backup.key
+
+<span class="c1"># Stream and compress backup</span>
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/etc/mysql/backup.key<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>xbstream<span class="w"> </span>-c<span class="w"> </span>-C<span class="w"> </span>/tmp/backup
+
+<span class="c1"># Upload to cloud storage</span>
+$<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>/<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backup-bucket
+</code></pre></div>
+<h3 id="restore-from-cloud-storage">Restore from cloud storage<a class="headerlink" href="#restore-from-cloud-storage" title="Permanent link">&para;</a></h3>
+<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Download backup from cloud</span>
+$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://my-backup-bucket/20241201/<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backup-bucket
+
+<span class="c1"># Decrypt backup</span>
+$<span class="w"> </span>xbcrypt<span class="w"> </span>--decrypt<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/etc/mysql/backup.key<span class="w"> </span>--input<span class="o">=</span>/tmp/backup/backup.xbstream.encrypted
+
+<span class="c1"># Prepare and restore</span>
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup
+</code></pre></div>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>Now that you understand the core binaries, consider these next steps:</p>
+<ol>
+<li>
+<p>Installation: Follow the <a href="installation.html">installation guide</a> for your operating system</p>
+</li>
+<li>
+<p>Configuration: Review <a href="configure-xtrabackup.html">configuration options</a> for your environment</p>
+</li>
+<li>
+<p>Quick Start: Try the <a href="quickstart-overview.html">quickstart guide</a> for hands-on experience</p>
+</li>
+<li>
+<p>Advanced Topics: Explore <a href="point-in-time-recovery.html">point-in-time recovery</a> and <a href="set-up-replication.html">replication setup</a></p>
+</li>
+</ol>
+<h2 id="related-documentation">Related documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="backup-overview.html">Backup and Restore overview</a></p>
+</li>
+<li>
+<p><a href="get-help.html">Get help</a></p>
+</li>
+</ul>
 
 
 
@@ -4996,7 +5406,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 5, 2025 11:58:22 UTC">September 5, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 12, 2025 22:58:39 UTC">September 12, 2025</span>
   </span>
 
     
@@ -5024,6 +5434,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
     <nav>
       
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
         <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
           <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
@@ -5032,11 +5447,6 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
           
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
         </a>
       
       
