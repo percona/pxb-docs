@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
     
     
       
@@ -13032,12 +13032,14 @@ decryption and decompression.</p>
 <p>RocksDB WAL directory.</p>
 <h3 id="xtrabackup-option-reference-rocksdb-checkpoint-max-age">rocksdb-checkpoint-max-age<a class="headerlink" href="#xtrabackup-option-reference-rocksdb-checkpoint-max-age" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--rocksdb-checkpoint-max-age</code></p>
-<p>The checkpoint cannot be older than this number of seconds when the backup
-completes.</p>
+<p>When backing up MyRocks datadir, Percona XtraBackup creates a checkpoint, measured in seconds, captures binlog coordinates, and then copies the <code>.SST</code> files into the backup. Copying may take a while, especially for large datasets. Then, if you want to set up a new replica or apply binary logs on top of the backup, the size of binary logs may become large because the binlog coordinates were captured at the start of the backup, before the file copying began.</p>
+<p>This feature provides a way to minimize the size of binary logs and to move binary coordinates closer to the moment when file copying completes. The process works by creating the checkpoint and copying <code>.SST</code> files. If the copy takes a while, Percona XtraBackup creates the next checkpoint and copies only new <code>.SST</code> files. The second copy should take less time. Percona XtraBackup repeats the process until the copy time falls within an acceptable range, determined by this parameter.</p>
+<p>Use <code>--rocksdb-checkpoint-max-age</code> to specify the maximum age (in seconds) that a checkpoint can be when the backup completes. If the checkpoint is older than this threshold, Percona XtraBackup creates another checkpoint and copies the additional <code>.SST</code> files that were created since the previous checkpoint.</p>
+<p>Implemented in <a href="#release-notes-8.0-8.0.8">Percona XtraBackup 8.0.8</a>.</p>
 <h3 id="xtrabackup-option-reference-rocksdb-checkpoint-max-count">rocksdb-checkpoint-max-count<a class="headerlink" href="#xtrabackup-option-reference-rocksdb-checkpoint-max-count" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--rocksdb-checkpoint-max-count</code></p>
-<p>Complete the backup even if the checkpoint age requirement has not been met after
-this number of checkpoints.</p>
+<p>This option works together with <code>--rocksdb-checkpoint-max-age</code> to control the MyRocks checkpoint renewal process. If the checkpoint age requirement specified by <code>--rocksdb-checkpoint-max-age</code> has not been met after this number of checkpoint iterations, Percona XtraBackup completes the backup regardless of the checkpoint age. This action prevents the backup from continuing indefinitely if the system is under heavy write load.</p>
+<p>Implemented in <a href="#release-notes-8.0-8.0.8">Percona XtraBackup 8.0.8</a>.</p>
 <h3 id="xtrabackup-option-reference-rollback-prepared-trx">rollback-prepared-trx<a class="headerlink" href="#xtrabackup-option-reference-rollback-prepared-trx" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--rollback-prepared-trx</code></p>
 <p>Force rollback prepared InnoDB transactions.</p>
