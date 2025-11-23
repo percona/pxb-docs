@@ -2,7 +2,7 @@
 
 In this scenario, Percona XtraBackup works in combination with a MySQL-compatible database instance. To use the tool, you must run Percona XtraBackup in a separate Docker container and then connect the Percona XtraBackup container directly to the Percona Server for MySQL container. This connection lets the backup tool access the database for backup and restore operations.
 
-The following steps create a Docker volume, start Percona XtraBackup in a Docker continer, take and prepare a backup of Percona Server for MySQL database.
+The following steps create a Docker volume, start Percona XtraBackup in a Docker container, take and prepare a backup of Percona Server for MySQL database.
 {.power-number}
 
 ## Create a Docker volume
