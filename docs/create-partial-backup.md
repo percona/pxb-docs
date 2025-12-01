@@ -42,10 +42,15 @@ There are multiple ways of specifying which part of the whole data is backed up:
 
 * Use the `--databases-file` option to list the databases
 
+!!! note "Mutual exclusion"
+
+    The `--tables` and `--databases` options are mutually exclusive. If you use both options in the same command, XtraBackup ignores `--databases` and only uses `--tables`. Use only one of these options per backup operation.
+
 ## The `–-tables` option
 
-The first method involves the xtrabackup –tables option. The option’s
-value is a regular expression that is matched against the fully-qualified database name and table name using the `databasename.tablename` format.
+The first method involves the xtrabackup `--tables` option. This option accepts either:
+* A comma-separated list of fully qualified table names in the format `database.table` (for example, `db1.t1,db1.t2,db2.t3`)
+* A POSIX regular expression surrounded by single quotes that is matched against the fully-qualified database name and table name using the `databasename.tablename` format
 
 To back up only tables in the `test` database, use the following
 command:
@@ -77,12 +82,9 @@ $ xtrabackup --backup --tables-file=/tmp/tables.txt
 
 ## The `--databases` and `-–databases-file` options
 
-The \` –databases\` option accepts a space-separated list of the databases
-and tables to back up in the `databasename[.tablename]` format. In addition to
-this list, make sure to specify the `mysql`, `sys`, and
+The `--databases` option accepts a comma-separated list of database names. To include all tables in a database, add `.*` after the database name (for example, `mydb.*`). Regular expressions are not supported.
 
-`performance_schema` databases. These databases are required when restoring
-the databases using xtrabackup –copy-back.
+In addition to your selected databases, make sure to specify the `mysql`, `sys`, and `performance_schema` databases. These databases are required when restoring the databases using xtrabackup `--copy-back`.
 
 !!! note
    
@@ -91,7 +93,7 @@ the databases using xtrabackup –copy-back.
     after the backup started.
 
 ```{.bash data-prompt="$"}
-$ xtrabackup --databases='mysql sys performance_schema test ...'
+$ xtrabackup --backup --databases='mysql,sys,performance_schema,test' --target-dir=/data/backups/
 ```
 
 ## The `--databases-file` option

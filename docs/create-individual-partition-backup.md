@@ -13,6 +13,10 @@ up: regular expressions (`--tables`), enumerating the
 tables in a file (`--tables-file`) or providing a list of
 databases (`--databases`).
 
+!!! note "Mutual exclusion"
+
+    The `--tables` and `--databases` options are mutually exclusive. If you use both options in the same command, XtraBackup ignores `--databases` and only uses `--tables`. Use only one of these options per backup operation.
+
 The regular expression provided to this option will be matched against the fully
 qualified database name and table name, in the form of
 `database-name.table-name`.
