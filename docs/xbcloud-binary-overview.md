@@ -57,7 +57,7 @@ Backups are stored as separate objects with names like `backup_name/database/tab
 
 !!! important
 
-    To prevent intermittent backup failures, [update the curl utility in Debian 10](update-curl-utility.md).
+    To prevent intermittent backup failures, [update the curl utility](update-curl-utility.md).
 
 ## Usage
 
