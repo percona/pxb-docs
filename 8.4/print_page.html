@@ -461,6 +461,8 @@
       
         
       
+        
+      
     
     
     
@@ -516,6 +518,34 @@
     
   
     Release notes index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/8.4.0-5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona XtraBackup 8.4.0-5 (2025-12-17)
   
 
     
@@ -5533,6 +5563,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
         
           <li class="md-nav__item">
+  <a href="#release-notes-8.4.0-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Percona XtraBackup 8.4.0-5 (2025-12-17)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#release-notes-8.4.0-4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7150,7 +7191,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 <h1>Documentation</h1>
  
-<h2>8.4.0-4 (August 21, 2025)</h2>
+<h2>8.4.0-5 (December 17, 2025)</h2>
 <!--<h3>Percona Technical Documentation Team</h3>-->
         </section>
         
@@ -7163,7 +7204,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         </section>
         <section class="print-page" id="index" heading-number="1"><h1 id="index-percona-xtrabackup-84-documentation">Percona XtraBackup 8.4 Documentation<a class="headerlink" href="#index-percona-xtrabackup-84-documentation" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
-<p>This documentation is for the latest release: <a href="#release-notes-8.4.0-4">Percona XtraBackup 8.4.0-4</a> release notes.</p>
+<p>This documentation is for the latest release: <a href="#release-notes-8.4.0-5">Percona XtraBackup 8.4.0-5</a> release notes.</p>
 </div>
 <p>Percona XtraBackup is an open source hot backup utility for
 MySQL-based servers that keep your database fully available during planned maintenance windows.</p>
@@ -7260,6 +7301,9 @@ Percona XtraDB Cluster.</p>
                     <section class="print-page" id="release-notes-release-notes" heading-number="3.1"><h1 id="release-notes-release-notes-percona-xtrabackup-84-release-notes-index">Percona XtraBackup 8.4 release notes index<a class="headerlink" href="#release-notes-release-notes-percona-xtrabackup-84-release-notes-index" title="Permanent link">&para;</a></h1>
 <ul>
 <li>
+<p><a href="#release-notes-8.4.0-5">Percona XtraBackup 8.4.0-5 (2025-12-17)</a></p>
+</li>
+<li>
 <p><a href="#release-notes-8.4.0-4">Percona XtraBackup 8.4.0-4 (2025-08-21)</a></p>
 </li>
 <li>
@@ -7271,7 +7315,29 @@ Percona XtraDB Cluster.</p>
 <li>
 <p><a href="#release-notes-8.4.0-1">Percona XtraBackup 8.4.0-1 (2024-08-20)</a></p>
 </li>
-</ul></section><section class="print-page" id="release-notes-8.4.0-4" heading-number="3.2"><h1 id="release-notes-8.4.0-4-percona-xtrabackup-840-4-2025-08-21">Percona XtraBackup 8.4.0-4 (2025-08-21)<a class="headerlink" href="#release-notes-8.4.0-4-percona-xtrabackup-840-4-2025-08-21" title="Permanent link">&para;</a></h1>
+</ul></section><section class="print-page" id="release-notes-8.4.0-5" heading-number="3.2"><h1 id="release-notes-8.4.0-5-percona-xtrabackup-840-5-2025-12-17">Percona XtraBackup 8.4.0-5 (2025-12-17)<a class="headerlink" href="#release-notes-8.4.0-5-percona-xtrabackup-840-5-2025-12-17" title="Permanent link">&para;</a></h1>
+<p>Get started with <a href="#quickstart-overview">Quickstart Guide for Percona XtraBackup</a>.</p>
+<h2 id="release-notes-8.4.0-5-release-highlights">Release highlights<a class="headerlink" href="#release-notes-8.4.0-5-release-highlights" title="Permanent link">&para;</a></h2>
+<p>Announcement – Discontinuation of the Percona PRO Program</p>
+<p>Percona has consolidated its build offerings. The Pro builds are no longer required. All features from the Percona XtraBackup 8.4.x Pro build series have been merged into the main open source Community release. The <a href="https://docs.percona.com/percona-xtrabackup/8.4/reduction-in-locks.html">Reduced backup lock time</a> feature, originally introduced in <a href="#release-notes-release-notes-8.4.0-2.md">Percona XtraBackup Pro 8.4.0-2</a> for Pro builds, is now included in the Community release starting with Percona XtraBackup 8.4.0-5.</p>
+<p>We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.</p>
+<h2 id="release-notes-8.4.0-5-improvement">Improvement<a class="headerlink" href="#release-notes-8.4.0-5-improvement" title="Permanent link">&para;</a></h2>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2724">PXB-2724</a>: The <code>--move-back</code> option was not applied when restoring RocksDB files, causing the restore process to always perform a file copy instead of moving the files back to their original location.</p>
+<h2 id="release-notes-8.4.0-5-bug-fix">Bug fix<a class="headerlink" href="#release-notes-8.4.0-5-bug-fix" title="Permanent link">&para;</a></h2>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3624">PXB-3624</a>: Fixed an issue where <code>xbcloud</code> could exit because <code>libcurl</code> attempted to use a <code>libev</code> event loop after it had already been shut down. <code>xbcloud</code> will throw a warning with libcurl <code>8.11.x</code> versions and may still exit due to <a href="https://github.com/advisories/GHSA-cc57-hgv8-p56r">CVE-2025-0665</a>. The issue is resolved in libcurl <code>8.12.0</code> and later.</p>
+<h2 id="release-notes-8.4.0-5-packaging-and-build-notes">Packaging and build notes<a class="headerlink" href="#release-notes-8.4.0-5-packaging-and-build-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Percona XtraBackup 8.4 adds support for Debian 13.</p>
+</li>
+<li>
+<p>Percona XtraBackup 8.4 has ended support for Ubuntu 20.04.</p>
+</li>
+</ul>
+<h2 id="release-notes-8.4.0-5-additional-resources">Additional resources<a class="headerlink" href="#release-notes-8.4.0-5-additional-resources" title="Permanent link">&para;</a></h2>
+<p>Install <a href="#installation">Percona XtraBackup 8.4.0-5</a></p>
+<p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
+<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p></section><section class="print-page" id="release-notes-8.4.0-4" heading-number="3.3"><h1 id="release-notes-8.4.0-4-percona-xtrabackup-840-4-2025-08-21">Percona XtraBackup 8.4.0-4 (2025-08-21)<a class="headerlink" href="#release-notes-8.4.0-4-percona-xtrabackup-840-4-2025-08-21" title="Permanent link">&para;</a></h1>
 <p>Get started with <a href="#quickstart-overview">Quickstart Guide for Percona XtraBackup</a>.</p>
 <h2 id="release-notes-8.4.0-4-release-highlights">Release highlights<a class="headerlink" href="#release-notes-8.4.0-4-release-highlights" title="Permanent link">&para;</a></h2>
 <p>This release provides improvements and bug fixes.</p>
@@ -7286,7 +7352,7 @@ Percona XtraDB Cluster.</p>
 <h2 id="release-notes-8.4.0-4-additional-resources">Additional resources<a class="headerlink" href="#release-notes-8.4.0-4-additional-resources" title="Permanent link">&para;</a></h2>
 <p>Install <a href="#installation">Percona XtraBackup 8.4.0-4</a></p>
 <p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
-<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p></section><section class="print-page" id="release-notes-8.4.0-3" heading-number="3.3"><h1 id="release-notes-8.4.0-3-percona-xtrabackup-840-3-2025-05-29">Percona XtraBackup 8.4.0-3 (2025-05-29)<a class="headerlink" href="#release-notes-8.4.0-3-percona-xtrabackup-840-3-2025-05-29" title="Permanent link">&para;</a></h1>
+<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p></section><section class="print-page" id="release-notes-8.4.0-3" heading-number="3.4"><h1 id="release-notes-8.4.0-3-percona-xtrabackup-840-3-2025-05-29">Percona XtraBackup 8.4.0-3 (2025-05-29)<a class="headerlink" href="#release-notes-8.4.0-3-percona-xtrabackup-840-3-2025-05-29" title="Permanent link">&para;</a></h1>
 <p>Get started with <a href="#quickstart-overview">Quickstart Guide for Percona XtraBackup</a>.</p>
 <h2 id="release-notes-8.4.0-3-release-highlights">Release highlights<a class="headerlink" href="#release-notes-8.4.0-3-release-highlights" title="Permanent link">&para;</a></h2>
 <p>This release provides improvements and bug fixes.</p>
@@ -7303,7 +7369,7 @@ Percona XtraDB Cluster.</p>
 <h2 id="release-notes-8.4.0-3-additional-resources">Additional resources<a class="headerlink" href="#release-notes-8.4.0-3-additional-resources" title="Permanent link">&para;</a></h2>
 <p>Install <a href="#installation">Percona XtraBackup 8.4.0-3</a></p>
 <p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
-<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p></section><section class="print-page" id="release-notes-8.4.0-2" heading-number="3.4"><h1 id="release-notes-8.4.0-2-percona-xtrabackup-840-2-2024-12-18">Percona XtraBackup 8.4.0-2 (2024-12-18)<a class="headerlink" href="#release-notes-8.4.0-2-percona-xtrabackup-840-2-2024-12-18" title="Permanent link">&para;</a></h1>
+<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p></section><section class="print-page" id="release-notes-8.4.0-2" heading-number="3.5"><h1 id="release-notes-8.4.0-2-percona-xtrabackup-840-2-2024-12-18">Percona XtraBackup 8.4.0-2 (2024-12-18)<a class="headerlink" href="#release-notes-8.4.0-2-percona-xtrabackup-840-2-2024-12-18" title="Permanent link">&para;</a></h1>
 <p>Get started with <a href="#quickstart-overview">Quickstart Guide for Percona XtraBackup</a>.</p>
 <h2 id="release-notes-8.4.0-2-release-highlights">Release highlights<a class="headerlink" href="#release-notes-8.4.0-2-release-highlights" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 8.4.0-2 merges the MySQL 8.4 code base and introduces Percona XtraBackup 8.4.0-2 Pro build, in addition to the regular community builds.</p>
@@ -7467,7 +7533,7 @@ for reporting this issue.)</p>
 <h2 id="release-notes-8.4.0-2-additional-resources">Additional resources<a class="headerlink" href="#release-notes-8.4.0-2-additional-resources" title="Permanent link">&para;</a></h2>
 <p>Install <a href="#installation">Percona XtraBackup 8.4.0-2</a></p>
 <p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
-<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p></section><section class="print-page" id="release-notes-8.4.0-1" heading-number="3.5"><h1 id="release-notes-8.4.0-1-percona-xtrabackup-840-1-2024-08-20">Percona XtraBackup 8.4.0-1 (2024-08-20)<a class="headerlink" href="#release-notes-8.4.0-1-percona-xtrabackup-840-1-2024-08-20" title="Permanent link">&para;</a></h1>
+<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p></section><section class="print-page" id="release-notes-8.4.0-1" heading-number="3.6"><h1 id="release-notes-8.4.0-1-percona-xtrabackup-840-1-2024-08-20">Percona XtraBackup 8.4.0-1 (2024-08-20)<a class="headerlink" href="#release-notes-8.4.0-1-percona-xtrabackup-840-1-2024-08-20" title="Permanent link">&para;</a></h1>
 <p>Get started with <a href="#quickstart-overview">Quickstart Guide for Percona XtraBackup</a>.</p>
 <h2 id="release-notes-8.4.0-1-release-highlights">Release highlights<a class="headerlink" href="#release-notes-8.4.0-1-release-highlights" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 8.4.0-1 is based on MySQL 8.4 Long Term Supported (LTS) Release. This release allows taking backups of Percona Server for MySQL and MySQL 8.4.0, 8.4.1, 8.4.2 and future 8.4 LTS releases.</p>
@@ -8787,7 +8853,7 @@ provide the progress of an operation or more information about errors.</p>
 The output should be similar to the following:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>./bin/xtrabackup version 8.4.0-4 based on MySQL server 8.4 Linux (x86_64) (revision id: b0f75188ca3)
+<div class="no-copy highlight"><pre><span></span><code>./bin/xtrabackup version 8.4.0-5 based on MySQL server 8.4 Linux (x86_64) (revision id: b0f75188ca3)
 </code></pre></div>
 </details>
 <ul>
@@ -9028,7 +9094,7 @@ backup1:/var/lib/mysql-redo-archive/
 <p><a href="#release-notes-8.4.0-2">Percona XtraBackup Pro 8.4.0-2</a> adds the <code>--lock-ddl=REDUCED</code> option to the Pro build.</p>
 </li>
 <li>
-<p><a href="#release-notes-8.4.0-5.md">Percona XtraBackup 8.4.0-5</a> adds the <code>--lock-ddl=REDUCED</code> option to the Community release.</p>
+<p><a href="#release-notes-8.4.0-5">Percona XtraBackup 8.4.0-5</a> adds the <code>--lock-ddl=REDUCED</code> option to the Community release.</p>
 </li>
 </ul>
 <h3 id="reduction-in-locks-benefits">Benefits<a class="headerlink" href="#reduction-in-locks-benefits" title="Permanent link">&para;</a></h3>
@@ -12449,7 +12515,7 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
 </tbody>
 </table></section><section class="print-page" id="apt-download-deb" heading-number="8.3.3"><h1 id="apt-download-deb-install-using-downloaded-deb-packages">Install using downloaded DEB packages<a class="headerlink" href="#apt-download-deb-install-using-downloaded-deb-packages" title="Permanent link">&para;</a></h1>
 <p>Download <code>DEB</code> packages of the desired series for your architecture from <a href="https://www.percona.com/downloads">Percona Product Downloads</a>. This method requires you to resolve all dependencies and install any missing packages.</p>
-<p>The following example downloads Percona XtraBackup 8.4.0-4 release package for Ubuntu 20.04:</p>
+<p>The following example downloads Percona XtraBackup 8.4.0-5 release package for Ubuntu 20.04:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-innovative-release/Percona-XtraBackup-8.4.0-1/binary/debian/focal/x86_64/percona-xtrabackup-84_8.4.0-1-1.focal_amd64.deb
 </code></pre></div>
 <p>Install Percona XtraBackup by using <code>dpkg</code>. Run this command as root or use the sudo command:</p>
@@ -12643,11 +12709,11 @@ zstd-1.5.1-2.el9.x86_64
 </tbody>
 </table></section><section class="print-page" id="yum-download-rpm" heading-number="8.4.3"><h1 id="yum-download-rpm-install-percona-xtrabackup-84-using-downloaded-rpm-packages">Install Percona XtraBackup 8.4 using downloaded RPM packages<a class="headerlink" href="#yum-download-rpm-install-percona-xtrabackup-84-using-downloaded-rpm-packages" title="Permanent link">&para;</a></h1>
 <p>Download <code>RPM</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads/">download page</a>. </p>
-<p>The following example downloads <em>Percona XtraBackup</em> 8.4.0-4 release package for <em>RHEL</em> 9:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-innovative-release/Percona-XtraBackup-8.4.0-4/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-4.1.el9.x86_64.rpm
+<p>The following example downloads <em>Percona XtraBackup</em> 8.4.0-5 release package for <em>RHEL</em> 9:</p>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-innovative-release/Percona-XtraBackup-8.4.0-5/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
 </code></pre></div>
 <p>Install Percona XtraBackup by running:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>localinstall<span class="w"> </span>percona-xtrabackup-84-8.4.0-4.1.el9.x86_64.rpm
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>localinstall<span class="w"> </span>percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
 </code></pre></div>
 <p>When installing packages manually like this, you’ll need to resolve all the dependencies and install missing packages yourself.</p></section><section class="print-page" id="work-with-selinux" heading-number="8.4.4"><h1 id="work-with-selinux-work-with-selinux">Work with SELinux<a class="headerlink" href="#work-with-selinux-work-with-selinux" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup is installed as an unconfined process running in an undefined domain. SELinux allows unconfined processes almost all access and the processes only use Discretionary Access Control (DAC) rules.</p>
@@ -12796,7 +12862,7 @@ Written by Roland McGrath and Ulrich Drepper.
 </details>
 <p>If the <code>glibc2</code> version from your operating system is not listed, then this Percona Server for MySQL version does not support that operating system.</p>
 <h2 id="binary-tarball-names-binary-tarball-file-name-organization">Binary tarball file name organization<a class="headerlink" href="#binary-tarball-names-binary-tarball-file-name-organization" title="Permanent link">&para;</a></h2>
-<p>The following lists the platform and the associated full binary file name used by Percona Server for MySQL tar files 8.4.0-4.</p>
+<p>The following lists the platform and the associated full binary file name used by Percona Server for MySQL tar files 8.4.0-5.</p>
 <table>
 <thead>
 <tr>
@@ -12808,37 +12874,37 @@ Written by Roland McGrath and Ulrich Drepper.
 <tbody>
 <tr>
 <td>Ubuntu 24.04</td>
-<td>Percona-XtraBackup-8.4.0-4-Linux.x86_64.glibc2.39.tar.gz</td>
+<td>Percona-XtraBackup-8.4.0-5-Linux.x86_64.glibc2.39.tar.gz</td>
 <td>glibc2.39</td>
 </tr>
 <tr>
 <td>Ubuntu 22.04</td>
-<td>Percona-XtraBackup-8.4.0-4-Linux.x86_64.glibc2.35.tar.gz</td>
+<td>Percona-XtraBackup-8.4.0-5-Linux.x86_64.glibc2.35.tar.gz</td>
 <td>glibc2.35</td>
 </tr>
 <tr>
 <td>Ubuntu 20.04</td>
-<td>Percona-XtraBackup-8.4.0-4-Linux.x86_64.glibc2.31.tar.gz</td>
+<td>Percona-XtraBackup-8.4.0-5-Linux.x86_64.glibc2.31.tar.gz</td>
 <td>glibc2.31</td>
 </tr>
 <tr>
 <td>Debian 12</td>
-<td>Percona-XtraBackup-8.4.0-4-Linux.x86_64.glibc2.36.tar.gz</td>
+<td>Percona-XtraBackup-8.4.0-5-Linux.x86_64.glibc2.36.tar.gz</td>
 <td>glibc2.36</td>
 </tr>
 <tr>
 <td>Debian 11</td>
-<td>Percona-XtraBackup-8.4.0-4-Linux.x86_64.glibc2.31.tar.gz</td>
+<td>Percona-XtraBackup-8.4.0-5-Linux.x86_64.glibc2.31.tar.gz</td>
 <td>glibc2.31</td>
 </tr>
 <tr>
 <td>Red Hat Enterprise 9</td>
-<td>Percona-XtraBackup-8.4.0-4-Linux.x86_64.glibc2.34.tar.gz</td>
+<td>Percona-XtraBackup-8.4.0-5-Linux.x86_64.glibc2.34.tar.gz</td>
 <td>glibc2.34</td>
 </tr>
 <tr>
 <td>Red Hat Enterprise 8</td>
-<td>Percona-XtraBackup-8.4.0-4-Linux.x86_64.glibc2.28.tar.gz</td>
+<td>Percona-XtraBackup-8.4.0-5-Linux.x86_64.glibc2.28.tar.gz</td>
 <td>glibc2.28</td>
 </tr>
 </tbody>
@@ -12856,59 +12922,59 @@ Written by Roland McGrath and Ulrich Drepper.
 <tbody>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-8.4.0-4-Linux.x86_64.glibc2.17-minimal.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux.x86_64.glibc2.17-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-8.4.0-4-Linux.x86_64.glibc2.17.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux.x86_64.glibc2.17.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.28-minimal.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.28-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.28.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.28.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.31-minimal.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.31-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.31.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.31.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.34-minimal.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.34-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.34.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.34.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.35-minimal.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.35-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.35.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.35.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.36-minimal.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.36-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.36.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.36.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.39-minimal.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.39-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-8.4.0-4-Linux-x86_64.glibc2.39.tar.gz</td>
+<td>percona-xtrabackup-8.4.0-5-Linux-x86_64.glibc2.39.tar.gz</td>
 </tr>
 </tbody>
 </table>
@@ -14837,7 +14903,7 @@ or <a href="https://github.com/curl/curl/pull/3763">curl #3763</a>.</p>
 </tbody>
 </table>
 <p>Percona uses semantic version numbering, which follows the pattern of base version and build version. Percona assigns unique, non-negative integers in increasing order for each version release. The version number combines the base <a href="https://dev.mysql.com/doc/relnotes/mysql/8.4/en/">MySQL 8.4</a> version number and the minor build version.</p>
-<p>The version numbers for Percona XtraBackup 8.4.0-4 define the following information:</p>
+<p>The version numbers for Percona XtraBackup 8.4.0-5 define the following information:</p>
 <ul>
 <li>
 <p>Base version - the leftmost numbers indicate the <a href="https://dev.mysql.com/doc/relnotes/mysql/8.4/en/">MySQL 8.4</a> version used as a base. An increase in base version resets the minor build version to 0.  </p>
@@ -15468,13 +15534,15 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 .print-site-enumerate-headings #section-3 > h1:before { content: '3 ' }
 .print-site-enumerate-headings #release-notes-release-notes > h1:before { content: '3.1 ' }
 
-.print-site-enumerate-headings #release-notes-8.4.0-4 > h1:before { content: '3.2 ' }
+.print-site-enumerate-headings #release-notes-8.4.0-5 > h1:before { content: '3.2 ' }
 
-.print-site-enumerate-headings #release-notes-8.4.0-3 > h1:before { content: '3.3 ' }
+.print-site-enumerate-headings #release-notes-8.4.0-4 > h1:before { content: '3.3 ' }
 
-.print-site-enumerate-headings #release-notes-8.4.0-2 > h1:before { content: '3.4 ' }
+.print-site-enumerate-headings #release-notes-8.4.0-3 > h1:before { content: '3.4 ' }
 
-.print-site-enumerate-headings #release-notes-8.4.0-1 > h1:before { content: '3.5 ' }
+.print-site-enumerate-headings #release-notes-8.4.0-2 > h1:before { content: '3.5 ' }
+
+.print-site-enumerate-headings #release-notes-8.4.0-1 > h1:before { content: '3.6 ' }
 
 .print-site-enumerate-headings #section-4 > h1:before { content: '4 ' }
 .print-site-enumerate-headings #quickstart-overview > h1:before { content: '4.1 ' }
