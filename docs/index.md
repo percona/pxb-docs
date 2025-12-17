@@ -1,4 +1,3 @@
-
 # Percona XtraBackup {{vers}} Documentation
 
 !!! note ""
@@ -10,12 +9,6 @@ MySQL-based servers that keep your database fully available during planned maint
 
 Whether it is a 24x7 highly loaded server or a low-transaction-volume
 Percona XtraBackup is designed to make backups seamless without disrupting the performance of the server in a production environment. Percona XtraBackup (PXB) is a 100% open source backup solution with [commercial support](https://www.percona.com/mysql-support/) available for organizations who want to benefit from comprehensive, responsive, and cost-flexible database support for MySQL.
-
-## Percona XtraBackup Pro releases
-
---8<--- "pro-build-announcement.md"
-
-[Percona XtraBackup Pro](pxb-pro.md){.md-button}
 
 ## Percona XtraBackup features
 
@@ -81,15 +74,3 @@ Percona XtraDB Cluster.
 Incremental backups for MyRocks are not optimized. Each time you run an incremental backup, all MyRocks files are copied, even if they haven’t changed since the previous backup.
 
 InnoDB tables are locked while copying non-InnoDB data.
-
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:3857510,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
-
