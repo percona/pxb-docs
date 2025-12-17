@@ -9,7 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Restoring should be done by restoring individual tables in the partial backup to the server.">
+        <meta name="description" content="Warning – Do Not Use –copy-back for Partial Restores">
       
       
         <meta name="author" content="Percona LLC">
@@ -4221,8 +4221,6 @@
       
         
       
-        
-      
     
     
     
@@ -4319,34 +4317,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="encrypted-innodb-tablespace-backups.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Encrypted InnoDB tablespace backups
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -4363,6 +4333,8 @@
   
     
     
+      
+        
       
         
       
@@ -4421,6 +4393,34 @@
     
   
     Encrypt backups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encrypted-innodb-tablespace-backups.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encrypted InnoDB tablespace backups
   
 
     
@@ -4777,6 +4777,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Restore a partial backup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="restore-partial-backup.html" class="md-nav__link md-nav__link--active">
         
   
@@ -4793,6 +4811,49 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#restore-individual-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restore individual tables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related topics
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -5759,6 +5820,36 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#restore-individual-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restore individual tables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related topics
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                     </div>
                   </div>
@@ -5788,31 +5879,16 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
 <h1 id="restore-a-partial-backup">Restore a partial backup<a class="headerlink" href="#restore-a-partial-backup" title="Permanent link">&para;</a></h1>
-<p>Restoring should be done by restoring individual tables in the partial backup to the server.</p>
-<p>It can also be done by copying back the prepared backup to a “clean”
-datadir (in that case, make sure to include the <code>mysql</code>
-database) to the datadir you are moving the backup to. A system database can be created with the following:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>mysql<span class="w"> </span>--initialize<span class="w"> </span>--user<span class="o">=</span>mysql
-</code></pre></div>
-<p>Once you start the server, you may see mysql complaining about missing tablespaces:</p>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>2021-07-19T12:42:11.077200Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name &#39;test1/t1&#39;, file &#39;./d2/test1.ibd&#39; is missing!
-2021-07-19T12:42:11.077300Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name &#39;test1/t1&#39;, file &#39;./d2/test1.ibd&#39; is missing!
-</code></pre></div>
-</details>
-<p>In order to clean the orphan database from the data dictionary, you must manually create the missing database directory and then <code>DROP</code> this database from the server.</p>
-<p>Example of creating the missing database:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>/var/lib/mysql/test1/d2
-</code></pre></div>
-<p>Example of dropping the database from the server:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>DROP<span class="w"> </span>DATABASE<span class="w"> </span>d2<span class="p">;</span>
-</code></pre></div>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Query OK, 2 rows affected (0.5 sec)
-</code></pre></div>
-</details>
+<p><strong>Warning – Do Not Use &ndash;copy-back for Partial Restores</strong></p>
+<p>Never copy back a prepared backup when you only need a subset of the data. Restoring partial backups should be done by importing the required tables (e.g., via logical dumps, mysqldump, or XtraBackup&rsquo;s <code>--export</code>/<code>IMPORT TABLESPACE</code> workflow). Using the <code>--copy-back</code> (or <code>--move-back</code>) option in this scenario can leave the server in an inconsistent state because the InnoDB redo logs expect a complete data set.</p>
+<p>Do not start incremental backups from a partial backup. Incremental backups rely on a full, consistent base; beginning a new incremental chain from an incomplete backup will produce unusable backup sets.</p>
+<h2 id="restore-individual-tables">Restore individual tables<a class="headerlink" href="#restore-individual-tables" title="Permanent link">&para;</a></h2>
+<p>Restore partial backups by restoring individual tables in the partial backup to the server. Use XtraBackup&rsquo;s <code>--export</code> option during prepare, then import the tables using <code>IMPORT TABLESPACE</code>. For more information, see <a href="restore-individual-tables.html">Restore individual tables</a>.</p>
+<h2 id="related-topics">Related topics<a class="headerlink" href="#related-topics" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="create-partial-backup.html">Create a partial backup</a></li>
+<li><a href="prepare-partial-backup.html">Prepare a partial backup</a></li>
+</ul>
 
 
 
@@ -5835,7 +5911,7 @@ database) to the datadir you are moving the backup to. A system database can be 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 12, 2023 12:58:57 UTC">June 12, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 17, 2025 13:29:56 UTC">December 17, 2025</span>
   </span>
 
     

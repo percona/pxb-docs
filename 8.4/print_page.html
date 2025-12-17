@@ -4221,8 +4221,6 @@
       
         
       
-        
-      
     
     
     
@@ -4319,34 +4317,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="encrypted-innodb-tablespace-backups.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Encrypted InnoDB tablespace backups
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -4363,6 +4333,8 @@
   
     
     
+      
+        
       
         
       
@@ -4421,6 +4393,34 @@
     
   
     Encrypt backups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encrypted-innodb-tablespace-backups.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Encrypted InnoDB tablespace backups
   
 
     
@@ -7064,17 +7064,6 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#encrypted-innodb-tablespace-backups" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Encrypted InnoDB tablespace backups
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -7097,6 +7086,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <span class="md-ellipsis">
       
         Encrypt backups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encrypted-innodb-tablespace-backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encrypted InnoDB tablespace backups
       
     </span>
   </a>
@@ -14246,316 +14246,7 @@ InnoDB: Shutdown completed; log sequence number 9293846
 </details>
 <p>Now the files in <code>/data/compressed/</code> are ready to be used by the server.</p>
 <h2 id="prepare-compressed-backup-next-step">Next step<a class="headerlink" href="#prepare-compressed-backup-next-step" title="Permanent link">&para;</a></h2>
-<p><a class="md-button" href="#restore-a-backup">Restore the backup</a></p></section><section class="print-page" id="encrypted-innodb-tablespace-backups" heading-number="10.3.3"><h1 id="encrypted-innodb-tablespace-backups-encrypted-innodb-tablespace-backups">Encrypted InnoDB tablespace backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups-encrypted-innodb-tablespace-backups" title="Permanent link">&para;</a></h1>
-<p>InnoDB supports <a href="https://dev.mysql.com/doc/refman/8.4/en/innodb-data-encryption.html">data encryption for InnoDB tables</a> stored in file-per-table tablespaces. This feature provides an at-rest encryption for physical tablespace data files.</p>
-<p>For an authenticated user or an application to access an encrypted F tablespace, InnoDB uses the master encryption key to decrypt the tablespace key. The master encryption key is stored in a keyring. </p>
-<p>Percona XtraBackup supports the following keyring components which are stored in the <code>plugin</code> directory: </p>
-<ul>
-<li>
-<p><a href="#encrypted-innodb-tablespace-backups-use-the-keyring-vault-component">keyring_vault</a> component</p>
-</li>
-<li>
-<p><a href="#encrypted-innodb-tablespace-backups-use-the-keyring-file-component">keyring_file</a> component</p>
-</li>
-<li>
-<p><a href="https://docs.percona.com/percona-server/innovation-release/using-kmip.html?h=kmip">Key Management Interoperability Protocol (KMIP)</a></p>
-</li>
-<li>
-<p><a href="https://docs.percona.com/percona-server/innovation-release/using-amz-kms.html">Amazon Key Management Service (AWS KMS)</a></p>
-</li>
-</ul>
-<p>Percona XtraBackup 8.4 and later versions do not support any plugin versions of the security features.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Enable only one keyring component simultaneously for each server instance. Enabling multiple keyring components is not supported and may result in data loss.</p>
-</div>
-<h2 id="encrypted-innodb-tablespace-backups-use-the-keyring-vault-component">Use the keyring vault component<a class="headerlink" href="#encrypted-innodb-tablespace-backups-use-the-keyring-vault-component" title="Permanent link">&para;</a></h2>
-<p>The <code>keyring_vault</code> component extends the server capabilities. The server uses a manifest to load the component and the component has its own configuration file.</p>
-<p>The following example is a global manifest file that does not use local manifests:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w"> </span><span class="nt">&quot;read_local_manifest&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file://component_keyring_vault&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The following example of a global manifest file that points to a local manifest file:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w"> </span><span class="nt">&quot;read_local_manifest&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The following example of a local manifest file:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w"> </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file://component_keyring_vault&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The configuration settings can be in either a global or a local configuration file.</p>
-<details class="example">
-<summary>Example of a configuration file in JSON format</summary>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w"> </span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">&quot;vault_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://vault.public.com:8202&quot;</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">&quot;secret_mount_point&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;secret&quot;</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">&quot;secret_mount_point_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AUTO&quot;</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;58a20c08-8001-fd5f-5192-7498a48eaf20&quot;</span><span class="p">,</span>
-<span class="w"> </span><span class="nt">&quot;vault_ca&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/data/keyring_vault_confs/vault_ca.crt&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-</details>
-<p>Find more information on configuring the <code>keyring_vault</code> component in <a href="https://docs.percona.com/percona-server/innovation-release/use-keyring-vault-component.html">Use the keyring vault component</a>.</p>
-<p>The component has no special requirements for backing up a database that
-contains encrypted InnoDB tablespaces.</p>
-<p>The following command creates a backup in the <code>/data/backup</code> directory:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--user<span class="o">=</span>root
-</code></pre></div>
-<p>After xtrabackup completes the action, the following message confirms the action:</p>
-<details class="example">
-<summary>Confirmation message</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
-160401 10:25:51 completed OK!
-</code></pre></div>
-</details>
-<h3 id="encrypted-innodb-tablespace-backups-prepare-the-backup-with-the-keyring-vault-component">Prepare the backup with the keyring vault component<a class="headerlink" href="#encrypted-innodb-tablespace-backups-prepare-the-backup-with-the-keyring-vault-component" title="Permanent link">&para;</a></h3>
-<p>To prepare the backup, the xtrabackup binary must access the keyring. The xtrabackup binary does not communicate with the MySQL server or read the
-default <code>my.cnf</code> configuration file. Specify the keyring settings in the command line:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--component-keyring-config<span class="o">==</span>/etc/vault.cnf
-</code></pre></div>
-<p>The following message confirms that the xtrabackup binary completed the action:</p>
-<details class="example">
-<summary>Confirmation message</summary>
-<div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
-160401 10:34:28 completed OK!
-</code></pre></div>
-</details>
-<h3 id="encrypted-innodb-tablespace-backups-restore-the-backup">Restore the backup<a class="headerlink" href="#encrypted-innodb-tablespace-backups-restore-the-backup" title="Permanent link">&para;</a></h3>
-<p>As soon as the backup is prepared, you can restore it with the <code>--copy-back</code> option:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey<span class="w"> </span>--generate-new-master-key<span class="w"> </span><span class="se">\</span>
---component-keyring-config<span class="o">=</span>/etc/vault.cnf
-</code></pre></div>
-<h2 id="encrypted-innodb-tablespace-backups-use-the-keyring-file-component">Use the keyring file component<a class="headerlink" href="#encrypted-innodb-tablespace-backups-use-the-keyring-file-component" title="Permanent link">&para;</a></h2>
-<p>The <code>keyring_file</code> component is part of the component-based MySQL infrastructure which extends the server capabilities.</p>
-<p>The server uses a manifest to load the component, and the component has its own configuration file. See the <a href="https://dev.mysql.com/doc/refman/8.4/en/keyring-component-installation.html">MySQL documentation on the component 
-installation</a> for more information.</p>
-<p>An example of a manifest and a configuration file follows:</p>
-<p>An example of <code>./bin/mysqld.my</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">   </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file://component_keyring_file&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>An example of <code>/lib/plugin/component_keyring_file.cnf</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">   </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql-keyring/keyring_file&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;read_only&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>For more information, see <a href="https://dev.mysql.com/doc/refman/8.4/en/keyring-component-installation.html">Keyring Component Installation</a>.</p>
-<p>With the appropriate privilege, you can <code>SELECT</code> on
-the <a href="https://dev.mysql.com/doc/refman/8.4/en/performance-schema-keyring-component-status-table.html">performance_schema.keyring_component_status table</a> to view the attributes and status of the installed keyring component 
-when in use.</p>
-<p>The component has no special requirements for backing up a database that
-contains encrypted InnoDB tablespaces.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--user<span class="o">=</span>root
-</code></pre></div>
-<p>The following message confirms that the xtrabackup binary completed the action:</p>
-<details class="example">
-<summary>Confirmation message</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: Transaction log of lsn (5696709) to (5696718) was copied.
-160401 10:25:51 completed OK!
-</code></pre></div>
-</details>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>xtrabackup does not copy the keyring file into the backup directory. To prepare the backup, you must copy the keyring file manually.</p>
-</div>
-<h3 id="encrypted-innodb-tablespace-backups-prepare-the-backup-with-the-keyring_file-component">Prepare the backup with the keyring_file component<a class="headerlink" href="#encrypted-innodb-tablespace-backups-prepare-the-backup-with-the-keyring_file-component" title="Permanent link">&para;</a></h3>
-<p>xtrabackup reads the <code>keyring_file</code> component configuration
-from <code>xtrabackup_component_keyring_file.cnf</code>. You must specify the
-keyring_file data path if the <code>--component-keyring-config</code> is not located in the
-attribute <code>PATH</code> from the <code>xtrabackup_component_keyring_file.cnf</code>.</p>
-<p>The following is an example of adding the location for the &ndash;component-keyring-config:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
---component-keyring-config<span class="o">=</span>/var/lib/mysql-keyring/keyring
-</code></pre></div>
-<p>xtrabackup attempts to read <code>xtrabackup_component_keyring_file.cnf</code>. You can assign another keyring file component configuration by passing the <code>--component-keyring-config</code> option.</p>
-<p>The following message confirms that the xtrabackup binary completed the action:</p>
-<details class="example">
-<summary>Confirmation message</summary>
-<div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 5697064
-160401 10:34:28 completed OK!
-</code></pre></div>
-</details>
-<p>The backup is prepared. To restore the backup use the <code>--copy-back</code> option.
-If the keyring has been rotated, you must restore the specific keyring used
-to take and prepare the backup.</p>
-<h2 id="encrypted-innodb-tablespace-backups-incremental-encrypted-innodb-tablespace-backups-with-keyring-file-component">Incremental encrypted InnoDB tablespace backups with keyring file component<a class="headerlink" href="#encrypted-innodb-tablespace-backups-incremental-encrypted-innodb-tablespace-backups-with-keyring-file-component" title="Permanent link">&para;</a></h2>
-<p>The process of taking incremental backups with InnoDB tablespace encryption is similar to taking incremental backups with unencrypted tablespace.</p>
-<h3 id="encrypted-innodb-tablespace-backups-create-an-incremental-backup">Create an incremental backup<a class="headerlink" href="#encrypted-innodb-tablespace-backups-create-an-incremental-backup" title="Permanent link">&para;</a></h3>
-<p>To make an incremental backup, begin with a full backup. The xtrabackup binary writes <code>xtrabackup_checkpoints</code> into the backup’s target
-directory. This file contains a line showing the <code>to_lsn</code>, which is the LSN of the database at the end of the backup. First, you need to create a full backup with the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
-</code></pre></div>
-<p>If you look at the <code>xtrabackup_checkpoints</code> file, you should see the output similar to the following:</p>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>backup_type = full-backuped
-from_lsn = 0
-to_lsn = 7666625
-last_lsn = 7666634
-compact = 0
-recover_binlog_info = 1
-</code></pre></div>
-</details>
-<p>Now that you have a full backup, you can make an incremental backup based
-on it. Use a command such as the following:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
-</code></pre></div>
-<p>The <code>/data/backups/inc1/</code> directory should now contain delta files, such
-as <code>ibdata1.delta</code> and <code>test/table1.ibd.delta</code>. These represent the
-changes since the <code>LSN 7666625</code>. If you examine the
-<code>xtrabackup_checkpoints</code> file in this directory, you should see 
-the output similar to the following:</p>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>backup_type = incremental
-from_lsn = 7666625
-to_lsn = 8873920
-last_lsn = 8873929
-compact = 0
-recover_binlog_info = 1
-</code></pre></div>
-</details>
-<p>Use this directory as the base for yet another incremental backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
-</code></pre></div>
-<h3 id="encrypted-innodb-tablespace-backups-prepare-incremental-backups">Prepare incremental backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups-prepare-incremental-backups" title="Permanent link">&para;</a></h3>
-<p>The <code>--prepare</code> step for incremental backups is not the same as for normal backups. In normal backups, two types of operations are performed to
-make the database consistent: </p>
-<ul>
-<li>
-<p>Committed transactions are replayed from the log file against the data files</p>
-</li>
-<li>
-<p>Uncommitted transactions are rolled back</p>
-</li>
-</ul>
-<p>You must skip the rollback of uncommitted transactions when preparing a backup because transactions that were uncommitted at the time of your backup may be in
-progress, and they will likely be committed in the next
-incremental backup. Use the <code>--apply-log-only</code> option to prevent the rollback phase.
-Your incremental backups are useless if you do not use the <code>--apply-log-only</code> option to prevent the rollback phase. After transactions have been rolled back, further incremental backups cannot be applied.</p>
-<p>Beginning with the full backup you created, you can prepare it and then
-apply the incremental differences. Recall that you have the following backups:</p>
-<div class="no-copy highlight"><pre><span></span><code>/data/backups/base
-/data/backups/inc1
-/data/backups/inc2
-</code></pre></div>
-<p>To prepare the backup, you must copy the keyring file manually. The xtrabackup binary does not copy the keyring file into the backup directory. </p>
-<p>If the keyring has not been rotated you can use the same one you’ve
-backed-up with the base backup. If the keyring has been rotated, or you have 
-upgraded the plugin to a component, you must back up the keyring file. 
-Otherwise, you cannot prepare the backup.</p>
-<p>To prepare the base backup, you need to run <code>--prepare</code> as usual, but
-prevent the rollback phase:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---component-keyring-config<span class="o">=</span>/var/lib/mysql-keyring/keyring
-</code></pre></div>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 7666643
-InnoDB: Number of pools: 1
-160401 12:31:11 completed OK!
-</code></pre></div>
-</details>
-<p>To apply the first incremental backup to the full backup, you should use
-the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
---component-keyring-config<span class="o">=</span>/var/lib/mysql-keyring/keyring
-</code></pre></div>
-<p>The backup should be prepared with the keyring file and type that was used when the backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup, you must use the keyring used when the first incremental backup was taken.</p>
-<p>Preparing the second incremental backup is a similar process: apply the deltas to the (modified) base backup, and you will roll its data forward in time to the point of the second incremental backup:</p>
-<p><div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
---component-keyring-config<span class="o">=</span>/var/lib/mysql-keyring/keyring
-</code></pre></div>
-Use <code>--apply-log-only</code> when merging all incremental backups except the last one. The previous line does not contain the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> option was used on the last step, the backup would still be consistent, but in that case, the server would perform the rollback phase.</p>
-<p>The backup is now prepared and can be restored with <code>--copy-back</code> option.
-In case the keyring has been rotated you’ll need to restore the keyring which was used to take and prepare the backup.</p>
-<h2 id="encrypted-innodb-tablespace-backups-restore-a-backup-when-the-keyring-is-not-available">Restore a backup when the keyring is not available<a class="headerlink" href="#encrypted-innodb-tablespace-backups-restore-a-backup-when-the-keyring-is-not-available" title="Permanent link">&para;</a></h2>
-<p>While this works, the method requires access to the same keyring that the server is using. It may not be possible if the backup is
-prepared on a different server or at a much later time, when keys in the keyring are
-purged, or, in the case of a malfunction, when the keyring vault server is unavailable.</p>
-<p>The <code>--transition-key=&lt;passphrase&gt;</code> option should be used to make it possible for the xtrabackup binary to process the backup without access to the keyring vault server. In this case, the binary derives the AES encryption key from the specified passphrase and will use it to encrypt tablespace keys of tablespaces being backed up.</p>
-<h3 id="encrypted-innodb-tablespace-backups-create-a-backup-with-a-passphrase">Create a backup with a passphrase<a class="headerlink" href="#encrypted-innodb-tablespace-backups-create-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
-<p>The following example illustrates how the backup can be created in this
-case:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey
-</code></pre></div>
-<p>If <code>--transition-key</code> is specified without a value, xtrabackup will ask for it.</p>
-<p>xtrabackup scrapes <code>--transition-key</code> so that its value is not visible in the <code>ps</code> command output.</p>
-<h3 id="encrypted-innodb-tablespace-backups-prepare-a-backup-with-a-passphrase">Prepare a backup with a passphrase<a class="headerlink" href="#encrypted-innodb-tablespace-backups-prepare-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
-<p>The same passphrase should be specified for the prepare command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey
-</code></pre></div>
-<p>There are no <code>--keyring-vault...</code>,``–keyring-file…``,
-or <code>--component-keyring-config</code> options here,
-because xtrabackup does not talk to the keyring in this case.</p>
-<h3 id="encrypted-innodb-tablespace-backups-restore-a-backup-with-a-generated-key">Restore a backup with a generated key<a class="headerlink" href="#encrypted-innodb-tablespace-backups-restore-a-backup-with-a-generated-key" title="Permanent link">&para;</a></h3>
-<p>When restoring a backup you need to generate a new master key. </p>
-<p>The example for <code>keyring_file</code> component:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey<span class="w"> </span>--generate-new-master-key<span class="w"> </span><span class="se">\</span>
---component-keyring-config<span class="o">=</span>/var/lib/mysql-keyring/keyring
-</code></pre></div>
-<p>The example for <code>keyring_vault</code> component:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey<span class="w"> </span>--generate-new-master-key<span class="w"> </span><span class="se">\</span>
---component-keyring-config<span class="o">=</span>/etc/vault.cnf
-</code></pre></div>
-<p>xtrabackup generates a new master key, stores it in the target keyring
-vault server, and re-encrypts the tablespace keys using this key.</p>
-<h3 id="encrypted-innodb-tablespace-backups-make-a-backup-with-a-stored-transition-key">Make a backup with a stored transition key<a class="headerlink" href="#encrypted-innodb-tablespace-backups-make-a-backup-with-a-stored-transition-key" title="Permanent link">&para;</a></h3>
-<p>Finally, there is an option to store a transition key in the keyring. In this case, xtrabackup must access the same keyring file or vault server during prepare and copy-back steps, but does not depend on whether the server keys have been purged.</p>
-<p>In this scenario, the three stages of the backup process look as follows.</p>
-<ul>
-<li>Back up</li>
-</ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
---generate-transition-key
-</code></pre></div>
-<ul>
-<li>
-<p>Prepare</p>
-<ul>
-<li><code>keyring_file</code> component variant:</li>
-</ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
---component-keyring-config<span class="o">=</span>/var/lib/mysql-keyring/keyring
-</code></pre></div>
-<ul>
-<li><code>keyring_vault</code> component variant:</li>
-</ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
---component-keyring-config<span class="o">=</span>/etc/vault.cnf
-</code></pre></div>
-</li>
-<li>
-<p>Copy-back</p>
-<ul>
-<li><code>keyring_file</code> component variant:</li>
-</ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
---generate-new-master-key<span class="w"> </span>--component-keyring-config<span class="o">=</span>/var/lib/mysql-keyring/keyring
-</code></pre></div>
-<ul>
-<li><code>keyring_vault</code> component variant:</li>
-</ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
---generate-new-master-key<span class="w"> </span>--component-keyring-config<span class="o">=</span>/etc/vault.cnf
-</code></pre></div>
-</li>
-</ul></section></section>
+<p><a class="md-button" href="#restore-a-backup">Restore the backup</a></p></section></section>
                     <section class='print-page md-section' id='section-10-4' heading-number='10.4'>
                         <h1>Take an encrypted backup<a class='headerlink' href='#section-10-4' title='Permanent link'></a>
                         </h1>
@@ -14615,21 +14306,287 @@ Remember that using the&ndash; encrypt-key-file option, your text editor can aut
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>150318 11:08:13  xtrabackup: completed OK!
 </code></pre></div>
-</details></section></section>
+</details></section><section class="print-page" id="encrypted-innodb-tablespace-backups" heading-number="10.4.2"><h1 id="encrypted-innodb-tablespace-backups-encrypted-innodb-tablespace-backups">Encrypted InnoDB tablespace backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups-encrypted-innodb-tablespace-backups" title="Permanent link">&para;</a></h1>
+<p>Percona XtraBackup supports two distinct types of encryption:</p>
+<ul>
+<li>
+<p><a href="#encrypted-innodb-tablespace-backups-innodb-tablespace-encryption">InnoDB tablespace encryption</a>: The MySQL server handles encryption using keyring components. InnoDB tablespace encryption provides at-rest encryption for physical tablespace data files at the database level.</p>
+</li>
+<li>
+<p><a href="#encrypted-innodb-tablespace-backups-backup-level-encryption">Backup-level encryption</a>: XtraBackup applies an additional encryption layer during the backup process, independent of InnoDB encryption. Backup-level encryption protects backup files themselves.</p>
+</li>
+</ul>
+<p>These encryption types are independent. You can use them separately or together for enhanced security.</p>
+<h2 id="encrypted-innodb-tablespace-backups-innodb-tablespace-encryption">InnoDB tablespace encryption<a class="headerlink" href="#encrypted-innodb-tablespace-backups-innodb-tablespace-encryption" title="Permanent link">&para;</a></h2>
+<p>InnoDB supports <a href="https://dev.mysql.com/doc/refman/8.4/en/innodb-data-encryption.html">data encryption for InnoDB tables</a> in file-per-table tablespaces. When accessing an encrypted tablespace, InnoDB uses the master encryption key to decrypt the tablespace key. InnoDB stores the master encryption key in a keyring.</p>
+<p>Percona XtraBackup supports the following keyring components:</p>
+<ul>
+<li><a href="#encrypted-innodb-tablespace-backups-keyring_vault-configuration">keyring_vault</a></li>
+<li><a href="#encrypted-innodb-tablespace-backups-keyring_file-configuration">keyring_file</a></li>
+<li><a href="https://docs.percona.com/percona-server/8.4/using-kmip.html?h=kmip">Key Management Interoperability Protocol (KMIP)</a></li>
+<li><a href="https://docs.percona.com/percona-server/8.4/using-amz-kms.html">Amazon Key Management Service (AWS KMS)</a></li>
+</ul>
+<p>Percona XtraBackup 8.4 and later versions support only component versions of the security features.</p>
+<h2 id="encrypted-innodb-tablespace-backups-workflow-phases">Workflow phases<a class="headerlink" href="#encrypted-innodb-tablespace-backups-workflow-phases" title="Permanent link">&para;</a></h2>
+<p>The backup and restore process for encrypted InnoDB tablespaces has three distinct phases, each with different keyring-config requirements:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Description</th>
+<th>Required</th>
+<th>keyring-options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backup</td>
+<td>Run <code>xtrabackup --backup …</code></td>
+<td>No</td>
+<td>The backup does not use any keyring options.</td>
+</tr>
+<tr>
+<td>Prepare</td>
+<td>Run <code>xtrabackup --prepare …</code></td>
+<td>Yes</td>
+<td>You must supply the keyring configuration file matching the keyring component that the MySQL server uses for encryption.</td>
+</tr>
+<tr>
+<td>Restore</td>
+<td>Run <code>xtrabackup</code> <a href="#xtrabackup-option-reference-copy-back"><code>--copy-back</code></a> … or <code>xtrabackup</code> <a href="#xtrabackup-option-reference-move-back"><code>--move-back</code></a> … (followed by <code>--prepare</code> if using <a href="#xtrabackup-option-reference-move-back"><code>--move-back</code></a>)</td>
+<td>Yes</td>
+<td>You must provide the same keyring-config file.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you rotated the keyring using <code>ALTER INSTANCE ROTATE INNODB MASTER KEY</code>, you must use the keyring that was active when you created the backup to prepare and restore the backup.</p>
+</div>
+<h3 id="encrypted-innodb-tablespace-backups-configuration-file-name-requirements">Configuration file name requirements<a class="headerlink" href="#encrypted-innodb-tablespace-backups-configuration-file-name-requirements" title="Permanent link">&para;</a></h3>
+<p>The configuration file name must match exactly the expected name for each keyring component. If the file name does not match exactly, XtraBackup ignores the configuration file.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Expected config-file name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vault</td>
+<td><code>component_keyring_vault.cnf</code></td>
+</tr>
+<tr>
+<td>KMS</td>
+<td><code>component_keyring_kms.cnf</code></td>
+</tr>
+<tr>
+<td>KMIP</td>
+<td><code>component_keyring_kmip.cnf</code></td>
+</tr>
+<tr>
+<td>File</td>
+<td><code>component_keyring_file.cnf</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="encrypted-innodb-tablespace-backups-keyring-component-configuration-files">Keyring component configuration files<a class="headerlink" href="#encrypted-innodb-tablespace-backups-keyring-component-configuration-files" title="Permanent link">&para;</a></h3>
+<p>Each keyring component requires a configuration file with a specific structure. The following examples show the format for each component type.</p>
+<h4 id="encrypted-innodb-tablespace-backups-keyring_vault-configuration">keyring_vault configuration<a class="headerlink" href="#encrypted-innodb-tablespace-backups-keyring_vault-configuration" title="Permanent link">&para;</a></h4>
+<p>The <code>component_keyring_vault.cnf</code> file uses JSON format:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;vault_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_URL}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;secret_mount_point&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_MOUNT_POINT}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;secret_mount_point_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_CONFIG_VERSION}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_TOKEN}&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;vault_ca&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_CA}&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>For information on configuring the keyring vault component on the MySQL server, see <a href="https://docs.percona.com/percona-server/8.4/use-keyring-vault-component.html">Use the keyring vault component</a>.</p>
+<h4 id="encrypted-innodb-tablespace-backups-keyring_file-configuration">keyring_file configuration<a class="headerlink" href="#encrypted-innodb-tablespace-backups-keyring_file-configuration" title="Permanent link">&para;</a></h4>
+<p>The <code>component_keyring_file.cnf</code> file uses JSON format:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql-keyring/keyring&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;read_only&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>XtraBackup does not copy the keyring file into the backup directory. Copy the keyring file manually before preparing.</p>
+</div>
+<h4 id="encrypted-innodb-tablespace-backups-keyring_kmip-configuration">keyring_kmip configuration<a class="headerlink" href="#encrypted-innodb-tablespace-backups-keyring_kmip-configuration" title="Permanent link">&para;</a></h4>
+<p>The <code>component_keyring_kmip.cnf</code> file uses JSON format:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;server_addr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kmip.example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;server_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5696</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;client_ca&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/path/to/client/ca.pem&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;client_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/path/to/client/key.pem&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;server_ca&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/path/to/server/ca.pem&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="encrypted-innodb-tablespace-backups-keyring_kms-configuration">keyring_kms configuration<a class="headerlink" href="#encrypted-innodb-tablespace-backups-keyring_kms-configuration" title="Permanent link">&para;</a></h4>
+<p>The <code>component_keyring_kms.cnf</code> file uses JSON format:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql-keyring/keyring&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;read_only&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;auth_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-auth-key&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;secret_access_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-secret-access-key&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;kms_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-kms-key-id&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="encrypted-innodb-tablespace-backups-backup-and-restore-with-keyring-components">Backup and restore with keyring components<a class="headerlink" href="#encrypted-innodb-tablespace-backups-backup-and-restore-with-keyring-components" title="Permanent link">&para;</a></h3>
+<p>XtraBackup uses the component&rsquo;s configuration file during prepare and restore operations. The MySQL server must use one of the supported keyring components for encryption.</p>
+<h4 id="encrypted-innodb-tablespace-backups-phase-1-backup">Phase 1: Backup<a class="headerlink" href="#encrypted-innodb-tablespace-backups-phase-1-backup" title="Permanent link">&para;</a></h4>
+<p>No keyring configuration is needed:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--user<span class="o">=</span>root
+</code></pre></div>
+<h4 id="encrypted-innodb-tablespace-backups-phase-2-prepare">Phase 2: Prepare<a class="headerlink" href="#encrypted-innodb-tablespace-backups-phase-2-prepare" title="Permanent link">&para;</a></h4>
+<p>To prepare the backup, you must provide access to the keyring. The xtrabackup binary does not communicate with the MySQL server or read the default <code>my.cnf</code> configuration file. Specify the keyring configuration file.</p>
+<div class="admonition warning">
+<p class="admonition-title">File-name restriction</p>
+<p>The configuration file name must match exactly the expected name for your keyring component. See <a href="#encrypted-innodb-tablespace-backups-configuration-file-name-requirements">Configuration file name requirements</a> for the exact file names required. If the file name does not match exactly, XtraBackup ignores the configuration file.</p>
+</div>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+</code></pre></div>
+<p>Specify the path to your component&rsquo;s configuration file (for example, <code>/etc/component_keyring_vault.cnf</code> or <code>/var/lib/mysql-keyring/component_keyring_file.cnf</code>).</p>
+<h4 id="encrypted-innodb-tablespace-backups-phase-3-restore">Phase 3: Restore<a class="headerlink" href="#encrypted-innodb-tablespace-backups-phase-3-restore" title="Permanent link">&para;</a></h4>
+<p>After you prepare the backup, restore the backup using <a href="#xtrabackup-option-reference-copy-back"><code>--copy-back</code></a> or <a href="#xtrabackup-option-reference-move-back"><code>--move-back</code></a>. If you use <a href="#xtrabackup-option-reference-move-back"><code>--move-back</code></a>, run <code>--prepare</code> again after moving the files. In both cases, provide the same keyring configuration file.</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
+</code></pre></div>
+<p>Or using <code>--move-back</code>:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/mysql
+</code></pre></div>
+<h3 id="encrypted-innodb-tablespace-backups-incremental-encrypted-innodb-tablespace-backups">Incremental encrypted InnoDB tablespace backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups-incremental-encrypted-innodb-tablespace-backups" title="Permanent link">&para;</a></h3>
+<p>The process of taking incremental backups with InnoDB tablespace encryption is similar to <a href="#create-incremental-backup">taking incremental backups with unencrypted tablespace</a>. The same three-phase workflow applies, with keyring-config requirements in phases 2 and 3.</p>
+<h4 id="encrypted-innodb-tablespace-backups-phase-1-backup_1">Phase 1: Backup<a class="headerlink" href="#encrypted-innodb-tablespace-backups-phase-1-backup_1" title="Permanent link">&para;</a></h4>
+<p>Begin with a full backup. The xtrabackup binary writes <code>xtrabackup_checkpoints</code> into the backup&rsquo;s target directory, which contains the <code>to_lsn</code> (the LSN of the database at the end of the backup).</p>
+<p>Create a full backup (no keyring config needed):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
+</code></pre></div>
+<p>Make an incremental backup based on the full backup:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
+--incremental-basedir<span class="o">=</span>/data/backups/base
+</code></pre></div>
+<p>The <a href="#xtrabackup-option-reference-incremental-basedir"><code>--incremental-basedir</code></a> option specifies the base backup directory.</p>
+<p>Use this directory as the base for yet another incremental backup:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
+--incremental-basedir<span class="o">=</span>/data/backups/inc1
+</code></pre></div>
+<h4 id="encrypted-innodb-tablespace-backups-phase-2-prepare_1">Phase 2: Prepare<a class="headerlink" href="#encrypted-innodb-tablespace-backups-phase-2-prepare_1" title="Permanent link">&para;</a></h4>
+<p>The <code>--prepare</code> step for incremental backups requires the keyring configuration. Use <a href="#xtrabackup-option-reference-apply-log-only"><code>--apply-log-only</code></a> for all incremental backups except the last one to prevent rolling back transactions that might be committed in subsequent incremental backups.</p>
+<p>Beginning with the full backup, prepare the full backup and then apply the incremental differences. Prepare the base backup with <a href="#xtrabackup-option-reference-apply-log-only"><code>--apply-log-only</code></a>. Use the appropriate configuration file name for your keyring component (see <a href="#encrypted-innodb-tablespace-backups-configuration-file-name-requirements">Configuration file name requirements</a>):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
+</code></pre></div>
+<p>Apply the first incremental backup to the full backup using <a href="#xtrabackup-option-reference-incremental-dir"><code>--incremental-dir</code></a>:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc1
+</code></pre></div>
+<p>Prepare the second incremental backup (without <a href="#xtrabackup-option-reference-apply-log-only"><code>--apply-log-only</code></a>):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc2
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use <a href="#xtrabackup-option-reference-apply-log-only"><code>--apply-log-only</code></a> when merging all incremental backups except the last one. Prepare the last incremental backup without <a href="#xtrabackup-option-reference-apply-log-only"><code>--apply-log-only</code></a>.</p>
+</div>
+<h4 id="encrypted-innodb-tablespace-backups-phase-3-restore_1">Phase 3: Restore<a class="headerlink" href="#encrypted-innodb-tablespace-backups-phase-3-restore_1" title="Permanent link">&para;</a></h4>
+<p>After you prepare the incremental backups, restore them using <a href="#xtrabackup-option-reference-copy-back"><code>--copy-back</code></a> or <a href="#xtrabackup-option-reference-move-back"><code>--move-back</code></a>. If you use <a href="#xtrabackup-option-reference-move-back"><code>--move-back</code></a>, run <code>--prepare</code> again after moving the files. In both cases, provide the same keyring configuration file:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
+</code></pre></div>
+<p>Or using <code>--move-back</code>:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/mysql
+</code></pre></div>
+<h3 id="encrypted-innodb-tablespace-backups-restore-a-backup-when-the-keyring-is-not-available">Restore a backup when the keyring is not available<a class="headerlink" href="#encrypted-innodb-tablespace-backups-restore-a-backup-when-the-keyring-is-not-available" title="Permanent link">&para;</a></h3>
+<p>The keyring component method requires access to the same keyring that the server uses. This may not be possible if you prepare the backup on a different server, when keys in the keyring are purged, or when the keyring vault server is unavailable.</p>
+<p>Use the <a href="#xtrabackup-option-reference-transition-key"><code>--transition-key=&lt;passphrase&gt;</code></a> option to process the backup without access to the keyring server. The binary derives the AES (Advanced Encryption Standard) encryption key from the specified passphrase and uses the AES encryption key to encrypt tablespace keys.</p>
+<h4 id="encrypted-innodb-tablespace-backups-create-a-backup-with-a-passphrase">Create a backup with a passphrase<a class="headerlink" href="#encrypted-innodb-tablespace-backups-create-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+--transition-key<span class="o">=</span>MySecretKey
+</code></pre></div>
+<p>If you specify <a href="#xtrabackup-option-reference-transition-key"><code>--transition-key</code></a> without a value, xtrabackup asks for the passphrase. xtrabackup hides the passphrase value so that the value is not visible in the <code>ps</code> command output.</p>
+<h4 id="encrypted-innodb-tablespace-backups-prepare-a-backup-with-a-passphrase">Prepare a backup with a passphrase<a class="headerlink" href="#encrypted-innodb-tablespace-backups-prepare-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h4>
+<p>Specify the same passphrase for the prepare command:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+--transition-key<span class="o">=</span>MySecretKey
+</code></pre></div>
+<p>You do not need keyring options here, because xtrabackup does not access the keyring in this case.</p>
+<h4 id="encrypted-innodb-tablespace-backups-restore-a-backup-with-a-generated-key">Restore a backup with a generated key<a class="headerlink" href="#encrypted-innodb-tablespace-backups-restore-a-backup-with-a-generated-key" title="Permanent link">&para;</a></h4>
+<p>When you restore a backup, generate a new master key using <a href="#xtrabackup-option-reference-generate-new-master-key"><code>--generate-new-master-key</code></a>. The configuration file name must match one of the exact configuration file names listed in <a href="#encrypted-innodb-tablespace-backups-configuration-file-name-requirements">Configuration file name requirements</a>:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+--transition-key<span class="o">=</span>MySecretKey<span class="w"> </span>--generate-new-master-key
+</code></pre></div>
+<p>Specify the path to your component&rsquo;s configuration file. XtraBackup generates a new master key, stores the new master key in the target keyring, and re-encrypts the tablespace keys using the new master key.</p>
+<h4 id="encrypted-innodb-tablespace-backups-make-a-backup-with-a-stored-transition-key">Make a backup with a stored transition key<a class="headerlink" href="#encrypted-innodb-tablespace-backups-make-a-backup-with-a-stored-transition-key" title="Permanent link">&para;</a></h4>
+<p>You can store a transition key in the keyring. In this case, xtrabackup must access the same keyring during prepare and copy-back steps, but xtrabackup does not depend on whether the server keys have been purged. The configuration file name must match one of the exact configuration file names listed in <a href="#encrypted-innodb-tablespace-backups-configuration-file-name-requirements">Configuration file name requirements</a>:</p>
+<ul>
+<li>Back up using <a href="#xtrabackup-option-reference-generate-transition-key"><code>--generate-transition-key</code></a>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+--generate-transition-key
+</code></pre></div>
+<ul>
+<li>Prepare:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+</code></pre></div>
+<ul>
+<li>Copy-back:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+--generate-new-master-key
+</code></pre></div>
+<p>Specify the path to your component&rsquo;s configuration file.</p>
+<h2 id="encrypted-innodb-tablespace-backups-backup-level-encryption">Backup-level encryption<a class="headerlink" href="#encrypted-innodb-tablespace-backups-backup-level-encryption" title="Permanent link">&para;</a></h2>
+<p>Backup-level encryption is an additional protection layer that XtraBackup applies during the backup process. Backup-level encryption is independent of InnoDB tablespace encryption and protects the backup files themselves. XtraBackup implements the encryption using the <code>libgcrypt</code> library from GnuPG. You can use backup-level encryption on any backup, regardless of whether the source database uses InnoDB tablespace encryption.</p>
+<h3 id="encrypted-innodb-tablespace-backups-create-encrypted-backups">Create encrypted backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups-create-encrypted-backups" title="Permanent link">&para;</a></h3>
+<p>To create an encrypted backup, use the <a href="#xtrabackup-option-reference-encrypt"><code>--encrypt</code></a> option along with either <a href="#xtrabackup-option-reference-encrypt-key"><code>--encrypt-key</code></a> or <a href="#xtrabackup-option-reference-encrypt-key-file"><code>--encrypt-key-file</code></a> to specify the encryption key. The <code>--encrypt-key</code> and <code>--encrypt-key-file</code> options are mutually exclusive. Use one or the other, but do not both. If you specify both options, XtraBackup returns an error and exits.</p>
+<p>The <code>--encrypt</code> option specifies the encryption algorithm: <code>AES128</code>, <code>AES192</code>, or <code>AES256</code>. To generate an encryption key, use a command such as <code>openssl rand -base64 24</code>.</p>
+<h4 id="encrypted-innodb-tablespace-backups-using-encrypt-key">Using &ndash;encrypt-key<a class="headerlink" href="#encrypted-innodb-tablespace-backups-using-encrypt-key" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>--encrypt-key</code> option exposes the key in process listings. Do not use this option on systems with uncontrolled access.</p>
+</div>
+<h4 id="encrypted-innodb-tablespace-backups-using-encrypt-key-file">Using &ndash;encrypt-key-file<a class="headerlink" href="#encrypted-innodb-tablespace-backups-using-encrypt-key-file" title="Permanent link">&para;</a></h4>
+<p>The recommended method uses <code>--encrypt-key-file</code> to read the key from a file:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/data/backups/keyfile
+xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When creating the key file, ensure your text editor does not insert a CRLF (end of line) character. This invalidates the key because the size is wrong. Use <code>echo -n</code> to create the file without a trailing newline.</p>
+</div>
+<h3 id="encrypted-innodb-tablespace-backups-optimize-the-encryption-process">Optimize the encryption process<a class="headerlink" href="#encrypted-innodb-tablespace-backups-optimize-the-encryption-process" title="Permanent link">&para;</a></h3>
+<p>Additional encrypted backup options can speed up the encryption process: <a href="#xtrabackup-option-reference-encrypt-threads"><code>--encrypt-threads</code></a> (enables parallel encryption with multiple threads) and <a href="#xtrabackup-option-reference-encrypt-chunk-size"><code>--encrypt-chunk-size</code></a> (specifies the size, in bytes, of the working encryption buffer for each encryption thread; the default value is 64K).</p>
+<h3 id="encrypted-innodb-tablespace-backups-decrypt-encrypted-backups">Decrypt encrypted backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups-decrypt-encrypted-backups" title="Permanent link">&para;</a></h3>
+<p>To decrypt an encrypted backup, use the <a href="#xtrabackup-option-reference-decrypt"><code>--decrypt</code></a> option. The decryption algorithm must match the algorithm that you used during encryption. You can use the <a href="#xtrabackup-option-reference-parallel"><code>--parallel</code></a> option with <code>--decrypt</code> to decrypt multiple files simultaneously.</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+</code></pre></div>
+<p>Alternatively, you can use the <code>xbcrypt</code> binary directly:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">&quot;*\.xbcrypt&quot;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Percona XtraBackup does not automatically remove the encrypted files after decryption. Remove the <code>*.xbcrypt</code> files manually, or use the <a href="#xtrabackup-option-reference-remove-original"><code>--remove-original</code></a> option.</p>
+</div>
+<h3 id="encrypted-innodb-tablespace-backups-prepare-encrypted-backups">Prepare encrypted backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups-prepare-encrypted-backups" title="Permanent link">&para;</a></h3>
+<p>After decrypting the backup, prepare the backup with the <code>--prepare</code> option:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+</code></pre></div></section></section>
                     <section class='print-page md-section' id='section-10-5' heading-number='10.5'>
                         <h1>Take a partial backup<a class='headerlink' href='#section-10-5' title='Permanent link'></a>
                         </h1>
                     <section class="print-page" id="create-partial-backup" heading-number="10.5.1"><h1 id="create-partial-backup-create-a-partial-backup">Create a partial backup<a class="headerlink" href="#create-partial-backup-create-a-partial-backup" title="Permanent link">&para;</a></h1>
 <p>xtrabackup supports taking partial backups when the
 <code>innodb_file_per_table</code> option is enabled.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Do not copy back the prepared backup.</p>
-<p>Restoring partial backups should be done by importing the tables.
-We do not by using the <code>–copy-back</code> option. This operation may lead to database
-inconsistencies.</p>
-<p>We do not recommend running incremental backups after taking a partial
-backup.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Partial backups should be restored by importing tables, not using <code>--copy-back</code> or <code>--move-back</code>. Do not start incremental backups from a partial backup. See <a href="#restore-partial-backup">Restore a partial backup</a> for details.</p>
 </div>
 <p>The xtrabackup binary fails if you delete any of the matched or listed tables during the backup.</p>
 <p>There are multiple ways of specifying which part of data is backed up:</p>
@@ -14702,6 +14659,10 @@ after the backup started.</p>
 </div>
 <h2 id="create-partial-backup-next-step">Next step<a class="headerlink" href="#create-partial-backup-next-step" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="#prepare-partial-backup">Prepare the backup</a></p></section><section class="print-page" id="prepare-partial-backup" heading-number="10.5.2"><h1 id="prepare-partial-backup-prepare-a-partial-backup">Prepare a partial backup<a class="headerlink" href="#prepare-partial-backup-prepare-a-partial-backup" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before preparing, make sure you have <a href="#create-partial-backup">created a partial backup</a>.</p>
+</div>
 <p>The procedure is analogous to restoring individual tables: apply the logs and use the
 <code>--export</code> option:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/partial/backup
@@ -14716,7 +14677,7 @@ warnings to be printed to the log file.</p>
 <p>Could not find any file associated with the tablespace ID: 5</p>
 <p>Use <code>--innodb-directories</code> to find the tablespace files. If that fails then use <code>-–innodb-force-recovery=1</code> to ignore this and to permanently lose all changes to the missing tablespace(s).</p>
 <h2 id="prepare-partial-backup-next-step">Next step<a class="headerlink" href="#prepare-partial-backup-next-step" title="Permanent link">&para;</a></h2>
-<p><a class="md-button" href="#restore-individual-partitions">Restore the partition from the backup</a></p></section></section>
+<p><a class="md-button" href="#restore-partial-backup">Restore a partial backup</a></p></section></section>
                     <section class='print-page md-section' id='section-10-6' heading-number='10.6'>
                         <h1>Back up individual partitions<a class='headerlink' href='#section-10-6' title='Permanent link'></a>
                         </h1>
@@ -14789,31 +14750,16 @@ can look like this:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>mysql:mysql<span class="w"> </span>/var/lib/mysql
 </code></pre></div>
 <p>Data is now restored, and you can start the server.</p></section><section class="print-page" id="restore-partial-backup" heading-number="10.7.2"><h1 id="restore-partial-backup-restore-a-partial-backup">Restore a partial backup<a class="headerlink" href="#restore-partial-backup-restore-a-partial-backup" title="Permanent link">&para;</a></h1>
-<p>Restoring should be done by restoring individual tables in the partial backup to the server.</p>
-<p>It can also be done by copying back the prepared backup to a “clean”
-datadir (in that case, make sure to include the <code>mysql</code>
-database) to the datadir you are moving the backup to. A system database can be created with the following:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>mysql<span class="w"> </span>--initialize<span class="w"> </span>--user<span class="o">=</span>mysql
-</code></pre></div>
-<p>Once you start the server, you may see mysql complaining about missing tablespaces:</p>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>2021-07-19T12:42:11.077200Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name &#39;test1/t1&#39;, file &#39;./d2/test1.ibd&#39; is missing!
-2021-07-19T12:42:11.077300Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name &#39;test1/t1&#39;, file &#39;./d2/test1.ibd&#39; is missing!
-</code></pre></div>
-</details>
-<p>In order to clean the orphan database from the data dictionary, you must manually create the missing database directory and then <code>DROP</code> this database from the server.</p>
-<p>Example of creating the missing database:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>/var/lib/mysql/test1/d2
-</code></pre></div>
-<p>Example of dropping the database from the server:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>DROP<span class="w"> </span>DATABASE<span class="w"> </span>d2<span class="p">;</span>
-</code></pre></div>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Query OK, 2 rows affected (0.5 sec)
-</code></pre></div>
-</details></section><section class="print-page" id="restore-individual-partitions" heading-number="10.7.3"><h1 id="restore-individual-partitions-restore-the-partition-from-the-backup">Restore the partition from the backup<a class="headerlink" href="#restore-individual-partitions-restore-the-partition-from-the-backup" title="Permanent link">&para;</a></h1>
+<p><strong>Warning – Do Not Use &ndash;copy-back for Partial Restores</strong></p>
+<p>Never copy back a prepared backup when you only need a subset of the data. Restoring partial backups should be done by importing the required tables (e.g., via logical dumps, mysqldump, or XtraBackup&rsquo;s <code>--export</code>/<code>IMPORT TABLESPACE</code> workflow). Using the <code>--copy-back</code> (or <code>--move-back</code>) option in this scenario can leave the server in an inconsistent state because the InnoDB redo logs expect a complete data set.</p>
+<p>Do not start incremental backups from a partial backup. Incremental backups rely on a full, consistent base; beginning a new incremental chain from an incomplete backup will produce unusable backup sets.</p>
+<h2 id="restore-partial-backup-restore-individual-tables">Restore individual tables<a class="headerlink" href="#restore-partial-backup-restore-individual-tables" title="Permanent link">&para;</a></h2>
+<p>Restore partial backups by restoring individual tables in the partial backup to the server. Use XtraBackup&rsquo;s <code>--export</code> option during prepare, then import the tables using <code>IMPORT TABLESPACE</code>. For more information, see <a href="#restore-individual-tables">Restore individual tables</a>.</p>
+<h2 id="restore-partial-backup-related-topics">Related topics<a class="headerlink" href="#restore-partial-backup-related-topics" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#create-partial-backup">Create a partial backup</a></li>
+<li><a href="#prepare-partial-backup">Prepare a partial backup</a></li>
+</ul></section><section class="print-page" id="restore-individual-partitions" heading-number="10.7.3"><h1 id="restore-individual-partitions-restore-the-partition-from-the-backup">Restore the partition from the backup<a class="headerlink" href="#restore-individual-partitions-restore-the-partition-from-the-backup" title="Permanent link">&para;</a></h1>
 <p>Restoring should be done by importing the tables in the partial backup to the
 server.</p>
 <p>First step is to create new table in which data will be restored.</p>
@@ -16308,10 +16254,10 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 
 .print-site-enumerate-headings #prepare-compressed-backup > h1:before { content: '10.3.2 ' }
 
-.print-site-enumerate-headings #encrypted-innodb-tablespace-backups > h1:before { content: '10.3.3 ' }
-
 .print-site-enumerate-headings #section-10-4 > h1:before { content: '10.4 ' }
 .print-site-enumerate-headings #encrypt-backups > h1:before { content: '10.4.1 ' }
+
+.print-site-enumerate-headings #encrypted-innodb-tablespace-backups > h1:before { content: '10.4.2 ' }
 
 .print-site-enumerate-headings #section-10-5 > h1:before { content: '10.5 ' }
 .print-site-enumerate-headings #create-partial-backup > h1:before { content: '10.5.1 ' }
