@@ -3,16 +3,9 @@
 xtrabackup supports taking partial backups when the
 `innodb_file_per_table` option is enabled.
 
-!!! warning
+!!! note
 
-    Do not copy back the prepared backup.
-
-    Restoring partial backups should be done by importing the tables.
-    We do not by using the `–copy-back` option. This operation may lead to database
-    inconsistencies.
-    
-    We do not recommend running incremental backups after taking a partial
-    backup.
+    Partial backups should be restored by importing tables, not using `--copy-back` or `--move-back`. Do not start incremental backups from a partial backup. See [Restore a partial backup](restore-partial-backup.md) for details.
 
 The xtrabackup binary fails if you delete any of the matched or listed tables during the backup.
 
