@@ -1,6 +1,6 @@
 # Dependency compatibility and limitations
 
-`xbcloud` depends on several system libraries for correct operation. Some versions of these dependencies are known to cause unexpected terminations or
+xbcloud depends on several system libraries for correct operation. Some versions of these dependencies are known to cause unexpected terminations or
 unstable behavior and are therefore not supported.
 
 If you are experiencing unexpected terminations or intermittent failures, verify that your environment does not use any of the versions listed below.
