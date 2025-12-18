@@ -49,7 +49,7 @@ The [FIFO datasink](xbcloud-binary-fifo-datasink.md) feature was implemented in 
 
 !!! important
 
-    To prevent intermittent backup failures, [update the curl utility in Debian 10](update-curl-utility.md).
+    To prevent intermittent backup failures, [update the curl utility](update-curl-utility.md).
 
 ## Supported cloud storage types
 
