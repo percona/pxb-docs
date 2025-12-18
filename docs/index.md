@@ -75,7 +75,7 @@ Incremental backups for MyRocks are not optimized. Each time you run an incremen
 
 InnoDB tables are locked while copying non-InnoDB data.
 
-!!! See also
+!!! admonition "See also"
 
     [Dependency compatibility and limitations](update-curl-utility.md)
  
