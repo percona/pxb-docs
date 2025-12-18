@@ -74,3 +74,8 @@ Percona XtraDB Cluster.
 Incremental backups for MyRocks are not optimized. Each time you run an incremental backup, all MyRocks files are copied, even if they haven’t changed since the previous backup.
 
 InnoDB tables are locked while copying non-InnoDB data.
+
+!!! admonition "See also"
+
+    [Dependency compatibility and limitations](update-curl-utility.md)
+ 
