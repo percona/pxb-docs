@@ -1,5 +1,9 @@
 # Prepare a partial backup
 
+!!! note
+
+    Before preparing, make sure you have [created a partial backup](create-partial-backup.md).
+
 The procedure is analogous to restoring individual tables: apply the logs and use the
 `--export` option:
 
@@ -21,4 +25,4 @@ Use `--innodb-directories` to find the tablespace files. If that fails then use 
 
 ## Next step
 
-[Restore the partition from the backup](restore-individual-partitions.md){.md-button}
+[Restore a partial backup](restore-partial-backup.md){.md-button}

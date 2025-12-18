@@ -1,40 +1,16 @@
 # Restore a partial backup
 
-Restoring should be done by restoring individual tables in the partial backup to the server.
+**Warning – Do Not Use --copy-back for Partial Restores**
 
-It can also be done by copying back the prepared backup to a “clean”
-datadir (in that case, make sure to include the `mysql`
-database) to the datadir you are moving the backup to. A system database can be created with the following:
+Never copy back a prepared backup when you only need a subset of the data. Restoring partial backups should be done by importing the required tables (e.g., via logical dumps, mysqldump, or XtraBackup's `--export`/`IMPORT TABLESPACE` workflow). Using the `--copy-back` (or `--move-back`) option in this scenario can leave the server in an inconsistent state because the InnoDB redo logs expect a complete data set.
 
-```{.bash data-prompt="$"}
-$ sudo mysql --initialize --user=mysql
-```
+Do not start incremental backups from a partial backup. Incremental backups rely on a full, consistent base; beginning a new incremental chain from an incomplete backup will produce unusable backup sets.
 
-Once you start the server, you may see mysql complaining about missing tablespaces:
+## Restore individual tables
 
-??? example "Expected output"
+Restore partial backups by restoring individual tables in the partial backup to the server. Use XtraBackup's `--export` option during prepare, then import the tables using `IMPORT TABLESPACE`. For more information, see [Restore individual tables](restore-individual-tables.md).
 
-    ```{.text .no-copy}
-    2021-07-19T12:42:11.077200Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name 'test1/t1', file './d2/test1.ibd' is missing!
-    2021-07-19T12:42:11.077300Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name 'test1/t1', file './d2/test1.ibd' is missing!
-    ```
+## Related topics
 
-In order to clean the orphan database from the data dictionary, you must manually create the missing database directory and then `DROP` this database from the server.
-
-Example of creating the missing database:
-
-```{.bash data-prompt="$"}
-$ mkdir /var/lib/mysql/test1/d2
-```
-
-Example of dropping the database from the server:
-
-```{.bash data-prompt="mysql>"}
-mysql> DROP DATABASE d2;
-```
-
-??? example "Expected output"
-
-    ```{.text .no-copy}
-    Query OK, 2 rows affected (0.5 sec)
-    ```
+* [Create a partial backup](create-partial-backup.md)
+* [Prepare a partial backup](prepare-partial-backup.md)
