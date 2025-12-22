@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -4065,7 +4065,7 @@
   <span class="md-ellipsis">
     
   
-    Update the curl utility in Debian 10
+    Dependency compatibility and limitations
   
 
     
@@ -8236,7 +8236,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   <a href="#update-curl-utility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Update the curl utility in Debian 10
+        Dependency compatibility and limitations
       
     </span>
   </a>
@@ -9233,6 +9233,10 @@ with previous versions, it is currently impossible for <em>Percona XtraBackup</e
 higher, or Percona products that are based on it: Percona Server for MySQL and
 Percona XtraDB Cluster.</p>
 <p>For more information, see <a href="https://www.percona.com/blog/2020/04/28/percona-xtrabackup-8-x-and-mysql-8-0-20/">Percona XtraBackup 8.x and MySQL 8.0.20</a></p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
+<p><a href="#update-curl-utility">Dependency compatibility and limitations</a></p>
+</div>
 <div class="admonition admonition">
 <p class="admonition-title">Learn more about other Percona products</p>
 <p><a href="https://docs.percona.com/percona-distribution-for-mysql/8.0/">Percona Distribution for MySQL 8.0</a> </p>
@@ -14881,7 +14885,7 @@ the AWS Amazon S3 API.</p>
 <p>The <a href="#xbcloud-binary-fifo-datasink">FIFO datasink</a> feature was implemented in Percona XtraBackup 8.0.33-28. With the <code>FIFO</code> data sink feature, users with a streaming capacity of 10Gbps (typically on a Local Area Network (LAN)) can benefit from faster backups by streaming data in parallel to object storage.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>To prevent intermittent backup failures, <a href="#update-curl-utility">update the curl utility in Debian 10</a>.</p>
+<p>To prevent intermittent backup failures, <a href="#update-curl-utility">update the curl utility</a>.</p>
 </div>
 <h2 id="xbcloud-binary-overview-supported-cloud-storage-types">Supported cloud storage types<a class="headerlink" href="#xbcloud-binary-overview-supported-cloud-storage-types" title="Permanent link">&para;</a></h2>
 <p>The following cloud storage types are supported:</p>
@@ -15656,37 +15660,99 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 --s3-bucket<span class="o">=</span><span class="s1">&#39;mysql_backups&#39;</span>
 --parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="k">$(</span>date<span class="w"> </span>-I<span class="k">)</span>-full_backup
-</code></pre></div></section></section><section class="print-page" id="update-curl-utility" heading-number="8.5.4"><h1 id="update-curl-utility-update-the-curl-utility-in-debian-10">Update the curl utility in Debian 10<a class="headerlink" href="#update-curl-utility-update-the-curl-utility-in-debian-10" title="Permanent link">&para;</a></h1>
-<p>The default curl version, 7.64.0, in Debian 10 has known issues when
-attempting to reuse an already closed connection. This issue directly
-affects <code>xbcloud</code> and users may see intermittent backup failures.</p>
-<p>For more details,
-see <a href="https://github.com/curl/curl/issues/3750">curl #3750</a>
-or <a href="https://github.com/curl/curl/pull/3763">curl #3763</a>.</p>
-<p>Follow these steps to upgrade curl to version 7.74.0:</p>
+</code></pre></div></section></section><section class="print-page" id="update-curl-utility" heading-number="8.5.4"><h1 id="update-curl-utility-dependency-compatibility-and-limitations">Dependency compatibility and limitations<a class="headerlink" href="#update-curl-utility-dependency-compatibility-and-limitations" title="Permanent link">&para;</a></h1>
+<p>xbcloud depends on several system libraries for correct operation. Some versions of these dependencies are known to cause unexpected terminations or
+unstable behavior and are therefore not supported.</p>
+<p>If you are experiencing unexpected terminations or intermittent failures, verify that your environment does not use any of the versions listed below.</p>
+<h2 id="update-curl-utility-libcurl">libcurl<a class="headerlink" href="#update-curl-utility-libcurl" title="Permanent link">&para;</a></h2>
+<p>Certain versions of <code>libcurl</code> are known to cause unexpected terminations or connection reuse issues in <code>xbcloud</code>. The following versions are not supported.</p>
+<h3 id="update-curl-utility-unsupported-versions">Unsupported versions<a class="headerlink" href="#update-curl-utility-unsupported-versions" title="Permanent link">&para;</a></h3>
+<p><code>libcurl 7.64.0</code> the default curl version in Debian 10</p>
+<ul>
+<li>
+<p>Known to mishandle reuse of closed connections</p>
+</li>
+<li>
+<p>May cause intermittent backup failures in <code>xbcloud</code></p>
+</li>
+</ul>
+<p>For more details, see <a href="https://github.com/curl/curl/issues/3750">curl #3750</a> or <a href="https://github.com/curl/curl/pull/3763">curl #3763</a>.</p>
+<p><code>libcurl versions ≥ 8.11.1 and &lt; 8.12.0</code></p>
+<ul>
+<li>
+<p>Affected by double close of an eventfd file descriptor, <a href="https://github.com/advisories/GHSA-cc57-hgv8-p56r">CVE-2025-0665</a></p>
+</li>
+<li>
+<p>May cause unexpected terminations when <code>xbcloud</code> uses <code>libcurl</code></p>
+</li>
+</ul>
+<h3 id="update-curl-utility-upgrade-or-downgrade-options">Upgrade or downgrade options<a class="headerlink" href="#update-curl-utility-upgrade-or-downgrade-options" title="Permanent link">&para;</a></h3>
+<p>You should always upgrade <code>xbcloud</code> to the latest version, as it includes fixes for all known issues and compatibility problems.</p>
+<p>If the installed <code>libcurl</code> version isnot supported, update it depending on the operating system and available repositories.</p>
+<ul>
+<li>
+<p>Recommended - Upgrade to libcurl <code>8.12.0 or later</code> if these versions are compatible with your operating system.</p>
+</li>
+<li>
+<p>If upgrading to the latest version <code>≥ 8.12.0</code> is not possible, downgrade to a supported version earlier than 8.11.1 to avoid the vulnerability associated with <a href="https://github.com/advisories/GHSA-cc57-hgv8-p56r">CVE-2025-0665</a>. Ensure that the downgrade is compatible with other system dependencies.</p>
+</li>
+</ul>
+<h3 id="update-curl-utility-check-the-installed-libcurl-version">Check the installed libcurl version<a class="headerlink" href="#update-curl-utility-check-the-installed-libcurl-version" title="Permanent link">&para;</a></h3>
+<p>To check the installed libcurl version, run:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--version
+</code></pre></div>
+<h3 id="update-curl-utility-upgrade-libcurl-recommended">Upgrade libcurl - Recommended<a class="headerlink" href="#update-curl-utility-upgrade-libcurl-recommended" title="Permanent link">&para;</a></h3>
+<p class="power-number">The following steps show how to update the libcurl to version 8.12.0 on Debian 12. Administrator privileges are necessary for installing packages and configuring system services.</p>
 <ol>
 <li>
 <p>Edit the <code>/etc/apt/sources.list</code> to add the following:</p>
-<div class="highlight"><pre><span></span><code>deb http://ftp.de.debian.org/debian buster-backports main
+<div class="highlight"><pre><span></span><code>deb http://deb.debian.org/debian bookworm-backports main
 </code></pre></div>
 </li>
 <li>
 <p>Refresh the <code>apt</code> sources:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
 </li>
 <li>
-<p>Install the version from <code>buster-backports</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl/buster-backports
+<p>Install the version from <code>bookworm-backports</code>:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-t<span class="w"> </span>bookworm-backports<span class="w"> </span>libcurl4<span class="w"> </span>curl
 </code></pre></div>
 </li>
 <li>
 <p>Verify the version number:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--version
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>curl 7.74.0 (x86_64-pc-linux-gnu) libcurl/7.74.0
+<div class="no-copy highlight"><pre><span></span><code>curl 8.12.0 (x86_64-pc-linux-gnu) libcurl/8.12.0
+</code></pre></div>
+</details>
+</li>
+</ol>
+<h3 id="update-curl-utility-downgrade-libcurl">Downgrade libcurl<a class="headerlink" href="#update-curl-utility-downgrade-libcurl" title="Permanent link">&para;</a></h3>
+<p class="power-number">The following steps show how to downgrade the libcurl to the default Debian 12 version 7.88.1. Administrator privileges are necessary for installing packages and configuring system services.</p>
+<ol>
+<li>
+<p>Update the package list:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</code></pre></div>
+</li>
+<li>
+<p>Reinstall the default system version of libcurl and curl:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>--reinstall<span class="w"> </span>libcurl4<span class="w"> </span>curl
+</code></pre></div>
+</li>
+<li>
+<p>Verify the version number:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--version
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>curl 7.88.1 (x86_64-pc-linux-gnu) libcurl/7.88.1 OpenSSL/3.0.9 zlib/1.2.13 libidn2/2.3.4 libssh/0.10.5
+Release-Date: 2023-08-02
+Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps mqtt pop3 pop3s rtsp smb smbs smtp smtps telnet tftp 
+Features: AsynchDNS IDN IPv6 Largefile NTLM NTLM_WB SSL libz TLS-SRP HTTP2 HSTS HTTPS-proxy Metalink
 </code></pre></div>
 </details>
 </li>
@@ -20338,12 +20404,12 @@ we will do our very best to be helpful.</p></section><section class="print-page"
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/percona-xtrabackup/8.0", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "/percona-xtrabackup/8.0", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
 
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="js/print-site.js"></script>
       
