@@ -89,6 +89,10 @@ Percona XtraDB Cluster.
 
 For more information, see [Percona XtraBackup 8.x and MySQL 8.0.20](https://www.percona.com/blog/2020/04/28/percona-xtrabackup-8-x-and-mysql-8-0-20/)
 
+!!! admonition "See also"
+
+    [Dependency compatibility and limitations](update-curl-utility.md)
+
 !!! admonition "Learn more about other Percona products"
 
     [Percona Distribution for MySQL 8.0](https://docs.percona.com/percona-distribution-for-mysql/8.0/) 
