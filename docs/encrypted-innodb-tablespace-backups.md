@@ -79,8 +79,7 @@ keyring used when the backup was taken and prepared.
 
 ## Use `keyring_vault` plugin
 
-Keyring vault plugin settings are
-described [here](https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin).
+How to use the keyring vault plugin is described [in this document](https://docs.percona.com/percona-server/8.0/using-keyring-plugin.html).
 
 ### Create a backup with the `keyring_vault` plugin
 
@@ -112,7 +111,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-vault-config=/etc/vault.cnf
 ```
 
-Review [using the keyring vault plugin](https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin) for a description of keyring vault plugin settings.
+How to use the keyring vault plugin is described [in this document](https://docs.percona.com/percona-server/8.0/using-keyring-plugin.html).
 
 After *xtrabackup* completes the action, the following message confirms
 the action:
@@ -336,17 +335,37 @@ $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
-The backup should be prepared with the keyring file and type that was used when backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup that you must use the keyring that was in use when the first incremental backup has been taken.
+!!! note
+   
+    If you have many InnoDB Data (IBD) files, speed up the prepare phase for incremental backups  by using the `--parallel` option. This option lets you process multiple delta files simultaneously. When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
+    
+    An example of the backup command using the `--parallel` option:
+    
+    ```shell
+    xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+    --incremental-dir=/data/backups/inc1 \
+    --keyring-file-data=/var/lib/mysql-keyring/keyring --parallel=4
+    ```
+
+Prepare the backup using the same keyring file and type that were used when the backup was created. If the keyring has changed or you upgraded from a plugin to a component between the base and incremental backup, use the keyring from when the first incremental backup was made. If the original keyring is missing or has changed, recover or replace it before restoring. If you cannot recover the keyring, restore from a backup that matches the most recent available keyring.
 
 Preparing the second incremental backup is a similar process: apply the
 deltas
-to the (modified) base backup, and you will roll its data forward in 
+to the (modified) base backup, and you will roll the base backup's data forward in 
 time to the point of the second incremental backup:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backups/base \
+```shell
+xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
+```
+
+You can also use the `--parallel` option here to speed up the process:
+
+```shell
+xtrabackup --prepare --target-dir=/data/backups/base \
+--incremental-dir=/data/backups/inc2 \
+--keyring-file-data=/var/lib/mysql-keyring/keyring --parallel=4
 ```
 Use `--apply-log-only` when merging all incremental backups except the last one. That’s why the previous line does not contain the `--apply-log-only` option. Even if the `--apply-log-only` was used on the last step, backup would still be consistent but in that case  server would perform the rollback phase.
 
@@ -391,8 +410,8 @@ The `--transition-key=<passphrase>` option should be used to make it possible fo
 The following example illustrates how the backup can be created in this
 case:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --user=root -p --target-dir=/data/backup \
+```shell
+xtrabackup --backup --user=root -p --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
 
@@ -404,8 +423,8 @@ xtrabackup scrapes `--transition-key` so that its value is not visible in the `p
 
 The same passphrase should be specified for the prepare command:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backup \
+```shell
+xtrabackup --prepare --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
 
@@ -417,16 +436,16 @@ because *xtrabackup* does not talk to the keyring in this case.
 
 When restoring a backup you will need to generate a new master key. Here is the example for `keyring_file` plugin or component:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
+```shell
+xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 --transition-key=MySecretKey --generate-new-master-key \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
 In case of `keyring_vault`, it will look like this:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
+```shell
+xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 --transition-key=MySecretKey --generate-new-master-key \
 --keyring-vault-config=/etc/vault.cnf
 ```
@@ -442,8 +461,8 @@ In this scenario, the three stages of the backup process look as follows.
 
 * Backup
 
-  ```{.bash data-prompt="$"}
-  $ xtrabackup --backup --user=root -p --target-dir=/data/backup \
+  ```shell
+  xtrabackup --backup --user=root -p --target-dir=/data/backup \
   --generate-transition-key
   ```
 
@@ -451,15 +470,15 @@ In this scenario, the three stages of the backup process look as follows.
 
     - `keyring_file` variant:
 
-      ```{.bash data-prompt="$"}
-      $ xtrabackup --prepare --target-dir=/data/backup \
+      ```shell
+      xtrabackup --prepare --target-dir=/data/backup \
       --keyring-file-data=/var/lib/mysql-keyring/keyring
       ```
 
     - `keyring_vault` variant:
 
-      ```{.bash data-prompt="$"}
-      $ xtrabackup --prepare --target-dir=/data/backup \
+      ```shell
+      xtrabackup --prepare --target-dir=/data/backup \
       --keyring-vault-config=/etc/vault.cnf
       ```
 
@@ -467,14 +486,14 @@ In this scenario, the three stages of the backup process look as follows.
 
   - `keyring_file` variant:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
+    ```shell
+    xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
     --generate-new-master-key --keyring-file-data=/var/lib/mysql-keyring/keyring
     ```
 
   - `keyring_vault` variant:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
+    ```shell
+    xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
     --generate-new-master-key --keyring-vault-config=/etc/vault.cnf
     ```

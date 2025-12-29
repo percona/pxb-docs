@@ -13,8 +13,8 @@ needing a local storage.
     ${PIPESTATUS[x]} array parameter returns the exit code for each 
     binary in the pipe string.
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
+    ```shell
+    xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
     ...
     $ ${PIPESTATUS[x]}
     0 0
@@ -85,8 +85,8 @@ In addition to OpenStack Object Storage (Swift), which has been the only option 
 
 The following sample command creates a full backup:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ --extra-lsndirk=/storage/backups/| xbcloud \
+```shell
+xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ --extra-lsndirk=/storage/backups/| xbcloud \
 put [options] full_backup
 ```
 
@@ -94,33 +94,33 @@ An incremental backup only includes the changes since the last backup. The last 
 
 The following sample command creates an incremental backup:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --incremental-basedir=/storage/backups \
+```shell
+xtrabackup --backup --stream=xbstream --incremental-basedir=/storage/backups \
 --target-dir=/storage/inc-backup | xbcloud  put [options] inc_backup
 ```
 
 To prepare an incremental backup, you must first download the full backup with the following command:
 
-```{.bash data-prompt="$"}
-$ xbcloud get [options] full_backup | xbstream -xv -C /tmp/full-backup
+```shell
+xbcloud get [options] full_backup | xbstream -xv -C /tmp/full-backup
 ```
 
 You must prepare the full backup:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --apply-log-only --target-dir=/tmp/full-backup
+```shell
+xtrabackup --prepare --apply-log-only --target-dir=/tmp/full-backup
 ```
 
 After the full backup has been prepared, download the incremental backup:
 
-```
+```shell
 xbcloud get [options] inc_backup | xbstream -xv -C /tmp/inc-backup
 ```
 
 The downloaded backup is prepared by running the following command:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/tmp/full-backup --incremental-dir=/tmp/inc-backup
+```shell
+xtrabackup --prepare --target-dir=/tmp/full-backup --incremental-dir=/tmp/inc-backup
 ```
 
 You do not need the full backup to restore only a specific database. You can specify only the tables to be restored:
@@ -191,14 +191,14 @@ three distinct parameters (–storage, –s3-bucket, and backup name per se).
     In this example s3 refers to a storage type, operator-testing 
     is a bucket name, and bak22 is the backup name. 
 
-    ```{.bash data-prompt="$"}
-    $ xbcloud get s3://operator-testing/bak22 ...
+    ```shell
+    xbcloud get s3://operator-testing/bak22 ...
     ```
     
     This shortcut expands as follows:
 
-    ```{.bash data-prompt="$"}
-    $ xbcloud get --storage=s3 --s3-bucket=operator-testing bak22 ...
+    ```shell
+    xbcloud get --storage=s3 --s3-bucket=operator-testing bak22 ...
     ```
 
 You can supply the mandatory parameters on the command line,
@@ -211,8 +211,8 @@ type. The `--md5` parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the `backup_name.md5`
 pattern.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream \
+```shell
+xtrabackup --backup --stream=xbstream \
 --parallel=8 2>backup.log | xbcloud put s3://operator-testing/bak22 \
 --parallel=8 --md5 2>upload.log
 ```
@@ -222,8 +222,8 @@ header with the server side encryption while specifying a customer key.
 
 An example of using the ``--header`` for AES256 encryption.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --parallel=4 | \
+```shell
+xtrabackup --backup --stream=xbstream --parallel=4 | \
 xbcloud put s3://operator-testing/bak-enc/ \
 --header="X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256" \
 --header="X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey=" \
@@ -239,8 +239,8 @@ permissions: `--header="x-amz-acl: bucket-owner-full-control`
 First, you need to make the full backup on which the incremental one is going to
 be based:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --extra-lsndir=/storage/backups/ \
+```shell
+xtrabackup --backup --stream=xbstream --extra-lsndir=/storage/backups/ \
 --target-dir=/storage/backups/ | xbcloud put \
 --storage=swift --swift-container=test_backup \
 --swift-auth-version=2.0 --swift-user=admin \
@@ -251,8 +251,8 @@ full_backup
 
 Then you can make the incremental backup:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --incremental-basedir=/storage/backups \
+```shell
+xtrabackup --backup --incremental-basedir=/storage/backups \
 --stream=xbstream --target-dir=/storage/inc_backup | xbcloud put \
 --storage=swift --swift-container=test_backup \
 --swift-auth-version=2.0 --swift-user=admin \
@@ -265,55 +265,70 @@ inc_backup
 
 To prepare a backup you first need to download the full backup:
 
-```{.bash data-prompt="$"}
-$ xbcloud get --swift-container=test_backup \
+```shell
+xbcloud get --swift-container=test_backup \
 --swift-auth-version=2.0 --swift-user=admin \
 --swift-tenant=admin --swift-password=xoxoxoxo \
 --swift-auth-url=http://127.0.0.1:35357/ --parallel=10 \
 full_backup | xbstream -xv -C /storage/downloaded_full
 ```
 
-Once you download the full backup it should be prepared:
+Once you download the full backup, the full backup should be prepared:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --apply-log-only --target-dir=/storage/downloaded_full
+```shell
+xtrabackup --prepare --apply-log-only --target-dir=/storage/downloaded_full
 ```
 
 After the full backup has been prepared you can download the incremental
 backup:
 
-```{.bash data-prompt="$"}
-$ xbcloud get --swift-container=test_backup \
+```shell
+xbcloud get --swift-container=test_backup \
 --swift-auth-version=2.0 --swift-user=admin \
 --swift-tenant=admin --swift-password=xoxoxoxo \
 --swift-auth-url=http://127.0.0.1:35357/ --parallel=10 \
 inc_backup | xbstream -xv -C /storage/downloaded_inc
 ```
 
-Once the incremental backup has been downloaded you can prepare it by running:
+Once the incremental backup has been downloaded, you can prepare the incremental backup by running:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --apply-log-only \
+```shell
+xtrabackup --prepare --apply-log-only \
 --target-dir=/storage/downloaded_full \
 --incremental-dir=/storage/downloaded_inc
-
-$ xtrabackup --prepare --target-dir=/storage/downloaded_full
 ```
+and 
+
+```shell
+xtrabackup --prepare --target-dir=/storage/downloaded_full
+```
+
+!!! note
+   
+    Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the `--parallel` option to process delta files concurrently. When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
+    
+    ```shell
+    xtrabackup --prepare --apply-log-only \
+    --target-dir=/storage/downloaded_full \
+    --incremental-dir=/storage/downloaded_inc --parallel=4
+
+    xtrabackup --prepare --target-dir=/storage/downloaded_full --parallel=4
+    ```
 
 ### Partial download of the cloud backup
 
 If you do not want to download the entire backup to restore the specific
 database you can specify only the tables you want to restore:
 
-```{.bash data-prompt="$"}
-$ xbcloud get --swift-container=test_backup
+```shell
+xbcloud get --swift-container=test_backup
 --swift-auth-version=2.0 --swift-user=admin \
 --swift-tenant=admin --swift-password=xoxoxoxo \
 --swift-auth-url=http://127.0.0.1:35357/ full_backup \
 ibdata1 sakila/payment.ibd \
 > /storage/partial/partial.xbs
 
-$ xbstream -xv -C /storage/partial < /storage/partial/partial.xbs
+xbstream -xv -C /storage/partial < /storage/partial/partial.xbs
 ```
 
 [xbcloud command line options]: xbcloud-options.md
