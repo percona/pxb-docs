@@ -105,11 +105,13 @@ same.
 $ cmake -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF ..
 ```
 
+<!--
 If you use [Pro builds](./pxb-pro.md), run the following command
 
 ```{.bash data-prompt="$"}
 $ cmake -DPROBUILD=1 -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF ..
 ```
+-->
 
 ### Parameter Information
 
