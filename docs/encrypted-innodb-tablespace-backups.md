@@ -80,7 +80,7 @@ keyring used when the backup was taken and prepared.
 ## Use `keyring_vault` plugin
 
 Keyring vault plugin settings are
-described [here](https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin).
+described [here](https://docs.percona.com/percona-server/8.0/using-keyring-plugin.html#using-keyring-plugin).
 
 ### Create a backup with the `keyring_vault` plugin
 
@@ -112,7 +112,7 @@ $ xtrabackup --prepare --target-dir=/data/backup \
 --keyring-vault-config=/etc/vault.cnf
 ```
 
-Review [using the keyring vault plugin](https://www.percona.com/doc/percona-server/LATEST/security/using-keyring-plugin.html#using-keyring-plugin) for a description of keyring vault plugin settings.
+Review [using the keyring vault plugin](https://docs.percona.com/percona-server/8.0/using-keyring-plugin.html#using-keyring-plugin) for a description of keyring vault plugin settings.
 
 After *xtrabackup* completes the action, the following message confirms
 the action:

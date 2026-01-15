@@ -18,25 +18,25 @@ This `arm64.deb` extension means Percona XtraBackup is now available for users o
 
 We recommend downloading Percona XtraBackup for the same platform as your MySQL-compatible server. For instance, if your server runs on an ARM64 platform, you should download and use the Percona XtraBackup with the `arm64.deb` extension for that operating system.
 
-This guide walks you through installing Percona XtraBackup 8.0 using DEB packages on Ubuntu-based systems.
+## Download and install DEB packages
+
+Download `DEB` packages of the desired series for your architecture from the [Percona Software Downloads](https://www.percona.com/downloads). If needed, [Percona Software Download instructions](download-instructions.md) are available. 
+
+This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.
+
+The following example downloads Percona XtraBackup 8.0 release package for Ubuntu 20.04. Run the following commands as root or use the sudo command.
 {.power-number}
 
-1. Download the DEB package
+1. Use `wget` to download the `DEB` package
 
-    On the [Percona Software Downloads](https://www.percona.com/downloads) website, find the Percona XtraBackup 8.0 package for your system. 
-
-    For example, for Ubuntu 20.04, this command downloads the appropriate package:
-
-    ```{.bash data-prompt="$"}
-    $ wget https://downloads.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0.26-18/binary/debian/focal/x86_64/percona-xtrabackup-80_8.0.26-18-1.focal_amd64.deb
+    ```bash
+    wget https://downloads.percona.com/downloads/Percona-XtraBackup-LATEST/Percona-XtraBackup-8.0.26-18/binary/debian/focal/x86_64/percona-xtrabackup-80_8.0.26-18-1.focal_amd64.deb
     ```
 
 2. Install the package
 
-    Use the dpkg command to install the downloaded package. You need root privileges for this:
-
-    ```{.bash data-prompt="$"}
-    $ sudo dpkg -i percona-xtrabackup-80_8.0.26-18-1.focal_amd64.deb
+    ```bash
+    sudo dpkg -i percona-xtrabackup-80_8.0.26-18-1.focal_amd64.deb
     ```
 
 ## Common dependencies for Percona XtraBackup
@@ -54,8 +54,8 @@ This guide walks you through installing Percona XtraBackup 8.0 using DEB package
 
 If there are missing dependencies, dpkg shows error messages. Install any missing packages with the following command:
 
-```{.bash data-prompt="$"}
-$ sudo apt-get install -f
+```bash
+sudo apt-get install -f
 ```
 
 Retry the Percona XtraBackup installation.
@@ -64,8 +64,8 @@ Retry the Percona XtraBackup installation.
 
 The following command returns the version information.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --version
+```bash
+xtrabackup --version
 ```
 
 ## Troubleshoot the installation
@@ -77,6 +77,4 @@ $ xtrabackup --version
 | Incompatible OS version        | Double-check your OS version matches the package requirements.              |
 | Conflicts with existing packages | Consider removing conflicting packages or use a separate environment.     |
 
-If you encounter persistent issues, consult the Percona XtraBackup documentation or reach out to their support forums for assistance.
-
-Remember, when installing packages manually, you're responsible for managing dependencies and potential conflicts. Always back up your data before making significant system changes.
+If you encounter persistent issues, consult the Percona XtraBackup documentation or [Get help from Percona](get-help.md).
