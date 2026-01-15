@@ -9,7 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Download RPM packages of the desired series for your architecture from the download page.">
+        <meta name="description" content="Download RPM packages of the desired series for your architecture from the Percona Software Downloads. If needed, Percona Software Download instructions are available.">
       
       
         <meta name="author" content="Percona LLC">
@@ -2769,6 +2769,8 @@
       
         
       
+        
+      
     
     
     
@@ -2880,6 +2882,34 @@
     
   
     Permissions needed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="download-instructions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona Software Download instructions
   
 
     
@@ -3271,6 +3301,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Downloaded RPM packages
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="yum-download-rpm.html" class="md-nav__link md-nav__link--active">
         
   
@@ -3287,6 +3335,60 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify the installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshoot-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshoot the installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -5538,6 +5640,47 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify the installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshoot-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshoot the installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                     </div>
                   </div>
@@ -5567,14 +5710,87 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
 <h1 id="install-percona-xtrabackup-84-using-downloaded-rpm-packages">Install Percona XtraBackup 8.4 using downloaded RPM packages<a class="headerlink" href="#install-percona-xtrabackup-84-using-downloaded-rpm-packages" title="Permanent link">&para;</a></h1>
-<p>Download <code>RPM</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads/">download page</a>. </p>
-<p>The following example downloads <em>Percona XtraBackup</em> 8.4.0-5 release package for <em>RHEL</em> 9:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-innovative-release/Percona-XtraBackup-8.4.0-5/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
+<p>Download <code>RPM</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads">Percona Software Downloads</a>. If needed, <a href="download-instructions.html">Percona Software Download instructions</a> are available. </p>
+<p>This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.</p>
+<p class="power-number">The following example downloads <em>Percona XtraBackup</em> 8.4.0-5 release packages for <em>RHEL</em> 9. Run the following commands as root or use the sudo command.</p>
+<ol>
+<li>
+<p>Use <code>wget</code> to download the <code>RPM</code> package:</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-5/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
 </code></pre></div>
+</li>
+<li>
 <p>Install Percona XtraBackup by running:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>localinstall<span class="w"> </span>percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>./percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
 </code></pre></div>
-<p>When installing packages manually like this, you’ll need to resolve all the dependencies and install missing packages yourself.</p>
+</li>
+</ol>
+<h2 id="common-dependencies">Common dependencies<a class="headerlink" href="#common-dependencies" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Library name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>libev</td>
+<td>A high-performance event-loop library used in asynchronous network applications.</td>
+</tr>
+<tr>
+<td>libgcrypt</td>
+<td>A general-purpose cryptographic library providing encryption, decryption, and hashing algorithms.</td>
+</tr>
+<tr>
+<td>openssl</td>
+<td>A robust library for implementing SSL/TLS encryption and cryptographic functions.</td>
+</tr>
+<tr>
+<td>zlib</td>
+<td>A compression library that supports data compression and decompression using the DEFLATE algorithm.</td>
+</tr>
+<tr>
+<td>libaio</td>
+<td>A library for asynchronous I/O operations, providing non-blocking I/O functionality.</td>
+</tr>
+</tbody>
+</table>
+<p>If dnf reports missing dependencies, it may offer to install them automatically. If not, you can install these dependencies manually using the following example.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>libev<span class="w"> </span>libgcrypt<span class="w"> </span>openssl<span class="w"> </span>zlib<span class="w"> </span>libaio
+</code></pre></div>
+<h2 id="verify-the-installation">Verify the installation<a class="headerlink" href="#verify-the-installation" title="Permanent link">&para;</a></h2>
+<p>After installation, verify it by checking the version:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
+</code></pre></div>
+<h2 id="troubleshoot-the-installation">Troubleshoot the installation<a class="headerlink" href="#troubleshoot-the-installation" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Permission denied</td>
+<td>Ensure you&rsquo;re using sudo or have root access for installation commands.</td>
+</tr>
+<tr>
+<td>Repository issues</td>
+<td>If packages are not found, check your yum repository configuration.</td>
+</tr>
+<tr>
+<td>Incompatible OS version</td>
+<td>Double-check your OS version matches the package requirements.</td>
+</tr>
+<tr>
+<td>Conflicts with existing packages</td>
+<td>Consider removing conflicting packages or use a separate environment.</td>
+</tr>
+</tbody>
+</table>
+<p>If you encounter persistent issues, consult the Percona XtraBackup documentation or <a href="get-help.html">Get help from Percona</a>.</p>
 
 
 
@@ -5597,7 +5813,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 19, 2024 15:12:50 UTC">December 19, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 15, 2026 17:52:37 UTC">January 15, 2026</span>
   </span>
 
     

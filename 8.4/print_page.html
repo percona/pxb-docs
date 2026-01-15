@@ -2769,6 +2769,8 @@
       
         
       
+        
+      
     
     
     
@@ -2880,6 +2882,34 @@
     
   
     Permissions needed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="download-instructions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona Software Download instructions
   
 
     
@@ -6369,6 +6399,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <span class="md-ellipsis">
       
         Permissions needed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Percona Software Download instructions
       
     </span>
   </a>
@@ -12328,7 +12369,30 @@ access. You should check them in that case.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
 <p><a href="#privileges">Connection and privileges needed</a></p>
-</div></section></section>
+</div></section><section class="print-page" id="download-instructions" heading-number="8.2.4"><h1 id="download-instructions-percona-software-download-instructions">Percona Software Download instructions<a class="headerlink" href="#download-instructions-percona-software-download-instructions" title="Permanent link">&para;</a></h1>
+<h2 id="download-instructions-select-the-software">Select the software<a class="headerlink" href="#download-instructions-select-the-software" title="Permanent link">&para;</a></h2>
+<p>Do the following steps to select the software:</p>
+<ol>
+<li>Open <a href="https://www.percona.com/downloads">Software Downloads</a></li>
+<li>Locate the Percona Software, for example, Percona XtraBackup</li>
+<li>In <code>Select Product</code>, select which product, for example, Percona XtraBackup 8.4</li>
+<li>In <code>Select Product Version</code>, select the version, for example, PERCONA-XTRABACKUP-8.4.0-5</li>
+<li>In <code>Select Platform</code>, select the operating system, for example, RED HAT ENTERPRISE LINUX / CENTOS/ ORACLE LINUX 9</li>
+</ol>
+<p>The easiest method is to download all packages.</p>
+<h2 id="download-instructions-download-to-a-local-computer">Download to a local computer<a class="headerlink" href="#download-instructions-download-to-a-local-computer" title="Permanent link">&para;</a></h2>
+<p>In <code>Package Download Options</code>, select a specific package or choose the <code>DOWNLOAD ALL PACKAGES</code> button. This action downloads the selected packages to the local computer.</p>
+<h2 id="download-instructions-download-to-another-computer">Download to another computer<a class="headerlink" href="#download-instructions-download-to-another-computer" title="Permanent link">&para;</a></h2>
+<p>In <code>Package Download Options</code>, you can do either of the following:</p>
+<ul>
+<li>
+<p>Select a specific package and right-click on the arrow next to <code>DOWNLOAD</code>, and in the drop-down menu, choose <code>Copy Link Address</code></p>
+</li>
+<li>
+<p>Select <code>DOWNLOAD ALL PACKAGES</code> and right-click on the arrow, and in the drop-down menu, choose <code>Copy Link Address</code></p>
+</li>
+</ul>
+<p>Paste the link in your terminal prompt to download the selected package.</p></section></section>
                     <section class='print-page md-section' id='section-8-3' heading-number='8.3'>
                         <h1>Use APT<a class='headerlink' href='#section-8-3' title='Permanent link'></a>
                         </h1>
@@ -12531,13 +12595,92 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
 </tr>
 </tbody>
 </table></section><section class="print-page" id="apt-download-deb" heading-number="8.3.3"><h1 id="apt-download-deb-install-using-downloaded-deb-packages">Install using downloaded DEB packages<a class="headerlink" href="#apt-download-deb-install-using-downloaded-deb-packages" title="Permanent link">&para;</a></h1>
-<p>Download <code>DEB</code> packages of the desired series for your architecture from <a href="https://www.percona.com/downloads">Percona Product Downloads</a>. This method requires you to resolve all dependencies and install any missing packages.</p>
-<p>The following example downloads Percona XtraBackup 8.4.0-5 release package for Ubuntu 20.04:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-innovative-release/Percona-XtraBackup-8.4.0-1/binary/debian/focal/x86_64/percona-xtrabackup-84_8.4.0-1-1.focal_amd64.deb
+<p>Download <code>DEB</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads">Percona Software Downloads</a>. If needed, <a href="#download-instructions">Percona Software Download instructions</a> are available. </p>
+<p>This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.</p>
+<p class="power-number">The following example downloads Percona XtraBackup 8.4.0-5 release package for Ubuntu 22.04. Run the following commands as root or use the sudo command.</p>
+<ol>
+<li>
+<p>Use <code>wget</code> to download the <code>DEB</code> package:</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-5/binary/debian/jammy/x86_64/percona-xtrabackup-84_8.4.0-5-1.jammy_amd64.deb
 </code></pre></div>
-<p>Install Percona XtraBackup by using <code>dpkg</code>. Run this command as root or use the sudo command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>percona-xtrabackup-84_8.4.0-1-1.focal_amd64.deb
-</code></pre></div></section><section class="print-page" id="apt-pinning" heading-number="8.3.4"><h1 id="apt-pinning-apt-pinning-packages">Apt pinning packages<a class="headerlink" href="#apt-pinning-apt-pinning-packages" title="Permanent link">&para;</a></h1>
+</li>
+<li>
+<p>Install Percona XtraBackup by using <code>dpkg</code>:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>percona-xtrabackup-84_8.4.0-5-1.jammy_amd64.deb
+</code></pre></div>
+</li>
+</ol>
+<h2 id="apt-download-deb-common-dependencies">Common dependencies<a class="headerlink" href="#apt-download-deb-common-dependencies" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Library Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>libmysqlclient</td>
+<td>A client library for MySQL, providing essential functions for connecting to and communicating with MySQL databases.</td>
+</tr>
+<tr>
+<td>libssl</td>
+<td>A cryptographic library used for implementing SSL/TLS encryption, necessary for secure data transmission.</td>
+</tr>
+<tr>
+<td>libcurl</td>
+<td>A library that enables data transfer via various protocols such as HTTP, FTP, and others, commonly used for handling web requests.</td>
+</tr>
+<tr>
+<td>libev</td>
+<td>A high-performance event-loop library, often used in network applications for handling asynchronous events efficiently.</td>
+</tr>
+<tr>
+<td>libgcrypt</td>
+<td>A general-purpose cryptographic library that provides encryption, decryption, and cryptographic hashing algorithms.</td>
+</tr>
+<tr>
+<td>zlib</td>
+<td>A compression library used for data compression and decompression, supporting the popular DEFLATE compression algorithm.</td>
+</tr>
+</tbody>
+</table>
+<p>If there are missing dependencies, <code>dpkg</code> shows error messages. Install any missing packages with the following command:</p>
+<p><div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-f
+</code></pre></div>
+Retry the Percona XtraBackup installation.</p>
+<h2 id="apt-download-deb-verify-the-installation">Verify the installation<a class="headerlink" href="#apt-download-deb-verify-the-installation" title="Permanent link">&para;</a></h2>
+<p>After installation, verify it by checking the version:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
+</code></pre></div>
+<h2 id="apt-download-deb-troubleshoot-the-installation">Troubleshoot the installation<a class="headerlink" href="#apt-download-deb-troubleshoot-the-installation" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Permission denied</td>
+<td>Ensure you&rsquo;re using sudo or have root access for installation commands.</td>
+</tr>
+<tr>
+<td>Repository issues</td>
+<td>If packages are not found, check your yum repository configuration.</td>
+</tr>
+<tr>
+<td>Incompatible OS version</td>
+<td>Double-check your OS version matches the package requirements.</td>
+</tr>
+<tr>
+<td>Conflicts with existing packages</td>
+<td>Consider removing conflicting packages or use a separate environment.</td>
+</tr>
+</tbody>
+</table>
+<p>If you encounter persistent issues, consult the Percona XtraBackup documentation or <a href="#get-help">Get help from Percona</a>.</p></section><section class="print-page" id="apt-pinning" heading-number="8.3.4"><h1 id="apt-pinning-apt-pinning-packages">Apt pinning packages<a class="headerlink" href="#apt-pinning-apt-pinning-packages" title="Permanent link">&para;</a></h1>
 <p>In some cases you might need to <code>pin</code> the selected packages to avoid the upgrades from the distribution repositories. </p>
 <p>The pinning takes place in the <code>preference</code> file. To pin a package, set the <code>Pin-Priority</code> to higher numbers.</p>
 <p>Make a new file <code>/etc/apt/preferences.d/00percona.pref</code>. For example, add the following to the preference file:</p>
@@ -12725,14 +12868,87 @@ zstd-1.5.1-2.el9.x86_64
 </tr>
 </tbody>
 </table></section><section class="print-page" id="yum-download-rpm" heading-number="8.4.3"><h1 id="yum-download-rpm-install-percona-xtrabackup-84-using-downloaded-rpm-packages">Install Percona XtraBackup 8.4 using downloaded RPM packages<a class="headerlink" href="#yum-download-rpm-install-percona-xtrabackup-84-using-downloaded-rpm-packages" title="Permanent link">&para;</a></h1>
-<p>Download <code>RPM</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads/">download page</a>. </p>
-<p>The following example downloads <em>Percona XtraBackup</em> 8.4.0-5 release package for <em>RHEL</em> 9:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-innovative-release/Percona-XtraBackup-8.4.0-5/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
+<p>Download <code>RPM</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads">Percona Software Downloads</a>. If needed, <a href="#download-instructions">Percona Software Download instructions</a> are available. </p>
+<p>This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.</p>
+<p class="power-number">The following example downloads <em>Percona XtraBackup</em> 8.4.0-5 release packages for <em>RHEL</em> 9. Run the following commands as root or use the sudo command.</p>
+<ol>
+<li>
+<p>Use <code>wget</code> to download the <code>RPM</code> package:</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-5/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
 </code></pre></div>
+</li>
+<li>
 <p>Install Percona XtraBackup by running:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>localinstall<span class="w"> </span>percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>./percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
 </code></pre></div>
-<p>When installing packages manually like this, you’ll need to resolve all the dependencies and install missing packages yourself.</p></section><section class="print-page" id="work-with-selinux" heading-number="8.4.4"><h1 id="work-with-selinux-work-with-selinux">Work with SELinux<a class="headerlink" href="#work-with-selinux-work-with-selinux" title="Permanent link">&para;</a></h1>
+</li>
+</ol>
+<h2 id="yum-download-rpm-common-dependencies">Common dependencies<a class="headerlink" href="#yum-download-rpm-common-dependencies" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Library name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>libev</td>
+<td>A high-performance event-loop library used in asynchronous network applications.</td>
+</tr>
+<tr>
+<td>libgcrypt</td>
+<td>A general-purpose cryptographic library providing encryption, decryption, and hashing algorithms.</td>
+</tr>
+<tr>
+<td>openssl</td>
+<td>A robust library for implementing SSL/TLS encryption and cryptographic functions.</td>
+</tr>
+<tr>
+<td>zlib</td>
+<td>A compression library that supports data compression and decompression using the DEFLATE algorithm.</td>
+</tr>
+<tr>
+<td>libaio</td>
+<td>A library for asynchronous I/O operations, providing non-blocking I/O functionality.</td>
+</tr>
+</tbody>
+</table>
+<p>If dnf reports missing dependencies, it may offer to install them automatically. If not, you can install these dependencies manually using the following example.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>libev<span class="w"> </span>libgcrypt<span class="w"> </span>openssl<span class="w"> </span>zlib<span class="w"> </span>libaio
+</code></pre></div>
+<h2 id="yum-download-rpm-verify-the-installation">Verify the installation<a class="headerlink" href="#yum-download-rpm-verify-the-installation" title="Permanent link">&para;</a></h2>
+<p>After installation, verify it by checking the version:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
+</code></pre></div>
+<h2 id="yum-download-rpm-troubleshoot-the-installation">Troubleshoot the installation<a class="headerlink" href="#yum-download-rpm-troubleshoot-the-installation" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Permission denied</td>
+<td>Ensure you&rsquo;re using sudo or have root access for installation commands.</td>
+</tr>
+<tr>
+<td>Repository issues</td>
+<td>If packages are not found, check your yum repository configuration.</td>
+</tr>
+<tr>
+<td>Incompatible OS version</td>
+<td>Double-check your OS version matches the package requirements.</td>
+</tr>
+<tr>
+<td>Conflicts with existing packages</td>
+<td>Consider removing conflicting packages or use a separate environment.</td>
+</tr>
+</tbody>
+</table>
+<p>If you encounter persistent issues, consult the Percona XtraBackup documentation or <a href="#get-help">Get help from Percona</a>.</p></section><section class="print-page" id="work-with-selinux" heading-number="8.4.4"><h1 id="work-with-selinux-work-with-selinux">Work with SELinux<a class="headerlink" href="#work-with-selinux-work-with-selinux" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup is installed as an unconfined process running in an undefined domain. SELinux allows unconfined processes almost all access and the processes only use Discretionary Access Control (DAC) rules.</p>
 <p>You find the current state of the Percona XtraBackup file with the following command:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-Z<span class="w"> </span>/usr/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>xtrabackup
@@ -13085,9 +13301,13 @@ need to remove the <code>-DWITH_MAN_PAGES=OFF</code> from the following command.
 </div>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cmake<span class="w"> </span>-DBUILD_CONFIG<span class="o">=</span>xtrabackup_release<span class="w"> </span>-DWITH_MAN_PAGES<span class="o">=</span>OFF<span class="w"> </span>..
 </code></pre></div>
-<p>If you use <a href="#pxb-pro.md">Pro builds</a>, run the following command</p>
+<!--
+If you use [Pro builds](./pxb-pro.md), run the following command
+
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cmake<span class="w"> </span>-DPROBUILD<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DBUILD_CONFIG<span class="o">=</span>xtrabackup_release<span class="w"> </span>-DWITH_MAN_PAGES<span class="o">=</span>OFF<span class="w"> </span>..
 </code></pre></div>
+-->
+
 <h3 id="compile-xtrabackup-parameter-information">Parameter Information<a class="headerlink" href="#compile-xtrabackup-parameter-information" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -15504,7 +15724,7 @@ confusion.</p>
 this Trademark Policy, please contact <a href="mailto:trademarks@percona.com">trademarks@percona.com</a> for assistance and
 we will do our very best to be helpful.</p></section><section class="print-page" id="copyright-and-licensing-information" heading-number="11.8"><h1 id="copyright-and-licensing-information-copyright-and-licensing-information">Copyright and licensing information<a class="headerlink" href="#copyright-and-licensing-information-copyright-and-licensing-information" title="Permanent link">&para;</a></h1>
 <h2 id="copyright-and-licensing-information-documentation-licensing">Documentation licensing<a class="headerlink" href="#copyright-and-licensing-information-documentation-licensing" title="Permanent link">&para;</a></h2>
-<p>Percona XtraBackup documentation is (C)2009-2023 Percona LLC and/or its affiliates and is distributed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p></section></section><section class="print-page" id="index-contents" heading-number="12"><h1 id="index-contents-index">Index<a class="headerlink" href="#index-contents-index" title="Permanent link">&para;</a></h1>
+<p>Percona XtraBackup documentation is (C)2009-2026 Percona LLC and/or its affiliates and is distributed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p></section></section><section class="print-page" id="index-contents" heading-number="12"><h1 id="index-contents-index">Index<a class="headerlink" href="#index-contents-index" title="Permanent link">&para;</a></h1>
 <ul>
 <li><a href="#about-xtrabackup">About Percona XtraBackup</a></li>
 <li><a href="#accelerate-backup-process">Accelerate the backup process</a></li>
@@ -15727,6 +15947,8 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 .print-site-enumerate-headings #privileges > h1:before { content: '8.2.2 ' }
 
 .print-site-enumerate-headings #permissions > h1:before { content: '8.2.3 ' }
+
+.print-site-enumerate-headings #download-instructions > h1:before { content: '8.2.4 ' }
 
 .print-site-enumerate-headings #section-8-3 > h1:before { content: '8.3 ' }
 .print-site-enumerate-headings #apt-repo > h1:before { content: '8.3.1 ' }
