@@ -759,9 +759,21 @@ The maximum number of file descriptors to reserve with [setrlimit]( https://man7
 
 Usage: `--parallel=#`
 
-This option specifies the number of threads to use to copy multiple data
-files concurrently when creating a backup. The default value is 1, there is no
-concurrent transfer. This option can be used with the `--copy-back` option to copy the user data files in parallel. The redo logs and system tablespaces are copied in the main thread.
+The `--parallel` option specifies the number of threads to use to copy multiple data
+files concurrently when creating a backup. The default value is 1 (that is, no
+concurrent transfer). In Percona XtraBackup 2.3.10 and newer, the `--parallel` option
+can be used with the `--copy-back` option to copy the user
+data files in parallel (redo logs and system tablespaces are copied in the
+main thread).
+
+
+Before Percona XtraBackup 8.4.0-3, the `--parallel` option didn't have any effect on the prepare phase.
+
+Starting with [Percona XtraBackup 8.4.0-3](release-notes/8.4.0-3.md), using `--parallel=X` has effect on the prepare phase. It will now use X threads to apply the changes from `.delta` files to the IBD files. This option processes multiple delta files simultaneously, improving storage performance and accelerating incremental backups, particularly with numerous InnoDB Data (IBD) files. The option remains effective even if IBD files are unchanged between backups and efficiently handles empty delta files.
+
+When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
+
+Note that each thread operates on a single file. If you have a large delta file, there is still only one thread that processes that `.delta` file. Parallelization occurs at the file level, not within individual files.
 
 ### password
 

@@ -199,16 +199,38 @@ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
 
-Prepare the second incremental backup (without [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only)):
+!!! note
+   
+    If you have many InnoDB Data (IBD) files, speed up the prepare phase for incremental backups  by using the `--parallel` option. This option lets you process multiple delta files simultaneously. When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
+    
+    An example of the backup command using the `--parallel` option:
+    
+    ```shell
+    xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+    --incremental-dir=/data/backups/inc1 --parallel=4
+    ```
 
-```bash
+Prepare the backup using the same keyring file and type that were used when the backup was created. If the keyring has changed or you upgraded from a plugin to a component between the base and incremental backup, use the keyring from when the first incremental backup was made. If the original keyring is missing or has changed, recover or replace it before restoring. If you cannot recover the keyring, restore from a backup that matches the most recent available keyring.
+
+Preparing the second incremental backup is a similar process: apply the deltas
+to the (modified) base backup, and you will roll the base backup's data forward in 
+time to the point of the second incremental backup:
+
+```shell
 xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2
 ```
 
+You can also use the `--parallel` option here to speed up the process:
+
+```shell
+xtrabackup --prepare --target-dir=/data/backups/base \
+--incremental-dir=/data/backups/inc2 --parallel=4
+```
+
 !!! note
 
-    Use [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only) when merging all incremental backups except the last one. Prepare the last incremental backup without [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only).
+    Use [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only) when merging all incremental backups except for the last one. This is why the previous command does not include the `--apply-log-only` option. If `--apply-log-only` is used on the last step, backup remains consistent but the server performs the rollback phase.
 
 #### Phase 3: Restore
 
