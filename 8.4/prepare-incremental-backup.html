@@ -9,20 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The --prepare step for incremental backups is not the same
-as for full backups. In full backups, two types of operations are performed
-to
-make the database consistent: committed transactions are replayed from the
-log
-file against the data files, and uncommitted transactions are rolled back.
-You
-must skip the rollback of uncommitted transactions when preparing an
-incremental backup, because transactions that were uncommitted at the time
-of
-your backup may be in progress, and it’s likely that they will be committed
-in
-the next incremental backup. You should use the
---apply-log-only option to prevent the rollback phase.">
+        <meta name="description" content="The --prepare step for incremental backups differs from full backups. For full backups, committed transactions are replayed from the log file to the data files, and uncommitted transactions are rolled back to ensure consistency. When preparing an incremental backup, you must skip the rollback of uncommitted transactions, as these may still be in progress and could be committed in a subsequent incremental backup. Use the --apply-log-only option when preparing the first full backup to prevent the rollback phase from occurring.">
       
       
         <meta name="author" content="Percona LLC">
@@ -5679,58 +5666,40 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
 <h1 id="prepare-an-incremental-backup">Prepare an incremental backup<a class="headerlink" href="#prepare-an-incremental-backup" title="Permanent link">&para;</a></h1>
-<p>The <code>--prepare</code> step for incremental backups is not the same
-as for full backups. In full backups, two types of operations are performed
-to
-make the database consistent: committed transactions are replayed from the
-log
-file against the data files, and uncommitted transactions are rolled back.
-You
-must skip the rollback of uncommitted transactions when preparing an
-incremental backup, because transactions that were uncommitted at the time
-of
-your backup may be in progress, and it’s likely that they will be committed
-in
-the next incremental backup. You should use the
-<code>--apply-log-only</code> option to prevent the rollback phase.</p>
+<p>The <code>--prepare</code> step for incremental backups differs from full backups. For full backups, committed transactions are replayed from the log file to the data files, and uncommitted transactions are rolled back to ensure consistency. When preparing an incremental backup, you must skip the rollback of uncommitted transactions, as these may still be in progress and could be committed in a subsequent incremental backup. Use the <code>--apply-log-only</code> option when preparing the first full backup to prevent the rollback phase from occurring.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If you do not use the <code>--apply-log-only</code> option to prevent the rollback phase, then your incremental backups will be useless. After transactions have been rolled back, further incremental backups cannot be applied.</p>
+<p>If you do not use the <code>--apply-log-only</code> option to prevent the rollback phase, then your incremental backups are unusable. After transactions have been rolled back, further incremental backups cannot be applied.</p>
 </div>
-<p>Beginning with the full backup you created, you can prepare it, and then
-apply
-the incremental differences to it. Recall that you have the following
-backups:</p>
+<p>Start by preparing the full backup, then apply the incremental differences to that backup.  </p>
+<p>For example, you could have the following backups:</p>
 <div class="highlight"><pre><span></span><code>/data/backups/base
 /data/backups/inc1
 /data/backups/inc2
 </code></pre></div>
 <p>To prepare the base backup, you need to run <code>--prepare</code> as
 usual, but prevent the rollback phase:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
 </code></pre></div>
-<p>The output should end with text similar to the following:</p>
+<p>The log sequence number should match the <code>to_lsn</code> of the base backup The output should end with text similar to the following:</p>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 1626007
 161011 12:41:04 completed OK!
 </code></pre></div>
 </details>
-<p>The log sequence number should match the <code>to_lsn</code> of the base backup, which
-you saw previously.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This backup is actually safe to restore as-is now, even though the rollback phase has been skipped. If you restore it and start MySQL, InnoDB will detect that the rollback phase was not performed, and it will do that in the background, as it usually does for a crash recovery upon start. It will notify you that the database was not shut down normally.</p>
+<p>This backup is actually safe to restore as-is now, even though the rollback phase has been skipped. If you restore the backup and start the server, InnoDB detects that the rollback phase was not performed, and completes the rollback in the background, as InnoDB usually does for a crash recovery. InnoDB notifies you that the database was not shut down normally.</p>
 </div>
 <p>To apply the first incremental backup to the full backup, run the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
-<p>This applies the delta files to the files in <code>/data/backups/base</code>, which
-rolls them forward in time to the time of the incremental backup. It then
-applies the redo log as usual to the result. The final data is in
-<code>/data/backups/base</code>, not in the incremental directory. You should see
-an output similar to:</p>
+<p>This command applies the delta files to the files in <code>/data/backups/base</code>, which
+rolls them forward in time to the time of the incremental backup. The redo log is then applied as usual. The final data is in
+<code>/data/backups/base</code>, not in the incremental directory.</p>
+<p>You should see an output similar to:</p>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>incremental backup from 1626007 is enabled.
@@ -5747,18 +5716,32 @@ Applying /tmp/backups/inc1/ibdata1.delta to ./ibdata1...
 <p>Again, the LSN should match what you saw from your earlier inspection of
 the first incremental backup. If you restore the files from
 <code>/data/backups/base</code>, you should see the state of the database as of the first incremental backup.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Percona XtraBackup does not support using the same incremental backup directory to prepare two copies of backup. Do not run <code>--prepare</code> with the same incremental backup directory (the value of –incremental-dir) more than once.</p>
+<h3 id="faster-prepare-step-with-parallel">Faster prepare step with &ndash;parallel<a class="headerlink" href="#faster-prepare-step-with-parallel" title="Permanent link">&para;</a></h3>
+<p>For incremental backups with many InnoDB Data (IBD) files, you can significantly reduce prepare time by using the <code>--parallel</code> option. The <code>--parallel</code> option enables the concurrent processing of multiple delta files, thereby maximizing storage bandwidth. The <code>--parallel</code> option is especially beneficial when there are many IBD files, even if the IBD files didn&rsquo;t change between backups, as empty delta files are processed quickly in parallel. </p>
+<div class="admonition note">
+<p class="admonition-title">Version history</p>
+<p>Before Percona XtraBackup 8.4.0-3, the <code>--parallel</code> option didn&rsquo;t have any effect on the prepare phase.</p>
+<p>Starting with Percona XtraBackup 8.4.0-3, using <code>--parallel=X</code> has effect on the prepare phase. It will now use X threads to apply the changes from <code>.delta</code> files to the IBD files. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
+<p>Note that each thread operates on a single file. If you have a large delta file, there is still only one thread that processes that <code>.delta</code> file. Parallelization occurs at the file level, not within individual files.</p>
 </div>
+<p>An example command with the <code>--parallel</code> option:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc1
+</code></pre></div>
+<h3 id="prepare-a-second-incremental-backup">Prepare a second incremental backup<a class="headerlink" href="#prepare-a-second-incremental-backup" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup does not support using the same incremental backup directory to prepare two copies of backup. Do not run <code>--prepare</code> with the same incremental backup directory (the value of –incremental-dir) more than once.</p>
 <p>Preparing the second incremental backup is a similar process: apply the deltas
-to the (modified) base backup, and you will roll its data forward in time to the point of the second incremental backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+to the (modified) base backup, and you will roll the base backup&rsquo;s data forward in time to the point of the second incremental backup:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc2
+</code></pre></div>
+<p>You can also use the <code>--parallel</code> option here to speed up the process:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code>--apply-log-only</code> should be used when merging the incremental backups except the last one. That’s why the previous line does not contain the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> was used on the last step, backup would still be consistent but in that case server would perform the rollback phase.</p>
+<p>Use <code>--apply-log-only</code> when merging the incremental backups except for the last one. This is why the previous command does not include the <code>--apply-log-only</code> option. If <code>--apply-log-only</code> is used on the last step, backup remains consistent but the server performs the rollback phase.</p>
 </div>
 <h2 id="next-step">Next step<a class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="restore-a-backup.html">Restore the backup</a></p>
@@ -5784,7 +5767,7 @@ to the (modified) base backup, and you will roll its data forward in time to the
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 23, 2025 15:45:43 UTC">July 23, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 20, 2026 16:23:31 UTC">January 20, 2026</span>
   </span>
 
     
@@ -5799,6 +5782,39 @@ to the (modified) base backup, and you will roll its data forward in time to the
 
     
     
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
+          
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
     
   </aside>
 

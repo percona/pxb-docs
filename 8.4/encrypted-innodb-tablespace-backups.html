@@ -5887,13 +5887,28 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
-<p>Prepare the second incremental backup (without <a href="xtrabackup-option-reference.html#apply-log-only"><code>--apply-log-only</code></a>):</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have many InnoDB Data (IBD) files, speed up the prepare phase for incremental backups  by using the <code>--parallel</code> option. This option lets you process multiple delta files simultaneously. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
+<p>An example of the backup command using the <code>--parallel</code> option:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+</div>
+<p>Prepare the backup using the same keyring file and type that were used when the backup was created. If the keyring has changed or you upgraded from a plugin to a component between the base and incremental backup, use the keyring from when the first incremental backup was made. If the original keyring is missing or has changed, recover or replace it before restoring. If you cannot recover the keyring, restore from a backup that matches the most recent available keyring.</p>
+<p>Preparing the second incremental backup is a similar process: apply the deltas
+to the (modified) base backup, and you will roll the base backup&rsquo;s data forward in 
+time to the point of the second incremental backup:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
+<p>You can also use the <code>--parallel</code> option here to speed up the process:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Use <a href="xtrabackup-option-reference.html#apply-log-only"><code>--apply-log-only</code></a> when merging all incremental backups except the last one. Prepare the last incremental backup without <a href="xtrabackup-option-reference.html#apply-log-only"><code>--apply-log-only</code></a>.</p>
+<p>Use <a href="xtrabackup-option-reference.html#apply-log-only"><code>--apply-log-only</code></a> when merging all incremental backups except for the last one. This is why the previous command does not include the <code>--apply-log-only</code> option. If <code>--apply-log-only</code> is used on the last step, backup remains consistent but the server performs the rollback phase.</p>
 </div>
 <h4 id="phase-3-restore_1">Phase 3: Restore<a class="headerlink" href="#phase-3-restore_1" title="Permanent link">&para;</a></h4>
 <p>After you prepare the incremental backups, restore them using <a href="xtrabackup-option-reference.html#copy-back"><code>--copy-back</code></a> or <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>. If you use <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>, run <code>--prepare</code> again after moving the files. In both cases, provide the same keyring configuration file:</p>
@@ -6003,7 +6018,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 17, 2025 13:29:56 UTC">December 17, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 20, 2026 16:23:31 UTC">January 20, 2026</span>
   </span>
 
     
