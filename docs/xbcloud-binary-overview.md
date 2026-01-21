@@ -67,8 +67,8 @@ This section shows common xbcloud usage patterns. All examples use Amazon S3 for
 
 A full backup captures the entire database at a point in time. The following command creates a full backup and uploads it to S3:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --target-dir=/tmp/backup | \
+```shell
+xtrabackup --backup --stream=xbstream --target-dir=/tmp/backup | \
 xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 full_backup_$(date +%Y%m%d)
 ```
 
@@ -81,8 +81,8 @@ This command:
 
 An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --incremental-basedir=/tmp/backup \
+```shell
+xtrabackup --backup --stream=xbstream --incremental-basedir=/tmp/backup \
 --target-dir=/tmp/inc-backup | \
 xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 inc_backup_$(date +%Y%m%d_%H%M)
 ```
@@ -91,26 +91,26 @@ xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 inc_backup
 
 To restore a backup, download it from cloud storage and prepare it:
 
-```{.bash data-prompt="$"}
+```shell
 # Download the backup
-$ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 full_backup_20240101 | \
+xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 full_backup_20240101 | \
 xbstream -xv -C /tmp/restore
 
 # Prepare the backup for use
-$ xtrabackup --prepare --target-dir=/tmp/restore
+xtrabackup --prepare --target-dir=/tmp/restore
 ```
 
 ### Partial restore
 
 You can restore specific tables without downloading the entire backup:
 
-```{.bash data-prompt="$"}
+```shell
 # Download only specific tables
-$ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
+xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 full_backup_20240101 ibdata1 sakila/payment.ibd > /tmp/partial.xbs
 
 # Extract the partial backup
-$ xbstream -xv -C /tmp/partial < /tmp/partial.xbs
+xbstream -xv -C /tmp/partial < /tmp/partial.xbs
 ```
 
 !!! note
@@ -120,18 +120,18 @@ $ xbstream -xv -C /tmp/partial < /tmp/partial.xbs
     ${PIPESTATUS[x]} array parameter returns the exit code for each 
     binary in the pipe string.
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
+    ```shell
+    xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
     ...
-    $ ${PIPESTATUS[x]}
+    ${PIPESTATUS[x]}
     0 0
-    $ true | false
-    $ echo $?
+    true | false
+    echo $?
     1
     
     # with PIPESTATUS
-    $ true | false
-    $ echo ${PIPESTATUS[0]} ${PIPESTATUS[1]}
+    true | false
+    echo ${PIPESTATUS[0]} ${PIPESTATUS[1]}
     0 1
     ```
 
@@ -261,14 +261,14 @@ three distinct parameters (–storage, –s3-bucket, and backup name per se).
     In this example s3 refers to a storage type, operator-testing 
     is a bucket name, and bak22 is the backup name. 
 
-    ```{.bash data-prompt="$"}
-    $ xbcloud get s3://operator-testing/bak22 ...
+    ```shell
+    xbcloud get s3://operator-testing/bak22 ...
     ```
     
     This shortcut expands as follows:
 
-    ```{.bash data-prompt="$"}
-    $ xbcloud get --storage=s3 --s3-bucket=operator-testing bak22 ...
+    ```shell
+    xbcloud get --storage=s3 --s3-bucket=operator-testing bak22 ...
     ```
 
 You can supply the mandatory parameters on the command line,
@@ -281,8 +281,8 @@ type. The `--md5` parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the `backup_name.md5`
 pattern.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream \
+```shell
+xtrabackup --backup --stream=xbstream \
 --parallel=8 2>backup.log | xbcloud put s3://operator-testing/bak22 \
 --parallel=8 --md5 2>upload.log
 ```
@@ -292,8 +292,8 @@ header with the server side encryption while specifying a customer key.
 
 An example of using the ``--header`` for AES256 encryption.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --parallel=4 | \
+```shell
+xtrabackup --backup --stream=xbstream --parallel=4 | \
 xbcloud put s3://operator-testing/bak-enc/ \
 --header="X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256" \
 --header="X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey=" \
@@ -312,16 +312,16 @@ Incremental backups capture only changes since the last backup, making them fast
 
 #### Step 1: Create the base full backup
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --target-dir=/tmp/base | \
+```shell
+xtrabackup --backup --stream=xbstream --target-dir=/tmp/base | \
 xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 full_backup_20240101
 ```
 
 #### Step 2: Create incremental backups
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --incremental-basedir=/tmp/base \
+```shell
+xtrabackup --backup --stream=xbstream --incremental-basedir=/tmp/base \
 --target-dir=/tmp/inc1 | \
 xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 inc_backup_20240101_1200
@@ -331,35 +331,47 @@ inc_backup_20240101_1200
 
 To restore from incremental backups, you must download and prepare them in sequence:
 
-```{.bash data-prompt="$"}
+```shell
 # Download and prepare the full backup
-$ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
+xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 full_backup_20240101 | xbstream -xv -C /tmp/restore
 
-$ xtrabackup --prepare --apply-log-only --target-dir=/tmp/restore
+xtrabackup --prepare --apply-log-only --target-dir=/tmp/restore
 
 # Download and apply the incremental backup
-$ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
+xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 inc_backup_20240101_1200 | xbstream -xv -C /tmp/inc1
 
-$ xtrabackup --prepare --apply-log-only --target-dir=/tmp/restore \
+xtrabackup --prepare --apply-log-only --target-dir=/tmp/restore \
 --incremental-dir=/tmp/inc1
 
 # Final prepare step
-$ xtrabackup --prepare --target-dir=/tmp/restore
+xtrabackup --prepare --target-dir=/tmp/restore
 ```
+
+!!! note
+   
+    Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the `--parallel` option to process delta files concurrently. When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
+    
+    ```shell
+    xtrabackup --prepare --apply-log-only \
+    --target-dir=/tmp/restore \
+    --incremental-dir=/tmp/inc1 --parallel=4
+
+    xtrabackup --prepare --target-dir=/tmp/restore --parallel=4
+    ```
 
 ### Partial restore
 
 You can restore specific tables without downloading the entire backup:
 
-```{.bash data-prompt="$"}
+```shell
 # Download only specific tables
-$ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
+xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 full_backup_20240101 ibdata1 sakila/payment.ibd > /tmp/partial.xbs
 
 # Extract the partial backup
-$ xbstream -xv -C /tmp/partial < /tmp/partial.xbs
+xbstream -xv -C /tmp/partial < /tmp/partial.xbs
 ```
 
 ## Next steps
