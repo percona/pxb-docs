@@ -23,8 +23,8 @@ If the data is stored on a single file, this option will have no effect.
 
 To use this feature, simply add the option to a local backup, for example:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --parallel=4 --target-dir=/path/to/backup
+```shell
+xtrabackup --backup --parallel=4 --target-dir=/path/to/backup
 ```
 
 By using the *xbstream* in streaming backups, you can additionally speed up the
@@ -34,8 +34,8 @@ compression. The default value for this option is 1.
 
 To use this feature, simply add the option to a local backup, for example:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --compress --compress-threads=4 --target-dir=./ > backup.xbstream
+```shell
+xtrabackup --backup --stream=xbstream --compress --compress-threads=4 --target-dir=./ > backup.xbstream
 ```
 
 Before applying logs, compressed files will need to be uncompressed.
