@@ -126,7 +126,7 @@ xtrabackup --prepare --target-dir=/tmp/full-backup --incremental-dir=/tmp/inc-ba
 You do not need the full backup to restore only a specific database. You can specify only the tables to be restored:
 
 ```shell
-xbcloud get [options] ibdata1 sakila/payment.ibd /tmp/partial/partial.xbs
+xbcloud get [options] ibdata1 sakila/payment.ibd > /tmp/partial.xbs
 ```
 An example of the code: 
 
