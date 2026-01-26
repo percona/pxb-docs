@@ -7062,7 +7062,7 @@ needing a local storage.</p>
 from the last binary. If you use pipes, the
 ${PIPESTATUS[x]} array parameter returns the exit code for each 
 binary in the pipe string.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup
 ...
 $<span class="w"> </span><span class="si">${</span><span class="nv">PIPESTATUS</span><span class="p">[x]</span><span class="si">}</span>
 <span class="m">0</span><span class="w"> </span><span class="m">0</span>
@@ -7123,25 +7123,25 @@ the AWS Amazon S3 API.</p>
 </div>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>The following sample command creates a full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span>--extra-lsndirk<span class="o">=</span>/storage/backups/<span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span>--extra-lsndirk<span class="o">=</span>/storage/backups/<span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span><span class="se">\</span>
 put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup
 </code></pre></div>
 <p>An incremental backup only includes the changes since the last backup. The last backup can be either a full or incremental backup.</p>
 <p>The following sample command creates an incremental backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/storage/backups<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/storage/backups<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/storage/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w">  </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>inc_backup
 </code></pre></div>
 <p>To prepare an incremental backup, you must first download the full backup with the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/full-backup
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/full-backup
 </code></pre></div>
 <p>You must prepare the full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup
 </code></pre></div>
 <p>After the full backup has been prepared, download the incremental backup:</p>
-<div class="highlight"><pre><span></span><code>xbcloud get [options] inc_backup | xbstream -xv -C /tmp/inc-backup
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>inc_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/inc-backup
 </code></pre></div>
 <p>The downloaded backup is prepared by running the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup<span class="w"> </span>--incremental-dir<span class="o">=</span>/tmp/inc-backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup<span class="w"> </span>--incremental-dir<span class="o">=</span>/tmp/inc-backup
 </code></pre></div>
 <p>You do not need the full backup to restore only a specific database. You can specify only the tables to be restored:</p>
 <p><div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>ibdata1<span class="w"> </span>sakila/payment.ibd<span class="w"> </span>&gt;<span class="w"> </span>/tmp/partial.xbs
@@ -7200,10 +7200,10 @@ three distinct parameters (–storage, –s3-bucket, and backup name per se).</p
 <p>Use the following format: <code>storage-type://bucket-name/backup-name</code></p>
 <p>In this example s3 refers to a storage type, operator-testing 
 is a bucket name, and bak22 is the backup name. </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span>...
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span>...
 </code></pre></div>
 <p>This shortcut expands as follows:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>operator-testing<span class="w"> </span>bak22<span class="w"> </span>...
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>operator-testing<span class="w"> </span>bak22<span class="w"> </span>...
 </code></pre></div>
 </div>
 <p>You can supply the mandatory parameters on the command line,
@@ -7213,14 +7213,14 @@ configuration files, and in environment variables.</p>
 type. The <code>--md5</code> parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the <code>backup_name.md5</code>
 pattern.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="m">2</span>&gt;backup.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span><span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">8</span><span class="w"> </span>--md5<span class="w"> </span><span class="m">2</span>&gt;upload.log
 </code></pre></div>
 <p>You may use the <code>--header</code> parameter to pass an additional HTTP
 header with the server side encryption while specifying a customer key.</p>
 <p>An example of using the <code>--header</code> for AES256 encryption.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>s3://operator-testing/bak-enc/<span class="w"> </span><span class="se">\</span>
 --header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256&quot;</span><span class="w"> </span><span class="se">\</span>
 --header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey=&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -7232,7 +7232,7 @@ permissions: <code>--header="x-amz-acl: bucket-owner-full-control</code></p>
 <h2 id="incremental-backups">Incremental backups<a class="headerlink" href="#incremental-backups" title="Permanent link">&para;</a></h2>
 <p>First, you need to make the full backup on which the incremental one is going to
 be based:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="se">\</span>
 --storage<span class="o">=</span>swift<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
 --swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
@@ -7241,7 +7241,7 @@ be based:</p>
 full_backup
 </code></pre></div>
 <p>Then you can make the incremental backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--incremental-basedir<span class="o">=</span>/storage/backups<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--incremental-basedir<span class="o">=</span>/storage/backups<span class="w"> </span><span class="se">\</span>
 --stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/inc_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="se">\</span>
 --storage<span class="o">=</span>swift<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
 --swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
@@ -7251,41 +7251,52 @@ inc_backup
 </code></pre></div>
 <h3 id="preparing-incremental-backups">Preparing incremental backups<a class="headerlink" href="#preparing-incremental-backups" title="Permanent link">&para;</a></h3>
 <p>To prepare a backup you first need to download the full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
 --swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
 --swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
 --swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/downloaded_full
 </code></pre></div>
-<p>Once you download the full backup it should be prepared:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full
+<p>Once you download the full backup, the full backup should be prepared:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full
 </code></pre></div>
 <p>After the full backup has been prepared you can download the incremental
 backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
 --swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
 --swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
 --swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 inc_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/downloaded_inc
 </code></pre></div>
-<p>Once the incremental backup has been downloaded you can prepare it by running:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
+<p>Once the incremental backup has been downloaded, you can prepare the incremental backup by running:</p>
+<p><div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/storage/downloaded_full<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/storage/downloaded_inc
-
-$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full
 </code></pre></div>
+and </p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the <code>--parallel</code> option to process delta files concurrently. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/storage/downloaded_full<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/storage/downloaded_inc<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+</div>
 <h3 id="partial-download-of-the-cloud-backup">Partial download of the cloud backup<a class="headerlink" href="#partial-download-of-the-cloud-backup" title="Permanent link">&para;</a></h3>
 <p>If you do not want to download the entire backup to restore the specific
 database you can specify only the tables you want to restore:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup
 --swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
 --swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
 --swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>full_backup<span class="w"> </span><span class="se">\</span>
 ibdata1<span class="w"> </span>sakila/payment.ibd<span class="w"> </span><span class="se">\</span>
 &gt;<span class="w"> </span>/storage/partial/partial.xbs
 
-$<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/partial<span class="w"> </span>&lt;<span class="w"> </span>/storage/partial/partial.xbs
+xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/partial<span class="w"> </span>&lt;<span class="w"> </span>/storage/partial/partial.xbs
 </code></pre></div>
 
 
@@ -7309,7 +7320,7 @@ $<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </s
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 8, 2026 11:23:38 UTC">January 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 26, 2026 14:27:17 UTC">January 26, 2026</span>
   </span>
 
     

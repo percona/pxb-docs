@@ -9306,7 +9306,7 @@ Percona XtraDB Cluster.</p>
 <h2 id="release-notes-8.0-8.0.35-33.0-improvements">Improvements<a class="headerlink" href="#release-notes-8.0-8.0.35-33.0-improvements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><a href="https://perconadev.atlassian.net/browse/PXB-3427">PXB-3427</a>: Percona XtraBackup now prepares incremental backups faster. The <code>--prepare</code> command directly applies the <code>.delta</code> files. To speed up this process, use the <code>--parallel=X</code> option, replacing <code>X</code> with the number of threads you want to use simultaneously. This option applies the delta files concurrently.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3427">PXB-3427</a>: Percona XtraBackup now prepares incremental backups faster. The <code>--prepare</code> command directly applies the <code>.delta</code> files. To speed up this process, use the <a href="#xtrabackup-option-reference-parallel"><code>--parallel=X</code></a> option, replacing <code>X</code> with the number of threads you want to use simultaneously. This option applies the delta files concurrently. For more information, see <a href="#prepare-incremental-backup-faster-prepare-step-with---parallel">Prepare an incremental backup</a>.</p>
 </li>
 <li>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3199">PXB-3199</a>: The <code>xbcloud put</code> operations were updated to include support for <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">ObjectLock-enabled AWS S3 buckets</a> (Thanks to volver for contributing the fix for this issue.).</p>
@@ -12185,14 +12185,14 @@ should consider tuning the filesystem also to obtain the maximum performance
 (e.g. checking fragmentation).</p>
 <p>If the data is stored on a single file, this option will have no effect.</p>
 <p>To use this feature, simply add the option to a local backup, for example:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
 </code></pre></div>
 <p>By using the <em>xbstream</em> in streaming backups, you can additionally speed up the
 compression process with the <code>--compress-threads</code> option. This option
 specifies the number of threads created by <em>xtrabackup</em> for for parallel data
 compression. The default value for this option is 1.</p>
 <p>To use this feature, simply add the option to a local backup, for example:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--compress<span class="w"> </span>--compress-threads<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>./<span class="w"> </span>&gt;<span class="w"> </span>backup.xbstream
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--compress<span class="w"> </span>--compress-threads<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>./<span class="w"> </span>&gt;<span class="w"> </span>backup.xbstream
 </code></pre></div>
 <p>Before applying logs, compressed files will need to be uncompressed.</p>
 <h3 id="accelerate-backup-process-the-rsync-option">The <code>--rsync</code> option<a class="headerlink" href="#accelerate-backup-process-the-rsync-option" title="Permanent link">&para;</a></h3>
@@ -12389,8 +12389,7 @@ the action:</p>
 option. In case the keyring has been rotated, you must restore the
 keyring used when the backup was taken and prepared.</p>
 <h2 id="encrypted-innodb-tablespace-backups-use-keyring_vault-plugin">Use <code>keyring_vault</code> plugin<a class="headerlink" href="#encrypted-innodb-tablespace-backups-use-keyring_vault-plugin" title="Permanent link">&para;</a></h2>
-<p>Keyring vault plugin settings are
-described <a href="https://docs.percona.com/percona-server/8.0/using-keyring-plugin.html#using-keyring-plugin">here</a>.</p>
+<p>How to use the keyring vault plugin is described <a href="https://docs.percona.com/percona-server/8.0/using-keyring-plugin.html">in this document</a>.</p>
 <h3 id="encrypted-innodb-tablespace-backups-create-a-backup-with-the-keyring_vault-plugin">Create a backup with the <code>keyring_vault</code> plugin<a class="headerlink" href="#encrypted-innodb-tablespace-backups-create-a-backup-with-the-keyring_vault-plugin" title="Permanent link">&para;</a></h3>
 <p>The following command creates a backup in the <code>/data/backup</code> directory:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--user<span class="o">=</span>root
@@ -12411,7 +12410,7 @@ command line:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
-<p>Review <a href="https://docs.percona.com/percona-server/8.0/using-keyring-plugin.html#using-keyring-plugin">using the keyring vault plugin</a> for a description of keyring vault plugin settings.</p>
+<p>How to use the keyring vault plugin is described <a href="https://docs.percona.com/percona-server/8.0/using-keyring-plugin.html">in this document</a>.</p>
 <p>After <em>xtrabackup</em> completes the action, the following message confirms
 the action:</p>
 <details class="example">
@@ -12574,14 +12573,28 @@ the following command:</p>
 --incremental-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
-<p>The backup should be prepared with the keyring file and type that was used when backup was being taken. This means that if the keyring has been rotated, or you have upgraded from a plugin to a component between the base and incremental backup that you must use the keyring that was in use when the first incremental backup has been taken.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have many InnoDB Data (IBD) files, speed up the prepare phase for incremental backups  by using the <code>--parallel</code> option. This option lets you process multiple delta files simultaneously. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
+<p>An example of the backup command using the <code>--parallel</code> option:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
+--keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+</div>
+<p>Prepare the backup using the same keyring file and type that were used when the backup was created. If the keyring has changed or you upgraded from a plugin to a component between the base and incremental backup, use the keyring from when the first incremental backup was made. If the original keyring is missing or has changed, recover or replace it before restoring. If you cannot recover the keyring, restore from a backup that matches the most recent available keyring.</p>
 <p>Preparing the second incremental backup is a similar process: apply the
 deltas
-to the (modified) base backup, and you will roll its data forward in 
+to the (modified) base backup, and you will roll the base backup&rsquo;s data forward in 
 time to the point of the second incremental backup:</p>
-<p><div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
+</code></pre></div>
+<p>You can also use the <code>--parallel</code> option here to speed up the process:</p>
+<p><div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
+--keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 </code></pre></div>
 Use <code>--apply-log-only</code> when merging all incremental backups except the last one. That’s why the previous line does not contain the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> was used on the last step, backup would still be consistent but in that case  server would perform the rollback phase.</p>
 <p>The backup is now prepared and can be restored with <code>--copy-back</code> option.
@@ -12621,14 +12634,14 @@ purged, or, in the case of a malfunction, when the keyring vault server is not a
 <h3 id="encrypted-innodb-tablespace-backups-create-a-backup-with-a-passphrase">Create a backup with a passphrase<a class="headerlink" href="#encrypted-innodb-tablespace-backups-create-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The following example illustrates how the backup can be created in this
 case:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey
 </code></pre></div>
 <p>If <code>--transition-key</code> is specified without a value, <em>xtrabackup</em> will ask for it.</p>
 <p>xtrabackup scrapes <code>--transition-key</code> so that its value is not visible in the <code>ps</code> command output.</p>
 <h3 id="encrypted-innodb-tablespace-backups-prepare-a-backup-with-a-passphrase">Prepare a backup with a passphrase<a class="headerlink" href="#encrypted-innodb-tablespace-backups-prepare-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h3>
 <p>The same passphrase should be specified for the prepare command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey
 </code></pre></div>
 <p>There are no <code>--keyring-vault...</code>,``–keyring-file…``,
@@ -12636,12 +12649,12 @@ or <code>--component-keyring-file-config</code> options here,
 because <em>xtrabackup</em> does not talk to the keyring in this case.</p>
 <h3 id="encrypted-innodb-tablespace-backups-restore-a-backup-with-a-generated-key">Restore a backup with a generated key<a class="headerlink" href="#encrypted-innodb-tablespace-backups-restore-a-backup-with-a-generated-key" title="Permanent link">&para;</a></h3>
 <p>When restoring a backup you will need to generate a new master key. Here is the example for <code>keyring_file</code> plugin or component:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey<span class="w"> </span>--generate-new-master-key<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>In case of <code>keyring_vault</code>, it will look like this:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey<span class="w"> </span>--generate-new-master-key<span class="w"> </span><span class="se">\</span>
 --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
@@ -12653,7 +12666,7 @@ vault server and re-encrypt the tablespace keys using this key.</p>
 <ul>
 <li>Backup</li>
 </ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --generate-transition-key
 </code></pre></div>
 <ul>
@@ -12662,13 +12675,13 @@ vault server and re-encrypt the tablespace keys using this key.</p>
 <ul>
 <li><code>keyring_file</code> variant:</li>
 </ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <ul>
 <li><code>keyring_vault</code> variant:</li>
 </ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 </li>
@@ -12677,13 +12690,13 @@ vault server and re-encrypt the tablespace keys using this key.</p>
 </li>
 <li>
 <p><code>keyring_file</code> variant:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
 --generate-new-master-key<span class="w"> </span>--keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 </li>
 <li>
 <p><code>keyring_vault</code> variant:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
 --generate-new-master-key<span class="w"> </span>--keyring-vault-config<span class="o">=</span>/etc/vault.cnf
 </code></pre></div>
 </li>
@@ -14130,12 +14143,16 @@ a random UUID; no client information is either collected or stored.</p>
 <p>The maximum number of file descriptors to reserve with setrlimit().</p>
 <h3 id="xtrabackup-option-reference-parallel">parallel<a class="headerlink" href="#xtrabackup-option-reference-parallel" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--parallel=#</code></p>
-<p>This option specifies the number of threads to use to copy multiple data
-files concurrently when creating a backup. The default value is 1 (i.e., no
-concurrent transfer). In Percona XtraBackup 2.3.10 and newer, this option
+<p>The <code>--parallel</code> option specifies the number of threads to use to copy multiple data
+files concurrently when creating a backup. The default value is 1 (that is, no
+concurrent transfer). In Percona XtraBackup 2.3.10 and newer, the <code>--parallel</code> option
 can be used with the <code>--copy-back</code> option to copy the user
 data files in parallel (redo logs and system tablespaces are copied in the
 main thread).</p>
+<p>Before Percona XtraBackup 8.0.35-33 and 8.4.0-3, the <code>--parallel</code> option didn&rsquo;t have any effect on the prepare phase.</p>
+<p>Starting with <a href="#release-notes-8.0-8.0.35-33.0">Percona XtraBackup 8.0.35-33</a> and 8.4.0-3, using <code>--parallel=X</code> has effect on the prepare phase. It will now use X threads to apply the changes from <code>.delta</code> files to the IBD files. This option processes multiple delta files simultaneously, improving storage performance and accelerating incremental backups, particularly with numerous InnoDB Data (IBD) files. The option remains effective even if IBD files are unchanged between backups and efficiently handles empty delta files.</p>
+<p>When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
+<p>Note that each thread operates on a single file. If you have a large delta file, there is still only one thread that processes that <code>.delta</code> file. Parallelization occurs at the file level, not within individual files.</p>
 <h3 id="xtrabackup-option-reference-password">password<a class="headerlink" href="#xtrabackup-option-reference-password" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--password=PASSWORD</code></p>
 <p>This option specifies the password to use when connecting to the database.
@@ -14613,7 +14630,7 @@ needing a local storage.</p>
 from the last binary. If you use pipes, the
 ${PIPESTATUS[x]} array parameter returns the exit code for each 
 binary in the pipe string.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup
 ...
 $<span class="w"> </span><span class="si">${</span><span class="nv">PIPESTATUS</span><span class="p">[x]</span><span class="si">}</span>
 <span class="m">0</span><span class="w"> </span><span class="m">0</span>
@@ -14674,25 +14691,25 @@ the AWS Amazon S3 API.</p>
 </div>
 <h2 id="xbcloud-binary-overview-usage">Usage<a class="headerlink" href="#xbcloud-binary-overview-usage" title="Permanent link">&para;</a></h2>
 <p>The following sample command creates a full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span>--extra-lsndirk<span class="o">=</span>/storage/backups/<span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span>--extra-lsndirk<span class="o">=</span>/storage/backups/<span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span><span class="se">\</span>
 put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup
 </code></pre></div>
 <p>An incremental backup only includes the changes since the last backup. The last backup can be either a full or incremental backup.</p>
 <p>The following sample command creates an incremental backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/storage/backups<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/storage/backups<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/storage/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w">  </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>inc_backup
 </code></pre></div>
 <p>To prepare an incremental backup, you must first download the full backup with the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/full-backup
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/full-backup
 </code></pre></div>
 <p>You must prepare the full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup
 </code></pre></div>
 <p>After the full backup has been prepared, download the incremental backup:</p>
-<div class="highlight"><pre><span></span><code>xbcloud get [options] inc_backup | xbstream -xv -C /tmp/inc-backup
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>inc_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/inc-backup
 </code></pre></div>
 <p>The downloaded backup is prepared by running the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup<span class="w"> </span>--incremental-dir<span class="o">=</span>/tmp/inc-backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/full-backup<span class="w"> </span>--incremental-dir<span class="o">=</span>/tmp/inc-backup
 </code></pre></div>
 <p>You do not need the full backup to restore only a specific database. You can specify only the tables to be restored:</p>
 <p><div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>ibdata1<span class="w"> </span>sakila/payment.ibd<span class="w"> </span>&gt;<span class="w"> </span>/tmp/partial.xbs
@@ -14751,10 +14768,10 @@ three distinct parameters (–storage, –s3-bucket, and backup name per se).</p
 <p>Use the following format: <code>storage-type://bucket-name/backup-name</code></p>
 <p>In this example s3 refers to a storage type, operator-testing 
 is a bucket name, and bak22 is the backup name. </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span>...
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span>...
 </code></pre></div>
 <p>This shortcut expands as follows:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>operator-testing<span class="w"> </span>bak22<span class="w"> </span>...
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>operator-testing<span class="w"> </span>bak22<span class="w"> </span>...
 </code></pre></div>
 </div>
 <p>You can supply the mandatory parameters on the command line,
@@ -14764,14 +14781,14 @@ configuration files, and in environment variables.</p>
 type. The <code>--md5</code> parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the <code>backup_name.md5</code>
 pattern.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="m">2</span>&gt;backup.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span><span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">8</span><span class="w"> </span>--md5<span class="w"> </span><span class="m">2</span>&gt;upload.log
 </code></pre></div>
 <p>You may use the <code>--header</code> parameter to pass an additional HTTP
 header with the server side encryption while specifying a customer key.</p>
 <p>An example of using the <code>--header</code> for AES256 encryption.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>s3://operator-testing/bak-enc/<span class="w"> </span><span class="se">\</span>
 --header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256&quot;</span><span class="w"> </span><span class="se">\</span>
 --header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey=&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -14783,7 +14800,7 @@ permissions: <code>--header="x-amz-acl: bucket-owner-full-control</code></p>
 <h2 id="xbcloud-binary-overview-incremental-backups">Incremental backups<a class="headerlink" href="#xbcloud-binary-overview-incremental-backups" title="Permanent link">&para;</a></h2>
 <p>First, you need to make the full backup on which the incremental one is going to
 be based:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="se">\</span>
 --storage<span class="o">=</span>swift<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
 --swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
@@ -14792,7 +14809,7 @@ be based:</p>
 full_backup
 </code></pre></div>
 <p>Then you can make the incremental backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--incremental-basedir<span class="o">=</span>/storage/backups<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--incremental-basedir<span class="o">=</span>/storage/backups<span class="w"> </span><span class="se">\</span>
 --stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/inc_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="se">\</span>
 --storage<span class="o">=</span>swift<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
 --swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
@@ -14802,41 +14819,52 @@ inc_backup
 </code></pre></div>
 <h3 id="xbcloud-binary-overview-preparing-incremental-backups">Preparing incremental backups<a class="headerlink" href="#xbcloud-binary-overview-preparing-incremental-backups" title="Permanent link">&para;</a></h3>
 <p>To prepare a backup you first need to download the full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
 --swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
 --swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
 --swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/downloaded_full
 </code></pre></div>
-<p>Once you download the full backup it should be prepared:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full
+<p>Once you download the full backup, the full backup should be prepared:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full
 </code></pre></div>
 <p>After the full backup has been prepared you can download the incremental
 backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup<span class="w"> </span><span class="se">\</span>
 --swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
 --swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
 --swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 inc_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/downloaded_inc
 </code></pre></div>
-<p>Once the incremental backup has been downloaded you can prepare it by running:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
+<p>Once the incremental backup has been downloaded, you can prepare the incremental backup by running:</p>
+<p><div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/storage/downloaded_full<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/storage/downloaded_inc
-
-$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full
 </code></pre></div>
+and </p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the <code>--parallel</code> option to process delta files concurrently. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/storage/downloaded_full<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/storage/downloaded_inc<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/storage/downloaded_full<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+</div>
 <h3 id="xbcloud-binary-overview-partial-download-of-the-cloud-backup">Partial download of the cloud backup<a class="headerlink" href="#xbcloud-binary-overview-partial-download-of-the-cloud-backup" title="Permanent link">&para;</a></h3>
 <p>If you do not want to download the entire backup to restore the specific
 database you can specify only the tables you want to restore:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--swift-container<span class="o">=</span>test_backup
 --swift-auth-version<span class="o">=</span><span class="m">2</span>.0<span class="w"> </span>--swift-user<span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
 --swift-tenant<span class="o">=</span>admin<span class="w"> </span>--swift-password<span class="o">=</span>xoxoxoxo<span class="w"> </span><span class="se">\</span>
 --swift-auth-url<span class="o">=</span>http://127.0.0.1:35357/<span class="w"> </span>full_backup<span class="w"> </span><span class="se">\</span>
 ibdata1<span class="w"> </span>sakila/payment.ibd<span class="w"> </span><span class="se">\</span>
 &gt;<span class="w"> </span>/storage/partial/partial.xbs
 
-$<span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/partial<span class="w"> </span>&lt;<span class="w"> </span>/storage/partial/partial.xbs
+xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/storage/partial<span class="w"> </span>&lt;<span class="w"> </span>/storage/partial/partial.xbs
 </code></pre></div></section><section class="print-page" id="xbcloud-options" heading-number="7.5.2"><h1 id="xbcloud-options-the-xbcloud-command-line-options">The xbcloud command-line options<a class="headerlink" href="#xbcloud-options-the-xbcloud-command-line-options" title="Permanent link">&para;</a></h1>
 <p>Usage: </p>
 <div class="no-copy highlight"><pre><span></span><code>$ xbcloud put [OPTIONS]
@@ -17555,58 +17583,40 @@ recover_binlog_info = 1
 <p>In this case you can see that there is a difference between the <code>to_lsn</code> (last checkpoint LSN) and <code>last_lsn</code> (last copied LSN), this means that there was some traffic on the server during the backup process.</p>
 </div>
 <p>The next step is to <a href="#prepare-incremental-backup">prepare</a> the backup in order to restore it. </p></section><section class="print-page" id="prepare-incremental-backup" heading-number="9.2.2"><h1 id="prepare-incremental-backup-prepare-an-incremental-backup">Prepare an incremental backup<a class="headerlink" href="#prepare-incremental-backup-prepare-an-incremental-backup" title="Permanent link">&para;</a></h1>
-<p>The <code>--prepare</code> step for incremental backups is not the same
-as for full backups. In full backups, two types of operations are performed
-to
-make the database consistent: committed transactions are replayed from the
-log
-file against the data files, and uncommitted transactions are rolled back.
-You
-must skip the rollback of uncommitted transactions when preparing an
-incremental backup, because transactions that were uncommitted at the time
-of
-your backup may be in progress, and it’s likely that they will be committed
-in
-the next incremental backup. You should use the
-<code>--apply-log-only</code> option to prevent the rollback phase.</p>
+<p>The <code>--prepare</code> step for incremental backups differs from full backups. For full backups, committed transactions are replayed from the log file to the data files, and uncommitted transactions are rolled back to ensure consistency. When preparing an incremental backup, you must skip the rollback of uncommitted transactions, as these may still be in progress and could be committed in a subsequent incremental backup. Use the <code>--apply-log-only</code> option when preparing the first full backup to prevent the rollback phase from occurring.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><strong>If you do not use the</strong> <code>--apply-log-only</code> <strong>option to prevent the rollback phase, then your incremental backups will be useless</strong>. After transactions have been rolled back, further incremental backups cannot be applied.</p>
+<p>If you do not use the <code>--apply-log-only</code> option to prevent the rollback phase, then your incremental backups are unusable. After transactions have been rolled back, further incremental backups cannot be applied.</p>
 </div>
-<p>Beginning with the full backup you created, you can prepare it, and then
-apply
-the incremental differences to it. Recall that you have the following
-backups:</p>
+<p>Start by preparing the full backup, then apply the incremental differences to that backup.  </p>
+<p>For example, you could have the following backups:</p>
 <div class="highlight"><pre><span></span><code>/data/backups/base
 /data/backups/inc1
 /data/backups/inc2
 </code></pre></div>
 <p>To prepare the base backup, you need to run <code>--prepare</code> as
 usual, but prevent the rollback phase:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
 </code></pre></div>
-<p>The output should end with text similar to the following:</p>
+<p>The log sequence number should match the <code>to_lsn</code> of the base backup The output should end with text similar to the following:</p>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 1626007
 161011 12:41:04 completed OK!
 </code></pre></div>
 </details>
-<p>The log sequence number should match the <code>to_lsn</code> of the base backup, which
-you saw previously.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This backup is actually safe to restore as-is now, even though the rollback phase has been skipped. If you restore it and start <em>MySQL</em>, <em>InnoDB</em> will detect that the rollback phase was not performed, and it will do that in the background, as it usually does for a crash recovery upon start. It will notify you that the database was not shut down normally.</p>
+<p>This backup is actually safe to restore as-is now, even though the rollback phase has been skipped. If you restore the backup and start the server, InnoDB detects that the rollback phase was not performed, and completes the rollback in the background, as InnoDB usually does for a crash recovery. InnoDB notifies you that the database was not shut down normally.</p>
 </div>
 <p>To apply the first incremental backup to the full backup, run the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
-<p>This applies the delta files to the files in <code>/data/backups/base</code>, which
-rolls them forward in time to the time of the incremental backup. It then
-applies the redo log as usual to the result. The final data is in
-<code>/data/backups/base</code>, not in the incremental directory. You should see
-an output similar to:</p>
+<p>This command applies the delta files to the files in <code>/data/backups/base</code>, which
+rolls them forward in time to the time of the incremental backup. The redo log is then applied as usual. The final data is in
+<code>/data/backups/base</code>, not in the incremental directory.</p>
+<p>You should see an output similar to:</p>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>incremental backup from 1626007 is enabled.
@@ -17623,18 +17633,32 @@ Applying /tmp/backups/inc1/ibdata1.delta to ./ibdata1...
 <p>Again, the LSN should match what you saw from your earlier inspection of
 the first incremental backup. If you restore the files from
 <code>/data/backups/base</code>, you should see the state of the database as of the first incremental backup.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><em>Percona XtraBackup</em> does not support using the same incremental backup directory to prepare two copies of backup. Do not run <code>--prepare</code> with the same incremental backup directory (the value of –incremental-dir) more than once.</p>
+<h3 id="prepare-incremental-backup-faster-prepare-step-with-parallel">Faster prepare step with &ndash;parallel<a class="headerlink" href="#prepare-incremental-backup-faster-prepare-step-with-parallel" title="Permanent link">&para;</a></h3>
+<p>For incremental backups with many InnoDB Data (IBD) files, you can significantly reduce prepare time by using the <code>--parallel</code> option. The <code>--parallel</code> option enables the concurrent processing of multiple delta files, thereby maximizing storage bandwidth. The <code>--parallel</code> option is especially beneficial when there are many IBD files, even if the IBD files didn&rsquo;t change between backups, as empty delta files are processed quickly in parallel. </p>
+<div class="admonition note">
+<p class="admonition-title">Version history</p>
+<p>Before Percona XtraBackup 8.0.35-33 and 8.4.0-3, the <code>--parallel</code> option didn&rsquo;t have any effect on the prepare phase.</p>
+<p>Starting with Percona XtraBackup 8.0.35-33 and 8.4.0-3, using <code>--parallel=X</code> has effect on the prepare phase. It will now use X threads to apply the changes from <code>.delta</code> files to the IBD files. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
+<p>Note that each thread operates on a single file. If you have a large delta file, there is still only one thread that processes that <code>.delta</code> file. Parallelization occurs at the file level, not within individual files.</p>
 </div>
+<p>An example command with the <code>--parallel</code> option:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc1
+</code></pre></div>
+<h3 id="prepare-incremental-backup-prepare-a-second-inceremental-backup">Prepare a second inceremental backup<a class="headerlink" href="#prepare-incremental-backup-prepare-a-second-inceremental-backup" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup does not support using the same incremental backup directory to prepare two copies of backup. Do not run <code>--prepare</code> with the same incremental backup directory (the value of –incremental-dir) more than once.</p>
 <p>Preparing the second incremental backup is a similar process: apply the deltas
-to the (modified) base backup, and you will roll its data forward in time to the point of the second incremental backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+to the (modified) base backup, and you will roll the base backup&rsquo;s data forward in time to the point of the second incremental backup:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc2
+</code></pre></div>
+<p>You can also use the <code>--parallel</code> option here to speed up the process:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code>--apply-log-only</code> should be used when merging the incremental backups except the last one. That’s why the previous line does not contain the <code>--apply-log-only</code> option. Even if the <code>--apply-log-only</code> was used on the last step, backup would still be consistent but in that case server would perform the rollback phase.</p>
+<p>Use <code>--apply-log-only</code> when merging the incremental backups except for the last one. This is why the previous command does not include the <code>--apply-log-only</code> option. If <code>--apply-log-only</code> is used on the last step, backup remains consistent but the server performs the rollback phase.</p>
 </div>
 <p>Once prepared incremental backups are the same as the full backups, and they can be <a href="#restore-a-backup">restored</a> in the same way.</p></section><section class="print-page" id="page-tracking" heading-number="9.2.3"><h1 id="page-tracking-take-an-incremental-backup-using-page-tracking">Take an incremental backup using page tracking<a class="headerlink" href="#page-tracking-take-an-incremental-backup-using-page-tracking" title="Permanent link">&para;</a></h1>
 <p><em>Percona XtraBackup</em> 8.0.27 adds support for page tracking functionality for an <a href="#create-incremental-backup">incremental backup</a>.</p>
