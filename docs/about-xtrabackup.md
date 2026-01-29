@@ -16,7 +16,7 @@ Percona XtraBackup has the following benefits:
 
 Percona XtraBackup makes hot backups for Percona Server for MySQL and MySQL-compatible servers. XtraBackup takes streaming, compressed, and incremental server backups, and supports encryption.
 
-Percona’s enterprise-grade commercial [MySQL Support] contracts include support for Percona XtraBackup. We recommend support for critical production deployments.
+Percona’s enterprise-grade commercial [MySQL Support :octicons-link-external-16:](http://www.percona.com/mysql-support/) contracts include support for Percona XtraBackup. We recommend support for critical production deployments.
 
 ## Supported storage engines
 
@@ -25,7 +25,3 @@ MyISAM, and MyRocks tables on MySQL {{vers}} servers as well as Percona Server f
 {{vers}}.
 
 Percona XtraBackup supports the MyRocks storage engine. Percona XtraBackup copies all MyRocks files each time it takes a backup. An incremental backup on the MyRocks storage engine does not determine if an earlier full or incremental backup contains the same files.
-
-[MySQL Support]: http://www.percona.com/mysql-support/
-
-

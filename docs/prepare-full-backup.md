@@ -14,8 +14,8 @@ During the prepare operation, xtrabackup boots up a kind of modified embedded In
 
 The prepare step uses this “embedded InnoDB” to perform crash recovery on the copied data files, using the copied log file. The `prepare` step is very simple to use: you simply run xtrabackup with the `--prepare` option and tell it which directory to prepare, for example, to prepare the previously taken backup run:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backups/
+```shell
+xtrabackup --prepare --target-dir=/data/backups/
 ```
 
 When this finishes, you should see an `InnoDB shutdown` with a message such as the following, where again the value of LSN will depend on your system:

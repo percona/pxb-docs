@@ -20,7 +20,7 @@ To prepare the base backup, you need to run `--prepare` as
 usual, but prevent the rollback phase:
 
 ```shell
-$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
+xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
 ```
 
 The log sequence number should match the `to_lsn` of the base backup The output should end with text similar to the following:
@@ -39,7 +39,7 @@ The log sequence number should match the `to_lsn` of the base backup The output 
 To apply the first incremental backup to the full backup, run the following command:
 
 ```shell
-$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
 
@@ -82,7 +82,7 @@ For incremental backups with many InnoDB Data (IBD) files, you can significantly
 An example command with the `--parallel` option:
 
 ```shell
-$ xtrabackup --prepare --parallel=4 --apply-log-only --target-dir=/data/backups/base \
+xtrabackup --prepare --parallel=4 --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
 
@@ -94,14 +94,14 @@ Preparing the second incremental backup is a similar process: apply the deltas
 to the (modified) base backup, and you will roll the base backup's data forward in time to the point of the second incremental backup:
 
 ```shell
-$ xtrabackup --prepare --target-dir=/data/backups/base \
+xtrabackup --prepare --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2
 ```
 
 You can also use the `--parallel` option here to speed up the process:
 
 ```shell
-$ xtrabackup --prepare --parallel=4 --target-dir=/data/backups/base \
+xtrabackup --prepare --parallel=4 --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc2
 ```
 

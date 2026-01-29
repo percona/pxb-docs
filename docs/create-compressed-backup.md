@@ -3,13 +3,15 @@
 Percona XtraBackup supports compressed backups. To make a compressed backup, use the `--compress` option along
 with the `--backup` and `--target-dir` options. A local or streaming backup can be compressed or decompressed with [xbstream](xbstream-binary-overview.md).
 
+Run the following commands as root or use the sudo command.
+
 By default, the `--compress` option uses the `zstandard` tool that you can install with
 the `percona-release` package configuration tool as follows:
 
-```{.bash data-prompt="$"}
-$ sudo percona-release enable tools
-$ sudo apt update
-$ sudo apt install zstandard
+```shell
+sudo percona-release enable tools
+sudo apt update
+sudo apt install zstandard
 ```
 
 !!! note
@@ -28,24 +30,24 @@ The Zstandard (ZSTD) is a fast lossless compression algorithm that targets real-
 
 To compress files using the `ZSTD` compression algorithm, use the `--compress` option:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --compress --target-dir=/data/backup
+```shell
+xtrabackup --backup --compress --target-dir=/data/backup
 ```
 
 The resulting files have the `\*.zst` format.
    
 You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](xtrabackup-option-reference.md#compress-zstd-level) option. The default value is `1`.
 
-```{.bash data-prompt="$"}
-$ xtrabackup –backup –compress –compress-zstd-level=1 –target-dir=/data/backup
+```shell
+xtrabackup –backup –compress –compress-zstd-level=1 –target-dir=/data/backup
 ```
 
 ## lz4
 
 To compress files using the `lz4` compression algorithm, set the `--compress` option to `lz4`:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
+```shell
+xtrabackup --backup --compress=lz4 --target-dir=/data/backup
 ```
 
 The resulting files have the `\*.lz4` format. 
@@ -54,8 +56,8 @@ If you want to speed up the compression you can use the parallel
 compression, which can be enabled with `--compress-threads` option.
 Following example will use four threads for compression:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --compress --compress-threads=4 \
+```shell
+xtrabackup --backup --compress --compress-threads=4 \
 --target-dir=/data/compressed/
 ```
 

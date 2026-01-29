@@ -19,7 +19,7 @@ There are multiple ways of specifying which part of data is backed up:
 
 * Use the `--databases-file` option to list the databases
 
-The following examples assume a database named `test` that contains tables named `t1` and `t2`.
+The following examples assume a database named `test` that contains tables named `t1` and `t2`. Run all the commands as root or use the sudo command.
 
 === "`–-tables` option"
 
@@ -29,15 +29,15 @@ The following examples assume a database named `test` that contains tables named
     To back up only tables in the `test` database, use the following
     command:
     
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
+    ```shell
+    xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
     --tables="^test[.].*"
     ```
     
     To back up only the `test.t1` table, use the following command:
     
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
+    ```shell
+    xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
     --tables="^test[.]t1"
     ```
 
@@ -49,9 +49,9 @@ The following examples assume a database named `test` that contains tables named
     regular expression matching. The table names must be fully-qualified in
     `databasename.tablename` format.
     
-    ```{.bash data-prompt="$"}
-    $ echo "mydatabase.mytable" > /tmp/tables.txt
-    $ xtrabackup --backup --tables-file=/tmp/tables.txt
+    ```shell
+    echo "mydatabase.mytable" > /tmp/tables.txt
+    xtrabackup --backup --tables-file=/tmp/tables.txt
     ```
 
 === "`--databases` option"
@@ -69,8 +69,8 @@ The following examples assume a database named `test` that contains tables named
         even if they are not explicitly listed by the parameter if they were created
         after the backup started.
     
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --databases='mysql sys performance_schema test ...'
+    ```shell
+    xtrabackup --databases='mysql sys performance_schema test ...'
     ```
 
 === "`--databases-file` option"

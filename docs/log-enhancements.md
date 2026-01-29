@@ -8,8 +8,8 @@ The error logs did not have a standard structure and the log statements varied i
 
 * The backup log statement header has the name of the module, `xtrabackup`, which generated the statement but no timestamp:
 
-```{.bash data-prompt="$"}
- $ xtrabackup: recognized client arguments: --parallel=4 --target-dir=/data/backups/ --backup=1
+```shell
+xtrabackup: recognized client arguments: --parallel=4 --target-dir=/data/backups/ --backup=1
 ```
 The output should be similar to the following:
 

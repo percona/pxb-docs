@@ -20,10 +20,10 @@ qualified database name and table name, in the form of
 If the partition 0 is not backed up, Percona XtraBackup cannot generate a .cfg file. MySQL 8.0 stores the table metadata in partition 0.
 
 For example, this operation takes a back-up of the partition `p4` from 
-the table `name` located in the database `imdb`:
+the table `name` located in the database `imdb`. Run the following command as a root user.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --tables=^imdb[.]name#p#p4 --backup
+```shell
+xtrabackup --tables=^imdb[.]name#p#p4 --backup
 ```
 
 If partition 0 is not backed up, the following errors may occur:

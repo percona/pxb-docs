@@ -10,14 +10,14 @@ These encryption types are independent. You can use them separately or together 
 
 ## InnoDB tablespace encryption
 
-InnoDB supports [data encryption for InnoDB tables] in file-per-table tablespaces. When accessing an encrypted tablespace, InnoDB uses the master encryption key to decrypt the tablespace key. InnoDB stores the master encryption key in a keyring.
+InnoDB supports [data encryption for InnoDB tables :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-data-encryption.html) in file-per-table tablespaces. When accessing an encrypted tablespace, InnoDB uses the master encryption key to decrypt the tablespace key. InnoDB stores the master encryption key in a keyring.
 
 Percona XtraBackup supports the following keyring components:
 
 * [keyring_vault](#keyring_vault-configuration)
 * [keyring_file](#keyring_file-configuration)
-* [Key Management Interoperability Protocol (KMIP)]
-* [Amazon Key Management Service (AWS KMS)]
+* [Key Management Interoperability Protocol (KMIP) :octicons-link-external-16:](https://docs.percona.com/percona-server/8.4/using-kmip.html?h=kmip)
+* [Amazon Key Management Service (AWS KMS) :octicons-link-external-16:](https://docs.percona.com/percona-server/8.4/using-amz-kms.html)
 
 Percona XtraBackup {{vers}} and later versions support only component versions of the security features.
 
@@ -65,7 +65,7 @@ The `component_keyring_vault.cnf` file uses JSON format:
 }
 ```
 
-For information on configuring the keyring vault component on the MySQL server, see [Use the keyring vault component].
+For information on configuring the keyring vault component on the MySQL server, see [Use the keyring vault component :octicons-link-external-16:](https://docs.percona.com/percona-server/8.4/use-keyring-vault-component.html).
 
 #### keyring_file configuration
 
@@ -119,7 +119,7 @@ XtraBackup uses the component's configuration file during prepare and restore op
 
 No keyring configuration is needed:
 
-```bash
+```shell
 xtrabackup --backup --target-dir=/data/backup --user=root
 ```
 
@@ -131,7 +131,7 @@ To prepare the backup, you must provide access to the keyring. The xtrabackup bi
 
     The configuration file name must match exactly the expected name for your keyring component. See [Configuration file name requirements](#configuration-file-name-requirements) for the exact file names required. If the file name does not match exactly, XtraBackup ignores the configuration file.
 
-```bash
+```shell
 xtrabackup --prepare --target-dir=/data/backup
 ```
 
@@ -141,13 +141,13 @@ Specify the path to your component's configuration file (for example, `/etc/comp
 
 After you prepare the backup, restore the backup using [`--copy-back`](xtrabackup-option-reference.md#copy-back) or [`--move-back`](xtrabackup-option-reference.md#move-back). If you use [`--move-back`](xtrabackup-option-reference.md#move-back), run `--prepare` again after moving the files. In both cases, provide the same keyring configuration file.
 
-```bash
+```shell
 xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql
 ```
 
 Or using `--move-back`:
 
-```bash
+```shell
 xtrabackup --move-back --target-dir=/data/backup --datadir=/data/mysql
 xtrabackup --prepare --target-dir=/data/mysql
 ```
@@ -162,13 +162,13 @@ Begin with a full backup. The xtrabackup binary writes `xtrabackup_checkpoints` 
 
 Create a full backup (no keyring config needed):
 
-```bash
+```shell
 xtrabackup --backup --target-dir=/data/backups/base
 ```
 
 Make an incremental backup based on the full backup:
 
-```bash
+```shell
 xtrabackup --backup --target-dir=/data/backups/inc1 \
 --incremental-basedir=/data/backups/base
 ```
@@ -177,7 +177,7 @@ The [`--incremental-basedir`](xtrabackup-option-reference.md#incremental-basedir
 
 Use this directory as the base for yet another incremental backup:
 
-```bash
+```shell
 xtrabackup --backup --target-dir=/data/backups/inc2 \
 --incremental-basedir=/data/backups/inc1
 ```
@@ -188,13 +188,13 @@ The `--prepare` step for incremental backups requires the keyring configuration.
 
 Beginning with the full backup, prepare the full backup and then apply the incremental differences. Prepare the base backup with [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only). Use the appropriate configuration file name for your keyring component (see [Configuration file name requirements](#configuration-file-name-requirements)):
 
-```bash
+```shell
 xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
 ```
 
 Apply the first incremental backup to the full backup using [`--incremental-dir`](xtrabackup-option-reference.md#incremental-dir):
 
-```bash
+```shell
 xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
@@ -236,13 +236,13 @@ xtrabackup --prepare --target-dir=/data/backups/base \
 
 After you prepare the incremental backups, restore them using [`--copy-back`](xtrabackup-option-reference.md#copy-back) or [`--move-back`](xtrabackup-option-reference.md#move-back). If you use [`--move-back`](xtrabackup-option-reference.md#move-back), run `--prepare` again after moving the files. In both cases, provide the same keyring configuration file:
 
-```bash
+```shell
 xtrabackup --copy-back --target-dir=/data/backups/base --datadir=/data/mysql
 ```
 
 Or using `--move-back`:
 
-```bash
+```shell
 xtrabackup --move-back --target-dir=/data/backups/base --datadir=/data/mysql
 xtrabackup --prepare --target-dir=/data/mysql
 ```
@@ -255,7 +255,7 @@ Use the [`--transition-key=<passphrase>`](xtrabackup-option-reference.md#transit
 
 #### Create a backup with a passphrase
 
-```bash
+```shell
 xtrabackup --backup --user=root -p --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
@@ -266,7 +266,7 @@ If you specify [`--transition-key`](xtrabackup-option-reference.md#transition-ke
 
 Specify the same passphrase for the prepare command:
 
-```bash
+```shell
 xtrabackup --prepare --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
@@ -277,7 +277,7 @@ You do not need keyring options here, because xtrabackup does not access the key
 
 When you restore a backup, generate a new master key using [`--generate-new-master-key`](xtrabackup-option-reference.md#generate-new-master-key). The configuration file name must match one of the exact configuration file names listed in [Configuration file name requirements](#configuration-file-name-requirements):
 
-```bash
+```shell
 xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 --transition-key=MySecretKey --generate-new-master-key
 ```
@@ -290,20 +290,20 @@ You can store a transition key in the keyring. In this case, xtrabackup must acc
 
 * Back up using [`--generate-transition-key`](xtrabackup-option-reference.md#generate-transition-key):
 
-  ```bash
+  ```shell
   xtrabackup --backup --user=root -p --target-dir=/data/backup \
   --generate-transition-key
   ```
 
 * Prepare:
 
-  ```bash
+  ```shell
   xtrabackup --prepare --target-dir=/data/backup
   ```
 
 * Copy-back:
 
-  ```bash
+  ```shell
   xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
   --generate-new-master-key
   ```
@@ -322,7 +322,7 @@ The `--encrypt` option specifies the encryption algorithm: `AES128`, `AES192`, o
 
 #### Using --encrypt-key
 
-```bash
+```shell
 xtrabackup --backup --encrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup
 ```
 
@@ -334,7 +334,7 @@ xtrabackup --backup --encrypt=AES256 --encrypt-key="{randomly-generated-alphanum
 
 The recommended method uses `--encrypt-key-file` to read the key from a file:
 
-```bash
+```shell
 echo -n "{randomly-generated-alphanumeric-string}" > /data/backups/keyfile
 xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 ```
@@ -351,13 +351,13 @@ Additional encrypted backup options can speed up the encryption process: [`--enc
 
 To decrypt an encrypted backup, use the [`--decrypt`](xtrabackup-option-reference.md#decrypt) option. The decryption algorithm must match the algorithm that you used during encryption. You can use the [`--parallel`](xtrabackup-option-reference.md#parallel) option with `--decrypt` to decrypt multiple files simultaneously.
 
-```bash
+```shell
 xtrabackup --decrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 ```
 
 Alternatively, you can use the `xbcrypt` binary directly:
 
-```bash
+```shell
 for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 < $i > $(dirname $i)/$(basename $i .xbcrypt) && rm $i; done
 ```
 
@@ -369,11 +369,6 @@ for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/se
 
 After decrypting the backup, prepare the backup with the `--prepare` option:
 
-```bash
+```shell
 xtrabackup --prepare --target-dir=/data/backup
 ```
-
-[data encryption for InnoDB tables]: https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-data-encryption.html
-[Amazon Key Management Service (AWS KMS)]: https://docs.percona.com/percona-server/8.4/using-amz-kms.html
-[Key Management Interoperability Protocol (KMIP)]: https://docs.percona.com/percona-server/8.4/using-kmip.html?h=kmip
-[Use the keyring vault component]: https://docs.percona.com/percona-server/8.4/use-keyring-vault-component.html

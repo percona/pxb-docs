@@ -4,7 +4,7 @@
 
 Do the following steps to select the software:
 
-1. Open [Software Downloads](https://www.percona.com/downloads)
+1. Open [Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads)
 2. Locate the Percona Software, for example, Percona XtraBackup
 3. In `Select Product`, select which product, for example, Percona XtraBackup 8.4
 4. In `Select Product Version`, select the version, for example, PERCONA-XTRABACKUP-8.4.0-5

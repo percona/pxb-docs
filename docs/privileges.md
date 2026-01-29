@@ -27,11 +27,13 @@ performed - and the database user has adequate privileges.
 
 ## Connect to the server
 
+Run the following commands as root or use the sudo command.
+
 The database user used to connect to the server and its password are specified
 by the `--user` and `--password` option:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --user=DVADER --password=14MY0URF4TH3R --backup \
+```bash
+xtrabackup --user=DVADER --password=14MY0URF4TH3R --backup \
 --target-dir=/data/bkps/
 ```
 
@@ -99,52 +101,47 @@ PERCONA_SCHEMA.xtrabackup_history table,
 to look up the `innodb_to_lsn` values in the
 PERCONA_SCHEMA.xtrabackup_history table.
 
-* `SELECT` privilege on the [keyring_component_status table] to view the attributes and status of the installed keyring component when in use.
+* `SELECT` privilege on the [keyring_component_status table :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/performance-schema-keyring-component-status-table.html) to view the attributes and status of the installed keyring component when in use.
 
-* `SELECT` privilege on the [replication_group_members table] to validate if the instance is part of group replication cluster.
+* `SELECT` privilege on the [replication_group_members table :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/performance-schema-replication-group-members-table.html) to validate if the instance is part of group replication cluster.
 
 A SQL example of creating a database user with the minimum privileges required to take full backups would be:
 
-```{.bash data-prompt="mysql>"}
-mysql> CREATE USER 'bkpuser'@'localhost' IDENTIFIED BY 's3cr%T';
-mysql> GRANT BACKUP_ADMIN, PROCESS, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'bkpuser'@'localhost';
-mysql> GRANT SELECT ON performance_schema.log_status TO 'bkpuser'@'localhost';
-mysql> GRANT SELECT ON performance_schema.keyring_component_status TO bkpuser@'localhost';
-mysql> GRANT SELECT ON performance_schema.replication_group_members TO bkpuser@'localhost';
-mysql> FLUSH PRIVILEGES;
+```sql
+CREATE USER 'bkpuser'@'localhost' IDENTIFIED BY 's3cr%T';
+GRANT BACKUP_ADMIN, PROCESS, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'bkpuser'@'localhost';
+GRANT SELECT ON performance_schema.log_status TO 'bkpuser'@'localhost';
+GRANT SELECT ON performance_schema.keyring_component_status TO bkpuser@'localhost';
+GRANT SELECT ON performance_schema.replication_group_members TO bkpuser@'localhost';
+FLUSH PRIVILEGES;
 ```
 
 ### Query the privileges
 
 To query the privileges that your database user has been granted at the console of the server execute:
 
-```{.bash data-prompt="mysql>"}
-mysql> SHOW GRANTS;
+```sql
+SHOW GRANTS;
 ```
 
 or for a particular user with:
 
-```{.bash data-prompt="mysql>"}
-mysql> SHOW GRANTS FOR 'db-user'@'host';
+```sql
+SHOW GRANTS FOR 'db-user'@'host';
 ```
 
 It will display the privileges using the same format as for
-the [GRANT statement].
+the [GRANT statement :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/show-grants.html).
 
 Note that privileges may vary across versions of the server. To list the
 exact list of privileges that your server support (and a brief description
 of them) execute:
 
-```{.bash data-prompt="mysql>"}
-mysql> SHOW PRIVILEGES;
+```sql
+SHOW PRIVILEGES;
 ```
 
 !!! admonition "See also"
 
     [Permissions needed](permissions.md)
 
-[keyring_component_status table]: https://dev.mysql.com/doc/refman/{{vers}}/en/performance-schema-keyring-component-status-table.html
-
-[replication_group_members table]: https://dev.mysql.com/doc/refman/{{vers}}/en/performance-schema-replication-group-members-table.html
-
-[GRANT statement]: https://dev.mysql.com/doc/refman/{{vers}}/en/show-grants.html

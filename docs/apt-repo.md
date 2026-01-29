@@ -1,22 +1,20 @@
 # Install with the Percona-release Tool on Debian-based Systems
 
---8<--- "pro-build-announcement.md"
-
 Ready-to-use packages are available from the Percona XtraBackup software
-repositories and the [download page].
+repositories and the [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads).
 
 Specific information on the supported platforms, products, and versions is
 described in [Percona Release Lifecycle Overview].
 
 ## Install Percona XtraBackup through percona-release
 
-Install Percona XtraBackup, like many other Percona products, with the `percona-release` package configuration tool.
+Install Percona XtraBackup, like many other Percona products, with the `percona-release` package configuration tool. Run the following commands as root or use the sudo command.
 {.power-number}
 
 1. Use the apt package manager to dowload `percona-release`:
 
-    ```{.bash data-prompt="$"}
-    $ sudo apt update
+    ```shell
+    sudo apt update
     ```
 
     ??? example "Expected output"
@@ -34,8 +32,8 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 2. Install the `curl` download utility if it's not installed:
 
-    ```{.bash data-prompt="$"}
-    $ sudo apt install curl
+    ```shell
+    sudo apt install curl
     ```
     ??? example "Expected output"
 
@@ -53,8 +51,8 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 3. Download the `percona-release` the repository package:
 
-    ```{.bash data-prompt="$"}
-    $ curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+    ```shell
+    curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
     ```
 
     ??? example "Expected output"
@@ -67,7 +65,7 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 4. Install the downloaded package and its dependencies using `apt`:
 
-    ```{.bash data-prompt="$"}
+    ```shell
     sudo apt install gnupg2 lsb-release ./percona-release_latest.generic_all.deb
     ```
 
@@ -92,8 +90,8 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 5. Refresh the local cache to update the package information:
 
-    ```{.bash data-prompt="$"}
-    $ sudo apt update
+    ```shell
+    sudo apt update
     ```
 
     ??? example "Expected output"
@@ -111,8 +109,8 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 6. Enable the specific percona-release product.
 
-    ```{.bash data-prompt="$"}
-    $ sudo percona-release enable pxb-84-lts
+    ```shell
+    sudo percona-release enable pxb-84-lts
     ```
     ??? example "Expected output"
 
@@ -134,8 +132,8 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 7. Install Percona XtraBackup.
 
-    ```{.bash data-prompt="$"}
-    $ sudo apt install percona-xtrabackup-84
+    ```shell
+    sudo apt install percona-xtrabackup-84
     ```
 
     ??? example "Expected output"
@@ -156,8 +154,8 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 8. Verify the installation.
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --version
+    ```shell
+    xtrabackup --version
     ```
 
     ??? example "Expected output"
@@ -170,14 +168,14 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
     === "Install the `lz4` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo apt install lz4
+        ```shell
+        sudo apt install lz4
         ```
 
     === "Install the `zstd` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo apt install zstd
+        ```shell
+        sudo apt install zstd
         ```
 
 !!! note
@@ -190,6 +188,3 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
     To install Percona XtraBackup using downloaded deb packages, see [Install Percona XtraBackup {{vers}}](apt-download-deb.md).
 
     To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup {{vers}}](apt-uninstall-xtrabackup.md)
-
-[download page]: https://www.percona.com/downloads
-[Percona Release Lifecycle Overview]: https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql
