@@ -26,20 +26,20 @@ This guide will help you get started quickly, but there's a lot more to learn ab
 
 ## Prerequisites
 
-* [Install Docker](https://docs.docker.com/engine/install/) on your system.
+* [Install Docker :octicons-link-external-16:](https://docs.docker.com/engine/install/) on your system.
 
 To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database, and a table.
 
-* [Start Percona Server in a Docker container](https://docs.percona.com/percona-server/8.4/quickstart-docker.html)
-* [Create a database and table in Percona Server](https://docs.percona.com/percona-server/8.4/quickstart-docker.html#create-a-database)
+* [Start Percona Server in a Docker container :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/quickstart-docker.html)
+* [Create a database and table in Percona Server :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/quickstart-docker.html#create-a-database)
 
 ### Limitations
 
-Percona XtraBackup 8.4 does not support making backups of databases created in versions before the 8.4 series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster.
+Percona XtraBackup {{vers}} does not support making backups of databases created in versions before the {{vers}} series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster.
 
 ### Support servers and storage engines
 
-Percona XtraBackup 8.4 supports backing up data from various MySQL-compatible servers and storage engines.
+Percona XtraBackup {{vers}} supports backing up data from various MySQL-compatible servers and storage engines.
 
 Supported Servers:
 

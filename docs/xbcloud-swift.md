@@ -4,7 +4,7 @@
 
 The following example shows how to make a full backup and upload it to Swift.
 
-```{.bash data-prompt="$"}
+```shell
 $ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=swift \
 --swift-container=test \
@@ -54,21 +54,21 @@ The following OpenStack environment variables are also recognized and mapped aut
 
 ## Restore with Swift
 
-```{.bash data-prompt="$"}
-$ xbcloud get [options] <name> [<list-of-files>] | xbstream -x
+```shell
+xbcloud get [options] <name> [<list-of-files>] | xbstream -x
 ```
 
 The following example shows how to fetch and restore the backup from Swift:
 
-```{.bash data-prompt="$"}
-$ xbcloud get --storage=swift \
+```shell
+xbcloud get --storage=swift \
 --swift-container=test \
 --swift-user=test:tester \
 --swift-auth-url=http://192.168.8.80:8080/ \
 --swift-key=testing \
 full_backup | xbstream -xv -C /tmp/downloaded_full
 
-$ xbcloud delete --storage=swift --swift-user=xtrabackup \
+xbcloud delete --storage=swift --swift-user=xtrabackup \
 --swift-password=xtrabackup123! --swift-auth-version=3 \
 --swift-auth-url=http://openstack.ci.percona.com:5000/ \
 --swift-container=mybackup1 --swift-domain=Default
@@ -119,7 +119,7 @@ Do not verify server's certificate
 
 ### Swift authentication options
 
-The Swift specification describes several [authentication options](http://docs.openstack.org/developer/swift/overview_auth.html). The *xbcloud* tool can
+The Swift specification describes several [authentication options :octicons-link-external-16:](http://docs.openstack.org/developer/swift/overview_auth.html). The *xbcloud* tool can
 authenticate against keystone with API version 2 and 3.
 
 ### --swift-auth-version()

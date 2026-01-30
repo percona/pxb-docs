@@ -13,8 +13,8 @@ The benefits of using a Docker volume are the following:
 
 * You can quickly backup and restore your data using the `docker cp` command or mount the volume to another container.
 
-```{.bash data-prompt="$"}
-$ docker volume create backupvol
+```shell
+docker volume create backupvol
 ```
     
 ??? example "Expected output"
@@ -42,7 +42,7 @@ In our example, the command has the following options:
 |`--password`   | Prompts the user to enter the password for the root user. For convenience you can add the password for the root user to this option, for example, `--password=secret`. Then the password will be passed automaticaly when running the command. Note that if you specify the password with `--password=secret`, the password is visible in `docker ps`, `docker ps -a` (docker history) and regular ps command.          |
 | `8.4` | Use this tag to specify a specific version. Avoid using the `latest` tag. <br> In our example, we use the `8.4` tag. In Docker, a tag is a label assigned to an image and is used to maintain different versions of an image.|
 
-If you do not add a tag, Docker uses `latest` as the default tag and downloads the newest image from [percona/percona-xtrabackup on the Docker Hub](https://hub.docker.com/r/percona/percona-xtrabackup). This image can be in a different series or version from what you expect since the latest image changes over time. If you are using Percona XtraBackup version prior to 8.4, use tags to ensure that you use [compatible versions](server-backup-version-comparison.md) of Percona Server for MySQL and Percona XtraBackup. 
+If you do not add a tag, Docker uses `latest` as the default tag and downloads the newest image from [percona/percona-xtrabackup on the Docker Hub  :octicons-link-external-16:](https://hub.docker.com/r/percona/percona-xtrabackup). This image can be in a different series or version from what you expect since the latest image changes over time. If you are using Percona XtraBackup version prior to 8.4, use tags to ensure that you use [compatible versions](server-backup-version-comparison.md) of Percona Server for MySQL and Percona XtraBackup. 
 
 The CPU architecture or platform for Percona Server for MySQL and Percona XtraBackup should be the same. If you want to use a different platform, you can add the following command:
 
@@ -58,8 +58,8 @@ You can run the Docker ARM64 version of Percona XtraBackup. Use the `8.4-aarch64
 We recommend using the `–-user root` option in the Docker command.
 Run a Docker container example
 
-```{.bash data-prompt="$"}
-$ docker run --name pxb --volumes-from psmysql -v backupvol:/backup_84 -it --user root percona/percona-xtrabackup:8.4 /bin/bash -c "xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root --password; xtrabackup --prepare --target-dir=/backup_84"
+```shell
+docker run --name pxb --volumes-from psmysql -v backupvol:/backup_84 -it --user root percona/percona-xtrabackup:8.4 /bin/bash -c "xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root --password; xtrabackup --prepare --target-dir=/backup_84"
 ```
 
 You are prompted to enter the password. In our example, the password is `secret`.
@@ -99,8 +99,8 @@ You can check the Xtrabackup logs with the `docker container logs <container-nam
 
 For example:
 
-```{.bash data-prompt="$"}
-$ docker container logs pxb
+```shell
+docker container logs pxb
 ```
 
 ## Next steps

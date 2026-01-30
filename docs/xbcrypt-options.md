@@ -2,8 +2,8 @@
 
 Usage: 
  
-```{.text .no-copy}
-$ xbcrypt[OPTIONS]
+```shell
+xbcrypt[OPTIONS]
 ```
 
 The `xbcrypt` binary has the following command line options:

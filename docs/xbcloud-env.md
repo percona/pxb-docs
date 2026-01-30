@@ -7,7 +7,7 @@ Environment variable files (`.env`) are a common way to manage configuration set
 Create a `.env` file in your project directory or a secure location:
 
 ### S3 example
-```{.bash data-prompt="$"}
+```shell
 # Example .env file for S3
 AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
 AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
@@ -16,7 +16,7 @@ AWS_ENDPOINT=https://s3.us-west-2.amazonaws.com
 ```
 
 ### Swift example
-```{.bash data-prompt="$"}
+```shell
 # Example .env file for Swift
 OS_AUTH_URL=http://192.168.1.100:5000/v3
 OS_USERNAME=admin
@@ -26,7 +26,7 @@ OS_USER_DOMAIN=default
 ```
 
 ### Azure example
-```{.bash data-prompt="$"}
+```shell
 # Example .env file for Azure
 AZURE_STORAGE_ACCOUNT=mystorageaccount
 AZURE_CONTAINER_NAME=backups
@@ -41,7 +41,7 @@ Environment variables from `.env` files are not automatically loaded by the shel
 
 The `source` command (or its shorthand `.`) reads and executes commands from a file in the current shell environment. This makes all variables from the `.env` file available to subsequent commands in the same shell session.
 
-```{.bash data-prompt="$"}
+```shell
 # Load the environment variables
 source .env
 # or
@@ -57,7 +57,7 @@ The `env` command runs another program with a modified environment. Combined wit
 
 You can run xbcloud with variables loaded from a .env file in a single command:
 
-```{.bash data-prompt="$"}
+```shell
 # Run xbcloud with environment variables from file
 env $(cat .env | xargs) xtrabackup --backup --stream=xbstream | xbcloud put s3://my-bucket/backup-$(date +%Y%m%d)
 ```
@@ -76,7 +76,7 @@ This method creates a shell script that loads environment variables and runs the
 
 Create a script that loads the environment variables:
 
-```{.bash data-prompt="$"}
+```shell
 #!/bin/bash
 # load-env.sh
 
@@ -90,7 +90,7 @@ xtrabackup --backup --stream=xbstream | \
 ```
 
 Make it executable and run:
-```{.bash data-prompt="$"}
+```shell
 chmod +x load-env.sh
 ./load-env.sh
 ```
@@ -98,17 +98,17 @@ chmod +x load-env.sh
 ## Security best practices
 
 * File permissions: Set restrictive permissions on your `.env` file:
-  ```{.bash data-prompt="$"}
-  $ chmod 600 .env  # Only owner can read/write
+  ```shell
+  chmod 600 .env  # Only owner can read/write
   ```
 
 * Gitignore: Add `.env` to your `.gitignore` file to prevent committing sensitive data:
-  ```{.bash data-prompt="$"}
+  ```shell
   echo ".env" >> .gitignore
   ```
 
 * Template file: Create a `.env.example` file with placeholder values:
-  ```{.bash data-prompt="$"}
+  ```shell
   # .env.example
   AWS_ACCESS_KEY_ID=your-access-key-here
   AWS_SECRET_ACCESS_KEY=your-secret-key-here
@@ -116,7 +116,7 @@ chmod +x load-env.sh
   ```
 
 * Location: Store `.env` files in a secure location, not in your project root if possible:
-  ```{.bash data-prompt="$"}
+  ```shell
   # Store in a secure directory
   /etc/xtrabackup/.env
   /home/backup/.env
@@ -126,7 +126,7 @@ chmod +x load-env.sh
 
 Here's a complete example of using a `.env` file with xbcloud. This example demonstrates the full workflow from creating the environment file to running a backup:
 
-```{.bash data-prompt="$"}
+```shell
 # 1. Create the .env file
 cat > /secure/path/.env << EOF
 AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
@@ -161,13 +161,13 @@ This example shows the complete process:
 ## Troubleshooting .env files
 
 * Check if variables are loaded:
-  ```{.bash data-prompt="$"}
+  ```shell
   source .env
   echo $AWS_ACCESS_KEY_ID  # Should show your access key
   ```
 
 * Verify file format: Ensure no spaces around the `=` sign:
-  ```{.bash data-prompt="$"}
+  ```shell
   # Correct
   AWS_ACCESS_KEY_ID=value
   
@@ -176,12 +176,12 @@ This example shows the complete process:
   ```
 
 * Handle special characters: Quote values with special characters:
-  ```{.bash data-prompt="$"}
+  ```shell
   OS_PASSWORD="my-password-with-special-chars!"
   ```
 
 * Comments: Use `#` for comments in `.env` files:
-  ```{.bash data-prompt="$"}
+  ```shell
   # This is a comment
   AWS_ACCESS_KEY_ID=your-key-here
   ```
@@ -190,7 +190,7 @@ This example shows the complete process:
 
 For automated backups, you can create a wrapper script:
 
-```{.bash data-prompt="$"}
+```shell
 #!/bin/bash
 # backup-script.sh
 

@@ -1,7 +1,7 @@
 # Verify backups with replication and pt-checksum
 
 One way to verify if the backup is consistent is by setting up the
-replication and running [pt-table-checksum](http://www.percona.com/doc/percona-toolkit/pt-table-checksum.html). This can be used to verify any type of backups, but before setting up
+replication and running [pt-table-checksum :octicons-link-external-16:](http://www.percona.com/doc/percona-toolkit/pt-table-checksum.html). This can be used to verify any type of backups, but before setting up
 replication, backup should be prepared and be able to run (this means that
 incremental backups should be merged to full backups, encrypted backups
 decrypted etc.).
@@ -25,12 +25,12 @@ which produces different results on replicas that are inconsistent with the
 source.
 
 After you confirmed that replication has been set up successfully, you
-can [install](http://www.percona.com/doc/percona-toolkit/installation.html)
+can [install :octicons-link-external-16:](http://www.percona.com/doc/percona-toolkit/installation.html)
 or download *pt-table-checksum*. This example shows downloading the latest
 version of *pt-table-checksum*:
 
-```{.bash data-prompt="$"}
-$ wget percona.com/get/pt-table-checksum
+```shell
+wget percona.com/get/pt-table-checksum
 ```
 
 !!! note
@@ -44,8 +44,8 @@ Running the *pt-table-checksum* on the source will create `percona`
 database with the `checksums` table which will be replicated to the
 replicas as well. Example of the *pt-table-checksum* will look like this:
 
-```{.bash data-prompt="$"}
-$ ./pt-table-checksum
+```shell
+./pt-table-checksum
 ```
 
 The results are similar to the following:
@@ -76,14 +76,14 @@ difference and point to the table that does not match. Following example
 shows adding new user on the backed up replica in order to simulate the
 inconsistent backup:
 
-```{.bash data-prompt="mysql>"}
-mysql> grant usage on exampledb.* to exampledb@localhost identified by 'thisisnewpassword';
+```sql
+grant usage on exampledb.* to exampledb@localhost identified by 'thisisnewpassword';
 ```
 
 If we run the *pt-table-checksum* now difference should be spotted
 
-```{.bash data-prompt="$"}
-$ ./pt-table-checksum
+```shell
+./pt-table-checksum
 ```
 
 The results are similar to the following:
@@ -110,4 +110,4 @@ This output shows that source and the replica aren’t in consistent state
 and that the difference is in the `mysql.user` table.
 
 More information on different options that pt-table-checksum provides can
-be found in the *pt-table-checksum* [documentation](https://docs.percona.com/percona-toolkit/pt-table-checksum.html).
+be found in the *pt-table-checksum* [documentation :octicons-link-external-16:](https://docs.percona.com/percona-toolkit/pt-table-checksum.html).

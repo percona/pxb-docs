@@ -5,8 +5,8 @@ The following steps describe how to restore your backup to another Percona Serve
 
 1. Create another Docker volume
 
-    ```{.bash data-prompt="$"}
-    $ docker volume create myvol2
+    ```shell
+    docker volume create myvol2
     ```
     
     ??? example "Expected output"
@@ -33,8 +33,8 @@ The following steps describe how to restore your backup to another Percona Serve
 
     * Run a Docker container example
 
-        ```{.bash data-prompt="$"}
-        $ docker run -d -p 3307:3306 --name psmysql2 -e MYSQL_ROOT_PASSWORD=secret -v myvol2:/var/lib/mysql percona/percona-server:8.4
+        ```shell
+        docker run -d -p 3307:3306 --name psmysql2 -e MYSQL_ROOT_PASSWORD=secret -v myvol2:/var/lib/mysql percona/percona-server:8.4
         ```
 
     ??? example "Expected output"
@@ -46,8 +46,8 @@ The following steps describe how to restore your backup to another Percona Serve
  
 3. Stop `psmysql2` container
 
-    ```{.bash data-prompt="$"}
-    $ docker stop psmysql2
+    ```shell
+    docker stop psmysql2
     ```
 
     ??? example "Expected output"
@@ -60,16 +60,16 @@ The following steps describe how to restore your backup to another Percona Serve
 
     The `--rm` option automatically removes the temporary container created from percona/percona-xtrabackup:8.0.34 image after the container exits. 
 
-    ```{.bash data-prompt="$"}
-    $ docker run --volumes-from psmysql2 -v backupvol:/backup_84 -it --rm --user root percona/percona-xtrabackup:8.4 /bin/bash -c "rm -rf /var/lib/mysql/*"
+    ```shell
+    docker run --volumes-from psmysql2 -v backupvol:/backup_84 -it --rm --user root percona/percona-xtrabackup:8.4 /bin/bash -c "rm -rf /var/lib/mysql/*"
     ```
 
     If the command executes successfully, the expected output is empty.
 
 5. Restore backup of `psmysql` from `backupvol` to a new `psmysql2` instance.
 
-    ```{.bash data-prompt="$"}
-    $ docker run --platform linux/amd64 --volumes-from psmysql2 -v backupvol:/backup_84 -it --rm --user root percona/percona-xtrabackup:8.4 /bin/bash -c "xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_84" 
+    ```shell
+    docker run --platform linux/amd64 --volumes-from psmysql2 -v backupvol:/backup_84 -it --rm --user root percona/percona-xtrabackup:8.4 /bin/bash -c "xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_84" 
     ```
 
     ??? example "Expected output"
@@ -98,16 +98,16 @@ This section describes the backup validation steps assuming that you backed up `
 
     To avoid permission issues when running `psmysql2` container, you need to change the owner because the files were restored by `root` user and `psmysql2` will use `mysql` user.
 
-    ```{.bash data-prompt="$"}
-    $ docker run --volumes-from psmysql2 -v backupvol:/backup_84 -it --rm --user root percona/percona-xtrabackup:8.4 /bin/bash -c "chown -R mysql:mysql /var/lib/mysql/" 
+    ```shell
+    docker run --volumes-from psmysql2 -v backupvol:/backup_84 -it --rm --user root percona/percona-xtrabackup:8.4 /bin/bash -c "chown -R mysql:mysql /var/lib/mysql/" 
     ```
 
     If the command executes successfully, the expected output is empty.
  
 2. Start the `psmysql2` container
 
-    ```{.bash data-prompt="$"}
-    $ docker start psmysql2
+    ```shell
+    docker start psmysql2
     ```
 
     ??? example "Expected output"
@@ -130,8 +130,8 @@ This section describes the backup validation steps assuming that you backed up `
 
     * Connect to the database instance example
     
-        ```{.bash data-prompt="$"}
-        $ docker exec -it psmysql2 mysql -uroot -p
+        ```shell
+        docker exec -it psmysql2 mysql -uroot -p
         ```
 
         You are prompted to enter the password, which is `secret`.
@@ -161,8 +161,8 @@ This section describes the backup validation steps assuming that you backed up `
 
 4. Check the list of databases to make sure, the backed up, `mydb` database is in the list.
 
-    ```{.bash data-prompt="mysql>"}
-    mysql> show databases; 
+    ```sql
+    show databases; 
     ```
 
     ??? example "Expected output"
@@ -191,8 +191,8 @@ This section describes the backup validation steps assuming that you backed up `
 
 5. Use the `mydb` database.
 
-    ```{.bash data-prompt="mysql>"}
-    mysql> use mydb; 
+    ```sql
+    use mydb; 
     ```
 
     ??? example "Expected output"
@@ -203,8 +203,8 @@ This section describes the backup validation steps assuming that you backed up `
 
 6. Check that your table contains data
 
-    ```{.bash data-prompt="mysql>"} 
-    mysql> SELECT * FROM employees; 
+    ```sql 
+    SELECT * FROM employees; 
     ```
 
     ??? example "Expected output"

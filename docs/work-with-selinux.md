@@ -4,8 +4,8 @@ Percona XtraBackup is installed as an unconfined process running in an undefined
 
 You find the current state of the Percona XtraBackup file with the following command:
 
-```{.bash data-prompt="$"}
-$ ls -Z /usr/bin | grep xtrabackup
+```shell
+ls -Z /usr/bin | grep xtrabackup
 ```
 
 ??? example "Expected output"
@@ -46,8 +46,8 @@ The first option opens the entire system to read and write. Select the second op
 
 To work with policies, you must install the SELinux tools. To find which package provides the `semanage` command and install the package. The following is an example on CentOS 7.
 
-```{.bash data-prompt="$"}
-$ yum provides *bin/semanage
+```shell
+yum provides *bin/semanage
 ```
 The result should list the packages.
 
@@ -60,14 +60,14 @@ The result should list the packages.
     ```
 To install missing packages, run the following:
 
-```{.bash data-prompt="$"}
-$ sudo yum install -y policycoreutils-python
+```shell
+sudo yum install -y policycoreutils-python
 ```
 
 The following is an example on CentOS 8:
 
-```{.bash data-prompt="$"}
-$ yum provides *bin/semanage
+```shell
+yum provides *bin/semanage
 ```
 The result should list the missing packages.
 
@@ -79,8 +79,8 @@ The result should list the missing packages.
     ```
 Run the following to install the missing packages: 
 
-```{.bash data-prompt="$"}
-$ sudo yum install -y policycoreutils-python-utils
+```shell
+sudo yum install -y policycoreutils-python-utils
 ```
 
 ## Create a policy
@@ -113,26 +113,26 @@ Download the `xtrabackup.te` file from the following location:
 
 Compile the policy module:
 
-```{.bash data-prompt="$"}
-$ make -f /usr/share/selinux/devel/Makefile xtrabackup.pp
+```shell
+make -f /usr/share/selinux/devel/Makefile xtrabackup.pp
 ```
 
 Install the module:
 
-```{.bash data-prompt="$"}
-$ semodule -i xtrabackup.pp
+```shell
+semodule -i xtrabackup.pp
 ```
 
 Tag the PXB binaries with the proper SELinux tags, such as `xtrabackup_exec_t`.
 
-```{.bash data-prompt="$"}
-$ restorecon -v /usr/bin/*
+```shell
+restorecon -v /usr/bin/*
 ```
 
 If you store your backups at `/backups`, restore the tag in that location:
 
-```{.bash data-prompt="$"}
-$ restorecon -v /backups
+```shell
+restorecon -v /backups
 ```
 
 !!! note

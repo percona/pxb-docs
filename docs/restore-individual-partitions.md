@@ -5,8 +5,8 @@ server.
 
 First step is to create new table in which data will be restored.
 
-```{.bash data-prompt="mysql>"}
-mysql> CREATE TABLE `name_p4` (
+```sql
+CREATE TABLE `name_p4` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `name` text NOT NULL,
 `imdb_index` varchar(12) DEFAULT NULL,
@@ -20,14 +20,14 @@ PRIMARY KEY (`id`)
 
 !!! note
    
-    Generate a [.cfg metadata file] by running `FLUSH TABLES ... FOR EXPORT`. The command can only be run on a table, not on the individual table partitions.
+    Generate a [.cfg metadata file :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-table-import.html) by running `FLUSH TABLES ... FOR EXPORT`. The command can only be run on a table, not on the individual table partitions.
     The file is located in the table schema directory and is used for schema verification when importing the tablespace. 
 
 To restore the partition from the backup, the tablespace must be discarded for
 that table:
 
-```{.bash data-prompt="mysql>"}
-mysql> ALTER TABLE name_p4 DISCARD TABLESPACE;
+```sql
+ALTER TABLE name_p4 DISCARD TABLESPACE;
 ```
 
 The next step is to copy the `.ibd` file from the backup to the MySQL data directory:
@@ -42,8 +42,6 @@ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p
 
 The last step is to import the tablespace:
 
-```{.bash data-prompt="mysql>"}
-mysql> ALTER TABLE name_p4 IMPORT TABLESPACE;
+```sql
+ALTER TABLE name_p4 IMPORT TABLESPACE;
 ```
-
-[.cfg metadata file]: https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-table-import.html

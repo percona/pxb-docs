@@ -1,11 +1,11 @@
 # Use a YUM repository to install Percona XtraBackup
 
 Ready-to-use packages are available from the Percona XtraBackup software
-repositories and the [download page](https://www.percona.com/downloads/). The Percona yum repository supports popular `RPM`-based operating systems, including the `Amazon Linux AMI`.
+repositories and the [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads). The Percona yum repository supports popular `RPM`-based operating systems, including the `Amazon Linux AMI`.
 
-The easiest way to install the Percona Yum repository is to install an `RPM` that configures yum and installs the [Percona GPG key](https://www.percona.com/downloads/RPM-GPG-KEY-percona).
+The easiest way to install the Percona Yum repository is to install an `RPM` that configures yum and installs the [Percona GPG key :octicons-link-external-16:](https://www.percona.com/downloads/RPM-GPG-KEY-percona).
 
-Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
+Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle :octicons-link-external-16:](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
 
 <!--
 
@@ -26,8 +26,8 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
 
 1. Install the Percona yum repository by running the following command as the `root` user or with **sudo**: 
 
-    ```{.bash data-prompt="$"}
-    $ sudo yum install \
+    ```shell
+    sudo yum install \
     https://repo.percona.com/yum/percona-release-latest.\
     noarch.rpm
     ```
@@ -55,8 +55,8 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
 
 2. Enable the repository: 
 
-    ```{.bash data-prompt="$"}
-    $ sudo percona-release enable pxb-84-lts
+    ```shell
+    sudo percona-release enable pxb-84-lts
     ```
 
     ??? example "Expected output"
@@ -68,8 +68,8 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
 
 3. Install Percona XtraBackup.
 
-    ```{.bash data-prompt="$"}
-    $ sudo yum install percona-xtrabackup-84
+    ```shell
+    sudo yum install percona-xtrabackup-84
     ```
 
     ??? example "Expected output"
@@ -89,8 +89,8 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
         
 4. Verify the installation.
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --version
+    ```shell
+    xtrabackup --version
     ```
 
     ??? example "Expected output"
@@ -103,14 +103,14 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
 
     === "Install the `lz4` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo yum install lz4
+        ```shell
+        sudo yum install lz4
         ```
 
     === "Install the `zstd` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo yum install zstd
+        ```shell
+        sudo yum install zstd
         ```
 
 !!! admonition "See also"

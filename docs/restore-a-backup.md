@@ -14,7 +14,7 @@ Ensure you have one of the following before proceeding:
 
 For convenience, *xtrabackup* binary has the `--copy-back` option to copy the backup to the datadir of the server:
 
-```bash
+```shell
 xtrabackup --copy-back --target-dir=/data/backups/
 ```
 
@@ -28,7 +28,7 @@ If you don’t want to use `--copy-back` and `--move-back` options, you can also
 
 An example of the **rsync** command to restore the backup:
 
-```bash
+```shell
 rsync -avrP /data/backup/ /var/lib/mysql/
 ```
 
@@ -36,7 +36,7 @@ You should check that the restored files have the correct ownership and permissi
 
 As files’ attributes are preserved, in most cases you must change the files’ ownership to `mysql` before starting the database server, as the files are owned by the user who created the backup:
 
-```bash
+```shell
 chown -R mysql:mysql /var/lib/mysql
 ```
 
@@ -100,7 +100,7 @@ After preparing and restoring the backup, do the following steps:
 
 3. Ensure the file has the correct ownership:
 
-    ```bash
+    ```shell
     chown mysql:mysql /var/lib/mysql/grastate.dat
     ```
 

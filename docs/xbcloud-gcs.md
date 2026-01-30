@@ -9,10 +9,10 @@ compatible with Amazon S3.
 
 !!! admonition "See also"
    
-    [Cloud Storage Interoperability](https://cloud.google.com/storage/docs/interoperability)
+    [Cloud Storage Interoperability :octicons-link-external-16:](https://cloud.google.com/storage/docs/interoperability)
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+```shell
+xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=google \
 --google-endpoint=`storage.googleapis.com` \
 --google-access-key='YOUR-ACCESSKEYID' \
@@ -50,6 +50,6 @@ The following options are available when using Google Cloud Storage:
 !!! admonition "See also"
    
     [Google storage classes - the default Google storage class depends on 
-    the storage class of the bucket](https://cloud.google.com/storage/docs/changing-default-storage-class)
+    the storage class of the bucket :octicons-link-external-16:](https://cloud.google.com/storage/docs/changing-default-storage-class)
 
 

@@ -11,7 +11,7 @@ A role defines "what can I do." A role provides a method to define a collection 
 
 The IAM instance profile is the "who" for an EC2 instance and assumes the IAM role, which has permissions. The instance profile has the same name as the IAM role.
 
-An IAM instance profile does not need the `--s3-secret-key` nor the `--s3-access-key` if they are running `xbcloud` from an Amazon EC2 instance. To configure or attach an instance metadata to an EC2 instance, see [How can I grant my Amazon EC2 instance access to an Amazon S3 bucket](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-access-s3-bucket/). 
+An IAM instance profile does not need the `--s3-secret-key` nor the `--s3-access-key` if they are running `xbcloud` from an Amazon EC2 instance. To configure or attach an instance metadata to an EC2 instance, see [How can I grant my Amazon EC2 instance access to an Amazon S3 bucket :octicons-link-external-16:](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-access-s3-bucket/). 
 
 An example of the command:
 

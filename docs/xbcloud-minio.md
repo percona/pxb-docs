@@ -2,8 +2,8 @@
 
 ## Create a full backup with MinIO
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+```shell
+xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=s3 \
 --s3-endpoint='play.minio.io:9000' \
 --s3-access-key='YOUR-ACCESSKEYID' \

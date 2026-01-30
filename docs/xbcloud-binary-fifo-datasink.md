@@ -18,19 +18,19 @@ To use FIFO data sink, you can either run two commands in separate terminal sess
 
 For example, run the following commands in separate terminal sessions:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream --fifo-streams=2 --fifo-dir=/tmp/fifo
+```shell
+xtrabackup --backup --stream --fifo-streams=2 --fifo-dir=/tmp/fifo
 ```
 
-```{.bash data-prompt="$"}
-$ xbcloud put --fifo-streams=2 --fifo-dir=/tmp/fifo full
+```shell
+xbcloud put --fifo-streams=2 --fifo-dir=/tmp/fifo full
 ```
 
 Run xtrabackup in the background with the following commands:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream --fifo-streams=2 --fifo-dir=/tmp/fifo &
-$ xbcloud put --fifo-streams=2 --fifo-dir=/tmp/fifo full
+```shell
+xtrabackup --backup --stream --fifo-streams=2 --fifo-dir=/tmp/fifo &
+xbcloud put --fifo-streams=2 --fifo-dir=/tmp/fifo full
 ```
 
 ## Stream to an object storage

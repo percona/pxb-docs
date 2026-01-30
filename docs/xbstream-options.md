@@ -1,8 +1,8 @@
 # The xbstream command-line options
 
-```{.text .no-copy}
-$ xbstream -c [OPTIONS]
-$ xbstream -x [OPTIONS]
+```shell
+xbstream -c [OPTIONS]
+xbstream -x [OPTIONS]
 ```
 
 This utility has a tar-like interface.
