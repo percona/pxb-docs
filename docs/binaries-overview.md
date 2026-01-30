@@ -175,7 +175,7 @@ xbstream -x -C /restore/directory < backup.xbstream
 xtrabackup --backup --stream=xbstream | xbstream -c -C /backup/directory
 ```
 
-Documentation: [xbstream Overview :octicons-link-external-16:](https://docs.percona.com/percona-xtrabackup/8.4/xbstream.html)
+Documentation: [xbstream Overview :octicons-link-external-16:](https://docs.percona.com/percona-xtrabackup/{{vers}}/xbstream-binary-overview.html)
 
 Command Line Options: [xbstream Options](xbstream-options.md)
 
