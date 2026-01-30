@@ -1,6 +1,6 @@
 # Install Percona XtraBackup {{vers}} using downloaded RPM packages
 
-Download `RPM` packages of the desired series for your architecture from the [Percona Software Downloads](https://www.percona.com/downloads). If needed, [Percona Software Download instructions](download-instructions.md) are available. 
+Download `RPM` packages of the desired series for your architecture from the [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads). If needed, [Percona Software Download instructions](download-instructions.md) are available. 
 
 This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.
 

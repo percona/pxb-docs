@@ -20,7 +20,7 @@ reuse issues in `xbcloud`. The following versions are not supported.
 
 `libcurl versions ≥ 8.11.1 and < 8.12.0`
 
-* Affected by double close of an eventfd file descriptor, [CVE-2025-0665](https://github.com/advisories/GHSA-cc57-hgv8-p56r)
+* Affected by double close of an eventfd file descriptor, [CVE-2025-0665 :octicons-link-external-16:](https://github.com/advisories/GHSA-cc57-hgv8-p56r)
 
 * May cause unexpected terminations when `xbcloud` uses `libcurl`
 
@@ -32,7 +32,7 @@ If the installed `libcurl` version is not supported, update it depending on the 
 
 * Recommended - Upgrade to libcurl `8.12.0 or later` if these versions are compatible with your operating system.
 
-* If upgrading to the latest version `≥ 8.12.0` is not possible, downgrade to a supported version earlier than 8.11.1 to avoid the vulnerability associated with [CVE-2025-0665](https://github.com/advisories/GHSA-cc57-hgv8-p56r). Ensure that the downgrade is compatible with other system dependencies.
+* If upgrading to the latest version `≥ 8.12.0` is not possible, downgrade to a supported version earlier than 8.11.1 to avoid the vulnerability associated with [CVE-2025-0665 :octicons-link-external-16:](https://github.com/advisories/GHSA-cc57-hgv8-p56r). Ensure that the downgrade is compatible with other system dependencies.
 
 ### Check the installed libcurl version
 

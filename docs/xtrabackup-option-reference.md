@@ -14,14 +14,14 @@ You invoke xtrabackup in one of the following modes:
 
 When you intend to run xtrabackup in any of these modes, use the following syntax:
 
-```{.bash data-prompt="$"}
-$ xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back| [OPTIONS]
+```shell
+xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back| [OPTIONS]
 ```
 
 For example, the `--prepare` mode is applied as follows:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backup/mysql/
+```shell
+xtrabackup --prepare --target-dir=/data/backup/mysql/
 ```
 
 For all modes, the default options are read from the xtrabackup and
@@ -90,7 +90,7 @@ The number of attempts to acquire metadata locks.
 
 Usage: `--backup-locks`
 
-This option controls if [Backup locks] are used instead of `FLUSH TABLES
+This option controls if [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) are used instead of `FLUSH TABLES
 WITH READ LOCK` on the backup stage. The option has no effect when the server does not support backup locks. This option is enabled by default,
 disable with [`--no-backup-locks`](#no-backup-locks).
 
@@ -285,13 +285,13 @@ The xtrabackup binary requests the server to start the buffer pool dump. This op
 beginning of a backup with the option reports that the dump has been
 completed.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
+```shell
+xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
 ```
 
 By default, this option is set to OFF.
 
-If [`innodb_buffer_pool_dump_status`](https://dev.mysql.com/doc/refman/8.3/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status) reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
+If [`innodb_buffer_pool_dump_status` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/8.3/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status) reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
 using the value of [`--dump-innodb-buffer-pool-timeout`](#dump-innodb-buffer-pool-timeout)
 
 The file `ib_buffer_pool` stores the tablespace ID and page ID
@@ -306,7 +306,7 @@ pages to dump.
 
 This option is effective if `--dump-innodb-buffer-pool` option is set
 to ON. If this option contains a value, xtrabackup sets the MySQL
-system variable [`innodb_buffer_pool_dump_pct`](https://dev.mysql.com/doc/refman/8.3/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct). As soon as the buffer pool
+system variable [`innodb_buffer_pool_dump_pct` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/8.3/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct). As soon as the buffer pool
 dump completes or is stopped (see
 `--dump-innodb-buffer-pool-timeout`), the value of the MySQL system
 variable is restored.
@@ -316,7 +316,7 @@ variable is restored.
 Usage: `--dump-innodb-buffer-pool-timeout`
 
 This option contains the number of seconds that xtrabackup should
-monitor the value of [`innodb_buffer_pool_dump_status`](https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status) to
+monitor the value of [`innodb_buffer_pool_dump_status` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status) to
 determine if the buffer pool dump has been completed.
 
 This option is used in combination with
@@ -375,11 +375,11 @@ The option lets you enable or disable the [Smart memory estimation](smart-memory
 
 An example of how to enable the Smart memory estimation feature:
 
-```{.bash data-prompt="$"}
+```shell
 $ xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
-```{.bash data-prompt="$"}
+```shell
 $ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 
@@ -415,7 +415,7 @@ terminates with an error.
 
 The default value is `0`, xtrabackup does not wait
 for queries to complete and starts `FLUSH TABLES WITH READ LOCK`
-immediately. Where supported, xtrabackup automatically uses the [Backup locks] as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
+immediately. Where supported, xtrabackup automatically uses the [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify the InnoDB tables.
 
 ### ftwrl-wait-threshold
@@ -428,7 +428,7 @@ xtrabackup to detect long-running queries with a non-zero value of
 is not started until such long-running queries exist.
 
 This option has no effect if `--ftwrl-wait-timeout` is `0`. The default value
-is `60` seconds. The xtrabackup binary automatically uses [Backup locks] as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
+is `60` seconds. The xtrabackup binary automatically uses [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables when backup locks are supported.
 
 ### ftwrl-wait-query-type
@@ -440,7 +440,7 @@ Usage: `--ftwrl-wait-query-type=all|update`This option specifies which queries c
 Usage: `--galera-info`
 
 This option creates the `xtrabackup_galera_info` file, which contains the local node state at the backup time. This option should be used when
-performing the backup of a Percona XtraDB Cluster. The option has no effect when [Backup locks] are used to create the backup.
+performing the backup of a Percona XtraDB Cluster. The option has no effect when [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) are used to create the backup.
 
 ### generate-new-master-key
 
@@ -582,7 +582,7 @@ To use this option xtrabackup user should have the
 `PROCESS` and `SUPER` privileges.
 
 Where supported, xtrabackup
-automatically uses [Backup locks] as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
+automatically uses [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
 
 ### kill-long-query-type
 
@@ -703,7 +703,7 @@ about the binary log position of the backup. This option shouldn’t be used if 
 happening on non-InnoDB tables; this includes the system MyISAM tables in the
 mysql database. Otherwise, those operations could lead to an inconsistent backup.
 
-Where supported, xtrabackup will automatically use [Backup locks] as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
+Where supported, xtrabackup will automatically use [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
 
 If you consider using this option because your backups fail to acquire
@@ -753,7 +753,7 @@ a random UUID; no client information is collected or stored.
 
 Usage: `--open-files-limit=#`
 
-The maximum number of file descriptors to reserve with [setrlimit]( https://man7.org/linux/man-pages/man2/setrlimit.2.html)git .
+The maximum number of file descriptors to reserve with [setrlimit :octicons-link-external-16:]( https://man7.org/linux/man-pages/man2/setrlimit.2.html)git .
 
 ### parallel
 
@@ -883,7 +883,7 @@ running `FLUSH TABLES WITH READ LOCK` and waits to start the backup operation un
 If there are no open temporary tables, the backup takes place, otherwise the SQL thread is started and stopped until there are no open temporary tables. The backup fails if `Replica_open_temp_tables` does not become zero after
 [`--safe-slave-backup-timeout`](#safe-slave-backup-timeout
 ) seconds. The replication SQL thread is restarted when the backup is complete.
-This option is implemented to deal with [replication and temporary tables](https://dev.mysql.com/doc/refman/{{vers}}/en/replication-features-temptables.html) and isn’t necessary with row-based replication.
+This option is implemented to deal with [replication and temporary tables :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/replication-features-temptables.html) and isn’t necessary with row-based replication.
 
 Using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.
 
@@ -923,10 +923,10 @@ Usage: `--slave-info`
 
 This option is useful when backing up a replication replica server. It prints
 the binary log position of the source server. It also writes the binary log
-coordinates to the `xtrabackup_slave_info` file as a [`CHANGE REPLICATION SOURCE TO`](https://dev.mysql.com/doc/refman/{{vers}}/en/change-replication-source-to.html)
+coordinates to the `xtrabackup_slave_info` file as a [`CHANGE REPLICATION SOURCE TO` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/change-replication-source-to.html)
 command.
 
-A new replica for this source can be set up by starting a replica server on this backup and issuing a [`CHANGE REPLICATION SOURCE TO`](https://dev.mysql.com/doc/refman/{{vers}}/en/change-replication-source-to.html) command with the binary log
+A new replica for this source can be set up by starting a replica server on this backup and issuing a [`CHANGE REPLICATION SOURCE TO` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/change-replication-source-to.html) command with the binary log
 position saved in the `xtrabackup_slave_info` file.
 
 ### socket
@@ -1123,11 +1123,11 @@ This option works only if `--estimate-memory` option is enabled. If the `--estim
 
 An example of how to enable the Smart memory estimation feature:
 
-```{.bash data-prompt="$"}
+```shell
 $ xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
-```{.bash data-prompt="$"}
+```shell
 $ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 
@@ -1155,6 +1155,3 @@ This option prints xtrabackup version and exits.
 Usage: `--xtrabackup-plugin-dir=DIRNAME`
 
 The absolute path to the directory that contains the `keyring` plugin.
-
-[replicating temporary tables]: https://dev.mysql.com/doc/refman/{{vers}}/en/replication-features-temptables.html
-[Backup locks]: https://docs.percona.com/percona-server/{{vers}}/backup-locks.html

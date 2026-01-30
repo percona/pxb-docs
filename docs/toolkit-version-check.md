@@ -73,7 +73,7 @@ Although the *version checking* feature does not collect any personal informatio
 you might prefer to disable this feature, either one time or permanently.  To
 disable it one time, use `--no-version-check` option when invoking the tool
 from a Percona product which supports it. Here is a simple example which shows
-running [pt-diskstats](https://www.percona.com/doc/percona-toolkit/LATEST/pt-diskstats.html) tool
+running [pt-diskstats :octicons-link-external-16:](https://www.percona.com/doc/percona-toolkit/LATEST/pt-diskstats.html) tool
 from the *Percona Toolkit* with *version checking* turned off:
 
 ```text
@@ -83,10 +83,10 @@ pt-diskstats --no-version-check
 Disabling *version checking* permanently can be done by placing
 `no-version-check` option into the configuration file of a Percona product
 (see correspondent documentation for exact file name and syntax). For example,
-in case of *Percona Toolkit* [this can be done](https://www.percona.com/doc/percona-toolkit/LATEST/configuration_files.html)
+in case of *Percona Toolkit* [this can be done :octicons-link-external-16:](https://www.percona.com/doc/percona-toolkit/LATEST/configuration_files.html)
 in a global configuration file `/etc/percona-toolkit/percona-toolkit.conf`:
 
-```{.bash data-prompt="#"}
+```shell
 # Disable Version Check for all tools:
 no-version-check
 ```

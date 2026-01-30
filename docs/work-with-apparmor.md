@@ -4,7 +4,7 @@ The Linux Security Module implements mandatory access controls (MAC) with AppArm
 
 Percona XtraBackup does not have a profile and is not confined by AppArmor.
 
-For a list of common AppArmor commands, see [Percona Server for MySQL - AppArmor].
+For a list of common AppArmor commands, see [Percona Server for MySQL - AppArmor :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/apparmor.html).
 
 ## Develop a profile
 
@@ -41,18 +41,16 @@ The following profile sections should be updated with your system information, s
 
 Move the updated file:
 
-```{.bash data-prompt="$"}
-$ sudo mv usr.sbin.xtrabackup /etc/apparmor.d/
+```shell
+sudo mv usr.sbin.xtrabackup /etc/apparmor.d/
 ```
 
 Install the profile with the following command:
 
-```{.bash data-prompt="$"}
-$ sudo apparmor_parser -r -T -W /etc/apparmor.d/usr.sbin.xtrabackup
+```shell
+sudo apparmor_parser -r -T -W /etc/apparmor.d/usr.sbin.xtrabackup
 ```
 
 Run the backup as usual.
 
 No additional AppArmor-related actions are required to restore a backup.
-
-[Percona Server for MySQL - AppArmor]: https://docs.percona.com/percona-server/{{vers}}/apparmor.html

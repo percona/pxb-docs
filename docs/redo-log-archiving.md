@@ -45,10 +45,10 @@ Before enabling redo log archiving, create a directory to store archived redo lo
 
 Use the following commands to create and secure the directory:
 
-```{.bash data-prompt="$"}
-$ sudo mkdir -p /var/lib/mysql-redo-archive/backup1
-$ sudo chown -R mysql:mysql /var/lib/mysql-redo-archive
-$ sudo chmod -R 700 /var/lib/mysql-redo-archive/
+```shell
+sudo mkdir -p /var/lib/mysql-redo-archive/backup1
+sudo chown -R mysql:mysql /var/lib/mysql-redo-archive
+sudo chmod -R 700 /var/lib/mysql-redo-archive/
 ```
 
 * `mkdir -p` creates the directory and any missing parent directories
@@ -67,14 +67,14 @@ The `innodb_redo_log_archive_dirs` variable defines labeled archive paths. Use a
 
 Set and persist the variable:
 
-```{.bash data-prompt="mysql>"}
-mysql> SET PERSIST innodb_redo_log_archive_dirs='backup1:/var/lib/mysql-redo-archive/';
+```sql
+SET PERSIST innodb_redo_log_archive_dirs='backup1:/var/lib/mysql-redo-archive/';
 ```
 
 Verify the configuration:
 
-```{.bash data-prompt="mysql>"}
-mysql> SHOW GLOBAL VARIABLES LIKE 'innodb_redo_log_ar%';
+```sql
+SHOW GLOBAL VARIABLES LIKE 'innodb_redo_log_ar%';
 ```
 
 ??? example "Expected output"
@@ -101,8 +101,8 @@ To begin archiving redo logs, call `innodb_redo_log_archive_start()`. This funct
 
 Use the same label defined in the `innodb_redo_log_archive_dirs` variable. The function requires the `INNODB_REDO_LOG_ARCHIVE` privilege.
 
-```{.bash data-prompt="mysql>"}
-mysql> SELECT innodb_redo_log_archive_start('backup1','backup1');
+```sql
+SELECT innodb_redo_log_archive_start('backup1','backup1');
 ```
 
 * The first argument is the label used in the configuration
@@ -117,8 +117,8 @@ To stop redo log archiving, call `innodb_redo_log_archive_stop()`. This function
 
 You must use the same label as when you started archiving. The function requires the `INNODB_REDO_LOG_ARCHIVE` privilege.
 
-```{.bash data-prompt="mysql>"}
-mysql> SELECT innodb_redo_log_archive_stop('backup1');
+```sql
+SELECT innodb_redo_log_archive_stop('backup1');
 ```
 
 * The argument is the label defined in the archive configuration
@@ -151,9 +151,9 @@ Percona XtraBackup supports redo log archiving. If the archive directory is not 
 
 Run XtraBackup as the mysql user:
 
-```{.bash data-prompt="$"}
-$ sudo -H -u mysql bash
-$ xtrabackup --no-lock=1 --compress --parallel=4 \
+```shell
+sudo -H -u mysql bash
+xtrabackup --no-lock=1 --compress --parallel=4 \
   --host=localhost --user=root --password='password_string' \
   --backup=1 --target-dir=/Backup/13oct \
   2> /tmp/b0-with-redo-archiving-as-mysql-os-user.log
@@ -161,8 +161,8 @@ $ xtrabackup --no-lock=1 --compress --parallel=4 \
 
 Use the following command to verify that archiving has occurred:
 
-```{.bash data-prompt="$"}
-$ cat /tmp/b0-with-redo-archiving-as-mysql-os-user.log
+```shell
+cat /tmp/b0-with-redo-archiving-as-mysql-os-user.log
 ```
 
 ??? example "Expected output"

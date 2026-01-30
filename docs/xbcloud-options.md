@@ -28,7 +28,7 @@ The name of the Azure container
 
 Usage: `--azure-development-storage=name`
 
-If you run the [Azurite emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio,blob-storage), use this option, and it works with the default credentials provided by Azurite. You can overwrite these default credentials with other options.
+If you run the [Azurite emulator :octicons-link-external-16:](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio,blob-storage), use this option, and it works with the default credentials provided by Azurite. You can overwrite these default credentials with other options.
 
 ## azure-endpoint
 
@@ -295,7 +295,7 @@ Turns on the cURL tracing.
 
 ## Swift authentication options
 
-The Swift specification describes several [authentication options](http://docs.openstack.org/developer/swift/overview_auth.html). The *xbcloud* tool can
+The Swift specification describes several [authentication options :octicons-link-external-16:](http://docs.openstack.org/developer/swift/overview_auth.html). The *xbcloud* tool can
 authenticate against keystone with API version 2 and 3.
 
 ## swift-auth-version

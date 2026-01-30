@@ -13,8 +13,8 @@ The steps are as follows:
 
 1. To exit the MySQL command client shell in `psmysql2` container, we use `exit`. You can also use the `\q` or `quit` commands. The execution of the statement also closes the connection.
 
-    ```{.bash data-prompt="mysql>"}
-    mysql> exit
+    ```sql
+    exit
     ```
 
     ??? example "Expected output"
@@ -27,8 +27,8 @@ The steps are as follows:
 
     * Remove `psmysql2`, `psmysql` and `pxb` Docker containers:
 
-        ```{.bash data-prompt="$"}
-        $ docker container rm psmysql2 -f
+        ```shell
+        docker container rm psmysql2 -f
         ```
 
         ??? example "Expected output"
@@ -37,8 +37,8 @@ The steps are as follows:
             psmysql2
             ```
 
-        ```{.bash data-prompt="$"}
-        $ docker container rm psmysql -f
+        ```shell
+        docker container rm psmysql -f
         ```
 
         ??? example "Expected output"
@@ -47,8 +47,8 @@ The steps are as follows:
             psmysql
             ```
         
-        ```{.bash data-prompt="$"}
-        $ docker container rm pxb -f
+        ```shell
+        docker container rm pxb -f
         ```
 
         ??? example "Expected output"
@@ -59,8 +59,8 @@ The steps are as follows:
 
     * Remove `percona/percona-server:8.0.34` and `percona/percona-xtrabackup:8.0.34` Docker images
 
-        ```{.bash data-prompt="$"}
-        $ docker image rmi percona/percona-server:8.0.34
+        ```shell
+        docker image rmi percona/percona-server:8.0.34
         ```
 
         ??? example "Expected output"
@@ -69,8 +69,8 @@ The steps are as follows:
             Untagged: percona/percona-server:8.0.34
             ```
 
-        ```{.bash data-prompt="$"}
-        $ docker image rmi percona/percona-xtrabackup:8.0.34
+        ```shell
+        docker image rmi percona/percona-xtrabackup:8.0.34
         ```
 
         ??? example "Expected output"
@@ -91,8 +91,8 @@ The steps are as follows:
 
     Remove `backupvol` and `myvol2` Docker volumes:
 
-    ```{.bash data-prompt="$"}
-    $ docker volume rm backupvol
+    ```shell
+    docker volume rm backupvol
     ```
 
     ??? example "Expected output"
@@ -101,8 +101,8 @@ The steps are as follows:
         backupvol
         ```
 
-    ```{.bash data-prompt="$"}
-    $ docker volume rm myvol2
+    ```shell
+    docker volume rm myvol2
     ```
 
     ??? example "Expected output"
