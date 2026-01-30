@@ -11,10 +11,12 @@ Percona Server for MySQL in one container and Percona XtraBackup in
 another. Docker images offer a range of options.
 
 Create a Docker container based on a Docker image. Docker images for
-Percona XtraBackup are hosted publicly on [Docker Hub].
+Percona XtraBackup are hosted publicly on [Docker Hub :octicons-link-external-16:](https://hub.docker.com/r/percona/percona-xtrabackup).
 
-```{.bash data-prompt="$"}
-$ sudo docker create ... percona/percona-xtrabackup --name xtrabackup ...
+Run all the commands as root or use the sudo command.
+
+```shell
+sudo docker create ... percona/percona-xtrabackup --name xtrabackup ...
 ```
 
 ### Scope of this section
@@ -44,12 +46,12 @@ intend to use with Percona XtraBackup.
 
 !!! admontion "See also"
 
-    [Docker volumes as container persistent data storage]
+    [Docker volumes as container persistent data storage :octicons-link-external-16:](https://docs.docker.com/storage/volumes/)
 
-    [More information about containers]
+    [More information about containers :octicons-link-external-16:](https://docs.docker.com/config/containers/start-containers-automatically)
 
-```{.bash data-prompt="$"}
-$ sudo docker run -d --name percona-server-mysql \
+```shell
+sudo docker run -d --name percona-server-mysql \
 -e MYSQL_ROOT_PASSWORD=root percona/percona-server:{{vers}}
 ```
 
@@ -72,8 +74,8 @@ Docker downloads the Percona XtraBackup image from the Docker Hub. If it
 is not the first time you use the selected image, Docker uses the image
 available locally.
 
-```{.bash data-prompt="$"}
-$ sudo docker create --name percona-xtrabackup --volumes-from percona-server-mysql \
+```shell
+sudo docker create --name percona-xtrabackup --volumes-from percona-server-mysql \
 percona/percona-xtrabackup  \
 xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup \
 --user=root --password=mysql
@@ -88,8 +90,8 @@ that you intend to use the same data as the Percona Server for MySQL container.
 Run the container with exactly the same parameters that were used when the
 container was created:
 
-```{.bash data-prompt="$"}
-$ sudo docker start -ai percona-xtrabackup
+```shell
+sudo docker start -ai percona-xtrabackup
 ```
 
 This command starts the percona-xtrabackup container, attaches to its
@@ -98,12 +100,8 @@ input/output streams, and opens an interactive shell.
 The `docker run` is a shortcut command that creates a Docker container and
 then immediately runs it.
 
-```{.bash data-prompt="$"}
-$ sudo docker run --name percona-xtrabackup --volumes-from percona-server-mysql \
+```shell
+sudo docker run --name percona-xtrabackup --volumes-from percona-server-mysql \
 percona/percona-xtrabackup
 xtrabackup --backup --data-dir=/var/lib/mysql --target-dir=/backup --user=root --password=mysql
 ```
-
-[Docker Hub]: https://hub.docker.com/r/percona/percona-xtrabackup
-[Docker volumes as container persistent data storage]: https://docs.docker.com/storage/volumes/
-[More information about containers]: https://docs.docker.com/config/containers/start-containers-automatically

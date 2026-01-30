@@ -1,18 +1,18 @@
 # Compile and install from source
 
-The following instructions install Percona XtraBackup {{vers}}.
+The following instructions install Percona XtraBackup {{vers}}. Run the following command as root or use the sudo command.
 
 ## 1. Install Percona XtraBackup from the Git Source Tree
 
-Percona uses the [Github](https://github.com/) revision control system for development. To build the latest Percona Server for MySQL from the source tree, you will need `git` installed on your system.
+Percona uses the [Github :octicons-link-external-16:](https://github.com/) revision control system for development. To build the latest Percona Server for MySQL from the source tree, you will need `git` installed on your system.
 
 You can now fetch the latest Percona XtraBackup {{vers}} sources:
 
-```{.bash data-prompt="$"}
-$ git clone https://github.com/percona/percona-xtrabackup.git
-$ cd percona-xtrabackup
-$ git checkout trunk
-$ git submodule update --init --recursive
+```shell
+git clone https://github.com/percona/percona-xtrabackup.git
+cd percona-xtrabackup
+git checkout trunk
+git submodule update --init --recursive
 ```
 
 ## 2. Installation prerequisites
@@ -29,7 +29,7 @@ These might vary from system to system.
 
 
 This `cmake` version may be available 
-in your distribution as a separate package `cmake3`. For more information, see [cmake.org].
+in your distribution as a separate package `cmake3`. For more information, see [cmake.org :octicons-link-external-16:](https://cmake.org/).
 
 === "Debian or Ubuntu using `apt`"
 
@@ -45,8 +45,8 @@ in your distribution as a separate package `cmake3`. For more information, see [
 
     To install the man pages, install the python3-sphinx package first:
 
-    ```{.bash data-prompt="$"}
-    $ sudo apt install python3-sphinx
+    ```shell
+    sudo apt install python3-sphinx
     ```
 
 === "CentOS or Red Hat using `yum`"
@@ -58,16 +58,16 @@ in your distribution as a separate package `cmake3`. For more information, see [
     compiler and development tools.  Then, install `cmake` and other
     dependencies:
 
-    ```{.bash data-prompt="$"}
-    $ sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
+    ```shell
+    sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
     bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel \
     zstd vim-common procps-ng-devel
     ```
 
     To install the man pages, install the python3-sphinx package first:
 
-    ```{.bash data-prompt="$"}
-    $ sudo yum install python3-sphinx
+    ```shell
+    sudo yum install python3-sphinx
     ```
 
 ## 3. Generate the build pipeline
@@ -79,16 +79,16 @@ be used to compile the source code).
 
 1. Change to the directory where you cloned the Percona XtraBackup repository
  
-    ```{.bash data-prompt="$"}
-    $ cd percona-xtrabackup
+    ```shell
+    cd percona-xtrabackup
     ```
 
 2. Create a directory to store the compiled files and then change to that
 directory:
 
-    ```{.bash data-prompt="$"}
-    $ mkdir build
-    $ cd build
+    ```shell
+    mkdir build
+    cd build
     ```
 
 3. If you use a regular build, run cmake or cmake3. In either case, the options you need to use are the
@@ -101,15 +101,15 @@ same.
     for every distribution. If you installed the `python-sphinx` package you
     need to remove the `-DWITH_MAN_PAGES=OFF` from the following command.
 
-```{.bash data-prompt="$"}
-$ cmake -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF ..
+```shell
+cmake -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF ..
 ```
 
 <!--
 If you use [Pro builds](./pxb-pro.md), run the following command
 
-```{.bash data-prompt="$"}
-$ cmake -DPROBUILD=1 -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF ..
+```shell
+cmake -DPROBUILD=1 -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF ..
 ```
 -->
 
@@ -136,14 +136,14 @@ To compile the source code in your `build` directory, use the `make` command.
 
 2. Run the `make` command. This command may take a long time to complete.
 
-    ```{.bash data-prompt="$"}
-    $ make
+    ```shell
+    make
     ```
    
     To use all CPU threads and make compilation faster please use:
 
-    ```{.bash data-prompt="$"}
-    $ make -j$(nproc --all)
+    ```shell
+    make -j$(nproc --all)
     ```
 
 ## 5. Install on the target system
@@ -153,8 +153,8 @@ and tests to default location on the target system: `/usr/local/xtrabackup`.
 
 Run `make install` to install *Percona XtraBackup* to the default location.
 
-```{.bash data-prompt="$"}
-$ sudo make install
+```shell
+sudo make install
 ```
 
 ### Install to a non-default location
@@ -163,8 +163,8 @@ You may use the `DESTDIR` parameter with `make install` to install *Percona
 XtraBackup* to another location. Make sure that the effective user is able to
 write to the destination you choose.
 
-```{.bash data-prompt="$"}
-$ sudo make DESTDIR=<DIR_NAME> install
+```shell
+sudo make DESTDIR=<DIR_NAME> install
 ```
 
 In fact, the destination directory is determined by the installation layout
@@ -178,26 +178,26 @@ installation directory to be `/usr/local/xtrabackup`.
 
 !!! admonition "See also"
  
-    [MySQL Documentation: -DINSTALL_LAYOUT]
+    [MySQL Documentation: -DINSTALL_LAYOUT :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/source-configuration-options.html#option_cmake_install_layout)
 
 ## 6. Run Percona XtraBackup
 
 After *Percona XtraBackup* is installed on your system, you may run it by using
 the full path to the `xtrabackup` command:
 
-```{.bash data-prompt="$"}
-$ /usr/local/xtrabackup/bin/xtrabackup
+```shell
+/usr/local/xtrabackup/bin/xtrabackup
 ```
 
 Update your PATH environment variable if you would like to use the command on
 the command line directly.
 
-```{.bash data-prompt="$"}
+```shell
 $# Setting $PATH on the command line
-$ PATH=$PATH:/usr/local/xtrabackup/bin/xtrabackup
+PATH=$PATH:/usr/local/xtrabackup/bin/xtrabackup
 
 $# Run xtrabackup directly
-$ xtrabackup
+xtrabackup
 ```
 
 Alternatively, you may consider placing a soft link (using `ln -s`) to one of
@@ -205,6 +205,3 @@ the locations listed in your `PATH` environment variable.
 
 To view the documentation with `man`, update the `MANPATH` variable.
 
-[cmake.org]: https://cmake.org/
-[the Developer Toolset]: https://developers.redhat.com/products/developertoolset/overview
-[MySQL Documentation: -DINSTALL_LAYOUT]: https://dev.mysql.com/doc/refman/{{vers}}/en/source-configuration-options.html#option_cmake_install_layout

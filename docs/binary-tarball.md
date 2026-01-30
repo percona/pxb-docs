@@ -1,15 +1,14 @@
 # Install from a binary tarball
 
---8<--- "pro-build-announcement.md"
-
 Binary tarballs are compressed `tar` archives that contain precompiled executable files, libraries, and other dependencies. You can extract the binary tarballs to any path.
 
-Download the binary tarballs from the `Linux - Generic` section on [Percona Product Downloads].
+Download the binary tarballs from the `Linux - Generic` section on [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads).
 
-The following example downloads the tarball:
+The following example downloads the tarball. Run the following command as root or use the sudo command.
 
-```{.bash data-prompt="$"}
-$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-1/binary/tarball/percona-xtrabackup-8.4.0-1-Linux-x86_64.glibc2.28.tar.gz
+
+```shell
+wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-1/binary/tarball/percona-xtrabackup-8.4.0-1-Linux-x86_64.glibc2.28.tar.gz
 ```
 
 The output displays the following information:
@@ -30,5 +29,3 @@ The output displays the following information:
     2024-10-09 04:46:10 (4.48 MB/s) - ‘percona-xtrabackup-8.4.0-1-Linux-x86_64.glibc2.28.tar.gz’ saved 
     [439358509/439358509]
     ```
-
-[Percona Product Downloads]: https://www.percona.com/downloads/

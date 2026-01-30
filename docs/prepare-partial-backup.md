@@ -7,8 +7,8 @@
 The procedure is analogous to restoring individual tables: apply the logs and use the
 `--export` option:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --export --target-dir=/path/to/partial/backup
+```shell
+xtrabackup --prepare --export --target-dir=/path/to/partial/backup
 ```
 
 When you use the `--prepare` option on a partial backup, you

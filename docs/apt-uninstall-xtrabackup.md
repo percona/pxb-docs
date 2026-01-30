@@ -1,7 +1,7 @@
 # Uninstall Percona XtraBackup {{vers}} on Debian and Ubuntu
 
-To completely uninstall Percona XtraBackup, remove all the installed packages:
+To completely uninstall Percona XtraBackup, remove all the installed packages. Run the following command as root or use the sudo command.
 
-```{.bash data-prompt="$"}
-$ sudo apt remove percona-xtrabackup-{{pkg}}
+```shell
+sudo apt remove percona-xtrabackup-{{pkg}}
 ```

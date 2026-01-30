@@ -1,6 +1,6 @@
 # Install using downloaded DEB packages
 
-Download `DEB` packages of the desired series for your architecture from the [Percona Software Downloads](https://www.percona.com/downloads). If needed, [Percona Software Download instructions](download-instructions.md) are available. 
+Download `DEB` packages of the desired series for your architecture from the [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads). If needed, [Percona Software Download instructions](download-instructions.md) are available. 
 
 This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.
 
@@ -9,13 +9,13 @@ The following example downloads Percona XtraBackup {{release}} release package f
 
 1. Use `wget` to download the `DEB` package:
 
-    ```bash
+    ```shell
     wget https://downloads.percona.com/downloads/Percona-XtraBackup-{{vers}}/Percona-XtraBackup-{{release}}/binary/debian/jammy/x86_64/percona-xtrabackup-84_{{release}}-1.jammy_amd64.deb
     ```
 
 2. Install Percona XtraBackup by using `dpkg`:
 
-    ```bash
+    ```shell
     sudo dpkg -i percona-xtrabackup-84_{{release}}-1.jammy_amd64.deb
     ```
 
@@ -32,7 +32,7 @@ The following example downloads Percona XtraBackup {{release}} release package f
 
 If there are missing dependencies, `dpkg` shows error messages. Install any missing packages with the following command:
 
-```bash
+```shell
 sudo apt-get install -f
 ```
 Retry the Percona XtraBackup installation.
@@ -41,7 +41,7 @@ Retry the Percona XtraBackup installation.
 
 After installation, verify it by checking the version:
 
-```bash
+```shell
 xtrabackup --version
 ```
 

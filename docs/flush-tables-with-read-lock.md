@@ -24,9 +24,9 @@ To prevent the server staying in a read-only mode until the queries finish, xtra
 
 !!! note
    
-    All operations described in this section have no effect when [Backup locks] are used.
+    All operations described in this section have no effect when [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/8.4/backup-locks.html) are used.
 
-    Percona XtraBackup uses [Backup locks] where available as a lightweight alternative to `FLUSH TABLES WITH READ
+    Percona XtraBackup uses backup locks where available as a lightweight alternative to `FLUSH TABLES WITH READ
     LOCK`. This operation automatically copies non-InnoDB data and avoids blocking DML queries that modify InnoDB tables.
 
 ## Wait for queries to finish
@@ -91,8 +91,8 @@ Running the xtrabackup with the following options will cause xtrabackup
 to spend no longer than 3 minutes waiting for all queries older than 40 seconds
 to complete.
 
-```{.bash data-prompt="$"}
-$  xtrabackup --backup --ftwrl-wait-threshold=40 \
+```shell
+xtrabackup --backup --ftwrl-wait-threshold=40 \
 --ftwrl-wait-query-type=all --ftwrl-wait-timeout=180 \
 --kill-long-queries-timeout=20 --kill-long-query-type=all \
 --target-dir=/data/backups/
@@ -101,6 +101,3 @@ $  xtrabackup --backup --ftwrl-wait-threshold=40 \
 After `FLUSH TABLES WITH READ LOCK` is issued, xtrabackup will wait for 20
 seconds for lock to be acquired. If lock is still not acquired after 20 seconds,
 it will kill all queries which are running longer that the `FLUSH TABLES WITH READ LOCK`.
-
-[backup locks]: https://docs.percona.com/percona-server/innovation-release/backup-locks.html
-[Backup locks]: https://docs.percona.com/percona-server/innovation-release/backup-locks.html

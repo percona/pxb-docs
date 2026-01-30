@@ -13,10 +13,10 @@ exist and is empty, xtrabackup succeeds.
 xtrabackup does not overwrite existing files. It will fail with operating
 system error 17, `file exists`.
 
-The following command starts the process:
+The following command starts the process. Run all the commands as root or use the sudo command.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backups/
+```bash
+xtrabackup --backup --target-dir=/data/backups/
 ```
 
 This operation stores the backup at `/data/backups/`. If you specify a
@@ -50,8 +50,8 @@ The following is an example of the output:
 The process ends with the following statement; the
 value of the `<LSN>` depends on your system:
 
-```{.bash data-prompt="$"}
-$ xtrabackup: Transaction log of lsn (<LSN>) to (<LSN>) was copied.
+```shell
+xtrabackup: Transaction log of lsn (<LSN>) to (<LSN>) was copied.
 ```
 
 !!! note
@@ -60,8 +60,8 @@ $ xtrabackup: Transaction log of lsn (<LSN>) to (<LSN>) was copied.
 
 After the backup is finished, the target directory will contain files such as the following, assuming you have a single InnoDB table `test.tbl1` and you are using MySQL’s innodb_file_per_table option:
 
-```{.bash data-prompt="$"}
-$ ls -lh /data/backups/
+```shell
+ls -lh /data/backups/
 ```
 
 The result should look like this:

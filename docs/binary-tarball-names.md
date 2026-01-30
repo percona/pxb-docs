@@ -2,8 +2,8 @@
 
 For recent versions of Percona XtraBackup, the tar files are organized by the `glibc2` version. You can find this version on your operating system with the following command:
 
-```{.bash data-prompt="$"}
-$ ldd --version
+```shell
+ldd --version
 ```
 
 ??? example "Expected output"
@@ -32,7 +32,7 @@ The following lists the platform and the associated full binary file name used b
 | Red Hat Enterprise 8 | Percona-XtraBackup-{{release}}-Linux.x86_64.glibc2.28.tar.gz     | glibc2.28 |
 
 
-Download the binary tarballs from [Percona Software Downloads].
+Download the binary tarballs from [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads).
 
 The following table lists the tarball types in `Linux - Generic`. Select the *Percona XtraBackup* {{vers}} version, the software or the operating system, and the tarball type for your installation. Binary tarballs support all distributions.
 
@@ -57,6 +57,4 @@ After you have downloaded the binary tarballs, extract the tarball in the file l
 
 Select a different software, such as Ubuntu 20.04 (Focal Fossa), for a 
 tarball for that operating system. You can download the packages together or separately.
-
-[Percona Software Downloads]: https://www.percona.com/downloads
 

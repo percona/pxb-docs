@@ -40,8 +40,8 @@ After processing the `.delta` files, xtrabackup applies the redo log.
 
 After a backup operation, you can quickly list the contents of your backup directory using the `ls` command with the following options:
 
-```{.bash data-prompt="$"}
-$ ls -lhR /backups/<backup-directory>
+```shell
+ls -lhR /backups/<backup-directory>
 ```
 
 This command provides a detailed, human-friendly, and recursive listing of the entire directory tree.

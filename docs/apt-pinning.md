@@ -12,6 +12,4 @@ Pin: release o=Percona Development Team
 Pin-Priority: 1001
 ```
 
-For more information about the pinning, check the official [debian wiki].
-
-[debian wiki]: http://wiki.debian.org/AptPreferences
+For more information about the pinning, check the official [debian wiki :octicons-link-external-16:](http://wiki.debian.org/AptPreferences).

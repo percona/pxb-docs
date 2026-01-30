@@ -21,10 +21,13 @@ To make an incremental backup, begin with a full backup as usual. The
 xtrabackup binary writes a file called `xtrabackup_checkpoints` into
 the backup’s target directory. This file contains a line showing the
 `to_lsn`, which is the database’s LSN at the end of the backup.
+
+Run the following commands as root or use the sudo command.
+
 Create the full backup with a following command:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backups/base
+```shell
+xtrabackup --backup --target-dir=/data/backups/base
 ```
 
 If you look at the `xtrabackup_checkpoints` file, you should see similar
@@ -43,8 +46,8 @@ content depending on your LSN nuber:
 
 Now that you have a full backup, you can make an incremental backup based on it. Use the following command:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backups/inc1 \
+```shell
+xtrabackup --backup --target-dir=/data/backups/inc1 \
 --incremental-basedir=/data/backups/base
 ```
 
@@ -69,8 +72,8 @@ content to the following:
 
 It’s now possible to use this directory as the base for yet another incremental backup:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backups/inc2 \
+```shell
+xtrabackup --backup --target-dir=/data/backups/inc2 \
 --incremental-basedir=/data/backups/inc1
 ```
 

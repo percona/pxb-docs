@@ -41,15 +41,17 @@ Common Use Cases:
 
 Basic Syntax:
 
-```{.bash data-prompt="$"}
+Run the following commands as root or use the sudo command.
+
+```shell
 # Create a full backup
-$ xtrabackup --backup --target-dir=/backup/full
+xtrabackup --backup --target-dir=/backup/full
 
 # Create an incremental backup
-$ xtrabackup --backup --target-dir=/backup/inc1 --incremental-basedir=/backup/full
+xtrabackup --backup --target-dir=/backup/inc1 --incremental-basedir=/backup/full
 
 # Prepare a backup for restore
-$ xtrabackup --prepare --target-dir=/backup/full
+xtrabackup --prepare --target-dir=/backup/full
 ```
 
 Documentation: [xtrabackup Overview](xtrabackup-binary-overview.md)
@@ -82,12 +84,14 @@ Common Use Cases:
 
 Basic Syntax:
 
-```{.bash data-prompt="$"}
+Run the following commands as root or use the sudo command.
+
+```shell
 # Upload backup to S3
-$ xbcloud put s3://my-bucket/backup/ --storage=s3 --s3-bucket=my-bucket
+xbcloud put s3://my-bucket/backup/ --storage=s3 --s3-bucket=my-bucket
 
 # Download backup from S3
-$ xbcloud get s3://my-bucket/backup/ --storage=s3 --s3-bucket=my-bucket
+xbcloud get s3://my-bucket/backup/ --storage=s3 --s3-bucket=my-bucket
 ```
 
 Documentation: [xbcloud Overview](xbcloud-binary-overview.md)
@@ -121,12 +125,14 @@ Common Use Cases:
 
 Basic Syntax:
 
-```{.bash data-prompt="$"}
+Run the following commands as root or use the sudo command.
+
+```shell
 # Encrypt a backup file
-$ xbcrypt --encrypt --encrypt-key-file=/path/to/keyfile --input=/backup/backup.xbstream
+xbcrypt --encrypt --encrypt-key-file=/path/to/keyfile --input=/backup/backup.xbstream
 
 # Decrypt a backup file
-$ xbcrypt --decrypt --encrypt-key-file=/path/to/keyfile --input=/backup/backup.xbstream.encrypted
+xbcrypt --decrypt --encrypt-key-file=/path/to/keyfile --input=/backup/backup.xbstream.encrypted
 ```
 
 Documentation: [xbcrypt Overview](xbcrypt-binary-overview.md)
@@ -159,15 +165,17 @@ Common Use Cases:
 
 Basic Syntax:
 
-```{.bash data-prompt="$"}
+Run the following commands as root or use the sudo command.
+
+```shell
 # Extract a streamed backup
-$ xbstream -x -C /restore/directory < backup.xbstream
+xbstream -x -C /restore/directory < backup.xbstream
 
 # Create a streamed backup
-$ xtrabackup --backup --stream=xbstream | xbstream -c -C /backup/directory
+xtrabackup --backup --stream=xbstream | xbstream -c -C /backup/directory
 ```
 
-Documentation: [xbstream Overview](https://docs.percona.com/percona-xtrabackup/8.4/xbstream.html)
+Documentation: [xbstream Overview :octicons-link-external-16:](https://docs.percona.com/percona-xtrabackup/8.4/xbstream.html)
 
 Command Line Options: [xbstream Options](xbstream-options.md)
 
@@ -207,30 +215,34 @@ Command Line Options: [xbstream Options](xbstream-options.md)
 
 ### Complete backup and upload workflow
 
-```{.bash data-prompt="$"}
+Run the following commands as root or use the sudo command.
+
+```shell
 # Create encrypted backup
-$ xtrabackup --backup --target-dir=/tmp/backup --encrypt=AES256 --encrypt-key-file=/etc/mysql/backup.key
+xtrabackup --backup --target-dir=/tmp/backup --encrypt=AES256 --encrypt-key-file=/etc/mysql/backup.key
 
 # Stream and compress backup
-$ xtrabackup --backup --stream=xbstream --encrypt=AES256 --encrypt-key-file=/etc/mysql/backup.key | \
+xtrabackup --backup --stream=xbstream --encrypt=AES256 --encrypt-key-file=/etc/mysql/backup.key | \
   xbstream -c -C /tmp/backup
 
 # Upload to cloud storage
-$ xbcloud put s3://my-backup-bucket/$(date +%Y%m%d)/ --storage=s3 --s3-bucket=my-backup-bucket
+xbcloud put s3://my-backup-bucket/$(date +%Y%m%d)/ --storage=s3 --s3-bucket=my-backup-bucket
 ```
 
 ### Restore from cloud storage
 
-```{.bash data-prompt="$"}
+Run the following commands as root or use the sudo command.
+
+```shell
 # Download backup from cloud
-$ xbcloud get s3://my-backup-bucket/20241201/ --storage=s3 --s3-bucket=my-backup-bucket
+xbcloud get s3://my-backup-bucket/20241201/ --storage=s3 --s3-bucket=my-backup-bucket
 
 # Decrypt backup
-$ xbcrypt --decrypt --encrypt-key-file=/etc/mysql/backup.key --input=/tmp/backup/backup.xbstream.encrypted
+xbcrypt --decrypt --encrypt-key-file=/etc/mysql/backup.key --input=/tmp/backup/backup.xbstream.encrypted
 
 # Prepare and restore
-$ xtrabackup --prepare --target-dir=/tmp/backup
-$ xtrabackup --copy-back --target-dir=/tmp/backup
+xtrabackup --prepare --target-dir=/tmp/backup
+xtrabackup --copy-back --target-dir=/tmp/backup
 ```
 
 ## Next steps

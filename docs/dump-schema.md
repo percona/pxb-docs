@@ -4,7 +4,7 @@ This script is designed to dump the schemas of all tables from each database in 
 
 The script should be modified for your specific use case before you run it. For example, you may want to exclude certain tables or databases, or specify a different output directory.
 
-```{.bash data-prompt="$"}
+```shell
 print_usage() {
     echo "Usage: $0 [--defaults-file=<file>] [--destination-dir=<directory>]"
     echo "  --defaults-file=<file>      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)"
@@ -87,7 +87,7 @@ echo "Schema dumps are saved in the '$DEST_DIR' directory."
 
 ## Usage
 
-To use this script, follow these steps:
+To use this script, follow these steps. Run all the commands as root or use the sudo command.
 
 1. Save the script  
 
@@ -99,48 +99,48 @@ To use this script, follow these steps:
 
     * Run the following command to make the script executable:  
 
-      ```{.bash data-prompt="$"}
-      $ chmod +x dump_schemas.sh
+      ```shell
+      chmod +x dump_schemas.sh
       ```  
 
 3. Verify dependencies  
 
     * Check if `mysqldump` is installed by running:  
 
-      ```{.bash data-prompt="$"}
-      $ which mysqldump
+      ```shell
+      which mysqldump
       ```  
 
     * If `mysqldump` is not installed or not available in your PATH, install it using:  
 
-      ```{.bash data-prompt="$"}
-      $ sudo apt install mysql-client
+      ```shell
+      sudo apt install mysql-client
       ```  
 
 4. Use one of the following commands to execute the script:
    
     * See the usage instructions, run:
    
-        ```{.bash data-prompt="$"}
-        $ ./dump_schemas.sh --help
+        ```shell
+        ./dump_schemas.sh --help
         ```  
    
     * Specify a MySQL defaults file (for example, `~/.my.cnf`) and destination directory for the schema dumps, run:
    
-        ```{.bash data-prompt="$"}
-        $ ./dump_schemas.sh --defaults-file=/path/to/my.cnf --destination-dir=/path/to/output
+        ```shell
+        ./dump_schemas.sh --defaults-file=/path/to/my.cnf --destination-dir=/path/to/output
         ```  
    
     * If you do not have a `defaults-file`, use the script defaults of a hardcoded password or an environment variable, if set. Specify only the destination directory:
     
-        ```{.bash data-prompt="$"}
-        $ ./dump_schemas.sh --destination-dir=/path/to/output
+        ```shell
+        ./dump_schemas.sh --destination-dir=/path/to/output
         ```  
       
       * To use the hardcoded password and default destination directory, `schema_dumps`, use:
     
-        ```{.bash data-prompt="$"}
-        $ ./dump_schemas.sh 
+        ```shell
+        ./dump_schemas.sh 
         ```  
     
 
@@ -151,8 +151,8 @@ To use this script, follow these steps:
 
     * The dumped schemas are organized as follows:  
 
-        ```{.bash data-prompt="$"}
-        $ find .
+        ```shell
+        find .
         ```
             
         ??? example "Expected output"
