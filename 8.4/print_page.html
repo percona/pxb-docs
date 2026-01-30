@@ -7643,12 +7643,12 @@ for reporting this issue.)</p>
 <p>This guide will help you get started quickly, but there&rsquo;s a lot more to learn about database backups as you go along.</p>
 <h2 id="quickstart-overview-prerequisites">Prerequisites<a class="headerlink" href="#quickstart-overview-prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://docs.docker.com/engine/install/">Install Docker</a> on your system.</li>
+<li><a href="https://docs.docker.com/engine/install/">Install Docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> on your system.</li>
 </ul>
 <p>To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database, and a table.</p>
 <ul>
-<li><a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html">Start Percona Server in a Docker container</a></li>
-<li><a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html#create-a-database">Create a database and table in Percona Server</a></li>
+<li><a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html">Start Percona Server in a Docker container <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></li>
+<li><a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html#create-a-database">Create a database and table in Percona Server <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></li>
 </ul>
 <h3 id="quickstart-overview-limitations">Limitations<a class="headerlink" href="#quickstart-overview-limitations" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 8.4 does not support making backups of databases created in versions before the 8.4 series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster.</p>
@@ -7687,7 +7687,7 @@ for reporting this issue.)</p>
 <p>You can quickly backup and restore your data using the <code>docker cp</code> command or mount the volume to another container.</p>
 </li>
 </ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>backupvol
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>backupvol
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -7747,7 +7747,7 @@ for reporting this issue.)</p>
 </tr>
 </tbody>
 </table>
-<p>If you do not add a tag, Docker uses <code>latest</code> as the default tag and downloads the newest image from <a href="https://hub.docker.com/r/percona/percona-xtrabackup">percona/percona-xtrabackup on the Docker Hub</a>. This image can be in a different series or version from what you expect since the latest image changes over time. If you are using Percona XtraBackup version prior to 8.4, use tags to ensure that you use <a href="#server-backup-version-comparison">compatible versions</a> of Percona Server for MySQL and Percona XtraBackup. </p>
+<p>If you do not add a tag, Docker uses <code>latest</code> as the default tag and downloads the newest image from <a href="https://hub.docker.com/r/percona/percona-xtrabackup">percona/percona-xtrabackup on the Docker Hub  <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. This image can be in a different series or version from what you expect since the latest image changes over time. If you are using Percona XtraBackup version prior to 8.4, use tags to ensure that you use <a href="#server-backup-version-comparison">compatible versions</a> of Percona Server for MySQL and Percona XtraBackup. </p>
 <p>The CPU architecture or platform for Percona Server for MySQL and Percona XtraBackup should be the same. If you want to use a different platform, you can add the following command:</p>
 <table>
 <thead>
@@ -7771,7 +7771,7 @@ for reporting this issue.)</p>
 <h3 id="quickstart-docker-connect-the-percona-xtrabackup-container-to-the-percona-server-container">Connect the Percona XtraBackup container to the Percona Server container<a class="headerlink" href="#quickstart-docker-connect-the-percona-xtrabackup-container-to-the-percona-server-container" title="Permanent link">&para;</a></h3>
 <p>We recommend using the <code>–-user root</code> option in the Docker command.
 Run a Docker container example</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>pxb<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root --password; xtrabackup --prepare --target-dir=/backup_84&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>pxb<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root --password; xtrabackup --prepare --target-dir=/backup_84&quot;</span>
 </code></pre></div>
 <p>You are prompted to enter the password. In our example, the password is <code>secret</code>.</p>
 <div class="no-copy highlight"><pre><span></span><code>2024-10-07T13:55:47.640100-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
@@ -7804,7 +7804,7 @@ Enter password:
 </ul>
 <p>You can check the Xtrabackup logs with the <code>docker container logs &lt;container-name&gt;</code> command.</p>
 <p>For example:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>container<span class="w"> </span>logs<span class="w"> </span>pxb
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>logs<span class="w"> </span>pxb
 </code></pre></div>
 <h2 id="quickstart-docker-next-steps">Next steps<a class="headerlink" href="#quickstart-docker-next-steps" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="#quickstart-restore-back">Restore the backup</a></p></section><section class="print-page" id="quickstart-restore-back" heading-number="4.3"><h1 id="quickstart-restore-back-restore-the-backup">Restore the backup<a class="headerlink" href="#quickstart-restore-back-restore-the-backup" title="Permanent link">&para;</a></h1>
@@ -7812,7 +7812,7 @@ Enter password:
 <ol>
 <li>
 <p>Create another Docker volume</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>myvol2
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>myvol2
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -7858,7 +7858,7 @@ Enter password:
 <ul>
 <li>
 <p>Run a Docker container example</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">3307</span>:3306<span class="w"> </span>--name<span class="w"> </span>psmysql2<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>secret<span class="w"> </span>-v<span class="w"> </span>myvol2:/var/lib/mysql<span class="w"> </span>percona/percona-server:8.4
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">3307</span>:3306<span class="w"> </span>--name<span class="w"> </span>psmysql2<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>secret<span class="w"> </span>-v<span class="w"> </span>myvol2:/var/lib/mysql<span class="w"> </span>percona/percona-server:8.4
 </code></pre></div>
 </li>
 </ul>
@@ -7870,7 +7870,7 @@ Enter password:
 </li>
 <li>
 <p>Stop <code>psmysql2</code> container</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>stop<span class="w"> </span>psmysql2
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>stop<span class="w"> </span>psmysql2
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -7881,13 +7881,13 @@ Enter password:
 <li>
 <p>Remove all created files in <code>myvol2</code> to allow xtrabackup restore data to <code>myvol2</code></p>
 <p>The <code>--rm</code> option automatically removes the temporary container created from percona/percona-xtrabackup:8.0.34 image after the container exits. </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
 </code></pre></div>
 <p>If the command executes successfully, the expected output is empty.</p>
 </li>
 <li>
 <p>Restore backup of <code>psmysql</code> from <code>backupvol</code> to a new <code>psmysql2</code> instance.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_84&quot;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_84&quot;</span><span class="w"> </span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -7912,13 +7912,13 @@ xtrabackup version 8.4.0-1 based on MySQL server 8.4.0 Linux (x86_64) (revision 
 <li>
 <p>Change the owner of the files in <code>myvol2</code> from <code>root</code> to <code>mysql</code></p>
 <p>To avoid permission issues when running <code>psmysql2</code> container, you need to change the owner because the files were restored by <code>root</code> user and <code>psmysql2</code> will use <code>mysql</code> user.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;chown -R mysql:mysql /var/lib/mysql/&quot;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;chown -R mysql:mysql /var/lib/mysql/&quot;</span><span class="w"> </span>
 </code></pre></div>
 <p>If the command executes successfully, the expected output is empty.</p>
 </li>
 <li>
 <p>Start the <code>psmysql2</code> container</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>psmysql2
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>start<span class="w"> </span>psmysql2
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -7962,7 +7962,7 @@ xtrabackup version 8.4.0-1 based on MySQL server 8.4.0 Linux (x86_64) (revision 
 <ul>
 <li>
 <p>Connect to the database instance example</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>psmysql2<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>psmysql2<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p
 </code></pre></div>
 <p>You are prompted to enter the password, which is <code>secret</code>.</p>
 <div class="no-copy highlight"><pre><span></span><code>Enter password:
@@ -7989,7 +7989,7 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 </li>
 <li>
 <p>Check the list of databases to make sure, the backed up, <code>mydb</code> database is in the list.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>show<span class="w"> </span>databases<span class="p">;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -8017,7 +8017,7 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 </li>
 <li>
 <p>Use the <code>mydb</code> database.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>use<span class="w"> </span>mydb<span class="p">;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><span class="n">use</span><span class="w"> </span><span class="n">mydb</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -8027,7 +8027,7 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 </li>
 <li>
 <p>Check that your table contains data</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>*<span class="w"> </span>FROM<span class="w"> </span>employees<span class="p">;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -8082,7 +8082,7 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 <ol>
 <li>
 <p>To exit the MySQL command client shell in <code>psmysql2</code> container, we use <code>exit</code>. You can also use the <code>\q</code> or <code>quit</code> commands. The execution of the statement also closes the connection.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span><span class="nb">exit</span>
+<div class="highlight"><pre><span></span><code><span class="n">exit</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -8095,21 +8095,21 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 <ul>
 <li>
 <p>Remove <code>psmysql2</code>, <code>psmysql</code> and <code>pxb</code> Docker containers:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>psmysql2<span class="w"> </span>-f
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>psmysql2<span class="w"> </span>-f
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>psmysql2
 </code></pre></div>
 </details>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>psmysql<span class="w"> </span>-f
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>psmysql<span class="w"> </span>-f
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>psmysql
 </code></pre></div>
 </details>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>pxb<span class="w"> </span>-f
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>pxb<span class="w"> </span>-f
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -8119,14 +8119,14 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
 </li>
 <li>
 <p>Remove <code>percona/percona-server:8.0.34</code> and <code>percona/percona-xtrabackup:8.0.34</code> Docker images</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>image<span class="w"> </span>rmi<span class="w"> </span>percona/percona-server:8.0.34
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>image<span class="w"> </span>rmi<span class="w"> </span>percona/percona-server:8.0.34
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>Untagged: percona/percona-server:8.0.34
 </code></pre></div>
 </details>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>image<span class="w"> </span>rmi<span class="w"> </span>percona/percona-xtrabackup:8.0.34
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>image<span class="w"> </span>rmi<span class="w"> </span>percona/percona-xtrabackup:8.0.34
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -8147,14 +8147,14 @@ Deleted: sha256:db9672f7e12e374d5e9016b758a29d5444e8b0fd1246a6f1fc5c2b3c847dddcf
 <li>
 <p>Remove docker volume if a container does not use the volume, and you no longer need it</p>
 <p>Remove <code>backupvol</code> and <code>myvol2</code> Docker volumes:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>backupvol
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>backupvol
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>backupvol
 </code></pre></div>
 </details>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>myvol2
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>myvol2
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -8166,20 +8166,20 @@ Deleted: sha256:db9672f7e12e374d5e9016b758a29d5444e8b0fd1246a6f1fc5c2b3c847dddcf
 <h2 id="quickstart-exit-next-step">Next step<a class="headerlink" href="#quickstart-exit-next-step" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="#quickstart-next-steps">Next steps</a></p></section><section class="print-page" id="quickstart-next-steps" heading-number="4.5"><h1 id="quickstart-next-steps-next-steps">Next steps<a class="headerlink" href="#quickstart-next-steps-next-steps" title="Permanent link">&para;</a></h1>
 <p>After you take your first backup with Percona Xtrabackup, it&rsquo;s high time to expand your knowledge and skills in using Percona Xtrabackup.</p>
-<p>Review the <a href="https://docs.percona.com/percona-xtrabackup/8.0/">Percona Xtrabackup documentation</a> for more information.</p>
+<p>Review the <a href="https://docs.percona.com/percona-xtrabackup/8.4/">Percona Xtrabackup documentation <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> for more information.</p>
 <h2 id="quickstart-next-steps-learn-more-about-other-percona-products">Learn more about other Percona products<a class="headerlink" href="#quickstart-next-steps-learn-more-about-other-percona-products" title="Permanent link">&para;</a></h2>
 <h3 id="quickstart-next-steps-for-superior-and-optimized-performance">For superior and optimized performance<a class="headerlink" href="#quickstart-next-steps-for-superior-and-optimized-performance" title="Permanent link">&para;</a></h3>
 <p>Percona Server for MySQL (PS) is a freely available, fully compatible, enhanced, and open source drop-in replacement for any MySQL database. It provides superior and optimized performance, greater scalability and availability, enhanced backups, increased visibility, and instrumentation. Percona Server for MySQL is trusted by thousands of enterprises to provide better performance and concurrency for their most demanding workloads.</p>
-<p>Install <a href="https://docs.percona.com/percona-server/8.0/installation.html">Percona Server for MySQL</a>.</p>
+<p>Install <a href="https://docs.percona.com/percona-server/8.4/installation.html">Percona Server for MySQL <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <h3 id="quickstart-next-steps-for-high-availability">For high availability<a class="headerlink" href="#quickstart-next-steps-for-high-availability" title="Permanent link">&para;</a></h3>
 <p>Percona XtraDB Cluster (PXC) is a 100% open source, enterprise-grade, highly available clustering solution for MySQL multi-master setups based on Galera. PXC helps enterprises minimize unexpected downtime and data loss, reduce costs, and improve performance and scalability of your database environments supporting your critical business applications in the most demanding public, private, and hybrid cloud environments. </p>
-<p>Install <a href="https://docs.percona.com/percona-xtradb-cluster/8.0/install-index.html">Percona XtraDB Cluster</a>.</p>
+<p>Install <a href="https://docs.percona.com/percona-xtradb-cluster/8.4/install-index.html">Percona XtraDB Cluster <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <h3 id="quickstart-next-steps-for-monitoring-and-management">For Monitoring and Management<a class="headerlink" href="#quickstart-next-steps-for-monitoring-and-management" title="Permanent link">&para;</a></h3>
 <p>Percona Monitoring and Management (PMM) monitors and provides actionable performance data for MySQL variants, including Percona Server for MySQL, Percona XtraDB Cluster, Oracle MySQL Community Edition, Oracle MySQL Enterprise Edition, and MariaDB. PMM captures metrics and data for the InnoDB, XtraDB, and MyRocks storage engines, and has specialized dashboards for specific engine details.</p>
-<p><a href="https://docs.percona.com/percona-monitoring-and-management/3/quickstart/quickstart.html#connect-database">Install PMM and connect your MySQL instances to it</a>.</p>
+<p><a href="https://docs.percona.com/percona-monitoring-and-management/3/quickstart/quickstart.html#connect-database">Install PMM and connect your MySQL instances to it <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <h3 id="quickstart-next-steps-advanced-command-line-tools">Advanced command-line tools<a class="headerlink" href="#quickstart-next-steps-advanced-command-line-tools" title="Permanent link">&para;</a></h3>
 <p>Percona Toolkit is a collection of advanced command-line tools used by the Percona support staff to perform a variety of MySQL, MongoDB, and system tasks that are complex or difficult to perform manually. These tools are ideal alternatives to “one-off” scripts because they are professionally developed, formally tested, and documented. Each tool is self-contained, so installation is quick and easy and does not require installing libraries.</p>
-<p><a href="https://docs.percona.com/percona-toolkit/">Percona Toolkit documentation</a></p></section></section>
+<p><a href="https://docs.percona.com/percona-toolkit/">Percona Toolkit documentation <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p></section></section>
                     <section class='print-page md-section' id='section-5' heading-number='5'>
                         <h1>How Percona XtraBackup works<a class='headerlink' href='#section-5' title='Permanent link'></a>
                         </h1>
@@ -8598,7 +8598,7 @@ compression is achieved by piping the output to a compression utility. One of
 the benefits of streaming backups and using Unix pipes is that the backups can
 be automatically encrypted.</p>
 <p>To use the streaming feature, run the <code>--stream</code> option.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--stream
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--stream
 </code></pre></div>
 <p>xtrabackup uses xbstream to stream all of the data files to <code>STDOUT</code>, in a
 special <code>xbstream</code> format. After it finishes streaming all of the data files
@@ -8607,15 +8607,15 @@ to <code>STDOUT</code>, it stops xtrabackup and streams the saved log file too.<
 <h2 id="take-streaming-backup-zstandard-zstd">Zstandard (ZSTD)<a class="headerlink" href="#take-streaming-backup-zstandard-zstd" title="Permanent link">&para;</a></h2>
 <p>The Zstandard (ZSTD) is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. <code>ZSTD</code> is the default compression algorithm for the <code>--compress</code> option.</p>
 <p>To compress files using the <code>ZSTD</code> compression algorithm, use the <code>--compress</code> option:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>The resulting files have the <code>\*.zst</code> format.</p>
 <p>You can specify <code>ZSTD</code> compression level with the <a href="#xtrabackup-option-reference-compress-zstd-level"><code>--compress-zstd-level(=#)</code></a> option. The default value is <code>1</code>.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>–backup<span class="w"> </span>–compress<span class="w"> </span>–compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>–target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>–backup<span class="w"> </span>–compress<span class="w"> </span>–compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>–target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <h2 id="take-streaming-backup-lz4">lz4<a class="headerlink" href="#take-streaming-backup-lz4" title="Permanent link">&para;</a></h2>
 <p>To compress files using the <code>lz4</code> compression algorithm, set the <code>--compress</code> option to <code>lz4</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>lz4<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>lz4<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>The resulting files have the <code>\*.lz4</code> format. </p>
 <p>To decompress files, use the <code>--decompress</code> option.</p>
@@ -8657,7 +8657,7 @@ to <code>STDOUT</code>, it stops xtrabackup and streams the saved log file too.<
 <td><code>ssh user@desthost “( nc -l 9999 &gt; /data/backups/backup.xbstream &amp; )” &amp;&amp; xtrabackup --backup --stream | nc desthost 9999</code></td>
 </tr>
 <tr>
-<td>Throttle the throughput to 10MB/sec using the <a href="https://www.ivarch.com/programs/quickref/pv.shtml">pipe viewer</a> tool</td>
+<td>Throttle the throughput to 10MB/sec using the <a href="https://www.ivarch.com/programs/quickref/pv.shtml">pipe viewer <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> tool</td>
 <td><code>xtrabackup --backup --stream | pv -q -L10m ssh user@desthost “cat - &gt; /data/backups/backup.xbstream”</code></td>
 </tr>
 <tr>
@@ -9024,9 +9024,9 @@ or review the log to diagnose issues.</p>
 <h3 id="redo-log-archiving-create-an-archive-directory">Create an archive directory<a class="headerlink" href="#redo-log-archiving-create-an-archive-directory" title="Permanent link">&para;</a></h3>
 <p>Before enabling redo log archiving, create a directory to store archived redo logs. The system user running <code>mysqld</code> must own the directory and have read and write access.</p>
 <p>Use the following commands to create and secure the directory:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/mysql-redo-archive/backup1
-$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>mysql:mysql<span class="w"> </span>/var/lib/mysql-redo-archive
-$<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">700</span><span class="w"> </span>/var/lib/mysql-redo-archive/
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/mysql-redo-archive/backup1
+sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>mysql:mysql<span class="w"> </span>/var/lib/mysql-redo-archive
+sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">700</span><span class="w"> </span>/var/lib/mysql-redo-archive/
 </code></pre></div>
 <ul>
 <li>
@@ -9044,10 +9044,10 @@ $<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </spa
 <h3 id="redo-log-archiving-register-the-archive-directory">Register the Archive Directory<a class="headerlink" href="#redo-log-archiving-register-the-archive-directory" title="Permanent link">&para;</a></h3>
 <p>The <code>innodb_redo_log_archive_dirs</code> variable defines labeled archive paths. Use a semicolon to separate multiple entries. Each entry uses the format <code>label:/path/to/archive</code>.</p>
 <p>Set and persist the variable:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SET<span class="w"> </span>PERSIST<span class="w"> </span><span class="nv">innodb_redo_log_archive_dirs</span><span class="o">=</span><span class="s1">&#39;backup1:/var/lib/mysql-redo-archive/&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="n">PERSIST</span><span class="w"> </span><span class="n">innodb_redo_log_archive_dirs</span><span class="o">=</span><span class="s1">&#39;backup1:/var/lib/mysql-redo-archive/&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>Verify the configuration:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GLOBAL<span class="w"> </span>VARIABLES<span class="w"> </span>LIKE<span class="w"> </span><span class="s1">&#39;innodb_redo_log_ar%&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;innodb_redo_log_ar%&#39;</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -9072,7 +9072,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </spa
 <h3 id="redo-log-archiving-start-archiving">Start archiving<a class="headerlink" href="#redo-log-archiving-start-archiving" title="Permanent link">&para;</a></h3>
 <p>To begin archiving redo logs, call <code>innodb_redo_log_archive_start()</code>. This function activates the archiving process for the specified label and writes redo log data to the associated directory.</p>
 <p>Use the same label defined in the <code>innodb_redo_log_archive_dirs</code> variable. The function requires the <code>INNODB_REDO_LOG_ARCHIVE</code> privilege.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_start<span class="o">(</span><span class="s1">&#39;backup1&#39;</span>,<span class="s1">&#39;backup1&#39;</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">innodb_redo_log_archive_start</span><span class="p">(</span><span class="s1">&#39;backup1&#39;</span><span class="p">,</span><span class="s1">&#39;backup1&#39;</span><span class="p">);</span>
 </code></pre></div>
 <ul>
 <li>
@@ -9086,7 +9086,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </spa
 <h3 id="redo-log-archiving-stop-archiving">Stop archiving<a class="headerlink" href="#redo-log-archiving-stop-archiving" title="Permanent link">&para;</a></h3>
 <p>To stop redo log archiving, call <code>innodb_redo_log_archive_stop()</code>. This function halts the archiving process for the specified label and closes the associated archive stream.</p>
 <p>You must use the same label as when you started archiving. The function requires the <code>INNODB_REDO_LOG_ARCHIVE</code> privilege.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_stop<span class="o">(</span><span class="s1">&#39;backup1&#39;</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">innodb_redo_log_archive_stop</span><span class="p">(</span><span class="s1">&#39;backup1&#39;</span><span class="p">);</span>
 </code></pre></div>
 <ul>
 <li>The argument is the label defined in the archive configuration</li>
@@ -9121,14 +9121,14 @@ $<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </spa
 <h2 id="redo-log-archiving-run-percona-xtrabackup-with-archiving">Run Percona XtraBackup with archiving<a class="headerlink" href="#redo-log-archiving-run-percona-xtrabackup-with-archiving" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup supports redo log archiving. If the archive directory is not configured, XtraBackup creates a temporary directory. Run XtraBackup as the same user that owns the mysqld process. If permissions are incorrect, XtraBackup returns a &ldquo;Permission denied&rdquo; error and skips archiving.</p>
 <p>Run XtraBackup as the mysql user:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>-u<span class="w"> </span>mysql<span class="w"> </span>bash
-$<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class="o">=</span><span class="m">1</span><span class="w"> </span>--compress<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>-H<span class="w"> </span>-u<span class="w"> </span>mysql<span class="w"> </span>bash
+xtrabackup<span class="w"> </span>--no-lock<span class="o">=</span><span class="m">1</span><span class="w"> </span>--compress<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--host<span class="o">=</span>localhost<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span><span class="s1">&#39;password_string&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--backup<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/Backup/13oct<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="m">2</span>&gt;<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
 </code></pre></div>
 <p>Use the following command to verify that archiving has occurred:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -9464,7 +9464,7 @@ MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
 <p>To perform a point-in-time recovery from an <code>xtrabackup</code> backup, you should prepare and restore the backup, and then replay binary logs from the point shown in the <code>xtrabackup_binlog_info</code> file.</p>
 <p>Find a more detailed procedure in the <a href="#point-in-time-recovery">Point-in-time recovery</a> document.</p>
 <h2 id="working-with-binary-logs-set-up-a-new-replication-replica">Set up a new replication replica<a class="headerlink" href="#working-with-binary-logs-set-up-a-new-replication-replica" title="Permanent link">&para;</a></h2>
-<p>To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO with the appropriate options</a> command, use the binary log filename and position shown in the <code>xtrabackup_binlog_info</code> file to start replication.</p>
+<p>To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO with the appropriate options <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> command, use the binary log filename and position shown in the <code>xtrabackup_binlog_info</code> file to start replication.</p>
 <p>A more detailed procedure is found in  <a href="#set-up-replication">How to setup a replica for replication in 6 simple steps with Percona XtraBackup</a>.</p></section>
                     <section class='print-page md-section' id='section-6-9' heading-number='6.9'>
                         <h1>xbcloud features<a class='headerlink' href='#section-6-9' title='Permanent link'></a>
@@ -9482,13 +9482,13 @@ MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
 <h2 id="xbcloud-binary-fifo-datasink-how-to-enable-fifo-data-sink">How to enable FIFO data sink<a class="headerlink" href="#xbcloud-binary-fifo-datasink-how-to-enable-fifo-data-sink" title="Permanent link">&para;</a></h2>
 <p>To use FIFO data sink, you can either run two commands in separate terminal sessions or run xtrabackup in the background.</p>
 <p>For example, run the following commands in separate terminal sessions:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo
 </code></pre></div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span>full
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>put<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span>full
 </code></pre></div>
 <p>Run xtrabackup in the background with the following commands:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span><span class="p">&amp;</span>
-$<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span>full
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span><span class="p">&amp;</span>
+xbcloud<span class="w"> </span>put<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span>full
 </code></pre></div>
 <h2 id="xbcloud-binary-fifo-datasink-stream-to-an-object-storage">Stream to an object storage<a class="headerlink" href="#xbcloud-binary-fifo-datasink-stream-to-an-object-storage" title="Permanent link">&para;</a></h2>
 <p>When taking a backup, you can save the files locally or stream the files to either a different server or an object storage. </p>
@@ -9823,7 +9823,7 @@ xbstream<span class="w"> </span>-x<span class="w"> </span>-C<span class="w"> </s
 <span class="c1"># Create a streamed backup</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-c<span class="w"> </span>-C<span class="w"> </span>/backup/directory
 </code></pre></div>
-<p>Documentation: <a href="https://docs.percona.com/percona-xtrabackup/8.4/xbstream.html">xbstream Overview <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
+<p>Documentation: <a href="https://docs.percona.com/percona-xtrabackup/8.4/xbstream-binary-overview.html">xbstream Overview <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
 <p>Command Line Options: <a href="#xbstream-options">xbstream Options</a></p>
 <h2 id="binaries-overview-common-workflows">Common workflows<a class="headerlink" href="#binaries-overview-common-workflows" title="Permanent link">&para;</a></h2>
 <h3 id="binaries-overview-basic-backup-workflow">Basic backup workflow<a class="headerlink" href="#binaries-overview-basic-backup-workflow" title="Permanent link">&para;</a></h3>
@@ -10081,10 +10081,10 @@ buffer.</p></section><section class="print-page" id="xtrabackup-option-reference
 </li>
 </ul>
 <p>When you intend to run xtrabackup in any of these modes, use the following syntax:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span><span class="o">[</span>--defaults-file<span class="o">=</span><span class="c1">#] --backup|--prepare|--copy-back| [OPTIONS]</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="o">[</span>--defaults-file<span class="o">=</span><span class="c1">#] --backup|--prepare|--copy-back| [OPTIONS]</span>
 </code></pre></div>
 <p>For example, the <code>--prepare</code> mode is applied as follows:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/mysql/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/mysql/
 </code></pre></div>
 <p>For all modes, the default options are read from the xtrabackup and
 mysqld configuration groups from the following files in the given order:</p>
@@ -10144,7 +10144,7 @@ backup. It is essential for incremental backups.</p>
 <p>The number of attempts to acquire metadata locks.</p>
 <h3 id="xtrabackup-option-reference-backup-locks">backup-locks<a class="headerlink" href="#xtrabackup-option-reference-backup-locks" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup-locks</code></p>
-<p>This option controls if <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> are used instead of <code>FLUSH TABLES
+<p>This option controls if <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> are used instead of <code>FLUSH TABLES
 WITH READ LOCK</code> on the backup stage. The option has no effect when the server does not support backup locks. This option is enabled by default,
 disable with <a href="#xtrabackup-option-reference-no-backup-locks"><code>--no-backup-locks</code></a>.</p>
 <h3 id="xtrabackup-option-reference-check-privileges">check-privileges<a class="headerlink" href="#xtrabackup-option-reference-check-privileges" title="Permanent link">&para;</a></h3>
@@ -10264,10 +10264,10 @@ option on the command line and cannot be a symbolic link.</p>
 <p>The xtrabackup binary requests the server to start the buffer pool dump. This operation may take time to complete and is done in the background. The
 beginning of a backup with the option reports that the dump has been
 completed.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--dump-innodb-buffer-pool<span class="w"> </span>--target-dir<span class="o">=</span>/home/user/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--dump-innodb-buffer-pool<span class="w"> </span>--target-dir<span class="o">=</span>/home/user/backup
 </code></pre></div>
 <p>By default, this option is set to OFF.</p>
-<p>If <a href="https://dev.mysql.com/doc/refman/8.3/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
+<p>If <a href="https://dev.mysql.com/doc/refman/8.3/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
 using the value of <a href="#xtrabackup-option-reference-dump-innodb-buffer-pool-timeout"><code>--dump-innodb-buffer-pool-timeout</code></a></p>
 <p>The file <code>ib_buffer_pool</code> stores the tablespace ID and page ID
 data used to warm up the buffer pool sooner.</p>
@@ -10277,14 +10277,14 @@ data used to warm up the buffer pool sooner.</p>
 pages to dump.</p>
 <p>This option is effective if <code>--dump-innodb-buffer-pool</code> option is set
 to ON. If this option contains a value, xtrabackup sets the MySQL
-system variable <a href="https://dev.mysql.com/doc/refman/8.3/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct"><code>innodb_buffer_pool_dump_pct</code></a>. As soon as the buffer pool
+system variable <a href="https://dev.mysql.com/doc/refman/8.3/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct"><code>innodb_buffer_pool_dump_pct</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. As soon as the buffer pool
 dump completes or is stopped (see
 <code>--dump-innodb-buffer-pool-timeout</code>), the value of the MySQL system
 variable is restored.</p>
 <h3 id="xtrabackup-option-reference-dump-innodb-buffer-pool-timeout">dump-innodb-buffer-pool-timeout<a class="headerlink" href="#xtrabackup-option-reference-dump-innodb-buffer-pool-timeout" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--dump-innodb-buffer-pool-timeout</code></p>
 <p>This option contains the number of seconds that xtrabackup should
-monitor the value of <a href="https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> to
+monitor the value of <a href="https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> to
 determine if the buffer pool dump has been completed.</p>
 <p>This option is used in combination with
 <a href="#xtrabackup-option-reference-dump-innodb-buffer-pool"><code>--dump-innodb-buffer-pool</code></a>. By default, it is set to 10 seconds.</p>
@@ -10319,9 +10319,9 @@ xtrabackup child process.</p>
 <p>This option is in <a href="#glossary-tech-preview">tech preview</a>.</p>
 <p>The option lets you enable or disable the <a href="#smart-memory-estimation">Smart memory estimation</a> feature. The default value is OFF. Enable the feature by setting <code>--estimate-memory=ON</code> in the backup phase and setting the <code>--use-free-memory-pct</code> option in the <code>--prepare</code> phase. If the <code>--estimate-memory</code> setting is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <h3 id="xtrabackup-option-reference-export">export<a class="headerlink" href="#xtrabackup-option-reference-export" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--export</code></p>
@@ -10343,7 +10343,7 @@ If there are still such queries when the timeout expires, xtrabackup
 terminates with an error.</p>
 <p>The default value is <code>0</code>, xtrabackup does not wait
 for queries to complete and starts <code>FLUSH TABLES WITH READ LOCK</code>
-immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify the InnoDB tables.</p>
 <h3 id="xtrabackup-option-reference-ftwrl-wait-threshold">ftwrl-wait-threshold<a class="headerlink" href="#xtrabackup-option-reference-ftwrl-wait-threshold" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--ftwrl-wait-threshold=SECONDS</code></p>
@@ -10352,14 +10352,14 @@ xtrabackup to detect long-running queries with a non-zero value of
 <code>--ftwrl-wait-timeout</code>. <code>FLUSH TABLES WITH READ LOCK</code>
 is not started until such long-running queries exist.</p>
 <p>This option has no effect if <code>--ftwrl-wait-timeout</code> is <code>0</code>. The default value
-is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables when backup locks are supported.</p>
 <h3 id="xtrabackup-option-reference-ftwrl-wait-query-type">ftwrl-wait-query-type<a class="headerlink" href="#xtrabackup-option-reference-ftwrl-wait-query-type" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--ftwrl-wait-query-type=all|update</code>This option specifies which queries can be completed before xtrabackup issues the global lock. The default value is <code>all</code>.</p>
 <h3 id="xtrabackup-option-reference-galera-info">galera-info<a class="headerlink" href="#xtrabackup-option-reference-galera-info" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--galera-info</code></p>
 <p>This option creates the <code>xtrabackup_galera_info</code> file, which contains the local node state at the backup time. This option should be used when
-performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> are used to create the backup.</p>
+performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> are used to create the backup.</p>
 <h3 id="xtrabackup-option-reference-generate-new-master-key">generate-new-master-key<a class="headerlink" href="#xtrabackup-option-reference-generate-new-master-key" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--generate-new-master-key</code></p>
 <p>Generate a new master key when doing a copy-back.</p>
@@ -10444,7 +10444,7 @@ any queries.</p>
 <p>To use this option xtrabackup user should have the
 <code>PROCESS</code> and <code>SUPER</code> privileges.</p>
 <p>Where supported, xtrabackup
-automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
+automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <h3 id="xtrabackup-option-reference-kill-long-query-type">kill-long-query-type<a class="headerlink" href="#xtrabackup-option-reference-kill-long-query-type" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--kill-long-query-type=all|select</code></p>
 <p>This option specifies which queries should be killed to unblock the
@@ -10544,7 +10544,7 @@ LOCK</code>. Use it only if all your tables are InnoDB and you do not care
 about the binary log position of the backup. This option shouldn’t be used if any DDL statements are being executed or updates are
 happening on non-InnoDB tables; this includes the system MyISAM tables in the
 mysql database. Otherwise, those operations could lead to an inconsistent backup.</p>
-<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <p>If you consider using this option because your backups fail to acquire
 the lock, maybe incoming replication events prevent
@@ -10583,7 +10583,7 @@ that Percona Toolkit uses to obtain statistics about its use. This information i
 a random UUID; no client information is collected or stored.</p>
 <h3 id="xtrabackup-option-reference-open-files-limit">open-files-limit<a class="headerlink" href="#xtrabackup-option-reference-open-files-limit" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--open-files-limit=#</code></p>
-<p>The maximum number of file descriptors to reserve with <a href="https://man7.org/linux/man-pages/man2/setrlimit.2.html">setrlimit</a>git .</p>
+<p>The maximum number of file descriptors to reserve with <a href="https://man7.org/linux/man-pages/man2/setrlimit.2.html">setrlimit <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>git .</p>
 <h3 id="xtrabackup-option-reference-parallel">parallel<a class="headerlink" href="#xtrabackup-option-reference-parallel" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--parallel=#</code></p>
 <p>The <code>--parallel</code> option specifies the number of threads to use to copy multiple data
@@ -10651,7 +10651,7 @@ main thread).</p>
 running <code>FLUSH TABLES WITH READ LOCK</code> and waits to start the backup operation until <code>Replica_open_temp_tables`` in</code>SHOW STATUS` is zero.</p>
 <p>If there are no open temporary tables, the backup takes place, otherwise the SQL thread is started and stopped until there are no open temporary tables. The backup fails if <code>Replica_open_temp_tables</code> does not become zero after
 <a href="#xtrabackup-option-reference-safe-slave-backup-timeout"><code>--safe-slave-backup-timeout</code></a> seconds. The replication SQL thread is restarted when the backup is complete.
-This option is implemented to deal with <a href="https://dev.mysql.com/doc/refman/8.4/en/replication-features-temptables.html">replication and temporary tables</a> and isn’t necessary with row-based replication.</p>
+This option is implemented to deal with <a href="https://dev.mysql.com/doc/refman/8.4/en/replication-features-temptables.html">replication and temporary tables <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> and isn’t necessary with row-based replication.</p>
 <p>Using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
 <h3 id="xtrabackup-option-reference-safe-slave-backup-timeout">safe-slave-backup-timeout<a class="headerlink" href="#xtrabackup-option-reference-safe-slave-backup-timeout" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--safe-slave-backup-timeout=SECONDS</code></p>
@@ -10672,9 +10672,9 @@ This option is implemented to deal with <a href="https://dev.mysql.com/doc/refma
 <p>Usage: <code>--slave-info</code></p>
 <p>This option is useful when backing up a replication replica server. It prints
 the binary log position of the source server. It also writes the binary log
-coordinates to the <code>xtrabackup_slave_info</code> file as a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code></a>
+coordinates to the <code>xtrabackup_slave_info</code> file as a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>
 command.</p>
-<p>A new replica for this source can be set up by starting a replica server on this backup and issuing a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code></a> command with the binary log
+<p>A new replica for this source can be set up by starting a replica server on this backup and issuing a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> command with the binary log
 position saved in the <code>xtrabackup_slave_info</code> file.</p>
 <h3 id="xtrabackup-option-reference-socket">socket<a class="headerlink" href="#xtrabackup-option-reference-socket" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--socket</code></p>
@@ -10785,9 +10785,9 @@ specified for the <code>--prepare</code> command.</p>
 <p>This option lets you configure the <a href="#smart-memory-estimation">Smart memory estimation</a> feature. The option controls the amount of free memory that can be used to <code>--prepare</code> a backup. The default value is 0 (zero), which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100.</p>
 <p>This option works only if <code>--estimate-memory</code> option is enabled. If the <code>--estimate-memory</code> option is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <h3 id="xtrabackup-option-reference-use-memory">use-memory<a class="headerlink" href="#xtrabackup-option-reference-use-memory" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--use-memory</code></p>
@@ -10847,7 +10847,7 @@ introduced to <em>Percona XtraBackup</em>.</p>
 encryption and decryption outside of Percona XtraBackup.</p>
 <p>The <code>XBCRYPT_ENCRYPTION_KEY</code> environment variable is only used in place of the <code>--encrypt_key=name</code> option. You can use the environment variable or command line option. If you use both, the command line option takes precedence over the value specified in the environment variable.</p></section><section class="print-page" id="xbcrypt-options" heading-number="7.3.2"><h1 id="xbcrypt-options-the-xbcrypt-command-line-options">The xbcrypt command-line options<a class="headerlink" href="#xbcrypt-options-the-xbcrypt-command-line-options" title="Permanent link">&para;</a></h1>
 <p>Usage: </p>
-<div class="no-copy highlight"><pre><span></span><code>$ xbcrypt[OPTIONS]
+<div class="highlight"><pre><span></span><code>xbcrypt<span class="o">[</span>OPTIONS<span class="o">]</span>
 </code></pre></div>
 <p>The <code>xbcrypt</code> binary has the following command line options:</p>
 <h3 id="xbcrypt-options-decrypt">decrypt<a class="headerlink" href="#xbcrypt-options-decrypt" title="Permanent link">&para;</a></h3>
@@ -10895,8 +10895,8 @@ compact data storage.</p>
 <p>When compression is enabled with xtrabackup all data is compressed,
 including the transaction log file and metadata files, using the specified
 compression algorithm. Read more about supported compression algorithms in the <a href="#create-compressed-backup">Create a compressed backup</a> document.</p></section><section class="print-page" id="xbstream-options" heading-number="7.4.2"><h1 id="xbstream-options-the-xbstream-command-line-options">The xbstream command-line options<a class="headerlink" href="#xbstream-options-the-xbstream-command-line-options" title="Permanent link">&para;</a></h1>
-<div class="no-copy highlight"><pre><span></span><code>$ xbstream -c [OPTIONS]
-$ xbstream -x [OPTIONS]
+<div class="highlight"><pre><span></span><code>xbstream<span class="w"> </span>-c<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+xbstream<span class="w"> </span>-x<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </code></pre></div>
 <p>This utility has a tar-like interface.</p>
 <p>The xbstream binary has the following options:</p>
@@ -11315,14 +11315,14 @@ xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </
 <h2 id="xbcloud-env-creating-a-env-file">Creating a .env file<a class="headerlink" href="#xbcloud-env-creating-a-env-file" title="Permanent link">&para;</a></h2>
 <p>Create a <code>.env</code> file in your project directory or a secure location:</p>
 <h3 id="xbcloud-env-s3-example">S3 example<a class="headerlink" href="#xbcloud-env-s3-example" title="Permanent link">&para;</a></h3>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Example .env file for S3</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example .env file for S3</span>
 <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKIAIOSFODNN7EXAMPLE
 <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 <span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>us-west-2
 <span class="nv">AWS_ENDPOINT</span><span class="o">=</span>https://s3.us-west-2.amazonaws.com
 </code></pre></div>
 <h3 id="xbcloud-env-swift-example">Swift example<a class="headerlink" href="#xbcloud-env-swift-example" title="Permanent link">&para;</a></h3>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Example .env file for Swift</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example .env file for Swift</span>
 <span class="nv">OS_AUTH_URL</span><span class="o">=</span>http://192.168.1.100:5000/v3
 <span class="nv">OS_USERNAME</span><span class="o">=</span>admin
 <span class="nv">OS_PASSWORD</span><span class="o">=</span>secret
@@ -11330,7 +11330,7 @@ xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </
 <span class="nv">OS_USER_DOMAIN</span><span class="o">=</span>default
 </code></pre></div>
 <h3 id="xbcloud-env-azure-example">Azure example<a class="headerlink" href="#xbcloud-env-azure-example" title="Permanent link">&para;</a></h3>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Example .env file for Azure</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example .env file for Azure</span>
 <span class="nv">AZURE_STORAGE_ACCOUNT</span><span class="o">=</span>mystorageaccount
 <span class="nv">AZURE_CONTAINER_NAME</span><span class="o">=</span>backups
 <span class="nv">AZURE_ACCESS_KEY</span><span class="o">=</span>your-access-key-here
@@ -11339,7 +11339,7 @@ xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </
 <p>Environment variables from <code>.env</code> files are not automatically loaded by the shell. You need to explicitly load them before running xbcloud. Here are three methods to accomplish this:</p>
 <h3 id="xbcloud-env-method-1-using-source-or-command">Method 1: using <code>source</code> or <code>.</code> command<a class="headerlink" href="#xbcloud-env-method-1-using-source-or-command" title="Permanent link">&para;</a></h3>
 <p>The <code>source</code> command (or its shorthand <code>.</code>) reads and executes commands from a file in the current shell environment. This makes all variables from the <code>.env</code> file available to subsequent commands in the same shell session.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Load the environment variables</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Load the environment variables</span>
 <span class="nb">source</span><span class="w"> </span>.env
 <span class="c1"># or</span>
 .<span class="w"> </span>.env
@@ -11350,7 +11350,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <h3 id="xbcloud-env-method-2-using-env-command">Method 2: using <code>env</code> command<a class="headerlink" href="#xbcloud-env-method-2-using-env-command" title="Permanent link">&para;</a></h3>
 <p>The <code>env</code> command runs another program with a modified environment. Combined with <code>cat .env | xargs</code>, it reads the <code>.env</code> file and passes the variables as arguments to <code>env</code>, which then sets them for the command that follows.</p>
 <p>You can run xbcloud with variables loaded from a .env file in a single command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Run xbcloud with environment variables from file</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run xbcloud with environment variables from file</span>
 env<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>.env<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span><span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
 </code></pre></div>
 <p>This approach is convenient but fragile:</p>
@@ -11366,7 +11366,7 @@ env<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>.
 <h3 id="xbcloud-env-method-3-using-export-with-a-script">Method 3: using <code>export</code> with a script<a class="headerlink" href="#xbcloud-env-method-3-using-export-with-a-script" title="Permanent link">&para;</a></h3>
 <p>This method creates a shell script that loads environment variables and runs the backup command. The <code>set -a</code> command automatically exports all variables that are set, making them available to child processes. This is useful for automation because it bundles variable loading and the backup command together.</p>
 <p>Create a script that loads the environment variables:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1"># load-env.sh</span>
 
 <span class="nb">set</span><span class="w"> </span>-a<span class="w">  </span><span class="c1"># automatically export all variables</span>
@@ -11378,24 +11378,24 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <span class="w">  </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
 </code></pre></div>
 <p>Make it executable and run:
-<div class="highlight" data-prompt="$"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>load-env.sh
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>load-env.sh
 ./load-env.sh
 </code></pre></div></p>
 <h2 id="xbcloud-env-security-best-practices">Security best practices<a class="headerlink" href="#xbcloud-env-security-best-practices" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>File permissions: Set restrictive permissions on your <code>.env</code> file:
-  <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>.env<span class="w">  </span><span class="c1"># Only owner can read/write</span>
+  <div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>.env<span class="w">  </span><span class="c1"># Only owner can read/write</span>
 </code></pre></div></p>
 </li>
 <li>
 <p>Gitignore: Add <code>.env</code> to your <code>.gitignore</code> file to prevent committing sensitive data:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;.env&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
+  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;.env&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
 </code></pre></div></p>
 </li>
 <li>
 <p>Template file: Create a <code>.env.example</code> file with placeholder values:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># .env.example</span>
+  <div class="highlight"><pre><span></span><code><span class="c1"># .env.example</span>
 <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>your-access-key-here
 <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>your-secret-key-here
 <span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>us-west-2
@@ -11403,7 +11403,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 </li>
 <li>
 <p>Location: Store <code>.env</code> files in a secure location, not in your project root if possible:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Store in a secure directory</span>
+  <div class="highlight"><pre><span></span><code><span class="c1"># Store in a secure directory</span>
 /etc/xtrabackup/.env
 /home/backup/.env
 </code></pre></div></p>
@@ -11411,7 +11411,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 </ul>
 <h2 id="xbcloud-env-complete-example">Complete example<a class="headerlink" href="#xbcloud-env-complete-example" title="Permanent link">&para;</a></h2>
 <p>Here&rsquo;s a complete example of using a <code>.env</code> file with xbcloud. This example demonstrates the full workflow from creating the environment file to running a backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># 1. Create the .env file</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Create the .env file</span>
 cat<span class="w"> </span>&gt;<span class="w"> </span>/secure/path/.env<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE</span>
 <span class="s">AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</span>
@@ -11452,13 +11452,13 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
 <ul>
 <li>
 <p>Check if variables are loaded:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>.env
+  <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>.env
 <span class="nb">echo</span><span class="w"> </span><span class="nv">$AWS_ACCESS_KEY_ID</span><span class="w">  </span><span class="c1"># Should show your access key</span>
 </code></pre></div></p>
 </li>
 <li>
 <p>Verify file format: Ensure no spaces around the <code>=</code> sign:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Correct</span>
+  <div class="highlight"><pre><span></span><code><span class="c1"># Correct</span>
 <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>value
 
 <span class="c1"># Incorrect (will not work)</span>
@@ -11467,19 +11467,19 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
 </li>
 <li>
 <p>Handle special characters: Quote values with special characters:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="nv">OS_PASSWORD</span><span class="o">=</span><span class="s2">&quot;my-password-with-special-chars!&quot;</span>
+  <div class="highlight"><pre><span></span><code><span class="nv">OS_PASSWORD</span><span class="o">=</span><span class="s2">&quot;my-password-with-special-chars!&quot;</span>
 </code></pre></div></p>
 </li>
 <li>
 <p>Comments: Use <code>#</code> for comments in <code>.env</code> files:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># This is a comment</span>
+  <div class="highlight"><pre><span></span><code><span class="c1"># This is a comment</span>
 <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>your-key-here
 </code></pre></div></p>
 </li>
 </ul>
 <h2 id="xbcloud-env-integration-with-scripts-and-automation">Integration with scripts and automation<a class="headerlink" href="#xbcloud-env-integration-with-scripts-and-automation" title="Permanent link">&para;</a></h2>
 <p>For automated backups, you can create a wrapper script:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1"># backup-script.sh</span>
 
 <span class="c1"># Load environment variables</span>
@@ -11512,7 +11512,7 @@ $ xbcloud delete [OPTIONS]
 <p>The name of the Azure container</p>
 <h2 id="xbcloud-options-azure-development-storage">azure-development-storage<a class="headerlink" href="#xbcloud-options-azure-development-storage" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--azure-development-storage=name</code></p>
-<p>If you run the <a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio,blob-storage">Azurite emulator</a>, use this option, and it works with the default credentials provided by Azurite. You can overwrite these default credentials with other options.</p>
+<p>If you run the <a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio,blob-storage">Azurite emulator <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>, use this option, and it works with the default credentials provided by Azurite. You can overwrite these default credentials with other options.</p>
 <h2 id="xbcloud-options-azure-endpoint">azure-endpoint<a class="headerlink" href="#xbcloud-options-azure-endpoint" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--azure-endpoint=name</code></p>
 <p>The name of the Azure endpoint</p>
@@ -11669,7 +11669,7 @@ $ xbcloud delete [OPTIONS]
 <p>Usage: <code>--verbose</code></p>
 <p>Turns on the cURL tracing.</p>
 <h2 id="xbcloud-options-swift-authentication-options">Swift authentication options<a class="headerlink" href="#xbcloud-options-swift-authentication-options" title="Permanent link">&para;</a></h2>
-<p>The Swift specification describes several <a href="http://docs.openstack.org/developer/swift/overview_auth.html">authentication options</a>. The <em>xbcloud</em> tool can
+<p>The Swift specification describes several <a href="http://docs.openstack.org/developer/swift/overview_auth.html">authentication options <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. The <em>xbcloud</em> tool can
 authenticate against keystone with API version 2 and 3.</p>
 <h2 id="xbcloud-options-swift-auth-version">swift-auth-version<a class="headerlink" href="#xbcloud-options-swift-auth-version" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--swift-auth-version=name</code></p>
@@ -11729,7 +11729,7 @@ authenticate against keystone with API version 2 and 3.</p>
                         </h1>
                     <section class="print-page" id="xbcloud-s3" heading-number="7.5.4.1"><h1 id="xbcloud-s3-use-the-xbcloud-binary-with-amazon-s3">Use the xbcloud binary with Amazon S3<a class="headerlink" href="#xbcloud-s3-use-the-xbcloud-binary-with-amazon-s3" title="Permanent link">&para;</a></h1>
 <h2 id="xbcloud-s3-create-a-full-backup-with-amazon-s3">Create a full backup with Amazon S3<a class="headerlink" href="#xbcloud-s3-create-a-full-backup-with-amazon-s3" title="Permanent link">&para;</a></h2>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span><span class="se">\</span>
 --s3-endpoint<span class="o">=</span><span class="s1">&#39;s3.amazonaws.com&#39;</span><span class="w"> </span><span class="se">\</span>
 --s3-access-key<span class="o">=</span><span class="s1">&#39;YOUR-ACCESSKEYID&#39;</span><span class="w"> </span><span class="se">\</span>
@@ -11773,7 +11773,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 </tr>
 <tr>
 <td>–s3-storage-class=<name></td>
-<td>Specify the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html">S3 storage class</a>. The default storage class depends on the provider. The name options are the following:<ul><li>STANDARD</li><li>STANDARD_IA</li><li>GLACIER</li></ul> <strong>NOTE</strong> If you use the GLACIER storage class, the object must be <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects.html">restored to S3</a> before restoring the backup. Also supports using custom S3 implementations such as MinIO or CephRadosGW.</td>
+<td>Specify the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html">S3 storage class <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. The default storage class depends on the provider. The name options are the following:<ul><li>STANDARD</li><li>STANDARD_IA</li><li>GLACIER</li></ul> <strong>NOTE</strong> If you use the GLACIER storage class, the object must be <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects.html">restored to S3 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> before restoring the backup. Also supports using custom S3 implementations such as MinIO or CephRadosGW.</td>
 </tr>
 </tbody>
 </table>
@@ -11825,7 +11825,7 @@ automatically to corresponding parameters applicable to the selected storage.</p
 </li>
 </ul>
 <h2 id="xbcloud-s3-restore-with-s3">Restore with S3<a class="headerlink" href="#xbcloud-s3-restore-with-s3" title="Permanent link">&para;</a></h2>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span><span class="se">\</span>
 --s3-endpoint<span class="o">=</span>https://storage.googleapis.com/<span class="w"> </span><span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="m">2</span>&gt;download.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-x<span class="w"> </span>-C<span class="w"> </span>restore<span class="w"> </span>--parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div></section><section class="print-page" id="xbcloud-iam-profile" heading-number="7.5.4.2"><h1 id="xbcloud-iam-profile-use-the-xbcloud-binary-with-an-iam-instance-profile">Use the xbcloud binary with an IAM instance profile<a class="headerlink" href="#xbcloud-iam-profile-use-the-xbcloud-binary-with-an-iam-instance-profile" title="Permanent link">&para;</a></h1>
@@ -11837,7 +11837,7 @@ automatically to corresponding parameters applicable to the selected storage.</p
 </ul>
 <p>A role defines &ldquo;what can I do.&rdquo; A role provides a method to define a collection of permissions. Roles are assigned to users, services and EC2 instances, the &ldquo;who am I&rdquo; element.</p>
 <p>The IAM instance profile is the &ldquo;who&rdquo; for an EC2 instance and assumes the IAM role, which has permissions. The instance profile has the same name as the IAM role.</p>
-<p>An IAM instance profile does not need the <code>--s3-secret-key</code> nor the <code>--s3-access-key</code> if they are running <code>xbcloud</code> from an Amazon EC2 instance. To configure or attach an instance metadata to an EC2 instance, see <a href="https://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-access-s3-bucket/">How can I grant my Amazon EC2 instance access to an Amazon S3 bucket</a>. </p>
+<p>An IAM instance profile does not need the <code>--s3-secret-key</code> nor the <code>--s3-access-key</code> if they are running <code>xbcloud</code> from an Amazon EC2 instance. To configure or attach an instance metadata to an EC2 instance, see <a href="https://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-access-s3-bucket/">How can I grant my Amazon EC2 instance access to an Amazon S3 bucket <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. </p>
 <p>An example of the command:</p>
 <div class="highlight"><pre><span></span><code>$ xtrabackup ... | xbcloud put --storage=s3 --s3-bucket=bucket-name backup-name
 </code></pre></div>
@@ -11878,7 +11878,7 @@ automatically to corresponding parameters applicable to the selected storage.</p
 </details></section><section class="print-page" id="xbcloud-swift" heading-number="7.5.4.3"><h1 id="xbcloud-swift-use-the-xbcloud-binary-with-swift">Use the xbcloud binary with Swift<a class="headerlink" href="#xbcloud-swift-use-the-xbcloud-binary-with-swift" title="Permanent link">&para;</a></h1>
 <h2 id="xbcloud-swift-create-a-full-backup-with-swift">Create a full backup with Swift<a class="headerlink" href="#xbcloud-swift-create-a-full-backup-with-swift" title="Permanent link">&para;</a></h2>
 <p>The following example shows how to make a full backup and upload it to Swift.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>swift<span class="w"> </span><span class="se">\</span>
 --swift-container<span class="o">=</span><span class="nb">test</span><span class="w"> </span><span class="se">\</span>
 --swift-user<span class="o">=</span>test:tester<span class="w"> </span><span class="se">\</span>
@@ -11927,17 +11927,17 @@ full_backup
 </li>
 </ul>
 <h2 id="xbcloud-swift-restore-with-swift">Restore with Swift<a class="headerlink" href="#xbcloud-swift-restore-with-swift" title="Permanent link">&para;</a></h2>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>&lt;name&gt;<span class="w"> </span><span class="o">[</span>&lt;list-of-files&gt;<span class="o">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-x
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>&lt;name&gt;<span class="w"> </span><span class="o">[</span>&lt;list-of-files&gt;<span class="o">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-x
 </code></pre></div>
 <p>The following example shows how to fetch and restore the backup from Swift:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>swift<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>swift<span class="w"> </span><span class="se">\</span>
 --swift-container<span class="o">=</span><span class="nb">test</span><span class="w"> </span><span class="se">\</span>
 --swift-user<span class="o">=</span>test:tester<span class="w"> </span><span class="se">\</span>
 --swift-auth-url<span class="o">=</span>http://192.168.8.80:8080/<span class="w"> </span><span class="se">\</span>
 --swift-key<span class="o">=</span>testing<span class="w"> </span><span class="se">\</span>
 full_backup<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/downloaded_full
 
-$<span class="w"> </span>xbcloud<span class="w"> </span>delete<span class="w"> </span>--storage<span class="o">=</span>swift<span class="w"> </span>--swift-user<span class="o">=</span>xtrabackup<span class="w"> </span><span class="se">\</span>
+xbcloud<span class="w"> </span>delete<span class="w"> </span>--storage<span class="o">=</span>swift<span class="w"> </span>--swift-user<span class="o">=</span>xtrabackup<span class="w"> </span><span class="se">\</span>
 --swift-password<span class="o">=</span>xtrabackup123!<span class="w"> </span>--swift-auth-version<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
 --swift-auth-url<span class="o">=</span>http://openstack.ci.percona.com:5000/<span class="w"> </span><span class="se">\</span>
 --swift-container<span class="o">=</span>mybackup1<span class="w"> </span>--swift-domain<span class="o">=</span>Default
@@ -11966,7 +11966,7 @@ from the keystone response. You can override that URL by passing
 <h3 id="xbcloud-swift-insecure">&ndash;insecure()<a class="headerlink" href="#xbcloud-swift-insecure" title="Permanent link">&para;</a></h3>
 <p>Do not verify server&rsquo;s certificate</p>
 <h3 id="xbcloud-swift-swift-authentication-options">Swift authentication options<a class="headerlink" href="#xbcloud-swift-swift-authentication-options" title="Permanent link">&para;</a></h3>
-<p>The Swift specification describes several <a href="http://docs.openstack.org/developer/swift/overview_auth.html">authentication options</a>. The <em>xbcloud</em> tool can
+<p>The Swift specification describes several <a href="http://docs.openstack.org/developer/swift/overview_auth.html">authentication options <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. The <em>xbcloud</em> tool can
 authenticate against keystone with API version 2 and 3.</p>
 <h3 id="xbcloud-swift-swift-auth-version">&ndash;swift-auth-version()<a class="headerlink" href="#xbcloud-swift-swift-auth-version" title="Permanent link">&para;</a></h3>
 <p>Specifies the swift authentication version. The possible values are: <code>1.0</code> -
@@ -11999,9 +11999,9 @@ mode. This mode was especially designed to interact with cloud services
 compatible with Amazon S3.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
-<p><a href="https://cloud.google.com/storage/docs/interoperability">Cloud Storage Interoperability</a></p>
+<p><a href="https://cloud.google.com/storage/docs/interoperability">Cloud Storage Interoperability <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
 </div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>google<span class="w"> </span><span class="se">\</span>
 --google-endpoint<span class="o">=</span><span class="sb">`</span>storage.googleapis.com<span class="sb">`</span><span class="w"> </span><span class="se">\</span>
 --google-access-key<span class="o">=</span><span class="s1">&#39;YOUR-ACCESSKEYID&#39;</span><span class="w"> </span><span class="se">\</span>
@@ -12046,7 +12046,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
 <p><a href="https://cloud.google.com/storage/docs/changing-default-storage-class">Google storage classes - the default Google storage class depends on 
-the storage class of the bucket</a></p>
+the storage class of the bucket <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
 </div></section><section class="print-page" id="xbcloud-azure" heading-number="7.5.4.5"><h1 id="xbcloud-azure-use-the-xbcloud-binary-with-microsoft-azure-cloud-storage">Use the xbcloud binary with Microsoft Azure Cloud Storage<a class="headerlink" href="#xbcloud-azure-use-the-xbcloud-binary-with-microsoft-azure-cloud-storage" title="Permanent link">&para;</a></h1>
 <p>The xbcloud binary adds support for the Microsoft Azure Cloud Storage using the REST API.</p>
 <h2 id="xbcloud-azure-options">Options<a class="headerlink" href="#xbcloud-azure-options" title="Permanent link">&para;</a></h2>
@@ -12087,29 +12087,29 @@ the storage class of the bucket</a></p>
 </tr>
 </tbody>
 </table>
-<p>Test your Azure applications with the <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio">Azurite open-source emulator</a>. For testing purposes, the xbcloud binary adds the <code>--azure-development-storage</code> option that uses the default <code>access_key</code> and <code>storage account</code> of azurite and <code>testcontainer</code> for the container. You can overwrite these options, if needed.</p>
+<p>Test your Azure applications with the <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio">Azurite open-source emulator <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. For testing purposes, the xbcloud binary adds the <code>--azure-development-storage</code> option that uses the default <code>access_key</code> and <code>storage account</code> of azurite and <code>testcontainer</code> for the container. You can overwrite these options, if needed.</p>
 <h2 id="xbcloud-azure-usage">Usage<a class="headerlink" href="#xbcloud-azure-usage" title="Permanent link">&para;</a></h2>
 <p>All the available options for xbcloud, such as parallel, 
 max-retries, and others, can be used. For more information, see the
 <a href="#xbcloud-binary-overview">xbcloud binary overview</a>.</p>
 <h2 id="xbcloud-azure-examples">Examples<a class="headerlink" href="#xbcloud-azure-examples" title="Permanent link">&para;</a></h2>
 <p>An example of an xbcloud backup.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w">  </span><span class="p">|</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w">  </span><span class="p">|</span><span class="w"> </span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>backup_name<span class="w"> </span>--azure-storage-account<span class="o">=</span>pxbtesting<span class="w"> </span>--azure-access-key<span class="o">=</span><span class="nv">$AZURE_KEY</span><span class="w"> </span>--azure-container-name<span class="o">=</span><span class="nb">test</span><span class="w"> </span>--storage<span class="o">=</span>azure
 </code></pre></div>
 <p>An example of restoring a backup from xbcloud.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>backup_name<span class="w">  </span>--azure-storage-account<span class="o">=</span>pxbtesting<span class="w"> </span>
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>backup_name<span class="w">  </span>--azure-storage-account<span class="o">=</span>pxbtesting<span class="w"> </span>
 --azure-access-key<span class="o">=</span><span class="nv">$AZURE_KEY</span><span class="w"> </span>--azure-container-name<span class="o">=</span><span class="nb">test</span><span class="w"> </span>--storage<span class="o">=</span>azure<span class="w"> </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="m">2</span>&gt;download.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-x<span class="w"> </span>-C<span class="w"> </span>restore
 </code></pre></div>
 <p>An example of deleting a backup from xbcloud.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>delete<span class="w"> </span>backup_name<span class="w"> </span>--azure-storage-account<span class="o">=</span>pxbtesting<span class="w"> </span>
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>delete<span class="w"> </span>backup_name<span class="w"> </span>--azure-storage-account<span class="o">=</span>pxbtesting<span class="w"> </span>
 --azure-access-key<span class="o">=</span><span class="nv">$AZURE_KEY</span><span class="w"> </span>--azure-container-name<span class="o">=</span><span class="nb">test</span><span class="w"> </span>--storage<span class="o">=</span>azure
 </code></pre></div>
 <p>An example of using a shortcut restore.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>get<span class="w"> </span>azure://operator-testing/bak22<span class="w"> </span>...
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>azure://operator-testing/bak22<span class="w"> </span>...
 </code></pre></div></section><section class="print-page" id="xbcloud-minio" heading-number="7.5.4.6"><h1 id="xbcloud-minio-use-the-xbcloud-binary-with-minio">Use the xbcloud binary with MinIO<a class="headerlink" href="#xbcloud-minio-use-the-xbcloud-binary-with-minio" title="Permanent link">&para;</a></h1>
 <h2 id="xbcloud-minio-create-a-full-backup-with-minio">Create a full backup with MinIO<a class="headerlink" href="#xbcloud-minio-create-a-full-backup-with-minio" title="Permanent link">&para;</a></h2>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span><span class="se">\</span>
 --s3-endpoint<span class="o">=</span><span class="s1">&#39;play.minio.io:9000&#39;</span><span class="w"> </span><span class="se">\</span>
 --s3-access-key<span class="o">=</span><span class="s1">&#39;YOUR-ACCESSKEYID&#39;</span><span class="w"> </span><span class="se">\</span>
@@ -12716,7 +12716,7 @@ Pin-Priority: 1001
 <p>For more information about the pinning, check the official <a href="http://wiki.debian.org/AptPreferences">debian wiki <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p></section><section class="print-page" id="work-with-apparmor" heading-number="8.3.5"><h1 id="work-with-apparmor-work-with-apparmor">Work with AppArmor<a class="headerlink" href="#work-with-apparmor-work-with-apparmor" title="Permanent link">&para;</a></h1>
 <p>The Linux Security Module implements mandatory access controls (MAC) with AppArmor. Debian and Ubuntu systems install AppArmor by default. AppArmor uses profiles which define which files and permissions are needed for application.</p>
 <p>Percona XtraBackup does not have a profile and is not confined by AppArmor.</p>
-<p>For a list of common AppArmor commands, see <a href="https://docs.percona.com/percona-server/8.4/apparmor.html">Percona Server for MySQL - AppArmor</a>.</p>
+<p>For a list of common AppArmor commands, see <a href="https://docs.percona.com/percona-server/8.4/apparmor.html">Percona Server for MySQL - AppArmor <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <h2 id="work-with-apparmor-develop-a-profile">Develop a profile<a class="headerlink" href="#work-with-apparmor-develop-a-profile" title="Permanent link">&para;</a></h2>
 <p>Download the profile from:</p>
 <p><a href="https://github.com/percona/percona-xtrabackup/tree/trunk/packaging/percona/apparmor/apparmor.d">https://github.com/percona/percona-xtrabackup/tree/trunk/packaging/percona/apparmor/apparmor.d</a></p>
@@ -12746,10 +12746,10 @@ Pin-Priority: 1001
 </code></pre></div>
 </details>
 <p>Move the updated file:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>mv<span class="w"> </span>usr.sbin.xtrabackup<span class="w"> </span>/etc/apparmor.d/
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mv<span class="w"> </span>usr.sbin.xtrabackup<span class="w"> </span>/etc/apparmor.d/
 </code></pre></div>
 <p>Install the profile with the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apparmor_parser<span class="w"> </span>-r<span class="w"> </span>-T<span class="w"> </span>-W<span class="w"> </span>/etc/apparmor.d/usr.sbin.xtrabackup
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apparmor_parser<span class="w"> </span>-r<span class="w"> </span>-T<span class="w"> </span>-W<span class="w"> </span>/etc/apparmor.d/usr.sbin.xtrabackup
 </code></pre></div>
 <p>Run the backup as usual.</p>
 <p>No additional AppArmor-related actions are required to restore a backup.</p></section><section class="print-page" id="apt-uninstall-xtrabackup" heading-number="8.3.6"><h1 id="apt-uninstall-xtrabackup-uninstall-percona-xtrabackup-84-on-debian-and-ubuntu">Uninstall Percona XtraBackup 8.4 on Debian and Ubuntu<a class="headerlink" href="#apt-uninstall-xtrabackup-uninstall-percona-xtrabackup-84-on-debian-and-ubuntu" title="Permanent link">&para;</a></h1>
@@ -12761,9 +12761,9 @@ Pin-Priority: 1001
                         </h1>
                     <section class="print-page" id="yum-repo" heading-number="8.4.1"><h1 id="yum-repo-use-a-yum-repository-to-install-percona-xtrabackup">Use a YUM repository to install Percona XtraBackup<a class="headerlink" href="#yum-repo-use-a-yum-repository-to-install-percona-xtrabackup" title="Permanent link">&para;</a></h1>
 <p>Ready-to-use packages are available from the Percona XtraBackup software
-repositories and the <a href="https://www.percona.com/downloads/">download page</a>. The Percona yum repository supports popular <code>RPM</code>-based operating systems, including the <code>Amazon Linux AMI</code>.</p>
-<p>The easiest way to install the Percona Yum repository is to install an <code>RPM</code> that configures yum and installs the <a href="https://www.percona.com/downloads/RPM-GPG-KEY-percona">Percona GPG key</a>.</p>
-<p>Specific information on the supported platforms, products, and versions is described in <a href="https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql">Percona Software and Platform Lifecycle</a>.</p>
+repositories and the <a href="https://www.percona.com/downloads">Percona Software Downloads <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. The Percona yum repository supports popular <code>RPM</code>-based operating systems, including the <code>Amazon Linux AMI</code>.</p>
+<p>The easiest way to install the Percona Yum repository is to install an <code>RPM</code> that configures yum and installs the <a href="https://www.percona.com/downloads/RPM-GPG-KEY-percona">Percona GPG key <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
+<p>Specific information on the supported platforms, products, and versions is described in <a href="https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql">Percona Software and Platform Lifecycle <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <!--
 
 ### Percona XtraBackup PRO 
@@ -12780,7 +12780,7 @@ This document provides guidelines on how to install Percona XtraBackup PRO packa
 <ol>
 <li>
 <p>Install the Percona yum repository by running the following command as the <code>root</code> user or with <strong>sudo</strong>: </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
 https://repo.percona.com/yum/percona-release-latest.<span class="se">\</span>
 noarch.rpm
 </code></pre></div>
@@ -12807,7 +12807,7 @@ Complete!
 </li>
 <li>
 <p>Enable the repository: </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>pxb-84-lts
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>pxb-84-lts
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -12818,7 +12818,7 @@ Complete!
 </li>
 <li>
 <p>Install Percona XtraBackup.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-84
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-84
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -12837,7 +12837,7 @@ zstd-1.5.1-2.el9.x86_64
 </li>
 <li>
 <p>Verify the installation.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -12850,11 +12850,11 @@ zstd-1.5.1-2.el9.x86_64
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="yum-repo-__tabbed_1_1" name="yum-repo-__tabbed_1" type="radio" /><input id="yum-repo-__tabbed_1_2" name="yum-repo-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="yum-repo-__tabbed_1_1">Install the <code>lz4</code> package</label><label for="yum-repo-__tabbed_1_2">Install the <code>zstd</code> package</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>lz4
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>lz4
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>zstd
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>zstd
 </code></pre></div>
 </div>
 </div>
@@ -12893,7 +12893,7 @@ zstd-1.5.1-2.el9.x86_64
 </tr>
 </tbody>
 </table></section><section class="print-page" id="yum-download-rpm" heading-number="8.4.3"><h1 id="yum-download-rpm-install-percona-xtrabackup-84-using-downloaded-rpm-packages">Install Percona XtraBackup 8.4 using downloaded RPM packages<a class="headerlink" href="#yum-download-rpm-install-percona-xtrabackup-84-using-downloaded-rpm-packages" title="Permanent link">&para;</a></h1>
-<p>Download <code>RPM</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads">Percona Software Downloads</a>. If needed, <a href="#download-instructions">Percona Software Download instructions</a> are available. </p>
+<p>Download <code>RPM</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads">Percona Software Downloads <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. If needed, <a href="#download-instructions">Percona Software Download instructions</a> are available. </p>
 <p>This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.</p>
 <p class="power-number">The following example downloads <em>Percona XtraBackup</em> 8.4.0-5 release packages for <em>RHEL</em> 9. Run the following commands as root or use the sudo command.</p>
 <ol>
@@ -12976,7 +12976,7 @@ zstd-1.5.1-2.el9.x86_64
 <p>If you encounter persistent issues, consult the Percona XtraBackup documentation or <a href="#get-help">Get help from Percona</a>.</p></section><section class="print-page" id="work-with-selinux" heading-number="8.4.4"><h1 id="work-with-selinux-work-with-selinux">Work with SELinux<a class="headerlink" href="#work-with-selinux-work-with-selinux" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup is installed as an unconfined process running in an undefined domain. SELinux allows unconfined processes almost all access and the processes only use Discretionary Access Control (DAC) rules.</p>
 <p>You find the current state of the Percona XtraBackup file with the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-Z<span class="w"> </span>/usr/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>xtrabackup
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-Z<span class="w"> </span>/usr/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>xtrabackup
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -13014,7 +13014,7 @@ zstd-1.5.1-2.el9.x86_64
 <p>The first option opens the entire system to read and write. Select the second option to harden your security.</p>
 <h2 id="work-with-selinux-install-selinux-tools">Install SELinux tools<a class="headerlink" href="#work-with-selinux-install-selinux-tools" title="Permanent link">&para;</a></h2>
 <p>To work with policies, you must install the SELinux tools. To find which package provides the <code>semanage</code> command and install the package. The following is an example on CentOS 7.</p>
-<p><div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
+<p><div class="highlight"><pre><span></span><code>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
 </code></pre></div>
 The result should list the packages.</p>
 <details class="example">
@@ -13025,10 +13025,10 @@ policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
 </code></pre></div>
 </details>
 <p>To install missing packages, run the following:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python
 </code></pre></div>
 <p>The following is an example on CentOS 8:</p>
-<p><div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
+<p><div class="highlight"><pre><span></span><code>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
 </code></pre></div>
 The result should list the missing packages.</p>
 <details class="example">
@@ -13038,7 +13038,7 @@ policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python ut
 </code></pre></div>
 </details>
 <p>Run the following to install the missing packages: </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python-utils
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python-utils
 </code></pre></div>
 <h2 id="work-with-selinux-create-a-policy">Create a policy<a class="headerlink" href="#work-with-selinux-create-a-policy" title="Permanent link">&para;</a></h2>
 <p>Use a modular approach to create an SELinux policy. Create a policy module to manage XtraBackup. You must create a <code>.te</code> file for type enforcement, and an optional <code>.fc</code> file for the file contexts.</p>
@@ -13061,16 +13061,16 @@ policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python ut
 <p>In the file, the sections in bold should be modified for your system. The fc file can also be downloaded from the same location.</p>
 </div>
 <p>Compile the policy module:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span>-f<span class="w"> </span>/usr/share/selinux/devel/Makefile<span class="w"> </span>xtrabackup.pp
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>-f<span class="w"> </span>/usr/share/selinux/devel/Makefile<span class="w"> </span>xtrabackup.pp
 </code></pre></div>
 <p>Install the module:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>semodule<span class="w"> </span>-i<span class="w"> </span>xtrabackup.pp
+<div class="highlight"><pre><span></span><code>semodule<span class="w"> </span>-i<span class="w"> </span>xtrabackup.pp
 </code></pre></div>
 <p>Tag the PXB binaries with the proper SELinux tags, such as <code>xtrabackup_exec_t</code>.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>restorecon<span class="w"> </span>-v<span class="w"> </span>/usr/bin/*
+<div class="highlight"><pre><span></span><code>restorecon<span class="w"> </span>-v<span class="w"> </span>/usr/bin/*
 </code></pre></div>
 <p>If you store your backups at <code>/backups</code>, restore the tag in that location:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>restorecon<span class="w"> </span>-v<span class="w"> </span>/backups
+<div class="highlight"><pre><span></span><code>restorecon<span class="w"> </span>-v<span class="w"> </span>/backups
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -13078,7 +13078,7 @@ policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python ut
 </div>
 <p>Perform the backup in the standard way.</p></section><section class="print-page" id="yum-uninstall-xtrabackup" heading-number="8.4.5"><h1 id="yum-uninstall-xtrabackup-uninstall-percona-xtrabackup-84-on-red-hat-enterprise-linux-and-centos">Uninstall Percona XtraBackup 8.4 on Red Hat Enterprise Linux and CentOS<a class="headerlink" href="#yum-uninstall-xtrabackup-uninstall-percona-xtrabackup-84-on-red-hat-enterprise-linux-and-centos" title="Permanent link">&para;</a></h1>
 <p>To completely uninstall Percona XtraBackup, remove all the installed packages:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>remove<span class="w"> </span>percona-xtrabackup
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>remove<span class="w"> </span>percona-xtrabackup
 </code></pre></div></section></section>
                     <section class='print-page md-section' id='section-8-5' heading-number='8.5'>
                         <h1>Use binary tarballs<a class='headerlink' href='#section-8-5' title='Permanent link'></a>
@@ -14565,25 +14565,25 @@ The example demonstrates how to restore a backup on a single node and then boots
 <p>Restoring should be done by importing the tables in the partial backup to the
 server.</p>
 <p>First step is to create new table in which data will be restored.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>TABLE<span class="w"> </span><span class="sb">`</span>name_p4<span class="sb">`</span><span class="w"> </span><span class="o">(</span>
-<span class="sb">`</span>id<span class="sb">`</span><span class="w"> </span>int<span class="o">(</span><span class="m">11</span><span class="o">)</span><span class="w"> </span>NOT<span class="w"> </span>NULL<span class="w"> </span>AUTO_INCREMENT,
-<span class="sb">`</span>name<span class="sb">`</span><span class="w"> </span>text<span class="w"> </span>NOT<span class="w"> </span>NULL,
-<span class="sb">`</span>imdb_index<span class="sb">`</span><span class="w"> </span>varchar<span class="o">(</span><span class="m">12</span><span class="o">)</span><span class="w"> </span>DEFAULT<span class="w"> </span>NULL,
-<span class="sb">`</span>imdb_id<span class="sb">`</span><span class="w"> </span>int<span class="o">(</span><span class="m">11</span><span class="o">)</span><span class="w"> </span>DEFAULT<span class="w"> </span>NULL,
-<span class="sb">`</span>name_pcode_cf<span class="sb">`</span><span class="w"> </span>varchar<span class="o">(</span><span class="m">5</span><span class="o">)</span><span class="w"> </span>DEFAULT<span class="w"> </span>NULL,
-<span class="sb">`</span>name_pcode_nf<span class="sb">`</span><span class="w"> </span>varchar<span class="o">(</span><span class="m">5</span><span class="o">)</span><span class="w"> </span>DEFAULT<span class="w"> </span>NULL,
-<span class="sb">`</span>surname_pcode<span class="sb">`</span><span class="w"> </span>varchar<span class="o">(</span><span class="m">5</span><span class="o">)</span><span class="w"> </span>DEFAULT<span class="w"> </span>NULL,
-PRIMARY<span class="w"> </span>KEY<span class="w"> </span><span class="o">(</span><span class="sb">`</span>id<span class="sb">`</span><span class="o">)</span>
-<span class="o">)</span><span class="w"> </span><span class="nv">ENGINE</span><span class="o">=</span>InnoDB<span class="w"> </span><span class="nv">AUTO_INCREMENT</span><span class="o">=</span><span class="m">2812744</span><span class="w"> </span>DEFAULT<span class="w"> </span><span class="nv">CHARSET</span><span class="o">=</span>utf8
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">name_p4</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
+<span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">imdb_index</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">imdb_id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">name_pcode_cf</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">name_pcode_nf</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">surname_pcode</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">2812744</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Generate a <a href="https://dev.mysql.com/doc/refman/8.4/en/innodb-table-import.html">.cfg metadata file</a> by running <code>FLUSH TABLES ... FOR EXPORT</code>. The command can only be run on a table, not on the individual table partitions.
+<p>Generate a <a href="https://dev.mysql.com/doc/refman/8.4/en/innodb-table-import.html">.cfg metadata file <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> by running <code>FLUSH TABLES ... FOR EXPORT</code>. The command can only be run on a table, not on the individual table partitions.
 The file is located in the table schema directory and is used for schema verification when importing the tablespace. </p>
 </div>
 <p>To restore the partition from the backup, the tablespace must be discarded for
 that table:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>name_p4<span class="w"> </span>DISCARD<span class="w"> </span>TABLESPACE<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="n">DISCARD</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
 </code></pre></div>
 <p>The next step is to copy the <code>.ibd</code> file from the backup to the MySQL data directory:</p>
 <div class="highlight"><pre><span></span><code>cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
@@ -14593,7 +14593,7 @@ that table:</p>
 <p>Make sure that the copied files can be accessed by the user running MySQL. </p>
 </div>
 <p>The last step is to import the tablespace:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>name_p4<span class="w"> </span>IMPORT<span class="w"> </span>TABLESPACE<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="n">IMPORT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
 </code></pre></div></section></section><section class="print-page" id="restore-individual-tables" heading-number="9.8"><h1 id="restore-individual-tables-restore-single-tables-between-databases">Restore single tables between databases<a class="headerlink" href="#restore-individual-tables-restore-single-tables-between-databases" title="Permanent link">&para;</a></h1>
 <p>Sometimes, you must restore just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to restore specific tables between different database systems while keeping your data safe.</p>
 <p>This process only works with InnoDB tables that use the <code>file-per-table</code> setup. This setup stores each table&rsquo;s data in its <code>.ibd</code> file. You can restore these tables to systems running Percona Server for MySQL with XtraDB or MySQL 8.0. Your source database can be any type, but the target database must be XtraDB or MySQL 8.0.</p>
@@ -14641,11 +14641,11 @@ that table:</p>
 </tbody>
 </table>
 <p>The following example shows the export and import process for a table called <code>export_test</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>mysql<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE DATABASE create_database_test;&quot;</span>
+<div class="highlight"><pre><span></span><code>mysql<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE DATABASE create_database_test;&quot;</span>
 </code></pre></div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>TABLE<span class="w"> </span>export_test<span class="w"> </span><span class="o">(</span>
-a<span class="w"> </span>int<span class="o">(</span><span class="m">11</span><span class="o">)</span><span class="w"> </span>DEFAULT<span class="w"> </span>NULL
-<span class="o">)</span><span class="w"> </span><span class="nv">ENGINE</span><span class="o">=</span>InnoDB<span class="w"> </span>DEFAULT<span class="w"> </span><span class="nv">CHARSET</span><span class="o">=</span>latin1<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">export_test</span><span class="w"> </span><span class="p">(</span>
+<span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="restore-individual-tables-save-the-schema">Save the schema<a class="headerlink" href="#restore-individual-tables-save-the-schema" title="Permanent link">&para;</a></h2>
 <p>Before importing any table, you must save the schema definition for all tables you want to restore. Think of the schema as a blueprint for your table. XtraBackup only backs up data files, not these blueprints. Without the original schema, MySQL won&rsquo;t be able to use the restored .ibd files.</p>
@@ -14654,14 +14654,14 @@ a<span class="w"> </span>int<span class="o">(</span><span class="m">11</span><sp
 <p>By saving schemas ahead of time, you ensure that all the table blueprints are ready when you start restoring from backups, making data recovery go more smoothly.</p>
 <h2 id="restore-individual-tables-export-the-table">Export the table<a class="headerlink" href="#restore-individual-tables-export-the-table" title="Permanent link">&para;</a></h2>
 <p>First, create the table using the <code>innodb_file_per_table</code> setting. This setting tells MySQL to create a separate <code>.ibd</code> file for each table in your source directory. Run this command to find the created file in your system:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>/data/backups/mysql/<span class="w"> </span>-name<span class="w"> </span>export_test.*
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>/data/backups/mysql/<span class="w"> </span>-name<span class="w"> </span>export_test.*
 /data/backups/mysql/test/export_test.ibd
 </code></pre></div>
 <p>Next, when you run the <code>--prepare</code> phase, add the <a href="#xtrabackup-option-reference-export">&ndash;export</a> option to your command. This option tells XtraBackup to create any extra files needed for moving the table:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/mysql/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/mysql/
 </code></pre></div>
 <p>If you&rsquo;re working with encrypted tables (ones that use transparent data encryption), you&rsquo;ll need extra security settings. You must include the keyring file that has the encryption keys:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/table<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/table<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>After these commands finish successfully, you&rsquo;ll need these files for the table import.</p>
@@ -14683,13 +14683,13 @@ a<span class="w"> </span>int<span class="o">(</span><span class="m">11</span><sp
 <ol>
 <li>
 <p>Use the schema and create an empty table copy in the new location on your target server (which must be running Percona Server for MySQL with XtraDB or MySQL 8.0).</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/create_database_test.sql<span class="p">;</span>
-$<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/export_test.sql<span class="p">;</span>
+<div class="highlight"><pre><span></span><code>mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/create_database_test.sql<span class="p">;</span>
+mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/export_test.sql<span class="p">;</span>
 </code></pre></div>
 </li>
 <li>
 <p>Run this SQL command to disconnect the new table from its default tablespace. This command prepares it to receive the imported data:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>test.export_test<span class="w"> </span>DISCARD<span class="w"> </span>TABLESPACE<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">export_test</span><span class="w"> </span><span class="n">DISCARD</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
 </code></pre></div>
 <p>If you see an error like “ERROR 1809 (HY000): Table ‘test/export_test’ in the system tablespace, &rdquo; the <code>innodb_file_per_table</code> setting is disabled on your target server. Enable this in your server setup, then try the steps again.</p>
 </li>
@@ -14698,7 +14698,7 @@ $<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </s
 </li>
 <li>
 <p>Run this SQL command to attach the restored tablespace to the destination table, finishing the data restore:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>ALTER<span class="w"> </span>TABLE<span class="w"> </span>test.export_test<span class="w"> </span>IMPORT<span class="w"> </span>TABLESPACE<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">export_test</span><span class="w"> </span><span class="n">IMPORT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
 </code></pre></div>
 </li>
 </ol>
@@ -14750,7 +14750,7 @@ we did about <code>Source</code>, except that the server-id on <code>Replica</co
 </div>
 <h2 id="set-up-replication-1-make-a-backup-on-the-source-and-prepare-it">1. Make a backup on the <code>Source</code> and prepare it<a class="headerlink" href="#set-up-replication-1-make-a-backup-on-the-source-and-prepare-it" title="Permanent link">&para;</a></h2>
 <p>At the <code>Source</code>, issue the following to a shell:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>yourDBuser<span class="w"> </span>--password<span class="o">=</span>MaGiCdB1<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>yourDBuser<span class="w"> </span>--password<span class="o">=</span>MaGiCdB1<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
 <p>After this is finished you should get:</p>
 <details class="example">
@@ -14766,7 +14766,7 @@ and do a hot backup of all your data in it
 (all <em>MyISAM</em>, <em>InnoDB</em> tables and indexes in them).</p>
 <p>In order for snapshot to be consistent, prepare the data on the
 source:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
 <p>Select the path where your snapshot has been taken.
 Apply the transaction logs to the data files and your data files are ready to be used by the MySQL server.</p>
@@ -14778,13 +14778,13 @@ every time you want to access <em>MySQL</em>,
 you can set it up in <code>.mylogin.cnf</code> as follows:</p>
 <div class="highlight"><pre><span></span><code>mysql_config_editor set --login-path=client --host=localhost --user=root --password
 </code></pre></div>
-<p>For more information, see <a href="https://dev.mysql.com/doc/refman/8.4/en/mysql-config-editor.html">MySQL Configuration Utility</a>.</p>
+<p>For more information, see <a href="https://dev.mysql.com/doc/refman/8.4/en/mysql-config-editor.html">MySQL Configuration Utility <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <p>This statement provides root access to MySQL.</p>
 <h2 id="set-up-replication-2-copy-backed-up-data-to-the-replica">2.  Copy backed up data to the Replica<a class="headerlink" href="#set-up-replication-2-copy-backed-up-data-to-the-replica" title="Permanent link">&para;</a></h2>
 <p>On the Source, use rsync or scp to copy the data from the Source to the
 Replica. If you are syncing the data directly to replica’s data directory,
 we recommend that you stop the <code>mysqld</code> there.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>rsync<span class="w"> </span>-avpP<span class="w"> </span>-e<span class="w"> </span>ssh<span class="w"> </span>/path/to/backupdir<span class="w"> </span>Replica:/path/to/mysql/
+<div class="highlight"><pre><span></span><code>rsync<span class="w"> </span>-avpP<span class="w"> </span>-e<span class="w"> </span>ssh<span class="w"> </span>/path/to/backupdir<span class="w"> </span>Replica:/path/to/mysql/
 </code></pre></div>
 <p>After data is copied, you can back up the original or previously
 installed <em>MySQL</em> datadir. </p>
@@ -14793,40 +14793,40 @@ installed <em>MySQL</em> datadir. </p>
 <p>Make sure mysqld is shut down before you move the contents of its datadir, or move the snapshot into its datadir.</p>
 </div>
 <p>Run the following commands on the Replica:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mv<span class="w"> </span>/path/to/mysql/datadir<span class="w"> </span>/path/to/mysql/datadir_bak
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>/path/to/mysql/datadir<span class="w"> </span>/path/to/mysql/datadir_bak
 </code></pre></div>
 <p>and move the snapshot from the <code>Source</code> in its place:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/mysql/backupdir
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/mysql/backupdir
 </code></pre></div>
 <p>After you copy data over, make sure the Replica <em>MySQL</em> has the proper
 permissions to access them.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>chown<span class="w"> </span>mysql:mysql<span class="w"> </span>/path/to/mysql/datadir
+<div class="highlight"><pre><span></span><code>chown<span class="w"> </span>mysql:mysql<span class="w"> </span>/path/to/mysql/datadir
 </code></pre></div>
 <p>If the ibdata and iblog files are located in directories outside the
 datadir, you must put these files in their proper place after the logs have
 been applied.</p>
 <h2 id="set-up-replication-3-configure-the-sources-mysql-server">3. Configure the Source’s MySQL server<a class="headerlink" href="#set-up-replication-3-configure-the-sources-mysql-server" title="Permanent link">&para;</a></h2>
 <p>On the source, create a user specifically for replication tasks. Use the following command to define the user and set a secure password:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;repl&#39;</span>@<span class="s1">&#39;$replicaip&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;$replicaip&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>Grant the replication privileges to the newly created user to allow the replica to connect to the source server:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>SLAVE<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w"> </span>TO<span class="w"> </span><span class="s1">&#39;repl&#39;</span>@<span class="s1">&#39;$replicaip&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;$replicaip&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>Apply the changes:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
 </code></pre></div>
 <p>Also make sure that firewall rules are correct and that the <code>Replica</code> can
 connect to the <code>Source</code>. Run the following command on the Replica to test
 that you can run the mysql client on <code>Replica</code>, connect to the <code>Source</code>,
 and authenticate.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>mysql<span class="w"> </span>--host<span class="o">=</span>Source<span class="w"> </span>--user<span class="o">=</span>repl<span class="w"> </span>--password<span class="o">=</span><span class="nv">$replicapass</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="w"> </span><span class="c1">--host=Source --user=repl --password=$replicapass</span>
 </code></pre></div>
 <p>Verify the privileges.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GRANTS<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="set-up-replication-4-configure-the-replicas-mysql-server">4. Configure the Replica’s MySQL server<a class="headerlink" href="#set-up-replication-4-configure-the-replicas-mysql-server" title="Permanent link">&para;</a></h2>
 <p>Copy the <code>my.cnf</code> file from the <code>Source</code> to the <code>Replica</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>scp<span class="w"> </span>user@Source:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>user@Source:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
 </code></pre></div>
 <p>and change the following options in /etc/mysql/my.cnf:</p>
 <div class="highlight"><pre><span></span><code>server-id=2
@@ -14838,7 +14838,7 @@ it’s the same as that user’s password on the <code>Source</code>. Password c
 and updated in <code>/etc/mysql/debian.cnf</code>.</p>
 <h2 id="set-up-replication-5-start-the-replication">5. Start the replication<a class="headerlink" href="#set-up-replication-5-start-the-replication" title="Permanent link">&para;</a></h2>
 <p>On the <code>Replica</code>, review the content of the <code>xtrabackup_binlog_info</code> file:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/var/lib/mysql/xtrabackup_binlog_info
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/lib/mysql/xtrabackup_binlog_info
 </code></pre></div>
 <p>The results should resemble the following:</p>
 <details class="example">
@@ -14882,13 +14882,13 @@ source. We will use <em>Percona XtraBackup</em> to clone an already configured
 replica. We will continue using the previous scenario for convenience, but
 we will add a <code>NewReplica</code> to the plot.</p>
 <p>At the <code>Replica</code>, do a full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--user<span class="o">=</span>yourDBuser<span class="w"> </span>--password<span class="o">=</span>MaGiCiGaM<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--user<span class="o">=</span>yourDBuser<span class="w"> </span>--password<span class="o">=</span>MaGiCiGaM<span class="w"> </span><span class="se">\</span>
 <span class="w">   </span>--backup<span class="w"> </span>--slave-info<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
 <p>By using the <code>--slave-info</code> <em>Percona XtraBackup</em> creates additional file
 called <code>xtrabackup_slave_info</code>.</p>
 <p>Apply the logs:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-memory<span class="o">=</span>2G<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-memory<span class="o">=</span>2G<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir/
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -14907,7 +14907,7 @@ the Source:</p>
 <span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>On the <code>NewReplica</code>, copy the configuration file from the <code>Replica</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>scp<span class="w"> </span>user@Replica:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>user@Replica:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
 </code></pre></div>
 <p>Make sure you change the server-id variable in <code>/etc/mysql/my.cnf</code> to 3 and
 disable the replication on start:</p>
@@ -15052,7 +15052,7 @@ the backup finishes.</p>
 source for backup. A good tool to validate a replica is <a href="https://docs.percona.com/percona-toolkit/pt-table-checksum.html">pt-table-checksum <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 </div></section><section class="print-page" id="verify-backup" heading-number="9.9.4"><h1 id="verify-backup-verify-backups-with-replication-and-pt-checksum">Verify backups with replication and pt-checksum<a class="headerlink" href="#verify-backup-verify-backups-with-replication-and-pt-checksum" title="Permanent link">&para;</a></h1>
 <p>One way to verify if the backup is consistent is by setting up the
-replication and running <a href="http://www.percona.com/doc/percona-toolkit/pt-table-checksum.html">pt-table-checksum</a>. This can be used to verify any type of backups, but before setting up
+replication and running <a href="http://www.percona.com/doc/percona-toolkit/pt-table-checksum.html">pt-table-checksum <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. This can be used to verify any type of backups, but before setting up
 replication, backup should be prepared and be able to run (this means that
 incremental backups should be merged to full backups, encrypted backups
 decrypted etc.).</p>
@@ -15070,10 +15070,10 @@ replication consistency check by executing checksum queries on the source,
 which produces different results on replicas that are inconsistent with the
 source.</p>
 <p>After you confirmed that replication has been set up successfully, you
-can <a href="http://www.percona.com/doc/percona-toolkit/installation.html">install</a>
+can <a href="http://www.percona.com/doc/percona-toolkit/installation.html">install <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>
 or download <em>pt-table-checksum</em>. This example shows downloading the latest
 version of <em>pt-table-checksum</em>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>percona.com/get/pt-table-checksum
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>percona.com/get/pt-table-checksum
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -15084,7 +15084,7 @@ your current working directory.</p>
 <p>Running the <em>pt-table-checksum</em> on the source will create <code>percona</code>
 database with the <code>checksums</code> table which will be replicated to the
 replicas as well. Example of the <em>pt-table-checksum</em> will look like this:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./pt-table-checksum
+<div class="highlight"><pre><span></span><code>./pt-table-checksum
 </code></pre></div>
 <p>The results are similar to the following:</p>
 <details class="example">
@@ -15110,10 +15110,10 @@ consistent with the current setup.</p>
 difference and point to the table that does not match. Following example
 shows adding new user on the backed up replica in order to simulate the
 inconsistent backup:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>grant<span class="w"> </span>usage<span class="w"> </span>on<span class="w"> </span>exampledb.*<span class="w"> </span>to<span class="w"> </span>exampledb@localhost<span class="w"> </span>identified<span class="w"> </span>by<span class="w"> </span><span class="s1">&#39;thisisnewpassword&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">grant</span><span class="w"> </span><span class="k">usage</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">exampledb</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">exampledb</span><span class="o">@</span><span class="n">localhost</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;thisisnewpassword&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>If we run the <em>pt-table-checksum</em> now difference should be spotted</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./pt-table-checksum
+<div class="highlight"><pre><span></span><code>./pt-table-checksum
 </code></pre></div>
 <p>The results are similar to the following:</p>
 <details class="example">
@@ -15136,7 +15136,7 @@ Checksumming exampledb.user_info:  86% 00:24 remain
 <p>This output shows that source and the replica aren’t in consistent state
 and that the difference is in the <code>mysql.user</code> table.</p>
 <p>More information on different options that pt-table-checksum provides can
-be found in the <em>pt-table-checksum</em> <a href="https://docs.percona.com/percona-toolkit/pt-table-checksum.html">documentation</a>.</p></section></section></section>
+be found in the <em>pt-table-checksum</em> <a href="https://docs.percona.com/percona-toolkit/pt-table-checksum.html">documentation <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p></section></section></section>
                     <section class='print-page md-section' id='section-10' heading-number='10'>
                         <h1>Troubleshoot<a class='headerlink' href='#section-10' title='Permanent link'></a>
                         </h1>
@@ -15162,7 +15162,7 @@ reuse issues in <code>xbcloud</code>. The following versions are not supported.<
 <p><code>libcurl versions ≥ 8.11.1 and &lt; 8.12.0</code></p>
 <ul>
 <li>
-<p>Affected by double close of an eventfd file descriptor, <a href="https://github.com/advisories/GHSA-cc57-hgv8-p56r">CVE-2025-0665</a></p>
+<p>Affected by double close of an eventfd file descriptor, <a href="https://github.com/advisories/GHSA-cc57-hgv8-p56r">CVE-2025-0665 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
 </li>
 <li>
 <p>May cause unexpected terminations when <code>xbcloud</code> uses <code>libcurl</code></p>
@@ -15176,7 +15176,7 @@ reuse issues in <code>xbcloud</code>. The following versions are not supported.<
 <p>Recommended - Upgrade to libcurl <code>8.12.0 or later</code> if these versions are compatible with your operating system.</p>
 </li>
 <li>
-<p>If upgrading to the latest version <code>≥ 8.12.0</code> is not possible, downgrade to a supported version earlier than 8.11.1 to avoid the vulnerability associated with <a href="https://github.com/advisories/GHSA-cc57-hgv8-p56r">CVE-2025-0665</a>. Ensure that the downgrade is compatible with other system dependencies.</p>
+<p>If upgrading to the latest version <code>≥ 8.12.0</code> is not possible, downgrade to a supported version earlier than 8.11.1 to avoid the vulnerability associated with <a href="https://github.com/advisories/GHSA-cc57-hgv8-p56r">CVE-2025-0665 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. Ensure that the downgrade is compatible with other system dependencies.</p>
 </li>
 </ul>
 <h3 id="update-curl-utility-check-the-installed-libcurl-version">Check the installed libcurl version<a class="headerlink" href="#update-curl-utility-check-the-installed-libcurl-version" title="Permanent link">&para;</a></h3>
@@ -15309,11 +15309,11 @@ Features: AsynchDNS IDN IPv6 Largefile NTLM NTLM_WB SSL libz TLS-SRP HTTP2 HSTS 
 </tr>
 </tbody>
 </table>
-<p>Percona uses semantic version numbering, which follows the pattern of base version and build version. Percona assigns unique, non-negative integers in increasing order for each version release. The version number combines the base <a href="https://dev.mysql.com/doc/relnotes/mysql/8.4/en/">MySQL 8.4</a> version number and the minor build version.</p>
+<p>Percona uses semantic version numbering, which follows the pattern of base version and build version. Percona assigns unique, non-negative integers in increasing order for each version release. The version number combines the base <a href="https://dev.mysql.com/doc/relnotes/mysql/8.4/en/">MySQL 8.4 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> version number and the minor build version.</p>
 <p>The version numbers for Percona XtraBackup 8.4.0-5 define the following information:</p>
 <ul>
 <li>
-<p>Base version - the leftmost numbers indicate the <a href="https://dev.mysql.com/doc/relnotes/mysql/8.4/en/">MySQL 8.4</a> version used as a base. An increase in base version resets the minor build version to 0.  </p>
+<p>Base version - the leftmost numbers indicate the <a href="https://dev.mysql.com/doc/relnotes/mysql/8.4/en/">MySQL 8.4 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> version used as a base. An increase in base version resets the minor build version to 0.  </p>
 </li>
 <li>
 <p>Minor build version - an internal number that denotes the version of the software. A build version increases by one each time the Percona XtraBackup is released.</p>
@@ -15554,16 +15554,16 @@ c2b6d625ef3409164cbf8af4985c48d3;MySQL;MySQL Community Server (GPL) 5.7.22-log
 you might prefer to disable this feature, either one time or permanently.  To
 disable it one time, use <code>--no-version-check</code> option when invoking the tool
 from a Percona product which supports it. Here is a simple example which shows
-running <a href="https://www.percona.com/doc/percona-toolkit/LATEST/pt-diskstats.html">pt-diskstats</a> tool
+running <a href="https://www.percona.com/doc/percona-toolkit/LATEST/pt-diskstats.html">pt-diskstats <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> tool
 from the <em>Percona Toolkit</em> with <em>version checking</em> turned off:</p>
 <div class="highlight"><pre><span></span><code>pt-diskstats --no-version-check
 </code></pre></div>
 <p>Disabling <em>version checking</em> permanently can be done by placing
 <code>no-version-check</code> option into the configuration file of a Percona product
 (see correspondent documentation for exact file name and syntax). For example,
-in case of <em>Percona Toolkit</em> <a href="https://www.percona.com/doc/percona-toolkit/LATEST/configuration_files.html">this can be done</a>
+in case of <em>Percona Toolkit</em> <a href="https://www.percona.com/doc/percona-toolkit/LATEST/configuration_files.html">this can be done <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>
 in a global configuration file <code>/etc/percona-toolkit/percona-toolkit.conf</code>:</p>
-<div class="highlight" data-prompt="#"><pre><span></span><code><span class="c1"># Disable Version Check for all tools:</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Disable Version Check for all tools:</span>
 no-version-check
 </code></pre></div>
 <p>In case of <em>Percona XtraBackup</em> this can be done <a href="#configure-xtrabackup">in its configuration file</a>
@@ -15777,7 +15777,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
 <p>Ensure that the MySQL server is configured to accept remote connections.</p>
 </li>
 </ul></section><section class="print-page" id="trademark-policy" heading-number="11.7"><h1 id="trademark-policy-trademark-policy">Trademark policy<a class="headerlink" href="#trademark-policy-trademark-policy" title="Permanent link">&para;</a></h1>
-<p>This <a href="https://www.percona.com/trademark-policy">Trademark Policy</a> is to ensure that users of Percona-branded products or
+<p>This <a href="https://www.percona.com/trademark-policy">Trademark Policy <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> is to ensure that users of Percona-branded products or
 services know that what they receive has really been developed, approved,
 tested and maintained by Percona. Trademarks help to prevent confusion in the
 marketplace, by distinguishing one company’s or person’s products and
@@ -15829,7 +15829,7 @@ Percona XtraBackup. However, it is acceptable to omit the word “Percona” for
 brevity on the second and subsequent uses, where such omission does not cause
 confusion.</p>
 <p>In the event of doubt as to any of the conditions or exceptions outlined in
-this Trademark Policy, please contact <a href="mailto:trademarks@percona.com">trademarks@percona.com</a> for assistance and
+this Trademark Policy, please contact <a href="mailto:trademarks@percona.com">trademarks@percona.com <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> for assistance and
 we will do our very best to be helpful.</p></section><section class="print-page" id="copyright-and-licensing-information" heading-number="11.8"><h1 id="copyright-and-licensing-information-copyright-and-licensing-information">Copyright and licensing information<a class="headerlink" href="#copyright-and-licensing-information-copyright-and-licensing-information" title="Permanent link">&para;</a></h1>
 <h2 id="copyright-and-licensing-information-documentation-licensing">Documentation licensing<a class="headerlink" href="#copyright-and-licensing-information-documentation-licensing" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup documentation is (C)2009-2026 Percona LLC and/or its affiliates and is distributed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p></section></section><section class="print-page" id="index-contents" heading-number="12"><h1 id="index-contents-index">Index<a class="headerlink" href="#index-contents-index" title="Permanent link">&para;</a></h1>

@@ -5868,7 +5868,7 @@ we did about <code>Source</code>, except that the server-id on <code>Replica</co
 </div>
 <h2 id="1-make-a-backup-on-the-source-and-prepare-it">1. Make a backup on the <code>Source</code> and prepare it<a class="headerlink" href="#1-make-a-backup-on-the-source-and-prepare-it" title="Permanent link">&para;</a></h2>
 <p>At the <code>Source</code>, issue the following to a shell:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>yourDBuser<span class="w"> </span>--password<span class="o">=</span>MaGiCdB1<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>yourDBuser<span class="w"> </span>--password<span class="o">=</span>MaGiCdB1<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
 <p>After this is finished you should get:</p>
 <details class="example">
@@ -5884,7 +5884,7 @@ and do a hot backup of all your data in it
 (all <em>MyISAM</em>, <em>InnoDB</em> tables and indexes in them).</p>
 <p>In order for snapshot to be consistent, prepare the data on the
 source:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
 <p>Select the path where your snapshot has been taken.
 Apply the transaction logs to the data files and your data files are ready to be used by the MySQL server.</p>
@@ -5896,13 +5896,13 @@ every time you want to access <em>MySQL</em>,
 you can set it up in <code>.mylogin.cnf</code> as follows:</p>
 <div class="highlight"><pre><span></span><code>mysql_config_editor set --login-path=client --host=localhost --user=root --password
 </code></pre></div>
-<p>For more information, see <a href="https://dev.mysql.com/doc/refman/8.4/en/mysql-config-editor.html">MySQL Configuration Utility</a>.</p>
+<p>For more information, see <a href="https://dev.mysql.com/doc/refman/8.4/en/mysql-config-editor.html">MySQL Configuration Utility <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <p>This statement provides root access to MySQL.</p>
 <h2 id="2-copy-backed-up-data-to-the-replica">2.  Copy backed up data to the Replica<a class="headerlink" href="#2-copy-backed-up-data-to-the-replica" title="Permanent link">&para;</a></h2>
 <p>On the Source, use rsync or scp to copy the data from the Source to the
 Replica. If you are syncing the data directly to replica’s data directory,
 we recommend that you stop the <code>mysqld</code> there.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>rsync<span class="w"> </span>-avpP<span class="w"> </span>-e<span class="w"> </span>ssh<span class="w"> </span>/path/to/backupdir<span class="w"> </span>Replica:/path/to/mysql/
+<div class="highlight"><pre><span></span><code>rsync<span class="w"> </span>-avpP<span class="w"> </span>-e<span class="w"> </span>ssh<span class="w"> </span>/path/to/backupdir<span class="w"> </span>Replica:/path/to/mysql/
 </code></pre></div>
 <p>After data is copied, you can back up the original or previously
 installed <em>MySQL</em> datadir. </p>
@@ -5911,40 +5911,40 @@ installed <em>MySQL</em> datadir. </p>
 <p>Make sure mysqld is shut down before you move the contents of its datadir, or move the snapshot into its datadir.</p>
 </div>
 <p>Run the following commands on the Replica:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mv<span class="w"> </span>/path/to/mysql/datadir<span class="w"> </span>/path/to/mysql/datadir_bak
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>/path/to/mysql/datadir<span class="w"> </span>/path/to/mysql/datadir_bak
 </code></pre></div>
 <p>and move the snapshot from the <code>Source</code> in its place:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/mysql/backupdir
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/mysql/backupdir
 </code></pre></div>
 <p>After you copy data over, make sure the Replica <em>MySQL</em> has the proper
 permissions to access them.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>chown<span class="w"> </span>mysql:mysql<span class="w"> </span>/path/to/mysql/datadir
+<div class="highlight"><pre><span></span><code>chown<span class="w"> </span>mysql:mysql<span class="w"> </span>/path/to/mysql/datadir
 </code></pre></div>
 <p>If the ibdata and iblog files are located in directories outside the
 datadir, you must put these files in their proper place after the logs have
 been applied.</p>
 <h2 id="3-configure-the-sources-mysql-server">3. Configure the Source’s MySQL server<a class="headerlink" href="#3-configure-the-sources-mysql-server" title="Permanent link">&para;</a></h2>
 <p>On the source, create a user specifically for replication tasks. Use the following command to define the user and set a secure password:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;repl&#39;</span>@<span class="s1">&#39;$replicaip&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;$replicaip&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>Grant the replication privileges to the newly created user to allow the replica to connect to the source server:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>SLAVE<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w"> </span>TO<span class="w"> </span><span class="s1">&#39;repl&#39;</span>@<span class="s1">&#39;$replicaip&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;$replicaip&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>Apply the changes:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
 </code></pre></div>
 <p>Also make sure that firewall rules are correct and that the <code>Replica</code> can
 connect to the <code>Source</code>. Run the following command on the Replica to test
 that you can run the mysql client on <code>Replica</code>, connect to the <code>Source</code>,
 and authenticate.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>mysql<span class="w"> </span>--host<span class="o">=</span>Source<span class="w"> </span>--user<span class="o">=</span>repl<span class="w"> </span>--password<span class="o">=</span><span class="nv">$replicapass</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span><span class="w"> </span><span class="c1">--host=Source --user=repl --password=$replicapass</span>
 </code></pre></div>
 <p>Verify the privileges.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GRANTS<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="4-configure-the-replicas-mysql-server">4. Configure the Replica’s MySQL server<a class="headerlink" href="#4-configure-the-replicas-mysql-server" title="Permanent link">&para;</a></h2>
 <p>Copy the <code>my.cnf</code> file from the <code>Source</code> to the <code>Replica</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>scp<span class="w"> </span>user@Source:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>user@Source:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
 </code></pre></div>
 <p>and change the following options in /etc/mysql/my.cnf:</p>
 <div class="highlight"><pre><span></span><code>server-id=2
@@ -5956,7 +5956,7 @@ it’s the same as that user’s password on the <code>Source</code>. Password c
 and updated in <code>/etc/mysql/debian.cnf</code>.</p>
 <h2 id="5-start-the-replication">5. Start the replication<a class="headerlink" href="#5-start-the-replication" title="Permanent link">&para;</a></h2>
 <p>On the <code>Replica</code>, review the content of the <code>xtrabackup_binlog_info</code> file:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/var/lib/mysql/xtrabackup_binlog_info
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/lib/mysql/xtrabackup_binlog_info
 </code></pre></div>
 <p>The results should resemble the following:</p>
 <details class="example">
@@ -6000,13 +6000,13 @@ source. We will use <em>Percona XtraBackup</em> to clone an already configured
 replica. We will continue using the previous scenario for convenience, but
 we will add a <code>NewReplica</code> to the plot.</p>
 <p>At the <code>Replica</code>, do a full backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--user<span class="o">=</span>yourDBuser<span class="w"> </span>--password<span class="o">=</span>MaGiCiGaM<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--user<span class="o">=</span>yourDBuser<span class="w"> </span>--password<span class="o">=</span>MaGiCiGaM<span class="w"> </span><span class="se">\</span>
 <span class="w">   </span>--backup<span class="w"> </span>--slave-info<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
 <p>By using the <code>--slave-info</code> <em>Percona XtraBackup</em> creates additional file
 called <code>xtrabackup_slave_info</code>.</p>
 <p>Apply the logs:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-memory<span class="o">=</span>2G<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-memory<span class="o">=</span>2G<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir/
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -6025,7 +6025,7 @@ the Source:</p>
 <span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>On the <code>NewReplica</code>, copy the configuration file from the <code>Replica</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>scp<span class="w"> </span>user@Replica:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>user@Replica:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
 </code></pre></div>
 <p>Make sure you change the server-id variable in <code>/etc/mysql/my.cnf</code> to 3 and
 disable the replication on start:</p>
@@ -6074,7 +6074,7 @@ server is replicating the <code>Source</code>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 10, 2025 09:59:54 UTC">April 10, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
   </span>
 
     

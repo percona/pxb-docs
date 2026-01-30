@@ -5703,10 +5703,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 </ul>
 <p>When you intend to run xtrabackup in any of these modes, use the following syntax:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span><span class="o">[</span>--defaults-file<span class="o">=</span><span class="c1">#] --backup|--prepare|--copy-back| [OPTIONS]</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="o">[</span>--defaults-file<span class="o">=</span><span class="c1">#] --backup|--prepare|--copy-back| [OPTIONS]</span>
 </code></pre></div>
 <p>For example, the <code>--prepare</code> mode is applied as follows:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/mysql/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/mysql/
 </code></pre></div>
 <p>For all modes, the default options are read from the xtrabackup and
 mysqld configuration groups from the following files in the given order:</p>
@@ -5766,7 +5766,7 @@ backup. It is essential for incremental backups.</p>
 <p>The number of attempts to acquire metadata locks.</p>
 <h3 id="backup-locks">backup-locks<a class="headerlink" href="#backup-locks" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup-locks</code></p>
-<p>This option controls if <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> are used instead of <code>FLUSH TABLES
+<p>This option controls if <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> are used instead of <code>FLUSH TABLES
 WITH READ LOCK</code> on the backup stage. The option has no effect when the server does not support backup locks. This option is enabled by default,
 disable with <a href="#no-backup-locks"><code>--no-backup-locks</code></a>.</p>
 <h3 id="check-privileges">check-privileges<a class="headerlink" href="#check-privileges" title="Permanent link">&para;</a></h3>
@@ -5886,10 +5886,10 @@ option on the command line and cannot be a symbolic link.</p>
 <p>The xtrabackup binary requests the server to start the buffer pool dump. This operation may take time to complete and is done in the background. The
 beginning of a backup with the option reports that the dump has been
 completed.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--dump-innodb-buffer-pool<span class="w"> </span>--target-dir<span class="o">=</span>/home/user/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--dump-innodb-buffer-pool<span class="w"> </span>--target-dir<span class="o">=</span>/home/user/backup
 </code></pre></div>
 <p>By default, this option is set to OFF.</p>
-<p>If <a href="https://dev.mysql.com/doc/refman/8.3/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
+<p>If <a href="https://dev.mysql.com/doc/refman/8.3/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
 using the value of <a href="#dump-innodb-buffer-pool-timeout"><code>--dump-innodb-buffer-pool-timeout</code></a></p>
 <p>The file <code>ib_buffer_pool</code> stores the tablespace ID and page ID
 data used to warm up the buffer pool sooner.</p>
@@ -5899,14 +5899,14 @@ data used to warm up the buffer pool sooner.</p>
 pages to dump.</p>
 <p>This option is effective if <code>--dump-innodb-buffer-pool</code> option is set
 to ON. If this option contains a value, xtrabackup sets the MySQL
-system variable <a href="https://dev.mysql.com/doc/refman/8.3/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct"><code>innodb_buffer_pool_dump_pct</code></a>. As soon as the buffer pool
+system variable <a href="https://dev.mysql.com/doc/refman/8.3/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct"><code>innodb_buffer_pool_dump_pct</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. As soon as the buffer pool
 dump completes or is stopped (see
 <code>--dump-innodb-buffer-pool-timeout</code>), the value of the MySQL system
 variable is restored.</p>
 <h3 id="dump-innodb-buffer-pool-timeout">dump-innodb-buffer-pool-timeout<a class="headerlink" href="#dump-innodb-buffer-pool-timeout" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--dump-innodb-buffer-pool-timeout</code></p>
 <p>This option contains the number of seconds that xtrabackup should
-monitor the value of <a href="https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code></a> to
+monitor the value of <a href="https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> to
 determine if the buffer pool dump has been completed.</p>
 <p>This option is used in combination with
 <a href="#dump-innodb-buffer-pool"><code>--dump-innodb-buffer-pool</code></a>. By default, it is set to 10 seconds.</p>
@@ -5941,9 +5941,9 @@ xtrabackup child process.</p>
 <p>This option is in <a href="glossary.html#tech-preview">tech preview</a>.</p>
 <p>The option lets you enable or disable the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The default value is OFF. Enable the feature by setting <code>--estimate-memory=ON</code> in the backup phase and setting the <code>--use-free-memory-pct</code> option in the <code>--prepare</code> phase. If the <code>--estimate-memory</code> setting is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <h3 id="export">export<a class="headerlink" href="#export" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--export</code></p>
@@ -5965,7 +5965,7 @@ If there are still such queries when the timeout expires, xtrabackup
 terminates with an error.</p>
 <p>The default value is <code>0</code>, xtrabackup does not wait
 for queries to complete and starts <code>FLUSH TABLES WITH READ LOCK</code>
-immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify the InnoDB tables.</p>
 <h3 id="ftwrl-wait-threshold">ftwrl-wait-threshold<a class="headerlink" href="#ftwrl-wait-threshold" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--ftwrl-wait-threshold=SECONDS</code></p>
@@ -5974,14 +5974,14 @@ xtrabackup to detect long-running queries with a non-zero value of
 <code>--ftwrl-wait-timeout</code>. <code>FLUSH TABLES WITH READ LOCK</code>
 is not started until such long-running queries exist.</p>
 <p>This option has no effect if <code>--ftwrl-wait-timeout</code> is <code>0</code>. The default value
-is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables when backup locks are supported.</p>
 <h3 id="ftwrl-wait-query-type">ftwrl-wait-query-type<a class="headerlink" href="#ftwrl-wait-query-type" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--ftwrl-wait-query-type=all|update</code>This option specifies which queries can be completed before xtrabackup issues the global lock. The default value is <code>all</code>.</p>
 <h3 id="galera-info">galera-info<a class="headerlink" href="#galera-info" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--galera-info</code></p>
 <p>This option creates the <code>xtrabackup_galera_info</code> file, which contains the local node state at the backup time. This option should be used when
-performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> are used to create the backup.</p>
+performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> are used to create the backup.</p>
 <h3 id="generate-new-master-key">generate-new-master-key<a class="headerlink" href="#generate-new-master-key" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--generate-new-master-key</code></p>
 <p>Generate a new master key when doing a copy-back.</p>
@@ -6066,7 +6066,7 @@ any queries.</p>
 <p>To use this option xtrabackup user should have the
 <code>PROCESS</code> and <code>SUPER</code> privileges.</p>
 <p>Where supported, xtrabackup
-automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
+automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <h3 id="kill-long-query-type">kill-long-query-type<a class="headerlink" href="#kill-long-query-type" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--kill-long-query-type=all|select</code></p>
 <p>This option specifies which queries should be killed to unblock the
@@ -6166,7 +6166,7 @@ LOCK</code>. Use it only if all your tables are InnoDB and you do not care
 about the binary log position of the backup. This option shouldn’t be used if any DDL statements are being executed or updates are
 happening on non-InnoDB tables; this includes the system MyISAM tables in the
 mysql database. Otherwise, those operations could lead to an inconsistent backup.</p>
-<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks</a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
+<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
 <p>If you consider using this option because your backups fail to acquire
 the lock, maybe incoming replication events prevent
@@ -6205,7 +6205,7 @@ that Percona Toolkit uses to obtain statistics about its use. This information i
 a random UUID; no client information is collected or stored.</p>
 <h3 id="open-files-limit">open-files-limit<a class="headerlink" href="#open-files-limit" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--open-files-limit=#</code></p>
-<p>The maximum number of file descriptors to reserve with <a href="https://man7.org/linux/man-pages/man2/setrlimit.2.html">setrlimit</a>git .</p>
+<p>The maximum number of file descriptors to reserve with <a href="https://man7.org/linux/man-pages/man2/setrlimit.2.html">setrlimit <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>git .</p>
 <h3 id="parallel">parallel<a class="headerlink" href="#parallel" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--parallel=#</code></p>
 <p>The <code>--parallel</code> option specifies the number of threads to use to copy multiple data
@@ -6273,7 +6273,7 @@ main thread).</p>
 running <code>FLUSH TABLES WITH READ LOCK</code> and waits to start the backup operation until <code>Replica_open_temp_tables`` in</code>SHOW STATUS` is zero.</p>
 <p>If there are no open temporary tables, the backup takes place, otherwise the SQL thread is started and stopped until there are no open temporary tables. The backup fails if <code>Replica_open_temp_tables</code> does not become zero after
 <a href="#safe-slave-backup-timeout"><code>--safe-slave-backup-timeout</code></a> seconds. The replication SQL thread is restarted when the backup is complete.
-This option is implemented to deal with <a href="https://dev.mysql.com/doc/refman/8.4/en/replication-features-temptables.html">replication and temporary tables</a> and isn’t necessary with row-based replication.</p>
+This option is implemented to deal with <a href="https://dev.mysql.com/doc/refman/8.4/en/replication-features-temptables.html">replication and temporary tables <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> and isn’t necessary with row-based replication.</p>
 <p>Using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
 <h3 id="safe-slave-backup-timeout">safe-slave-backup-timeout<a class="headerlink" href="#safe-slave-backup-timeout" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--safe-slave-backup-timeout=SECONDS</code></p>
@@ -6294,9 +6294,9 @@ This option is implemented to deal with <a href="https://dev.mysql.com/doc/refma
 <p>Usage: <code>--slave-info</code></p>
 <p>This option is useful when backing up a replication replica server. It prints
 the binary log position of the source server. It also writes the binary log
-coordinates to the <code>xtrabackup_slave_info</code> file as a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code></a>
+coordinates to the <code>xtrabackup_slave_info</code> file as a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>
 command.</p>
-<p>A new replica for this source can be set up by starting a replica server on this backup and issuing a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code></a> command with the binary log
+<p>A new replica for this source can be set up by starting a replica server on this backup and issuing a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> command with the binary log
 position saved in the <code>xtrabackup_slave_info</code> file.</p>
 <h3 id="socket">socket<a class="headerlink" href="#socket" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--socket</code></p>
@@ -6407,9 +6407,9 @@ specified for the <code>--prepare</code> command.</p>
 <p>This option lets you configure the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The option controls the amount of free memory that can be used to <code>--prepare</code> a backup. The default value is 0 (zero), which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100.</p>
 <p>This option works only if <code>--estimate-memory</code> option is enabled. If the <code>--estimate-memory</code> option is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <h3 id="use-memory">use-memory<a class="headerlink" href="#use-memory" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--use-memory</code></p>
@@ -6446,7 +6446,7 @@ mysql –help for details.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 20, 2026 16:23:31 UTC">January 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
   </span>
 
     

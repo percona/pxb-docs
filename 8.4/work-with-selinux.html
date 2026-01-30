@@ -5712,7 +5712,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h1 id="work-with-selinux">Work with SELinux<a class="headerlink" href="#work-with-selinux" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup is installed as an unconfined process running in an undefined domain. SELinux allows unconfined processes almost all access and the processes only use Discretionary Access Control (DAC) rules.</p>
 <p>You find the current state of the Percona XtraBackup file with the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-Z<span class="w"> </span>/usr/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>xtrabackup
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-Z<span class="w"> </span>/usr/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>xtrabackup
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5750,7 +5750,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>The first option opens the entire system to read and write. Select the second option to harden your security.</p>
 <h2 id="install-selinux-tools">Install SELinux tools<a class="headerlink" href="#install-selinux-tools" title="Permanent link">&para;</a></h2>
 <p>To work with policies, you must install the SELinux tools. To find which package provides the <code>semanage</code> command and install the package. The following is an example on CentOS 7.</p>
-<p><div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
+<p><div class="highlight"><pre><span></span><code>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
 </code></pre></div>
 The result should list the packages.</p>
 <details class="example">
@@ -5761,10 +5761,10 @@ policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
 </code></pre></div>
 </details>
 <p>To install missing packages, run the following:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python
 </code></pre></div>
 <p>The following is an example on CentOS 8:</p>
-<p><div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
+<p><div class="highlight"><pre><span></span><code>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
 </code></pre></div>
 The result should list the missing packages.</p>
 <details class="example">
@@ -5774,7 +5774,7 @@ policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python ut
 </code></pre></div>
 </details>
 <p>Run the following to install the missing packages: </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python-utils
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python-utils
 </code></pre></div>
 <h2 id="create-a-policy">Create a policy<a class="headerlink" href="#create-a-policy" title="Permanent link">&para;</a></h2>
 <p>Use a modular approach to create an SELinux policy. Create a policy module to manage XtraBackup. You must create a <code>.te</code> file for type enforcement, and an optional <code>.fc</code> file for the file contexts.</p>
@@ -5797,16 +5797,16 @@ policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python ut
 <p>In the file, the sections in bold should be modified for your system. The fc file can also be downloaded from the same location.</p>
 </div>
 <p>Compile the policy module:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span>-f<span class="w"> </span>/usr/share/selinux/devel/Makefile<span class="w"> </span>xtrabackup.pp
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>-f<span class="w"> </span>/usr/share/selinux/devel/Makefile<span class="w"> </span>xtrabackup.pp
 </code></pre></div>
 <p>Install the module:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>semodule<span class="w"> </span>-i<span class="w"> </span>xtrabackup.pp
+<div class="highlight"><pre><span></span><code>semodule<span class="w"> </span>-i<span class="w"> </span>xtrabackup.pp
 </code></pre></div>
 <p>Tag the PXB binaries with the proper SELinux tags, such as <code>xtrabackup_exec_t</code>.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>restorecon<span class="w"> </span>-v<span class="w"> </span>/usr/bin/*
+<div class="highlight"><pre><span></span><code>restorecon<span class="w"> </span>-v<span class="w"> </span>/usr/bin/*
 </code></pre></div>
 <p>If you store your backups at <code>/backups</code>, restore the tag in that location:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>restorecon<span class="w"> </span>-v<span class="w"> </span>/backups
+<div class="highlight"><pre><span></span><code>restorecon<span class="w"> </span>-v<span class="w"> </span>/backups
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5835,7 +5835,7 @@ policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python ut
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 10, 2023 14:37:10 UTC">October 10, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
   </span>
 
     

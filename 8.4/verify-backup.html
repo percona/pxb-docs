@@ -10,7 +10,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
         <meta name="description" content="One way to verify if the backup is consistent is by setting up the
-replication and running pt-table-checksum. This can be used to verify any type of backups, but before setting up
+replication and running pt-table-checksum . This can be used to verify any type of backups, but before setting up
 replication, backup should be prepared and be able to run (this means that
 incremental backups should be merged to full backups, encrypted backups
 decrypted etc.).">
@@ -5693,7 +5693,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 <h1 id="verify-backups-with-replication-and-pt-checksum">Verify backups with replication and pt-checksum<a class="headerlink" href="#verify-backups-with-replication-and-pt-checksum" title="Permanent link">&para;</a></h1>
 <p>One way to verify if the backup is consistent is by setting up the
-replication and running <a href="http://www.percona.com/doc/percona-toolkit/pt-table-checksum.html">pt-table-checksum</a>. This can be used to verify any type of backups, but before setting up
+replication and running <a href="http://www.percona.com/doc/percona-toolkit/pt-table-checksum.html">pt-table-checksum <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. This can be used to verify any type of backups, but before setting up
 replication, backup should be prepared and be able to run (this means that
 incremental backups should be merged to full backups, encrypted backups
 decrypted etc.).</p>
@@ -5711,10 +5711,10 @@ replication consistency check by executing checksum queries on the source,
 which produces different results on replicas that are inconsistent with the
 source.</p>
 <p>After you confirmed that replication has been set up successfully, you
-can <a href="http://www.percona.com/doc/percona-toolkit/installation.html">install</a>
+can <a href="http://www.percona.com/doc/percona-toolkit/installation.html">install <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>
 or download <em>pt-table-checksum</em>. This example shows downloading the latest
 version of <em>pt-table-checksum</em>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>wget<span class="w"> </span>percona.com/get/pt-table-checksum
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>percona.com/get/pt-table-checksum
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5725,7 +5725,7 @@ your current working directory.</p>
 <p>Running the <em>pt-table-checksum</em> on the source will create <code>percona</code>
 database with the <code>checksums</code> table which will be replicated to the
 replicas as well. Example of the <em>pt-table-checksum</em> will look like this:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./pt-table-checksum
+<div class="highlight"><pre><span></span><code>./pt-table-checksum
 </code></pre></div>
 <p>The results are similar to the following:</p>
 <details class="example">
@@ -5751,10 +5751,10 @@ consistent with the current setup.</p>
 difference and point to the table that does not match. Following example
 shows adding new user on the backed up replica in order to simulate the
 inconsistent backup:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>grant<span class="w"> </span>usage<span class="w"> </span>on<span class="w"> </span>exampledb.*<span class="w"> </span>to<span class="w"> </span>exampledb@localhost<span class="w"> </span>identified<span class="w"> </span>by<span class="w"> </span><span class="s1">&#39;thisisnewpassword&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">grant</span><span class="w"> </span><span class="k">usage</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">exampledb</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">exampledb</span><span class="o">@</span><span class="n">localhost</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;thisisnewpassword&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>If we run the <em>pt-table-checksum</em> now difference should be spotted</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./pt-table-checksum
+<div class="highlight"><pre><span></span><code>./pt-table-checksum
 </code></pre></div>
 <p>The results are similar to the following:</p>
 <details class="example">
@@ -5777,7 +5777,7 @@ Checksumming exampledb.user_info:  86% 00:24 remain
 <p>This output shows that source and the replica aren’t in consistent state
 and that the difference is in the <code>mysql.user</code> table.</p>
 <p>More information on different options that pt-table-checksum provides can
-be found in the <em>pt-table-checksum</em> <a href="https://docs.percona.com/percona-toolkit/pt-table-checksum.html">documentation</a>.</p>
+be found in the <em>pt-table-checksum</em> <a href="https://docs.percona.com/percona-toolkit/pt-table-checksum.html">documentation <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 
 
 
@@ -5800,7 +5800,7 @@ be found in the <em>pt-table-checksum</em> <a href="https://docs.percona.com/per
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 10, 2023 14:37:10 UTC">October 10, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
   </span>
 
     

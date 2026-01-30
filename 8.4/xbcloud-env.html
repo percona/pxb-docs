@@ -5780,14 +5780,14 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h2 id="creating-a-env-file">Creating a .env file<a class="headerlink" href="#creating-a-env-file" title="Permanent link">&para;</a></h2>
 <p>Create a <code>.env</code> file in your project directory or a secure location:</p>
 <h3 id="s3-example">S3 example<a class="headerlink" href="#s3-example" title="Permanent link">&para;</a></h3>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Example .env file for S3</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example .env file for S3</span>
 <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKIAIOSFODNN7EXAMPLE
 <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 <span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>us-west-2
 <span class="nv">AWS_ENDPOINT</span><span class="o">=</span>https://s3.us-west-2.amazonaws.com
 </code></pre></div>
 <h3 id="swift-example">Swift example<a class="headerlink" href="#swift-example" title="Permanent link">&para;</a></h3>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Example .env file for Swift</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example .env file for Swift</span>
 <span class="nv">OS_AUTH_URL</span><span class="o">=</span>http://192.168.1.100:5000/v3
 <span class="nv">OS_USERNAME</span><span class="o">=</span>admin
 <span class="nv">OS_PASSWORD</span><span class="o">=</span>secret
@@ -5795,7 +5795,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <span class="nv">OS_USER_DOMAIN</span><span class="o">=</span>default
 </code></pre></div>
 <h3 id="azure-example">Azure example<a class="headerlink" href="#azure-example" title="Permanent link">&para;</a></h3>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Example .env file for Azure</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example .env file for Azure</span>
 <span class="nv">AZURE_STORAGE_ACCOUNT</span><span class="o">=</span>mystorageaccount
 <span class="nv">AZURE_CONTAINER_NAME</span><span class="o">=</span>backups
 <span class="nv">AZURE_ACCESS_KEY</span><span class="o">=</span>your-access-key-here
@@ -5804,7 +5804,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Environment variables from <code>.env</code> files are not automatically loaded by the shell. You need to explicitly load them before running xbcloud. Here are three methods to accomplish this:</p>
 <h3 id="method-1-using-source-or-command">Method 1: using <code>source</code> or <code>.</code> command<a class="headerlink" href="#method-1-using-source-or-command" title="Permanent link">&para;</a></h3>
 <p>The <code>source</code> command (or its shorthand <code>.</code>) reads and executes commands from a file in the current shell environment. This makes all variables from the <code>.env</code> file available to subsequent commands in the same shell session.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Load the environment variables</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Load the environment variables</span>
 <span class="nb">source</span><span class="w"> </span>.env
 <span class="c1"># or</span>
 .<span class="w"> </span>.env
@@ -5815,7 +5815,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <h3 id="method-2-using-env-command">Method 2: using <code>env</code> command<a class="headerlink" href="#method-2-using-env-command" title="Permanent link">&para;</a></h3>
 <p>The <code>env</code> command runs another program with a modified environment. Combined with <code>cat .env | xargs</code>, it reads the <code>.env</code> file and passes the variables as arguments to <code>env</code>, which then sets them for the command that follows.</p>
 <p>You can run xbcloud with variables loaded from a .env file in a single command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Run xbcloud with environment variables from file</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run xbcloud with environment variables from file</span>
 env<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>.env<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span><span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
 </code></pre></div>
 <p>This approach is convenient but fragile:</p>
@@ -5831,7 +5831,7 @@ env<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>.
 <h3 id="method-3-using-export-with-a-script">Method 3: using <code>export</code> with a script<a class="headerlink" href="#method-3-using-export-with-a-script" title="Permanent link">&para;</a></h3>
 <p>This method creates a shell script that loads environment variables and runs the backup command. The <code>set -a</code> command automatically exports all variables that are set, making them available to child processes. This is useful for automation because it bundles variable loading and the backup command together.</p>
 <p>Create a script that loads the environment variables:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1"># load-env.sh</span>
 
 <span class="nb">set</span><span class="w"> </span>-a<span class="w">  </span><span class="c1"># automatically export all variables</span>
@@ -5843,24 +5843,24 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <span class="w">  </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
 </code></pre></div>
 <p>Make it executable and run:
-<div class="highlight" data-prompt="$"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>load-env.sh
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>load-env.sh
 ./load-env.sh
 </code></pre></div></p>
 <h2 id="security-best-practices">Security best practices<a class="headerlink" href="#security-best-practices" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>File permissions: Set restrictive permissions on your <code>.env</code> file:
-  <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>.env<span class="w">  </span><span class="c1"># Only owner can read/write</span>
+  <div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>.env<span class="w">  </span><span class="c1"># Only owner can read/write</span>
 </code></pre></div></p>
 </li>
 <li>
 <p>Gitignore: Add <code>.env</code> to your <code>.gitignore</code> file to prevent committing sensitive data:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;.env&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
+  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;.env&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
 </code></pre></div></p>
 </li>
 <li>
 <p>Template file: Create a <code>.env.example</code> file with placeholder values:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># .env.example</span>
+  <div class="highlight"><pre><span></span><code><span class="c1"># .env.example</span>
 <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>your-access-key-here
 <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>your-secret-key-here
 <span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>us-west-2
@@ -5868,7 +5868,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 </li>
 <li>
 <p>Location: Store <code>.env</code> files in a secure location, not in your project root if possible:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Store in a secure directory</span>
+  <div class="highlight"><pre><span></span><code><span class="c1"># Store in a secure directory</span>
 /etc/xtrabackup/.env
 /home/backup/.env
 </code></pre></div></p>
@@ -5876,7 +5876,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 </ul>
 <h2 id="complete-example">Complete example<a class="headerlink" href="#complete-example" title="Permanent link">&para;</a></h2>
 <p>Here&rsquo;s a complete example of using a <code>.env</code> file with xbcloud. This example demonstrates the full workflow from creating the environment file to running a backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># 1. Create the .env file</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Create the .env file</span>
 cat<span class="w"> </span>&gt;<span class="w"> </span>/secure/path/.env<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
 <span class="s">AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE</span>
 <span class="s">AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</span>
@@ -5917,13 +5917,13 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
 <ul>
 <li>
 <p>Check if variables are loaded:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>.env
+  <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>.env
 <span class="nb">echo</span><span class="w"> </span><span class="nv">$AWS_ACCESS_KEY_ID</span><span class="w">  </span><span class="c1"># Should show your access key</span>
 </code></pre></div></p>
 </li>
 <li>
 <p>Verify file format: Ensure no spaces around the <code>=</code> sign:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># Correct</span>
+  <div class="highlight"><pre><span></span><code><span class="c1"># Correct</span>
 <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>value
 
 <span class="c1"># Incorrect (will not work)</span>
@@ -5932,19 +5932,19 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
 </li>
 <li>
 <p>Handle special characters: Quote values with special characters:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="nv">OS_PASSWORD</span><span class="o">=</span><span class="s2">&quot;my-password-with-special-chars!&quot;</span>
+  <div class="highlight"><pre><span></span><code><span class="nv">OS_PASSWORD</span><span class="o">=</span><span class="s2">&quot;my-password-with-special-chars!&quot;</span>
 </code></pre></div></p>
 </li>
 <li>
 <p>Comments: Use <code>#</code> for comments in <code>.env</code> files:
-  <div class="highlight" data-prompt="$"><pre><span></span><code><span class="c1"># This is a comment</span>
+  <div class="highlight"><pre><span></span><code><span class="c1"># This is a comment</span>
 <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>your-key-here
 </code></pre></div></p>
 </li>
 </ul>
 <h2 id="integration-with-scripts-and-automation">Integration with scripts and automation<a class="headerlink" href="#integration-with-scripts-and-automation" title="Permanent link">&para;</a></h2>
 <p>For automated backups, you can create a wrapper script:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1"># backup-script.sh</span>
 
 <span class="c1"># Load environment variables</span>
@@ -5984,7 +5984,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 5, 2025 16:15:02 UTC">September 5, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
   </span>
 
     
