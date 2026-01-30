@@ -10,7 +10,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
         <meta name="description" content="Ready-to-use packages are available from the Percona XtraBackup software
-repositories and the download page.">
+repositories and the Percona Software Downloads .">
       
       
         <meta name="author" content="Percona LLC">
@@ -5668,15 +5668,15 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 <h1 id="install-with-the-percona-release-tool-on-debian-based-systems">Install with the Percona-release Tool on Debian-based Systems<a class="headerlink" href="#install-with-the-percona-release-tool-on-debian-based-systems" title="Permanent link">&para;</a></h1>
 <p>Ready-to-use packages are available from the Percona XtraBackup software
-repositories and the <a href="https://www.percona.com/downloads">download page</a>.</p>
+repositories and the <a href="https://www.percona.com/downloads">Percona Software Downloads <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <p>Specific information on the supported platforms, products, and versions is
-described in <a href="https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql">Percona Release Lifecycle Overview</a>.</p>
+described in [Percona Release Lifecycle Overview].</p>
 <h2 id="install-percona-xtrabackup-through-percona-release">Install Percona XtraBackup through percona-release<a class="headerlink" href="#install-percona-xtrabackup-through-percona-release" title="Permanent link">&para;</a></h2>
-<p class="power-number">Install Percona XtraBackup, like many other Percona products, with the <code>percona-release</code> package configuration tool.</p>
+<p class="power-number">Install Percona XtraBackup, like many other Percona products, with the <code>percona-release</code> package configuration tool. Run the following commands as root or use the sudo command.</p>
 <ol>
 <li>
 <p>Use the apt package manager to dowload <code>percona-release</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5693,7 +5693,7 @@ All packages are up to date.
 </li>
 <li>
 <p>Install the <code>curl</code> download utility if it&rsquo;s not installed:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5711,7 +5711,7 @@ done.
 </li>
 <li>
 <p>Download the <code>percona-release</code> the repository package:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.percona.com/apt/percona-release_latest.generic_all.deb
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5723,7 +5723,7 @@ done.
 </li>
 <li>
 <p>Install the downloaded package and its dependencies using <code>apt</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg2<span class="w"> </span>lsb-release<span class="w"> </span>./percona-release_latest.generic_all.deb
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg2<span class="w"> </span>lsb-release<span class="w"> </span>./percona-release_latest.generic_all.deb
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5746,7 +5746,7 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
 </li>
 <li>
 <p>Refresh the local cache to update the package information:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5763,7 +5763,7 @@ All packages are up to date.
 </li>
 <li>
 <p>Enable the specific percona-release product.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>pxb-84-lts
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>pxb-84-lts
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5785,7 +5785,7 @@ Reading package lists... Done
 </li>
 <li>
 <p>Install Percona XtraBackup.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-84
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-84
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5805,7 +5805,7 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
 </li>
 <li>
 <p>Verify the installation.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5818,11 +5818,11 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Install the <code>lz4</code> package</label><label for="__tabbed_1_2">Install the <code>zstd</code> package</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lz4
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lz4
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstd
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstd
 </code></pre></div>
 </div>
 </div>
@@ -5860,7 +5860,7 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 18, 2024 09:58:01 UTC">December 18, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -6008,6 +6008,8 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 

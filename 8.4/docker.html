@@ -5720,8 +5720,9 @@ enable creating configurations where each program runs in a separate container. 
 Percona Server for MySQL in one container and Percona XtraBackup in
 another. Docker images offer a range of options.</p>
 <p>Create a Docker container based on a Docker image. Docker images for
-Percona XtraBackup are hosted publicly on <a href="https://hub.docker.com/r/percona/percona-xtrabackup">Docker Hub</a>.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>...<span class="w"> </span>percona/percona-xtrabackup<span class="w"> </span>--name<span class="w"> </span>xtrabackup<span class="w"> </span>...
+Percona XtraBackup are hosted publicly on <a href="https://hub.docker.com/r/percona/percona-xtrabackup">Docker Hub <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
+<p>Run all the commands as root or use the sudo command.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>...<span class="w"> </span>percona/percona-xtrabackup<span class="w"> </span>--name<span class="w"> </span>xtrabackup<span class="w"> </span>...
 </code></pre></div>
 <h3 id="scope-of-this-section">Scope of this section<a class="headerlink" href="#scope-of-this-section" title="Permanent link">&para;</a></h3>
 <p>This section demonstrates how to back up data
@@ -5742,10 +5743,10 @@ container, follow the documentation of the supported product that you
 intend to use with Percona XtraBackup.</p>
 <div class="admonition admontion">
 <p class="admonition-title">See also</p>
-<p><a href="https://docs.docker.com/storage/volumes/">Docker volumes as container persistent data storage</a></p>
-<p><a href="https://docs.docker.com/config/containers/start-containers-automatically">More information about containers</a></p>
+<p><a href="https://docs.docker.com/storage/volumes/">Docker volumes as container persistent data storage <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
+<p><a href="https://docs.docker.com/config/containers/start-containers-automatically">More information about containers <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
 </div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
 -e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root<span class="w"> </span>percona/percona-server:8.4
 </code></pre></div>
 <p>As soon as Percona Server for MySQL runs, add some data to it. Now, you are
@@ -5763,7 +5764,7 @@ creates a Docker container and makes it available for starting later.</p>
 <p>Docker downloads the Percona XtraBackup image from the Docker Hub. If it
 is not the first time you use the selected image, Docker uses the image
 available locally.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
 percona/percona-xtrabackup<span class="w">  </span><span class="se">\</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql/<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span><span class="se">\</span>
 --user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>mysql
@@ -5774,13 +5775,13 @@ so that you could easily locate it among your other containers.</p>
 that you intend to use the same data as the Percona Server for MySQL container.</p>
 <p>Run the container with exactly the same parameters that were used when the
 container was created:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>percona-xtrabackup
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>percona-xtrabackup
 </code></pre></div>
 <p>This command starts the percona-xtrabackup container, attaches to its
 input/output streams, and opens an interactive shell.</p>
 <p>The <code>docker run</code> is a shortcut command that creates a Docker container and
 then immediately runs it.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
 percona/percona-xtrabackup
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--data-dir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>mysql
 </code></pre></div>
@@ -5806,7 +5807,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--data-dir<spa
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 17, 2023 16:28:51 UTC">October 17, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -5954,6 +5955,8 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--data-dir<spa
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 

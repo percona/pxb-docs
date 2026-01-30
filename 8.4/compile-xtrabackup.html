@@ -9,7 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The following instructions install Percona XtraBackup 8.4.">
+        <meta name="description" content="The following instructions install Percona XtraBackup 8.4. Run the following command as root or use the sudo command.">
       
       
         <meta name="author" content="Percona LLC">
@@ -5776,14 +5776,14 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
 <h1 id="compile-and-install-from-source">Compile and install from source<a class="headerlink" href="#compile-and-install-from-source" title="Permanent link">&para;</a></h1>
-<p>The following instructions install Percona XtraBackup 8.4.</p>
+<p>The following instructions install Percona XtraBackup 8.4. Run the following command as root or use the sudo command.</p>
 <h2 id="1-install-percona-xtrabackup-from-the-git-source-tree">1. Install Percona XtraBackup from the Git Source Tree<a class="headerlink" href="#1-install-percona-xtrabackup-from-the-git-source-tree" title="Permanent link">&para;</a></h2>
-<p>Percona uses the <a href="https://github.com/">Github</a> revision control system for development. To build the latest Percona Server for MySQL from the source tree, you will need <code>git</code> installed on your system.</p>
+<p>Percona uses the <a href="https://github.com/">Github <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> revision control system for development. To build the latest Percona Server for MySQL from the source tree, you will need <code>git</code> installed on your system.</p>
 <p>You can now fetch the latest Percona XtraBackup 8.4 sources:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/percona/percona-xtrabackup.git
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>percona-xtrabackup
-$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>trunk
-$<span class="w"> </span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/percona/percona-xtrabackup.git
+<span class="nb">cd</span><span class="w"> </span>percona-xtrabackup
+git<span class="w"> </span>checkout<span class="w"> </span>trunk
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
 </code></pre></div>
 <h2 id="2-installation-prerequisites">2. Installation prerequisites<a class="headerlink" href="#2-installation-prerequisites" title="Permanent link">&para;</a></h2>
 <p>The following packages and tools must be installed to compile <em>Percona XtraBackup</em> from source.
@@ -5796,7 +5796,7 @@ currently installed, run <code>cmake --version</code> at a command prompt. If th
 version is not <code>3</code>, install <code>cmake3</code>.</p>
 </div>
 <p>This <code>cmake</code> version may be available 
-in your distribution as a separate package <code>cmake3</code>. For more information, see <a href="https://cmake.org/">cmake.org</a>.</p>
+in your distribution as a separate package <code>cmake3</code>. For more information, see <a href="https://cmake.org/">cmake.org <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Debian or Ubuntu using <code>apt</code></label><label for="__tabbed_1_2">CentOS or Red Hat using <code>yum</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5809,22 +5809,22 @@ libnuma1<span class="w"> </span>socat<span class="w"> </span>librtmp-dev<span cl
 liblz4-tool<span class="w"> </span>liblz4-1<span class="w"> </span>liblz4-dev<span class="w"> </span>zstd<span class="w"> </span>python-docutils
 </code></pre></div>
 <p>To install the man pages, install the python3-sphinx package first:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-sphinx
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-sphinx
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>Percona Xtrabackup requires GCC version 5.3 or higher. If the
 version of GCC installed on your system is lower then you may need to
-install and enable <a href="https://developers.redhat.com/products/developertoolset/overview">the Developer Toolset</a> on
+install and enable [the Developer Toolset] on
 <code>RPM</code>-based distributions to make sure that you use the latest GCC
 compiler and development tools.  Then, install <code>cmake</code> and other
 dependencies:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>cmake<span class="w"> </span>openssl-devel<span class="w"> </span>libaio<span class="w"> </span>libaio-devel<span class="w"> </span>automake<span class="w"> </span>autoconf<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>cmake<span class="w"> </span>openssl-devel<span class="w"> </span>libaio<span class="w"> </span>libaio-devel<span class="w"> </span>automake<span class="w"> </span>autoconf<span class="w"> </span><span class="se">\</span>
 bison<span class="w"> </span>libtool<span class="w"> </span>ncurses-devel<span class="w"> </span>libgcrypt-devel<span class="w"> </span>libev-devel<span class="w"> </span>libcurl-devel<span class="w"> </span>zlib-devel<span class="w"> </span><span class="se">\</span>
 zstd<span class="w"> </span>vim-common<span class="w"> </span>procps-ng-devel
 </code></pre></div>
 <p>To install the man pages, install the python3-sphinx package first:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>python3-sphinx
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>python3-sphinx
 </code></pre></div>
 </div>
 </div>
@@ -5836,14 +5836,14 @@ be used to compile the source code).</p>
 <ol>
 <li>
 <p>Change to the directory where you cloned the Percona XtraBackup repository</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>percona-xtrabackup
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>percona-xtrabackup
 </code></pre></div>
 </li>
 <li>
 <p>Create a directory to store the compiled files and then change to that
 directory:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>build
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
 </code></pre></div>
 </li>
 <li>
@@ -5858,12 +5858,12 @@ same.</p>
 for every distribution. If you installed the <code>python-sphinx</code> package you
 need to remove the <code>-DWITH_MAN_PAGES=OFF</code> from the following command.</p>
 </div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cmake<span class="w"> </span>-DBUILD_CONFIG<span class="o">=</span>xtrabackup_release<span class="w"> </span>-DWITH_MAN_PAGES<span class="o">=</span>OFF<span class="w"> </span>..
+<div class="highlight"><pre><span></span><code>cmake<span class="w"> </span>-DBUILD_CONFIG<span class="o">=</span>xtrabackup_release<span class="w"> </span>-DWITH_MAN_PAGES<span class="o">=</span>OFF<span class="w"> </span>..
 </code></pre></div>
 <!--
 If you use [Pro builds](./pxb-pro.md), run the following command
 
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cmake<span class="w"> </span>-DPROBUILD<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DBUILD_CONFIG<span class="o">=</span>xtrabackup_release<span class="w"> </span>-DWITH_MAN_PAGES<span class="o">=</span>OFF<span class="w"> </span>..
+<div class="highlight"><pre><span></span><code>cmake<span class="w"> </span>-DPROBUILD<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DBUILD_CONFIG<span class="o">=</span>xtrabackup_release<span class="w"> </span>-DWITH_MAN_PAGES<span class="o">=</span>OFF<span class="w"> </span>..
 </code></pre></div>
 -->
 
@@ -5903,10 +5903,10 @@ If you use [Pro builds](./pxb-pro.md), run the following command
 </li>
 <li>
 <p>Run the <code>make</code> command. This command may take a long time to complete.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>make
+<div class="highlight"><pre><span></span><code>make
 </code></pre></div>
 <p>To use all CPU threads and make compilation faster please use:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="w"> </span>--all<span class="k">)</span>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="w"> </span>--all<span class="k">)</span>
 </code></pre></div>
 </li>
 </ol>
@@ -5914,13 +5914,13 @@ If you use [Pro builds](./pxb-pro.md), run the following command
 <p>The following command installs all <em>Percona XtraBackup</em> binaries <em>xtrabackup</em>
 and tests to default location on the target system: <code>/usr/local/xtrabackup</code>.</p>
 <p>Run <code>make install</code> to install <em>Percona XtraBackup</em> to the default location.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div>
 <h3 id="install-to-a-non-default-location">Install to a non-default location<a class="headerlink" href="#install-to-a-non-default-location" title="Permanent link">&para;</a></h3>
 <p>You may use the <code>DESTDIR</code> parameter with <code>make install</code> to install <em>Percona
 XtraBackup</em> to another location. Make sure that the effective user is able to
 write to the destination you choose.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span><span class="nv">DESTDIR</span><span class="o">=</span>&lt;DIR_NAME&gt;<span class="w"> </span>install
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>make<span class="w"> </span><span class="nv">DESTDIR</span><span class="o">=</span>&lt;DIR_NAME&gt;<span class="w"> </span>install
 </code></pre></div>
 <p>In fact, the destination directory is determined by the installation layout
 (<code>-DINSTALL_LAYOUT</code>) that <code>cmake</code> applies (see
@@ -5931,20 +5931,20 @@ destinations that you can adjust for your system.</p>
 installation directory to be <code>/usr/local/xtrabackup</code>.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
-<p><a href="https://dev.mysql.com/doc/refman/8.4/en/source-configuration-options.html#option_cmake_install_layout">MySQL Documentation: -DINSTALL_LAYOUT</a></p>
+<p><a href="https://dev.mysql.com/doc/refman/8.4/en/source-configuration-options.html#option_cmake_install_layout">MySQL Documentation: -DINSTALL_LAYOUT <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
 </div>
 <h2 id="6-run-percona-xtrabackup">6. Run Percona XtraBackup<a class="headerlink" href="#6-run-percona-xtrabackup" title="Permanent link">&para;</a></h2>
 <p>After <em>Percona XtraBackup</em> is installed on your system, you may run it by using
 the full path to the <code>xtrabackup</code> command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>/usr/local/xtrabackup/bin/xtrabackup
+<div class="highlight"><pre><span></span><code>/usr/local/xtrabackup/bin/xtrabackup
 </code></pre></div>
 <p>Update your PATH environment variable if you would like to use the command on
 the command line directly.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code><span class="nv">$#</span><span class="w"> </span>Setting<span class="w"> </span><span class="nv">$PATH</span><span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line
-$<span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/xtrabackup/bin/xtrabackup
+<div class="highlight"><pre><span></span><code><span class="nv">$#</span><span class="w"> </span>Setting<span class="w"> </span><span class="nv">$PATH</span><span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line
+<span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/xtrabackup/bin/xtrabackup
 
 <span class="nv">$#</span><span class="w"> </span>Run<span class="w"> </span>xtrabackup<span class="w"> </span>directly
-$<span class="w"> </span>xtrabackup
+xtrabackup
 </code></pre></div>
 <p>Alternatively, you may consider placing a soft link (using <code>ln -s</code>) to one of
 the locations listed in your <code>PATH</code> environment variable.</p>
@@ -5971,7 +5971,7 @@ the locations listed in your <code>PATH</code> environment variable.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 15, 2026 17:52:37 UTC">January 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -6119,6 +6119,8 @@ the locations listed in your <code>PATH</code> environment variable.</p>
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 

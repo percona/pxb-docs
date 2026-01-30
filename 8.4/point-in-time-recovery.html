@@ -5604,8 +5604,9 @@ xtrabackup and the binary logs of the server.</p>
 a point in the past. You need a full datadir as a base, and then you can
 apply a series of operations from the binary log to make the data match what it
 was at the point in time you want.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
-$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
+<p>Run the following commands as root or use the sudo command.</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
 </code></pre></div>
 <p>For more details on these procedures, see Creating a backup and Preparing a backup.</p>
 <p>Now, suppose that some time has passed, and you want to restore the database to a
@@ -5613,7 +5614,7 @@ certain point in the past, having in mind that there is the constraint of the
 point where the snapshot was taken.</p>
 <p>To find out what is the situation of binary logging in the server, execute the
 following queries:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>BINARY<span class="w"> </span>LOGS<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="nb">BINARY</span><span class="w"> </span><span class="n">LOGS</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5628,7 +5629,7 @@ following queries:</p>
 </code></pre></div>
 </details>
 <p>and</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>MASTER<span class="w"> </span>STATUS<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="n">STATUS</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5646,7 +5647,7 @@ position within it. Those files are stored usually in the datadir
 <code>--log-bin=</code> option).</p>
 <p>To find out the position of the snapshot taken, see the
 <code>xtrabackup_binlog_info</code> at the backup’s directory:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/path/to/backup/xtrabackup_binlog_info
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/path/to/backup/xtrabackup_binlog_info
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5656,13 +5657,13 @@ position within it. Those files are stored usually in the datadir
 <p>This will tell you which file was used at moment of the backup for the binary
 log and its position. That position will be the effective one when you restore
 the backup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
 </code></pre></div>
 <p>As the restoration will not affect the binary log files (you may need to adjust
 file permissions, see Restoring a Backup), the next step is
 extracting the queries from the binary log with mysqlbinlog starting
 from the position of the snapshot and redirecting it to a file</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--start-position<span class="o">=</span><span class="m">57</span><span class="w"> </span>&gt;<span class="w"> </span>mybinlog.sql
 </code></pre></div>
 <p>Note that if you have multiple files for the binary log, as in the example, you
@@ -5670,7 +5671,7 @@ have to extract the queries with one process, as shown above.</p>
 <p>Inspect the file with the queries to determine which position or date
 corresponds to the point-in-time wanted. Once determined, pipe it to the
 server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--start-position<span class="o">=</span><span class="m">57</span><span class="w"> </span>--stop-datetime<span class="o">=</span><span class="s2">&quot;11-12-25 01:00:00&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
 </code></pre></div>
 <p>and the database will be rolled forward up to that Point-In-Time.</p>
@@ -5696,7 +5697,7 @@ server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 17, 2023 16:35:48 UTC">August 17, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -5724,11 +5725,6 @@ server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
     
     <nav>
       
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
         <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
           <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
@@ -5737,6 +5733,11 @@ server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
           
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
+        </a>
+      
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
         </a>
       
       
@@ -5844,6 +5845,8 @@ server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 

@@ -5688,7 +5688,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h1 id="dump-schema-for-all-tables">Dump schema for all tables<a class="headerlink" href="#dump-schema-for-all-tables" title="Permanent link">&para;</a></h1>
 <p>This script is designed to dump the schemas of all tables from each database in a MySQL server instance, excluding the system databases, into separate files.</p>
 <p>The script should be modified for your specific use case before you run it. For example, you may want to exclude certain tables or databases, or specify a different output directory.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>print_usage<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<div class="highlight"><pre><span></span><code>print_usage<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> [--defaults-file=&lt;file&gt;] [--destination-dir=&lt;directory&gt;]&quot;</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --defaults-file=&lt;file&gt;      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)&quot;</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --destination-dir=&lt;directory&gt; (Optional) Directory to save the schema dumps (default: schema_dumps)&quot;</span>
@@ -5767,7 +5767,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Schema dumps are saved in the &#39;</span><span class="nv">$DEST_DIR</span><span class="s2">&#39; directory.&quot;</span>
 </code></pre></div>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>To use this script, follow these steps:</p>
+<p>To use this script, follow these steps. Run all the commands as root or use the sudo command.</p>
 <ol>
 <li>
 <p>Save the script  </p>
@@ -5785,7 +5785,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
 <ul>
 <li>Run the following command to make the script executable:  </li>
 </ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>dump_schemas.sh
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>dump_schemas.sh
 </code></pre></div>
 </li>
 <li>
@@ -5793,12 +5793,12 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
 <ul>
 <li>Check if <code>mysqldump</code> is installed by running:  </li>
 </ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>which<span class="w"> </span>mysqldump
+<div class="highlight"><pre><span></span><code>which<span class="w"> </span>mysqldump
 </code></pre></div>
 <ul>
 <li>If <code>mysqldump</code> is not installed or not available in your PATH, install it using:  </li>
 </ul>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mysql-client
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mysql-client
 </code></pre></div>
 </li>
 <li>
@@ -5806,22 +5806,22 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
 <ul>
 <li>
 <p>See the usage instructions, run:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>--help
+<div class="highlight"><pre><span></span><code>./dump_schemas.sh<span class="w"> </span>--help
 </code></pre></div>
 </li>
 <li>
 <p>Specify a MySQL defaults file (for example, <code>~/.my.cnf</code>) and destination directory for the schema dumps, run:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>--defaults-file<span class="o">=</span>/path/to/my.cnf<span class="w"> </span>--destination-dir<span class="o">=</span>/path/to/output
+<div class="highlight"><pre><span></span><code>./dump_schemas.sh<span class="w"> </span>--defaults-file<span class="o">=</span>/path/to/my.cnf<span class="w"> </span>--destination-dir<span class="o">=</span>/path/to/output
 </code></pre></div>
 </li>
 <li>
 <p>If you do not have a <code>defaults-file</code>, use the script defaults of a hardcoded password or an environment variable, if set. Specify only the destination directory:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>--destination-dir<span class="o">=</span>/path/to/output
+<div class="highlight"><pre><span></span><code>./dump_schemas.sh<span class="w"> </span>--destination-dir<span class="o">=</span>/path/to/output
 </code></pre></div>
 </li>
 <li>
 <p>To use the hardcoded password and default destination directory, <code>schema_dumps</code>, use:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./dump_schemas.sh<span class="w"> </span>
+<div class="highlight"><pre><span></span><code>./dump_schemas.sh<span class="w"> </span>
 </code></pre></div>
 </li>
 </ul>
@@ -5834,7 +5834,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
 </li>
 <li>
 <p>The dumped schemas are organized as follows:  </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>find<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>.
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5901,7 +5901,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 9, 2025 11:04:44 UTC">April 9, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -5928,6 +5928,16 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
 
     
     <nav>
+      
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
+          
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
+        </a>
       
         <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
           
@@ -6039,6 +6049,8 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 

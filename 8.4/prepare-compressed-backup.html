@@ -9,7 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Before you can prepare the backup you need to decompress all the files.">
+        <meta name="description" content="Before you can prepare the backup you need to decompress all the files. Run the following commands as root or use the sudo command.">
       
       
         <meta name="author" content="Percona LLC">
@@ -5710,7 +5710,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
 <h1 id="decompress-and-prepare-a-backup">Decompress and prepare a backup<a class="headerlink" href="#decompress-and-prepare-a-backup" title="Permanent link">&para;</a></h1>
-<p>Before you can prepare the backup you need to decompress all the files.</p>
+<p>Before you can prepare the backup you need to decompress all the files. Run the following commands as root or use the sudo command.</p>
 <h2 id="decompress-a-backup">Decompress a backup<a class="headerlink" href="#decompress-a-backup" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -5719,11 +5719,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Install the <code>lz4</code> package</label><label for="__tabbed_1_2">Install the <code>zstd</code> package</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lz4
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lz4
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstd
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstd
 </code></pre></div>
 </div>
 </div>
@@ -5732,11 +5732,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Install the <code>lz4</code> package</label><label for="__tabbed_2_2">Install the <code>zstd</code> package</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>lz4
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>lz4
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>zstd
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>zstd
 </code></pre></div>
 </div>
 </div>
@@ -5744,7 +5744,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 <li>
 <p>Use the <code>--decompress</code> option to decompress the backup.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--decompress<span class="w"> </span>--target-dir<span class="o">=</span>/data/compressed/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--decompress<span class="w"> </span>--target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5755,7 +5755,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </ul>
 <h2 id="prepare-the-backup">Prepare the backup<a class="headerlink" href="#prepare-the-backup" title="Permanent link">&para;</a></h2>
 <p>When the files are decompressed you can prepare the backup with the <code>--prepare</code> option.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/compressed/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
 <details class="example">
 <summary>Confirmation message</summary>
@@ -5789,7 +5789,7 @@ InnoDB: Shutdown completed; log sequence number 9293846
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 23, 2025 15:45:43 UTC">July 23, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -5937,6 +5937,8 @@ InnoDB: Shutdown completed; log sequence number 9293846
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 

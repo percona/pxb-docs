@@ -5831,17 +5831,18 @@ modified since the last backup, and Percona XtraBackup copies only those
 pages. This operation removes the need to scan the pages in the
 database. If the majority of pages have not been modified, the page
 tracking feature can improve the speed of incremental backups.</p>
+<p>Run the following commands as root or use the sudo command.</p>
 <h2 id="install-the-component">Install the component<a class="headerlink" href="#install-the-component" title="Permanent link">&para;</a></h2>
 <p class="power-number">To start using the page tracking functionality, do the following:</p>
 <ol>
 <li>
 <p>Install the <code>mysqlbackup</code> component and enable it on the server:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>INSTALL<span class="w"> </span>COMPONENT<span class="w"> </span><span class="s2">&quot;file://component_mysqlbackup&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>INSTALL<span class="w"> </span>COMPONENT<span class="w"> </span><span class="s2">&quot;file://component_mysqlbackup&quot;</span><span class="p">;</span>
 </code></pre></div>
 </li>
 <li>
 <p>Check whether the <code>mysqlbackup</code> component is installed successfully:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>SELECT<span class="w"> </span>COUNT<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>FROM<span class="w"> </span>mysql.component<span class="w"> </span>WHERE<span class="w"> </span><span class="nv">component_urn</span><span class="o">=</span><span class="s1">&#39;file://component_mysqlbackup&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>SELECT<span class="w"> </span>COUNT<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>FROM<span class="w"> </span>mysql.component<span class="w"> </span>WHERE<span class="w"> </span><span class="nv">component_urn</span><span class="o">=</span><span class="s1">&#39;file://component_mysqlbackup&#39;</span><span class="p">;</span>
 </code></pre></div>
 </li>
 </ol>
@@ -5862,11 +5863,11 @@ backups with the <code>--page-tracking</code> option.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Full backup</label><label for="__tabbed_1_2">Incremental backup</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$FULL_BACK</span><span class="w"> </span>--page-tracking
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$FULL_BACK</span><span class="w"> </span>--page-tracking
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$INC_BACKUP</span><span class="w">  </span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$INC_BACKUP</span><span class="w">  </span>
 --incremental-basedir<span class="o">=</span><span class="nv">$FULL_BACKUP</span><span class="w"> </span>--page-tracking
 </code></pre></div>
 </div>
@@ -5885,16 +5886,16 @@ to reach to page tracking start lsn 21353759
 <h2 id="start-page-tracking-manually">Start page tracking manually<a class="headerlink" href="#start-page-tracking-manually" title="Permanent link">&para;</a></h2>
 <p>After the mysqlbackup component is loaded and active on the server, you can
 start page tracking manually with the following option:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>SELECT<span class="w"> </span>mysqlbackup_page_track_set<span class="o">(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>SELECT<span class="w"> </span>mysqlbackup_page_track_set<span class="o">(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="check-the-lsn-value">Check the LSN value<a class="headerlink" href="#check-the-lsn-value" title="Permanent link">&para;</a></h2>
 <p>Check the LSN value starting from which changed pages are tracked with the
 following option:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>SELECT<span class="w"> </span>mysqlbackup_page_track_get_start_lsn<span class="o">()</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>SELECT<span class="w"> </span>mysqlbackup_page_track_get_start_lsn<span class="o">()</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="stop-page-tracking">Stop page tracking<a class="headerlink" href="#stop-page-tracking" title="Permanent link">&para;</a></h2>
 <p>To stop page tracking, use the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>SELECT<span class="w"> </span>mysqlbackup_page_track_set<span class="o">(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>SELECT<span class="w"> </span>mysqlbackup_page_track_set<span class="o">(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="purge-page-tracking-data">Purge page tracking data<a class="headerlink" href="#purge-page-tracking-data" title="Permanent link">&para;</a></h2>
 <p>When you start page tracking, it creates a file under the server’s datadir
@@ -5904,20 +5905,20 @@ creates a new file but also keeps the old one. The old file continues to
 grow until you stop the page tracking explicitly.</p>
 <p>If you purge the page tracking data, you should create a full backup
 afterward. To purge the page tracking data, do the following steps:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>SELECT<span class="w"> </span>mysqlbackup_page_track_set<span class="o">(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span>
-$<span class="w"> </span>SELECT<span class="w"> </span>mysqlbackup_page_track_purge_up_to<span class="o">(</span><span class="m">9223372036854775807</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>SELECT<span class="w"> </span>mysqlbackup_page_track_set<span class="o">(</span><span class="nb">false</span><span class="o">)</span><span class="p">;</span>
+SELECT<span class="w"> </span>mysqlbackup_page_track_purge_up_to<span class="o">(</span><span class="m">9223372036854775807</span><span class="o">)</span><span class="p">;</span>
 /*<span class="w"> </span>Specify<span class="w"> </span>the<span class="w"> </span>LSN<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>which<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>purge<span class="w"> </span>page<span class="w"> </span>tracking<span class="w"> </span>data.<span class="w"> </span>/
 <span class="m">9223372036854775807</span><span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>highest<span class="w"> </span>possible<span class="w"> </span>LSN<span class="w"> </span>which<span class="w"> </span>purges<span class="w"> </span>all<span class="w"> </span>page<span class="w"> </span>tracking<span class="w"> </span>files.*/
-$<span class="w"> </span>SELECT<span class="w"> </span>mysqlbackup_page_track_set<span class="o">(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span>
+SELECT<span class="w"> </span>mysqlbackup_page_track_set<span class="o">(</span><span class="nb">true</span><span class="o">)</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="known-issue">Known issue<a class="headerlink" href="#known-issue" title="Permanent link">&para;</a></h2>
 <p>If the index is built in place using an exclusive algorithm and then is
 added to a table after the last LSN checkpoint, you may generate a bad
 incremental backup using page tracking. For more details
-see <a href="https://jira.percona.com/browse/PS-8032">PS-8032</a>.</p>
+see <a href="https://jira.percona.com/browse/PS-8032">PS-8032 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <h2 id="uninstall-the-mysqlbackup-component">Uninstall the mysqlbackup component<a class="headerlink" href="#uninstall-the-mysqlbackup-component" title="Permanent link">&para;</a></h2>
 <p>To uninstall the mysqlbackup component, use the following statement:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>UNINSTALL<span class="w"> </span>COMPONENT<span class="w"> </span><span class="s2">&quot;file://component_mysqlbackup&quot;</span>
+<div class="highlight"><pre><span></span><code>UNINSTALL<span class="w"> </span>COMPONENT<span class="w"> </span><span class="s2">&quot;file://component_mysqlbackup&quot;</span>
 </code></pre></div>
 
 
@@ -5941,7 +5942,7 @@ see <a href="https://jira.percona.com/browse/PS-8032">PS-8032</a>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 17, 2023 16:28:51 UTC">October 17, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -6089,6 +6090,8 @@ see <a href="https://jira.percona.com/browse/PS-8032">PS-8032</a>.</p>
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 

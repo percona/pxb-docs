@@ -5713,11 +5713,12 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h1 id="create-a-compressed-backup">Create a compressed backup<a class="headerlink" href="#create-a-compressed-backup" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup supports compressed backups. To make a compressed backup, use the <code>--compress</code> option along
 with the <code>--backup</code> and <code>--target-dir</code> options. A local or streaming backup can be compressed or decompressed with <a href="xbstream-binary-overview.html">xbstream</a>.</p>
+<p>Run the following commands as root or use the sudo command.</p>
 <p>By default, the <code>--compress</code> option uses the <code>zstandard</code> tool that you can install with
 the <code>percona-release</code> package configuration tool as follows:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>tools
-$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
-$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstandard
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>tools
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstandard
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5730,21 +5731,21 @@ repository: <code>percona-release enable-only tools</code>.</p>
 <h2 id="zstandard-zstd">Zstandard (ZSTD)<a class="headerlink" href="#zstandard-zstd" title="Permanent link">&para;</a></h2>
 <p>The Zstandard (ZSTD) is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. <code>ZSTD</code> is the default compression algorithm for the <code>--compress</code> option.</p>
 <p>To compress files using the <code>ZSTD</code> compression algorithm, use the <code>--compress</code> option:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>The resulting files have the <code>\*.zst</code> format.</p>
 <p>You can specify <code>ZSTD</code> compression level with the <a href="xtrabackup-option-reference.html#compress-zstd-level"><code>--compress-zstd-level(=#)</code></a> option. The default value is <code>1</code>.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>–backup<span class="w"> </span>–compress<span class="w"> </span>–compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>–target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>–backup<span class="w"> </span>–compress<span class="w"> </span>–compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>–target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <h2 id="lz4">lz4<a class="headerlink" href="#lz4" title="Permanent link">&para;</a></h2>
 <p>To compress files using the <code>lz4</code> compression algorithm, set the <code>--compress</code> option to <code>lz4</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>lz4<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>lz4<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>The resulting files have the <code>\*.lz4</code> format. </p>
 <p>If you want to speed up the compression you can use the parallel
 compression, which can be enabled with <code>--compress-threads</code> option.
 Following example will use four threads for compression:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--compress-threads<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--compress-threads<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
 <details class="example">
@@ -5785,7 +5786,7 @@ xtrabackup: Transaction log of lsn (9291934) to (9291934) was copied.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 23, 2025 15:45:43 UTC">July 23, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -5933,6 +5934,8 @@ xtrabackup: Transaction log of lsn (9291934) to (9291934) was copied.
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 

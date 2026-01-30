@@ -5675,7 +5675,7 @@ consistent until they are prepared, because they were copied at different times 
 8.4 and Percona Server for MySQL 8.4 databases. Releases prior to 8.4 are not supported.</p>
 <p>During the prepare operation, xtrabackup boots up a kind of modified embedded InnoDB (the libraries xtrabackup was linked against). The modifications are necessary to disable InnoDB standard safety checks, such as complaining about the log file not being the right size. This warning is not appropriate for working with backups. These modifications are only for the xtrabackup binary; you do not need a modified InnoDB to use xtrabackup for your backups.</p>
 <p>The prepare step uses this “embedded InnoDB” to perform crash recovery on the copied data files, using the copied log file. The <code>prepare</code> step is very simple to use: you simply run xtrabackup with the <code>--prepare</code> option and tell it which directory to prepare, for example, to prepare the previously taken backup run:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <p>When this finishes, you should see an <code>InnoDB shutdown</code> with a message such as the following, where again the value of LSN will depend on your system:</p>
 <details class="example">
@@ -5720,7 +5720,7 @@ xtrabackup: notice: xtrabackup_logfile was already used to &#39;--prepare&#39;.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 23, 2025 15:45:43 UTC">July 23, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -5868,6 +5868,8 @@ xtrabackup: notice: xtrabackup_logfile was already used to &#39;--prepare&#39;.
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 

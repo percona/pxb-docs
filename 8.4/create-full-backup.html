@@ -5685,8 +5685,8 @@ does
 exist and is empty, xtrabackup succeeds.</p>
 <p>xtrabackup does not overwrite existing files. It will fail with operating
 system error 17, <code>file exists</code>.</p>
-<p>The following command starts the process:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<p>The following command starts the process. Run all the commands as root or use the sudo command.</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <p>This operation stores the backup at <code>/data/backups/</code>. If you specify a
 relative path, the target directory is relative to the current directory.</p>
@@ -5714,14 +5714,14 @@ xtrabackup: Transaction log of lsn (26970807) to (137343534) was copied.
 </details>
 <p>The process ends with the following statement; the
 value of the <code>&lt;LSN&gt;</code> depends on your system:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup:<span class="w"> </span>Transaction<span class="w"> </span>log<span class="w"> </span>of<span class="w"> </span>lsn<span class="w"> </span><span class="o">(</span>&lt;LSN&gt;<span class="o">)</span><span class="w"> </span>to<span class="w"> </span><span class="o">(</span>&lt;LSN&gt;<span class="o">)</span><span class="w"> </span>was<span class="w"> </span>copied.
+<div class="highlight"><pre><span></span><code>xtrabackup:<span class="w"> </span>Transaction<span class="w"> </span>log<span class="w"> </span>of<span class="w"> </span>lsn<span class="w"> </span><span class="o">(</span>&lt;LSN&gt;<span class="o">)</span><span class="w"> </span>to<span class="w"> </span><span class="o">(</span>&lt;LSN&gt;<span class="o">)</span><span class="w"> </span>was<span class="w"> </span>copied.
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Log copying thread checks the transactional log every second to see if there were any new log records written that need to be copied, but there is a chance that the log copying thread might not be able to keep up with the amount of writes that go to the transactional logs, and will hit an error when the log records are overwritten before they could be read.</p>
 </div>
 <p>After the backup is finished, the target directory will contain files such as the following, assuming you have a single InnoDB table <code>test.tbl1</code> and you are using MySQL’s innodb_file_per_table option:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-lh<span class="w"> </span>/data/backups/
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-lh<span class="w"> </span>/data/backups/
 </code></pre></div>
 <p>The result should look like this:</p>
 <details class="example">
@@ -5766,7 +5766,7 @@ drwx------  2 root root 4.0K Sep  6 10:19 world2
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 23, 2025 15:45:43 UTC">July 23, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -5914,6 +5914,8 @@ drwx------  2 root root 4.0K Sep  6 10:19 world2
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 

@@ -5757,6 +5757,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h1 id="encrypt-backups">Encrypt backups<a class="headerlink" href="#encrypt-backups" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup supports encrypting and decrypting local and streaming backups with the upstream option, adding another protection layer. The
 encryption is implemented using the <code>libgcrypt</code> library from GnuPG.</p>
+<p>Run all the commands as root or use the sudo command.</p>
 <h2 id="create-encrypted-backups">Create encrypted backups<a class="headerlink" href="#create-encrypted-backups" title="Permanent link">&para;</a></h2>
 <p>The following options create encrypted backups. The
 <code>--encrypt-key</code> and <code>--encrypt-key-file</code> options specify the encryption key and are mutually exclusive. You should select one or the other.</p>
@@ -5774,13 +5775,13 @@ encryption is implemented using the <code>libgcrypt</code> library from GnuPG.</
 <p>For an encryption key, use a command, such as <code>openssl rand -base64 24</code>, to generate a random alphanumeric string.</p>
 <h3 id="encrypt-key-option">encrypt-key option<a class="headerlink" href="#encrypt-key-option" title="Permanent link">&para;</a></h3>
 <p>An example of the <em>xtrabackup</em> command using the <code>--encrypt-key</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w">  </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <h3 id="encrypt-key-file-option">encrypt-key-file option<a class="headerlink" href="#encrypt-key-file-option" title="Permanent link">&para;</a></h3>
 <p>The recommended method uses the command line: <code>echo -n “{randomly-generated-alphanumeric-string}” &gt; /data/backups/keyfile</code> to create the file.
 Remember that using the&ndash; encrypt-key-file option, your text editor can automatically insert a CRLF (end of line) character in the <code>KEYFILE</code>. This inserted character invalidates the key because the size is wrong. </p>
 <p>An example of using the <code>--encrypt-key-file</code> option:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <h2 id="optimize-the-encryption-process">Optimize the encryption process<a class="headerlink" href="#optimize-the-encryption-process" title="Permanent link">&para;</a></h2>
 <p>Additional encrypted backup options, <code>--encrypt-threads</code> and
@@ -5790,19 +5791,19 @@ Remember that using the&ndash; encrypt-key-file option, your text editor can aut
 <h2 id="decrypt-encrypted-backups">Decrypt encrypted backups<a class="headerlink" href="#decrypt-encrypted-backups" title="Permanent link">&para;</a></h2>
 <p>You can decrypt backups with the <code>xbcrypt</code> binary. The following example encrypts a backup.</p>
 <p>You can use the <code>--parallel</code> option and the <code>--decrypt</code> option to decrypt multiple files simultaneously.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">&quot;*\.xbcrypt&quot;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">&quot;*\.xbcrypt&quot;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </code></pre></div>
 <p>The following example shows a decryption process.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <p>Percona XtraBackup doesn’t automatically remove the encrypted files. You must remove the <code>\*.xbcrypt</code> files manually.</p>
 <h2 id="prepare-encrypted-backups">Prepare encrypted backups<a class="headerlink" href="#prepare-encrypted-backups" title="Permanent link">&para;</a></h2>
 <p>After decrypting the backups, prepare the backups with the <code>--prepare</code> option:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <h2 id="restore-encrypted-backups">Restore encrypted backups<a class="headerlink" href="#restore-encrypted-backups" title="Permanent link">&para;</a></h2>
 <p><em>xtrabackup</em> offers the <code>--copy-back</code> option to restore a backup to the server’s datadir:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <p>The option copies all the data-related files to the server’s datadir. The server’s <code>my.cnf</code> configuration file determines the location. </p>
 <p>You should check the last line of the output for a success message:</p>
@@ -5833,7 +5834,7 @@ Remember that using the&ndash; encrypt-key-file option, your text editor can aut
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 21, 2025 16:19:29 UTC">May 21, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
   </span>
 
     
@@ -5861,9 +5862,9 @@ Remember that using the&ndash; encrypt-key-file option, your text editor can aut
     
     <nav>
       
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
         </a>
       
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
@@ -5871,9 +5872,9 @@ Remember that using the&ndash; encrypt-key-file option, your text editor can aut
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
         </a>
       
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
           
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
         </a>
       
       
@@ -5981,6 +5982,8 @@ Remember that using the&ndash; encrypt-key-file option, your text editor can aut
         <script src="js/consent.js"></script>
       
         <script src="js/rating.js"></script>
+      
+        <script src="js/open_in_new_tab.js"></script>
       
     
 
