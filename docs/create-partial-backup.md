@@ -38,13 +38,83 @@ There are multiple ways of specifying which part of the whole data is backed up:
 
 * Use the `--tables-file` option to list the tables in a file
 
-* Use the `--databases` option to list the databases
+* Use the `--databases` option to list the databases or specific tables
 
-* Use the `--databases-file` option to list the databases
+* Use the `--databases-file` option to list the databases or specific tables in a file
 
-!!! note "Mutual exclusion"
+!!! warning "Conflict between --tables and --databases"
 
-    The `--tables` and `--databases` options are mutually exclusive. If you use both options in the same command, XtraBackup ignores `--databases` and only uses `--tables`. Use only one of these options per backup operation.
+    The `--tables` and `--databases` options use different filtering mechanisms and can conflict when used together.
+
+    * `--tables` uses regular expressions and implies a partial backup.
+    * `--databases` uses exact matching and implies a full backup of the listed databases.
+
+    If you use both, you may get unexpected results (e.g., a database listed in `--databases` might be fully backed up even if you only wanted specific tables from it via `--tables`). To combine specific tables from one database with full backups of other databases, use `--tables-file` instead of `--tables`.
+
+## Filtering Behavior with Examples
+
+To understand how filtering works, consider the following environment:
+
+*   **Database `test1`**: Contains tables `Persons1`, `Persons2`, and `Truc`.
+*   **System Databases**: `mysql`, `performance_schema`, `sys`.
+
+**Goal**: Back up `test1.Persons1`, `test1.Persons2`, and all system databases (`mysql`, `performance_schema`, `sys`).
+
+### Why mixing --tables and --databases fails
+
+When determining whether to back up a table, xtrabackup follows this logic:
+
+1.  **Database Check**: It first checks if the database is included or excluded.
+    *   If you use `--databases`, any database *not* in the list is skipped immediately.
+    *   If a database is in the `--databases` list, it is marked to have **all its tables included** (unless `--tables-file` is also used).
+
+2.  **Table Check**: If the database is not skipped:
+    *   If the database was selected via `--databases`, **all** tables in it are copied, ignoring any `--tables` regex.
+    *   If the database was not explicitly selected via `--databases` (or selected via `--tables-file`), it then checks the table name against the list.
+
+This explains why mixing `--tables` (regex) and `--databases` (list) often fails in the scenario above:
+
+*   **Case 1**: `xtrabackup --backup --tables="test1.Persons1" --databases="mysql"`
+    *   `test1` is NOT in `--databases`, so the database is skipped entirely. Result: No `test1` tables.
+*   **Case 2**: `xtrabackup --backup --tables="test1.Persons1" --databases="mysql,test1"`
+    *   `test1` IS in `--databases`. XtraBackup includes **all** tables in `test1` (`Persons1`, `Persons2`, AND `Truc`), ignoring the `--tables` regex.
+
+### Solution: Combining specific tables and whole databases
+
+If you want to back up specific tables from one database (e.g., `test1.Persons1`, `test1.Persons2`) while also backing up other databases entirely (e.g., `mysql`, `performance_schema`, `sys`), use `--tables-file` or simply list the tables in `--databases` (or `--databases-file`).
+
+#### Method 1: Using `--tables-file` (Recommended)
+
+1.  Create a file listing the specific tables you want to back up:
+
+    ```text
+    test1.Persons1
+    test1.Persons2
+    ```
+
+2.  Run xtrabackup using both `--tables-file` and `--databases`. You do **not** need to list the database of the specific tables (`test1`) in the `--databases` list; `--tables-file` automatically registers it.
+
+    ```{.bash data-prompt="$"}
+    $ xtrabackup --backup --tables-file=tables.txt --databases="mysql,performance_schema,sys" --target-dir=/data/backups/
+    ```
+
+In this configuration, `--tables-file` ensures the specific tables from `test1` are backed up, while `--databases` ensures the system databases are backed up in full.
+
+!!! warning "Avoid Duplication"
+    If you use `--tables-file` to back up specific tables from a database (e.g., `test1`), do **not** also list that database (`test1`) in the `--databases` option. Doing so will override the partial selection and back up the **entire** database.
+
+#### Method 2: Using `--databases` for everything
+
+You can also list the specific tables directly in the `--databases` option. This works because `--databases` supports `database.table` format.
+
+```{.bash data-prompt="$"}
+$ xtrabackup --backup --databases="mysql,performance_schema,sys,test1.Persons1,test1.Persons2" --target-dir=/data/backups/
+```
+
+This correctly instructs XtraBackup to take full backups of `mysql`, `performance_schema`, and `sys`, but only partial backups of `test1`.
+
+!!! warning "Do Not Use Wildcards"
+    Do not add `.*` to database names (e.g., `test1.*`). This is not supported and will result in missing tables. Use the database name alone (`test1`) for full backups.
 
 ## The `–-tables` option
 
@@ -82,7 +152,18 @@ $ xtrabackup --backup --tables-file=/tmp/tables.txt
 
 ## The `--databases` and `-–databases-file` options
 
-The `--databases` option accepts a comma-separated list of database names. To include all tables in a database, add `.*` after the database name (for example, `mydb.*`). Regular expressions are not supported.
+The `--databases` option accepts a comma-separated list of database names or table names. 
+
+*   To back up an entire database, specify just the database name (e.g., `mydb`).
+*   To back up specific tables, specify them in `database.table` format (e.g., `mydb.mytable`).
+
+!!! warning "No Wildcards or Regex"
+    The `--databases` option does **not** support wildcards (like `*`) or regular expressions.
+
+    *   Do **not** use `mydb.*`. This will look for a literal table named `*`, which will fail to back up your tables.
+    *   To include all tables, simply use the database name: `mydb`.
+
+This option is robust because it correctly registers the specific tables for partial backups, avoiding the conflicts that happen when mixing `--databases` (for full DBs) and `--tables` (for partials).
 
 In addition to your selected databases, make sure to specify the `mysql`, `sys`, and `performance_schema` databases. These databases are required when restoring the databases using xtrabackup `--copy-back`.
 
@@ -100,6 +181,10 @@ $ xtrabackup --backup --databases='mysql,sys,performance_schema,test' --target-d
 
 The –databases-file option specifies a file that can contain multiple
 databases and tables in the `databasename[.tablename]` format, one element name per line in the file. Names are matched exactly, case-sensitive, with no pattern or regular expression matching.
+
+*   To back up an entire database, specify just the database name (e.g., `mydb`).
+*   To back up a specific table, specify `mydb.mytable`.
+*   **Do not use** `.*` or regex (e.g., `mydb.*`). These are treated as literal names.
 
 !!! note
    

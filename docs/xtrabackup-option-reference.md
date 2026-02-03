@@ -190,25 +190,28 @@ This option specifies which databases to back up.
 
 !!! note "Mutual exclusion"
 
-    `--tables` and `--databases` are mutually exclusive. If you use both options in the same command, XtraBackup ignores `--databases` and only uses `--tables`. Use only one of these options per backup operation.
+    `--tables` and `--databases` are mutually exclusive. If you use both options in the same command, XtraBackup may produce unexpected results. `--databases` acts as a high-level filter: databases not listed are skipped entirely. However, databases that *are* listed are treated as having all their tables included, causing the `--tables` regex to be ignored for those databases. Use only one of these options per backup operation, or use `--tables-file` instead of `--tables` to mix partial and whole database backups.
 
 Accepted syntax:
 
-This option accepts a comma-separated list of database names. To include all tables in a database, add `.*` after the database name (for example, `mydb.*`).
+This option accepts a comma-separated list of database names or table names. To include all tables in a database, simply specify the database name (for example, `mydb`).
 
-Regular expressions are not supported.
+!!! warning "No Wildcards or Regex"
+    The `--databases` option does **not** support wildcards (like `*`) or regular expressions. Do not use `mydb.*` as it will search for a literal table named `*`.
 
 Examples:
 
 * `--databases=mysql,performance_schema,sys` - Backs up the entire mysql, performance_schema, and sys databases
 
-* `--databases=mydb.*` - Backs up every table in the mydb database
+* `--databases=mydb` - Backs up every table in the mydb database
+
+* `--databases=mydb.table1` - Backs up only table1 in the mydb database
 
 ### databases-exclude
 
 Usage: `--databases-exclude=name`
 
-Databases are excluded based on name. This option operates the same way as `--databases`, but excludes the matched names from the backup. 
+Databases are excluded based on name. This option operates the same way as `--databases`, but excludes the matched names from the backup.
 
 This option has a higher priority than
 `--databases`.
@@ -1102,7 +1105,7 @@ This option filters tables to be backed up based on their fully qualified names.
 
 !!! note "Mutual exclusion"
 
-    `--tables` and `--databases` are mutually exclusive. Supplying both in the same command line causes XtraBackup to ignore one of them (currently `--databases`). Use only one of the options per backup operation.
+    `--tables` and `--databases` are mutually exclusive. Supplying both in the same command line causes XtraBackup to behave unexpectedly. `--databases` acts as a high-level filter: databases not listed are skipped entirely. However, databases that *are* listed are treated as having all their tables included, causing the `--tables` regex to be ignored for those databases. Use only one of the options per backup operation.
 
 Accepted syntax:
 
@@ -1171,10 +1174,10 @@ The following table lists common mistakes when using `--tables` and `--databases
 
 | Incorrect usage | What happens |
 |---|---|
-| Using both `--tables` and `--databases` together | XtraBackup ignores `--databases` and only processes `--tables`. Your backup may not include the databases you expected. |
+| Using both `--tables` and `--databases` together | XtraBackup does not ignore `--databases`; it uses it as an allow-list. Databases not in the list are skipped. Databases in the list have all their tables included, ignoring the `--tables` regex. |
 | Using `--databases` with regular expressions | Regular expressions are not supported by `--databases`. XtraBackup treats the regular expression as a literal database name. If that database name does not exist, the backup will be empty or fail. |
 | Using `--tables` without quotes for regex patterns | Without quotes, the shell may interpret special regex characters. This causes incorrect pattern matching or syntax errors. |
-| Using `--databases=mydb` expecting to include all tables | Without the `.*` wildcard, `--databases=mydb` may not include all tables. Use `--databases=mydb.*` to include all tables in the database. |
+| Using `--databases=mydb.*` expecting to include all tables | XtraBackup treats `.*` as a literal table name (looking for a table named `*`). Use `--databases=mydb` to include all tables in the database. |
 | Mixing comma-separated lists with regex in `--tables` | The `--tables` option accepts either a comma-separated list OR a quoted regular expression, but not both at the same time. Mixing both syntaxes will not work as expected. |
 
 ### tables-file
