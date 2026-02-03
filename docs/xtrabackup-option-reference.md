@@ -18,14 +18,14 @@ You invoke xtrabackup in one of the following modes:
 
 When you intend to run xtrabackup in any of these modes, use the following syntax:
 
-```{.bash data-prompt="$"} data-prompt="$"}
-$ xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back|--stats [OPTIONS]
+```bash
+xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back|--stats [OPTIONS]
 ```
 
 For example, the `--prepare` mode is applied as follows:
 
-```{.bash data-prompt="$"} data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backup/mysql/
+```bash
+xtrabackup --prepare --target-dir=/data/backup/mysql/
 ```
 
 For all modes, the default options are read from the xtrabackup and
@@ -111,10 +111,10 @@ the operation is not aborted, and prints a warning.
 
 ??? example "Example output" 
 
-        ```{.text .no-copy}
-        xtrabackup: Error: missing required privilege LOCK TABLES on *.*
-        xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
-        ```
+```text
+xtrabackup: Error: missing required privilege LOCK TABLES on *.*
+xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
+```
 
 ### close-files
 
@@ -197,6 +197,7 @@ Accepted syntax:
 This option accepts a comma-separated list of database names or table names. To include all tables in a database, simply specify the database name (for example, `mydb`).
 
 !!! warning "No Wildcards or Regex"
+
     The `--databases` option does **not** support wildcards (like `*`) or regular expressions. Do not use `mydb.*` as it will search for a literal table named `*`.
 
 Examples:
@@ -324,8 +325,8 @@ beginning of a backup provided the status variable
 `innodb_buffer_pool_dump_status` reports that the dump has been
 completed.
 
-```{.bash data-prompt="$"} data-prompt="$"}
-$ xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
+```bash
+xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
 ```
 
 By default, this option is set to OFF.
@@ -417,12 +418,12 @@ Implemented in Percona XtraBackup 8.0.32-26, the option lets you enable or disab
 
 An example of how to enable the Smart memory estimation feature:
 
-```{.bash data-prompt="$"} data-prompt="$"}
-$ xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
+```bash
+xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
-```{.bash data-prompt="$"} data-prompt="$"}
-$ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
+```bash
+xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 
 ### export
@@ -1146,24 +1147,24 @@ When you need to back up specific tables from user databases along with entire s
 
 Example 1: Back up specific tables plus entire mysql database
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --tables='^(mydb\.(t1|t2)|mysql\.)' --target-dir=/data/backup/
+```bash
+xtrabackup --backup --tables='^(mydb\.(t1|t2)|mysql\.)' --target-dir=/data/backup/
 ```
 
 This command backs up tables `t1` and `t2` from `mydb`, plus all tables in the `mysql` database.
 
 Example 2: Back up tables from multiple databases plus system databases
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --tables='^(db1\.t1|db2\.t.*|mysql\.|performance_schema\.|sys\.)' --target-dir=/data/backup/
+```bash
+xtrabackup --backup --tables='^(db1\.t1|db2\.t.*|mysql\.|performance_schema\.|sys\.)' --target-dir=/data/backup/
 ```
 
 This command backs up `t1` from `db1`, all tables starting with `t` from `db2`, plus the entire `mysql`, `performance_schema`, and `sys` databases.
 
 Example 3: Back up all tables from a database plus specific tables from another
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --tables='^(mydb\.|otherdb\.(important_table|critical_table))' --target-dir=/data/backup/
+```bash
+xtrabackup --backup --tables='^(mydb\.|otherdb\.(important_table|critical_table))' --target-dir=/data/backup/
 ```
 
 This command backs up all tables from `mydb` plus specific tables from `otherdb`.
@@ -1264,12 +1265,12 @@ This option works, only if `--estimate-memory` option is enabled. If the `--esti
 
 An example of how to enable the Smart memory estimation feature:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
+```bash
+xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
+```bash
+xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 
 ### use-memory
