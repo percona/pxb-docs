@@ -901,6 +901,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1012,6 +1020,118 @@
     
   
     How Percona XtraBackup works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="differences-logical-backup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Differences between a logical backup and Percona XtraBackup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="backup-overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup process overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="backup-strategy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup strategy and backup policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="example-full-incr.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup example
   
 
     
@@ -5783,6 +5903,50 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
         
           <li class="md-nav__item">
+  <a href="#differences-logical-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differences between a logical backup and Percona XtraBackup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup process overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup strategy and backup policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-full-incr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#generated-files" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8323,7 +8487,518 @@ restore a backup. This option is similar to <code>--copy-back</code>
 with the only difference that instead of copying files it moves them to their
 target locations. As this option removes backup files, it must be used with
 caution. It is useful in cases when there is not enough free disk space to hold
-both data files and their backup copies.</p></section><section class="print-page" id="generated-files" heading-number="5.4"><h1 id="generated-files-xtrabackup-backup-files">XtraBackup backup files<a class="headerlink" href="#generated-files-xtrabackup-backup-files" title="Permanent link">&para;</a></h1>
+both data files and their backup copies.</p></section><section class="print-page" id="differences-logical-backup" heading-number="5.4"><h1 id="differences-logical-backup-differences-between-a-logical-backup-and-percona-xtrabackup">Differences between a logical backup and Percona XtraBackup<a class="headerlink" href="#differences-logical-backup-differences-between-a-logical-backup-and-percona-xtrabackup" title="Permanent link">&para;</a></h1>
+<p>You&rsquo;ll notice several key differences when transitioning from a logical database backup to Percona XtraBackup. A logical backup contains the database contents as SQL or similar logical data (tables, schemas, procedures); see the <a href="#glossary-logical-backup">Glossary</a>. A physical backup copies the database’s raw data files from disk; see the <a href="#glossary-physical-backup">Glossary</a>. The following table summarizes how they differ.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Logical backup</th>
+<th>Physical backup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Definition</td>
+<td>Contains logical data (tables, schemas, procedures).</td>
+<td>Copies entire database directories and files.</td>
+</tr>
+<tr>
+<td>Method</td>
+<td>Exported as binary files using EXPORT/IMPORT tools.</td>
+<td>Copies raw data files directly from the database.</td>
+</tr>
+<tr>
+<td>Data contents</td>
+<td>Includes data structure (schema, tables, procedures).</td>
+<td>Contains complete data (structure, tables, transactions).</td>
+</tr>
+<tr>
+<td>Instance Independence</td>
+<td>Can be restored on any other machine or environment.</td>
+<td>Tied to the specific database instance and environment.</td>
+</tr>
+<tr>
+<td>OS-level restoration</td>
+<td>Not suitable for OS-level restoration.</td>
+<td>Suitable for full disaster recovery scenarios.</td>
+</tr>
+<tr>
+<td>Granularity</td>
+<td>Granular recovery of specific components (for example, one table or schema).</td>
+<td>Typically full restore; XtraBackup also supports <a href="#create-partial-backup">partial backup</a> and <a href="#restore-individual-tables">restore individual tables</a>.</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>For full backup/restore, slower (SQL parsing and execution); partial restore of one table can be faster.</td>
+<td>For full backup/restore, faster (direct file copying); bottleneck is often disk or network I/O.</td>
+</tr>
+<tr>
+<td>Use cases</td>
+<td>Data migration, platform-independent copies, version or engine change.</td>
+<td>Full database restoration, disaster recovery.</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>Unencrypted dumps are human-readable; security depends on encryption and access control.</td>
+<td>Binary files are less directly readable when unencrypted; security depends on encryption and access control for both.</td>
+</tr>
+</tbody>
+</table>
+<p>Physical backups are suitable for OS-level restoration (copying back the database files and directory structure) and full disaster recovery (recovering systems and data after a major failure). Percona XtraBackup is designed to perform hot backups (backups taken while the database is running and in use) of MySQL, Percona Server for MySQL, and other MySQL-compatible databases without interrupting database services. XtraBackup performs physical backups by copying the data files; impact on server performance is often relatively low compared to blocking backup methods, but it depends on I/O load and workload. XtraBackup includes backup compression and encryption, and a <a href="#take-streaming-backup">streaming backup</a> option for large databases or transferring backups to another server. Many logical backup tools (for example, a plain <code>mysqldump</code> run) do not build in compression, encryption, or streaming; you can add them via external pipelines, while XtraBackup provides these in one tool. XtraBackup also integrates with <a href="https://docs.percona.com/percona-toolkit/">Percona Toolkit</a> and <a href="https://docs.percona.com/pmm/">Percona Monitoring and Management (PMM)</a> for monitoring and management.</p>
+<p>Another difference is the support for <a href="#create-incremental-backup">incremental backups</a> with XtraBackup. You can back up only the data that has changed since the last full backup, significantly reducing the time and storage requirements compared to a full logical backup.</p>
+<h2 id="differences-logical-backup-logical-backups-in-more-detail">Logical backups in more detail<a class="headerlink" href="#differences-logical-backup-logical-backups-in-more-detail" title="Permanent link">&para;</a></h2>
+<p>A logical backup contains copies of information about a database, such as tables, schemas (the structure of the database: tables, columns, indexes), and procedures (reusable SQL code stored in the database). Commonly, these backups are exported as binary or text files using export/import tools (for example, <code>mysqldump</code>).</p>
+<p>Logical backups focus on the data structure and SQL statements. You can back up a selected set of data or exclude specific data during the export, saving time and storage. They contain only structural information about the database, not instance-specific details (that is, details tied to one running copy of the database server).</p>
+<p>For full backup and full restore, logical backups are usually slower than physical backups because of SQL parsing and execution; for restoring a single table, a logical dump of that table can be faster than preparing and extracting from a physical backup. A logical backup does not preserve the file system-level security settings, user accounts, privileges, or authentication settings. During restoration, you must manually reconfigure these settings.</p>
+<p>You can restore a logical backup on any other machine and in different environments. Logical backups provide granular recovery (restoring only selected parts, such as individual tables or schemas) instead of the whole database. The recovery process can be more involved because it may require recreating the data structure.</p>
+<p>Use logical backups when restoring or moving a database copy to another environment; they are well suited to platform-independent data migration (restoring on different operating systems or hardware). When the goal is to change MySQL version, storage engine, or move to another database product, logical backup or logical export is often the only practical option—physical backups are tied to the same engine and often the same minor version.</p>
+<p>When unencrypted, logical backup files (for example, SQL from <code>mysqldump</code>) are human-readable, so anyone with access can read sensitive data. Both logical and physical backups need access control and encryption for strong security.</p>
+<h2 id="differences-logical-backup-physical-backups-and-percona-xtrabackup-in-more-detail">Physical backups and Percona XtraBackup in more detail<a class="headerlink" href="#differences-logical-backup-physical-backups-and-percona-xtrabackup-in-more-detail" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup is a physical backup tool. It copies the database’s data files and log files from disk while the server is running (hot backup), then uses a prepare step to apply redo and undo so the copy is consistent. Because it works at the file level, full backup and full restore are usually faster than with logical backups, and the result is suitable for same-version, same-engine restore and for disaster recovery.</p>
+<p>XtraBackup supports <a href="#create-full-backup">full</a>, <a href="#create-incremental-backup">incremental</a>, and <a href="#create-compressed-backup">compressed</a> backups, plus <a href="#encrypt-backups">encryption</a> and <a href="#take-streaming-backup">streaming</a> to remote storage. You can also take <a href="#create-partial-backup">partial backups</a> or back up <a href="#create-individual-partition-backup">individual partitions</a>, and <a href="#restore-individual-tables">restore individual tables</a> when needed. Backup impact on the server is usually moderate; it depends on I/O load and is often lower than with blocking methods such as <code>FLUSH TABLES WITH READ LOCK</code>.</p>
+<p>Use physical backups with XtraBackup when you need fast, non-blocking backups and restores on the same MySQL-compatible server (same or compatible version and engine). For migrating to a different version, engine, or database product, use logical backup or export instead.</p>
+<div class="admonition admonition">
+<p class="admonition-title">See also</p>
+<p><a href="#how-xtrabackup-works">How Percona XtraBackup works</a></p>
+<p><a href="#backup-overview">Backup process overview</a></p>
+<p><a href="#backup-strategy">Backup strategy and backup policy</a></p>
+<p><a href="#create-full-backup">Create a full backup</a></p>
+<p><a href="#restore-a-backup">Restore a backup</a></p>
+<p><a href="#glossary">Glossary</a> (logical backup, physical backup)</p>
+</div></section><section class="print-page" id="backup-overview" heading-number="5.5"><h1 id="backup-overview-backup-process-overview">Backup process overview<a class="headerlink" href="#backup-overview-backup-process-overview" title="Permanent link">&para;</a></h1>
+<p>Percona Xtrabackup is a tool that allows you to create backups of MySQL or MariaDB databases. It works by copying the data files and the binary log files of the server, while ensuring that the data is consistent and not corrupted by ongoing transactions. Percona Xtrabackup can also prepare the backup files for restoration, apply incremental backups, and stream the backup files to another server or storage device.</p>
+<h2 id="backup-overview-backup-types">Backup types<a class="headerlink" href="#backup-overview-backup-types" title="Permanent link">&para;</a></h2>
+<p>You can take and prepare the following types of backups:</p>
+<ul>
+<li>
+<p><a href="#create-full-backup">Full backup</a> - a backup of all the contents of the database</p>
+</li>
+<li>
+<p><a href="#create-incremental-backup">Incremental backup</a> - a backup of only the files that have changed since the last full backup</p>
+</li>
+<li>
+<p><a href="#create-compressed-backup">Compressed backup</a> - a backup of all the contents of the database with applying a compression algorithm that reduces the size of the data to be stored</p>
+</li>
+<li>
+<p><a href="#create-partial-backup">Partial backup</a> - a backup of only the files that have changed in a specific folder or a set of folders, rather than the entire database</p>
+</li>
+<li>
+<p><a href="#create-individual-partition-backup">Individual partitions backup</a> - a backup of an individual partition</p>
+</li>
+</ul>
+<h2 id="backup-overview-backup-restoration">Backup restoration<a class="headerlink" href="#backup-overview-backup-restoration" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="#restore-a-backup">Restore full, incremental, compressed backups</a></p>
+</li>
+<li>
+<p><a href="#restore-partial-backup">Restore a partial backup</a></p>
+</li>
+<li>
+<p><a href="#restore-individual-partitions">Restore an individual partitions backup</a></p>
+</li>
+<li>
+<p><a href="#restore-individual-tables">Restore individual tables</a></p>
+</li>
+</ul></section><section class="print-page" id="backup-strategy" heading-number="5.6"><h1 id="backup-strategy-backup-strategy-and-backup-policy">Backup strategy and backup policy<a class="headerlink" href="#backup-strategy-backup-strategy-and-backup-policy" title="Permanent link">&para;</a></h1>
+<p>In conversation, &ldquo;backup strategy,&rdquo; &ldquo;backup policy,&rdquo; and &ldquo;backup plan&rdquo; are used interchangeably, but the terms have distinct meanings.</p>
+<p>A backup strategy is an overall approach or methodology for backing up the data in a database system. The strategy includes the decisions and considerations for what data to back up, how frequently backups should be taken, what backup methods and technologies to use, where to store the backup files, and what steps should be taken to ensure data integrity and the ability to recover.</p>
+<p>A backup strategy typically involves business requirements, the Recovery Point Objective (RPO), the maximum acceptable data loss in case of system failure or disaster, and the Recovery Time Objective (RTO), the acceptable downtime for restoring the system after a failure, and compliance regulations.</p>
+<p>A backup policy defines the guidelines, rules, or standards for specific procedures and practices for implementing the backup strategy. The policy outlines the following:</p>
+<ul>
+<li>Detailed steps and parameters for performing backups</li>
+<li>Retention periods</li>
+<li>Backup types</li>
+<li>Backup verification methods</li>
+<li>Error handling procedures</li>
+<li>Security measures</li>
+</ul>
+<p>A backup plan, based on the backup strategy and the backup policy, is a detailed operation document that specifies how to execute the backup strategy in actionable steps and defines the timelines for backup activities. A backup plan can include the following details:</p>
+<ul>
+<li>Who performs the backup</li>
+<li>When backups are scheduled</li>
+<li>How backups are monitored and audited</li>
+<li>What actions to take in case of backup failures or emergencies</li>
+</ul>
+<h2 id="backup-strategy-types-of-backup">Types of backup<a class="headerlink" href="#backup-strategy-types-of-backup" title="Permanent link">&para;</a></h2>
+<p>A <a href="#create-full-backup">full backup</a> copies all data to a storage location. This type of backup creates a complete copy of the data set. The benefit of a full backup is a quick recovery since the data is stored in one place. However, this type of backup is also the most time-consuming and storage-intensive; it duplicates all data regardless of whether it has changed since the last backup.</p>
+<p>An <a href="#create-incremental-backup">incremental backup</a> only copies data that has changed since the last backup, whether that was a full or another incremental backup. This method is faster and more storage-efficient than a full backup. However, the recovery can be slower because you must restore each set of changes in sequence.</p>
+<p>For more information, see the <a href="#example-full-incr">example of using a full backup with incremental backups</a>.</p>
+<h2 id="backup-strategy-backup-policy-defined">Backup policy defined<a class="headerlink" href="#backup-strategy-backup-policy-defined" title="Permanent link">&para;</a></h2>
+<p>The backup policy sets the guidelines and objectives for data protection, while the backup strategy provides the roadmap for achieving those objectives.</p>
+<p>A backup policy may state that all customer data must be backed up daily, with a full backup at the start of each week and incremental backups taken each business day. These definitions are based on business and compliance needs. The policy also defines how long backups should be retained based on legal or regulatory requirements.</p>
+<p>The difference between a backup policy and a backup strategy lies in their scope and detail. A backup policy is more about the following:</p>
+<ul>
+<li>
+<p>What — What should be backed up and may include information on compliance and governance</p>
+</li>
+<li>
+<p>When — When should you do backups</p>
+</li>
+</ul>
+<p>The backup strategy contains the how — how the backups are scheduled and includes information on the backup technologies and the restoration process. The backup strategy details the use of specific backup software, the configuration of backup schedules, the process for monitoring backup success, and the necessary steps for restoring data.</p>
+<h2 id="backup-strategy-backup-policy-best-practices">Backup policy best practices<a class="headerlink" href="#backup-strategy-backup-policy-best-practices" title="Permanent link">&para;</a></h2>
+<p>An effective backup policy is crucial for safeguarding an organization&rsquo;s data integrity and availability. Here are some best practices to consider:</p>
+<table>
+<thead>
+<tr>
+<th>Best Practice</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regularly Update and Review</td>
+<td>Ensure the backup policy is a living document, updated to reflect changes in technology, business processes, and regulations.</td>
+</tr>
+<tr>
+<td>Clearly Define Roles and Responsibilities</td>
+<td>Assign specific individuals or teams for executing backups, monitoring success, and managing restoration.</td>
+</tr>
+<tr>
+<td>Adopt the 3-2-1 Backup Rule</td>
+<td>Have 3 data copies, store them on 2 different media types, and keep 1 copy offsite.</td>
+</tr>
+<tr>
+<td>Ensure Comprehensive Coverage</td>
+<td>The policy should cover all critical data, applications, and systems to avoid data loss gaps.</td>
+</tr>
+<tr>
+<td>Encrypt Backup Data</td>
+<td>Protect backups with encryption, especially for offsite or cloud storage.</td>
+</tr>
+<tr>
+<td>Test Backups Regularly</td>
+<td>Regularly test backup processes to ensure data can be effectively restored.</td>
+</tr>
+<tr>
+<td>Implement a Disaster Recovery Plan</td>
+<td>Integrate the backup policy with a broader disaster recovery plan for data loss scenarios.</td>
+</tr>
+<tr>
+<td>Use Reliable Backup Software and Hardware</td>
+<td>Invest in proven technologies with robust backup and restoration capabilities.</td>
+</tr>
+<tr>
+<td>Monitor Backup Procedures</td>
+<td>Continuously monitor procedures to ensure they function as intended and identify issues promptly.</td>
+</tr>
+<tr>
+<td>Train Staff</td>
+<td>Educate relevant staff on the importance of backups and their role in the process.</td>
+</tr>
+<tr>
+<td>Document the Backup Process</td>
+<td>Maintain thorough documentation of the backup process, including schedules, technologies, and restoration procedures.</td>
+</tr>
+<tr>
+<td>Define Service Level Agreements (SLAs)</td>
+<td>Establish clear SLAs for backup and recovery times to set expectations and ensure accountability.</td>
+</tr>
+<tr>
+<td>Comply with Legal and Regulatory Requirements</td>
+<td>Ensure the policy complies with relevant laws and regulations regarding data retention and protection.</td>
+</tr>
+<tr>
+<td>Plan for Scalability</td>
+<td>Design the policy to accommodate future data volume growth and infrastructure changes.</td>
+</tr>
+<tr>
+<td>Conduct Periodic Risk Assessments</td>
+<td>Regularly assess data risks and adjust the backup policy to mitigate those risks.</td>
+</tr>
+</tbody>
+</table>
+<p>By adhering to these best practices, organizations can create a robust backup policy that protects their data and supports their business continuity and disaster recovery strategies. The effectiveness of a backup policy depends not only on its creation but on its implementation and ongoing management. Regular reviews, updates, and staff training ensure the backup policy remains relevant and effective.</p>
+<h2 id="backup-strategy-backup-policy-example">Backup policy example<a class="headerlink" href="#backup-strategy-backup-policy-example" title="Permanent link">&para;</a></h2>
+<p>An example of a backup policy might include the following components:</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purpose</td>
+<td>To define the procedures and responsibilities for backing up organizational data to ensure its availability in case of data loss.</td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>This policy applies to all data, hardware, and software in the organization&rsquo;s information systems.</td>
+</tr>
+<tr>
+<td>Policy Statement</td>
+<td>The organization shall maintain a regular backup schedule for all critical data. Full backups are to be performed weekly, with incremental backups occurring daily. All backups must be encrypted and stored in a secure, off-site location.</td>
+</tr>
+<tr>
+<td>Roles and Responsibilities</td>
+<td>The IT department is responsible for executing backups as scheduled. The department head will ensure that backup procedures are followed and reviewed regularly.</td>
+</tr>
+<tr>
+<td>Backup Procedures</td>
+<td>The IT department must use approved software and hardware. Data to be backed up includes, but is not limited to, customer information, financial records, and operational data.</td>
+</tr>
+<tr>
+<td>Data Retention</td>
+<td>Retain the backup data for five years or as required by law or industry regulations.</td>
+</tr>
+<tr>
+<td>Disaster Recovery</td>
+<td>In the event of data loss, the IT department shall follow the disaster recovery plan to restore data from the most recent backup.</td>
+</tr>
+<tr>
+<td>Review and Testing</td>
+<td>Review the backup policy and procedures annually. Test the backup and restoration procedures quarterly to ensure they are effective.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="backup-strategy-test-the-backups">Test the backups<a class="headerlink" href="#backup-strategy-test-the-backups" title="Permanent link">&para;</a></h2>
+<p>You must test the effectiveness of your backups and demonstrate that you can recover your data in the event of loss or corruption. Here are several methods to assess the reliability of your backup system:</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Perform Regular Test Restores</td>
+<td>The most reliable way to test backups is to periodically restore the data to a separate system. This verifies the backup&rsquo;s integrity and the restoration process&rsquo;s functionality.</td>
+</tr>
+<tr>
+<td>Monitor Backup Reports</td>
+<td>Regularly review backup reports and logs for any errors or failures during the backup process. This can help identify issues early before they become critical problems.</td>
+</tr>
+<tr>
+<td>Check for Data Consistency</td>
+<td>Compare the original data with the backed-up data to ensure consistency. This can be done by checking file sizes, using checksums, or employing other data validation techniques. You can use <a href="https://docs.percona.com/percona-toolkit/latest/pt-table-checksum.html">pt-table-checksum</a> from Percona Toolkit.</td>
+</tr>
+<tr>
+<td>Simulate Disaster Scenarios</td>
+<td>Conducting a simulated disaster recovery exercise can help determine how well your backup system will perform under stress and identify any gaps in your recovery plan.</td>
+</tr>
+<tr>
+<td>Audit Backup Procedures</td>
+<td>Regular audits of the backup procedures can ensure that the backups are being performed in accordance with the established policies and that the backup system is functioning as expected.</td>
+</tr>
+<tr>
+<td>Validate Backup Configuration</td>
+<td>Ensure that the backup configuration is correct and that all necessary data is being backed up. This includes checking backup schedules, retention policies, and the scope of the data backed up.</td>
+</tr>
+<tr>
+<td>Verify Security Measures</td>
+<td>Confirm that the backup data is secure and that encryption and other security measures are functioning correctly to protect against unauthorized access.</td>
+</tr>
+<tr>
+<td>Evaluate Recovery Time Objectives</td>
+<td>Measure how long it takes to restore data from backups and compare this with your recovery time objectives to ensure they align with your business requirements.</td>
+</tr>
+<tr>
+<td>Assess Backup Media Reliability</td>
+<td>Regularly check the physical and logical condition of the backup media, whether it&rsquo;s tape, disk, or cloud storage, to ensure it&rsquo;s in good working order.</td>
+</tr>
+<tr>
+<td>Conduct Incremental Backup Tests</td>
+<td>Test the restoration of incremental backups to ensure that they work in conjunction with full backups and that the data can be restored to a specific point in time.</td>
+</tr>
+<tr>
+<td>Review Backup Software Updates</td>
+<td>Keep the backup software updated and test after updates to ensure new versions or patches do not introduce issues with the backup or restoration processes.</td>
+</tr>
+<tr>
+<td>Check for Compatibility Issues</td>
+<td>Ensure that the backup system is compatible with all the software and data formats used in your organization to avoid restoration issues.</td>
+</tr>
+<tr>
+<td>Document Test Results</td>
+<td>Keep detailed records of all backup tests, including the scope, date, issues encountered, and resolutions. This documentation is invaluable for troubleshooting and improving the backup process.</td>
+</tr>
+</tbody>
+</table>
+<p>By implementing these methods, you can be confident that your backup system protects your data and that you can recover your data when necessary. Regular testing and monitoring are key to maintaining an effective backup strategy and ensuring business continuity.</p>
+<h3 id="backup-strategy-common-challenges">Common challenges<a class="headerlink" href="#backup-strategy-common-challenges" title="Permanent link">&para;</a></h3>
+<p>Common backup challenges often include issues such as damaged backups, missing or failed backups, maintaining legacy systems, adhering to strict privacy and security regulations, and managing the costs associated with data backup. To overcome these challenges, organizations can adopt several strategies.</p>
+<p>Implementing a modern, reliable backup solution that includes automated data consistency checking can help protect against damaged backups. Regular recovery tests can ensure that data is recoverable and not corrupt. For missing or failed backups, it&rsquo;s essential to have a robust monitoring system that alerts IT staff to any issues with the backup process, allowing for immediate action to rectify problems before they escalate.</p>
+<p>Maintaining legacy systems can be addressed by gradually phasing out older technology and replacing it with more current, supported solutions. Adhering to privacy and security regulations requires a thorough understanding of the laws and standards that apply to an organization&rsquo;s industry and geography. Implementing encryption and access controls can help ensure that backups are secure and compliant. Finally, managing the costs of data backup involves careful planning and budgeting, including the total cost of ownership of backup solutions.</p>
+<p>In addition to these strategies, follow best practices such as the 3-2-1 backup rule (three copies of data on two different media, with one copy stored offsite), regular testing and validation of backups, clear documentation of backup procedures, and continuous training for staff involved in the backup process.</p>
+<h2 id="backup-strategy-disaster-recovery-plan">Disaster recovery plan<a class="headerlink" href="#backup-strategy-disaster-recovery-plan" title="Permanent link">&para;</a></h2>
+<p>A disaster recovery plan (DRP) is a structured approach with detailed instructions for responding to unplanned incidents such as natural disasters, power outages, cyber-attacks, and other disruptive events.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Introduction</td>
+<td>This section outlines the purpose of the plan, its scope, and the types of disasters it covers. It also includes the plan&rsquo;s objectives, such as minimizing downtime and data loss.</td>
+</tr>
+<tr>
+<td>Roles and Responsibilities</td>
+<td>This part defines the disaster recovery team&rsquo;s specific roles. It lists the contact information for each team member and outlines the chain of command.</td>
+</tr>
+<tr>
+<td>Incident Response</td>
+<td>This section provides the steps to detect, report, and assess damage caused by a disaster. It includes procedures for immediate response to limit the impact on operations.</td>
+</tr>
+<tr>
+<td>Plan Activation</td>
+<td>Here, the criteria for launching the disaster recovery plan are detailed. It specifies who has the authority to activate the plan and under what circumstances.</td>
+</tr>
+<tr>
+<td>Communication Plan</td>
+<td>This part details how communication should be handled during a disaster, including internal communication with employees and external communication with customers, suppliers, and the media.</td>
+</tr>
+<tr>
+<td>Recovery Strategies</td>
+<td>This section outlines the strategies for restoring hardware, software, and data that are critical to resuming business operations. It includes prioritized actions for recovery and the resources required.</td>
+</tr>
+<tr>
+<td>Data Backup Procedures</td>
+<td>Detailed instructions for restoring data from backups are provided here. It includes the locations of backups, the types of backups (full, incremental), and the backup schedule.</td>
+</tr>
+<tr>
+<td>Site Relocation</td>
+<td>If the primary business location is compromised, this part of the plan details the process for moving operations to an alternate site.</td>
+</tr>
+<tr>
+<td>Plan Testing and Maintenance</td>
+<td>This section describes the schedule for regular testing of the DRP to ensure its effectiveness. It also outlines the process for updating the plan as the business and technology environment changes.</td>
+</tr>
+<tr>
+<td>Appendices</td>
+<td>The appendices may include site maps, network diagrams, floor plans, and any other documentation that supports disaster recovery efforts.</td>
+</tr>
+</tbody>
+</table>
+<p>A DRP should be tailored to the specific needs of the organization and should be reviewed and tested regularly to ensure it remains effective and up-to-date.</p></section><section class="print-page" id="example-full-incr" heading-number="5.7"><h1 id="example-full-incr-backup-example">Backup example<a class="headerlink" href="#example-full-incr-backup-example" title="Permanent link">&para;</a></h1>
+<p>This example demonstrates how to set up daily full backups and hourly incremental backups using Percona XtraBackup 8.4 with a MySQL 8.4-compatible database server.</p>
+<h2 id="example-full-incr-assumptions">Assumptions<a class="headerlink" href="#example-full-incr-assumptions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Percona XtraBackup 8.4 is installed on your system.</li>
+<li>A MySQL 8.4-compatible database server (for example, Percona Server for MySQL 8.4) is running.</li>
+<li>You have created dedicated directories for storing backups and the backup user can write to them:</li>
+<li><code>/backups/mysql/full</code> — for daily full backups</li>
+<li><code>/backups/mysql/incr</code> — for hourly incremental backups</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Credentials and security</p>
+<p>Using <code>--password</code> on the command line exposes the password in process lists (for example, <code>ps</code>). For production, use a <a href="#configure-xtrabackup">configuration file</a> or a login path (for example, <code>--login-path</code>) instead of passing the password on the command line.</p>
+</div>
+<h2 id="example-full-incr-daily-full-backup-script">Daily full backup script<a class="headerlink" href="#example-full-incr-daily-full-backup-script" title="Permanent link">&para;</a></h2>
+<p>The following script defines the server details such as hostname, username, password, data directory, and backup directory. Replace these with your actual values. The script:</p>
+<ul>
+<li>Defines the server credentials</li>
+<li>Generates a timestamp with the <code>date</code> command for the full backup filename</li>
+<li>Uses <code>xtrabackup</code> with the <code>--backup</code> option for a full backup</li>
+<li>Specifies the directory to store the backup with <code>--target-dir</code></li>
+<li>Uses <code>--datadir</code> to point to the location of your MySQL data files</li>
+<li>Provides the credentials with <code>--user</code> and <code>--password</code> to access the database server</li>
+<li>Creates the target directory if it does not exist</li>
+<li>Runs the backup and reports success or failure based on the exit code</li>
+</ul>
+<p>The script does not verify that the backup completed successfully; consider checking the exit code of <code>xtrabackup</code> and only then echoing success or writing to logs.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Set server details (replace with your actual values)</span>
+<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">&quot;your_server_hostname&quot;</span>
+<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">&quot;your_db_username&quot;</span>
+<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_db_password&quot;</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;/var/lib/mysql&quot;</span><span class="w">          </span><span class="c1"># Replace with your data directory path</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/full&quot;</span>
+
+<span class="c1"># Get current date for filename</span>
+<span class="nv">TODAY</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
+<span class="nv">FULL_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Ensure target directory exists</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">FULL_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Run xtrabackup with full backup command</span>
+<span class="k">if</span><span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">FULL_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--datadir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DATA_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--password<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Daily full backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Daily full backup FAILED at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+</code></pre></div>
+<h2 id="example-full-incr-running-the-daily-script">Running the daily script<a class="headerlink" href="#example-full-incr-running-the-daily-script" title="Permanent link">&para;</a></h2>
+<p>You can schedule this script to run automatically using cron. For example, to run it every day at midnight (00:00), add this line to your crontab:</p>
+<div class="highlight"><pre><span></span><code><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/path/to/daily_full_backup.sh
+</code></pre></div>
+<h2 id="example-full-incr-hourly-incremental-backup-script">Hourly incremental backup script<a class="headerlink" href="#example-full-incr-hourly-incremental-backup-script" title="Permanent link">&para;</a></h2>
+<p>This script uses the same server details as the daily script. It retrieves the current date and hour for the incremental backup filename. The core command uses <code>xtrabackup</code> with the <code>--backup</code> and <code>--incremental</code> options for an incremental backup. <code>--target-dir</code> specifies the directory to store the incremental backup. <code>--incremental-basedir</code> must point to the base directory of a completed full or incremental backup. This example uses the <strong>most recent</strong> full backup as the base: <code>ls -t</code> lists full backups by modification time (newest first), and <code>head -n 1</code> selects that newest directory. The script checks that the base directory exists before running and reports success or failure based on the exit code.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Set server details (same as daily script)</span>
+<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">&quot;your_server_hostname&quot;</span>
+<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">&quot;your_db_username&quot;</span>
+<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_db_password&quot;</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;/var/lib/mysql&quot;</span><span class="w">          </span><span class="c1"># Replace with your data directory path</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/incr&quot;</span>
+
+<span class="c1"># Get current date and hour for filename</span>
+<span class="nv">TODAY</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
+<span class="nv">HOUR</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%H<span class="k">)</span><span class="w">                  </span><span class="c1"># Get current hour (00-23)</span>
+<span class="nv">INCR_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">HOUR</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Set the base directory to the most recent full backup (newest first: ls -t, then head -n 1)</span>
+<span class="nv">LATEST_FULL</span><span class="o">=</span><span class="k">$(</span>ls<span class="w"> </span>-t<span class="w"> </span>/backups/mysql/full<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LATEST_FULL</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;No full backup found; cannot take incremental backup&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+<span class="nv">BASE_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/full/</span><span class="si">${</span><span class="nv">LATEST_FULL</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Ensure target directory exists</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Run xtrabackup with incremental backup command</span>
+<span class="k">if</span><span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--incremental<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--incremental-basedir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--password<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hourly incremental backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hourly incremental backup FAILED at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Incremental base directory</p>
+<p>For a chain of incremental backups, you can set the base to the most recent incremental backup directory instead of the full backup, so each incremental is based on the previous one. The example above bases each hourly backup on the latest full backup for simplicity.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Schedule so the full backup completes before incrementals</p>
+<p>Each incremental must be based on a <strong>completed</strong> full or incremental backup. If the daily full runs at midnight and can take more than an hour, the 01:00 incremental might still see &ldquo;latest full&rdquo; as yesterday&rsquo;s backup, and the 02:00 incremental might see today&rsquo;s. That produces two different chains. Ensure the full backup finishes before the first incremental that depends on it: for example, run the full at 00:00 and start incrementals at 02:00, or use a wrapper that runs the first incremental only after the full has completed.</p>
+</div>
+<h2 id="example-full-incr-running-the-hourly-script">Running the hourly script<a class="headerlink" href="#example-full-incr-running-the-hourly-script" title="Permanent link">&para;</a></h2>
+<p>Schedule this script to run every hour using cron:</p>
+<div class="highlight"><pre><span></span><code><span class="m">0</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/path/to/hourly_incremental_backup.sh
+</code></pre></div>
+<h2 id="example-full-incr-restore-chain">Restore chain<a class="headerlink" href="#example-full-incr-restore-chain" title="Permanent link">&para;</a></h2>
+<p>To restore from a full backup and its incrementals you must:</p>
+<ol>
+<li><strong>Prepare the full backup</strong> once (apply redo only, no incremental yet).</li>
+<li><strong>Apply each incremental in order</strong> (oldest to newest) to the same target directory.</li>
+<li><strong>Prepare again</strong> (apply redo and undo) so the backup is consistent.</li>
+</ol>
+<p>All incrementals that you apply must form a single chain from one full backup: each incremental is based on the previous one or on the full. Do not mix incrementals from different full backups in one restore. For step-by-step commands, see <a href="#prepare-full-backup">Prepare a full backup</a>, <a href="#prepare-incremental-backup">Prepare an incremental backup</a>, and <a href="#restore-a-backup">Restore full and incremental backups</a>.</p>
+<h2 id="example-full-incr-next-steps">Next steps<a class="headerlink" href="#example-full-incr-next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#prepare-full-backup">Prepare a full backup</a> and <a href="#prepare-incremental-backup">prepare an incremental backup</a> before restore.</li>
+<li><a href="#restore-a-backup">Restore full and incremental backups</a> when you need to recover data.</li>
+</ul></section><section class="print-page" id="generated-files" heading-number="5.8"><h1 id="generated-files-xtrabackup-backup-files">XtraBackup backup files<a class="headerlink" href="#generated-files-xtrabackup-backup-files" title="Permanent link">&para;</a></h1>
 <p>This document provides a guide to the files and directory structure generated by the Xtrabackup tool. This information is essential for system administrators and database professionals who need to understand how to manage and restore backups.</p>
 <h2 id="generated-files-root-backup-directory-files">Root backup directory files<a class="headerlink" href="#generated-files-root-backup-directory-files" title="Permanent link">&para;</a></h2>
 <p>After a successful backup, the following files will be found in the directory specified by the <code>--target-dir</code> option. These files contain critical metadata used for the restoration process.</p>
@@ -15969,7 +16644,15 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 
 .print-site-enumerate-headings #how-xtrabackup-works > h1:before { content: '5.3 ' }
 
-.print-site-enumerate-headings #generated-files > h1:before { content: '5.4 ' }
+.print-site-enumerate-headings #differences-logical-backup > h1:before { content: '5.4 ' }
+
+.print-site-enumerate-headings #backup-overview > h1:before { content: '5.5 ' }
+
+.print-site-enumerate-headings #backup-strategy > h1:before { content: '5.6 ' }
+
+.print-site-enumerate-headings #example-full-incr > h1:before { content: '5.7 ' }
+
+.print-site-enumerate-headings #generated-files > h1:before { content: '5.8 ' }
 
 .print-site-enumerate-headings #section-6 > h1:before { content: '6 ' }
 .print-site-enumerate-headings #section-6-1 > h1:before { content: '6.1 ' }

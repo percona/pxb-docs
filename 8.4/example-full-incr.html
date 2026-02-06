@@ -9,19 +9,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Environment variable files (.env) are a common way to manage configuration settings and sensitive credentials. Here’s how to use them with xbcloud:">
+        <meta name="description" content="This example demonstrates how to set up daily full backups and hourly incremental backups using Percona XtraBackup 8.4 with a MySQL 8.4-compatible database server.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/xbcloud-env.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/example-full-incr.html">
       
       
-        <link rel="prev" href="xbcloud-binary-overview.html">
+        <link rel="prev" href="backup-strategy.html">
       
       
-        <link rel="next" href="xbcloud-options.html">
+        <link rel="next" href="generated-files.html">
       
       
         
@@ -32,7 +32,7 @@
     
     
       
-        <title>Using environment variable files (.env) with xbcloud - Percona XtraBackup</title>
+        <title>Backup example - Percona XtraBackup</title>
       
     
     
@@ -100,7 +100,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Using environment variable files (.env) with xbcloud" />
+                 <meta property="og:title" content="Percona XtraBackup - Backup example" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.4/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -123,7 +123,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-environment-variable-files-env-with-xbcloud" class="md-skip">
+        <a href="#backup-example" class="md-skip">
           Skip to content
         </a>
       
@@ -220,7 +220,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Using environment variable files (.env) with xbcloud
+              Backup example
             
           </span>
         </div>
@@ -886,8 +886,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -911,11 +913,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -936,7 +938,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1119,10 +1121,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="example-full-incr.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup example
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="example-full-incr.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1138,6 +1167,105 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daily-full-backup-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Daily full backup script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-daily-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the daily script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hourly-incremental-backup-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hourly incremental backup script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-hourly-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the hourly script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restore-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restore chain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1894,10 +2022,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1915,11 +2041,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1940,7 +2066,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2394,10 +2520,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -2413,11 +2537,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
         
           
           <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
@@ -2438,7 +2562,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2481,37 +2605,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Using environment variable files (.env) with xbcloud
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="xbcloud-env.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="xbcloud-env.html" class="md-nav__link">
         
   
   
@@ -2527,94 +2624,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-env-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Creating a .env file
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#loading-environment-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Loading environment variables
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#security-best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Security best practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#complete-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Complete example
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting-env-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Troubleshooting .env files
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration-with-scripts-and-automation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Integration with scripts and automation
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5748,7 +5757,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                       <div data-banner="data-banner" class="edit-contrib-banner">
   <div class="banner-content">
     <!-- Edit link centered -->
-    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/xbcloud-env.md" title="Edit this page on GitHub" class="edit-page-link">
+    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/example-full-incr.md" title="Edit this page on GitHub" class="edit-page-link">
       <span class="edit-page-icon">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
@@ -5800,10 +5809,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-a-env-file" class="md-nav__link">
+  <a href="#assumptions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating a .env file
+        Assumptions
       
     </span>
   </a>
@@ -5811,10 +5820,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#loading-environment-variables" class="md-nav__link">
+  <a href="#daily-full-backup-script" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Loading environment variables
+        Daily full backup script
       
     </span>
   </a>
@@ -5822,10 +5831,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-best-practices" class="md-nav__link">
+  <a href="#running-the-daily-script" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security best practices
+        Running the daily script
       
     </span>
   </a>
@@ -5833,10 +5842,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#complete-example" class="md-nav__link">
+  <a href="#hourly-incremental-backup-script" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Complete example
+        Hourly incremental backup script
       
     </span>
   </a>
@@ -5844,10 +5853,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting-env-files" class="md-nav__link">
+  <a href="#running-the-hourly-script" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Troubleshooting .env files
+        Running the hourly script
       
     </span>
   </a>
@@ -5855,10 +5864,21 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-with-scripts-and-automation" class="md-nav__link">
+  <a href="#restore-chain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Integration with scripts and automation
+        Restore chain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
       
     </span>
   </a>
@@ -5888,200 +5908,135 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/xbcloud-env.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/example-full-incr.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="using-environment-variable-files-env-with-xbcloud">Using environment variable files (.env) with xbcloud<a class="headerlink" href="#using-environment-variable-files-env-with-xbcloud" title="Permanent link">&para;</a></h1>
-<p>Environment variable files (<code>.env</code>) are a common way to manage configuration settings and sensitive credentials. Here&rsquo;s how to use them with xbcloud:</p>
-<h2 id="creating-a-env-file">Creating a .env file<a class="headerlink" href="#creating-a-env-file" title="Permanent link">&para;</a></h2>
-<p>Create a <code>.env</code> file in your project directory or a secure location:</p>
-<h3 id="s3-example">S3 example<a class="headerlink" href="#s3-example" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Example .env file for S3</span>
-<span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>AKIAIOSFODNN7EXAMPLE
-<span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-<span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>us-west-2
-<span class="nv">AWS_ENDPOINT</span><span class="o">=</span>https://s3.us-west-2.amazonaws.com
-</code></pre></div>
-<h3 id="swift-example">Swift example<a class="headerlink" href="#swift-example" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Example .env file for Swift</span>
-<span class="nv">OS_AUTH_URL</span><span class="o">=</span>http://192.168.1.100:5000/v3
-<span class="nv">OS_USERNAME</span><span class="o">=</span>admin
-<span class="nv">OS_PASSWORD</span><span class="o">=</span>secret
-<span class="nv">OS_PROJECT_DOMAIN</span><span class="o">=</span>default
-<span class="nv">OS_USER_DOMAIN</span><span class="o">=</span>default
-</code></pre></div>
-<h3 id="azure-example">Azure example<a class="headerlink" href="#azure-example" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Example .env file for Azure</span>
-<span class="nv">AZURE_STORAGE_ACCOUNT</span><span class="o">=</span>mystorageaccount
-<span class="nv">AZURE_CONTAINER_NAME</span><span class="o">=</span>backups
-<span class="nv">AZURE_ACCESS_KEY</span><span class="o">=</span>your-access-key-here
-</code></pre></div>
-<h2 id="loading-environment-variables">Loading environment variables<a class="headerlink" href="#loading-environment-variables" title="Permanent link">&para;</a></h2>
-<p>Environment variables from <code>.env</code> files are not automatically loaded by the shell. You need to explicitly load them before running xbcloud. Here are three methods to accomplish this:</p>
-<h3 id="method-1-using-source-or-command">Method 1: using <code>source</code> or <code>.</code> command<a class="headerlink" href="#method-1-using-source-or-command" title="Permanent link">&para;</a></h3>
-<p>The <code>source</code> command (or its shorthand <code>.</code>) reads and executes commands from a file in the current shell environment. This makes all variables from the <code>.env</code> file available to subsequent commands in the same shell session.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Load the environment variables</span>
-<span class="nb">source</span><span class="w"> </span>.env
-<span class="c1"># or</span>
-.<span class="w"> </span>.env
-
-<span class="c1"># Now run xbcloud</span>
-xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
-</code></pre></div>
-<h3 id="method-2-using-env-command">Method 2: using <code>env</code> command<a class="headerlink" href="#method-2-using-env-command" title="Permanent link">&para;</a></h3>
-<p>The <code>env</code> command runs another program with a modified environment. Combined with <code>cat .env | xargs</code>, it reads the <code>.env</code> file and passes the variables as arguments to <code>env</code>, which then sets them for the command that follows.</p>
-<p>You can run xbcloud with variables loaded from a .env file in a single command:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Run xbcloud with environment variables from file</span>
-env<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>.env<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span><span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
-</code></pre></div>
-<p>This approach is convenient but fragile:</p>
+<h1 id="backup-example">Backup example<a class="headerlink" href="#backup-example" title="Permanent link">&para;</a></h1>
+<p>This example demonstrates how to set up daily full backups and hourly incremental backups using Percona XtraBackup 8.4 with a MySQL 8.4-compatible database server.</p>
+<h2 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p>This method can break if values contain spaces, quotes, or special shell characters (!, &amp;, $, etc.).</p>
-</li>
-<li>
-<p>Quoting inside .env files doesn&rsquo;t always survive the <code>xargs</code> parsing.</p>
-</li>
+<li>Percona XtraBackup 8.4 is installed on your system.</li>
+<li>A MySQL 8.4-compatible database server (for example, Percona Server for MySQL 8.4) is running.</li>
+<li>You have created dedicated directories for storing backups and the backup user can write to them:</li>
+<li><code>/backups/mysql/full</code> — for daily full backups</li>
+<li><code>/backups/mysql/incr</code> — for hourly incremental backups</li>
 </ul>
-<p>For sensitive credentials or values with special characters, Method 1 or Method 3 is safer.</p>
-<h3 id="method-3-using-export-with-a-script">Method 3: using <code>export</code> with a script<a class="headerlink" href="#method-3-using-export-with-a-script" title="Permanent link">&para;</a></h3>
-<p>This method creates a shell script that loads environment variables and runs the backup command. The <code>set -a</code> command automatically exports all variables that are set, making them available to child processes. This is useful for automation because it bundles variable loading and the backup command together.</p>
-<p>Create a script that loads the environment variables:</p>
+<div class="admonition warning">
+<p class="admonition-title">Credentials and security</p>
+<p>Using <code>--password</code> on the command line exposes the password in process lists (for example, <code>ps</code>). For production, use a <a href="configure-xtrabackup.html">configuration file</a> or a login path (for example, <code>--login-path</code>) instead of passing the password on the command line.</p>
+</div>
+<h2 id="daily-full-backup-script">Daily full backup script<a class="headerlink" href="#daily-full-backup-script" title="Permanent link">&para;</a></h2>
+<p>The following script defines the server details such as hostname, username, password, data directory, and backup directory. Replace these with your actual values. The script:</p>
+<ul>
+<li>Defines the server credentials</li>
+<li>Generates a timestamp with the <code>date</code> command for the full backup filename</li>
+<li>Uses <code>xtrabackup</code> with the <code>--backup</code> option for a full backup</li>
+<li>Specifies the directory to store the backup with <code>--target-dir</code></li>
+<li>Uses <code>--datadir</code> to point to the location of your MySQL data files</li>
+<li>Provides the credentials with <code>--user</code> and <code>--password</code> to access the database server</li>
+<li>Creates the target directory if it does not exist</li>
+<li>Runs the backup and reports success or failure based on the exit code</li>
+</ul>
+<p>The script does not verify that the backup completed successfully; consider checking the exit code of <code>xtrabackup</code> and only then echoing success or writing to logs.</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="c1"># load-env.sh</span>
+<span class="c1"># Set server details (replace with your actual values)</span>
+<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">&quot;your_server_hostname&quot;</span>
+<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">&quot;your_db_username&quot;</span>
+<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_db_password&quot;</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;/var/lib/mysql&quot;</span><span class="w">          </span><span class="c1"># Replace with your data directory path</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/full&quot;</span>
 
-<span class="nb">set</span><span class="w"> </span>-a<span class="w">  </span><span class="c1"># automatically export all variables</span>
-<span class="nb">source</span><span class="w"> </span>.env
-<span class="nb">set</span><span class="w"> </span>+a<span class="w">  </span><span class="c1"># stop automatically exporting</span>
+<span class="c1"># Get current date for filename</span>
+<span class="nv">TODAY</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
+<span class="nv">FULL_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">&quot;</span>
 
-<span class="c1"># Run your backup command</span>
-xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
-</code></pre></div>
-<p>Make it executable and run:
-<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>load-env.sh
-./load-env.sh
-</code></pre></div></p>
-<h2 id="security-best-practices">Security best practices<a class="headerlink" href="#security-best-practices" title="Permanent link">&para;</a></h2>
-<ul>
-<li>
-<p>File permissions: Set restrictive permissions on your <code>.env</code> file:
-  <div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>.env<span class="w">  </span><span class="c1"># Only owner can read/write</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Gitignore: Add <code>.env</code> to your <code>.gitignore</code> file to prevent committing sensitive data:
-  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;.env&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
-</code></pre></div></p>
-</li>
-<li>
-<p>Template file: Create a <code>.env.example</code> file with placeholder values:
-  <div class="highlight"><pre><span></span><code><span class="c1"># .env.example</span>
-<span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>your-access-key-here
-<span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>your-secret-key-here
-<span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>us-west-2
-</code></pre></div></p>
-</li>
-<li>
-<p>Location: Store <code>.env</code> files in a secure location, not in your project root if possible:
-  <div class="highlight"><pre><span></span><code><span class="c1"># Store in a secure directory</span>
-/etc/xtrabackup/.env
-/home/backup/.env
-</code></pre></div></p>
-</li>
-</ul>
-<h2 id="complete-example">Complete example<a class="headerlink" href="#complete-example" title="Permanent link">&para;</a></h2>
-<p>Here&rsquo;s a complete example of using a <code>.env</code> file with xbcloud. This example demonstrates the full workflow from creating the environment file to running a backup:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 1. Create the .env file</span>
-cat<span class="w"> </span>&gt;<span class="w"> </span>/secure/path/.env<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
-<span class="s">AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE</span>
-<span class="s">AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</span>
-<span class="s">AWS_DEFAULT_REGION=us-west-2</span>
-<span class="s">AWS_ENDPOINT=https://s3.us-west-2.amazonaws.com</span>
-<span class="s">EOF</span>
+<span class="c1"># Ensure target directory exists</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">FULL_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span>
 
-<span class="c1"># 2. Set secure permissions</span>
-chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/secure/path/.env
-
-<span class="c1"># 3. Load environment variables and run backup</span>
-<span class="nb">source</span><span class="w"> </span>/secure/path/.env
-xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span>
-</code></pre></div>
-<p>This example shows the complete process:</p>
-<ul>
-<li>
-<p>Step 1: The <code>cat &gt; /secure/path/.env &lt;&lt; EOF</code> command creates a new <code>.env</code> file using a here document. The <code>&lt;&lt; EOF</code> syntax allows you to write multiple lines until it encounters the <code>EOF</code> marker, making it easy to create files with multiple environment variables.</p>
-</li>
-<li>
-<p>Step 2: The <code>chmod 600</code> command sets file permissions so that only the owner can read and write the file (no access for group or others), which is essential for protecting sensitive credentials.</p>
-</li>
-<li>
-<p>Step 3: The <code>source</code> command loads the environment variables from the <code>.env</code> file into the current shell session, then the backup pipeline runs:</p>
-</li>
-<li>
-<p><code>xtrabackup --backup --stream=xbstream --target-dir=/tmp/backup</code> creates a backup and streams it in xbstream format</p>
-</li>
-<li>
-<p>The pipe (<code>|</code>) passes the streamed backup data to the next command</p>
-</li>
-<li>
-<p><code>xbcloud put s3://my-backup-bucket/backup-$(date +%Y%m%d-%H%M%S)</code> uploads the backup to the S3 bucket with a timestamped name</p>
-</li>
-</ul>
-<h2 id="troubleshooting-env-files">Troubleshooting .env files<a class="headerlink" href="#troubleshooting-env-files" title="Permanent link">&para;</a></h2>
-<ul>
-<li>
-<p>Check if variables are loaded:
-  <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>.env
-<span class="nb">echo</span><span class="w"> </span><span class="nv">$AWS_ACCESS_KEY_ID</span><span class="w">  </span><span class="c1"># Should show your access key</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Verify file format: Ensure no spaces around the <code>=</code> sign:
-  <div class="highlight"><pre><span></span><code><span class="c1"># Correct</span>
-<span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>value
-
-<span class="c1"># Incorrect (will not work)</span>
-<span class="nv">AWS_ACCESS_KEY_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>value
-</code></pre></div></p>
-</li>
-<li>
-<p>Handle special characters: Quote values with special characters:
-  <div class="highlight"><pre><span></span><code><span class="nv">OS_PASSWORD</span><span class="o">=</span><span class="s2">&quot;my-password-with-special-chars!&quot;</span>
-</code></pre></div></p>
-</li>
-<li>
-<p>Comments: Use <code>#</code> for comments in <code>.env</code> files:
-  <div class="highlight"><pre><span></span><code><span class="c1"># This is a comment</span>
-<span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>your-key-here
-</code></pre></div></p>
-</li>
-</ul>
-<h2 id="integration-with-scripts-and-automation">Integration with scripts and automation<a class="headerlink" href="#integration-with-scripts-and-automation" title="Permanent link">&para;</a></h2>
-<p>For automated backups, you can create a wrapper script:</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="c1"># backup-script.sh</span>
-
-<span class="c1"># Load environment variables</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;/secure/path/.env&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="nb">source</span><span class="w"> </span>/secure/path/.env
+<span class="c1"># Run xtrabackup with full backup command</span>
+<span class="k">if</span><span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">FULL_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--datadir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DATA_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--password<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Daily full backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
 <span class="k">else</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Error: .env file not found&quot;</span>
-<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Daily full backup FAILED at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="k">fi</span>
-
-<span class="c1"># Run backup</span>
-xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span>
-
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Backup completed successfully&quot;</span>
 </code></pre></div>
-<p>This approach provides a secure, maintainable way to manage xbcloud credentials and configuration without exposing sensitive information in command lines or scripts.</p>
+<h2 id="running-the-daily-script">Running the daily script<a class="headerlink" href="#running-the-daily-script" title="Permanent link">&para;</a></h2>
+<p>You can schedule this script to run automatically using cron. For example, to run it every day at midnight (00:00), add this line to your crontab:</p>
+<div class="highlight"><pre><span></span><code><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/path/to/daily_full_backup.sh
+</code></pre></div>
+<h2 id="hourly-incremental-backup-script">Hourly incremental backup script<a class="headerlink" href="#hourly-incremental-backup-script" title="Permanent link">&para;</a></h2>
+<p>This script uses the same server details as the daily script. It retrieves the current date and hour for the incremental backup filename. The core command uses <code>xtrabackup</code> with the <code>--backup</code> and <code>--incremental</code> options for an incremental backup. <code>--target-dir</code> specifies the directory to store the incremental backup. <code>--incremental-basedir</code> must point to the base directory of a completed full or incremental backup. This example uses the <strong>most recent</strong> full backup as the base: <code>ls -t</code> lists full backups by modification time (newest first), and <code>head -n 1</code> selects that newest directory. The script checks that the base directory exists before running and reports success or failure based on the exit code.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Set server details (same as daily script)</span>
+<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">&quot;your_server_hostname&quot;</span>
+<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">&quot;your_db_username&quot;</span>
+<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_db_password&quot;</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;/var/lib/mysql&quot;</span><span class="w">          </span><span class="c1"># Replace with your data directory path</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/incr&quot;</span>
+
+<span class="c1"># Get current date and hour for filename</span>
+<span class="nv">TODAY</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
+<span class="nv">HOUR</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%H<span class="k">)</span><span class="w">                  </span><span class="c1"># Get current hour (00-23)</span>
+<span class="nv">INCR_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">HOUR</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Set the base directory to the most recent full backup (newest first: ls -t, then head -n 1)</span>
+<span class="nv">LATEST_FULL</span><span class="o">=</span><span class="k">$(</span>ls<span class="w"> </span>-t<span class="w"> </span>/backups/mysql/full<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LATEST_FULL</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;No full backup found; cannot take incremental backup&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+<span class="nv">BASE_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/full/</span><span class="si">${</span><span class="nv">LATEST_FULL</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Ensure target directory exists</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Run xtrabackup with incremental backup command</span>
+<span class="k">if</span><span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--incremental<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--incremental-basedir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--password<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hourly incremental backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hourly incremental backup FAILED at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Incremental base directory</p>
+<p>For a chain of incremental backups, you can set the base to the most recent incremental backup directory instead of the full backup, so each incremental is based on the previous one. The example above bases each hourly backup on the latest full backup for simplicity.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Schedule so the full backup completes before incrementals</p>
+<p>Each incremental must be based on a <strong>completed</strong> full or incremental backup. If the daily full runs at midnight and can take more than an hour, the 01:00 incremental might still see &ldquo;latest full&rdquo; as yesterday&rsquo;s backup, and the 02:00 incremental might see today&rsquo;s. That produces two different chains. Ensure the full backup finishes before the first incremental that depends on it: for example, run the full at 00:00 and start incrementals at 02:00, or use a wrapper that runs the first incremental only after the full has completed.</p>
+</div>
+<h2 id="running-the-hourly-script">Running the hourly script<a class="headerlink" href="#running-the-hourly-script" title="Permanent link">&para;</a></h2>
+<p>Schedule this script to run every hour using cron:</p>
+<div class="highlight"><pre><span></span><code><span class="m">0</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/path/to/hourly_incremental_backup.sh
+</code></pre></div>
+<h2 id="restore-chain">Restore chain<a class="headerlink" href="#restore-chain" title="Permanent link">&para;</a></h2>
+<p>To restore from a full backup and its incrementals you must:</p>
+<ol>
+<li><strong>Prepare the full backup</strong> once (apply redo only, no incremental yet).</li>
+<li><strong>Apply each incremental in order</strong> (oldest to newest) to the same target directory.</li>
+<li><strong>Prepare again</strong> (apply redo and undo) so the backup is consistent.</li>
+</ol>
+<p>All incrementals that you apply must form a single chain from one full backup: each incremental is based on the previous one or on the full. Do not mix incrementals from different full backups in one restore. For step-by-step commands, see <a href="prepare-full-backup.html">Prepare a full backup</a>, <a href="prepare-incremental-backup.html">Prepare an incremental backup</a>, and <a href="restore-a-backup.html">Restore full and incremental backups</a>.</p>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="prepare-full-backup.html">Prepare a full backup</a> and <a href="prepare-incremental-backup.html">prepare an incremental backup</a> before restore.</li>
+<li><a href="restore-a-backup.html">Restore full and incremental backups</a> when you need to recover data.</li>
+</ul>
 
 
 
@@ -6104,7 +6059,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 5, 2026 11:14:40 UTC">February 5, 2026</span>
   </span>
 
     
@@ -6114,11 +6069,34 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 5, 2025 16:15:02 UTC">September 5, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 5, 2026 11:14:40 UTC">February 5, 2026</span>
   </span>
 
     
     
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
     
   </aside>
 
