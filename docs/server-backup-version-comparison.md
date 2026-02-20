@@ -7,7 +7,7 @@ XtraBackup version that is equal to your source server major version. This means
 
 !!! admonition "See also"
    
-    [How XtraBackup works](how-xtrabackup-works.md)
+    [How Percona XtraBackup works: what happens underneath](how-xtrabackup-works-explanation.md)
 
 The `--no-server-version-check` option performs the following test.
 Before the backup/prepare starts, XtraBackup compares the source server version to

@@ -42,7 +42,7 @@ Use physical backups with XtraBackup when you need fast, non-blocking backups an
 
 !!! admonition "See also"
 
-    [How Percona XtraBackup works](how-xtrabackup-works.md)
+    [How Percona XtraBackup works: what happens underneath](how-xtrabackup-works-explanation.md)
 
     [Backup process overview](backup-overview.md)
 
