@@ -33,7 +33,7 @@ In our example, the command has the following options:
 |---|---|
 | `--name`  |  Provides a name to the container. If you do not use this option, Docker adds a random name.  |
 | `--volumes-from` | Refers to Percona Server for MySQL and indicates that you intend to use the same data as the `psmysql` container.|
-| `it` | Interacts with the container and be a pseudo-terminal. |
+| `-it` | Interacts with the container and be a pseudo-terminal. |
 | `--user root` | Sets the user to root inside the Percona XtraBackup container. This option is required to access the MySQL data directory and run the xtrabackup command. |
 |`backup_84` |Indicates the directory inside the container where the backup files are stored. |
 | `-v` | Mounts a volume from the host machine to volumes in another container that is being run. In our example, the `-v` option mounts a volume from the `psmysql` container to the `backupvol` volume on the host machine.|
@@ -91,7 +91,7 @@ The command runs a Docker container `pxb` from the `percona/percona-xtrabackup:8
 
 The command then executes two steps: 
     
-* Runs `xtrabackup` with the `--backup` option to copy the data files from `/var/lib/mysql/` to `/backup_8034`
+* Runs `xtrabackup` with the `--backup` option to copy the data files from `/var/lib/mysql/` to `/backup_84`
     
 * Runs `xtrabackup` with the `--prepare` option to apply the log files and make the backup consistent and ready for restore
 
