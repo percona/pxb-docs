@@ -14209,6 +14209,45 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--data-dir<spa
                         <h1>Take a full backup<a class='headerlink' href='#section-9-1' title='Permanent link'></a>
                         </h1>
                     <section class="print-page" id="create-full-backup" heading-number="9.1.1"><h1 id="create-full-backup-create-a-full-backup">Create a full backup<a class="headerlink" href="#create-full-backup-create-a-full-backup" title="Permanent link">&para;</a></h1>
+<h2 id="create-full-backup-command-reference">Command reference<a class="headerlink" href="#create-full-backup-command-reference" title="Permanent link">&para;</a></h2>
+<p>Quick syntax for creating a full backup with common options:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>&lt;path&gt;<span class="w"> </span><span class="o">[</span>--user<span class="o">=</span>&lt;user&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--password<span class="o">=</span>&lt;password&gt;<span class="o">]</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--backup</code></td>
+<td>Yes</td>
+<td>Runs xtrabackup in backup mode.</td>
+</tr>
+<tr>
+<td><code>--target-dir=&lt;path&gt;</code></td>
+<td>Yes</td>
+<td>Directory where the backup is stored. Created if it does not exist.</td>
+</tr>
+<tr>
+<td><code>--user=&lt;user&gt;</code></td>
+<td>No</td>
+<td>MySQL user for connecting to the server (default: current OS user).</td>
+</tr>
+<tr>
+<td><code>--password=&lt;password&gt;</code></td>
+<td>No</td>
+<td>Password for the MySQL user. Omit to be prompted, or use a login file for security.</td>
+</tr>
+</tbody>
+</table>
+<p>Example with authentication:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span>--user<span class="o">=</span>backup<span class="w"> </span>--password<span class="o">=</span>secret
+</code></pre></div>
+<hr />
 <p>To create a backup, run xtrabackup with the <code>--backup</code>
 option. You also must specify the <code>--target-dir</code> option, which is where
 the backup is stored. If the InnoDB data or log files are not stored
@@ -14279,6 +14318,48 @@ drwx------  2 root root 4.0K Sep  6 10:19 world2
 <p>The backup can take a long time, depending on how large the database is. It is safe to cancel at any time, because xtrabackup does not modify the database.</p>
 <h2 id="create-full-backup-next-step">Next step<a class="headerlink" href="#create-full-backup-next-step" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="#prepare-full-backup">Prepare the backup</a></p></section><section class="print-page" id="prepare-full-backup" heading-number="9.1.2"><h1 id="prepare-full-backup-prepare-a-full-backup">Prepare a full backup<a class="headerlink" href="#prepare-full-backup-prepare-a-full-backup" title="Permanent link">&para;</a></h1>
+<h2 id="prepare-full-backup-command-reference">Command reference<a class="headerlink" href="#prepare-full-backup-command-reference" title="Permanent link">&para;</a></h2>
+<p>Quick syntax for preparing a full backup:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>&lt;path&gt;<span class="w"> </span><span class="o">[</span>--apply-log-only<span class="o">]</span><span class="w"> </span><span class="o">[</span>--parallel<span class="o">=</span>&lt;N&gt;<span class="o">]</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--prepare</code></td>
+<td>Yes</td>
+<td>Runs xtrabackup in prepare mode (applies redo/undo logs for a consistent snapshot).</td>
+</tr>
+<tr>
+<td><code>--target-dir=&lt;path&gt;</code></td>
+<td>Yes</td>
+<td>Directory containing the backup to prepare.</td>
+</tr>
+<tr>
+<td><code>--apply-log-only</code></td>
+<td>No</td>
+<td>Apply log only; do not roll back uncommitted transactions. Use when this backup will be the base for incremental backups.</td>
+</tr>
+<tr>
+<td><code>--parallel=&lt;N&gt;</code></td>
+<td>No</td>
+<td>Use N threads to speed up prepare (for example, <code>--parallel=4</code>).</td>
+</tr>
+</tbody>
+</table>
+<p>Example (full backup, then restore):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+</code></pre></div>
+<p>Example (base for incremental backups):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+</code></pre></div>
+<hr />
 <p>After creating a backup with the <code>--backup</code> option, you need to prepare the backup and then <a href="#restore-a-backup">restore</a> it. Data files are not point-in-time
 consistent until they are prepared, because they were copied at different times as the program ran, and they might have been changed while this was happening.</p>
 <p>If you try to start InnoDB with these data files, it will detect corruption and stop working to avoid running on damaged data. The <code>--prepare</code> step makes the files perfectly consistent at a single instant in time, so you can run InnoDB on them.</p>
@@ -15170,6 +15251,50 @@ backup) from the data dictionary in order to avoid future warnings or errors.</p
                         <h1>Restore a backup<a class='headerlink' href='#section-9-7' title='Permanent link'></a>
                         </h1>
                     <section class="print-page" id="restore-a-backup" heading-number="9.7.1"><h1 id="restore-a-backup-restore-full-incremental-and-compressed-backups">Restore full, incremental, and compressed backups<a class="headerlink" href="#restore-a-backup-restore-full-incremental-and-compressed-backups" title="Permanent link">&para;</a></h1>
+<h2 id="restore-a-backup-command-reference">Command reference<a class="headerlink" href="#restore-a-backup-command-reference" title="Permanent link">&para;</a></h2>
+<p>Quick syntax for restoring a prepared backup:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>&lt;path&gt;<span class="w"> </span><span class="o">[</span>--datadir<span class="o">=</span>&lt;path&gt;<span class="o">]</span>
+</code></pre></div>
+<p>Or to move files instead of copying (backup directory will be emptied):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>&lt;path&gt;<span class="w"> </span><span class="o">[</span>--datadir<span class="o">=</span>&lt;path&gt;<span class="o">]</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--copy-back</code></td>
+<td>Yes*</td>
+<td>Copies backup files from the backup directory to the datadir. Preserves the original backup.</td>
+</tr>
+<tr>
+<td><code>--move-back</code></td>
+<td>Yes*</td>
+<td>Moves backup files to the datadir. Removes files from the backup directory. Use one of <code>--copy-back</code> or <code>--move-back</code>.</td>
+</tr>
+<tr>
+<td><code>--target-dir=&lt;path&gt;</code></td>
+<td>Yes</td>
+<td>Directory containing the prepared backup to restore.</td>
+</tr>
+<tr>
+<td><code>--datadir=&lt;path&gt;</code></td>
+<td>No</td>
+<td>Destination directory for restored files. Defaults to the server datadir (for example, from <code>my.cnf</code>).</td>
+</tr>
+</tbody>
+</table>
+<p>Example (copy back to default datadir):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+</code></pre></div>
+<p>Example (copy back to a specific datadir):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql
+</code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Backup needs to be prepared before it can be restored.</p>
@@ -15188,12 +15313,12 @@ backup) from the data dictionary in order to avoid future warnings or errors.</p
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <p>If you don’t want to save your backup, you can use the <code>--move-back</code> option which will move the backed up data to the datadir.</p>
-<p>If you don’t want to use <code>--copy-back</code> and <code>--move-back</code> options, you can also use <strong>rsync</strong> or <strong>cp</strong> to restore the files.</p>
+<p>If you don’t want to use <code>--copy-back</code> and <code>--move-back</code> options, you can also use rsync or cp to restore the files.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The datadir must be empty before restoring the backup. Also, it’s important to note that MySQL server needs to be shut down before restore is performed. You cannot restore to a datadir of a running mysqld instance (except when importing a partial backup).</p>
 </div>
-<p>An example of the <strong>rsync</strong> command to restore the backup:</p>
+<p>An example of the rsync command to restore the backup:</p>
 <div class="highlight"><pre><span></span><code>rsync<span class="w"> </span>-avrP<span class="w"> </span>/data/backup/<span class="w"> </span>/var/lib/mysql/
 </code></pre></div>
 <p>You should check that the restored files have the correct ownership and permissions.</p>
@@ -15233,7 +15358,7 @@ The example demonstrates how to restore a backup on a single node and then boots
 <p class="admonition-title">Note</p>
 <p>Set <code>safe_to_bootstrap</code> to <code>1</code> only on the node that will be used to bootstrap a new cluster. All other nodes must have <code>safe_to_bootstrap</code> set to <code>0</code>.</p>
 </div>
-<p><strong>Bootstrap node (<code>safe_to_bootstrap: 1</code>):</strong></p>
+<p>Bootstrap node (<code>safe_to_bootstrap: 1</code>):</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;<span class="w"> </span>/var/lib/mysql/grastate.dat<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s"># GALERA saved state</span>
 <span class="s">version: 2.1</span>
@@ -15242,7 +15367,7 @@ The example demonstrates how to restore a backup on a single node and then boots
 <span class="s">safe_to_bootstrap: 1</span>
 <span class="s">EOF</span>
 </code></pre></div>
-<p><strong>All other nodes (<code>safe_to_bootstrap: 0</code>):</strong></p>
+<p>All other nodes (<code>safe_to_bootstrap: 0</code>):</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;<span class="w"> </span>/var/lib/mysql/grastate.dat<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s"># GALERA saved state</span>
 <span class="s">version: 2.1</span>

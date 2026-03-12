@@ -9,8 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="After creating a backup with the --backup option, you need to prepare the backup and then restore it. Data files are not point-in-time
-consistent until they are prepared, because they were copied at different times as the program ran, and they might have been changed while this was happening.">
+        <meta name="description" content="Documentation">
       
       
         <meta name="author" content="Percona LLC">
@@ -4013,6 +4012,17 @@ consistent until they are prepared, because they were copied at different times 
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#command-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-step" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5746,6 +5756,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#command-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-step" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5787,6 +5808,48 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
 <h1 id="prepare-a-full-backup">Prepare a full backup<a class="headerlink" href="#prepare-a-full-backup" title="Permanent link">&para;</a></h1>
+<h2 id="command-reference">Command reference<a class="headerlink" href="#command-reference" title="Permanent link">&para;</a></h2>
+<p>Quick syntax for preparing a full backup:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>&lt;path&gt;<span class="w"> </span><span class="o">[</span>--apply-log-only<span class="o">]</span><span class="w"> </span><span class="o">[</span>--parallel<span class="o">=</span>&lt;N&gt;<span class="o">]</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--prepare</code></td>
+<td>Yes</td>
+<td>Runs xtrabackup in prepare mode (applies redo/undo logs for a consistent snapshot).</td>
+</tr>
+<tr>
+<td><code>--target-dir=&lt;path&gt;</code></td>
+<td>Yes</td>
+<td>Directory containing the backup to prepare.</td>
+</tr>
+<tr>
+<td><code>--apply-log-only</code></td>
+<td>No</td>
+<td>Apply log only; do not roll back uncommitted transactions. Use when this backup will be the base for incremental backups.</td>
+</tr>
+<tr>
+<td><code>--parallel=&lt;N&gt;</code></td>
+<td>No</td>
+<td>Use N threads to speed up prepare (for example, <code>--parallel=4</code>).</td>
+</tr>
+</tbody>
+</table>
+<p>Example (full backup, then restore):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+</code></pre></div>
+<p>Example (base for incremental backups):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+</code></pre></div>
+<hr />
 <p>After creating a backup with the <code>--backup</code> option, you need to prepare the backup and then <a href="restore-a-backup.html">restore</a> it. Data files are not point-in-time
 consistent until they are prepared, because they were copied at different times as the program ran, and they might have been changed while this was happening.</p>
 <p>If you try to start InnoDB with these data files, it will detect corruption and stop working to avoid running on damaged data. The <code>--prepare</code> step makes the files perfectly consistent at a single instant in time, so you can run InnoDB on them.</p>
@@ -5840,7 +5903,7 @@ xtrabackup: notice: xtrabackup_logfile was already used to &#39;--prepare&#39;.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 12, 2026 10:11:03 UTC">March 12, 2026</span>
   </span>
 
     
@@ -5868,6 +5931,11 @@ xtrabackup: notice: xtrabackup_logfile was already used to &#39;--prepare&#39;.
     
     <nav>
       
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
         <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
           <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
@@ -5876,11 +5944,6 @@ xtrabackup: notice: xtrabackup_logfile was already used to &#39;--prepare&#39;.
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
           
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
         </a>
       
       

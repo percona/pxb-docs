@@ -9,7 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The restore backup procedure is the same for full, incremental, and compressed backups.">
+        <meta name="description" content="Documentation">
       
       
         <meta name="author" content="Percona LLC">
@@ -4718,6 +4718,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#command-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prepare-grastatedat-for-galera-cluster-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5745,6 +5756,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#command-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prepare-grastatedat-for-galera-cluster-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5786,6 +5808,50 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
 <h1 id="restore-full-incremental-and-compressed-backups">Restore full, incremental, and compressed backups<a class="headerlink" href="#restore-full-incremental-and-compressed-backups" title="Permanent link">&para;</a></h1>
+<h2 id="command-reference">Command reference<a class="headerlink" href="#command-reference" title="Permanent link">&para;</a></h2>
+<p>Quick syntax for restoring a prepared backup:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>&lt;path&gt;<span class="w"> </span><span class="o">[</span>--datadir<span class="o">=</span>&lt;path&gt;<span class="o">]</span>
+</code></pre></div>
+<p>Or to move files instead of copying (backup directory will be emptied):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>&lt;path&gt;<span class="w"> </span><span class="o">[</span>--datadir<span class="o">=</span>&lt;path&gt;<span class="o">]</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--copy-back</code></td>
+<td>Yes*</td>
+<td>Copies backup files from the backup directory to the datadir. Preserves the original backup.</td>
+</tr>
+<tr>
+<td><code>--move-back</code></td>
+<td>Yes*</td>
+<td>Moves backup files to the datadir. Removes files from the backup directory. Use one of <code>--copy-back</code> or <code>--move-back</code>.</td>
+</tr>
+<tr>
+<td><code>--target-dir=&lt;path&gt;</code></td>
+<td>Yes</td>
+<td>Directory containing the prepared backup to restore.</td>
+</tr>
+<tr>
+<td><code>--datadir=&lt;path&gt;</code></td>
+<td>No</td>
+<td>Destination directory for restored files. Defaults to the server datadir (for example, from <code>my.cnf</code>).</td>
+</tr>
+</tbody>
+</table>
+<p>Example (copy back to default datadir):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+</code></pre></div>
+<p>Example (copy back to a specific datadir):</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql
+</code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Backup needs to be prepared before it can be restored.</p>
@@ -5804,12 +5870,12 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <p>If you don’t want to save your backup, you can use the <code>--move-back</code> option which will move the backed up data to the datadir.</p>
-<p>If you don’t want to use <code>--copy-back</code> and <code>--move-back</code> options, you can also use <strong>rsync</strong> or <strong>cp</strong> to restore the files.</p>
+<p>If you don’t want to use <code>--copy-back</code> and <code>--move-back</code> options, you can also use rsync or cp to restore the files.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The datadir must be empty before restoring the backup. Also, it’s important to note that MySQL server needs to be shut down before restore is performed. You cannot restore to a datadir of a running mysqld instance (except when importing a partial backup).</p>
 </div>
-<p>An example of the <strong>rsync</strong> command to restore the backup:</p>
+<p>An example of the rsync command to restore the backup:</p>
 <div class="highlight"><pre><span></span><code>rsync<span class="w"> </span>-avrP<span class="w"> </span>/data/backup/<span class="w"> </span>/var/lib/mysql/
 </code></pre></div>
 <p>You should check that the restored files have the correct ownership and permissions.</p>
@@ -5849,7 +5915,7 @@ The example demonstrates how to restore a backup on a single node and then boots
 <p class="admonition-title">Note</p>
 <p>Set <code>safe_to_bootstrap</code> to <code>1</code> only on the node that will be used to bootstrap a new cluster. All other nodes must have <code>safe_to_bootstrap</code> set to <code>0</code>.</p>
 </div>
-<p><strong>Bootstrap node (<code>safe_to_bootstrap: 1</code>):</strong></p>
+<p>Bootstrap node (<code>safe_to_bootstrap: 1</code>):</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;<span class="w"> </span>/var/lib/mysql/grastate.dat<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s"># GALERA saved state</span>
 <span class="s">version: 2.1</span>
@@ -5858,7 +5924,7 @@ The example demonstrates how to restore a backup on a single node and then boots
 <span class="s">safe_to_bootstrap: 1</span>
 <span class="s">EOF</span>
 </code></pre></div>
-<p><strong>All other nodes (<code>safe_to_bootstrap: 0</code>):</strong></p>
+<p>All other nodes (<code>safe_to_bootstrap: 0</code>):</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;<span class="w"> </span>/var/lib/mysql/grastate.dat<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s"># GALERA saved state</span>
 <span class="s">version: 2.1</span>
@@ -5898,7 +5964,7 @@ The example demonstrates how to restore a backup on a single node and then boots
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 12, 2026 10:11:03 UTC">March 12, 2026</span>
   </span>
 
     
@@ -5913,39 +5979,6 @@ The example demonstrates how to restore a backup on a single node and then boots
 
     
     
-    
-      
-  <span class="md-source-file__fact">
-    
-      
-  <span class="md-icon" title="Contributors">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-  </span>
-  <span>GitHub</span>
-
-    
-    <nav>
-      
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
-          
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
-        </a>
-      
-        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
-          
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
-      
-      
-    </nav>
-  </span>
-
     
   </aside>
 

@@ -9,15 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="To create a backup, run xtrabackup with the --backup
-option. You also must specify the --target-dir option, which is where
-the backup is stored. If the InnoDB data or log files are not stored
-in
-the same directory, you must specify their location.
-If the
-target directory does not exist, xtrabackup creates it. If the directory
-does
-exist and is empty, xtrabackup succeeds.">
+        <meta name="description" content="Documentation">
       
       
         <meta name="author" content="Percona LLC">
@@ -3992,6 +3984,17 @@ exist and is empty, xtrabackup succeeds.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#command-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-step" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5753,6 +5756,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#command-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-step" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5794,6 +5808,45 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
 <h1 id="create-a-full-backup">Create a full backup<a class="headerlink" href="#create-a-full-backup" title="Permanent link">&para;</a></h1>
+<h2 id="command-reference">Command reference<a class="headerlink" href="#command-reference" title="Permanent link">&para;</a></h2>
+<p>Quick syntax for creating a full backup with common options:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>&lt;path&gt;<span class="w"> </span><span class="o">[</span>--user<span class="o">=</span>&lt;user&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--password<span class="o">=</span>&lt;password&gt;<span class="o">]</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--backup</code></td>
+<td>Yes</td>
+<td>Runs xtrabackup in backup mode.</td>
+</tr>
+<tr>
+<td><code>--target-dir=&lt;path&gt;</code></td>
+<td>Yes</td>
+<td>Directory where the backup is stored. Created if it does not exist.</td>
+</tr>
+<tr>
+<td><code>--user=&lt;user&gt;</code></td>
+<td>No</td>
+<td>MySQL user for connecting to the server (default: current OS user).</td>
+</tr>
+<tr>
+<td><code>--password=&lt;password&gt;</code></td>
+<td>No</td>
+<td>Password for the MySQL user. Omit to be prompted, or use a login file for security.</td>
+</tr>
+</tbody>
+</table>
+<p>Example with authentication:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span>--user<span class="o">=</span>backup<span class="w"> </span>--password<span class="o">=</span>secret
+</code></pre></div>
+<hr />
 <p>To create a backup, run xtrabackup with the <code>--backup</code>
 option. You also must specify the <code>--target-dir</code> option, which is where
 the backup is stored. If the InnoDB data or log files are not stored
@@ -5886,7 +5939,7 @@ drwx------  2 root root 4.0K Sep  6 10:19 world2
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 12, 2026 10:11:03 UTC">March 12, 2026</span>
   </span>
 
     
@@ -5914,6 +5967,11 @@ drwx------  2 root root 4.0K Sep  6 10:19 world2
     
     <nav>
       
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
         <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
           <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
@@ -5922,11 +5980,6 @@ drwx------  2 root root 4.0K Sep  6 10:19 world2
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
           
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
         </a>
       
       
