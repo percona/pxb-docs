@@ -8348,10 +8348,14 @@ Deleted: sha256:db9672f7e12e374d5e9016b758a29d5444e8b0fd1246a6f1fc5c2b3c847dddcf
                         <h1>How Percona XtraBackup works<a class='headerlink' href='#section-5' title='Permanent link'></a>
                         </h1>
                     <section class="print-page" id="about-xtrabackup" heading-number="5.1"><h1 id="about-xtrabackup-about-percona-xtrabackup">About Percona XtraBackup<a class="headerlink" href="#about-xtrabackup-about-percona-xtrabackup" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup is the world’s only open source, free MySQL hot backup
+<p>This page gives a short overview of Percona XtraBackup: what it is, why use it, and where to go next in the docs.</p>
+<h2 id="about-xtrabackup-what-is-percona-xtrabackup">What is Percona XtraBackup?<a class="headerlink" href="#about-xtrabackup-what-is-percona-xtrabackup" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup is the an open source, free MySQL hot backup
 software that performs non-blocking backups for InnoDB and XtraDB
-databases. </p>
-<p>Percona XtraBackup has the following benefits:</p>
+databases.</p>
+<p>Percona XtraBackup makes hot backups for Percona Server for MySQL and MySQL-compatible servers. It supports streaming, compressed, and incremental backups, and encryption.</p>
+<h2 id="about-xtrabackup-benefits">Benefits<a class="headerlink" href="#about-xtrabackup-benefits" title="Permanent link">&para;</a></h2>
+<p>With Percona XtraBackup you can:</p>
 <ul>
 <li>
 <p>Complete a backup quickly and reliably</p>
@@ -8366,13 +8370,42 @@ databases. </p>
 <p>Verify backup automatically</p>
 </li>
 </ul>
-<p>Percona XtraBackup makes hot backups for Percona Server for MySQL and MySQL-compatible servers. XtraBackup takes streaming, compressed, and incremental server backups, and supports encryption.</p>
+<h2 id="about-xtrabackup-support">Support<a class="headerlink" href="#about-xtrabackup-support" title="Permanent link">&para;</a></h2>
 <p>Percona’s enterprise-grade commercial <a href="http://www.percona.com/mysql-support/">MySQL Support <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> contracts include support for Percona XtraBackup. We recommend support for critical production deployments.</p>
 <h2 id="about-xtrabackup-supported-storage-engines">Supported storage engines<a class="headerlink" href="#about-xtrabackup-supported-storage-engines" title="Permanent link">&para;</a></h2>
-<p>Percona XtraBackup can back up data from InnoDB, XtraDB,
-MyISAM, and MyRocks tables on MySQL 8.4 servers as well as Percona Server for MySQL
-8.4.</p>
-<p>Percona XtraBackup supports the MyRocks storage engine. Percona XtraBackup copies all MyRocks files each time it takes a backup. An incremental backup on the MyRocks storage engine does not determine if an earlier full or incremental backup contains the same files.</p></section><section class="print-page" id="features" heading-number="5.2"><h1 id="features-percona-xtrabackup-features">Percona XtraBackup features<a class="headerlink" href="#features-percona-xtrabackup-features" title="Permanent link">&para;</a></h1>
+<p>Percona XtraBackup can back up data from InnoDB, XtraDB, MyISAM, and MyRocks tables on MySQL 8.4 servers as well as Percona Server for MySQL 8.4.</p>
+<p>Percona XtraBackup supports the MyRocks storage engine. Percona XtraBackup copies all MyRocks files on every backup. Incremental backups for MyRocks are not truly incremental: each one copies all MyRocks files, whether or not those files were already in a full or earlier incremental backup.</p>
+<h2 id="about-xtrabackup-where-to-go-next">Where to go next<a class="headerlink" href="#about-xtrabackup-where-to-go-next" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>If you want to…</th>
+<th>Go to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Get running quickly</td>
+<td><a href="#quickstart-overview">Quickstart guide</a></td>
+</tr>
+<tr>
+<td>Install on your system</td>
+<td><a href="#installation">Installation</a></td>
+</tr>
+<tr>
+<td>Understand how backups work</td>
+<td><a href="#how-xtrabackup-works">How Percona XtraBackup works</a></td>
+</tr>
+<tr>
+<td>See backup types and workflows</td>
+<td><a href="#backup-overview">Backup overview</a></td>
+</tr>
+<tr>
+<td>Use the backup tools (xtrabackup, xbcloud, xbcrypt, xbstream)</td>
+<td><a href="#binaries-overview">Binaries overview</a></td>
+</tr>
+</tbody>
+</table></section><section class="print-page" id="features" heading-number="5.2"><h1 id="features-percona-xtrabackup-features">Percona XtraBackup features<a class="headerlink" href="#features-percona-xtrabackup-features" title="Permanent link">&para;</a></h1>
 <p>The following is a short list of the Percona XtraBackup features:</p>
 <ul>
 <li>
