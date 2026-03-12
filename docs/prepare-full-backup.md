@@ -1,5 +1,34 @@
 # Prepare a full backup
 
+## Command reference
+
+Quick syntax for preparing a full backup:
+
+```bash
+xtrabackup --prepare --target-dir=<path> [--apply-log-only] [--parallel=<N>]
+```
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--prepare` | Yes | Runs xtrabackup in prepare mode (applies redo/undo logs for a consistent snapshot). |
+| `--target-dir=<path>` | Yes | Directory containing the backup to prepare. |
+| `--apply-log-only` | No | Apply log only; do not roll back uncommitted transactions. Use when this backup will be the base for incremental backups. |
+| `--parallel=<N>` | No | Use N threads to speed up prepare (for example, `--parallel=4`). |
+
+Example (full backup, then restore):
+
+```bash
+xtrabackup --prepare --target-dir=/data/backups/
+```
+
+Example (base for incremental backups):
+
+```bash
+xtrabackup --prepare --apply-log-only --target-dir=/data/backups/
+```
+
+---
+
 After creating a backup with the `--backup` option, you need to prepare the backup and then [restore](restore-a-backup.md) it. Data files are not point-in-time
 consistent until they are prepared, because they were copied at different times as the program ran, and they might have been changed while this was happening.
 

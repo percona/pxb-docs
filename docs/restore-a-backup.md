@@ -1,5 +1,38 @@
 # Restore full, incremental, and compressed backups
 
+## Command reference
+
+Quick syntax for restoring a prepared backup:
+
+```bash
+xtrabackup --copy-back --target-dir=<path> [--datadir=<path>]
+```
+
+Or to move files instead of copying (backup directory will be emptied):
+
+```bash
+xtrabackup --move-back --target-dir=<path> [--datadir=<path>]
+```
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--copy-back` | Yes* | Copies backup files from the backup directory to the datadir. Preserves the original backup. |
+| `--move-back` | Yes* | Moves backup files to the datadir. Removes files from the backup directory. Use one of `--copy-back` or `--move-back`. |
+| `--target-dir=<path>` | Yes | Directory containing the prepared backup to restore. |
+| `--datadir=<path>` | No | Destination directory for restored files. Defaults to the server datadir (for example, from `my.cnf`). |
+
+Example (copy back to default datadir):
+
+```bash
+xtrabackup --copy-back --target-dir=/data/backups/
+```
+
+Example (copy back to a specific datadir):
+
+```bash
+xtrabackup --copy-back --target-dir=/data/backups/ --datadir=/var/lib/mysql
+```
+
 !!! warning
    
     Backup needs to be prepared before it can be restored.
@@ -20,13 +53,13 @@ xtrabackup --copy-back --target-dir=/data/backups/
 
 If you don’t want to save your backup, you can use the `--move-back` option which will move the backed up data to the datadir.
 
-If you don’t want to use `--copy-back` and `--move-back` options, you can also use **rsync** or **cp** to restore the files.
+If you don’t want to use `--copy-back` and `--move-back` options, you can also use rsync or cp to restore the files.
 
 !!! note
    
     The datadir must be empty before restoring the backup. Also, it’s important to note that MySQL server needs to be shut down before restore is performed. You cannot restore to a datadir of a running mysqld instance (except when importing a partial backup).
 
-An example of the **rsync** command to restore the backup:
+An example of the rsync command to restore the backup:
 
 ```shell
 rsync -avrP /data/backup/ /var/lib/mysql/
@@ -74,7 +107,7 @@ After preparing and restoring the backup, do the following steps:
         Set `safe_to_bootstrap` to `1` only on the node that will be used to bootstrap a new cluster. All other nodes must have `safe_to_bootstrap` set to `0`.
 
 
-    **Bootstrap node (`safe_to_bootstrap: 1`):**
+    Bootstrap node (`safe_to_bootstrap: 1`):
 
     ```bash
     cat > /var/lib/mysql/grastate.dat <<EOF
@@ -86,7 +119,7 @@ After preparing and restoring the backup, do the following steps:
     EOF
     ```
 
-    **All other nodes (`safe_to_bootstrap: 0`):**
+    All other nodes (`safe_to_bootstrap: 0`):
     
     ```bash
     cat > /var/lib/mysql/grastate.dat <<EOF

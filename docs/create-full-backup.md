@@ -1,5 +1,28 @@
 # Create a full backup
 
+## Command reference
+
+Quick syntax for creating a full backup with common options:
+
+```bash
+xtrabackup --backup --target-dir=<path> [--user=<user>] [--password=<password>]
+```
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--backup` | Yes | Runs xtrabackup in backup mode. |
+| `--target-dir=<path>` | Yes | Directory where the backup is stored. Created if it does not exist. |
+| `--user=<user>` | No | MySQL user for connecting to the server (default: current OS user). |
+| `--password=<password>` | No | Password for the MySQL user. Omit to be prompted, or use a login file for security. |
+
+Example with authentication:
+
+```bash
+xtrabackup --backup --target-dir=/data/backups/ --user=backup --password=secret
+```
+
+---
+
 To create a backup, run xtrabackup with the `--backup`
 option. You also must specify the `--target-dir` option, which is where
 the backup is stored. If the InnoDB data or log files are not stored
