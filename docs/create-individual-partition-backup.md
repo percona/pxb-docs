@@ -11,11 +11,11 @@ tables.
 There are three ways of specifying which part of the whole data will be backed
 up: regular expressions (`--tables`), enumerating the
 tables in a file (`--tables-file`) or providing a list of
-databases (`--databases`).
+databases or specific tables (`--databases`).
 
-!!! note "Mutual exclusion"
+!!! warning "Do not use `--tables` and `--databases` together"
 
-    The `--tables` and `--databases` options are mutually exclusive. If you use both options in the same command, XtraBackup ignores `--databases` and only uses `--tables`. Use only one of these options per backup operation.
+    Do not use both `--tables` and `--databases` in the same command. The resulting backup may not contain the data you intended to back up and risks data loss on restore. Use only one of these options per backup operation. See [Create a partial backup](create-partial-backup.md#filtering-behavior-with-examples) for details and alternatives such as `--tables-file` with `--databases`.
 
 The regular expression provided to this option will be matched against the fully
 qualified database name and table name, in the form of
