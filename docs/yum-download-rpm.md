@@ -7,13 +7,19 @@ This method requires you to resolve all dependencies and install any missing pac
 The following example downloads *Percona XtraBackup* {{release}} release packages for *RHEL* 9. Run the following commands as root or use the sudo command.
 {.power-number}
 
-1. Use `wget` to download the `RPM` package:
+1. Install wget
+
+    ```bash
+    sudo dnf install wget
+    ```
+
+2. Use `wget` to download the `RPM` package:
 
     ```bash
     wget https://downloads.percona.com/downloads/Percona-XtraBackup-{{vers}}/Percona-XtraBackup-{{release}}/binary/redhat/9/x86_64/percona-xtrabackup-84-{{release}}.1.el9.x86_64.rpm
     ```
 
-2. Install Percona XtraBackup by running:
+3. Install Percona XtraBackup by running:
 
     ```bash
     sudo dnf install ./percona-xtrabackup-84-{{release}}.1.el9.x86_64.rpm
