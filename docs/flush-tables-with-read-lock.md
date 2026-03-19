@@ -24,7 +24,7 @@ To prevent the server staying in a read-only mode until the queries finish, xtra
 
 !!! note
    
-    All operations described in this section have no effect when [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/8.4/backup-locks.html) are used.
+    All operations described in this section have no effect when [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) are used.
 
     Percona XtraBackup uses backup locks where available as a lightweight alternative to `FLUSH TABLES WITH READ
     LOCK`. This operation automatically copies non-InnoDB data and avoids blocking DML queries that modify InnoDB tables.

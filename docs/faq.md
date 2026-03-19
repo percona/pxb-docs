@@ -1,5 +1,5 @@
 <!---
- Ask Satya/Marce to review and add/change as needed
+ Ask Satya to review and add/change as needed
  --->
 # Frequently asked questions
 

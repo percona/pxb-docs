@@ -71,13 +71,7 @@ the first incremental backup. If you restore the files from
 
 For incremental backups with many InnoDB Data (IBD) files, you can significantly reduce prepare time by using the `--parallel` option. The `--parallel` option enables the concurrent processing of multiple delta files, thereby maximizing storage bandwidth. The `--parallel` option is especially beneficial when there are many IBD files, even if the IBD files didn't change between backups, as empty delta files are processed quickly in parallel. 
 
-!!! note "Version history"
-
-    Before Percona XtraBackup 8.4.0-3, the `--parallel` option didn't have any effect on the prepare phase.
-    
-    Starting with Percona XtraBackup 8.4.0-3, using `--parallel=X` has effect on the prepare phase. It will now use X threads to apply the changes from `.delta` files to the IBD files. When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
-    
-    Note that each thread operates on a single file. If you have a large delta file, there is still only one thread that processes that `.delta` file. Parallelization occurs at the file level, not within individual files.
+Using `--parallel=X` has effect on the prepare phase. It will use X threads to apply the changes from `.delta` files to the IBD files. When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`). Note that each thread operates on a single file. If you have a large delta file, there is still only one thread that processes that `.delta` file. Parallelization occurs at the file level, not within individual files.
 
 An example command with the `--parallel` option:
 

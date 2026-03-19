@@ -189,16 +189,16 @@ This option is for users who are comfortable with [git](https://git-scm.com/) co
         git remote add upstream https://github.com/percona/pxb-docs.git
     ```
 
-4. Checkout the appropriate branch for the version you're working on (for example, `8.4` for the latest documentation) and pull the latest changes from upstream:
+4. Checkout the appropriate branch for the version you're working on (for example, `9.7` for the latest documentation) and pull the latest changes from upstream:
 
     ```shell
-        git checkout 8.4
-        git pull upstream 8.4
+        git checkout 9.7
+        git pull upstream 9.7
     ```
 
     !!! note "Which branch to use"
     
-        Use the branch that matches the version of the documentation you're editing. Typically, use the `8.4` branch for the latest Percona XtraBackup documentation. If the branch doesn't exist locally, Git will create a tracking branch automatically.
+        Use the branch that matches the version of the documentation you're editing. Typically, use the `9.7` branch for the latest Percona XtraBackup documentation. If the branch doesn't exist locally, Git will create a tracking branch automatically.
 
 5. Create a separate branch for your changes:
 
