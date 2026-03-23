@@ -1,5 +1,7 @@
 # Install from a binary tarball
 
+<!-- Varify the instruction for 9.7 version-->
+
 Binary tarballs are compressed `tar` archives that contain precompiled executable files, libraries, and other dependencies. You can extract the binary tarballs to any path.
 
 Download the binary tarballs from the `Linux - Generic` section on [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads).

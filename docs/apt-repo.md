@@ -1,5 +1,7 @@
 # Install with the Percona-release Tool on Debian-based Systems
 
+<!-- Varify the instruction for 9.7 version-->
+
 Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads).
 

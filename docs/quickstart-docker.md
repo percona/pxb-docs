@@ -1,5 +1,7 @@
 # Start a Docker container and take a backup
 
+<!-- Varify the instruction for 9.7 version-->
+
 In this scenario, Percona XtraBackup works in combination with a MySQL-compatible database instance. To use the tool, you must run Percona XtraBackup in a separate Docker container and then connect the Percona XtraBackup container directly to the Percona Server for MySQL container. This connection lets the backup tool access the database for backup and restore operations.
 
 The following steps create a Docker volume, start Percona XtraBackup in a Docker container, take and prepare a backup of Percona Server for MySQL database.
@@ -23,7 +25,7 @@ docker volume create backupvol
      backupvol
     ```
 
-## Start Percona XtraBackup 8.4 in a container, take and prepare a backup
+## Start Percona XtraBackup {{vers}} in a container, take and prepare a backup
 
 The `docker run` command creates and runs a new container from an image. The command modifies the container's behavior with options.
 
@@ -40,9 +42,9 @@ In our example, the command has the following options:
 | `backupvol` | Indicates the persistent storage for the database. |
 | `psmysql`    | Indicates the Percona Server for MySQL container.  |
 |`--password`   | Prompts the user to enter the password for the root user. For convenience you can add the password for the root user to this option, for example, `--password=secret`. Then the password will be passed automatically when running the command. Note that if you specify the password with `--password=secret`, the password is visible in `docker ps`, `docker ps -a` (docker history) and regular ps command.          |
-| `8.4` | Use this tag to specify a specific version. Avoid using the `latest` tag. <br> In our example, we use the `8.4` tag. In Docker, a tag is a label assigned to an image and is used to maintain different versions of an image.|
+| `{{vers}}` | Use this tag to specify a specific version. Avoid using the `latest` tag. <br> In our example, we use the `{{vers}}` tag. In Docker, a tag is a label assigned to an image and is used to maintain different versions of an image.|
 
-If you do not add a tag, Docker uses `latest` as the default tag and downloads the newest image from [percona/percona-xtrabackup on the Docker Hub  :octicons-link-external-16:](https://hub.docker.com/r/percona/percona-xtrabackup). This image can be in a different series or version from what you expect since the latest image changes over time. If you are using Percona XtraBackup version prior to 8.4, use tags to ensure that you use [compatible versions](server-backup-version-comparison.md) of Percona Server for MySQL and Percona XtraBackup. 
+If you do not add a tag, Docker uses `latest` as the default tag and downloads the newest image from [percona/percona-xtrabackup on the Docker Hub  :octicons-link-external-16:](https://hub.docker.com/r/percona/percona-xtrabackup). This image can be in a different series or version from what you expect since the latest image changes over time. If you are using Percona XtraBackup version prior to {{vers}}, use tags to ensure that you use [compatible versions](server-backup-version-comparison.md) of Percona Server for MySQL and Percona XtraBackup. 
 
 The CPU architecture or platform for Percona Server for MySQL and Percona XtraBackup should be the same. If you want to use a different platform, you can add the following command:
 
@@ -51,7 +53,7 @@ The CPU architecture or platform for Percona Server for MySQL and Percona XtraBa
 | --platform linux/amd64    | To run an AMD64 platform on an ARM64 computer.              |
 | --platform linux/arm64    | To run an ARM64 platform on an AMD64 computer.              |
 
-You can run the Docker ARM64 version of Percona XtraBackup. Use the `8.4-aarch64` tag instead of `8.4`.
+You can run the Docker ARM64 version of Percona XtraBackup. Use the `{{vers}}-aarch64` tag instead of `{{vers}}`.
 
 ### Connect the Percona XtraBackup container to the Percona Server container
 

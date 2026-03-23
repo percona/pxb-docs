@@ -33,7 +33,7 @@ example, overrides the parameter and the backup proceeds.
 $ xtrabackup --backup --no-server-version-check --target-dir=$mysql/backup1
 ```
 
-Overriding the `--no-server-version-check` parameter allows taking backups using a Percona XtraBackup version that is equal to a version of your source server up to the last release in the LTS series. This means if you use Percona XtraBackup {{vers}}.x, you can back up the source server from {{vers}}.x to 8.4.xx.
+Overriding the `--no-server-version-check` parameter allows taking backups using a Percona XtraBackup version that is equal to a version of your source server up to the last release in the LTS series. This means if you use Percona XtraBackup {{vers}}.x, you can back up the source server from {{vers}}.x to 9.7.xx.
 
 When you override the parameter, the following events can happen:
 

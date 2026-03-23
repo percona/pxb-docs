@@ -2,12 +2,6 @@
 
 The [`--lock-ddl=REDUCED`](./xtrabackup-option-reference.md#lock-ddl) option reduces the time the server remains locked by `xtrabackup` during full and incremental backups. This allows you to perform `Data Definition Language` (DDL) operations while the backup is in progress.
 
-### Version changes
-
-* [Percona XtraBackup Pro 8.4.0-2](./release-notes/8.4.0-2.md) adds the `--lock-ddl=REDUCED` option to the Pro build.
-
-* [Percona XtraBackup 8.4.0-5](./release-notes/8.4.0-5.md) adds the `--lock-ddl=REDUCED` option to the Community release.
-
 ### Benefits
 
 The `--lock-ddl=REDUCED` option features are as follows:

@@ -316,7 +316,7 @@ variable is restored.
 Usage: `--dump-innodb-buffer-pool-timeout`
 
 This option contains the number of seconds that xtrabackup should
-monitor the value of [`innodb_buffer_pool_dump_status` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status) to
+monitor the value of [`innodb_buffer_pool_dump_status` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status) to
 determine if the buffer pool dump has been completed.
 
 This option is used in combination with
@@ -603,7 +603,7 @@ The available values are the following:
 |-------|-----------|
 |`--lock-ddl=ON`| The backup lock is enabled and is taken at the beginning of the backup.|
 |`--lock-ddl=OFF`|The backup lock is not taken.|
-|`--lock-ddl=REDUCED`|The option value has been added in [Percona XtraBackup 8.4.0-2](./release-notes/8.4.0-2.md) to reduce the time the instance remains under backup lock. The backup lock is taken after copying the `.ibd` files and before copying the `non-InnoDB` files.|
+|`--lock-ddl=REDUCED`|The option reduces the time the instance remains under backup lock. The backup lock is taken after copying the `.ibd` files and before copying the `non-InnoDB` files.|
 
 With the `--lock-ddl=ON` option the backup process is as follows:
 { .power-number }
@@ -767,9 +767,7 @@ data files in parallel (redo logs and system tablespaces are copied in the
 main thread).
 
 
-Before Percona XtraBackup 8.4.0-3, the `--parallel` option didn't have any effect on the prepare phase.
-
-Starting with [Percona XtraBackup 8.4.0-3](release-notes/8.4.0-3.md), using `--parallel=X` has effect on the prepare phase. It will now use X threads to apply the changes from `.delta` files to the IBD files. This option processes multiple delta files simultaneously, improving storage performance and accelerating incremental backups, particularly with numerous InnoDB Data (IBD) files. The option remains effective even if IBD files are unchanged between backups and efficiently handles empty delta files.
+The `--parallel=X` option effects the prepare phase. It will now use X threads to apply the changes from `.delta` files to the IBD files. This option processes multiple delta files simultaneously, improving storage performance and accelerating incremental backups, particularly with numerous InnoDB Data (IBD) files. The option remains effective even if IBD files are unchanged between backups and efficiently handles empty delta files.
 
 When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
 

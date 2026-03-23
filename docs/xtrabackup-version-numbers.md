@@ -1,5 +1,7 @@
 # Understand version numbers
 
+<!-- Varify the instruction for 9.7 version-->
+
 A version number identifies the product release. The product contains the latest features, improvements, and bug fixes at the time of that release.
 
 In the 8.0 series, Oracle followed a fast continuous delivery approach, frequently pushing both patches and new features, which sometimes led to stability and compatibility issues. In contrast, 8.4 as an LTS release limits changes to essential fixes, improving overall stability and reducing operational risk.

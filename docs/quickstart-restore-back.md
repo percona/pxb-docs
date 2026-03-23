@@ -1,5 +1,7 @@
 # Restore the backup
 
+<!-- Varify the instruction for 9.7 version-->
+
 The following steps describe how to restore your backup to another Percona Server container and check whether the data is available.
 {.power-number}
 
