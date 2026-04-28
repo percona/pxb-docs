@@ -9144,16 +9144,234 @@ reducing the warm up time. It restores the buffer pool state from
 <p>If the buffer restore option is enabled in <code>my.cnf</code>, buffer pool will be in
 the warm state after backup is restored.</p>
 <p>Find the information on how to save and restore the buffer pool dump in <a href="https://dev.mysql.com/doc/refman/8.4/en/innodb-preload-buffer-pool.html">Saving and Restoring the Buffer Pool State <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p></section><section class="print-page" id="throttling-backups" heading-number="6.1.2"><h1 id="throttling-backups-throttling-backups">Throttling backups<a class="headerlink" href="#throttling-backups-throttling-backups" title="Permanent link">&para;</a></h1>
-<p>Although <em>xtrabackup</em> does not block your database’s operation, any backup
-can add load to the system being backed up. On systems that do not have
-much spare I/O capacity, it might be helpful to throttle the rate at which
-<em>xtrabackup</em> reads and writes data. You can do this with the <code>--throttle</code> option. This option limits the number of chunks copied per second. The chunk +size is <em>10 MB</em>.</p>
-<p>The image below shows how throttling works when <code>--throttle</code> is set to <code>1</code>.</p>
-<p><img alt="how throttling works" src="_static/throttle.png" /></p>
-<p>When specified with the <code>--backup</code> option, this option
-limits the number of pairs of read-and-write operations per second that
-<em>xtrabackup</em> will perform. If you are creating an incremental backup, then the limit is the number of read I/O operations per second.</p>
-<p>By default, there is no throttling, and <em>xtrabackup</em> reads and writes data as quickly as it can. If you set too strict of a limit on the IOPS, the backup might be so slow that it will never catch up with the transaction logs that InnoDB is writing, so the backup might never complete.</p></section><section class="print-page" id="store-backup-history" heading-number="6.1.3"><h1 id="store-backup-history-store-backup-history-on-the-server">Store backup history on the server<a class="headerlink" href="#store-backup-history-store-backup-history-on-the-server" title="Permanent link">&para;</a></h1>
+<p>xtrabackup does not block database activity during a backup, but xtrabackup generates additional disk input/output (I/O) activity. On systems with limited I/O capacity, this can affect database performance.</p>
+<p>Use the <a href="#xtrabackup-option-reference-throttle"><code>--throttle</code></a> option to limit the backup rate.</p>
+<h2 id="throttling-backups-how-throttling-works">How throttling works<a class="headerlink" href="#throttling-backups-how-throttling-works" title="Permanent link">&para;</a></h2>
+<p>Use the <code>--throttle</code> option to minimize backup impact on system performance. By limiting the number of <strong>10 MB chunks</strong> processed per second, you primarily limit data throughput, which in turn reduces overall I/O pressure on the system.</p>
+<p>When used with the <code>--backup</code> option, <code>--throttle</code> limits the rate of read and write operations performed during the copy process. For incremental backups, the limit applies only to read operations.</p>
+<p>For example:</p>
+<ul>
+<li><code>--throttle=1</code> limits processing to approximately 10 MB/s</li>
+<li><code>--throttle=10</code> limits processing to approximately 100 MB/s</li>
+</ul>
+<p>By default, throttling is <strong>disabled</strong>, and xtrabackup runs at the maximum rate permitted by the system.</p>
+<p>On write-heavy systems, overly aggressive throttling can cause backups to fall behind redo log generation, see <a href="#throttling-backups-redo-log-wraparound-risk-important">Redo log wraparound risk</a>.</p>
+<h2 id="throttling-backups-when-to-use-throttling">When to use throttling<a class="headerlink" href="#throttling-backups-when-to-use-throttling" title="Permanent link">&para;</a></h2>
+<p>Use the <code>--throttle</code> option in the following scenarios:</p>
+<ul>
+<li>
+<p><strong>High-traffic production systems</strong><br />
+  On latency-sensitive workloads, unthrottled backups can cause I/O contention. This can increase query latency as the database waits for disk operations to complete.</p>
+</li>
+<li>
+<p><strong>Limited storage throughput (cloud environments)</strong><br />
+  On platforms such as AWS with provisioned IOPS or burst limits (for example, EBS volumes), unthrottled backups can exceed available I/O capacity. This may degrade overall system performance when limits are reached.</p>
+</li>
+<li>
+<p><strong>Systems with slower storage</strong><br />
+  On HDDs or lower-performance SSDs, higher latency and seek times limit the number of concurrent I/O operations. Throttling prevents backups from saturating the storage subsystem.</p>
+</li>
+<li>
+<p><strong>Multi-tenant or co-located environments</strong><br />
+  When multiple services share the same host, unthrottled backups can consume available I/O bandwidth and affect other applications.</p>
+</li>
+</ul>
+<h2 id="throttling-backups-resource-monitoring-finding-your-baseline">Resource monitoring: finding your baseline<a class="headerlink" href="#throttling-backups-resource-monitoring-finding-your-baseline" title="Permanent link">&para;</a></h2>
+<p>Before setting a throttle value, understand your storage subsystem limits. If your disk is already near saturation, an unthrottled backup can introduce significant I/O wait and increase query latency.</p>
+<p>Use the following tools to observe disk utilization and validate your throttle settings.</p>
+<h3 id="throttling-backups-iostat-sysstat">iostat (sysstat)<a class="headerlink" href="#throttling-backups-iostat-sysstat" title="Permanent link">&para;</a></h3>
+<p>Use:</p>
+<div class="highlight"><pre><span></span><code>iostat<span class="w"> </span>-xz<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p>Key metrics:</p>
+<ul>
+<li>
+<p><code>aqu-sz</code> - average queue size, a better indicator of saturation. Values consistently above 1 suggest the device cannot keep up with demand.</p>
+</li>
+<li>
+<p><code>await</code> — average time (ms) for I/O requests. Increasing values during backup indicate growing latency.</p>
+</li>
+<li>
+<p><code>%util</code> — indicates how busy the device is (time spent servicing I/O), not saturation. A device can show 100% utilization and still have spare capacity.</p>
+</li>
+</ul>
+<h3 id="throttling-backups-pidstat-sysstat">pidstat (sysstat)<a class="headerlink" href="#throttling-backups-pidstat-sysstat" title="Permanent link">&para;</a></h3>
+<p>Use <code>pidstat</code> to monitor per-process I/O activity.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>pidstat</code> requires root privileges (or appropriate capabilities) to display system-wide I/O activity. Without this, output may be incomplete.</p>
+</div>
+<div class="highlight"><pre><span></span><code>pidstat<span class="w"> </span>-d<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p>Key notes:</p>
+<ul>
+<li>
+<p>Shows read/write throughput per process (including xtrabackup and mysqld).</p>
+</li>
+<li>
+<p>Helps distinguish I/O generated by xtrabackup from that of the MySQL server.</p>
+</li>
+<li>
+<p>Commonly available as part of the <code>sysstat</code> package.</p>
+</li>
+<li>
+<p>When run without elevated privileges, it only shows processes owned by the current user.</p>
+</li>
+</ul>
+<h3 id="throttling-backups-pv-pipe-viewer">pv (Pipe Viewer)<a class="headerlink" href="#throttling-backups-pv-pipe-viewer" title="Permanent link">&para;</a></h3>
+<p>For streaming backups, <code>pv</code> can display real-time throughput:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">5</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span>backup.xb.gz
+</code></pre></div>
+<p>This helps verify whether the effective throughput matches the configured throttle, although compression (<code>gzip</code>) may become a bottleneck on CPU-constrained systems.</p>
+<h2 id="throttling-backups-configuration-guidelines">Configuration guidelines<a class="headerlink" href="#throttling-backups-configuration-guidelines" title="Permanent link">&para;</a></h2>
+<p>Select a throttle value based on available I/O capacity and workload requirements. Use the insights from <a href="#throttling-backups-resource-monitoring-finding-your-baseline">resource monitoring</a> to select and refine an appropriate throttle value.</p>
+<p>Typical starting points:</p>
+<ul>
+<li>
+<p>Busy systems: <code>--throttle=1–5</code></p>
+</li>
+<li>
+<p>Moderate load: <code>--throttle=5–20</code></p>
+</li>
+<li>
+<p>Dedicated backup window: no throttling</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the throttle value is too low, the backup may not keep up with the rate of transaction log generation and may not complete.</p>
+</div>
+<p>Adjust the value based on observed system performance.</p>
+<h3 id="throttling-backups-redo-log-wraparound-risk-important">Redo log wraparound risk (important)<a class="headerlink" href="#throttling-backups-redo-log-wraparound-risk-important" title="Permanent link">&para;</a></h3>
+<p>When using <code>--throttle</code>, backups may become too slow to keep up with redo log generation rate on busy systems.</p>
+<p>Because the InnoDB redo log is a circular buffer with limited size, it can wrap around before xtrabackup has finished reading it. When this happens, the backup fails with an error similar to:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup: error: expected log block no. ..., but got no. ...
+xtrabackup: error: it looks like InnoDB log has wrapped around before xtrabackup could process all records
+xtrabackup: Error: xtrabackup_copy_logfile() failed
+</code></pre></div>
+<p>This issue is more likely on write-heavy systems or when using very low throttle values.</p>
+<p>There are two primary ways to prevent this issue:</p>
+<h4 id="throttling-backups-option-1-increase-redo-log-capacity-recommended">Option 1: Increase redo log capacity (recommended)<a class="headerlink" href="#throttling-backups-option-1-increase-redo-log-capacity-recommended" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">innodb_redo_log_capacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">larger</span><span class="w"> </span><span class="n">value</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div>
+<p>Increasing redo log size:</p>
+<ul>
+<li>
+<p>Reduces the risk of wraparound during throttled backups.</p>
+</li>
+<li>
+<p>Improves write performance under heavy load.</p>
+</li>
+<li>
+<p>May increase crash recovery time.</p>
+</li>
+</ul>
+<h4 id="throttling-backups-option-2-prevent-redo-log-wraparound">Option 2: Prevent redo log wraparound<a class="headerlink" href="#throttling-backups-option-2-prevent-redo-log-wraparound" title="Permanent link">&para;</a></h4>
+<p>Use the <code>--register-redo-log-consumer</code> option to prevent redo log wraparound by coordinating with the server.</p>
+<p>However:</p>
+<ul>
+<li>
+<p>It can block or significantly delay write operations if xtrabackup cannot keep up.</p>
+</li>
+<li>
+<p>It is best suited for replicas, where replication lag is acceptable.</p>
+</li>
+</ul>
+<h3 id="throttling-backups-advanced-tuning-scenarios">Advanced tuning scenarios<a class="headerlink" href="#throttling-backups-advanced-tuning-scenarios" title="Permanent link">&para;</a></h3>
+<p>On high-performance storage (for example, NVMe), consider using higher <code>--parallel</code> values (4–8) with little or no throttling.</p>
+<p>On shared or limited environments (such as cloud volumes):</p>
+<ul>
+<li>
+<p>Identify your provisioned IOPS or throughput limits.</p>
+</li>
+<li>
+<p>Start with approximately <strong>50% of available I/O capacity</strong>, then adjust based on observed latency and workload behavior.</p>
+</li>
+<li>
+<p>Use moderate <code>--parallel</code> values (2–4) to ensure consistent utilization without overwhelming the system.</p>
+</li>
+</ul>
+<h2 id="throttling-backups-interaction-with-parallel">Interaction with &ndash;parallel<a class="headerlink" href="#throttling-backups-interaction-with-parallel" title="Permanent link">&para;</a></h2>
+<p>The <code>--throttle</code> and <code>--parallel</code> options control different aspects of backup performance and can be used together. If <code>--parallel</code> is set too high without adjusting <code>--throttle</code>, threads may compete for the limited throughput, reducing efficiency.</p>
+<h3 id="throttling-backups-how-they-work-together">How they work together<a class="headerlink" href="#throttling-backups-how-they-work-together" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--throttle</code> sets a <strong>global limit</strong> on backup throughput.</li>
+<li><code>--parallel</code> controls the number of worker threads copying data.</li>
+</ul>
+<p>If both are used:</p>
+<ul>
+<li>All threads share the same throttle limit.</li>
+<li>Increasing <code>--parallel</code> does not increase total throughput beyond the throttle limit.</li>
+</ul>
+<p>For example:</p>
+<ul>
+<li><code>--throttle=10</code> (approximately 100 MB/s total)</li>
+<li><code>--parallel=4</code></li>
+</ul>
+<p>Each thread will average approximately 25 MB/s to stay within the global limit.</p>
+<h3 id="throttling-backups-why-use-both">Why use both<a class="headerlink" href="#throttling-backups-why-use-both" title="Permanent link">&para;</a></h3>
+<p>Using both options allows you to:</p>
+<ul>
+<li>Improve efficiency when backing up many small tables (via parallelism)</li>
+<li>Control overall I/O impact (via throttling)</li>
+</ul>
+<p>This is especially useful on systems with mixed workloads.</p>
+<h2 id="throttling-backups-example-usage">Example usage<a class="headerlink" href="#throttling-backups-example-usage" title="Permanent link">&para;</a></h2>
+<h3 id="throttling-backups-a-streaming-backup-with-throttling">A) Streaming backup with throttling<a class="headerlink" href="#throttling-backups-a-streaming-backup-with-throttling" title="Permanent link">&para;</a></h3>
+<p>Limit the backup speed to approximately <strong>50 MB/s</strong>:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">5</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span>backup.xb.gz
+</code></pre></div>
+<h3 id="throttling-backups-b-testing-throttling-behavior">B) Testing throttling behavior<a class="headerlink" href="#throttling-backups-b-testing-throttling-behavior" title="Permanent link">&para;</a></h3>
+<p>To measure the effective throughput of <code>--throttle</code> without interference from compression or disk writes:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">2</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</code></pre></div>
+<p>This setup ensures:</p>
+<ul>
+<li>
+<p>No disk write bottleneck</p>
+</li>
+<li>
+<p>No CPU bottleneck from compression</p>
+</li>
+<li>
+<p>Clean pv output (stderr from xtrabackup is suppressed)</p>
+</li>
+</ul>
+<p>Use this method to validate that the configured throttle produces the expected throughput.</p>
+<h3 id="throttling-backups-local-backup-with-throttling">Local backup with throttling<a class="headerlink" href="#throttling-backups-local-backup-with-throttling" title="Permanent link">&para;</a></h3>
+<p>Limit the backup to approximately <strong>100 MB/s</strong>:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span>--throttle<span class="o">=</span><span class="m">10</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="highlight"><pre><span></span><code>xtrabackup: Starting backup
+xtrabackup: Throttling set to 10 chunks per second
+...
+xtrabackup: completed OK!
+</code></pre></div>
+</details>
+<h3 id="throttling-backups-incremental-backup-with-throttling">Incremental backup with throttling<a class="headerlink" href="#throttling-backups-incremental-backup-with-throttling" title="Permanent link">&para;</a></h3>
+<p>For incremental backups, the limit applies only to read operations. Redo log copying continues independently and may become a bottleneck if the backup is throttled too aggressively.</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--backup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span>/backups/inc1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--incremental-basedir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--throttle<span class="o">=</span><span class="m">5</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="highlight"><pre><span></span><code>xtrabackup: Starting incremental backup
+xtrabackup: Throttling set to 5 chunks per second
+...
+xtrabackup: completed OK!
+</code></pre></div>
+</details></section><section class="print-page" id="store-backup-history" heading-number="6.1.3"><h1 id="store-backup-history-store-backup-history-on-the-server">Store backup history on the server<a class="headerlink" href="#store-backup-history-store-backup-history-on-the-server" title="Permanent link">&para;</a></h1>
 <p><em>Percona XtraBackup</em> supports storing the backups history on the server. Storing backup history on
 the server was implemented to provide users with additional information about
 backups that are being taken. Backup history information will be stored in the
