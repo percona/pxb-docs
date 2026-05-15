@@ -2,25 +2,7 @@
 
 ## Overview
 
-Percona XtraBackup 8.4.0-6 introduces the [`--check-tables`](xtrabackup-option-reference.md#check-tables) option that validates the structural integrity of InnoDB B-tree indexes during the [`--prepare`](xtrabackup-option-reference.md#prepare) phase.
-
-The `--check-tables` option runs `btr_validate_index()` on every committed index in each `.ibd` tablespace and detects structural inconsistencies not covered by page checksum verification.
-
-The validation process:
-
-* Runs during `--prepare`
-
-* Operates in read-only mode
-
-* Does not modify backup contents
-
-* Supports parallel execution through `--parallel`
-
-* Supports workflows that use `--apply-log-only`
-
-* Supports transportable tablespace export with `--export`
-
-Validation during `--prepare` helps detect corrupted indexes before backup restore or production deployment.
+Percona XtraBackup 8.4.0-6 introduces the [`--check-tables`](xtrabackup-option-reference.md#check-tables) option that validates the structural integrity of InnoDB B-tree indexes during the [`--prepare`](xtrabackup-option-reference.md#prepare) phase. Validation during `--prepare` helps detect corrupted indexes before backup restore or production deployment.
 
 ## Why checksum validation is not enough
 
@@ -54,9 +36,17 @@ Applying the redo log during `--prepare` copies the existing structural corrupti
 
 ## How `--check-tables` works
 
-After applying the redo log during the `--prepare` phase, Percona XtraBackup validates InnoDB index structures in the backup.
+The `--check-tables` option executes `btr_validate_index()` on every committed index in each `.ibd` tablespace using the number of threads specified by [`--parallel`](xtrabackup-option-reference.md#parallel). `--check-tables` detects structural inconsistencies that page checksum verification cannot detect. This option applies only to InnoDB tables.
 
-The validation process runs in read-only mode against backup files and does not modify backup contents.
+Validation runs during the `--prepare` phase after applying the redo log. The process operates in read-only mode against backup files and does not modify backup contents. Validation continues even after detecting corrupted tables, allowing all problematic tables and indexes to be reported in a single run.
+
+The option supports:
+
+* [Parallel execution](#parallel-execution) through [`--parallel`](xtrabackup-option-reference.md#parallel)
+
+* Workflows that use [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only)
+
+* Transportable tablespace export with [`--export`](xtrabackup-option-reference.md#export).
 
 For each tablespace, Percona XtraBackup:
 
@@ -82,9 +72,13 @@ The validation process verifies:
 
 * External LOB (large object) page ownership
 
-If the validator detects corruption, validation continues for the remaining indexes and tablespaces to produce a complete report.
+### Offloading `CHECK TABLE`
 
-## Validation checks
+This option is functionally equivalent to running `CHECK TABLE` on InnoDB tables, but it executes on the backup during the `--prepare` phase instead of on a running production server.
+
+This allows a significant portion of `CHECK TABLE` workload to be offloaded from production systems to an offline environment where the backup is prepared and validated.
+
+### Detected corruption conditions
 
 | Check | Detected condition |
 |------|---------------------|
@@ -95,7 +89,7 @@ If the validator detects corruption, validation continues for the remaining inde
 | External LOB validation | Shared, freed, or out-of-bounds LOB page references |
 | All-zero page detection | Page contains only zero bytes |
 
-## Parallel execution
+### Parallel execution
 
 The `--check-tables` option uses the existing `--parallel` infrastructure in Percona XtraBackup. Worker threads process tablespaces independently.
 
@@ -109,7 +103,7 @@ Each worker thread:
 
 4. Reports validation results
 
-## Limitations
+### Limitations
 
 The `--check-tables` option has the following limitations:
 
@@ -122,8 +116,6 @@ The `--check-tables` option has the following limitations:
 * Validation does not replace logical consistency checks such as `CHECK TABLE`
 
 ## Usage
-
-`--check-tables` is valid only with `--prepare`.
 
 ### Validate a full backup
 
@@ -165,3 +157,57 @@ Table check failed. The backup may be corrupted.
 ```
 
 The log contains detailed information for each detected inconsistency.
+
+### Corruption examples
+
+1. Sibling page relationships corruption.
+
+    ??? example "Expected output"
+
+        ```{.text .no-copy}
+        2026-05-15T13:42:20.270268+01:00 2 [ERROR] [MY-013051] [InnoDB]
+        In pages [page id: space=2, page number=5]
+        and [page id: space=2, page number=6]
+        of index PRIMARY of table test.t1
+
+        InnoDB: broken FIL_PAGE_NEXT or FIL_PAGE_PREV links
+        ```
+
+2. Parent-to-child page references corruption.
+
+    ??? example "Expected output"
+
+        ```{.text .no-copy}
+        2026-05-15T13:38:12.343921+01:00 2 [ERROR] [MY-011825] [InnoDB]
+        B-tree corruption: page 0 is empty but is not the root page
+        in index PRIMARY. Possible all-zero (unflushed) page.
+        ```
+
+3. Page ownership metadata corruption.
+
+    ??? example "Expected output"
+
+        ```{.text .no-copy}
+        2026-05-15T13:38:12.343894+01:00 2 [ERROR] [MY-011866] [InnoDB]
+        Page index id 0 != data dictionary index id 204
+        ```
+
+4. Minimum-record markers corruption.
+
+    ??? example "Expected output"
+
+        ```{.text .no-copy}
+        2026-05-15T13:42:27.237530+01:00 2 [ERROR] [MY-014011] [InnoDB]
+        Minimum record flag is wrongly set to rec on page '4'
+        at level '0' for index 'PRIMARY' of table 'sys/sys_config'.
+        ```
+
+5. External LOB page ownership corruption.
+
+    ??? example "Expected output"
+
+        ```{.text .no-copy}
+        2026-05-15T13:42:34.475996+01:00 2 [ERROR] [MY-011825] [InnoDB] Invalid record! External LOB first page cannot be shared between two records
+        2026-05-15T13:42:34.476009+01:00 2 [ERROR] [MY-011825] [InnoDB] The external LOB first page is [page id: space=4294967294, page number=1002]
+        2026-05-15T13:42:34.476014+01:00 2 [ERROR] [MY-011825] [InnoDB] The first occurrence of the external LOB first page is in record : page_no: 992 with heap_no: 4
+        ```
