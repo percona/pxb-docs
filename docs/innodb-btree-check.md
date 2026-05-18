@@ -2,7 +2,11 @@
 
 ## Overview
 
-Percona XtraBackup 8.4.0-6 introduces the [`--check-tables`](xtrabackup-option-reference.md#check-tables) option that validates the structural integrity of InnoDB B-tree indexes during the [`--prepare`](xtrabackup-option-reference.md#prepare) phase. Validation during `--prepare` helps detect corrupted indexes before restore or production deployment.
+The [`--check-tables`](xtrabackup-option-reference.md#check-tables) option validates the structural integrity of InnoDB B-tree indexes during the [`--prepare`](xtrabackup-option-reference.md#prepare) phase. Validation during `--prepare` helps detect corrupted indexes before restore or production deployment.
+
+### Version changes
+
+Percona XtraBackup 8.4.0-6 introduces the `--check-tables` option.
 
 ## Why checksum validation is not enough
 
@@ -10,13 +14,13 @@ Percona XtraBackup verifies InnoDB page checksums during `--backup`. These check
 
 Checksum validation detects physical corruption within individual pages, including:
 
-* Torn pages
+* Torn-page corruption
 
-* Corrupted writes
+* Write corruption
 
 * Transfer corruption
 
-* Some storage or filesystem-level corruption
+* Storage or filesystem corruption
 
 When the server modifies a page while XtraBackup copies it, XtraBackup retries the copy until the checksum becomes consistent. The retry process prevents partially modified pages from entering the backup.
 
@@ -38,33 +42,13 @@ XtraBackup does not validate B-tree structure or relationships between pages dur
 
 Structural corruption rarely occurs and usually results from server bugs, backup tool bugs, storage failures, or filesystem-level corruption.
 
-Structural corruption can include:
-
-* Broken sibling page links
-
-* Incorrect `PAGE_INDEX_ID` assignments
-
-* Missing or misplaced minimum-record flags
-
-* Invalid parent-to-child page references
-
-* Shared external LOB (large object) pages
-
-* All-zero pages with valid checksums
+Structural corruption can break B-tree page relationships, page metadata consistency, and external LOB references. For a complete list of detected corruption conditions, see [Detected corruption conditions](#detected-corruption-conditions).
 
 ## How `--check-tables` works
 
 The `--check-tables` option executes `btr_validate_index()` on every committed index in each `.ibd` tablespace using the number of threads specified by [`--parallel`](xtrabackup-option-reference.md#parallel). `--check-tables` detects structural inconsistencies that page checksum verification cannot detect. The option applies only to InnoDB tables.
 
 Percona XtraBackup runs validation during the `--prepare` phase after applying the redo log. The validation process operates in read-only mode against backup files and does not modify backup contents. Validation continues after detecting corruption so that Percona XtraBackup can report all problematic tables and indexes in a single run.
-
-The option supports:
-
-* [Parallel execution](#parallel-execution) through [`--parallel`](xtrabackup-option-reference.md#parallel)
-
-* Workflows that use [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only)
-
-* Transportable tablespace export with [`--export`](xtrabackup-option-reference.md#export)
 
 For each tablespace, Percona XtraBackup:
 
@@ -78,21 +62,31 @@ For each tablespace, Percona XtraBackup:
 
 5. Reports detected inconsistencies
 
-The validation process verifies:
+The option also works with:
 
-* Sibling page relationships
+* [Parallel execution](#parallel-execution) through [`--parallel`](xtrabackup-option-reference.md#parallel)
 
-* Parent-to-child page references
+* Workflows that use [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only)
 
-* Page ownership metadata
+* Transportable tablespace export with [`--export`](xtrabackup-option-reference.md#export)
 
-* Minimum-record markers
+### Detected corruption conditions
 
-* External LOB (large object) page ownership
+The validation process performs the following structural checks:
+
+| Check | Detected condition |
+|------|---------------------|
+| Broken sibling links | Invalid sibling-page or parent-page navigation pointers |
+| `PAGE_INDEX_ID` mismatches | Page index ID does not match index metadata |
+| Minimum-record flag validation | Minimum-record flag is missing or invalid |
+| Parent-child pointer validation | Child page boundaries do not match parent node structure |
+| External LOB validation | Shared, freed, or out-of-bounds LOB page references |
+| All-zero page detection | Page contains only zero bytes |
+| PRIMARY and secondary index record-count validation | Record count mismatch between the PRIMARY index and secondary indexes |
 
 ### Offloading `CHECK TABLE`
 
-The `--check-tables` option provides functionality similar to `CHECK TABLE` for InnoDB tables, but Percona XtraBackup performs validation on backup files during the `--prepare` phase instead of on a running production server.
+Similar to the InnoDB `CHECK TABLE` command, the `--check-tables` option validates InnoDB tables. However, Percona XtraBackup performs this validation offline on backup files during the `--prepare` phase, avoiding any performance impact on a live production server.
 
 Validation during `--prepare` moves structural integrity verification from restored database instances to the backup preparation workflow. A backup or staging host can run validation without starting MySQL on the restored backup.
 
@@ -105,17 +99,6 @@ Using `--check-tables` during `--prepare` provides the following operational ben
 * Detects structural corruption earlier in the backup validation workflow
 
 * Detects corruption before restore or deployment
-
-### Detected corruption conditions
-
-| Check | Detected condition |
-|------|---------------------|
-| Broken sibling links | Invalid sibling-page or parent-page navigation pointers |
-| `PAGE_INDEX_ID` mismatches | Page index ID does not match index metadata |
-| Minimum-record flag validation | Minimum-record flag is missing or invalid |
-| Parent-child pointer validation | Child page boundaries do not match parent node structure |
-| External LOB validation | Shared, freed, or out-of-bounds LOB page references |
-| All-zero page detection | Page contains only zero bytes |
 
 ### Parallel execution
 
@@ -135,19 +118,19 @@ Each worker thread:
 
 The `--check-tables` option has the following limitations:
 
+* Validation applies only to InnoDB tables and does not validate MyISAM or RocksDB tables
+
 * Validation runs only during `--prepare`
 
 * Validation increases CPU and I/O usage on the backup host
 
 * Runtime depends on the number of tablespaces and indexes
 
-* For incremental backup chains, run `--check-tables` only during the final prepare stage because the option verifies all tables and indexes each time it runs
-
-* Validation does not replace logical consistency checks such as `CHECK TABLE`
+* For incremental backup chains, use `--check-tables` only during the final prepare stage because the option verifies all tables and indexes each time it runs
 
 ## Usage
 
-The `--check-tables` option uses the thread count specified by `--parallel`. Start with `--parallel=8` and tune the value according to available CPU and disk I/O capacity on the backup host.
+The `--check-tables` option uses the thread count specified by `--parallel`. Start with `--parallel=8` and adjust the value according to CPU availability and disk I/O capacity on the backup host.
 
 ### Validate a full backup
 
@@ -176,7 +159,7 @@ xtrabackup --prepare --export --check-tables \
 
 ## Output
 
-A successful validation operation ends with:
+A successful validation operation typically ends with a message similar to:
 
 ```text
 2026-05-15T15:41:57.808327+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/replication_group_member_actions

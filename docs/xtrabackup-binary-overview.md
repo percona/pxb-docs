@@ -74,6 +74,6 @@ Explore the following sections for more guidance:
 
 * Configuration options appear on [configure xtrabackup](configure-xtrabackup.md)
 
-* Command-line options: A comprehensive list of command-line options is available on [xtrabackup option reference](xtrabackup-option-reference.html)
+* Command-line options: A comprehensive list of command-line options is available on [xtrabackup option reference](xtrabackup-option-reference.md)
 
 * Implementation details: Review technical insights and architecture on [xtrabackup implementation details](xtrabackup-implementation-details.md)
