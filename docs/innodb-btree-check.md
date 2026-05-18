@@ -2,23 +2,43 @@
 
 ## Overview
 
-Percona XtraBackup 8.4.0-6 introduces the [`--check-tables`](xtrabackup-option-reference.md#check-tables) option that validates the structural integrity of InnoDB B-tree indexes during the [`--prepare`](xtrabackup-option-reference.md#prepare) phase. Validation during `--prepare` helps detect corrupted indexes before backup restore or production deployment.
+Percona XtraBackup 8.4.0-6 introduces the [`--check-tables`](xtrabackup-option-reference.md#check-tables) option that validates the structural integrity of InnoDB B-tree indexes during the [`--prepare`](xtrabackup-option-reference.md#prepare) phase. Validation during `--prepare` helps detect corrupted indexes before restore or production deployment.
 
 ## Why checksum validation is not enough
 
-Percona XtraBackup verifies page checksums during `--backup`. Checksum validation detects physical page corruption, including:
+Percona XtraBackup verifies InnoDB page checksums during `--backup`. These checks ensure that the backup contains checksum-valid pages at backup time.
+
+Checksum validation detects physical corruption within individual pages, including:
 
 * Torn pages
 
-* Storage bit rot
+* Corrupted writes
 
-* Corrupted transfers
+* Transfer corruption
 
-* Filesystem-level damage
+* Some storage or filesystem-level corruption
 
-Checksum validation confirms page integrity at the byte level. B-tree structure validation requires additional checks across related pages.
+When the server modifies a page while XtraBackup copies it, XtraBackup retries the copy until the checksum becomes consistent. The retry process prevents partially modified pages from entering the backup.
 
-Structural corruption that can pass checksum validation includes:
+A successful backup therefore guarantees checksum-valid pages, but checksum validation alone cannot guarantee a fully valid restore.
+
+### Corruption can happen after backup creation
+
+A backup can become corrupted after creation because of storage or filesystem issues.
+
+During `--prepare`, XtraBackup only re-validates pages involved in redo application. Pages outside redo processing may never undergo another checksum check.
+
+For this reason, running `CHECK TABLE` after restore remains a recommended practice. `CHECK TABLE` forces page reads and validates both checksums and structural consistency.
+
+### Checksums do not verify page relationships
+
+Checksum validation only confirms that the bytes within a page match the checksum stored in the page header.
+
+XtraBackup does not validate B-tree structure or relationships between pages during backup. As a result, structurally corrupted pages can still enter the backup if those pages remain checksum-valid on the source server.
+
+Structural corruption rarely occurs and usually results from server bugs, backup tool bugs, storage failures, or filesystem-level corruption.
+
+Structural corruption can include:
 
 * Broken sibling page links
 
@@ -32,13 +52,11 @@ Structural corruption that can pass checksum validation includes:
 
 * All-zero pages with valid checksums
 
-Applying the redo log during `--prepare` copies the existing structural corruption from the source server into the prepared backup. As a result, backups can remain physically consistent while containing logically corrupted indexes.
-
 ## How `--check-tables` works
 
-The `--check-tables` option executes `btr_validate_index()` on every committed index in each `.ibd` tablespace using the number of threads specified by [`--parallel`](xtrabackup-option-reference.md#parallel). `--check-tables` detects structural inconsistencies that page checksum verification cannot detect. This option applies only to InnoDB tables.
+The `--check-tables` option executes `btr_validate_index()` on every committed index in each `.ibd` tablespace using the number of threads specified by [`--parallel`](xtrabackup-option-reference.md#parallel). `--check-tables` detects structural inconsistencies that page checksum verification cannot detect. The option applies only to InnoDB tables.
 
-Validation runs during the `--prepare` phase after applying the redo log. The process operates in read-only mode against backup files and does not modify backup contents. Validation continues even after detecting corrupted tables, allowing all problematic tables and indexes to be reported in a single run.
+Percona XtraBackup runs validation during the `--prepare` phase after applying the redo log. The validation process operates in read-only mode against backup files and does not modify backup contents. Validation continues after detecting corruption so that Percona XtraBackup can report all problematic tables and indexes in a single run.
 
 The option supports:
 
@@ -46,7 +64,7 @@ The option supports:
 
 * Workflows that use [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only)
 
-* Transportable tablespace export with [`--export`](xtrabackup-option-reference.md#export).
+* Transportable tablespace export with [`--export`](xtrabackup-option-reference.md#export)
 
 For each tablespace, Percona XtraBackup:
 
@@ -74,15 +92,25 @@ The validation process verifies:
 
 ### Offloading `CHECK TABLE`
 
-This option is functionally equivalent to running `CHECK TABLE` on InnoDB tables, but it executes on the backup during the `--prepare` phase instead of on a running production server.
+The `--check-tables` option provides functionality similar to `CHECK TABLE` for InnoDB tables, but Percona XtraBackup performs validation on backup files during the `--prepare` phase instead of on a running production server.
 
-This allows a significant portion of `CHECK TABLE` workload to be offloaded from production systems to an offline environment where the backup is prepared and validated.
+Validation during `--prepare` moves structural integrity verification from restored database instances to the backup preparation workflow. A backup or staging host can run validation without starting MySQL on the restored backup.
+
+Using `--check-tables` during `--prepare` provides the following operational benefits:
+
+* Eliminates the need to start a MySQL server on restored backups solely for structural validation
+
+* Moves validation workload away from running production systems
+
+* Detects structural corruption earlier in the backup validation workflow
+
+* Detects corruption before restore or deployment
 
 ### Detected corruption conditions
 
 | Check | Detected condition |
 |------|---------------------|
-| Broken sibling links | Invalid sibling or parent navigation pointers |
+| Broken sibling links | Invalid sibling-page or parent-page navigation pointers |
 | `PAGE_INDEX_ID` mismatches | Page index ID does not match index metadata |
 | Minimum-record flag validation | Minimum-record flag is missing or invalid |
 | Parent-child pointer validation | Child page boundaries do not match parent node structure |
@@ -91,7 +119,7 @@ This allows a significant portion of `CHECK TABLE` workload to be offloaded from
 
 ### Parallel execution
 
-The `--check-tables` option uses the existing `--parallel` infrastructure in Percona XtraBackup. Worker threads process tablespaces independently.
+The `--check-tables` option uses the existing `--parallel` infrastructure from Percona XtraBackup. Worker threads process tablespaces independently.
 
 Each worker thread:
 
@@ -113,9 +141,13 @@ The `--check-tables` option has the following limitations:
 
 * Runtime depends on the number of tablespaces and indexes
 
+* For incremental backup chains, run `--check-tables` only during the final prepare stage because the option verifies all tables and indexes each time it runs
+
 * Validation does not replace logical consistency checks such as `CHECK TABLE`
 
 ## Usage
+
+The `--check-tables` option uses the thread count specified by `--parallel`. Start with `--parallel=8` and tune the value according to available CPU and disk I/O capacity on the backup host.
 
 ### Validate a full backup
 
@@ -147,13 +179,29 @@ xtrabackup --prepare --export --check-tables \
 A successful validation operation ends with:
 
 ```text
-All table checks passed
+2026-05-15T15:41:57.808327+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/replication_group_member_actions
+2026-05-15T15:41:57.808630+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/replication_group_configuration_version
+2026-05-15T15:41:57.808810+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/server_cost
+2026-05-15T15:41:57.808998+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/engine_cost
+2026-05-15T15:41:57.809190+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/proxies_priv
+2026-05-15T15:41:57.809511+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/ndb_binlog_index
+2026-05-15T15:41:58.051499+01:00 0 [Note] [MY-011825] [Xtrabackup] All table checks passed.
 ```
 
-A failed validation operation returns a non-zero exit code and logs the following message:
+A failed validation operation returns a non-zero exit code. During validation, XtraBackup logs each table as it processes it:
 
 ```text
-Table check failed. The backup may be corrupted.
+2026-05-15T13:42:23.691691+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: test/t1
+2026-05-15T13:42:23.697349+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: test/t_lob
+2026-05-15T13:42:23.782555+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/dd_properties
+2026-05-15T13:42:23.782835+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/innodb_dynamic_metadata
+...
+```
+
+If validation detects corruption, XtraBackup reports the affected tables and ends with the following summary message:
+
+```text
+2026-05-15T13:42:24.670469+01:00 0 [ERROR] [MY-011825] [Xtrabackup] Table check failed. The backup may be corrupted.
 ```
 
 The log contains detailed information for each detected inconsistency.
