@@ -2,9 +2,13 @@
 
 ## Overview
 
-Percona XtraBackup 8.4.0-6 introduces backup size reporting for every successful backup. Percona XtraBackup records backup size metadata in `xtrabackup_info` and reports the same values in the XtraBackup error log.
+Percona XtraBackup reports the size of every successful backup in `xtrabackup_info` and reports the same values in the XtraBackup error log.
 
-Backup size reporting helps estimate storage requirements, validate backup operations, and plan restore capacity for compressed and streamed backups.
+Backup size reporting helps estimate storage requirements, check that backups work correctly, and plan restores for compressed and streamed backups.
+
+### Version changes
+
+[Percona XtraBackup 8.4.0-6](release-notes/8.4.0-6.md) introduces backup size reporting.
 
 ## Why external tools cannot accurately measure backup size
 
@@ -14,9 +18,9 @@ Backup size often differs from the MySQL datadir size because Percona XtraBackup
 
 Several backup features further change the final output size:
 
-* `--stream=xbstream` adds xbstream metadata
+* [`--stream=xbstream`](binaries-overview.md#xbstream) adds xbstream metadata
 
-* `--compress` reduces the final backup size according to data compressibility
+* [`--compress`](create-compressed-backup.md) reduces the final backup size according to data compressibility
 
 * Sparse InnoDB tablespaces affect filesystem size reporting
 
@@ -28,7 +32,7 @@ Compressed backups also require sufficient free space during decompression and r
 
 ## How backup size reporting works
 
-Percona XtraBackup records backup size metadata at the end of every successful backup. Backup size reporting is enabled by default and requires no additional configuration.
+Percona XtraBackup records backup size at the end of every successful backup. Backup size reporting is enabled by default and requires no additional configuration.
 
 Percona XtraBackup calculates backup size after all backup operations complete, including:
 
@@ -36,9 +40,11 @@ Percona XtraBackup calculates backup size after all backup operations complete, 
 
 * Encryption
 
-* xbstream packaging
+* xbstream formatting
 
 * Sparse file handling
+
+For sparse InnoDB tablespaces, Percona XtraBackup counts only written data fragments and excludes filesystem hole ranges.
 
 The reported backup size matches the exact number of bytes written to the backup destination.
 
@@ -56,8 +62,6 @@ Percona XtraBackup stores the reported values in:
 
 * XtraBackup error log
 
-For sparse InnoDB tablespaces, Percona XtraBackup counts only written data fragments and excludes filesystem hole ranges.
-
 ### Reported values
 
 | Field | Description |
@@ -68,9 +72,9 @@ For sparse InnoDB tablespaces, Percona XtraBackup counts only written data fragm
 
 ### `xtrabackup_info`
 
-Percona XtraBackup writes backup size metadata to `xtrabackup_info`.
+Percona XtraBackup writes backup size metadata to `xtrabackup_info` in the backup output.
 
-Depending on backup configuration, `xtrabackup_info` may be:
+Depending on backup configuration, `xtrabackup_info` in the backup output may be:
 
 * Plaintext
 
@@ -80,11 +84,17 @@ Depending on backup configuration, `xtrabackup_info` may be:
 
 * Embedded inside an xbstream archive
 
-Streamed backups store `xtrabackup_info` inside the xbstream output unless `--extra-lsndir` generates a separate plaintext copy.
+Streamed backups store `xtrabackup_info` inside the xbstream output.
+
+If `xtrabackup_info` is not plaintext, you can create a separate plaintext copy of `xtrabackup_info` using the `--extra-lsndir=<dir>` option.
+
+!!! note
+
+    Files created in the `--extra-lsndir=<dir>` directory are not part of the backup.
 
 ### XtraBackup error log
 
-Percona XtraBackup prints backup size information near the end of the backup operation before the `completed OK!` message.
+Percona XtraBackup prints information about backup size near the end of the backup operation before the `completed OK!` message.
 
 The log output includes:
 
@@ -104,7 +114,7 @@ The following example shows `xtrabackup_info` from a backup created with `--targ
 uuid = 122a291d-48b0-11f1-9d76-047bcbcb6b7e
 name =
 tool_name = xtrabackup
-tool_command = --backup --no-defaults --user=root --socket=/tmp/pxb-blog/mysql.sock --target-dir=/tmp/pxb-blog/backup --extra-lsndir=/tmp/pxb-blog/lsndir --datadir=/tmp/pxb-blog/datadir
+tool_command = --backup --no-defaults --user=root --socket=/tmp/pxb-folder/mysql.sock --target-dir=/tmp/pxb-folder/backup --extra-lsndir=/tmp/pxb-folder/lsndir --datadir=/tmp/pxb-folder/datadir
 tool_version = 8.4.0-6
 ibbackup_version = 8.4.0-6
 server_version = 8.4.8-8
@@ -135,7 +145,7 @@ The XtraBackup error log contains the corresponding backup size entry:
 
 Compressed backups additionally report the uncompressed backup size and compression ratio.
 
-The following example shows the final lines of `xtrabackup_info` from a compressed backup:
+The following example shows the final lines of `xtrabackup_info` with backup size values reported in bytes:
 
 ```text
 backup_size = 1832398
