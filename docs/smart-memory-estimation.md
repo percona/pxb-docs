@@ -24,16 +24,16 @@ To run `prepare`, Percona XtraBackup checks the server's available free memory a
 
 You can enable or disable the memory estimation during the `backup` phase with the [`--estimate-memory`](xtrabackup-option-reference.md#estimate-memory) option. The default value is `OFF`. Enable the memory estimation with  `--estimate-memory=ON`:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
+```shell
+xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
 In the `prepare` phase, enable the [`--use-free-memory-pct`](xtrabackup-option-reference.md#use-free-memory-pct) option by specifying the percentage of free memory to be used to `prepare` a backup. The `--use-free-memory-pct` value must be larger than 0.
 
 For example:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
+```shell
+xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 
 ## Example of Smart memory estimation usage
