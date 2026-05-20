@@ -5850,11 +5850,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h2 id="how-does-smart-memory-estimation-work">How does Smart memory estimation work<a class="headerlink" href="#how-does-smart-memory-estimation-work" title="Permanent link">&para;</a></h2>
 <p>To run <code>prepare</code>, Percona XtraBackup checks the server&rsquo;s available free memory and uses that memory up to the limit specified in the <a href="xtrabackup-option-reference.html#use-free-memory-pct"><code>--use-free-memory-pct</code></a> option. Due to backward compatibility, the default value for the <code>--use-free-memory-pct</code> option is 0 (zero), which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup.</p>
 <p>You can enable or disable the memory estimation during the <code>backup</code> phase with the <a href="xtrabackup-option-reference.html#estimate-memory"><code>--estimate-memory</code></a> option. The default value is <code>OFF</code>. Enable the memory estimation with  <code>--estimate-memory=ON</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <p>In the <code>prepare</code> phase, enable the <a href="xtrabackup-option-reference.html#use-free-memory-pct"><code>--use-free-memory-pct</code></a> option by specifying the percentage of free memory to be used to <code>prepare</code> a backup. The <code>--use-free-memory-pct</code> value must be larger than 0.</p>
 <p>For example:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <h2 id="example-of-smart-memory-estimation-usage">Example of Smart memory estimation usage<a class="headerlink" href="#example-of-smart-memory-estimation-usage" title="Permanent link">&para;</a></h2>
 <p>The examples of how Smart memory estimation can improve the time spent on <code>prepare</code> in Percona XtraBackup:</p>
@@ -5944,7 +5944,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 10, 2023 14:37:10 UTC">October 10, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 20, 2026 16:34:33 UTC">May 20, 2026</span>
   </span>
 
     
