@@ -46,7 +46,7 @@ Structural corruption can break B-tree page relationships, page metadata consist
 
 ## How `--check-tables` works
 
-The `--check-tables` option executes `btr_validate_index()` on every committed index in each `.ibd` tablespace using the number of threads specified by [`--parallel`](xtrabackup-option-reference.md#parallel). `--check-tables` detects structural inconsistencies that page checksum verification cannot detect. The option applies only to InnoDB tables.
+The `--check-tables` option executes `btr_validate_index()` on every index that is present and active in the InnoDB data dictionary for each `.ibd` tablespace, using the number of threads specified by [`--parallel`](xtrabackup-option-reference.md#parallel). `--check-tables` detects structural inconsistencies that page checksum verification cannot detect. The option applies only to InnoDB tables.
 
 Percona XtraBackup runs validation during the `--prepare` phase after applying the redo log. The validation process operates in read-only mode against backup files and does not modify backup contents. Validation continues after detecting corruption so that Percona XtraBackup can report all problematic tables and indexes in a single run.
 
@@ -126,7 +126,7 @@ The `--check-tables` option has the following limitations:
 
 * Runtime depends on the number of tablespaces and indexes
 
-* For incremental backup chains, use `--check-tables` only during the final prepare stage because the option verifies all tables and indexes each time it runs
+* For incremental backups, use `--check-tables` only during the final prepare stage because the option verifies all tables and indexes each time it runs
 
 ## Usage
 
@@ -140,12 +140,13 @@ xtrabackup --prepare --check-tables \
   --parallel=8
 ```
 
-### Validate an incremental backup chain
+### Validate an incremental backup
+
+The `--check-tables` option can be used together with `--apply-log-only`. However, because validation scans all tables and indexes each time it runs, it's recommended using the option during the final prepare stage of an incremental backup.
 
 ```bash
-xtrabackup --prepare --apply-log-only --check-tables \
+xtrabackup --prepare --check-tables \
   --target-dir=/backups/full \
-  --incremental-dir=/backups/inc1 \
   --parallel=8
 ```
 
