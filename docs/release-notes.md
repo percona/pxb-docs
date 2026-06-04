@@ -1,5 +1,7 @@
 # Percona XtraBackup 8.0 release notes index
 
+* [Percona XtraBackup 8.0.35-36 (2026-06-04)](release-notes/8.0/8.0.35-36.0.md)
+
 * [Percona XtraBackup 8.0.35-35 (2026-01-26)](release-notes/8.0/8.0.35-35.0.md)
 
 * [Percona XtraBackup 8.0.35-34 (2025-08-11)](release-notes/8.0/8.0.35-34.0.md)
