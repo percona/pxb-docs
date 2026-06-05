@@ -1,65 +1,101 @@
-# Quickstart Overview
+# Quickstart overview
 
-Percona XtraBackup is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems.
+Percona XtraBackup performs online, non-blocking physical backups for Percona Server for MySQL and MySQL databases. This quickstart guide uses Docker to demonstrate backup and restore operations.
 
-To quickly start with Percona XtraBackup, we recommend using Docker. This Quickstart guide focuses on this installation method. You can explore alternative installation options in the [Install](installation.md) section.
+For alternative installation methods, see [Installation](installation.md).
 
-### Docker containers
+## Why use Docker for this quickstart
 
-Docker containers are built from Docker images, which are configuration snapshots needed to run applications. With Docker, you can build, deploy, run, update, and manage containers, which isolate applications from the host system. A Docker container lets you work with Percona XtraBackup without installing the product on a local drive.
+Docker containers isolate applications from the host system. Running Percona XtraBackup in a container provides the following benefits:
 
-Using Docker has benefits:
+* No installation required on the host system
 
-* Easily set up and use
-* Doesn't change anything on your computer
-* Simply remove it when you're done
+* Consistent environment across different operating systems
 
-## Quickstart Purpose
+* Complete removal leaves no residual files
 
-This section provides you with the basic steps to start Percona XtraBackup in a Docker container, take a backup, prepare a backup and restore a backup of Percona Server for MySQL database.
+For production deployments, see [Installation](installation.md) for package-based installation options.
 
-We use specific names in our examples, but feel free to change them if you want. Just remember that if you do, your results might be different from our guide.
+## Supported configurations
 
-When we talk about a "container," we mean the Docker container where Percona XtraBackup is running. When we say "instance," we're talking about the MySQL database server inside that container.
+Verify your environment meets the following requirements before starting.
 
-This guide will help you get started quickly, but there's a lot more to learn about database backups as you go along.
+### Supported servers
+
+Percona XtraBackup {{vers}} supports the following MySQL-compatible servers:
+
+* MySQL Server
+
+* Percona Server for MySQL
+
+* Percona XtraDB Cluster
+
+### Supported storage engines
+
+Percona XtraBackup {{vers}} supports the following storage engines:
+
+* InnoDB
+
+* MyISAM
+
+* MyRocks
+
+* XtraDB
+
+### Version requirements
+
+Percona XtraBackup {{vers}} requires databases created with the {{vers}} series or later. Databases created with earlier MySQL, Percona Server for MySQL, or Percona XtraDB Cluster versions are not supported.
+
+For detailed version compatibility information, see [Server and backup version comparison](server-backup-version-comparison.md).
 
 ## Prerequisites
 
-* [Install Docker :octicons-link-external-16:](https://docs.docker.com/engine/install/) on your system.
+Both learning paths require [Docker :octicons-link-external-16:](https://docs.docker.com/engine/install/) installed on your system. Each tutorial includes specific setup instructions for Percona Server for MySQL.
 
-To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database, and a table.
+## Choose your learning path
 
-* [Start Percona Server in a Docker container :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/quickstart-docker.html)
-* [Create a database and table in Percona Server :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/quickstart-docker.html#create-a-database)
+This quickstart offers two paths based on your experience level and goals:
 
-### Limitations
+| Path | Best for | Time | Topics covered |
+|------|----------|------|----------------|
+| [Basic quickstart](quickstart-docker.md) | First-time users learning core concepts | 15-20 min | Single backup, restore, validation |
+| [Docker Compose tutorial](docker-compose-tutorial.md) | Production-oriented users | 30-40 min | Backup profiles, validation testing, disaster recovery |
 
-Percona XtraBackup {{vers}} does not support making backups of databases created in versions before the {{vers}} series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster.
+### Basic quickstart
 
-### Support servers and storage engines
+The [basic quickstart](quickstart-docker.md) teaches core Percona XtraBackup operations using individual Docker commands:
 
-Percona XtraBackup {{vers}} supports backing up data from various MySQL-compatible servers and storage engines.
+* Create a backup volume
 
-Supported Servers:
+* Take and prepare a full backup
 
-* MySQL Server
-* Percona Server for MySQL
-* Percona XtraDB Cluster
+* Restore a backup to a new container
 
-Supported Storage Engines:
+* Validate restored data
 
-* InnoDB
-* XtraDB
-* MyISAM
-* MyRocks
+### Docker Compose tutorial
 
-## Steps to perform
+The [Docker Compose tutorial](docker-compose-tutorial.md) demonstrates a production-ready backup workflow with separate services for backup, validation, and restore:
 
-In this Quickstart, you will learn how to:
-{.power-number}
+* Configure Docker Compose with backup profiles
 
-1. [Start a Docker container and take a backup](quickstart-docker.md)
-2. [Restore a backup](quickstart-restore-back.md)
-3. [Clean up](quickstart-exit.md)
-4. [Choose your next steps](quickstart-next-steps.md)
+* Validate backups before relying on them for recovery
+
+* Simulate a disaster scenario
+
+* Execute a complete restore operation
+
+* Understand file permission requirements
+
+## Terminology
+
+This quickstart uses the following terms:
+
+| Term | Definition |
+|------|------------|
+| Container | The Docker container running Percona XtraBackup or Percona Server |
+| Instance | The MySQL database server process running inside a container |
+| Volume | Docker persistent storage that survives container restarts |
+| Prepared backup | A backup with transaction logs applied, ready for restoration |
+
+For additional terminology, see [Glossary](glossary.md).

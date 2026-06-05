@@ -1,32 +1,43 @@
 # Next steps
 
-After you take your first backup with Percona Xtrabackup, it's high time to expand your knowledge and skills in using Percona Xtrabackup.
+This page provides recommendations for continuing your Percona XtraBackup learning after completing the quickstart.
 
-Review the [Percona Xtrabackup documentation :octicons-link-external-16:](https://docs.percona.com/percona-xtrabackup/{{vers}}/) for more information.
+## Continue learning Percona XtraBackup
 
-## Learn more about other Percona products
+The following resources expand on the concepts covered in the quickstart:
 
-### For superior and optimized performance
+| Topic | Description |
+|-------|-------------|
+| [Create incremental backups](create-incremental-backup.md) | Back up only changed data to reduce backup time and storage |
+| [Create compressed backups](create-compressed-backup.md) | Reduce backup size with compression |
+| [Encrypt backups](encrypt-backups.md) | Protect backup data with encryption |
+| [Stream backups to cloud storage](xbcloud-binary-overview.md) | Send backups directly to S3, GCS, or Azure |
 
-Percona Server for MySQL (PS) is a freely available, fully compatible, enhanced, and open source drop-in replacement for any MySQL database. It provides superior and optimized performance, greater scalability and availability, enhanced backups, increased visibility, and instrumentation. Percona Server for MySQL is trusted by thousands of enterprises to provide better performance and concurrency for their most demanding workloads.
+## Docker Compose tutorial
 
-Install [Percona Server for MySQL :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/installation.html).
+For a production-ready approach to backup validation and disaster recovery, follow the [Docker Compose backup and restore tutorial](docker-compose-tutorial.md). This tutorial covers the following topics:
 
-### For high availability
+* Configure Docker Compose with backup profiles
 
-Percona XtraDB Cluster (PXC) is a 100% open source, enterprise-grade, highly available clustering solution for MySQL multi-master setups based on Galera. PXC helps enterprises minimize unexpected downtime and data loss, reduce costs, and improve performance and scalability of your database environments supporting your critical business applications in the most demanding public, private, and hybrid cloud environments. 
+* Validate backups before relying on them for recovery
 
-Install [Percona XtraDB Cluster :octicons-link-external-16:](https://docs.percona.com/percona-xtradb-cluster/{{vers}}/install-index.html).
+* Simulate and recover from a disaster scenario
 
-### For Monitoring and Management
+* Understand file permission requirements for containerized restores
 
-Percona Monitoring and Management (PMM) monitors and provides actionable performance data for MySQL variants, including Percona Server for MySQL, Percona XtraDB Cluster, Oracle MySQL Community Edition, Oracle MySQL Enterprise Edition, and MariaDB. PMM captures metrics and data for the InnoDB, XtraDB, and MyRocks storage engines, and has specialized dashboards for specific engine details.
+## Production installation
 
-[Install PMM and connect your MySQL instances to it :octicons-link-external-16:](https://docs.percona.com/percona-monitoring-and-management/3/quickstart/quickstart.html#connect-database).
+The quickstart uses Docker for demonstration purposes. For production environments, install Percona XtraBackup directly on the database server.
 
-### Advanced command-line tools
+See [Installation](installation.md) for package-based installation options.
 
-Percona Toolkit is a collection of advanced command-line tools used by the Percona support staff to perform a variety of MySQL, MongoDB, and system tasks that are complex or difficult to perform manually. These tools are ideal alternatives to “one-off” scripts because they are professionally developed, formally tested, and documented. Each tool is self-contained, so installation is quick and easy and does not require installing libraries.
+## Related Percona products
 
-[Percona Toolkit documentation :octicons-link-external-16:](https://docs.percona.com/percona-toolkit/)
+The following Percona products work with Percona XtraBackup:
 
+| Product | Purpose | Documentation |
+|---------|---------|---------------|
+| Percona Server for MySQL | MySQL-compatible database with performance enhancements | [Installation :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/installation.html) |
+| Percona XtraDB Cluster | High-availability MySQL clustering with Galera | [Installation :octicons-link-external-16:](https://docs.percona.com/percona-xtradb-cluster/{{vers}}/install-index.html) |
+| Percona Monitoring and Management | Database monitoring and performance analysis | [Quickstart :octicons-link-external-16:](https://docs.percona.com/percona-monitoring-and-management/3/quickstart/quickstart.html) |
+| Percona Toolkit | Command-line tools for MySQL administration | [Documentation :octicons-link-external-16:](https://docs.percona.com/percona-toolkit/) |
