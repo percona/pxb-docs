@@ -18372,7 +18372,7 @@ regular expression matching. The table names must be fully-qualified in
 $<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables-file<span class="o">=</span>/tmp/tables.txt
 </code></pre></div>
 <h2 id="create-partial-backup-the-databases-and-databases-file-options">The <code>--databases</code> and <code>-–databases-file</code> options<a class="headerlink" href="#create-partial-backup-the-databases-and-databases-file-options" title="Permanent link">&para;</a></h2>
-<p>The <code>--databases</code> option accepts a comma-separated list of database names. To include all tables in a database, add <code>.*</code> after the database name (for example, <code>mydb.*</code>). Regular expressions are not supported.</p>
+<p>The <code>--databases</code> option accepts a space-separated list of database names. To include all tables in a database, add <code>.*</code> after the database name (for example, <code>mydb.*</code>). Regular expressions are not supported.</p>
 <p>In addition to your selected databases, make sure to specify the <code>mysql</code>, <code>sys</code>, and <code>performance_schema</code> databases. These databases are required when restoring the databases using xtrabackup <code>--copy-back</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -18380,7 +18380,7 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="
 even if they are not explicitly listed by the parameter if they were created
 after the backup started.</p>
 </div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--databases<span class="o">=</span><span class="s1">&#39;mysql,sys,performance_schema,test&#39;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--databases<span class="o">=</span><span class="s1">&#39;mysql sys performance_schema test&#39;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <h2 id="create-partial-backup-the-databases-file-option">The <code>--databases-file</code> option<a class="headerlink" href="#create-partial-backup-the-databases-file-option" title="Permanent link">&para;</a></h2>
 <p>The –databases-file option specifies a file that can contain multiple
