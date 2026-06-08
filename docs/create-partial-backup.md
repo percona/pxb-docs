@@ -82,7 +82,7 @@ $ xtrabackup --backup --tables-file=/tmp/tables.txt
 
 ## The `--databases` and `-–databases-file` options
 
-The `--databases` option accepts a comma-separated list of database names. To include all tables in a database, add `.*` after the database name (for example, `mydb.*`). Regular expressions are not supported.
+The `--databases` option accepts a space-separated list of database names. To include all tables in a database, add `.*` after the database name (for example, `mydb.*`). Regular expressions are not supported.
 
 In addition to your selected databases, make sure to specify the `mysql`, `sys`, and `performance_schema` databases. These databases are required when restoring the databases using xtrabackup `--copy-back`.
 
@@ -93,7 +93,7 @@ In addition to your selected databases, make sure to specify the `mysql`, `sys`,
     after the backup started.
 
 ```{.bash data-prompt="$"}
-$ xtrabackup --backup --databases='mysql,sys,performance_schema,test' --target-dir=/data/backups/
+$ xtrabackup --backup --databases='mysql sys performance_schema test' --target-dir=/data/backups/
 ```
 
 ## The `--databases-file` option
