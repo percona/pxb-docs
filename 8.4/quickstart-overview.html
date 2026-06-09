@@ -9,7 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Percona XtraBackup is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems.">
+        <meta name="description" content="Percona XtraBackup performs online, non-blocking physical backups for Percona Server for MySQL and MySQL databases. This quickstart guide uses Docker to demonstrate backup and restore operations.">
       
       
         <meta name="author" content="Percona LLC">
@@ -32,7 +32,7 @@
     
     
       
-        <title>Quickstart Overview - Percona XtraBackup</title>
+        <title>Quickstart overview - Percona XtraBackup</title>
       
     
     
@@ -100,7 +100,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Quickstart Overview" />
+                 <meta property="og:title" content="Percona XtraBackup - Quickstart overview" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.4/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -252,7 +252,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Quickstart Overview
+              Quickstart overview
             
           </span>
         </div>
@@ -792,7 +792,7 @@
   <span class="md-ellipsis">
     
   
-    Quickstart Overview
+    Quickstart overview
   
 
     
@@ -810,7 +810,7 @@
   <span class="md-ellipsis">
     
   
-    Quickstart Overview
+    Quickstart overview
   
 
     
@@ -838,10 +838,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quickstart-purpose" class="md-nav__link">
+  <a href="#why-use-docker-for-this-quickstart" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quickstart Purpose
+        Why use Docker for this quickstart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported configurations
       
     </span>
   </a>
@@ -860,10 +871,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#steps-to-perform" class="md-nav__link">
+  <a href="#choose-your-learning-path" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Steps to perform
+        Choose your learning path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminology
       
     </span>
   </a>
@@ -893,7 +915,7 @@
   <span class="md-ellipsis">
     
   
-    Start a Docker container and take a backup
+    Take a backup with Docker
   
 
     
@@ -949,7 +971,7 @@
   <span class="md-ellipsis">
     
   
-    Clean up
+    Clean up quickstart resources
   
 
     
@@ -3824,6 +3846,8 @@
       
         
       
+        
+      
     
     
     
@@ -3879,6 +3903,34 @@
     
   
     Run a Docker container
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docker-compose-tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Compose backup and restore tutorial
   
 
     
@@ -5791,10 +5843,21 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quickstart-purpose" class="md-nav__link">
+  <a href="#why-use-docker-for-this-quickstart" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quickstart Purpose
+        Why use Docker for this quickstart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported configurations
       
     </span>
   </a>
@@ -5813,10 +5876,21 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#steps-to-perform" class="md-nav__link">
+  <a href="#choose-your-learning-path" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Steps to perform
+        Choose your learning path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminology
       
     </span>
   </a>
@@ -5853,56 +5927,149 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="quickstart-overview">Quickstart Overview<a class="headerlink" href="#quickstart-overview" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems.</p>
-<p>To quickly start with Percona XtraBackup, we recommend using Docker. This Quickstart guide focuses on this installation method. You can explore alternative installation options in the <a href="installation.html">Install</a> section.</p>
-<h3 id="docker-containers">Docker containers<a class="headerlink" href="#docker-containers" title="Permanent link">&para;</a></h3>
-<p>Docker containers are built from Docker images, which are configuration snapshots needed to run applications. With Docker, you can build, deploy, run, update, and manage containers, which isolate applications from the host system. A Docker container lets you work with Percona XtraBackup without installing the product on a local drive.</p>
-<p>Using Docker has benefits:</p>
+<h1 id="quickstart-overview">Quickstart overview<a class="headerlink" href="#quickstart-overview" title="Permanent link">&para;</a></h1>
+<p>Percona XtraBackup performs online, non-blocking physical backups for Percona Server for MySQL and MySQL databases. This quickstart guide uses Docker to demonstrate backup and restore operations.</p>
+<p>For alternative installation methods, see <a href="installation.html">Installation</a>.</p>
+<h2 id="why-use-docker-for-this-quickstart">Why use Docker for this quickstart<a class="headerlink" href="#why-use-docker-for-this-quickstart" title="Permanent link">&para;</a></h2>
+<p>Docker containers isolate applications from the host system. Running Percona XtraBackup in a container provides the following benefits:</p>
 <ul>
-<li>Easily set up and use</li>
-<li>Doesn&rsquo;t change anything on your computer</li>
-<li>Simply remove it when you&rsquo;re done</li>
+<li>
+<p>No installation required on the host system</p>
+</li>
+<li>
+<p>Consistent environment across different operating systems</p>
+</li>
+<li>
+<p>Complete removal leaves no residual files</p>
+</li>
 </ul>
-<h2 id="quickstart-purpose">Quickstart Purpose<a class="headerlink" href="#quickstart-purpose" title="Permanent link">&para;</a></h2>
-<p>This section provides you with the basic steps to start Percona XtraBackup in a Docker container, take a backup, prepare a backup and restore a backup of Percona Server for MySQL database.</p>
-<p>We use specific names in our examples, but feel free to change them if you want. Just remember that if you do, your results might be different from our guide.</p>
-<p>When we talk about a &ldquo;container,&rdquo; we mean the Docker container where Percona XtraBackup is running. When we say &ldquo;instance,&rdquo; we&rsquo;re talking about the MySQL database server inside that container.</p>
-<p>This guide will help you get started quickly, but there&rsquo;s a lot more to learn about database backups as you go along.</p>
+<p>For production deployments, see <a href="installation.html">Installation</a> for package-based installation options.</p>
+<h2 id="supported-configurations">Supported configurations<a class="headerlink" href="#supported-configurations" title="Permanent link">&para;</a></h2>
+<p>Verify your environment meets the following requirements before starting.</p>
+<h3 id="supported-servers">Supported servers<a class="headerlink" href="#supported-servers" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 8.4 supports the following MySQL-compatible servers:</p>
+<ul>
+<li>
+<p>MySQL Server</p>
+</li>
+<li>
+<p>Percona Server for MySQL</p>
+</li>
+<li>
+<p>Percona XtraDB Cluster</p>
+</li>
+</ul>
+<h3 id="supported-storage-engines">Supported storage engines<a class="headerlink" href="#supported-storage-engines" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 8.4 supports the following storage engines:</p>
+<ul>
+<li>
+<p>InnoDB</p>
+</li>
+<li>
+<p>MyISAM</p>
+</li>
+<li>
+<p>MyRocks</p>
+</li>
+<li>
+<p>XtraDB</p>
+</li>
+</ul>
+<h3 id="version-requirements">Version requirements<a class="headerlink" href="#version-requirements" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 8.4 requires databases created with the 8.4 series or later. Databases created with earlier MySQL, Percona Server for MySQL, or Percona XtraDB Cluster versions are not supported.</p>
+<p>For detailed version compatibility information, see <a href="server-backup-version-comparison.html">Server and backup version comparison</a>.</p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Both learning paths require <a href="https://docs.docker.com/engine/install/">Docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> installed on your system. Each tutorial includes specific setup instructions for Percona Server for MySQL.</p>
+<h2 id="choose-your-learning-path">Choose your learning path<a class="headerlink" href="#choose-your-learning-path" title="Permanent link">&para;</a></h2>
+<p>This quickstart offers two paths based on your experience level and goals:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Best for</th>
+<th>Time</th>
+<th>Topics covered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="quickstart-docker.html">Basic quickstart</a></td>
+<td>First-time users learning core concepts</td>
+<td>15-20 min</td>
+<td>Single backup, restore, validation</td>
+</tr>
+<tr>
+<td><a href="docker-compose-tutorial.html">Docker Compose tutorial</a></td>
+<td>Production-oriented users</td>
+<td>30-40 min</td>
+<td>Backup profiles, validation testing, disaster recovery</td>
+</tr>
+</tbody>
+</table>
+<h3 id="basic-quickstart">Basic quickstart<a class="headerlink" href="#basic-quickstart" title="Permanent link">&para;</a></h3>
+<p>The <a href="quickstart-docker.html">basic quickstart</a> teaches core Percona XtraBackup operations using individual Docker commands:</p>
 <ul>
-<li><a href="https://docs.docker.com/engine/install/">Install Docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> on your system.</li>
+<li>
+<p>Create a backup volume</p>
+</li>
+<li>
+<p>Take and prepare a full backup</p>
+</li>
+<li>
+<p>Restore a backup to a new container</p>
+</li>
+<li>
+<p>Validate restored data</p>
+</li>
 </ul>
-<p>To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database, and a table.</p>
+<h3 id="docker-compose-tutorial">Docker Compose tutorial<a class="headerlink" href="#docker-compose-tutorial" title="Permanent link">&para;</a></h3>
+<p>The <a href="docker-compose-tutorial.html">Docker Compose tutorial</a> demonstrates a production-ready backup workflow with separate services for backup, validation, and restore:</p>
 <ul>
-<li><a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html">Start Percona Server in a Docker container <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></li>
-<li><a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html#create-a-database">Create a database and table in Percona Server <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></li>
+<li>
+<p>Configure Docker Compose with backup profiles</p>
+</li>
+<li>
+<p>Validate backups before relying on them for recovery</p>
+</li>
+<li>
+<p>Simulate a disaster scenario</p>
+</li>
+<li>
+<p>Execute a complete restore operation</p>
+</li>
+<li>
+<p>Understand file permission requirements</p>
+</li>
 </ul>
-<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
-<p>Percona XtraBackup 8.4 does not support making backups of databases created in versions before the 8.4 series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster.</p>
-<h3 id="support-servers-and-storage-engines">Support servers and storage engines<a class="headerlink" href="#support-servers-and-storage-engines" title="Permanent link">&para;</a></h3>
-<p>Percona XtraBackup 8.4 supports backing up data from various MySQL-compatible servers and storage engines.</p>
-<p>Supported Servers:</p>
-<ul>
-<li>MySQL Server</li>
-<li>Percona Server for MySQL</li>
-<li>Percona XtraDB Cluster</li>
-</ul>
-<p>Supported Storage Engines:</p>
-<ul>
-<li>InnoDB</li>
-<li>XtraDB</li>
-<li>MyISAM</li>
-<li>MyRocks</li>
-</ul>
-<h2 id="steps-to-perform">Steps to perform<a class="headerlink" href="#steps-to-perform" title="Permanent link">&para;</a></h2>
-<p class="power-number">In this Quickstart, you will learn how to:</p>
-<ol>
-<li><a href="quickstart-docker.html">Start a Docker container and take a backup</a></li>
-<li><a href="quickstart-restore-back.html">Restore a backup</a></li>
-<li><a href="quickstart-exit.html">Clean up</a></li>
-<li><a href="quickstart-next-steps.html">Choose your next steps</a></li>
-</ol>
+<h2 id="terminology">Terminology<a class="headerlink" href="#terminology" title="Permanent link">&para;</a></h2>
+<p>This quickstart uses the following terms:</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Container</td>
+<td>The Docker container running Percona XtraBackup or Percona Server</td>
+</tr>
+<tr>
+<td>Instance</td>
+<td>The MySQL database server process running inside a container</td>
+</tr>
+<tr>
+<td>Volume</td>
+<td>Docker persistent storage that survives container restarts</td>
+</tr>
+<tr>
+<td>Prepared backup</td>
+<td>A backup with transaction logs applied, ready for restoration</td>
+</tr>
+</tbody>
+</table>
+<p>For additional terminology, see <a href="glossary.html">Glossary</a>.</p>
 
 
 
@@ -5925,7 +6092,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 9, 2026 10:04:19 UTC">June 9, 2026</span>
   </span>
 
     

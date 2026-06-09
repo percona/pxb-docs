@@ -9,19 +9,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Here you can find all of the command-line options for the xtrabackup binary.">
+        <meta name="description" content="This tutorial demonstrates a production-ready approach to backing up, validating, and restoring Percona Server for MySQL using Percona XtraBackup in a Docker Compose environment.">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/docker-compose-tutorial.html">
       
       
-        <link rel="prev" href="xtrabackup-implementation-details.html">
+        <link rel="prev" href="docker.html">
       
       
-        <link rel="next" href="configure-xtrabackup.html">
+        <link rel="next" href="create-full-backup.html">
       
       
         
@@ -32,7 +32,7 @@
     
     
       
-        <title>The xtrabackup command-line options - Percona XtraBackup</title>
+        <title>Docker Compose backup and restore tutorial - Percona XtraBackup</title>
       
     
     
@@ -100,7 +100,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - The xtrabackup command-line options" />
+                 <meta property="og:title" content="Percona XtraBackup - Docker Compose backup and restore tutorial" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.4/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -123,7 +123,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-xtrabackup-command-line-options" class="md-skip">
+        <a href="#docker-compose-backup-and-restore-tutorial" class="md-skip">
           Skip to content
         </a>
       
@@ -252,7 +252,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              The xtrabackup command-line options
+              Docker Compose backup and restore tutorial
             
           </span>
         </div>
@@ -1926,10 +1926,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1947,11 +1945,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1972,7 +1970,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2015,10 +2013,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -2034,11 +2030,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
         
           
           <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
@@ -2059,7 +2055,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2130,37 +2126,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The xtrabackup command-line options
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="xtrabackup-option-reference.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="xtrabackup-option-reference.html" class="md-nav__link">
         
   
   
@@ -2176,50 +2145,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#modes-of-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modes of operation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Options
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2892,8 +2817,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -2915,11 +2842,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -2940,7 +2867,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3808,8 +3735,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -3821,11 +3750,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" checked>
         
           
           <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="0">
@@ -3846,7 +3775,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3889,10 +3818,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="docker-compose-tutorial.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Compose backup and restore tutorial
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="docker-compose-tutorial.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3908,6 +3864,193 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-set-up-the-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Set up the project structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-create-the-docker-compose-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Create the Docker Compose file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-start-the-primary-database-and-add-test-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Start the primary database and add test data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-take-and-prepare-a-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Take and prepare a backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-validate-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Validate the backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-simulate-a-disaster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Simulate a disaster
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-execute-the-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Execute the restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-verify-the-restoration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Verify the restoration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding file permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clean up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5760,7 +5903,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                       <div data-banner="data-banner" class="edit-contrib-banner">
   <div class="banner-content">
     <!-- Edit link centered -->
-    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/xtrabackup-option-reference.md" title="Edit this page on GitHub" class="edit-page-link">
+    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/docker-compose-tutorial.md" title="Edit this page on GitHub" class="edit-page-link">
       <span class="edit-page-icon">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
@@ -5812,10 +5955,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#modes-of-operation" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modes of operation
+        Overview
       
     </span>
   </a>
@@ -5823,10 +5966,153 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Options
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-set-up-the-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Set up the project structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-create-the-docker-compose-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Create the Docker Compose file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-start-the-primary-database-and-add-test-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Start the primary database and add test data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-take-and-prepare-a-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Take and prepare a backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-validate-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Validate the backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-simulate-a-disaster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Simulate a disaster
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-execute-the-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Execute the restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-verify-the-restoration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Verify the restoration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding file permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clean up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
       
     </span>
   </a>
@@ -5856,750 +6142,746 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/xtrabackup-option-reference.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/docker-compose-tutorial.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="the-xtrabackup-command-line-options">The xtrabackup command-line options<a class="headerlink" href="#the-xtrabackup-command-line-options" title="Permanent link">&para;</a></h1>
-<p>Here you can find all of the command-line options for the xtrabackup binary.</p>
-<h2 id="modes-of-operation">Modes of operation<a class="headerlink" href="#modes-of-operation" title="Permanent link">&para;</a></h2>
-<p>You invoke xtrabackup in one of the following modes:</p>
+<h1 id="docker-compose-backup-and-restore-tutorial">Docker Compose backup and restore tutorial<a class="headerlink" href="#docker-compose-backup-and-restore-tutorial" title="Permanent link">&para;</a></h1>
+<p>This tutorial demonstrates a production-ready approach to backing up, validating, and restoring Percona Server for MySQL using Percona XtraBackup in a Docker Compose environment.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>In a containerized environment, restoring a physical backup requires a strict sequence because you cannot overwrite data files while the database engine is running. Furthermore, physical files recovered by the <code>root</code> user cause permissions errors when the database tries to boot as the <code>mysql</code> user.</p>
+<p>This tutorial teaches you to:</p>
 <ul>
-<li>
-<p><code>--backup</code> mode to make a backup in a target directory</p>
-</li>
-<li>
-<p><code>--prepare</code> mode to restore data from a backup (created in <code>--backup</code> mode)</p>
-</li>
-<li>
-<p><code>--copy-back</code> to copy data from a backup to the original location; to move the data instead of copying the data, use the alternate <code>--move-back</code> mode.</p>
-</li>
+<li>Set up a complete Docker Compose environment with Percona Server and Percona XtraBackup</li>
+<li>Take and prepare a full backup</li>
+<li>Validate that the backup is functional before using it</li>
+<li>Simulate a disaster scenario</li>
+<li>Execute a complete restore operation</li>
+<li>Understand the critical role of file permissions in containerized restores</li>
 </ul>
-<p>When you intend to run xtrabackup in any of these modes, use the following syntax:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="o">[</span>--defaults-file<span class="o">=</span><span class="c1">#] --backup|--prepare|--copy-back| [OPTIONS]</span>
-</code></pre></div>
-<p>For example, the <code>--prepare</code> mode is applied as follows:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/mysql/
-</code></pre></div>
-<p>For all modes, the default options are read from the xtrabackup and
-mysqld configuration groups from the following files in the given order:</p>
-<ol>
-<li>
-<p><code>/etc/my.cnf</code></p>
-</li>
-<li>
-<p><code>/etc/mysql/my.cnf</code></p>
-</li>
-<li>
-<p><code>/usr/etc/my.cnf</code></p>
-</li>
-<li>
-<p><code>~/.my.cnf</code>.</p>
-</li>
-</ol>
-<p>As the first parameter to xtrabackup in place of the <code>--defaults-file</code>,
-you may supply one of the following:</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p><code>--print-defaults</code> - prints the argument list and exit.</p>
-</li>
-<li>
-<p><code>--no-defaults</code> - forbids reading options from any file but the login file.</p>
-</li>
-<li>
-<p><code>--defaults-file</code> -  reads the default options from the given file.</p>
-</li>
-<li>
-<p><code>--defaults-extra-file</code> - reads the specified additional file after the global files.</p>
-</li>
-<li>
-<p><code>--defaults-group-suffix</code> -  reads the configuration groups with the given suffix. The effective group name is constructed by concatenating the default configuration groups (xtrabackup and mysqld) with the given suffix.</p>
-</li>
-<li>
-<p><code>--login-path</code> - reads the given path from the login file.</p>
-</li>
+<li><a href="https://docs.docker.com/engine/install/">Docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> installed on your system</li>
+<li><a href="https://docs.docker.com/compose/install/">Docker Compose <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> installed (included with Docker Desktop)</li>
+<li>Basic familiarity with Docker concepts</li>
 </ul>
-<h3 id="innodb-options">InnoDB options<a class="headerlink" href="#innodb-options" title="Permanent link">&para;</a></h3>
-<p>A large group of InnoDB options is usually read from the <code>my.cnf</code> configuration file, so xtrabackup boots up its embedded InnoDB in the same configuration as your current server. You typically do not
-need to specify them explicitly. These options have the same behavior in InnoDB
-and XtraDB. See <a href="#innodb-miscellaneous"><code>--innodb-miscellaneous</code></a> for more information.</p>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
-<h3 id="apply-log-only">apply-log-only<a class="headerlink" href="#apply-log-only" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--apply-log-only</code></p>
-<p>This option causes only the redo stage to be performed when preparing a
-backup. It is essential for incremental backups.</p>
-<h3 id="backup">backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--backup</code></p>
-<p>Make a backup and place it in <code>--target-dir</code>. See <a href="create-full-backup.html">Create a full backup</a></p>
-<h3 id="backup-lock-timeout">backup-lock-timeout<a class="headerlink" href="#backup-lock-timeout" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--backup-lock-timeout</code></p>
-<p>The timeout in seconds for attempts to acquire metadata locks.</p>
-<h3 id="backup-lock-retry-count">backup-lock-retry-count<a class="headerlink" href="#backup-lock-retry-count" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--backup-lock-retry-count</code></p>
-<p>The number of attempts to acquire metadata locks.</p>
-<h3 id="backup-locks">backup-locks<a class="headerlink" href="#backup-locks" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--backup-locks</code></p>
-<p>This option controls if <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> are used instead of <code>FLUSH TABLES
-WITH READ LOCK</code> on the backup stage. The option has no effect when the server does not support backup locks. This option is enabled by default,
-disable with <a href="#no-backup-locks"><code>--no-backup-locks</code></a>.</p>
-<h3 id="check-privileges">check-privileges<a class="headerlink" href="#check-privileges" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>check-privileges</code></p>
-<p>This option checks if Percona XtraBackup has all the required privileges.
-If a required privilege is missing for the current operation,
-the operation terminates and prints an error message.
-If a privilege is not needed for the current operation but is missing and may be necessary for another XtraBackup operation, the operation is not aborted, and a warning is printed.</p>
-<details class="example">
-<summary>Example output</summary>
-<div class="highlight"><pre><span></span><code>```{.text .no-copy}
-xtrabackup: Error: missing required privilege LOCK TABLES on *.*
-xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
-```
-</code></pre></div>
-</details>
-<h3 id="close-files">close-files<a class="headerlink" href="#close-files" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--close-files</code></p>
-<p>Do not keep files opened. When xtrabackup opens a tablespace, xtrabackup normally
-doesn’t close its file handle. This operation allows xtrabackup to handle the DDL operations
-correctly. However, if the number of tablespaces is huge and can not
-fit into any limit, there is an option to close file handles once they are
-no longer accessed. Percona XtraBackup can produce inconsistent backups
-with this option enabled. Use at your own risk.</p>
-<h3 id="compress">compress<a class="headerlink" href="#compress" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--compress</code></p>
-<p>This option tells xtrabackup to compress all output data, including the
-transaction log and metadata files, using either the <code>ZSTD</code> or the <code>lz4</code> compression algorithm. <code>ZSTD</code> is the default compression algorithm.</p>
-<p><code>--compress</code> produces <code>\*.zst</code> files. You can extract the contents of these files using the <code>--decompress</code> option. You can specify the <code>ZSTD</code> compression level with the <a href="#compress-zstd-level"><code>--compress-zstd-level</code></a> option.</p>
-<p><code>--compress=lz4</code> produces <code>\*.lz4</code> files. You can extract the contents of
-these files by using the <code>lz4</code> program.</p>
-<h3 id="compress-chunk-size">compress-chunk-size<a class="headerlink" href="#compress-chunk-size" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--compress-chunk-size=#</code></p>
-<p>Size of working buffer(s) for compression threads in bytes. The default
-value is 64K.</p>
-<h3 id="compress-threads">compress-threads<a class="headerlink" href="#compress-threads" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--compress-threads=#</code></p>
-<p>This option specifies the number of worker threads xtrabackup uses for parallel data compression. This option defaults to <code>1</code> and can be used with <a href="#parallel">parallel</a> file copying.</p>
-<p>For example, <code>--parallel=4 --compress --compress-threads=2</code>
-creates four I/O threads that read and pipe the data to two compression threads.</p>
-<h3 id="compress-zstd-level">compress-zstd-level<a class="headerlink" href="#compress-zstd-level" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--compress-zstd-level=#</code></p>
-<p>This option specifies <code>ZSTD</code> compression level. Compression levels provide a trade-off between the compression speed and the compressed files&rsquo; size. A lower compression level provides faster compression speed but larger file sizes. A higher compression level provides lower compression speed but smaller file sizes. For example, set level 1 if the compression speed is the most important for you. Set level 19 if the size of the compressed files is the most important.</p>
-<p>The default value is 1. Allowed range of values is from 1 to 19.</p>
-<h3 id="copy-back">copy-back<a class="headerlink" href="#copy-back" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--copy-back</code></p>
-<p>Copy all the files in a previously made backup from the backup directory to
-their original locations. This option will not copy over existing files
-unless the <a href="#force-non-empty-directories"><code>--force-non-empty-directories</code></a> option is specified.</p>
-<h3 id="core-file">core-file<a class="headerlink" href="#core-file" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--core-file</code></p>
-<p>Write core on fatal signals.</p>
-<h3 id="databases">databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--databases=#</code></p>
-<p>This option specifies a list of databases and tables that should be backed
-up. The option accepts the list of the form <code>"databasename1[.table_name1]
-databasename2[.table_name2] . . ."</code>.</p>
-<h3 id="databases-exclude">databases-exclude<a class="headerlink" href="#databases-exclude" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--databases-exclude=name</code></p>
-<p>Databases are excluded based on name. This option operates the same way as <code>--databases</code> but excludes the matched names from the backup.</p>
-<p>This option has a higher priority than <code>--databases</code>.</p>
-<h3 id="databases-file">databases-file<a class="headerlink" href="#databases-file" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--databases-file=#</code></p>
-<p>This option specifies the path to the file containing the list of databases
-and tables that should be backed up. The file can contain the list elements
-of the form <code>databasename1[.table_name1]</code>, one element per line.</p>
-<h3 id="datadir">datadir<a class="headerlink" href="#datadir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--datadir=DIRECTORY</code></p>
-<p>The source directory for the backup. This should be the same as the datadir
-for your server, so it should be read from <code>my.cnf</code> if that
-exists; otherwise, specify the directory on the command line.</p>
-<p>When combined with the <a href="#copy-back"><code>--copy-back</code></a> or the
-<a href="#move-back"><code>--move-back</code></a> option, this option refers to the destination directory.</p>
-<p>To perform a backup, you must have the
-<code>READ</code> and <code>EXECUTE</code> permissions at a filesystem level in the
-server’s datadir.</p>
-<h3 id="debug-sleep-before-unlock">debug-sleep-before-unlock<a class="headerlink" href="#debug-sleep-before-unlock" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--debug-sleep-before-unlock=#</code></p>
-<p>This option is only used by the xtrabackup test suite.</p>
-<h3 id="debug-sync">debug-sync<a class="headerlink" href="#debug-sync" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--debug-sync=name</code></p>
-<p>This option is only used by the xtrabackup test suite.</p>
-<h3 id="decompress">decompress<a class="headerlink" href="#decompress" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--decompress</code></p>
-<p>Decompresses all files in a backup previously
-made with the <code>--compress</code> option. The
-<code>--parallel</code> option lets multiple files be
-decrypted simultaneously.</p>
-<p>Percona XtraBackup does not automatically remove the compressed files. Users should use the <code>--remove-original</code> option to clean up the backup directory.</p>
-<h3 id="decompress-threads">decompress-threads<a class="headerlink" href="#decompress-threads" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--decompress-threads=#</code></p>
-<p>Force xbstream to use the specified number of threads for decompressing.</p>
-<h3 id="decrypt">decrypt<a class="headerlink" href="#decrypt" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--decrypt=ENCRYPTION-ALGORITHM</code></p>
-<p>Decrypts all files with the <code>xbcrypt</code> extension in a backup
-previously made with <a href="#encrypt"><code>--encrypt</code></a> option. The
-<a href="#parallel"><code>--parallel</code></a> option lets multiple files be
-decrypted simultaneously. Percona XtraBackup doesn’t
-automatically remove the encrypted files; use <code>--</code>remove-original`](#remove-original) option.</p>
-<h3 id="defaults-extra-file">defaults-extra-file<a class="headerlink" href="#defaults-extra-file" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--defaults-extra-file=[MY.CNF]</code></p>
-<p>Read this file after the global files are read. The option must be the first
-option on the command line.</p>
-<h3 id="defaults-file">defaults-file<a class="headerlink" href="#defaults-file" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--defaults-file=[MY.CNF]</code></p>
-<p>Only read default options from the given file. The value must be the first
-option on the command line and cannot be a symbolic link.</p>
-<h3 id="defaults-group">defaults-group<a class="headerlink" href="#defaults-group" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--defaults-group=GROUP-NAME</code></p>
-<p>This option sets the group that should be read from the configuration file and is needed for <code>mysqld_multi</code> deployments.</p>
-<h3 id="defaults-group-suffix">defaults-group-suffix<a class="headerlink" href="#defaults-group-suffix" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--defaults-group-suffix=#</code></p>
-<p>Also reads groups with concat(group, suffix).</p>
-<h3 id="dump-innodb-buffer-pool">dump-innodb-buffer-pool<a class="headerlink" href="#dump-innodb-buffer-pool" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--dump-innodb-buffer-pool</code></p>
-<p>This option controls creating a new dump of the buffer pool content.</p>
-<p>The xtrabackup binary requests the server to start the buffer pool dump. This operation may take time to complete and is done in the background. The
-beginning of a backup with the option reports that the dump has been
-completed.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--dump-innodb-buffer-pool<span class="w"> </span>--target-dir<span class="o">=</span>/home/user/backup
-</code></pre></div>
-<p>By default, this option is set to OFF.</p>
-<p>If <a href="https://dev.mysql.com/doc/refman/8.3/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
-using the value of <a href="#dump-innodb-buffer-pool-timeout"><code>--dump-innodb-buffer-pool-timeout</code></a></p>
-<p>The file <code>ib_buffer_pool</code> stores the tablespace ID and page ID
-data used to warm up the buffer pool sooner.</p>
-<h3 id="dump-innodb-buffer-pool-pct">dump-innodb-buffer-pool-pct<a class="headerlink" href="#dump-innodb-buffer-pool-pct" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--dump-innodb-buffer-pool-pct</code></p>
-<p>This option contains the percentage of the most recently used buffer pool
-pages to dump.</p>
-<p>This option is effective if <code>--dump-innodb-buffer-pool</code> option is set
-to ON. If this option contains a value, xtrabackup sets the MySQL
-system variable <a href="https://dev.mysql.com/doc/refman/8.3/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct"><code>innodb_buffer_pool_dump_pct</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. As soon as the buffer pool
-dump completes or is stopped (see
-<code>--dump-innodb-buffer-pool-timeout</code>), the value of the MySQL system
-variable is restored.</p>
-<h3 id="dump-innodb-buffer-pool-timeout">dump-innodb-buffer-pool-timeout<a class="headerlink" href="#dump-innodb-buffer-pool-timeout" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--dump-innodb-buffer-pool-timeout</code></p>
-<p>This option contains the number of seconds that xtrabackup should
-monitor the value of <a href="https://dev.mysql.com/doc/refman/8.4/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> to
-determine if the buffer pool dump has been completed.</p>
-<p>This option is used in combination with
-<a href="#dump-innodb-buffer-pool"><code>--dump-innodb-buffer-pool</code></a>. By default, it is set to 10 seconds.</p>
-<h3 id="encrypt">encrypt<a class="headerlink" href="#encrypt" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--encrypt=ENCRYPTION_ALGORITHM</code></p>
-<p>This option instructs xtrabackup to encrypt backup copies of InnoDB data
-files using the algorithm specified in the ENCRYPTION_ALGORITHM. Currently
-supported algorithms are: <code>AES128</code>, <code>AES192</code> and <code>AES256</code></p>
-<h3 id="encrypt-key">encrypt-key<a class="headerlink" href="#encrypt-key" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--encrypt-key=ENCRYPTION_KEY</code></p>
-<p>A proper length encryption key to use. This key can be viewed as part of the process info. We do not recommend using this option with uncontrolled access to the machine.</p>
-<h3 id="encrypt-key-file">encrypt-key-file<a class="headerlink" href="#encrypt-key-file" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--encrypt-key-file=ENCRYPTION_KEY_FILE</code></p>
-<p>The name of a file where the raw key of the appropriate length can be read
-from. The file must be a simple binary (or text) file that contains exactly
-the key to be used.</p>
-<p>It is passed directly to the xtrabackup child process. See the
-xtrabackup documentation for more details.</p>
-<h3 id="encrypt-threads">encrypt-threads<a class="headerlink" href="#encrypt-threads" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--encrypt-threads=#</code></p>
-<p>This option specifies the number of worker threads that will be used for
-parallel encryption/decryption.
-See the xtrabackup documentation for more details.</p>
-<h3 id="encrypt-chunk-size">encrypt-chunk-size<a class="headerlink" href="#encrypt-chunk-size" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--encrypt-chunk-size=#</code></p>
-<p>This option specifies the size of the internal working buffer for each
-encryption thread, measured in bytes. It is passed directly to the
-xtrabackup child process.</p>
-<p>To adjust the chunk size for encrypted files, use <a href="#read-buffer-size"><code>--read-buffer-size</code></a> and this option.</p>
-<h3 id="estimate-memory">estimate-memory<a class="headerlink" href="#estimate-memory" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--estimate-memory=#</code></p>
-<p>This option is in <a href="glossary.html#tech-preview">tech preview</a>.</p>
-<p>The option lets you enable or disable the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The default value is OFF. Enable the feature by setting <code>--estimate-memory=ON</code> in the backup phase and setting the <code>--use-free-memory-pct</code> option in the <code>--prepare</code> phase. If the <code>--estimate-memory</code> setting is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
-<p>An example of how to enable the Smart memory estimation feature:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
-</code></pre></div>
-<h3 id="export">export<a class="headerlink" href="#export" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--export</code></p>
-<p>Create files necessary for exporting tables. For more details, see <a href="restore-individual-tables.html">Restore individual tables</a>.</p>
-<h3 id="extra-lsndir">extra-lsndir<a class="headerlink" href="#extra-lsndir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--extra-lsndir=DIRECTORY</code></p>
-<p>(for –backup): save an extra copy of the <code>xtrabackup_checkpoints</code>
-and <code>xtrabackup_info</code> files in the specified directory.</p>
-<h3 id="force-non-empty-directories">force-non-empty-directories<a class="headerlink" href="#force-non-empty-directories" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--force-non-empty-directories</code></p>
-<p>When specified, the <code>-</code>-copy-back<code>and</code>&ndash;move-back` options transfer files to non-empty directories. No existing files are overwritten. If files that need to
-be copied/moved from the backup directory already exist in the destination
-directory, the operation fails with an error.</p>
-<h3 id="ftwrl-wait-timeout">ftwrl-wait-timeout<a class="headerlink" href="#ftwrl-wait-timeout" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ftwrl-wait-timeout=SECONDS</code></p>
-<p>This option specifies the time in seconds that xtrabackup should wait for
-queries that would block <code>FLUSH TABLES WITH READ LOCK</code> before running it.
-If there are still such queries when the timeout expires, xtrabackup
-terminates with an error.</p>
-<p>The default value is <code>0</code>, xtrabackup does not wait
-for queries to complete and starts <code>FLUSH TABLES WITH READ LOCK</code>
-immediately. Where supported, xtrabackup automatically uses the <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
-non-InnoDB data to avoid blocking DML queries that modify the InnoDB tables.</p>
-<h3 id="ftwrl-wait-threshold">ftwrl-wait-threshold<a class="headerlink" href="#ftwrl-wait-threshold" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ftwrl-wait-threshold=SECONDS</code></p>
-<p>This option specifies the query run time threshold which is used by
-xtrabackup to detect long-running queries with a non-zero value of
-<code>--ftwrl-wait-timeout</code>. <code>FLUSH TABLES WITH READ LOCK</code>
-is not started until such long-running queries exist.</p>
-<p>This option has no effect if <code>--ftwrl-wait-timeout</code> is <code>0</code>. The default value
-is <code>60</code> seconds. The xtrabackup binary automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
-non-InnoDB data to avoid blocking DML queries that modify InnoDB tables when backup locks are supported.</p>
-<h3 id="ftwrl-wait-query-type">ftwrl-wait-query-type<a class="headerlink" href="#ftwrl-wait-query-type" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ftwrl-wait-query-type=all|update</code>This option specifies which queries can be completed before xtrabackup issues the global lock. The default value is <code>all</code>.</p>
-<h3 id="galera-info">galera-info<a class="headerlink" href="#galera-info" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--galera-info</code></p>
-<p>This option creates the <code>xtrabackup_galera_info</code> file, which contains the local node state at the backup time. This option should be used when
-performing the backup of a Percona XtraDB Cluster. The option has no effect when <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> are used to create the backup.</p>
-<h3 id="generate-new-master-key">generate-new-master-key<a class="headerlink" href="#generate-new-master-key" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--generate-new-master-key</code></p>
-<p>Generate a new master key when doing a copy-back.</p>
-<h3 id="generate-transition-key">generate-transition-key<a class="headerlink" href="#generate-transition-key" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--generate-transition-key</code></p>
-<p>xtrabackup needs to access the same keyring file or vault server
-during prepare and copy-back operations but it should not depend on whether the
-server keys have been purged.</p>
-<p><code>--generate-transition-key</code> creates and adds to the keyring
-a transition key for xtrabackup to use if the master key used for
-encryption is not found because that key has been rotated and purged.</p>
-<h3 id="get-server-public-key">get-server-public-key<a class="headerlink" href="#get-server-public-key" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--get-server-public-key</code></p>
-<p>Get the server public key</p>
-<h3 id="help">help<a class="headerlink" href="#help" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--help</code></p>
-<p>This option displays information about how to run the program along with supported options and variables with the default values, where appropriate.</p>
-<h3 id="history">history<a class="headerlink" href="#history" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--history=NAME</code></p>
-<p>This option enables the tracking of backup history in the
-<code>PERCONA_SCHEMA.xtrabackup_history</code> table. You can specify a history series name placed with the current backup&rsquo;s history record.</p>
-<h3 id="host">host<a class="headerlink" href="#host" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--host=HOST</code></p>
-<p>This option accepts a string argument that specifies the host to use when
-connecting to the database server with TCP/IP. It is passed to the mysql
-child process without alteration. See mysql &ndash;help for details.</p>
-<h3 id="incremental-basedir">incremental-basedir<a class="headerlink" href="#incremental-basedir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--incremental-basedir=DIRECTORY</code></p>
-<p>This is the directory that contains the full backup, which is the base dataset for the incremental backups.</p>
-<h3 id="incremental-dir">incremental-dir<a class="headerlink" href="#incremental-dir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--incremental-dir=DIRECTORY</code></p>
-<p>This is the directory where the incremental backup is combined with the full backup to make a new full backup.</p>
-<h3 id="incremental-force-scan">incremental-force-scan<a class="headerlink" href="#incremental-force-scan" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--incremental-force-scan</code></p>
-<p>When creating an incremental backup, force a full scan of the data pages in
-that instance.</p>
-<h3 id="incremental-history-name">incremental-history-name<a class="headerlink" href="#incremental-history-name" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--incremental-history-name=name</code></p>
-<p>This option specifies the name of the backup series stored in the
-<code>PERCONA_SCHEMA.xtrabackup_history</code> used as a base for an incremental backup. xtrabackup searches the history table looking for the most
-recent (highest <code>innodb_to_lsn</code>), successful backup in the series and takes the <code>to_lsn`` value to use as the starting</code>lsn` for the incremental
-backup.</p>
-<p>This options is mutually exclusive with
-<a href="#incremental-history-uuid"><code>--incremental-history-uuid</code></a>, <a href="#incremental-basedir"><code>--incremental-basedir</code></a>, and
-<a href="#incremental-lsn"><code>--incremental-lsn</code></a>.</p>
-<p>If no valid lsn can be found, either no series by that
-name or no successful backups by that name, xtrabackup returns an
-error.</p>
-<p>The option is used with the <code>--incremental</code> option.</p>
-<h3 id="incremental-history-uuid">incremental-history-uuid<a class="headerlink" href="#incremental-history-uuid" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--incremental-history-uuid=name</code></p>
-<p>This option specifies the Universal Unique Identifier (UUID) of the history record in <code>PERCONA_SCHEMA.xtrabackup_history</code> used as the base for an incremental backup.</p>
-<p>This options is mutually exclusive with <a href="#incremental-history-name"><code>--incremental-history-name</code></a>, <a href="#incremental-basedir"><code>--incremental-basedir</code></a>, and
-<a href="#incremental-lsn"><code>--incremental-lsn</code></a>.</p>
-<p>If there is no success record with that UUID, xtrabackup returns an error.</p>
-<p>The option is used with the <code>-–incremental</code> option.</p>
-<h3 id="incremental-lsn">incremental-lsn<a class="headerlink" href="#incremental-lsn" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--incremental-lsn=LSN</code></p>
-<p>When creating an incremental backup, you can specify the log sequence number
-(LSN), a single 64-bit integer, instead of the  <a href="#incremental-basedir"><code>--incremental-basedir</code></a>.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Percona XtraBackup does not detect if an incorrect LSN value is specified; the backup is unusable. Be careful!</p>
-</div>
-<h3 id="innodb">innodb<a class="headerlink" href="#innodb" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--innodb=name</code></p>
-<p>This option is ignored for MySQL option compatibility.</p>
-<h3 id="innodb-miscellaneous">innodb-miscellaneous<a class="headerlink" href="#innodb-miscellaneous" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--innodb-miscellaneous
-xtrabackup boots up its embedded InnoDB with the same configuration as your current server using the InnoDB options read from that server's</code>my.cnf` file. You do not need to specify these options explicitly.</p>
-<p>These options behave the same in either InnoDB or XtraDB.</p>
-<h3 id="keyring-file-data">keyring-file-data<a class="headerlink" href="#keyring-file-data" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--keyring-file-data=FILENAME</code></p>
-<p>Defines the path to the keyring file. You can combine this option with
-<a href="#xtrabackup-plugin-dir"><code>--xtrabackup-plugin-dir</code></a>.</p>
-<h3 id="kill-long-queries-timeout">kill-long-queries-timeout<a class="headerlink" href="#kill-long-queries-timeout" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--kill-long-queries-timeout=SECONDS</code></p>
-<p>This option specifies the number of seconds xtrabackup waits between
-starting <code>FLUSH TABLES WITH READ LOCK</code> and killing those queries that block
-it. The default value is 0 (zero) seconds, which means xtrabackup does not kill
-any queries.</p>
-<p>To use this option xtrabackup user should have the
-<code>PROCESS</code> and <code>SUPER</code> privileges.</p>
-<p>Where supported, xtrabackup
-automatically uses <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
-<h3 id="kill-long-query-type">kill-long-query-type<a class="headerlink" href="#kill-long-query-type" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--kill-long-query-type=all|select</code></p>
-<p>This option specifies which queries should be killed to unblock the
-global lock. The default value is “select”.</p>
-<h3 id="lock-ddl">lock-ddl<a class="headerlink" href="#lock-ddl" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--lock-ddl</code></p>
-<p>Enabled by default to ensure that any DDL event does not corrupt the backup. Any DML events continue to occur. A DDL lock protects table and view definitions.</p>
-<p>The available values are the following:</p>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<p>This tutorial uses Docker Compose profiles to separate backup operations into distinct tasks:</p>
 <table>
 <thead>
 <tr>
-<th>Option</th>
-<th>Description</th>
+<th>Profile</th>
+<th>Service</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>--lock-ddl=ON</code></td>
-<td>The backup lock is enabled and is taken at the beginning of the backup.</td>
+<td>(default)</td>
+<td><code>psmysql</code></td>
+<td>Primary Percona Server for MySQL instance</td>
 </tr>
 <tr>
-<td><code>--lock-ddl=OFF</code></td>
-<td>The backup lock is not taken.</td>
+<td><code>backup</code></td>
+<td><code>pxb-backup</code></td>
+<td>Takes and prepares backups</td>
 </tr>
 <tr>
-<td><code>--lock-ddl=REDUCED</code></td>
-<td>The option value has been added in <a href="release-notes/8.4.0-2.html">Percona XtraBackup 8.4.0-2</a> to reduce the time the instance remains under backup lock. The backup lock is taken after copying the <code>.ibd</code> files and before copying the <code>non-InnoDB</code> files.</td>
+<td><code>validate</code></td>
+<td><code>pxb-validate</code></td>
+<td>Launches an isolated database from backup files</td>
+</tr>
+<tr>
+<td><code>restore</code></td>
+<td><code>pxb-restore</code></td>
+<td>Restores backup files to the primary database</td>
 </tr>
 </tbody>
 </table>
-<p class="power-number">With the <code>--lock-ddl=ON</code> option the backup process is as follows:</p>
+<p>Using profiles ensures that backup, validation, and restore operations only run when explicitly invoked.</p>
+<h2 id="step-1-set-up-the-project-structure">Step 1: Set up the project structure<a class="headerlink" href="#step-1-set-up-the-project-structure" title="Permanent link">&para;</a></h2>
+<p class="power-number">Create a project directory with the following structure:</p>
 <ol>
 <li>
-<p>Set a backup lock on the server to prevent any DDL operations, such as creating or altering tables.</p>
+<p>Create the project directory and navigate to it:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>pxb-tutorial<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pxb-tutorial
+</code></pre></div>
+<p>If the command executes successfully, the expected output is empty. You are now in the <code>pxb-tutorial</code> directory.</p>
 </li>
 <li>
-<p>Parse and copy the redo logs from the checkpoint up to the current <code>Log Sequence Number</code> (LSN), and start tracking new file operations.</p>
+<p>Create the secrets directory:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>secrets
+</code></pre></div>
+<p>If the command executes successfully, the expected output is empty.</p>
 </li>
 <li>
-<p>Identify and copy the <code>.ibd</code> files.</p>
+<p>Create the password file:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;YourSecurePassword123&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>secrets/db_root_pwd.txt
+</code></pre></div>
+<p>If the command executes successfully, the expected output is empty.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In production, use a strong, randomly generated password and secure the secrets directory with appropriate file permissions.</p>
+</div>
 </li>
 <li>
-<p>Copy <code>non-InnoDB</code> files.</p>
-</li>
-<li>
-<p>Gather a sync point from all engines (InnoDB LSN, binlog, Global Transaction Identifier (GTID), etc.) by querying the log status.</p>
-</li>
-<li>
-<p>Stop the redo thread once it copies at least up to sync point.</p>
-</li>
-<li>
-<p>Release the backup lock on the server.</p>
+<p>Verify the project structure:</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-la
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>total 0
+drwxr-xr-x  3 user  staff   96 Jun  4 10:00 .
+drwxr-xr-x  5 user  staff  160 Jun  4 10:00 ..
+drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
+</code></pre></div>
+</details>
 </li>
 </ol>
-<p>If the backup lock is disabled with the <a href="xtrabackup-option-reference.html#lock-ddl"><code>--lock-ddl=OFF</code></a> option, a backup continues while concurrent DDL operations are executed. These backups may be invalid and may fail at either the <code>backup</code> or the <code>--prepare</code> step.</p>
-<p>Use a <a href="#safe-slave-backup">safe-slave-backup</a> option to stop a SQL replica thread before copying the InnoDB files.</p>
-<h3 id="lock-ddl-per-table">lock-ddl-per-table<a class="headerlink" href="#lock-ddl-per-table" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--lock-ddl-per-table</code></p>
-<p>Deprecated in Percona XtraBackup 8.0. Use the <a href="#lock-ddl"><code>–lock-ddl</code></a> option instead</p>
-<!--26-1-24-->
-<p>Lock DDL for each table before xtrabackup starts to copy it and until the backup is completed.</p>
-<h3 id="lock-ddl-timeout">lock-ddl-timeout<a class="headerlink" href="#lock-ddl-timeout" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--lock-ddl-timeout</code></p>
-<p>If <code>LOCK TABLES FOR BACKUP</code> or <code>LOCK INSTANCE FOR BACKUP</code> does not return
-within a given time, abort the backup.</p>
-<h3 id="log">log<a class="headerlink" href="#log" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--log</code></p>
-<p>This option is ignored for MySQL</p>
-<h3 id="log-bin">log-bin<a class="headerlink" href="#log-bin" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--log-bin</code></p>
-<p>The base name for the log sequence.</p>
-<h3 id="log-bin-index">log-bin-index<a class="headerlink" href="#log-bin-index" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--log-bin-index=name</code></p>
-<p>The file that stores the names for binary log files.</p>
-<h3 id="log-copy-interval">log-copy-interval<a class="headerlink" href="#log-copy-interval" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--log-copy-interval=#</code></p>
-<p>This option specifies the time interval between checks done by the log
-copying thread in milliseconds. The default value is 1 second.</p>
-<h3 id="login-path">login-path<a class="headerlink" href="#login-path" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--login-path</code></p>
-<p>Read the given path from the login file.</p>
-<h3 id="move-back">move-back<a class="headerlink" href="#move-back" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--move-back</code></p>
-<p>Move all files in a previous backup from the backup directory to
-their original locations.</p>
-<p>Use this option with caution since the operation removes backup files.</p>
-<h3 id="no-backup-locks">no-backup-locks<a class="headerlink" href="#no-backup-locks" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--no-backup-locks</code></p>
-<p>Explicity disables the <a href="#backup-locks"><code>--backup-locks</code></a> option which is enabled by default.</p>
-<h3 id="no-defaults">no-defaults<a class="headerlink" href="#no-defaults" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--no-defaults</code></p>
-<p>The default options are only read from the login file.</p>
-<h3 id="no-lock">no-lock<a class="headerlink" href="#no-lock" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--no-lock</code></p>
-<p>Disables the table lock with <code>FLUSH TABLES WITH READ
-LOCK</code>. Use it only if all your tables are InnoDB and you do not care
-about the binary log position of the backup. This option shouldn’t be used if any DDL statements are being executed or updates are
-happening on non-InnoDB tables; this includes the system MyISAM tables in the
-mysql database. Otherwise, those operations could lead to an inconsistent backup.</p>
-<p>Where supported, xtrabackup will automatically use <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> as a lightweight alternative to <code>FLUSH TABLES WITH READ LOCK</code> to copy
-non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.</p>
-<p>If you consider using this option because your backups fail to acquire
-the lock, maybe incoming replication events prevent
-the lock from succeeding. Try the <code>--safe-slave-backup</code> option to stop the replication replica thread momentarily. The <code>--safe-slave-backup</code> option may help the backup to succeed and avoid using this option.</p>
-<h3 id="no-server-version-check">no-server-version-check<a class="headerlink" href="#no-server-version-check" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--no-server-version-check</code></p>
-<p>The <code>--no-server-version-check</code> option disables the server version check.</p>
-<p>The default behavior runs a check that compares the source system version to the Percona XtraBackup version. If the source system version is higher than the XtraBackup version, the backup is aborted with a message.</p>
-<p>Adding the option overrides this check, and the backup proceeds, but there may be issues with the backup.</p>
-<p>See <a href="server-backup-version-comparison.html">Server Version and Backup Version Comparison</a> for more information.</p>
-<h3 id="no-version-check">no-version-check<a class="headerlink" href="#no-version-check" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--no-version-check</code></p>
-<p>This option disables the version check. </p>
-<p>If you do not pass this option, xtrabackup implicitly enables the
-automatic version check in the <code>--backup</code> mode. </p>
-<p>To disable the version check, invoke xtrabackup and explicitly pass this option.</p>
-<p>When the automatic version check is enabled, xtrabackup performs a
-version check against the server on the backup stage after creating a server
-connection. xtrabackup sends the following information to the server:</p>
+<h2 id="step-2-create-the-docker-compose-file">Step 2: Create the Docker Compose file<a class="headerlink" href="#step-2-create-the-docker-compose-file" title="Permanent link">&para;</a></h2>
+<p>Create a file named <code>docker-compose.yml</code> in your project directory. Select the configuration for your system architecture:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">AMD64 (Intel/AMD)</label><label for="__tabbed_1_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Main Database Engine</span>
+<span class="w">  </span><span class="nt">psmysql</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percona/percona-server:8.4</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">psmysql</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD_FILE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/run/secrets/db_root_pwd</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3306:3306&quot;</span>
+<span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
+
+<span class="w">  </span><span class="c1"># BACKUP &amp; PREPARE TASK</span>
+<span class="w">  </span><span class="nt">pxb-backup</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percona/percona-xtrabackup:8.4</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pxb_backup</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">psmysql</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql:ro</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backupvol:/backup_84</span>
+<span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
+<span class="w">      </span><span class="no">export MYSQL_PWD=$$(cat /run/secrets/db_root_pwd);</span>
+<span class="w">      </span><span class="no">xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root;</span>
+<span class="w">      </span><span class="no">xtrabackup --prepare --target-dir=/backup_84</span>
+<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup</span>
+
+<span class="w">  </span><span class="c1"># RESTORE TASK (Destructive - Requires psmysql to be stopped)</span>
+<span class="w">  </span><span class="nt">pxb-restore</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percona/percona-xtrabackup:8.4</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pxb_restore</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backupvol:/backup_84</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
+<span class="w">      </span><span class="no">echo &#39;==&gt; Clearing current database directory...&#39;;</span>
+<span class="w">      </span><span class="no">rm -rf /var/lib/mysql/* &amp;&amp;</span>
+<span class="w">      </span><span class="no">echo &#39;==&gt; Restoring physical data files from backupvol...&#39;;</span>
+<span class="w">      </span><span class="no">xtrabackup --copy-back --target-dir=/backup_84 --datadir=/var/lib/mysql/ &amp;&amp;</span>
+<span class="w">      </span><span class="no">echo &#39;==&gt; Fixing file permissions for Percona Server...&#39;;</span>
+<span class="w">      </span><span class="no">chown -R mysql:mysql /var/lib/mysql</span>
+<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restore</span>
+
+<span class="w">  </span><span class="c1"># VALIDATION TASK (Launches an isolated, temporary DB from the backup)</span>
+<span class="w">  </span><span class="nt">pxb-validate</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percona/percona-server:8.4</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pxb_validate</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD_FILE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/run/secrets/db_root_pwd</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backupvol:/var/lib/mysql</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3307:3306&quot;</span>
+<span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">entrypoint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
+<span class="w">      </span><span class="no">chown -R mysql:mysql /var/lib/mysql &amp;&amp;</span>
+<span class="w">      </span><span class="no">exec gosu mysql mysqld</span>
+<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">validate</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mysql_data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backupvol</span><span class="p">:</span>
+
+<span class="nt">secrets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">db_root_pwd</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./secrets/db_root_pwd.txt</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Main Database Engine</span>
+<span class="w">  </span><span class="nt">psmysql</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percona/percona-server:8.4-aarch64</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">psmysql</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD_FILE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/run/secrets/db_root_pwd</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3306:3306&quot;</span>
+<span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
+
+<span class="w">  </span><span class="c1"># BACKUP &amp; PREPARE TASK</span>
+<span class="w">  </span><span class="nt">pxb-backup</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percona/percona-xtrabackup:8.4-aarch64</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pxb_backup</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">psmysql</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql:ro</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backupvol:/backup_84</span>
+<span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
+<span class="w">      </span><span class="no">export MYSQL_PWD=$$(cat /run/secrets/db_root_pwd);</span>
+<span class="w">      </span><span class="no">xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root;</span>
+<span class="w">      </span><span class="no">xtrabackup --prepare --target-dir=/backup_84</span>
+<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup</span>
+
+<span class="w">  </span><span class="c1"># RESTORE TASK (Destructive - Requires psmysql to be stopped)</span>
+<span class="w">  </span><span class="nt">pxb-restore</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percona/percona-xtrabackup:8.4-aarch64</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pxb_restore</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backupvol:/backup_84</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
+<span class="w">      </span><span class="no">echo &#39;==&gt; Clearing current database directory...&#39;;</span>
+<span class="w">      </span><span class="no">rm -rf /var/lib/mysql/* &amp;&amp;</span>
+<span class="w">      </span><span class="no">echo &#39;==&gt; Restoring physical data files from backupvol...&#39;;</span>
+<span class="w">      </span><span class="no">xtrabackup --copy-back --target-dir=/backup_84 --datadir=/var/lib/mysql/ &amp;&amp;</span>
+<span class="w">      </span><span class="no">echo &#39;==&gt; Fixing file permissions for Percona Server...&#39;;</span>
+<span class="w">      </span><span class="no">chown -R mysql:mysql /var/lib/mysql</span>
+<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restore</span>
+
+<span class="w">  </span><span class="c1"># VALIDATION TASK (Launches an isolated, temporary DB from the backup)</span>
+<span class="w">  </span><span class="nt">pxb-validate</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">percona/percona-server:8.4-aarch64</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pxb_validate</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD_FILE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/run/secrets/db_root_pwd</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backupvol:/var/lib/mysql</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3307:3306&quot;</span>
+<span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">entrypoint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
+<span class="w">      </span><span class="no">chown -R mysql:mysql /var/lib/mysql &amp;&amp;</span>
+<span class="w">      </span><span class="no">exec gosu mysql mysqld</span>
+<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">validate</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mysql_data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backupvol</span><span class="p">:</span>
+
+<span class="nt">secrets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">db_root_pwd</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./secrets/db_root_pwd.txt</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">About the <code>$$</code> syntax</p>
+<p>The <code>$$</code> in the YAML file escapes the <code>$</code> character for Docker Compose. Docker Compose interprets <code>$</code> as a variable, so <code>$$</code> produces a literal <code>$</code> in the command.</p>
+</div>
+<h3 id="key-configuration-details">Key configuration details<a class="headerlink" href="#key-configuration-details" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user: root</code></td>
+<td>Required for <code>pxb-backup</code> and <code>pxb-restore</code> to access MySQL data files and modify permissions</td>
+</tr>
+<tr>
+<td><code>mysql_data:/var/lib/mysql:ro</code></td>
+<td>The <code>:ro</code> flag mounts the volume as read-only for the backup service, ensuring data integrity</td>
+</tr>
+<tr>
+<td><code>chown -R mysql:mysql</code></td>
+<td>Resets file ownership after restore; MySQL refuses to start if files are owned by <code>root</code></td>
+</tr>
+<tr>
+<td><code>profiles</code></td>
+<td>Services only start when their profile is explicitly activated</td>
+</tr>
+<tr>
+<td><code>gosu mysql mysqld</code></td>
+<td>Drops from <code>root</code> to <code>mysql</code> user before starting the database</td>
+</tr>
+</tbody>
+</table>
+<h2 id="step-3-start-the-primary-database-and-add-test-data">Step 3: Start the primary database and add test data<a class="headerlink" href="#step-3-start-the-primary-database-and-add-test-data" title="Permanent link">&para;</a></h2>
+<p class="power-number">Start the primary Percona Server instance and create some test data.</p>
+<ol>
+<li>
+<p>Start the primary database:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>psmysql
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[+] Running 3/3
+ ✔ Network pxb-tutorial_default  Created
+ ✔ Volume &quot;pxb-tutorial_mysql_data&quot;  Created
+ ✔ Container psmysql  Started
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Wait for the database to initialize (about 30 seconds), then connect to it:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>psmysql<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.4.2-2 Percona Server (GPL), Release 2, Revision b575402d
+
+Copyright (c) 2009-2024 Percona LLC and/or its affiliates
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+
+mysql&gt;
+</code></pre></div>
+</details>
+<p>Enter the password from your secrets file (<code>YourSecurePassword123</code>) when prompted.</p>
+</li>
+<li>
+<p>Create a test database and table:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">mydb</span><span class="p">;</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Query OK, 1 row affected (0.01 sec)
+</code></pre></div>
+</details>
+<div class="highlight"><pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">mydb</span><span class="p">;</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Database changed
+</code></pre></div>
+</details>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">country</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Query OK, 0 rows affected (0.03 sec)
+</code></pre></div>
+</details>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">country</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;Erasmus Richardson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;erasmus@example.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;England&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;Jenna French&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jenna@example.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Canada&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;Alfred Dejesus&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;alfred@example.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Austria&#39;</span><span class="p">);</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Verify the data was inserted:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>+----+--------------------+---------------------+---------+
+| id | name               | email               | country |
++----+--------------------+---------------------+---------+
+|  1 | Erasmus Richardson | erasmus@example.com | England |
+|  2 | Jenna French       | jenna@example.com   | Canada  |
+|  3 | Alfred Dejesus     | alfred@example.com  | Austria |
++----+--------------------+---------------------+---------+
+3 rows in set (0.00 sec)
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Exit the MySQL client:</p>
+<div class="highlight"><pre><span></span><code><span class="n">exit</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Bye
+</code></pre></div>
+</details>
+</li>
+</ol>
+<h2 id="step-4-take-and-prepare-a-backup">Step 4: Take and prepare a backup<a class="headerlink" href="#step-4-take-and-prepare-a-backup" title="Permanent link">&para;</a></h2>
+<p class="power-number">Run the backup service to create a full backup and prepare it for restoration.</p>
+<ol>
+<li>
+<p>Run the backup task:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>pxb-backup
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 8.4.0-2 based on MySQL server 8.4.2 Linux (x86_64)
+...
+[Note] [MY-011825] [Xtrabackup] Executing LOCK TABLES FOR BACKUP
+...
+[Note] [MY-011825] [Xtrabackup] completed OK!
+
+[Note] [MY-011825] [Xtrabackup] recognized server arguments: --innodb_checksum_algorithm=crc32
+...
+[Note] [MY-011825] [Xtrabackup] completed OK!
+</code></pre></div>
+</details>
+<p>The backup service performs two operations:</p>
+<ul>
+<li><code>xtrabackup --backup</code>: Creates a physical copy of the database files</li>
+<li><code>xtrabackup --prepare</code>: Applies transaction logs to make the backup consistent</li>
+</ul>
+</li>
+</ol>
+<h2 id="step-5-validate-the-backup">Step 5: Validate the backup<a class="headerlink" href="#step-5-validate-the-backup" title="Permanent link">&para;</a></h2>
+<p>Before relying on a backup for disaster recovery, verify that it is functional. The validation service launches an independent, temporary Percona Server instance that boots directly from the backup files.</p>
+<div class="admonition note">
+<p class="admonition-title">Why validate?</p>
+<p>A backup that has not been tested for recovery provides no guarantee of data protection. Validation proves that backup files are functional before you need them in an emergency.</p>
+</div>
+<p class="power-number">Do the following to validate the backup:</p>
+<ol>
+<li>
+<p>Start the validation container:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>pxb-validate
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[+] Running 1/1
+ ✔ Container pxb_validate  Started
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Check the container logs to ensure it initializes properly:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>pxb-validate
+</code></pre></div>
+<p>Look for <code>ready for connections</code> in the output.</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>pxb_validate  | [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.4.2-2) starting as process 7
+...
+pxb_validate  | [System] [MY-011323] [Server] X Plugin ready for connections.
+pxb_validate  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections.
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Connect to the validation instance on port <code>3307</code> and verify your data:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>pxb_validate<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SELECT * FROM mydb.employees;&quot;</span>
+</code></pre></div>
+<p>Enter the password (<code>YourSecurePassword123</code>) when prompted.</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Enter password:
++----+--------------------+---------------------+---------+
+| id | name               | email               | country |
++----+--------------------+---------------------+---------+
+|  1 | Erasmus Richardson | erasmus@example.com | England |
+|  2 | Jenna French       | jenna@example.com   | Canada  |
+|  3 | Alfred Dejesus     | alfred@example.com  | Austria |
++----+--------------------+---------------------+---------+
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Stop the validation container when finished:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>stop<span class="w"> </span>pxb-validate
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[+] Stopping 1/1
+ ✔ Container pxb_validate  Stopped
+</code></pre></div>
+</details>
+</li>
+</ol>
+<h2 id="step-6-simulate-a-disaster">Step 6: Simulate a disaster<a class="headerlink" href="#step-6-simulate-a-disaster" title="Permanent link">&para;</a></h2>
+<p>To practice restoration, simulate total data loss by stopping the primary database and wiping its data volume.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This step intentionally destroys all data in the primary database. In a real environment, you would only do this if data corruption or loss has already occurred.</p>
+</div>
+<p class="power-number">Do the following to simulate a disaster:</p>
+<ol>
+<li>
+<p>Stop the primary database container:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>stop<span class="w"> </span>psmysql
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[+] Stopping 1/1
+ ✔ Container psmysql  Stopped
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Wipe the production data directory (simulating drive failure or data corruption):</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>psmysql<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[+] Creating 1/0
+ ✔ Container pxb-tutorial-psmysql-run-xxxxx  Created
+[+] Running 1/0
+ ✔ Container pxb-tutorial-psmysql-run-xxxxx  Started
+</code></pre></div>
+<p>The command output shows a temporary container being created and run. After execution, no additional output appears because the <code>rm</code> command produces no output on success.</p>
+</details>
+</li>
+<li>
+<p>Verify the database cannot start (optional):</p>
+<p>If you attempt to start the database now, it will fail because its data files are missing:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>start<span class="w"> </span>psmysql
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[+] Running 1/1
+ ✔ Container psmysql  Started
+</code></pre></div>
+</details>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>psmysql
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>psmysql  | [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.4.2-2) starting as process 1
+psmysql  | [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+psmysql  | [ERROR] [MY-012224] [InnoDB] Tablespace open failed for &#39;&quot;./ibdata1&quot;&#39;
+psmysql  | [ERROR] [MY-012930] [InnoDB] Plugin initialization aborted with error: Generic error.
+psmysql  | [ERROR] [MY-010334] [Server] Failed to initialize DD Storage Engine
+psmysql  | [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+psmysql  | [ERROR] [MY-010119] [Server] Aborting
+psmysql  | [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.4.2-2)
+</code></pre></div>
+</details>
+<p>The logs show that MySQL cannot find its system tablespace (<code>ibdata1</code>) and fails to start.</p>
+</li>
+</ol>
+<h2 id="step-7-execute-the-restore">Step 7: Execute the restore<a class="headerlink" href="#step-7-execute-the-restore" title="Permanent link">&para;</a></h2>
+<p class="power-number">Run the restore service to copy the backup files back to the primary database volume and fix file permissions.</p>
+<ol>
+<li>
+<p>Stop the primary database if the container is running:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>stop<span class="w"> </span>psmysql
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[+] Stopping 1/1
+ ✔ Container psmysql  Stopped
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Run the restore task:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>pxb-restore
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>==&gt; Clearing current database directory...
+==&gt; Restoring physical data files from backupvol...
+xtrabackup version 8.4.0-2 based on MySQL server 8.4.2 Linux (x86_64)
+...
+[Note] [MY-011825] [Xtrabackup] completed OK!
+==&gt; Fixing file permissions for Percona Server...
+</code></pre></div>
+</details>
+<p>The restore service performs three operations:</p>
+<ul>
+<li>Clears any residual files from the data directory</li>
+<li>Runs <code>xtrabackup --copy-back</code> to restore backup files</li>
+<li>Runs <code>chown -R mysql:mysql</code> to fix file ownership</li>
+</ul>
+</li>
+</ol>
+<h2 id="step-8-verify-the-restoration">Step 8: Verify the restoration<a class="headerlink" href="#step-8-verify-the-restoration" title="Permanent link">&para;</a></h2>
+<p class="power-number">Start the primary database and confirm that your data has been recovered.</p>
+<ol>
+<li>
+<p>Start the primary database:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>start<span class="w"> </span>psmysql
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[+] Running 1/1
+ ✔ Container psmysql  Started
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Check the logs to ensure it starts successfully:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>psmysql
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>psmysql  | [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.4.2-2) starting as process 1
+psmysql  | [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+psmysql  | [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+psmysql  | [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: &#39;::&#39; port: 33060
+psmysql  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: &#39;8.4.2-2&#39;  socket: &#39;/var/lib/mysql/mysql.sock&#39;  port: 3306  Percona Server (GPL), Release 2, Revision b575402d.
+</code></pre></div>
+</details>
+<p>Look for <code>ready for connections</code> in the output to confirm the server started successfully.</p>
+</li>
+<li>
+<p>Connect and verify your data is restored:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>psmysql<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SELECT * FROM mydb.employees;&quot;</span>
+</code></pre></div>
+<p>Enter the password (<code>YourSecurePassword123</code>) when prompted.</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Enter password:
++----+--------------------+---------------------+---------+
+| id | name               | email               | country |
++----+--------------------+---------------------+---------+
+|  1 | Erasmus Richardson | erasmus@example.com | England |
+|  2 | Jenna French       | jenna@example.com   | Canada  |
+|  3 | Alfred Dejesus     | alfred@example.com  | Austria |
++----+--------------------+---------------------+---------+
+</code></pre></div>
+</details>
+</li>
+</ol>
+<p>Your database has been fully restored from the backup.</p>
+<h2 id="understanding-file-permissions">Understanding file permissions<a class="headerlink" href="#understanding-file-permissions" title="Permanent link">&para;</a></h2>
+<p>One of the most common issues when restoring backups in Docker environments is file permission errors. The following table explains why the <code>chown</code> command is critical:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>File Owner</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>After backup</td>
+<td><code>mysql</code></td>
+<td>Backup preserves original ownership</td>
+</tr>
+<tr>
+<td>After <code>--copy-back</code></td>
+<td><code>root</code></td>
+<td>Files are copied by root user in the restore container</td>
+</tr>
+<tr>
+<td>After <code>chown</code></td>
+<td><code>mysql</code></td>
+<td>Ownership restored; MySQL can start</td>
+</tr>
+</tbody>
+</table>
+<p>If you skip the <code>chown -R mysql:mysql /var/lib/mysql</code> step, MySQL fails to start with permission errors similar to:</p>
+<div class="no-copy highlight"><pre><span></span><code>[ERROR] [MY-010187] [Server] Could not open file &#39;/var/lib/mysql/ibdata1&#39; for reading: Permission denied
+</code></pre></div>
+<h2 id="clean-up">Clean up<a class="headerlink" href="#clean-up" title="Permanent link">&para;</a></h2>
+<p class="power-number">To remove all containers, volumes, and resources created by this tutorial:</p>
+<ol>
+<li>
+<p>Remove Docker containers and volumes:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>[+] Running 5/5
+ ✔ Container pxb_validate  Removed
+ ✔ Container psmysql       Removed
+ ✔ Volume pxb-tutorial_mysql_data  Removed
+ ✔ Volume pxb-tutorial_backupvol   Removed
+ ✔ Network pxb-tutorial_default    Removed
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Remove the secrets directory:</p>
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>secrets/
+</code></pre></div>
+<p>If the command executes successfully, the expected output is empty.</p>
+</li>
+<li>
+<p>Optionally, remove the project directory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>pxb-tutorial/
+</code></pre></div>
+<p>If the command executes successfully, the expected output is empty.</p>
+</li>
+</ol>
+<h2 id="key-takeaways">Key takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p>MySQL flavour and version</p>
+<p><strong>Separation of concerns</strong>: Using Docker Compose profiles separates backup, validation, and restore into distinct operations, making each step explicit and auditable.</p>
 </li>
 <li>
-<p>Operating system name</p>
+<p><strong>Validation before restore</strong>: Always validate backups by booting a temporary database instance from the backup files before relying on them for disaster recovery.</p>
 </li>
 <li>
-<p>Percona Toolkit version</p>
+<p><strong>The permission gotcha</strong>: Physical backups restored by the <code>root</code> user must have ownership changed to <code>mysql:mysql</code> before the database can start. This is a common source of restore failures.</p>
 </li>
 <li>
-<p>Perl version</p>
+<p><strong>Prepared backups</strong>: Backups must be prepared with <code>xtrabackup --prepare</code> before they can be restored or used for validation.</p>
 </li>
 </ul>
-<p>Each piece of information has a unique identifier. This identifier is a MD5 hash value
-that Percona Toolkit uses to obtain statistics about its use. This information is
-a random UUID; no client information is collected or stored.</p>
-<h3 id="open-files-limit">open-files-limit<a class="headerlink" href="#open-files-limit" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--open-files-limit=#</code></p>
-<p>The maximum number of file descriptors to reserve with <a href="https://man7.org/linux/man-pages/man2/setrlimit.2.html">setrlimit <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>git .</p>
-<h3 id="parallel">parallel<a class="headerlink" href="#parallel" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--parallel=#</code></p>
-<p>The <code>--parallel</code> option specifies the number of threads to use to copy multiple data
-files concurrently when creating a backup. The default value is 1 (that is, no
-concurrent transfer). In Percona XtraBackup 2.3.10 and newer, the <code>--parallel</code> option
-can be used with the <code>--copy-back</code> option to copy the user
-data files in parallel (redo logs and system tablespaces are copied in the
-main thread).</p>
-<p>Before Percona XtraBackup 8.4.0-3, the <code>--parallel</code> option didn&rsquo;t have any effect on the prepare phase.</p>
-<p>Starting with <a href="release-notes/8.4.0-3.html">Percona XtraBackup 8.4.0-3</a>, using <code>--parallel=X</code> has effect on the prepare phase. It will now use X threads to apply the changes from <code>.delta</code> files to the IBD files. This option processes multiple delta files simultaneously, improving storage performance and accelerating incremental backups, particularly with numerous InnoDB Data (IBD) files. The option remains effective even if IBD files are unchanged between backups and efficiently handles empty delta files.</p>
-<p>When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
-<p>Note that each thread operates on a single file. If you have a large delta file, there is still only one thread that processes that <code>.delta</code> file. Parallelization occurs at the file level, not within individual files.</p>
-<h3 id="password">password<a class="headerlink" href="#password" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--password=PASSWORD</code></p>
-<p>This option accepts a string argument that specifies the password used when connecting to the database.</p>
-<h3 id="plugin-load">plugin-load<a class="headerlink" href="#plugin-load" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--plugin-load</code></p>
-<p>A list of plugins to load.</p>
-<h3 id="port">port<a class="headerlink" href="#port" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--port=PORT</code></p>
-<p>This option accepts a string argument specifying the TCP/IP port used to connect to the database server. This option is passed to the mysql child process without alteration.</p>
-<h3 id="prepare">prepare<a class="headerlink" href="#prepare" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--prepare</code></p>
-<p>Makes xtrabackup perform a recovery on a backup created with <code>--backup</code>, so that the backup data is ready to use.</p>
-<p>For details, see <a href="prepare-full-backup.html">Prepare a full backup</a>.</p>
-<h3 id="print-defaults">print-defaults<a class="headerlink" href="#print-defaults" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--print-defaults</code></p>
-<p>Prints the program argument list and exit and must be the first option on the command line.</p>
-<h3 id="print-param">print-param<a class="headerlink" href="#print-param" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--print-param</code></p>
-<p>Prints the parameters that can be used for copying the data files back to their original locations to restore them.</p>
-<h3 id="read-buffer-size">read-buffer-size<a class="headerlink" href="#read-buffer-size" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--read-buffer-size</code></p>
-<p>Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size.</p>
-<p>To adjust the chunk size for encrypted files, use <a href="#read-buffer-size"><code>--read-buffer-size</code></a> and <a href="#encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
-<h3 id="register-redo-log-consumer">register-redo-log-consumer<a class="headerlink" href="#register-redo-log-consumer" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--register-redo-log-consumer</code></p>
-<p>This option is disabled by default.</p>
-<p>When enabled, this options lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. The server determines when to purge the log based on the redo log consumption.</p>
-<h3 id="remove-original">remove-original<a class="headerlink" href="#remove-original" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--remove-original</code></p>
-<p>This option removes <code>.qp</code>, <code>.xbcrypt</code> and <code>.qp.xbcrypt</code> files after decryption and decompression.</p>
-<h3 id="rocksdb-datadir">rocksdb-datadir<a class="headerlink" href="#rocksdb-datadir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--rocksdb-datadir</code></p>
-<p>Names the RocksDB data directory</p>
-<h3 id="rocksdb-wal-dir">rocksdb-wal-dir<a class="headerlink" href="#rocksdb-wal-dir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--rocksdb-wal-dir</code></p>
-<p>RocksDB WAL directory.</p>
-<h3 id="rocksdb-checkpoint-max-age">rocksdb-checkpoint-max-age<a class="headerlink" href="#rocksdb-checkpoint-max-age" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--rocksdb-checkpoint-max-age</code></p>
-<p>The checkpoint cannot be older than this number of seconds when the backup is complete.</p>
-<h3 id="rocksdb-checkpoint-max-count">rocksdb-checkpoint-max-count<a class="headerlink" href="#rocksdb-checkpoint-max-count" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--rocksdb-checkpoint-max-count</code></p>
-<p>Complete the backup even if the checkpoint age requirement has not been met after this number of checkpoints.</p>
-<h3 id="rollback-prepared-trx">rollback-prepared-trx<a class="headerlink" href="#rollback-prepared-trx" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--rollback-prepared-trx</code></p>
-<p>Force rollback prepared InnoDB transactions.</p>
-<h3 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--rsync</code></p>
-<p>Uses the rsync utility to optimize local file transfers. The xtrabackup binary uses rsync to copy all non-InnoDB files instead of spawning a separate cp for each file, which can be much faster for servers with many databases or tables.</p>
-<p>You cannot use this option with <a href="#stream"><code>--stream</code></a>.</p>
-<h3 id="safe-slave-backup">safe-slave-backup<a class="headerlink" href="#safe-slave-backup" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--safe-slave-backup</code></p>
-<p>When specified, xtrabackup stops the replica SQL thread just before
-running <code>FLUSH TABLES WITH READ LOCK</code> and waits to start the backup operation until <code>Replica_open_temp_tables`` in</code>SHOW STATUS` is zero.</p>
-<p>If there are no open temporary tables, the backup takes place, otherwise the SQL thread is started and stopped until there are no open temporary tables. The backup fails if <code>Replica_open_temp_tables</code> does not become zero after
-<a href="#safe-slave-backup-timeout"><code>--safe-slave-backup-timeout</code></a> seconds. The replication SQL thread is restarted when the backup is complete.
-This option is implemented to deal with <a href="https://dev.mysql.com/doc/refman/8.4/en/replication-features-temptables.html">replication and temporary tables <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> and isn’t necessary with row-based replication.</p>
-<p>Using a safe-slave-backup option stops the SQL replica thread before copying the InnoDB files.</p>
-<h3 id="safe-slave-backup-timeout">safe-slave-backup-timeout<a class="headerlink" href="#safe-slave-backup-timeout" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--safe-slave-backup-timeout=SECONDS</code></p>
-<p>How many seconds the <code>--safe-slave-backup</code> option waits for the <code>Replica_open_temp_tables</code> to become zero. The default value is 300 seconds.</p>
-<h3 id="secure-auth">secure-auth<a class="headerlink" href="#secure-auth" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--secure-auth</code></p>
-<p>Refuse the client from connecting to the server if it uses the old protocol. This option is enabled by default. Disable this options with <code>–skip-secure-auth</code>.</p>
-<h3 id="server-id">server-id<a class="headerlink" href="#server-id" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--server-id=#</code></p>
-<p>The server instance being backed up.</p>
-<h3 id="server-public-key-path">server-public-key-path<a class="headerlink" href="#server-public-key-path" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--server-public-key-path</code></p>
-<p>The file path to the server public RSA key in the PEM format.</p>
-<h3 id="skip-tables-compatibility-check">skip-tables-compatibility-check<a class="headerlink" href="#skip-tables-compatibility-check" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--skip-tables-compatibility-check</code></p>
-<p>See <a href="#tables-compatibility-check"><code>--tables-compatibility-check</code></a>.</p>
-<h3 id="slave-info">slave-info<a class="headerlink" href="#slave-info" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--slave-info</code></p>
-<p>This option is useful when backing up a replication replica server. It prints
-the binary log position of the source server. It also writes the binary log
-coordinates to the <code>xtrabackup_slave_info</code> file as a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>
-command.</p>
-<p>A new replica for this source can be set up by starting a replica server on this backup and issuing a <a href="https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html"><code>CHANGE REPLICATION SOURCE TO</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> command with the binary log
-position saved in the <code>xtrabackup_slave_info</code> file.</p>
-<h3 id="socket">socket<a class="headerlink" href="#socket" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--socket</code></p>
-<p>This option accepts a string argument that specifies the socket to use when
-connecting to the local database server with a UNIX domain socket. It is
-passed to the MySQL child process without alteration. See mysql
-&ndash;help for details.</p>
-<h3 id="ssl">ssl<a class="headerlink" href="#ssl" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl</code></p>
-<p>Enable secure connection.</p>
-<h3 id="ssl-ca">ssl-ca<a class="headerlink" href="#ssl-ca" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl-ca</code></p>
-<p>The path of the file contains a list of trusted SSL CAs.</p>
-<h3 id="ssl-capath">ssl-capath<a class="headerlink" href="#ssl-capath" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl-capath</code></p>
-<p>The directory path that contains trusted SSL CA files in PEM format.</p>
-<h3 id="ssl-cert">ssl-cert<a class="headerlink" href="#ssl-cert" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl-cert</code></p>
-<p>The path of the file contains the X509 certificate in PEM format.</p>
-<h3 id="ssl-cipher">ssl-cipher<a class="headerlink" href="#ssl-cipher" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl-cipher</code></p>
-<p>The list of the permitted ciphers to use for connection encryption.</p>
-<h3 id="ssl-crl">ssl-crl<a class="headerlink" href="#ssl-crl" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl-crl</code></p>
-<p>The path of the file that contains certificate revocation lists.</p>
-<h3 id="ssl-crlpath">ssl-crlpath<a class="headerlink" href="#ssl-crlpath" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl-crlpath</code></p>
-<p>The path of the directory that contains the certificate revocation list files.</p>
-<h3 id="ssl-fips-mode">ssl-fips-mode<a class="headerlink" href="#ssl-fips-mode" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl-fips-mode</code></p>
-<p>The SSL FIPS mode applies only for OpenSSL; permitted values are OFF, ON, and STRICT.</p>
-<h3 id="ssl-key">ssl-key<a class="headerlink" href="#ssl-key" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl-key</code></p>
-<p>The path of the file that contains the X509 key in PEM format.</p>
-<h3 id="ssl-mode">ssl-mode<a class="headerlink" href="#ssl-mode" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl-mode</code></p>
-<p>The security state of connection to the server.</p>
-<h3 id="ssl-verify-server-cert">ssl-verify-server-cert<a class="headerlink" href="#ssl-verify-server-cert" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--ssl-verify-server-cert</code></p>
-<p>Verify the server certificate Common Name value against the hostname used when connecting to the server.</p>
-<h3 id="stream">stream<a class="headerlink" href="#stream" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--stream=FORMAT</code></p>
-<p>Stream all backup files to the standard output in the specified format.
-Currently, this option only supports the xbstream format.</p>
-<h3 id="strict">strict<a class="headerlink" href="#strict" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--strict</code></p>
-<p>If this option is specified, xtrabackup fails with an error when invalid
-parameters are passed.</p>
-<h3 id="tables">tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--tables=name</code></p>
-<p>A regular expression against which the full table name in the <code>databasename.tablename</code> format is matched. If the name matches, the
-table is backed up. See <a href="create-partial-backup.html">Create a partial backup</a>.</p>
-<h3 id="tables-compatibility-check">tables-compatibility-check<a class="headerlink" href="#tables-compatibility-check" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--tables-compatibility-check</code></p>
-<p>Enables the engine compatibility warning. The default value is
-<code>ON</code>. To disable the engine compatibility warning, use <code>--</code>skip-tables-compatibility-check`](#skip-tables-compatibility-check).</p>
-<h3 id="tables-exclude">tables-exclude<a class="headerlink" href="#tables-exclude" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--tables-exclude=name</code></p>
-<p>Filtering by regexp for table names. Operates the same
-way as <a href="#tables"><code>--tables</code></a>, but matched names are excluded from
-backup. Note that this option has a higher priority than
-<code>--tables</code>.</p>
-<h3 id="tables-file">tables-file<a class="headerlink" href="#tables-file" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--tables-file=name</code></p>
-<p>A file containing one table name per line in <code>databasename.tablename</code> format.
-The backup will be limited to the specified tables.</p>
-<h3 id="target-dir">target-dir<a class="headerlink" href="#target-dir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--target-dir=DIRECTORY</code></p>
-<p>This option specifies the destination directory for the backup. If the
-directory does not exist, xtrabackup creates it. If the directory
-does exist and is empty, xtrabackup will succeed.
-xtrabackup does not overwrite existing files, however, the operation fails with the operating system error 17, <code>file exists</code>.</p>
-<p>If this option is a relative path, it is interpreted as relative to
-the current working directory from which xtrabackup is executed.</p>
-<p>To perform a backup, you need <code>READ</code>, <code>WRITE</code>, and <code>EXECUTE</code>
-permissions at a filesystem level for the directory that you supply as the
-value of <code>--target-dir</code>.</p>
-<h3 id="innodb-temp-tablespaces-dir">innodb-temp-tablespaces-dir<a class="headerlink" href="#innodb-temp-tablespaces-dir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--innodb-temp-tablespaces-dir=DIRECTORY</code></p>
-<p>The location of the directory for the temp tablespace files. This path can be absolute.</p>
-<h3 id="throttle">throttle<a class="headerlink" href="#throttle" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--throttle=#</code></p>
-<p>This option limits the number of chunks copied per second. The chunk size is
-10 MB.</p>
-<p>To limit the bandwidth to 10 MB/s, set the option to 1.</p>
-<h3 id="tls-ciphersuites">tls-ciphersuites<a class="headerlink" href="#tls-ciphersuites" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--tls-ciphersuites</code></p>
-<p>The TLS v1.3 cipher to use.</p>
-<h3 id="tls-version">tls-version<a class="headerlink" href="#tls-version" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--tls-version</code></p>
-<p>Defines which TLS version to use. The permitted values are: TLSv1, TLSv1.1,
-TLSv1.2, TLSv1.3.</p>
-<h3 id="tmpdir">tmpdir<a class="headerlink" href="#tmpdir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--tmpdir=name</code></p>
-<p>Specify the directory used to store temporary files during the
-backup</p>
-<h3 id="transition-key">transition-key<a class="headerlink" href="#transition-key" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--transition-key=name</code></p>
-<p>This option is used to enable processing the backup without accessing the
-keyring vault server. In this case, xtrabackup derives the AES
-encryption key from the specified passphrase and uses it to encrypt the tablespace keys of tablespaces being backed up.</p>
-<p>If <code>--transition-key</code> does not have any
-value, xtrabackup will ask for it. The same passphrase should be
-specified for the <code>--prepare</code> command.</p>
-<h3 id="use-free-memory-pct">use-free-memory-pct<a class="headerlink" href="#use-free-memory-pct" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--use-free-memory-pct</code></p>
-<p>The <code>--use-free-memory-pct</code> is a <a href="glossary.html#tech-preview">tech preview</a> option.</p>
-<p>This option lets you configure the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The option controls the amount of free memory that can be used to <code>--prepare</code> a backup. The default value is 0 (zero), which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100.</p>
-<p>This option works only if <code>--estimate-memory</code> option is enabled. If the <code>--estimate-memory</code> option is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
-<p>An example of how to enable the Smart memory estimation feature:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
-</code></pre></div>
-<h3 id="use-memory">use-memory<a class="headerlink" href="#use-memory" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--use-memory</code></p>
-<p>This option affects how much memory is allocated and is similar to <code>innodb_buffer_pool_size</code>. This option is only relevant in the <code>--prepare</code> phase. The default value is 100MB. The recommended value is between 1GB to 2GB. Multiple values are supported if you provide the unit (1MB, 1M, 1GB, 1G).</p>
-<h3 id="user">user<a class="headerlink" href="#user" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--user=USERNAME</code></p>
-<p>This option specifies the MySQL username used when connecting to the server if that’s not the current user. The option accepts a string argument. See
-mysql –help for details.</p>
-<h3 id="version">version<a class="headerlink" href="#version" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--version</code></p>
-<p>This option prints xtrabackup version and exits.</p>
-<h3 id="xtrabackup-plugin-dir">xtrabackup-plugin-dir<a class="headerlink" href="#xtrabackup-plugin-dir" title="Permanent link">&para;</a></h3>
-<p>Usage: <code>--xtrabackup-plugin-dir=DIRNAME</code></p>
-<p>The absolute path to the directory that contains the <code>keyring</code> plugin.</p>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Learn about <a href="create-incremental-backup.html">incremental backups</a> to reduce backup time and storage</li>
+<li>Explore <a href="take-streaming-backup.html">streaming backups</a> for direct-to-cloud storage</li>
+<li>Review <a href="encrypt-backups.html">backup encryption</a> for securing backup data</li>
+</ul>
 
 
 
@@ -6622,7 +6904,7 @@ mysql –help for details.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 9, 2026 10:04:19 UTC">June 9, 2026</span>
   </span>
 
     
@@ -6632,11 +6914,39 @@ mysql –help for details.</p>
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 21, 2022 22:15:06 UTC">July 21, 2022</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 9, 2026 10:04:19 UTC">June 9, 2026</span>
   </span>
 
     
     
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
     
   </aside>
 

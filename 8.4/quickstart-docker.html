@@ -9,7 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="In this scenario, Percona XtraBackup works in combination with a MySQL-compatible database instance. To use the tool, you must run Percona XtraBackup in a separate Docker container and then connect the Percona XtraBackup container directly to the Percona Server for MySQL container. This connection lets the backup tool access the database for backup and restore operations.">
+        <meta name="description" content="This tutorial describes how to create a backup volume, run Percona XtraBackup in a Docker container, and take a prepared backup of a Percona Server for MySQL database.">
       
       
         <meta name="author" content="Percona LLC">
@@ -32,7 +32,7 @@
     
     
       
-        <title>Start a Docker container and take a backup - Percona XtraBackup</title>
+        <title>Take a backup with Docker - Percona XtraBackup</title>
       
     
     
@@ -100,7 +100,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Start a Docker container and take a backup" />
+                 <meta property="og:title" content="Percona XtraBackup - Take a backup with Docker" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.4/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -123,7 +123,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#start-a-docker-container-and-take-a-backup" class="md-skip">
+        <a href="#take-a-backup-with-docker" class="md-skip">
           Skip to content
         </a>
       
@@ -252,7 +252,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Start a Docker container and take a backup
+              Take a backup with Docker
             
           </span>
         </div>
@@ -783,7 +783,7 @@
   <span class="md-ellipsis">
     
   
-    Quickstart Overview
+    Quickstart overview
   
 
     
@@ -820,7 +820,7 @@
   <span class="md-ellipsis">
     
   
-    Start a Docker container and take a backup
+    Take a backup with Docker
   
 
     
@@ -838,7 +838,7 @@
   <span class="md-ellipsis">
     
   
-    Start a Docker container and take a backup
+    Take a backup with Docker
   
 
     
@@ -866,10 +866,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-a-docker-volume" class="md-nav__link">
+  <a href="#learning-objectives" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create a Docker volume
+        Learning objectives
       
     </span>
   </a>
@@ -877,10 +877,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-percona-xtrabackup-84-in-a-container-take-and-prepare-a-backup" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Start Percona XtraBackup 8.4 in a container, take and prepare a backup
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-a-backup-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create a backup volume
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-take-and-prepare-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Take and prepare the backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-verify-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Verify the backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
       
     </span>
   </a>
@@ -949,7 +1004,7 @@
   <span class="md-ellipsis">
     
   
-    Clean up
+    Clean up quickstart resources
   
 
     
@@ -3824,6 +3879,8 @@
       
         
       
+        
+      
     
     
     
@@ -3879,6 +3936,34 @@
     
   
     Run a Docker container
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docker-compose-tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Compose backup and restore tutorial
   
 
     
@@ -5791,10 +5876,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-a-docker-volume" class="md-nav__link">
+  <a href="#learning-objectives" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create a Docker volume
+        Learning objectives
       
     </span>
   </a>
@@ -5802,10 +5887,65 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-percona-xtrabackup-84-in-a-container-take-and-prepare-a-backup" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Start Percona XtraBackup 8.4 in a container, take and prepare a backup
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-a-backup-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create a backup volume
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-take-and-prepare-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Take and prepare the backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-verify-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Verify the backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
       
     </span>
   </a>
@@ -5853,29 +5993,62 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="start-a-docker-container-and-take-a-backup">Start a Docker container and take a backup<a class="headerlink" href="#start-a-docker-container-and-take-a-backup" title="Permanent link">&para;</a></h1>
-<p>In this scenario, Percona XtraBackup works in combination with a MySQL-compatible database instance. To use the tool, you must run Percona XtraBackup in a separate Docker container and then connect the Percona XtraBackup container directly to the Percona Server for MySQL container. This connection lets the backup tool access the database for backup and restore operations.</p>
-<p class="power-number">The following steps create a Docker volume, start Percona XtraBackup in a Docker container, take and prepare a backup of Percona Server for MySQL database.</p>
-<h2 id="create-a-docker-volume">Create a Docker volume<a class="headerlink" href="#create-a-docker-volume" title="Permanent link">&para;</a></h2>
-<p>The benefits of using a Docker volume are the following:</p>
+<h1 id="take-a-backup-with-docker">Take a backup with Docker<a class="headerlink" href="#take-a-backup-with-docker" title="Permanent link">&para;</a></h1>
+<p>This tutorial describes how to create a backup volume, run Percona XtraBackup in a Docker container, and take a prepared backup of a Percona Server for MySQL database.</p>
+<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>This tutorial covers the following tasks:</p>
 <ul>
 <li>
-<p>You can keep your data safe and accessible across different containers. For example, if you want to upgrade your database image to a newer version, you can stop the old container and start a new one with the same volume attached without losing any data. </p>
+<p>Create a Docker volume to store backup files</p>
 </li>
 <li>
-<p>You can quickly backup and restore your data using the <code>docker cp</code> command or mount the volume to another container.</p>
+<p>Connect Percona XtraBackup to a running Percona Server container</p>
+</li>
+<li>
+<p>Take a full backup using <code>xtrabackup --backup</code></p>
+</li>
+<li>
+<p>Prepare the backup using <code>xtrabackup --prepare</code></p>
 </li>
 </ul>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Complete the following steps before starting this tutorial:</p>
+<ul>
+<li>
+<p><a href="https://docs.docker.com/engine/install/">Install Docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> on your system</p>
+</li>
+<li>
+<p><a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html">Start Percona Server in a Docker container <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> - Creates the <code>psmysql</code> container with the <code>mydb</code> database and <code>employees</code> table</p>
+</li>
+</ul>
+<h2 id="architecture-overview">Architecture overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup runs in a separate Docker container and connects to the Percona Server for MySQL container. This connection allows the backup tool to access the database files for backup and restore operations.</p>
+<p>For more information about how Percona XtraBackup works, see <a href="how-xtrabackup-works.html">How Percona XtraBackup works</a>.</p>
+<h2 id="step-1-create-a-backup-volume">Step 1: Create a backup volume<a class="headerlink" href="#step-1-create-a-backup-volume" title="Permanent link">&para;</a></h2>
+<p>Docker volumes provide persistent storage that remains accessible across container restarts and updates. Creating a dedicated backup volume offers the following benefits:</p>
+<ul>
+<li>
+<p>Data persists independently of container lifecycle</p>
+</li>
+<li>
+<p>Multiple containers can access the same backup data</p>
+</li>
+<li>
+<p>Backup files remain available for restore operations</p>
+</li>
+</ul>
+<p>Create the backup volume with the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>backupvol
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code> backupvol
+<div class="no-copy highlight"><pre><span></span><code>backupvol
 </code></pre></div>
 </details>
-<h2 id="start-percona-xtrabackup-84-in-a-container-take-and-prepare-a-backup">Start Percona XtraBackup 8.4 in a container, take and prepare a backup<a class="headerlink" href="#start-percona-xtrabackup-84-in-a-container-take-and-prepare-a-backup" title="Permanent link">&para;</a></h2>
-<p>The <code>docker run</code> command creates and runs a new container from an image. The command modifies the container&rsquo;s behavior with options.</p>
-<p>In our example, the command has the following options:</p>
+<h2 id="step-2-take-and-prepare-the-backup">Step 2: Take and prepare the backup<a class="headerlink" href="#step-2-take-and-prepare-the-backup" title="Permanent link">&para;</a></h2>
+<p>The backup process requires connecting the Percona XtraBackup container to the Percona Server container. The <code>--user root</code> option grants the necessary permissions to access the MySQL data directory.</p>
+<h3 id="understand-the-command-options">Understand the command options<a class="headerlink" href="#understand-the-command-options" title="Permanent link">&para;</a></h3>
+<p>The following table describes each option used in the backup command:</p>
 <table>
 <thead>
 <tr>
@@ -5885,79 +6058,50 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </thead>
 <tbody>
 <tr>
-<td><code>--name</code></td>
-<td>Provides a name to the container. If you do not use this option, Docker adds a random name.</td>
+<td><code>--name pxb</code></td>
+<td>Assigns the name <code>pxb</code> to the container</td>
 </tr>
 <tr>
-<td><code>--volumes-from</code></td>
-<td>Refers to Percona Server for MySQL and indicates that you intend to use the same data as the <code>psmysql</code> container.</td>
+<td><code>--volumes-from psmysql</code></td>
+<td>Mounts volumes from the <code>psmysql</code> container to access database files</td>
+</tr>
+<tr>
+<td><code>-v backupvol:/backup_84</code></td>
+<td>Mounts the <code>backupvol</code> volume at <code>/backup_84</code> inside the container</td>
 </tr>
 <tr>
 <td><code>-it</code></td>
-<td>Interacts with the container and be a pseudo-terminal.</td>
+<td>Allocates a pseudo-terminal for interactive password entry</td>
 </tr>
 <tr>
 <td><code>--user root</code></td>
-<td>Sets the user to root inside the Percona XtraBackup container. This option is required to access the MySQL data directory and run the xtrabackup command.</td>
-</tr>
-<tr>
-<td><code>backup_84</code></td>
-<td>Indicates the directory inside the container where the backup files are stored.</td>
-</tr>
-<tr>
-<td><code>-v</code></td>
-<td>Mounts a volume from the host machine to volumes in another container that is being run. In our example, the <code>-v</code> option mounts a volume from the <code>psmysql</code> container to the <code>backupvol</code> volume on the host machine.</td>
-</tr>
-<tr>
-<td><code>backupvol</code></td>
-<td>Indicates the persistent storage for the database.</td>
-</tr>
-<tr>
-<td><code>psmysql</code></td>
-<td>Indicates the Percona Server for MySQL container.</td>
+<td>Runs the container as root to access the MySQL data directory</td>
 </tr>
 <tr>
 <td><code>--password</code></td>
-<td>Prompts the user to enter the password for the root user. For convenience you can add the password for the root user to this option, for example, <code>--password=secret</code>. Then the password will be passed automatically when running the command. Note that if you specify the password with <code>--password=secret</code>, the password is visible in <code>docker ps</code>, <code>docker ps -a</code> (docker history) and regular ps command.</td>
-</tr>
-<tr>
-<td><code>8.4</code></td>
-<td>Use this tag to specify a specific version. Avoid using the <code>latest</code> tag. <br> In our example, we use the <code>8.4</code> tag. In Docker, a tag is a label assigned to an image and is used to maintain different versions of an image.</td>
+<td>Prompts for the MySQL root password</td>
 </tr>
 </tbody>
 </table>
-<p>If you do not add a tag, Docker uses <code>latest</code> as the default tag and downloads the newest image from <a href="https://hub.docker.com/r/percona/percona-xtrabackup">percona/percona-xtrabackup on the Docker Hub  <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. This image can be in a different series or version from what you expect since the latest image changes over time. If you are using Percona XtraBackup version prior to 8.4, use tags to ensure that you use <a href="server-backup-version-comparison.html">compatible versions</a> of Percona Server for MySQL and Percona XtraBackup. </p>
-<p>The CPU architecture or platform for Percona Server for MySQL and Percona XtraBackup should be the same. If you want to use a different platform, you can add the following command:</p>
-<table>
-<thead>
-<tr>
-<th>Platform</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>&ndash;platform linux/amd64</td>
-<td>To run an AMD64 platform on an ARM64 computer.</td>
-</tr>
-<tr>
-<td>&ndash;platform linux/arm64</td>
-<td>To run an ARM64 platform on an AMD64 computer.</td>
-</tr>
-</tbody>
-</table>
-<p>You can run the Docker ARM64 version of Percona XtraBackup. Use the <code>8.4-aarch64</code> tag instead of <code>8.4</code>.</p>
-<h3 id="connect-the-percona-xtrabackup-container-to-the-percona-server-container">Connect the Percona XtraBackup container to the Percona Server container<a class="headerlink" href="#connect-the-percona-xtrabackup-container-to-the-percona-server-container" title="Permanent link">&para;</a></h3>
-<p>We recommend using the <code>–-user root</code> option in the Docker command.
-Run a Docker container example</p>
+<h3 id="run-the-backup-command">Run the backup command<a class="headerlink" href="#run-the-backup-command" title="Permanent link">&para;</a></h3>
+<p>Select the command for your system architecture:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">AMD64 (Intel/AMD)</label><label for="__tabbed_1_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>pxb<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root --password; xtrabackup --prepare --target-dir=/backup_84&quot;</span>
 </code></pre></div>
-<p>You are prompted to enter the password. In our example, the password is <code>secret</code>.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>pxb<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4-aarch64<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root --password; xtrabackup --prepare --target-dir=/backup_84&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Enter the password <code>secret</code> when prompted:</p>
 <div class="no-copy highlight"><pre><span></span><code>2024-10-07T13:55:47.640100-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
 2024-10-07T13:55:47.641887-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --backup=1 --target-dir=/backup_84 --user=root --password
 Enter password:
 </code></pre></div>
-<p>In this example of expected output, we provide the first and last section of the backup log and use ellipses instead of the entire backup log.</p>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>xtrabackup version 8.4.0-1 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 3792f907)
@@ -5971,20 +6115,48 @@ Enter password:
 2024-10-07T13:55:55.550829-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 </details>
-<p>The command runs a Docker container <code>pxb</code> from the <code>percona/percona-xtrabackup:8.4</code> image and mounts two volumes: one from another container named <code>psmysql</code>, which contains Percona Server data directory, and another named <code>backupvol</code>, which is where the backup files are stored. The command also sets the user to root and prompts the user to enter the password. </p>
-<p>The command then executes two steps: </p>
+<p>The command executes two xtrabackup operations:</p>
 <ul>
 <li>
-<p>Runs <code>xtrabackup</code> with the <code>--backup</code> option to copy the data files from <code>/var/lib/mysql/</code> to <code>/backup_84</code></p>
+<p><code>xtrabackup --backup</code> - Copies data files from <code>/var/lib/mysql/</code> to <code>/backup_84</code></p>
 </li>
 <li>
-<p>Runs <code>xtrabackup</code> with the <code>--prepare</code> option to apply the log files and make the backup consistent and ready for restore</p>
+<p><code>xtrabackup --prepare</code> - Applies transaction logs to make the backup consistent</p>
 </li>
 </ul>
-<p>You can check the Xtrabackup logs with the <code>docker container logs &lt;container-name&gt;</code> command.</p>
-<p>For example:</p>
+<p>For more information about the backup and prepare process, see <a href="create-full-backup.html">Create a full backup</a> and <a href="prepare-full-backup.html">Prepare a full backup</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Password visibility</p>
+<p>Specifying the password directly with <code>--password=secret</code> exposes the password in <code>docker ps</code>, <code>docker history</code>, and system process listings. Use the interactive prompt for production environments.</p>
+</div>
+<h2 id="step-3-verify-the-backup">Step 3: Verify the backup<a class="headerlink" href="#step-3-verify-the-backup" title="Permanent link">&para;</a></h2>
+<p>Check the backup container logs to confirm the backup completed:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>logs<span class="w"> </span>pxb
 </code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>...
+2024-10-07T13:55:55.550829-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
+</code></pre></div>
+</details>
+<p>The message <code>completed OK!</code> confirms the backup and prepare operations finished.</p>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>This tutorial covered the following completed tasks:</p>
+<ul>
+<li>
+<p>Created the <code>backupvol</code> Docker volume for backup storage</p>
+</li>
+<li>
+<p>Connected the Percona XtraBackup container to the <code>psmysql</code> database container</p>
+</li>
+<li>
+<p>Executed <code>xtrabackup --backup</code> to copy database files</p>
+</li>
+<li>
+<p>Executed <code>xtrabackup --prepare</code> to make the backup consistent</p>
+</li>
+</ul>
+<p>The backup stored in <code>backupvol</code> is ready for restoration.</p>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="quickstart-restore-back.html">Restore the backup</a></p>
 
@@ -6009,7 +6181,7 @@ Enter password:
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 10, 2026 14:48:04 UTC">March 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 9, 2026 10:04:19 UTC">June 9, 2026</span>
   </span>
 
     

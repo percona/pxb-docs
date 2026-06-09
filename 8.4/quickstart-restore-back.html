@@ -9,7 +9,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The following steps describe how to restore your backup to another Percona Server container and check whether the data is available.">
+        <meta name="description" content="This tutorial describes how to restore a Percona XtraBackup backup to a new database container. The tutorial also covers validating the restored data.">
       
       
         <meta name="author" content="Percona LLC">
@@ -783,7 +783,7 @@
   <span class="md-ellipsis">
     
   
-    Quickstart Overview
+    Quickstart overview
   
 
     
@@ -811,7 +811,7 @@
   <span class="md-ellipsis">
     
   
-    Start a Docker container and take a backup
+    Take a backup with Docker
   
 
     
@@ -894,10 +894,98 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#validate-the-backup" class="md-nav__link">
+  <a href="#learning-objectives" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validate the backup
+        Learning objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restore-process-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restore process overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-a-restore-target-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create a restore target container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-prepare-the-target-for-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Prepare the target for restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-restore-the-backup-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Restore the backup files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-fix-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Fix file permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-validate-the-restored-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Validate the restored data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
       
     </span>
   </a>
@@ -938,7 +1026,7 @@
   <span class="md-ellipsis">
     
   
-    Clean up
+    Clean up quickstart resources
   
 
     
@@ -3813,6 +3901,8 @@
       
         
       
+        
+      
     
     
     
@@ -3868,6 +3958,34 @@
     
   
     Run a Docker container
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docker-compose-tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Compose backup and restore tutorial
   
 
     
@@ -5780,10 +5898,98 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#validate-the-backup" class="md-nav__link">
+  <a href="#learning-objectives" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validate the backup
+        Learning objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restore-process-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restore process overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-a-restore-target-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create a restore target container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-prepare-the-target-for-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Prepare the target for restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-restore-the-backup-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Restore the backup files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-fix-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Fix file permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-validate-the-restored-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Validate the restored data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
       
     </span>
   </a>
@@ -5832,87 +6038,238 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
 <h1 id="restore-the-backup">Restore the backup<a class="headerlink" href="#restore-the-backup" title="Permanent link">&para;</a></h1>
-<p class="power-number">The following steps describe how to restore your backup to another Percona Server container and check whether the data is available.</p>
-<ol>
+<p>This tutorial describes how to restore a Percona XtraBackup backup to a new database container. The tutorial also covers validating the restored data.</p>
+<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>This tutorial covers the following tasks:</p>
+<ul>
 <li>
-<p>Create another Docker volume</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>myvol2
-</code></pre></div>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>myvol2
-</code></pre></div>
-</details>
+<p>Create a restore target container</p>
 </li>
 <li>
-<p>Run another Percona Server container to restore the backup to</p>
+<p>Use <code>xtrabackup --copy-back</code> to restore physical backup files</p>
+</li>
+<li>
+<p>Fix file permissions required for MySQL to start</p>
+</li>
+<li>
+<p>Validate restored data accessibility</p>
+</li>
+</ul>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Complete the following quickstart steps before starting this tutorial:</p>
+<ul>
+<li>
+<p><a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html">Start Percona Server in a Docker container <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> - Creates the <code>psmysql</code> container with the <code>mydb</code> database</p>
+</li>
+<li>
+<p><a href="quickstart-docker.html">Take a backup</a> - Creates the <code>backupvol</code> volume containing your prepared backup</p>
+</li>
+</ul>
+<h3 id="understanding-host-terminal-vs-container">Understanding host terminal vs container<a class="headerlink" href="#understanding-host-terminal-vs-container" title="Permanent link">&para;</a></h3>
+<p>This tutorial requires running commands in two different places:</p>
 <table>
 <thead>
 <tr>
-<th>Option</th>
+<th>Location</th>
 <th>Description</th>
+<th>Prompt example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>--name</code></td>
-<td>Provides a name to the container. If you do not use this option, Docker adds a random name.</td>
+<td>Host terminal</td>
+<td>Your computer&rsquo;s command line where you run <code>docker</code> commands</td>
+<td><code>$</code> or <code>%</code></td>
 </tr>
 <tr>
-<td><code>-d</code></td>
-<td>Detaches the container. The container runs in the background.</td>
-</tr>
-<tr>
-<td><code>-e</code></td>
-<td>Adds an environmental variable. This example adds the  <code>MYSQL_ROOT_PASSWORD</code>  environment variable. The instance refuses to initialize if no environmental variable is added. Choose a more secure password, if needed.</td>
-</tr>
-<tr>
-<td><code>myvol2</code></td>
-<td>Indicates the persistent storage for the database.</td>
-</tr>
-<tr>
-<td><code>8.4</code></td>
-<td>Use this tag to specify a specific version.</td>
+<td>MySQL client</td>
+<td>Inside a container, connected to the database</td>
+<td><code>mysql&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<p>You must provide at least one environment variable to access the database, such as <code>MYSQL_ROOT_PASSWORD</code>, <code>MYSQL_DATABASE</code>, <code>MYSQL_USER</code>, and <code>MYSQL_PASSWORD</code> or the instance refuses to initialize.</p>
-<p>For this document, we are using the <code>8.4</code> tag. In Docker, a tag is a label assigned to an image. Tags are used to maintain different versions of an image. If we did not add a tag, Docker uses <code>latest</code> as the default tag and downloads the latest image from [percona/percona-server on the Docker Hub].</p>
-<p>To use a Docker volume for persistent storage with a database, specify the path where the database stores its data inside the container, usually <code>/var/lib/mysql</code>.</p>
-<ul>
-<li>
-<p>Run a Docker container example</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">3307</span>:3306<span class="w"> </span>--name<span class="w"> </span>psmysql2<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>secret<span class="w"> </span>-v<span class="w"> </span>myvol2:/var/lib/mysql<span class="w"> </span>percona/percona-server:8.4
+<p>Commands starting with <code>docker</code> always run on your host terminal. SQL commands like <code>SELECT</code> run inside the MySQL client.</p>
+<h3 id="verify-the-backup-volume">Verify the backup volume<a class="headerlink" href="#verify-the-backup-volume" title="Permanent link">&para;</a></h3>
+<p>Before proceeding, verify the backup volume exists.</p>
+<p>If you are still in the MySQL client from the previous tutorial, exit to return to your host terminal:</p>
+<div class="highlight"><pre><span></span><code><span class="n">exit</span>
 </code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Bye
+</code></pre></div>
+</details>
+<p>Run the following command on your host terminal to verify the backup volume:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>ls
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>DRIVER    VOLUME NAME
+local     backupvol
+</code></pre></div>
+</details>
+<p>Confirm <code>backupvol</code> appears in the list. If the volume does not exist, complete the <a href="quickstart-docker.html">Take a backup</a> tutorial first.</p>
+<h2 id="restore-process-overview">Restore process overview<a class="headerlink" href="#restore-process-overview" title="Permanent link">&para;</a></h2>
+<p>Restoring a physical backup requires copying the backup files to a MySQL data directory. In Docker environments, the restore process requires the following steps:</p>
+<ol>
+<li>
+<p>Create a target container - A Percona Server container receives the restored data</p>
 </li>
-</ul>
+<li>
+<p>Stop the target database - MySQL cannot run while the restore process overwrites data files</p>
+</li>
+<li>
+<p>Clear the data directory - The target directory must be empty before restoration</p>
+</li>
+<li>
+<p>Copy the backup files - The <code>xtrabackup --copy-back</code> command transfers the files</p>
+</li>
+<li>
+<p>Fix file permissions - Restored files have <code>root</code> ownership, but MySQL runs as the <code>mysql</code> user</p>
+</li>
+</ol>
+<p>For more information about the restore process, see <a href="restore-a-backup.html">Restore full, incremental, and compressed backups</a>.</p>
+<h2 id="step-1-create-a-restore-target-container">Step 1: Create a restore target container<a class="headerlink" href="#step-1-create-a-restore-target-container" title="Permanent link">&para;</a></h2>
+<p class="power-number">Create a second Percona Server container named <code>ps-restore-target</code> as the restore destination. This configuration simulates restoring to a different server, a common disaster recovery scenario.</p>
+<ol>
+<li>
+<p>Create a Docker volume for the restore target:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>restore_data
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>restore_data
+</code></pre></div>
+</details>
+<p>This volume stores the restored database files.</p>
+</li>
+<li>
+<p>Start a Percona Server container:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">AMD64 (Intel/AMD)</label><label for="__tabbed_1_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">3307</span>:3306<span class="w"> </span>--name<span class="w"> </span>ps-restore-target<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>secret<span class="w"> </span>-v<span class="w"> </span>restore_data:/var/lib/mysql<span class="w"> </span>percona/percona-server:8.4
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">3307</span>:3306<span class="w"> </span>--name<span class="w"> </span>ps-restore-target<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>secret<span class="w"> </span>-v<span class="w"> </span>restore_data:/var/lib/mysql<span class="w"> </span>percona/percona-server:8.4-aarch64
+</code></pre></div>
+</div>
+</div>
+</div>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>4501d5524461b4483d414bd218d49ed4f47599add7d7fb81e157951a7a52f3d1
 </code></pre></div>
 </details>
+<p>The following table describes each option:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-d</code></td>
+<td>Runs the container in background mode</td>
+</tr>
+<tr>
+<td><code>-p 3307:3306</code></td>
+<td>Maps to port 3307 to avoid conflicts with the original database on port 3306</td>
+</tr>
+<tr>
+<td><code>--name ps-restore-target</code></td>
+<td>Assigns a descriptive container name</td>
+</tr>
+<tr>
+<td><code>-e MYSQL_ROOT_PASSWORD=secret</code></td>
+<td>Sets the root password, which MySQL requires for initialization</td>
+</tr>
+<tr>
+<td><code>-v restore_data:/var/lib/mysql</code></td>
+<td>Mounts the volume for data storage</td>
+</tr>
+</tbody>
+</table>
 </li>
 <li>
-<p>Stop <code>psmysql2</code> container</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>stop<span class="w"> </span>psmysql2
+<p>Wait 30 seconds for container initialization, then verify the container status:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps<span class="w"> </span>--filter<span class="w"> </span><span class="nv">name</span><span class="o">=</span>ps-restore-target
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>psmysql2
+<div class="no-copy highlight"><pre><span></span><code>CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS          PORTS                               NAMES
+4501d552446    percona/percona-server:8.4  &quot;/docker-entrypoint.…&quot;   30 seconds ago   Up 29 seconds   33060/tcp, 0.0.0.0:3307-&gt;3306/tcp   ps-restore-target
 </code></pre></div>
 </details>
 </li>
+</ol>
+<h2 id="step-2-prepare-the-target-for-restore">Step 2: Prepare the target for restore<a class="headerlink" href="#step-2-prepare-the-target-for-restore" title="Permanent link">&para;</a></h2>
+<p class="power-number">Stop the database and clear the data directory before restoring. The <code>xtrabackup --copy-back</code> command requires an empty target directory.</p>
+<ol>
 <li>
-<p>Remove all created files in <code>myvol2</code> to allow xtrabackup restore data to <code>myvol2</code></p>
-<p>The <code>--rm</code> option automatically removes the temporary container created from percona/percona-xtrabackup:8.0.34 image after the container exits. </p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
+<p>Stop the restore target container:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>stop<span class="w"> </span>ps-restore-target
 </code></pre></div>
-<p>If the command executes successfully, the expected output is empty.</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>ps-restore-target
+</code></pre></div>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">Database must be stopped</p>
+<p>MySQL locks data files while running. Overwriting locked files causes corruption or errors.</p>
+</div>
 </li>
 <li>
-<p>Restore backup of <code>psmysql</code> from <code>backupvol</code> to a new <code>psmysql2</code> instance.</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_84&quot;</span><span class="w"> </span>
+<p>Clear the data directory:</p>
+<p>The <code>--rm</code> option creates a temporary container. Docker removes this container automatically after the command completes.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">AMD64 (Intel/AMD)</label><label for="__tabbed_2_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>ps-restore-target<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>ps-restore-target<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4-aarch64<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>If the command succeeds, the output is empty.</p>
+<p>This command performs the following actions:</p>
+<ul>
+<li>
+<p>Mounts the <code>restore_data</code> volume through <code>--volumes-from ps-restore-target</code></p>
+</li>
+<li>
+<p>Runs as <code>root</code> to obtain file deletion permissions</p>
+</li>
+<li>
+<p>Removes all files from <code>/var/lib/mysql/</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="step-3-restore-the-backup-files">Step 3: Restore the backup files<a class="headerlink" href="#step-3-restore-the-backup-files" title="Permanent link">&para;</a></h2>
+<p class="power-number">Copy the backup files from <code>backupvol</code> to the restore target data directory.</p>
+<ol>
+<li>
+<p>Run the restore command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">AMD64 (Intel/AMD)</label><label for="__tabbed_3_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>ps-restore-target<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_84&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>ps-restore-target<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4-aarch64<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_84&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
@@ -5922,79 +6279,98 @@ xtrabackup version 8.4.0-1 based on MySQL server 8.4.0 Linux (x86_64) (revision 
 
 ...
 
-2024-10-07T14:08:59.129407-00:00 0 1 [Note] [MY-011825] [Xtrabackup] Done: Copying ./ibtmp1 to /var/lib/mysql/ibtmp1 
-
-2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK! 
+2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] Done: Copying ./ibtmp1 to /var/lib/mysql/ibtmp1 
+2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 </details>
-<p>This command restores the backup files from the <code>backup_8034</code> volume to the <code>psmysql2</code> container. It uses the <code>percona/percona-xtrabackup:8.0.34</code> image to run a temporary container with root privileges. It executes the xtrabackup tool with the <code>--copy-back</code> option, which copies the files from the <code>backup_8034</code> volume to the /<code>var/lib/mysql/</code> directory in the <code>psmysql2</code> container. The command uses &ndash;rm option to delete the temporary container after it exits.</p>
-</li>
-</ol>
-<h2 id="validate-the-backup">Validate the backup<a class="headerlink" href="#validate-the-backup" title="Permanent link">&para;</a></h2>
-<p class="power-number">This section describes the backup validation steps assuming that you backed up <code>mydb</code> database with the <code>employees</code> table as we have in our example. The validation steps may vary depending on your data set.</p>
-<ol>
-<li>
-<p>Change the owner of the files in <code>myvol2</code> from <code>root</code> to <code>mysql</code></p>
-<p>To avoid permission issues when running <code>psmysql2</code> container, you need to change the owner because the files were restored by <code>root</code> user and <code>psmysql2</code> will use <code>mysql</code> user.</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;chown -R mysql:mysql /var/lib/mysql/&quot;</span><span class="w"> </span>
-</code></pre></div>
-<p>If the command executes successfully, the expected output is empty.</p>
-</li>
-<li>
-<p>Start the <code>psmysql2</code> container</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>start<span class="w"> </span>psmysql2
-</code></pre></div>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>psmysql2
-</code></pre></div>
-</details>
-</li>
-<li>
-<p>Connect to the database instance.</p>
-<p>For this example, we have the following options:</p>
+<p>The following table describes each xtrabackup option:</p>
 <table>
 <thead>
 <tr>
 <th>Option</th>
-<th>Description</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>it</code></td>
-<td>Interact with the container and be a pseudo-terminal</td>
+<td><code>--copy-back</code></td>
+<td>Copies backup files to the data directory; use <code>--move-back</code> to move files instead</td>
 </tr>
 <tr>
-<td><code>psmysql2</code></td>
-<td>Running container name</td>
+<td><code>--datadir</code></td>
+<td>Specifies the destination directory for restored files</td>
 </tr>
 <tr>
-<td><code>mysql</code></td>
-<td>Connects to a database instance</td>
-</tr>
-<tr>
-<td><code>-u</code></td>
-<td>Specifies the user account used to connect</td>
-</tr>
-<tr>
-<td><code>-p</code></td>
-<td>Use this password when connecting</td>
+<td><code>--target-dir</code></td>
+<td>Specifies the source directory containing the prepared backup</td>
 </tr>
 </tbody>
 </table>
-<ul>
+<p>For a complete list of options, see <a href="xtrabackup-option-reference.html">xtrabackup option reference</a>.</p>
+</li>
+</ol>
+<h2 id="step-4-fix-file-permissions">Step 4: Fix file permissions<a class="headerlink" href="#step-4-fix-file-permissions" title="Permanent link">&para;</a></h2>
+<p class="power-number">The restored files have <code>root</code> ownership because the restore command ran as root. MySQL runs as the <code>mysql</code> user and cannot read files owned by root.</p>
+<ol>
 <li>
-<p>Connect to the database instance example</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>psmysql2<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p
+<p>Change ownership of the restored files:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">AMD64 (Intel/AMD)</label><label for="__tabbed_4_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>ps-restore-target<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;chown -R mysql:mysql /var/lib/mysql/&quot;</span>
 </code></pre></div>
-<p>You are prompted to enter the password, which is <code>secret</code>.</p>
-<div class="no-copy highlight"><pre><span></span><code>Enter password:
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>ps-restore-target<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4-aarch64<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;chown -R mysql:mysql /var/lib/mysql/&quot;</span>
 </code></pre></div>
-<p>You should see the following result.</p>
+</div>
+</div>
+</div>
+<p>If the command succeeds, the output is empty.</p>
+<div class="admonition warning">
+<p class="admonition-title">Required step</p>
+<p>Skipping the <code>chown</code> command causes MySQL to fail with permission errors:</p>
+<div class="highlight"><pre><span></span><code>[ERROR] [MY-010187] [Server] Could not open file &#39;/var/lib/mysql/ibdata1&#39; for reading: Permission denied
+</code></pre></div>
+</div>
+<p>For more information about file permissions, see <a href="permissions.html">Permissions</a>.</p>
+</li>
+<li>
+<p>Start the restore target container:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>start<span class="w"> </span>ps-restore-target
+</code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Welcome to the MySQL monitor.  Commands end with ; or \g.
+<div class="no-copy highlight"><pre><span></span><code>ps-restore-target
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Check the container logs to verify MySQL started:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>logs<span class="w"> </span>ps-restore-target<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-5
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>2024-10-07T14:10:15.123456Z 0 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-10-07T14:10:15.234567Z 0 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-10-07T14:10:15.345678Z 0 [System] [MY-011323] [Server] X Plugin ready for connections.
+2024-10-07T14:10:15.345678Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: &#39;8.4.0-1&#39;  socket: &#39;/var/lib/mysql/mysql.sock&#39;  port: 3306  Percona Server (GPL), Release 1, Revision 238b3c02.
+</code></pre></div>
+</details>
+<p>The message <code>ready for connections</code> confirms the server started.</p>
+</li>
+</ol>
+<h2 id="step-5-validate-the-restored-data">Step 5: Validate the restored data<a class="headerlink" href="#step-5-validate-the-restored-data" title="Permanent link">&para;</a></h2>
+<p class="power-number">Connect to the restored database and verify data integrity.</p>
+<ol>
+<li>
+<p>Connect to the restored database:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>ps-restore-target<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 10
 Server version: 8.4.0-1 Percona Server (GPL), Release 1, Revision 238b3c02
 
@@ -6005,89 +6381,87 @@ Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
 owners.
 
-Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement. 
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+
+mysql&gt;
 </code></pre></div>
 </details>
-</li>
-</ul>
+<p>Enter the password <code>secret</code> when prompted.</p>
 </li>
 <li>
-<p>Check the list of databases to make sure, the backed up, <code>mydb</code> database is in the list.</p>
-<div class="highlight"><pre><span></span><code><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span><span class="w"> </span>
+<p>Verify the <code>mydb</code> database exists:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>+--------------------+ 
-
-| Database           | 
-
-+--------------------+ 
-
-| information_schema | 
-
-| mydb               | 
-
-| mysql              | 
-
-| performance_schema | 
-
-| sys                | 
-
-+--------------------+ 
-
-5 rows in set (0.03 sec) 
+<div class="no-copy highlight"><pre><span></span><code>+--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.03 sec)
 </code></pre></div>
 </details>
 </li>
 <li>
-<p>Use the <code>mydb</code> database.</p>
-<div class="highlight"><pre><span></span><code><span class="n">use</span><span class="w"> </span><span class="n">mydb</span><span class="p">;</span><span class="w"> </span>
+<p>Query the <code>employees</code> table data:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mydb</span><span class="p">.</span><span class="n">employees</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Database changed
-</code></pre></div>
-</details>
-</li>
-<li>
-<p>Check that your table contains data</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span><span class="w"> </span>
-</code></pre></div>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>+----+--------------------+-----------------------------------+-------------+ 
-
-| id | name               | email                             | country     | 
-
-+----+--------------------+-----------------------------------+-------------+ 
-
-|  1 | Erasmus Richardson | posuere.cubilia.curae@outlook.net | England     | 
-
-|  2 | Jenna French       | rhoncus.donec@hotmail.couk        | Canada      | 
-
-|  3 | Alfred Dejesus     | interdum@aol.org                  | Austria     | 
-
-|  4 | Hamilton Puckett   | dapibus.quam@outlook.com          | Canada      | 
-
-|  5 | Michal Brzezinski  | magna@icloud.pl                   | Poland      | 
-
-|  6 | Zofia Lis          | zofial00@hotmail.pl               | Poland      | 
-
-|  7 | Aisha Yakubu       | ayakubu80@outlook.com             | Nigeria     | 
-
-|  8 | Miguel Cardenas    | euismod@yahoo.com                 | Peru        | 
-
-|  9 | Luke Jansen        | nibh@hotmail.edu                  | Netherlands | 
-
-| 10 | Roger Pettersen    | nunc@protonmail.no                | Norway      | 
-
-+----+--------------------+-----------------------------------+-------------+ 
-
+<div class="no-copy highlight"><pre><span></span><code>+----+--------------------+-----------------------------------+-------------+
+| id | name               | email                             | country     |
++----+--------------------+-----------------------------------+-------------+
+|  1 | Erasmus Richardson | posuere.cubilia.curae@outlook.net | England     |
+|  2 | Jenna French       | rhoncus.donec@hotmail.couk        | Canada      |
+|  3 | Alfred Dejesus     | interdum@aol.org                  | Austria     |
+|  4 | Hamilton Puckett   | dapibus.quam@outlook.com          | Canada      |
+|  5 | Michal Brzezinski  | magna@icloud.pl                   | Poland      |
+|  6 | Zofia Lis          | zofial00@hotmail.pl               | Poland      |
+|  7 | Aisha Yakubu       | ayakubu80@outlook.com             | Nigeria     |
+|  8 | Miguel Cardenas    | euismod@yahoo.com                 | Peru        |
+|  9 | Luke Jansen        | nibh@hotmail.edu                  | Netherlands |
+| 10 | Roger Pettersen    | nunc@protonmail.no                | Norway      |
++----+--------------------+-----------------------------------+-------------+
 10 rows in set (0.00 sec)
+</code></pre></div>
+</details>
+<p>The data restoration completed.</p>
+</li>
+<li>
+<p>Exit the MySQL client:</p>
+<div class="highlight"><pre><span></span><code><span class="n">exit</span>
+</code></pre></div>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>Bye
 </code></pre></div>
 </details>
 </li>
 </ol>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>This tutorial covered the following completed tasks:</p>
+<ul>
+<li>
+<p>Created a restore target container named <code>ps-restore-target</code></p>
+</li>
+<li>
+<p>Prepared the target by stopping MySQL and clearing the data directory</p>
+</li>
+<li>
+<p>Restored backup files using <code>xtrabackup --copy-back</code></p>
+</li>
+<li>
+<p>Fixed file permissions with <code>chown -R mysql:mysql</code></p>
+</li>
+<li>
+<p>Validated data recovery</p>
+</li>
+</ul>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="quickstart-exit.html">Clean up</a></p>
 
@@ -6112,7 +6486,7 @@ Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the cu
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 9, 2026 10:04:19 UTC">June 9, 2026</span>
   </span>
 
     
