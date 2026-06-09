@@ -194,21 +194,23 @@ This option specifies which databases to back up.
 
 Accepted syntax:
 
-This option accepts a comma-separated list of database names. To include all tables in a database, add `.*` after the database name (for example, `mydb.*`).
+This option accepts a space-separated list of database names. To include all tables in a database, add `.*` after the database name (for example, `mydb.*`).
 
 Regular expressions are not supported.
 
 Examples:
 
-* `--databases=mysql,performance_schema,sys` - Backs up the entire mysql, performance_schema, and sys databases
+* `--databases='mysql performance_schema sys'` - Backs up the entire mysql, performance_schema, and sys databases
 
-* `--databases=mydb.*` - Backs up every table in the mydb database
+* `--databases='mydb.*'` - Backs up every table in the mydb database
 
 ### databases-exclude
 
 Usage: `--databases-exclude=name`
 
-Databases are excluded based on name. This option operates the same way as `--databases`, but excludes the matched names from the backup. 
+Databases are excluded based on name. This option operates the same way as `--databases`, but excludes the matched names from the backup.
+
+This option accepts a space-separated list of database names.
 
 This option has a higher priority than
 `--databases`.
