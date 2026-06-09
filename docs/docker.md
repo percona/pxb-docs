@@ -105,3 +105,7 @@ sudo docker run --name percona-xtrabackup --volumes-from percona-server-mysql \
 percona/percona-xtrabackup
 xtrabackup --backup --data-dir=/var/lib/mysql --target-dir=/backup --user=root --password=mysql
 ```
+
+## Next step
+
+For a complete workflow including backup validation and disaster recovery, see the [Docker Compose tutorial](docker-compose-tutorial.md).
