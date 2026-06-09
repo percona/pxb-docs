@@ -14056,20 +14056,21 @@ specified.</p>
 <p><code>--tables</code> and <code>--databases</code> are mutually exclusive. If you use both options in the same command, XtraBackup ignores <code>--databases</code> and only uses <code>--tables</code>. Use only one of these options per backup operation.</p>
 </div>
 <p>Accepted syntax:</p>
-<p>This option accepts a comma-separated list of database names. To include all tables in a database, add <code>.*</code> after the database name (for example, <code>mydb.*</code>).</p>
+<p>This option accepts a space-separated list of database names. To include all tables in a database, add <code>.*</code> after the database name (for example, <code>mydb.*</code>).</p>
 <p>Regular expressions are not supported.</p>
 <p>Examples:</p>
 <ul>
 <li>
-<p><code>--databases=mysql,performance_schema,sys</code> - Backs up the entire mysql, performance_schema, and sys databases</p>
+<p><code>--databases='mysql performance_schema sys'</code> - Backs up the entire mysql, performance_schema, and sys databases</p>
 </li>
 <li>
-<p><code>--databases=mydb.*</code> - Backs up every table in the mydb database</p>
+<p><code>--databases='mydb.*'</code> - Backs up every table in the mydb database</p>
 </li>
 </ul>
 <h3 id="xtrabackup-option-reference-databases-exclude">databases-exclude<a class="headerlink" href="#xtrabackup-option-reference-databases-exclude" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--databases-exclude=name</code></p>
-<p>Databases are excluded based on name. This option operates the same way as <code>--databases</code>, but excludes the matched names from the backup. </p>
+<p>Databases are excluded based on name. This option operates the same way as <code>--databases</code>, but excludes the matched names from the backup.</p>
+<p>This option accepts a space-separated list of database names.</p>
 <p>This option has a higher priority than
 <code>--databases</code>.</p>
 <h3 id="xtrabackup-option-reference-databases-file">databases-file<a class="headerlink" href="#xtrabackup-option-reference-databases-file" title="Permanent link">&para;</a></h3>
