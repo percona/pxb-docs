@@ -77,7 +77,7 @@
 
         script.setAttribute(
             "data-modal-example-questions",
-            "How do I get started quickly with Percona XtraBackup?, How do I install Percona XtraBackup?, How do I use Percona XtraBackup binaries?, How do I manage backups?"
+            "How do I get started quickly with Percona XtraBackup?, How do I install Percona XtraBackup?, How do I manage backups?, How do I use Percona XtraBackup binaries?"
         );
 
         script.setAttribute(
