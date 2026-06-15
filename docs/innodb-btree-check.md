@@ -48,6 +48,8 @@ Structural corruption can break B-tree page relationships, page metadata consist
 
 The `--check-tables` option executes `btr_validate_index()` on every index that is present and active in the InnoDB data dictionary for each `.ibd` tablespace, using the number of threads specified by [`--parallel`](xtrabackup-option-reference.md#parallel). `--check-tables` detects structural inconsistencies that page checksum verification cannot detect. The option applies only to InnoDB tables.
 
+In addition to structural validation, when `--check-tables` is used, XtraBackup verifies page checksums during InnoDB B-tree index traversal and performs additional checksum verification of the system tablespace (`ibdata*`) and undo tablespaces (`undo*.ibu`).
+
 Percona XtraBackup runs validation during the `--prepare` phase after applying the redo log. The validation process operates in read-only mode against backup files and does not modify backup contents. Validation continues after detecting corruption so that Percona XtraBackup can report all problematic tables and indexes in a single run.
 
 For each tablespace, Percona XtraBackup:
