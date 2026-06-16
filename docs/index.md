@@ -1,5 +1,9 @@
 # Percona XtraBackup - Documentation
 
+!!! warning "End of life alert"
+
+    Percona XtraBackup 2.4 has reached End of Life (EOL). The core documentation is now read-only and is no longer updated with new features, enhancements, or bug fixes.
+
 !!! note ""
 
     This documentation is for the latest release: Percona XtraBackup {{release}} ([Release Notes](release-notes/2.4/{{release}}.md)).
