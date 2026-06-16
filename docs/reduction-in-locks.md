@@ -115,5 +115,5 @@ The following operations are performed to ensure data remains intact and consist
 5. Replace the file that matches the name without the `.new` extension using the `.new` extension.
 6. Replace the `meta` and `delta` files that match the name without the `.new` in the name using `.new.meta` and `.new.delta`.
 
-After `Phase 3` is completed, the regular [crash recovery](./how-xtrabackup-works.md) starts.
+After `Phase 3` is completed, the regular [crash recovery](./how-xtrabackup-works-explanation.md) starts.
 
