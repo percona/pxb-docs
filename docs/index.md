@@ -3,7 +3,7 @@
 
 !!! warning "End of life alert"
 
-    Percona XtraBackup 8.0 has reached end of life. This documentation is now read-only and will no longer be updated. Release notes for Post-EOL builds will continue to be published as they become available.
+    Percona Server for MySQL 8.0 has reached end of life. This documentation is now read-only and will no longer be updated. Release notes for Post-EOL builds will continue to be published as they become available.
 
 !!! note ""
 
