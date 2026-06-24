@@ -110,6 +110,22 @@ If a privilege is not needed for the current operation but is missing and may be
         xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
         ```
 
+### check-tables
+
+Usage: `--check-tables`
+
+Introduced in Percona XtraBackup 8.4.0-6.
+
+Enables InnoDB B-tree structural validation during the `--prepare` phase after redo log application completes.
+
+The option runs `btr_validate_index()` on every committed index in each `.ibd` tablespace in the backup. Validation detects structural inconsistencies that page checksum verification cannot detect, including broken B-tree relationships, invalid page metadata, and inconsistent external LOB references.
+
+Percona XtraBackup runs validation in read-only mode and does not modify backup data. The option supports `--apply-log-only`, `--parallel`, and `--export`.
+
+If validation detects corruption, xtrabackup reports the affected tables and returns a non-zero exit code after completing all checks.
+
+For more information, see [InnoDB B-tree integrity validation during prepare](innodb-btree-check.md).
+
 ### close-files
 
 Usage: `--close-files`
