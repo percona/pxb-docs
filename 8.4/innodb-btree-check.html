@@ -9,19 +9,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Percona XtraBackup supports two distinct types of encryption:">
+        <meta name="description" content="Documentation">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/encrypted-innodb-tablespace-backups.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/innodb-btree-check.html">
       
       
-        <link rel="prev" href="encrypt-backups.html">
+        <link rel="prev" href="accelerate-backup-process.html">
       
       
-        <link rel="next" href="create-partial-backup.html">
+        <link rel="next" href="point-in-time-recovery.html">
       
       
         
@@ -32,7 +32,7 @@
     
     
       
-        <title>Encrypted InnoDB tablespace backups - Percona XtraBackup</title>
+        <title>InnoDB B-tree integrity validation during prepare - Percona XtraBackup</title>
       
     
     
@@ -102,7 +102,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Encrypted InnoDB tablespace backups" />
+                 <meta property="og:title" content="Percona XtraBackup - InnoDB B-tree integrity validation during prepare" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.4/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -125,7 +125,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#encrypted-innodb-tablespace-backups" class="md-skip">
+        <a href="#innodb-b-tree-integrity-validation-during-prepare" class="md-skip">
           Skip to content
         </a>
       
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Encrypted InnoDB tablespace backups
+              InnoDB B-tree integrity validation during prepare
             
           </span>
         </div>
@@ -1246,8 +1246,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1275,11 +1277,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1300,7 +1302,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1581,8 +1583,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -1592,11 +1596,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" checked>
         
           
           <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
@@ -1617,7 +1621,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1632,10 +1636,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="innodb-btree-check.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    InnoDB B-tree integrity validation during prepare
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="innodb-btree-check.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1651,6 +1682,83 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-checksum-validation-is-not-enough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why checksum validation is not enough
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-check-tables-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How --check-tables works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3978,10 +4086,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -4007,11 +4113,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
@@ -4032,7 +4138,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -4428,10 +4534,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -4443,11 +4547,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" >
         
           
           <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="0">
@@ -4468,7 +4572,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -4511,37 +4615,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Encrypted InnoDB tablespace backups
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="encrypted-innodb-tablespace-backups.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="encrypted-innodb-tablespace-backups.html" class="md-nav__link">
         
   
   
@@ -4557,61 +4634,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#innodb-tablespace-encryption" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        InnoDB tablespace encryption
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#workflow-phases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Workflow phases
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#backup-level-encryption" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Backup-level encryption
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5892,7 +5914,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                       <div data-banner="data-banner" class="edit-contrib-banner">
   <div class="banner-content">
     <!-- Edit link centered -->
-    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/encrypted-innodb-tablespace-backups.md" title="Edit this page on GitHub" class="edit-page-link">
+    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/innodb-btree-check.md" title="Edit this page on GitHub" class="edit-page-link">
       <span class="edit-page-icon">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
@@ -5944,10 +5966,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#innodb-tablespace-encryption" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        InnoDB tablespace encryption
+        Overview
       
     </span>
   </a>
@@ -5955,10 +5977,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#workflow-phases" class="md-nav__link">
+  <a href="#why-checksum-validation-is-not-enough" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Workflow phases
+        Why checksum validation is not enough
       
     </span>
   </a>
@@ -5966,10 +5988,32 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#backup-level-encryption" class="md-nav__link">
+  <a href="#how-check-tables-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backup-level encryption
+        How --check-tables works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
       
     </span>
   </a>
@@ -5999,300 +6043,268 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/encrypted-innodb-tablespace-backups.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/innodb-btree-check.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="encrypted-innodb-tablespace-backups">Encrypted InnoDB tablespace backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups" title="Permanent link">&para;</a></h1>
-<p>Percona XtraBackup supports two distinct types of encryption:</p>
+<h1 id="innodb-b-tree-integrity-validation-during-prepare">InnoDB B-tree integrity validation during prepare<a class="headerlink" href="#innodb-b-tree-integrity-validation-during-prepare" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="xtrabackup-option-reference.html#check-tables"><code>--check-tables</code></a> option validates the structural integrity of InnoDB B-tree indexes during the <a href="xtrabackup-option-reference.html#prepare"><code>--prepare</code></a> phase. Validation during <code>--prepare</code> helps detect corrupted indexes before restore or production deployment.</p>
+<h3 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 8.4.0-6 introduces the <code>--check-tables</code> option.</p>
+<h2 id="why-checksum-validation-is-not-enough">Why checksum validation is not enough<a class="headerlink" href="#why-checksum-validation-is-not-enough" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup verifies InnoDB page checksums during <code>--backup</code>. These checks ensure that the backup contains checksum-valid pages at backup time.</p>
+<p>Checksum validation detects physical corruption within individual pages, including:</p>
 <ul>
 <li>
-<p><a href="#innodb-tablespace-encryption">InnoDB tablespace encryption</a>: The MySQL server handles encryption using keyring components. InnoDB tablespace encryption provides at-rest encryption for physical tablespace data files at the database level.</p>
+<p>Torn-page corruption</p>
 </li>
 <li>
-<p><a href="#backup-level-encryption">Backup-level encryption</a>: XtraBackup applies an additional encryption layer during the backup process, independent of InnoDB encryption. Backup-level encryption protects backup files themselves.</p>
+<p>Write corruption</p>
+</li>
+<li>
+<p>Transfer corruption</p>
+</li>
+<li>
+<p>Storage or filesystem corruption</p>
 </li>
 </ul>
-<p>These encryption types are independent. You can use them separately or together for enhanced security.</p>
-<h2 id="innodb-tablespace-encryption">InnoDB tablespace encryption<a class="headerlink" href="#innodb-tablespace-encryption" title="Permanent link">&para;</a></h2>
-<p>InnoDB supports <a href="https://dev.mysql.com/doc/refman/8.4/en/innodb-data-encryption.html">data encryption for InnoDB tables <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> in file-per-table tablespaces. When accessing an encrypted tablespace, InnoDB uses the master encryption key to decrypt the tablespace key. InnoDB stores the master encryption key in a keyring.</p>
-<p>Percona XtraBackup supports the following keyring components:</p>
+<p>When the server modifies a page while XtraBackup copies it, XtraBackup retries the copy until the checksum becomes consistent. The retry process prevents partially modified pages from entering the backup.</p>
+<p>A successful backup therefore guarantees checksum-valid pages, but checksum validation alone cannot guarantee a fully valid restore.</p>
+<h3 id="corruption-can-happen-after-backup-creation">Corruption can happen after backup creation<a class="headerlink" href="#corruption-can-happen-after-backup-creation" title="Permanent link">&para;</a></h3>
+<p>A backup can become corrupted after creation because of storage or filesystem issues.</p>
+<p>During <code>--prepare</code>, XtraBackup only re-validates pages involved in redo application. Pages outside redo processing may never undergo another checksum check.</p>
+<p>For this reason, running <code>CHECK TABLE</code> after restore remains a recommended practice. <code>CHECK TABLE</code> forces page reads and validates both checksums and structural consistency.</p>
+<h3 id="checksums-do-not-verify-page-relationships">Checksums do not verify page relationships<a class="headerlink" href="#checksums-do-not-verify-page-relationships" title="Permanent link">&para;</a></h3>
+<p>Checksum validation only confirms that the bytes within a page match the checksum stored in the page header.</p>
+<p>XtraBackup does not validate B-tree structure or relationships between pages during backup. As a result, structurally corrupted pages can still enter the backup if those pages remain checksum-valid on the source server.</p>
+<p>Structural corruption rarely occurs and usually results from server bugs, backup tool bugs, storage failures, or filesystem-level corruption.</p>
+<p>Structural corruption can break B-tree page relationships, page metadata consistency, and external LOB references. For a complete list of detected corruption conditions, see <a href="#detected-corruption-conditions">Detected corruption conditions</a>.</p>
+<h2 id="how-check-tables-works">How <code>--check-tables</code> works<a class="headerlink" href="#how-check-tables-works" title="Permanent link">&para;</a></h2>
+<p>The <code>--check-tables</code> option executes <code>btr_validate_index()</code> on every index that is present and active in the InnoDB data dictionary for each <code>.ibd</code> tablespace, using the number of threads specified by <a href="xtrabackup-option-reference.html#parallel"><code>--parallel</code></a>. <code>--check-tables</code> detects structural inconsistencies that page checksum verification cannot detect. The option applies only to InnoDB tables.</p>
+<p>In addition to structural validation, when <code>--check-tables</code> is used, XtraBackup verifies page checksums during InnoDB B-tree index traversal and performs additional checksum verification of the system tablespace (<code>ibdata*</code>) and undo tablespaces (<code>undo*.ibu</code>).</p>
+<p>Percona XtraBackup runs validation during the <code>--prepare</code> phase after applying the redo log. The validation process operates in read-only mode against backup files and does not modify backup contents. Validation continues after detecting corruption so that Percona XtraBackup can report all problematic tables and indexes in a single run.</p>
+<p>For each tablespace, Percona XtraBackup:</p>
+<ol>
+<li>
+<p>Loads index metadata</p>
+</li>
+<li>
+<p>Identifies committed indexes</p>
+</li>
+<li>
+<p>Executes <code>btr_validate_index()</code> on each index</p>
+</li>
+<li>
+<p>Traverses B-tree pages and validates structural relationships</p>
+</li>
+<li>
+<p>Reports detected inconsistencies</p>
+</li>
+</ol>
+<p>The option also works with:</p>
 <ul>
-<li><a href="#keyring_vault-configuration">keyring_vault</a></li>
-<li><a href="#keyring_file-configuration">keyring_file</a></li>
-<li><a href="https://docs.percona.com/percona-server/8.4/using-kmip.html?h=kmip">Key Management Interoperability Protocol (KMIP) <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></li>
-<li><a href="https://docs.percona.com/percona-server/8.4/using-amz-kms.html">Amazon Key Management Service (AWS KMS) <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></li>
+<li>
+<p><a href="#parallel-execution">Parallel execution</a> through <a href="xtrabackup-option-reference.html#parallel"><code>--parallel</code></a></p>
+</li>
+<li>
+<p>Workflows that use <a href="xtrabackup-option-reference.html#apply-log-only"><code>--apply-log-only</code></a></p>
+</li>
+<li>
+<p>Transportable tablespace export with <a href="xtrabackup-option-reference.html#export"><code>--export</code></a></p>
+</li>
 </ul>
-<p>Percona XtraBackup 8.4 and later versions support only component versions of the security features.</p>
-<h2 id="workflow-phases">Workflow phases<a class="headerlink" href="#workflow-phases" title="Permanent link">&para;</a></h2>
-<p>The backup and restore process for encrypted InnoDB tablespaces has three distinct phases, each with different keyring-config requirements:</p>
+<h3 id="detected-corruption-conditions">Detected corruption conditions<a class="headerlink" href="#detected-corruption-conditions" title="Permanent link">&para;</a></h3>
+<p>The validation process performs the following structural checks:</p>
 <table>
 <thead>
 <tr>
-<th>Phase</th>
-<th>Description</th>
-<th>Required</th>
-<th>keyring-options</th>
+<th>Check</th>
+<th>Detected condition</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Backup</td>
-<td>Run <code>xtrabackup --backup …</code></td>
-<td>No</td>
-<td>The backup does not use any keyring options.</td>
+<td>Broken sibling links</td>
+<td>Invalid sibling-page or parent-page navigation pointers</td>
 </tr>
 <tr>
-<td>Prepare</td>
-<td>Run <code>xtrabackup --prepare …</code></td>
-<td>Yes</td>
-<td>You must supply the keyring configuration file matching the keyring component that the MySQL server uses for encryption.</td>
+<td><code>PAGE_INDEX_ID</code> mismatches</td>
+<td>Page index ID does not match index metadata</td>
 </tr>
 <tr>
-<td>Restore</td>
-<td>Run <code>xtrabackup</code> <a href="xtrabackup-option-reference.html#copy-back"><code>--copy-back</code></a> … or <code>xtrabackup</code> <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a> … (followed by <code>--prepare</code> if using <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>)</td>
-<td>Yes</td>
-<td>You must provide the same keyring-config file.</td>
+<td>Minimum-record flag validation</td>
+<td>Minimum-record flag is missing or invalid</td>
+</tr>
+<tr>
+<td>Parent-child pointer validation</td>
+<td>Child page boundaries do not match parent node structure</td>
+</tr>
+<tr>
+<td>External LOB validation</td>
+<td>Shared, freed, or out-of-bounds LOB page references</td>
+</tr>
+<tr>
+<td>All-zero page detection</td>
+<td>Page contains only zero bytes</td>
+</tr>
+<tr>
+<td>PRIMARY and secondary index record-count validation</td>
+<td>Record count mismatch between the PRIMARY index and secondary indexes</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you rotated the keyring using <code>ALTER INSTANCE ROTATE INNODB MASTER KEY</code>, you must use the keyring that was active when you created the backup to prepare and restore the backup.</p>
-</div>
-<h3 id="configuration-file-name-requirements">Configuration file name requirements<a class="headerlink" href="#configuration-file-name-requirements" title="Permanent link">&para;</a></h3>
-<p>The configuration file name must match exactly the expected name for each keyring component. If the file name does not match exactly, XtraBackup ignores the configuration file.</p>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Expected config-file name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Vault</td>
-<td><code>component_keyring_vault.cnf</code></td>
-</tr>
-<tr>
-<td>KMS</td>
-<td><code>component_keyring_kms.cnf</code></td>
-</tr>
-<tr>
-<td>KMIP</td>
-<td><code>component_keyring_kmip.cnf</code></td>
-</tr>
-<tr>
-<td>File</td>
-<td><code>component_keyring_file.cnf</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="keyring-component-configuration-files">Keyring component configuration files<a class="headerlink" href="#keyring-component-configuration-files" title="Permanent link">&para;</a></h3>
-<p>Each keyring component requires a configuration file with a specific structure. The following examples show the format for each component type.</p>
-<h4 id="keyring_vault-configuration">keyring_vault configuration<a class="headerlink" href="#keyring_vault-configuration" title="Permanent link">&para;</a></h4>
-<p>The <code>component_keyring_vault.cnf</code> file uses JSON format:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;vault_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_URL}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;secret_mount_point&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_MOUNT_POINT}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;secret_mount_point_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_CONFIG_VERSION}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_TOKEN}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;vault_ca&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_CA}&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>For information on configuring the keyring vault component on the MySQL server, see <a href="https://docs.percona.com/percona-server/8.4/use-keyring-vault-component.html">Use the keyring vault component <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
-<h4 id="keyring_file-configuration">keyring_file configuration<a class="headerlink" href="#keyring_file-configuration" title="Permanent link">&para;</a></h4>
-<p>The <code>component_keyring_file.cnf</code> file uses JSON format:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql-keyring/keyring&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;read_only&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>XtraBackup does not copy the keyring file into the backup directory. Copy the keyring file manually before preparing.</p>
-</div>
-<h4 id="keyring_kmip-configuration">keyring_kmip configuration<a class="headerlink" href="#keyring_kmip-configuration" title="Permanent link">&para;</a></h4>
-<p>The <code>component_keyring_kmip.cnf</code> file uses JSON format:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;server_addr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kmip.example.com&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;server_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5696</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;client_ca&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/path/to/client/ca.pem&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;client_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/path/to/client/key.pem&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;server_ca&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/path/to/server/ca.pem&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<h4 id="keyring_kms-configuration">keyring_kms configuration<a class="headerlink" href="#keyring_kms-configuration" title="Permanent link">&para;</a></h4>
-<p>The <code>component_keyring_kms.cnf</code> file uses JSON format:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql-keyring/keyring&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;read_only&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;auth_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-auth-key&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;secret_access_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-secret-access-key&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;kms_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-kms-key-id&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="backup-and-restore-with-keyring-components">Backup and restore with keyring components<a class="headerlink" href="#backup-and-restore-with-keyring-components" title="Permanent link">&para;</a></h3>
-<p>XtraBackup uses the component&rsquo;s configuration file during prepare and restore operations. The MySQL server must use one of the supported keyring components for encryption.</p>
-<h4 id="phase-1-backup">Phase 1: Backup<a class="headerlink" href="#phase-1-backup" title="Permanent link">&para;</a></h4>
-<p>No keyring configuration is needed:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--user<span class="o">=</span>root
-</code></pre></div>
-<h4 id="phase-2-prepare">Phase 2: Prepare<a class="headerlink" href="#phase-2-prepare" title="Permanent link">&para;</a></h4>
-<p>To prepare the backup, you must provide access to the keyring. The xtrabackup binary does not communicate with the MySQL server or read the default <code>my.cnf</code> configuration file. Specify the keyring configuration file.</p>
-<div class="admonition warning">
-<p class="admonition-title">File-name restriction</p>
-<p>The configuration file name must match exactly the expected name for your keyring component. See <a href="#configuration-file-name-requirements">Configuration file name requirements</a> for the exact file names required. If the file name does not match exactly, XtraBackup ignores the configuration file.</p>
-</div>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
-</code></pre></div>
-<p>Specify the path to your component&rsquo;s configuration file (for example, <code>/etc/component_keyring_vault.cnf</code> or <code>/var/lib/mysql-keyring/component_keyring_file.cnf</code>).</p>
-<h4 id="phase-3-restore">Phase 3: Restore<a class="headerlink" href="#phase-3-restore" title="Permanent link">&para;</a></h4>
-<p>After you prepare the backup, restore the backup using <a href="xtrabackup-option-reference.html#copy-back"><code>--copy-back</code></a> or <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>. If you use <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>, run <code>--prepare</code> again after moving the files. In both cases, provide the same keyring configuration file.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
-</code></pre></div>
-<p>Or using <code>--move-back</code>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
-xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/mysql
-</code></pre></div>
-<h3 id="incremental-encrypted-innodb-tablespace-backups">Incremental encrypted InnoDB tablespace backups<a class="headerlink" href="#incremental-encrypted-innodb-tablespace-backups" title="Permanent link">&para;</a></h3>
-<p>The process of taking incremental backups with InnoDB tablespace encryption is similar to <a href="create-incremental-backup.html">taking incremental backups with unencrypted tablespace</a>. The same three-phase workflow applies, with keyring-config requirements in phases 2 and 3.</p>
-<h4 id="phase-1-backup_1">Phase 1: Backup<a class="headerlink" href="#phase-1-backup_1" title="Permanent link">&para;</a></h4>
-<p>Begin with a full backup. The xtrabackup binary writes <code>xtrabackup_checkpoints</code> into the backup&rsquo;s target directory, which contains the <code>to_lsn</code> (the LSN of the database at the end of the backup).</p>
-<p>Create a full backup (no keyring config needed):</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
-</code></pre></div>
-<p>Make an incremental backup based on the full backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/base
-</code></pre></div>
-<p>The <a href="xtrabackup-option-reference.html#incremental-basedir"><code>--incremental-basedir</code></a> option specifies the base backup directory.</p>
-<p>Use this directory as the base for yet another incremental backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/inc1
-</code></pre></div>
-<h4 id="phase-2-prepare_1">Phase 2: Prepare<a class="headerlink" href="#phase-2-prepare_1" title="Permanent link">&para;</a></h4>
-<p>The <code>--prepare</code> step for incremental backups requires the keyring configuration. Use <a href="xtrabackup-option-reference.html#apply-log-only"><code>--apply-log-only</code></a> for all incremental backups except the last one to prevent rolling back transactions that might be committed in subsequent incremental backups.</p>
-<p>Beginning with the full backup, prepare the full backup and then apply the incremental differences. Prepare the base backup with <a href="xtrabackup-option-reference.html#apply-log-only"><code>--apply-log-only</code></a>. Use the appropriate configuration file name for your keyring component (see <a href="#configuration-file-name-requirements">Configuration file name requirements</a>):</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
-</code></pre></div>
-<p>Apply the first incremental backup to the full backup using <a href="xtrabackup-option-reference.html#incremental-dir"><code>--incremental-dir</code></a>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc1
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you have many InnoDB Data (IBD) files, speed up the prepare phase for incremental backups  by using the <code>--parallel</code> option. This option lets you process multiple delta files simultaneously. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
-<p>An example of the backup command using the <code>--parallel</code> option:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
-</code></pre></div>
-</div>
-<p>Prepare the backup using the same keyring file and type that were used when the backup was created. If the keyring has changed or you upgraded from a plugin to a component between the base and incremental backup, use the keyring from when the first incremental backup was made. If the original keyring is missing or has changed, recover or replace it before restoring. If you cannot recover the keyring, restore from a backup that matches the most recent available keyring.</p>
-<p>Preparing the second incremental backup is a similar process: apply the deltas
-to the (modified) base backup, and you will roll the base backup&rsquo;s data forward in 
-time to the point of the second incremental backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc2
-</code></pre></div>
-<p>You can also use the <code>--parallel</code> option here to speed up the process:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Use <a href="xtrabackup-option-reference.html#apply-log-only"><code>--apply-log-only</code></a> when merging all incremental backups except for the last one. This is why the previous command does not include the <code>--apply-log-only</code> option. If <code>--apply-log-only</code> is used on the last step, backup remains consistent but the server performs the rollback phase.</p>
-</div>
-<h4 id="phase-3-restore_1">Phase 3: Restore<a class="headerlink" href="#phase-3-restore_1" title="Permanent link">&para;</a></h4>
-<p>After you prepare the incremental backups, restore them using <a href="xtrabackup-option-reference.html#copy-back"><code>--copy-back</code></a> or <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>. If you use <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>, run <code>--prepare</code> again after moving the files. In both cases, provide the same keyring configuration file:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
-</code></pre></div>
-<p>Or using <code>--move-back</code>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
-xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/mysql
-</code></pre></div>
-<h3 id="restore-a-backup-when-the-keyring-is-not-available">Restore a backup when the keyring is not available<a class="headerlink" href="#restore-a-backup-when-the-keyring-is-not-available" title="Permanent link">&para;</a></h3>
-<p>The keyring component method requires access to the same keyring that the server uses. This may not be possible if you prepare the backup on a different server, when keys in the keyring are purged, or when the keyring vault server is unavailable.</p>
-<p>Use the <a href="xtrabackup-option-reference.html#transition-key"><code>--transition-key=&lt;passphrase&gt;</code></a> option to process the backup without access to the keyring server. The binary derives the AES (Advanced Encryption Standard) encryption key from the specified passphrase and uses the AES encryption key to encrypt tablespace keys.</p>
-<h4 id="create-a-backup-with-a-passphrase">Create a backup with a passphrase<a class="headerlink" href="#create-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey
-</code></pre></div>
-<p>If you specify <a href="xtrabackup-option-reference.html#transition-key"><code>--transition-key</code></a> without a value, xtrabackup asks for the passphrase. xtrabackup hides the passphrase value so that the value is not visible in the <code>ps</code> command output.</p>
-<h4 id="prepare-a-backup-with-a-passphrase">Prepare a backup with a passphrase<a class="headerlink" href="#prepare-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h4>
-<p>Specify the same passphrase for the prepare command:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey
-</code></pre></div>
-<p>You do not need keyring options here, because xtrabackup does not access the keyring in this case.</p>
-<h4 id="restore-a-backup-with-a-generated-key">Restore a backup with a generated key<a class="headerlink" href="#restore-a-backup-with-a-generated-key" title="Permanent link">&para;</a></h4>
-<p>When you restore a backup, generate a new master key using <a href="xtrabackup-option-reference.html#generate-new-master-key"><code>--generate-new-master-key</code></a>. The configuration file name must match one of the exact configuration file names listed in <a href="#configuration-file-name-requirements">Configuration file name requirements</a>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
---transition-key<span class="o">=</span>MySecretKey<span class="w"> </span>--generate-new-master-key
-</code></pre></div>
-<p>Specify the path to your component&rsquo;s configuration file. XtraBackup generates a new master key, stores the new master key in the target keyring, and re-encrypts the tablespace keys using the new master key.</p>
-<h4 id="make-a-backup-with-a-stored-transition-key">Make a backup with a stored transition key<a class="headerlink" href="#make-a-backup-with-a-stored-transition-key" title="Permanent link">&para;</a></h4>
-<p>You can store a transition key in the keyring. In this case, xtrabackup must access the same keyring during prepare and copy-back steps, but xtrabackup does not depend on whether the server keys have been purged. The configuration file name must match one of the exact configuration file names listed in <a href="#configuration-file-name-requirements">Configuration file name requirements</a>:</p>
+<h3 id="offloading-check-table">Offloading <code>CHECK TABLE</code><a class="headerlink" href="#offloading-check-table" title="Permanent link">&para;</a></h3>
+<p>Similar to the InnoDB <code>CHECK TABLE</code> command, the <code>--check-tables</code> option validates InnoDB tables. However, Percona XtraBackup performs this validation offline on backup files during the <code>--prepare</code> phase, avoiding any performance impact on a live production server.</p>
+<p>Validation during <code>--prepare</code> moves structural integrity verification from restored database instances to the backup preparation workflow. A backup or staging host can run validation without starting MySQL on the restored backup.</p>
+<p>Using <code>--check-tables</code> during <code>--prepare</code> provides the following operational benefits:</p>
 <ul>
-<li>Back up using <a href="xtrabackup-option-reference.html#generate-transition-key"><code>--generate-transition-key</code></a>:</li>
+<li>
+<p>Eliminates the need to start a MySQL server on restored backups solely for structural validation</p>
+</li>
+<li>
+<p>Moves validation workload away from running production systems</p>
+</li>
+<li>
+<p>Detects structural corruption earlier in the backup validation workflow</p>
+</li>
+<li>
+<p>Detects corruption before restore or deployment</p>
+</li>
 </ul>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
---generate-transition-key
-</code></pre></div>
+<h3 id="parallel-execution">Parallel execution<a class="headerlink" href="#parallel-execution" title="Permanent link">&para;</a></h3>
+<p>The <code>--check-tables</code> option uses the existing <code>--parallel</code> infrastructure from Percona XtraBackup. Worker threads process tablespaces independently.</p>
+<p>Each worker thread:</p>
+<ol>
+<li>
+<p>Retrieves a tablespace from the shared queue</p>
+</li>
+<li>
+<p>Loads metadata for the tablespace</p>
+</li>
+<li>
+<p>Validates committed indexes</p>
+</li>
+<li>
+<p>Reports validation results</p>
+</li>
+</ol>
+<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<p>The <code>--check-tables</code> option has the following limitations:</p>
 <ul>
-<li>Prepare:</li>
+<li>
+<p>Validation applies only to InnoDB tables and does not validate MyISAM or RocksDB tables</p>
+</li>
+<li>
+<p>Validation runs only during <code>--prepare</code></p>
+</li>
+<li>
+<p>Validation increases CPU and I/O usage on the backup host</p>
+</li>
+<li>
+<p>Runtime depends on the number of tablespaces and indexes</p>
+</li>
+<li>
+<p>For incremental backups, use <code>--check-tables</code> only during the final prepare stage because the option verifies all tables and indexes each time it runs</p>
+</li>
 </ul>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>The <code>--check-tables</code> option uses the thread count specified by <code>--parallel</code>. Start with <code>--parallel=8</code> and adjust the value according to CPU availability and disk I/O capacity on the backup host.</p>
+<h3 id="validate-a-full-backup">Validate a full backup<a class="headerlink" href="#validate-a-full-backup" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--check-tables<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-<ul>
-<li>Copy-back:</li>
-</ul>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
---generate-new-master-key
+<h3 id="validate-an-incremental-backup">Validate an incremental backup<a class="headerlink" href="#validate-an-incremental-backup" title="Permanent link">&para;</a></h3>
+<p>The <code>--check-tables</code> option can be used together with <code>--apply-log-only</code>. However, because validation scans all tables and indexes each time it runs, it&rsquo;s recommended using the option during the final prepare stage of an incremental backup.</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--check-tables<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-<p>Specify the path to your component&rsquo;s configuration file.</p>
-<h2 id="backup-level-encryption">Backup-level encryption<a class="headerlink" href="#backup-level-encryption" title="Permanent link">&para;</a></h2>
-<p>Backup-level encryption is an additional protection layer that XtraBackup applies during the backup process. Backup-level encryption is independent of InnoDB tablespace encryption and protects the backup files themselves. XtraBackup implements the encryption using the <code>libgcrypt</code> library from GnuPG. You can use backup-level encryption on any backup, regardless of whether the source database uses InnoDB tablespace encryption.</p>
-<h3 id="create-encrypted-backups">Create encrypted backups<a class="headerlink" href="#create-encrypted-backups" title="Permanent link">&para;</a></h3>
-<p>To create an encrypted backup, use the <a href="xtrabackup-option-reference.html#encrypt"><code>--encrypt</code></a> option along with either <a href="xtrabackup-option-reference.html#encrypt-key"><code>--encrypt-key</code></a> or <a href="xtrabackup-option-reference.html#encrypt-key-file"><code>--encrypt-key-file</code></a> to specify the encryption key. The <code>--encrypt-key</code> and <code>--encrypt-key-file</code> options are mutually exclusive. Use one or the other, but do not both. If you specify both options, XtraBackup returns an error and exits.</p>
-<p>The <code>--encrypt</code> option specifies the encryption algorithm: <code>AES128</code>, <code>AES192</code>, or <code>AES256</code>. To generate an encryption key, use a command such as <code>openssl rand -base64 24</code>.</p>
-<h4 id="using-encrypt-key">Using &ndash;encrypt-key<a class="headerlink" href="#using-encrypt-key" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<h3 id="validate-and-export-tablespaces">Validate and export tablespaces<a class="headerlink" href="#validate-and-export-tablespaces" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--check-tables<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code>--encrypt-key</code> option exposes the key in process listings. Do not use this option on systems with uncontrolled access.</p>
-</div>
-<h4 id="using-encrypt-key-file">Using &ndash;encrypt-key-file<a class="headerlink" href="#using-encrypt-key-file" title="Permanent link">&para;</a></h4>
-<p>The recommended method uses <code>--encrypt-key-file</code> to read the key from a file:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/data/backups/keyfile
-xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<h2 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
+<p>A successful validation operation typically ends with a message similar to:</p>
+<div class="highlight"><pre><span></span><code>2026-05-15T15:41:57.808327+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/replication_group_member_actions
+2026-05-15T15:41:57.808630+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/replication_group_configuration_version
+2026-05-15T15:41:57.808810+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/server_cost
+2026-05-15T15:41:57.808998+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/engine_cost
+2026-05-15T15:41:57.809190+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/proxies_priv
+2026-05-15T15:41:57.809511+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/ndb_binlog_index
+2026-05-15T15:41:58.051499+01:00 0 [Note] [MY-011825] [Xtrabackup] All table checks passed.
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>When creating the key file, ensure your text editor does not insert a CRLF (end of line) character. This invalidates the key because the size is wrong. Use <code>echo -n</code> to create the file without a trailing newline.</p>
-</div>
-<h3 id="optimize-the-encryption-process">Optimize the encryption process<a class="headerlink" href="#optimize-the-encryption-process" title="Permanent link">&para;</a></h3>
-<p>Additional encrypted backup options can speed up the encryption process: <a href="xtrabackup-option-reference.html#encrypt-threads"><code>--encrypt-threads</code></a> (enables parallel encryption with multiple threads) and <a href="xtrabackup-option-reference.html#encrypt-chunk-size"><code>--encrypt-chunk-size</code></a> (specifies the size, in bytes, of the working encryption buffer for each encryption thread; the default value is 64K).</p>
-<h3 id="decrypt-encrypted-backups">Decrypt encrypted backups<a class="headerlink" href="#decrypt-encrypted-backups" title="Permanent link">&para;</a></h3>
-<p>To decrypt an encrypted backup, use the <a href="xtrabackup-option-reference.html#decrypt"><code>--decrypt</code></a> option. The decryption algorithm must match the algorithm that you used during encryption. You can use the <a href="xtrabackup-option-reference.html#parallel"><code>--parallel</code></a> option with <code>--decrypt</code> to decrypt multiple files simultaneously.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<p>A failed validation operation returns a non-zero exit code. During validation, XtraBackup logs each table as it processes it:</p>
+<div class="highlight"><pre><span></span><code>2026-05-15T13:42:23.691691+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: test/t1
+2026-05-15T13:42:23.697349+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: test/t_lob
+2026-05-15T13:42:23.782555+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/dd_properties
+2026-05-15T13:42:23.782835+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/innodb_dynamic_metadata
+...
 </code></pre></div>
-<p>Alternatively, you can use the <code>xbcrypt</code> binary directly:</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">&quot;*\.xbcrypt&quot;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<p>If validation detects corruption, XtraBackup reports the affected tables and ends with the following summary message:</p>
+<div class="highlight"><pre><span></span><code>2026-05-15T13:42:24.670469+01:00 0 [ERROR] [MY-011825] [Xtrabackup] Table check failed. The backup may be corrupted.
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Percona XtraBackup does not automatically remove the encrypted files after decryption. Remove the <code>*.xbcrypt</code> files manually, or use the <a href="xtrabackup-option-reference.html#remove-original"><code>--remove-original</code></a> option.</p>
-</div>
-<h3 id="prepare-encrypted-backups">Prepare encrypted backups<a class="headerlink" href="#prepare-encrypted-backups" title="Permanent link">&para;</a></h3>
-<p>After decrypting the backup, prepare the backup with the <code>--prepare</code> option:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<p>The log contains detailed information for each detected inconsistency.</p>
+<h3 id="corruption-examples">Corruption examples<a class="headerlink" href="#corruption-examples" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Sibling page relationships corruption.</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>2026-05-15T13:42:20.270268+01:00 2 [ERROR] [MY-013051] [InnoDB]
+In pages [page id: space=2, page number=5]
+and [page id: space=2, page number=6]
+of index PRIMARY of table test.t1
+
+InnoDB: broken FIL_PAGE_NEXT or FIL_PAGE_PREV links
 </code></pre></div>
+</details>
+</li>
+<li>
+<p>Parent-to-child page references corruption.</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>2026-05-15T13:38:12.343921+01:00 2 [ERROR] [MY-011825] [InnoDB]
+B-tree corruption: page 0 is empty but is not the root page
+in index PRIMARY. Possible all-zero (unflushed) page.
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Page ownership metadata corruption.</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>2026-05-15T13:38:12.343894+01:00 2 [ERROR] [MY-011866] [InnoDB]
+Page index id 0 != data dictionary index id 204
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Minimum-record markers corruption.</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>2026-05-15T13:42:27.237530+01:00 2 [ERROR] [MY-014011] [InnoDB]
+Minimum record flag is wrongly set to rec on page &#39;4&#39;
+at level &#39;0&#39; for index &#39;PRIMARY&#39; of table &#39;sys/sys_config&#39;.
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>External LOB page ownership corruption.</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>2026-05-15T13:42:34.475996+01:00 2 [ERROR] [MY-011825] [InnoDB] Invalid record! External LOB first page cannot be shared between two records
+2026-05-15T13:42:34.476009+01:00 2 [ERROR] [MY-011825] [InnoDB] The external LOB first page is [page id: space=4294967294, page number=1002]
+2026-05-15T13:42:34.476014+01:00 2 [ERROR] [MY-011825] [InnoDB] The first occurrence of the external LOB first page is in record : page_no: 992 with heap_no: 4
+</code></pre></div>
+</details>
+</li>
+</ol>
 
 
 
@@ -6315,7 +6327,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 13:56:50 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 24, 2026 13:58:01 UTC">June 24, 2026</span>
   </span>
 
     
@@ -6325,7 +6337,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 21, 2022 22:15:06 UTC">July 21, 2022</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 24, 2026 13:58:01 UTC">June 24, 2026</span>
   </span>
 
     
@@ -6351,11 +6363,6 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
           
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
         </a>
       
       

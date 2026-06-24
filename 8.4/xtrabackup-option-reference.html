@@ -1269,6 +1269,8 @@
       
         
       
+        
+      
     
     
     
@@ -1604,7 +1606,7 @@
   <span class="md-ellipsis">
     
   
-    Restore features
+    Prepare features
   
 
     
@@ -1617,6 +1619,93 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prepare features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="innodb-btree-check.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    InnoDB B-tree integrity validation during prepare
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Restore features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1851,10 +1940,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_10" >
         
           
-          <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_10" id="__nav_6_10_label" tabindex="0">
             
   
   
@@ -1872,8 +1961,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -5991,6 +6080,14 @@ xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
 ```
 </code></pre></div>
 </details>
+<h3 id="check-tables">check-tables<a class="headerlink" href="#check-tables" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--check-tables</code></p>
+<p>Introduced in Percona XtraBackup 8.4.0-6.</p>
+<p>Enables InnoDB B-tree structural validation during the <code>--prepare</code> phase after redo log application completes.</p>
+<p>The option runs <code>btr_validate_index()</code> on every committed index in each <code>.ibd</code> tablespace in the backup. Validation detects structural inconsistencies that page checksum verification cannot detect, including broken B-tree relationships, invalid page metadata, and inconsistent external LOB references.</p>
+<p>Percona XtraBackup runs validation in read-only mode and does not modify backup data. The option supports <code>--apply-log-only</code>, <code>--parallel</code>, and <code>--export</code>.</p>
+<p>If validation detects corruption, xtrabackup reports the affected tables and returns a non-zero exit code after completing all checks.</p>
+<p>For more information, see <a href="innodb-btree-check.html">InnoDB B-tree integrity validation during prepare</a>.</p>
 <h3 id="close-files">close-files<a class="headerlink" href="#close-files" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--close-files</code></p>
 <p>Do not keep files opened. When xtrabackup opens a tablespace, xtrabackup normally
@@ -6654,7 +6751,7 @@ mysql –help for details.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 24, 2026 13:58:01 UTC">June 24, 2026</span>
   </span>
 
     
