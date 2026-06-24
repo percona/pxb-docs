@@ -130,6 +130,8 @@ The `--check-tables` option has the following limitations:
 
 * For incremental backups, use `--check-tables` only during the final prepare stage because the option verifies all tables and indexes each time it runs
 
+* Checksum corruption may cause XtraBackup to abort with an assertion failure instead of exiting gracefully
+
 ## Usage
 
 The `--check-tables` option uses the thread count specified by `--parallel`. Start with `--parallel=8` and adjust the value according to CPU availability and disk I/O capacity on the backup host.
