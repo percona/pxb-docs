@@ -1445,6 +1445,8 @@
       
         
       
+        
+      
     
     
     
@@ -1575,6 +1577,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../backup-size-reporting.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup size reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1590,10 +1620,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1_5" >
         
           
-          <label class="md-nav__link" for="__nav_6_1_4" id="__nav_6_1_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_1_5" id="__nav_6_1_5_label" tabindex="0">
             
   
   
@@ -1611,8 +1641,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_1_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_1_4">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6079,7 +6109,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Percona XtraBackup introduces the <a href="../innodb-btree-check.html"><code>--check-tables</code></a> option to validate the structural integrity of InnoDB B-tree indexes during the <a href="xtrabackup-option-reference.md#prepare"><code>--prepare</code></a> phase. Validation during <code>--prepare</code> helps detect corrupted indexes before restore or production deployment.</p>
 </li>
 <li>
-<p>Percona XtraBackup introduces <a href="../backup-size-reporting.md">backup size reporting</a> for successful backups. Percona XtraBackup now records backup size in <code>xtrabackup_info</code> and reports the same information in the XtraBackup error log. Backup size reporting helps estimate storage requirements, check that backups work correctly, and plan restores for compressed and streamed backups.</p>
+<p>Percona XtraBackup introduces <a href="../backup-size-reporting.html">backup size reporting</a> for successful backups. Percona XtraBackup now records backup size in <code>xtrabackup_info</code> and reports the same information in the XtraBackup error log. Backup size reporting helps estimate storage requirements, check that backups work correctly, and plan restores for compressed and streamed backups.</p>
 </li>
 <li>
 <p>Percona XtraBackup adds support for Azure Storage accounts with <a href="https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-namespace">Hierarchical Namespace (HNS)</a> enabled in <code>xbcloud delete</code>. Percona XtraBackup now correctly removes backups from Azure Data Lake Storage Gen2 environments where deletion previously failed due to unsupported HNS behavior.</p>

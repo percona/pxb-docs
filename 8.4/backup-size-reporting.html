@@ -9,19 +9,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="This tutorial describes how to create a backup volume, run Percona XtraBackup in a Docker container, and take a prepared backup of a Percona Server for MySQL database.">
+        <meta name="description" content="Documentation">
       
       
         <meta name="author" content="Percona LLC">
       
       
-        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/quickstart-docker.html">
+        <link rel="canonical" href="https://docs.percona.com/percona-xtrabackup/8.4/backup-size-reporting.html">
       
       
-        <link rel="prev" href="quickstart-overview.html">
+        <link rel="prev" href="store-backup-history.html">
       
       
-        <link rel="next" href="quickstart-restore-back.html">
+        <link rel="next" href="take-streaming-backup.html">
       
       
         
@@ -32,7 +32,7 @@
     
     
       
-        <title>Take a backup with Docker - Percona XtraBackup</title>
+        <title>Backup size reporting - Percona XtraBackup</title>
       
     
     
@@ -102,7 +102,7 @@
                  
                  
                  <meta property="og:type" content="website" />
-                 <meta property="og:title" content="Percona XtraBackup - Take a backup with Docker" />
+                 <meta property="og:title" content="Percona XtraBackup - Backup size reporting" />
                  <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/8.4/_static/percona-mysql-logo.png">
                  <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
@@ -125,7 +125,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#take-a-backup-with-docker" class="md-skip">
+        <a href="#backup-size-reporting" class="md-skip">
           Skip to content
         </a>
       
@@ -254,7 +254,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Take a backup with Docker
+              Backup size reporting
             
           </span>
         </div>
@@ -744,10 +744,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -765,11 +763,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -790,7 +788,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -833,37 +831,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Take a backup with Docker
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="quickstart-docker.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="quickstart-docker.html" class="md-nav__link">
         
   
   
@@ -879,116 +850,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Learning objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prerequisites
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-create-a-backup-volume" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1: Create a backup volume
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-take-and-prepare-the-backup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2: Take and prepare the backup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-verify-the-backup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3: Verify the backup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1385,8 +1246,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1414,11 +1277,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1439,7 +1302,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1454,8 +1317,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -1473,11 +1338,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
         
           
           <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
@@ -1498,7 +1363,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1597,10 +1462,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="backup-size-reporting.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup size reporting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="backup-size-reporting.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1616,6 +1508,72 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-external-tools-cannot-accurately-measure-backup-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why external tools cannot accurately measure backup size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-backup-size-reporting-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How backup size reporting works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5975,7 +5933,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                       <div data-banner="data-banner" class="edit-contrib-banner">
   <div class="banner-content">
     <!-- Edit link centered -->
-    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/quickstart-docker.md" title="Edit this page on GitHub" class="edit-page-link">
+    <a href="https://github.com/percona/pxb-docs/edit/8.4/docs/backup-size-reporting.md" title="Edit this page on GitHub" class="edit-page-link">
       <span class="edit-page-icon">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
@@ -6027,10 +5985,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#learning-objectives" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learning objectives
+        Overview
       
     </span>
   </a>
@@ -6038,10 +5996,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#why-external-tools-cannot-accurately-measure-backup-size" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prerequisites
+        Why external tools cannot accurately measure backup size
       
     </span>
   </a>
@@ -6049,10 +6007,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#architecture-overview" class="md-nav__link">
+  <a href="#how-backup-size-reporting-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture overview
+        How backup size reporting works
       
     </span>
   </a>
@@ -6060,54 +6018,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-create-a-backup-volume" class="md-nav__link">
+  <a href="#output" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Create a backup volume
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-take-and-prepare-the-backup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2: Take and prepare the backup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-verify-the-backup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3: Verify the backup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next steps
+        Output
       
     </span>
   </a>
@@ -6137,179 +6051,182 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
       
     
-    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/quickstart-docker.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/percona/pxb-docs/raw/8.4/docs/backup-size-reporting.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="take-a-backup-with-docker">Take a backup with Docker<a class="headerlink" href="#take-a-backup-with-docker" title="Permanent link">&para;</a></h1>
-<p>This tutorial describes how to create a backup volume, run Percona XtraBackup in a Docker container, and take a prepared backup of a Percona Server for MySQL database.</p>
-<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
-<p>This tutorial covers the following tasks:</p>
+<h1 id="backup-size-reporting">Backup size reporting<a class="headerlink" href="#backup-size-reporting" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup reports the size of every successful backup in <code>xtrabackup_info</code> and reports the same values in the XtraBackup error log.</p>
+<p>Backup size reporting helps estimate storage requirements, check that backups work correctly, and plan restores for compressed and streamed backups.</p>
+<h3 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
+<p><a href="release-notes/8.4.0-6.html">Percona XtraBackup 8.4.0-6</a> introduces backup size reporting.</p>
+<h2 id="why-external-tools-cannot-accurately-measure-backup-size">Why external tools cannot accurately measure backup size<a class="headerlink" href="#why-external-tools-cannot-accurately-measure-backup-size" title="Permanent link">&para;</a></h2>
+<p>External tools cannot reliably determine the final size of XtraBackup output in many backup configurations.</p>
+<p>Backup size often differs from the MySQL datadir size because Percona XtraBackup also copies redo log data generated during the backup process.</p>
+<p>Several backup features further change the final output size:</p>
 <ul>
 <li>
-<p>Create a Docker volume to store backup files</p>
+<p><a href="binaries-overview.html#xbstream"><code>--stream=xbstream</code></a> adds xbstream metadata</p>
 </li>
 <li>
-<p>Connect Percona XtraBackup to a running Percona Server container</p>
+<p><a href="create-compressed-backup.html"><code>--compress</code></a> reduces the final backup size according to data compressibility</p>
 </li>
 <li>
-<p>Take a full backup using <code>xtrabackup --backup</code></p>
+<p>Sparse InnoDB tablespaces affect filesystem size reporting</p>
 </li>
 <li>
-<p>Prepare the backup using <code>xtrabackup --prepare</code></p>
+<p>Streaming and cloud uploads may not produce local backup files for measurement</p>
+</li>
+<li>
+<p>Compression, encryption, and streaming pipelines prevent external tools from accurately calculating final backup size</p>
 </li>
 </ul>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
-<p>Complete the following steps before starting this tutorial:</p>
+<p>Compressed backups also require sufficient free space during decompression and restore. Reporting the uncompressed backup size helps estimate restore storage requirements before recovery operations begin.</p>
+<h2 id="how-backup-size-reporting-works">How backup size reporting works<a class="headerlink" href="#how-backup-size-reporting-works" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup records backup size at the end of every successful backup. Backup size reporting is enabled by default and requires no additional configuration.</p>
+<p>Percona XtraBackup calculates backup size after all backup operations complete, including:</p>
 <ul>
 <li>
-<p><a href="https://docs.docker.com/engine/install/">Install Docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> on your system</p>
+<p>Compression</p>
 </li>
 <li>
-<p><a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html">Start Percona Server in a Docker container <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> - Creates the <code>psmysql</code> container with the <code>mydb</code> database and <code>employees</code> table</p>
+<p>Encryption</p>
+</li>
+<li>
+<p>xbstream formatting</p>
+</li>
+<li>
+<p>Sparse file handling</p>
 </li>
 </ul>
-<h2 id="architecture-overview">Architecture overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
-<p>Percona XtraBackup runs in a separate Docker container and connects to the Percona Server for MySQL container. This connection allows the backup tool to access the database files for backup and restore operations.</p>
-<p>For more information about how Percona XtraBackup works, see <a href="how-xtrabackup-works.html">How Percona XtraBackup works</a>.</p>
-<h2 id="step-1-create-a-backup-volume">Step 1: Create a backup volume<a class="headerlink" href="#step-1-create-a-backup-volume" title="Permanent link">&para;</a></h2>
-<p>Docker volumes provide persistent storage that remains accessible across container restarts and updates. Creating a dedicated backup volume offers the following benefits:</p>
+<p>For sparse InnoDB tablespaces, Percona XtraBackup counts only written data fragments and excludes filesystem hole ranges.</p>
+<p>The reported backup size matches the exact number of bytes written to the backup destination.</p>
+<p>Compressed backups additionally report:</p>
 <ul>
 <li>
-<p>Data persists independently of container lifecycle</p>
+<p><code>uncompressed_backup_size</code></p>
 </li>
 <li>
-<p>Multiple containers can access the same backup data</p>
-</li>
-<li>
-<p>Backup files remain available for restore operations</p>
+<p>Compression ratio</p>
 </li>
 </ul>
-<p>Create the backup volume with the following command:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>backupvol
-</code></pre></div>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>backupvol
-</code></pre></div>
-</details>
-<h2 id="step-2-take-and-prepare-the-backup">Step 2: Take and prepare the backup<a class="headerlink" href="#step-2-take-and-prepare-the-backup" title="Permanent link">&para;</a></h2>
-<p>The backup process requires connecting the Percona XtraBackup container to the Percona Server container. The <code>--user root</code> option grants the necessary permissions to access the MySQL data directory.</p>
-<h3 id="understand-the-command-options">Understand the command options<a class="headerlink" href="#understand-the-command-options" title="Permanent link">&para;</a></h3>
-<p>The following table describes each option used in the backup command:</p>
+<p>Percona XtraBackup calculates <code>uncompressed_backup_size</code> separately from the final compressed backup size so that the reported value reflects the logical backup size before compression.</p>
+<p>Percona XtraBackup stores the reported values in:</p>
+<ul>
+<li>
+<p><code>xtrabackup_info</code></p>
+</li>
+<li>
+<p>XtraBackup error log</p>
+</li>
+</ul>
+<h3 id="reported-values">Reported values<a class="headerlink" href="#reported-values" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Option</th>
+<th>Field</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>--name pxb</code></td>
-<td>Assigns the name <code>pxb</code> to the container</td>
+<td><code>backup_size</code></td>
+<td>Final backup output size in bytes</td>
 </tr>
 <tr>
-<td><code>--volumes-from psmysql</code></td>
-<td>Mounts volumes from the <code>psmysql</code> container to access database files</td>
+<td><code>uncompressed_backup_size</code></td>
+<td>Total uncompressed logical backup size in bytes</td>
 </tr>
 <tr>
-<td><code>-v backupvol:/backup_84</code></td>
-<td>Mounts the <code>backupvol</code> volume at <code>/backup_84</code> inside the container</td>
-</tr>
-<tr>
-<td><code>-it</code></td>
-<td>Allocates a pseudo-terminal for interactive password entry</td>
-</tr>
-<tr>
-<td><code>--user root</code></td>
-<td>Runs the container as root to access the MySQL data directory</td>
-</tr>
-<tr>
-<td><code>--password</code></td>
-<td>Prompts for the MySQL root password</td>
+<td>Compression ratio</td>
+<td>Ratio between <code>uncompressed_backup_size</code> and <code>backup_size</code> reported in the XtraBackup error log</td>
 </tr>
 </tbody>
 </table>
-<h3 id="run-the-backup-command">Run the backup command<a class="headerlink" href="#run-the-backup-command" title="Permanent link">&para;</a></h3>
-<p>Select the command for your system architecture:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">AMD64 (Intel/AMD)</label><label for="__tabbed_1_2">ARM64 (Apple Silicon Macs)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>pxb<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root --password; xtrabackup --prepare --target-dir=/backup_84&quot;</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>pxb<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4-aarch64<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root --password; xtrabackup --prepare --target-dir=/backup_84&quot;</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>Enter the password <code>secret</code> when prompted:</p>
-<div class="no-copy highlight"><pre><span></span><code>2024-10-07T13:55:47.640100-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
-2024-10-07T13:55:47.641887-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --backup=1 --target-dir=/backup_84 --user=root --password
-Enter password:
-</code></pre></div>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 8.4.0-1 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 3792f907)
-2024-10-07T13:55:51.255518-00:00 0 [Note] [MY-011825] [Xtrabackup] perl binary not found. Skipping the version check
-2024-10-07T13:55:51.256080-00:00 0 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set
-2024-10-07T13:55:51.270222-00:00 0 [Note] [MY-011825] [Xtrabackup] Using server version 8.4.0-1
-2024-10-07T13:55:51.272839-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing LOCK TABLES FOR BACKUP
-
-...
-
-2024-10-07T13:55:55.550829-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
-</code></pre></div>
-</details>
-<p>The command executes two xtrabackup operations:</p>
+<h3 id="xtrabackup_info"><code>xtrabackup_info</code><a class="headerlink" href="#xtrabackup_info" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup writes backup size metadata to <code>xtrabackup_info</code> in the backup output.</p>
+<p>Depending on backup configuration, <code>xtrabackup_info</code> in the backup output may be:</p>
 <ul>
 <li>
-<p><code>xtrabackup --backup</code> - Copies data files from <code>/var/lib/mysql/</code> to <code>/backup_84</code></p>
+<p>Plaintext</p>
 </li>
 <li>
-<p><code>xtrabackup --prepare</code> - Applies transaction logs to make the backup consistent</p>
+<p>Compressed</p>
+</li>
+<li>
+<p>Encrypted</p>
+</li>
+<li>
+<p>Embedded inside an xbstream archive</p>
 </li>
 </ul>
-<p>For more information about the backup and prepare process, see <a href="create-full-backup.html">Create a full backup</a> and <a href="prepare-full-backup.html">Prepare a full backup</a>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Password visibility</p>
-<p>Specifying the password directly with <code>--password=secret</code> exposes the password in <code>docker ps</code>, <code>docker history</code>, and system process listings. Use the interactive prompt for production environments.</p>
+<p>Streamed backups store <code>xtrabackup_info</code> inside the xbstream output.</p>
+<p>If <code>xtrabackup_info</code> is not plaintext, you can create a separate plaintext copy of <code>xtrabackup_info</code> using the <code>--extra-lsndir=&lt;dir&gt;</code> option.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Files created in the <code>--extra-lsndir=&lt;dir&gt;</code> directory are not part of the backup.</p>
 </div>
-<h2 id="step-3-verify-the-backup">Step 3: Verify the backup<a class="headerlink" href="#step-3-verify-the-backup" title="Permanent link">&para;</a></h2>
-<p>Check the backup container logs to confirm the backup completed:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>logs<span class="w"> </span>pxb
-</code></pre></div>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>...
-2024-10-07T13:55:55.550829-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
-</code></pre></div>
-</details>
-<p>The message <code>completed OK!</code> confirms the backup and prepare operations finished.</p>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>This tutorial covered the following completed tasks:</p>
+<h3 id="xtrabackup-error-log">XtraBackup error log<a class="headerlink" href="#xtrabackup-error-log" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup prints information about backup size near the end of the backup operation before the <code>completed OK!</code> message.</p>
+<p>The log output includes:</p>
 <ul>
 <li>
-<p>Created the <code>backupvol</code> Docker volume for backup storage</p>
+<p>Human-readable size</p>
 </li>
 <li>
-<p>Connected the Percona XtraBackup container to the <code>psmysql</code> database container</p>
+<p>Exact byte count</p>
 </li>
 <li>
-<p>Executed <code>xtrabackup --backup</code> to copy database files</p>
-</li>
-<li>
-<p>Executed <code>xtrabackup --prepare</code> to make the backup consistent</p>
+<p>Compression ratio</p>
 </li>
 </ul>
-<p>The backup stored in <code>backupvol</code> is ready for restoration.</p>
-<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<p><a class="md-button" href="quickstart-restore-back.html">Restore the backup</a></p>
+<h2 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
+<h3 id="uncompressed-backup-example">Uncompressed backup example<a class="headerlink" href="#uncompressed-backup-example" title="Permanent link">&para;</a></h3>
+<p>The following example shows <code>xtrabackup_info</code> from a backup created with <code>--target-dir</code>.</p>
+<div class="highlight"><pre><span></span><code>uuid = 122a291d-48b0-11f1-9d76-047bcbcb6b7e
+name =
+tool_name = xtrabackup
+tool_command = --backup --no-defaults --user=root --socket=/tmp/pxb-folder/mysql.sock --target-dir=/tmp/pxb-folder/backup --extra-lsndir=/tmp/pxb-folder/lsndir --datadir=/tmp/pxb-folder/datadir
+tool_version = 8.4.0-6
+ibbackup_version = 8.4.0-6
+server_version = 8.4.8-8
+server_flavor = Percona Server (GPL), Release 8, Revision 1c288264
+start_time = 2026-05-05 19:27:26
+end_time = 2026-05-05 19:27:28
+lock_time = 0
+binlog_pos = filename &#39;binlog.000002&#39;, position &#39;158&#39;
+innodb_from_lsn = 0
+innodb_to_lsn = 24785178
+partial = N
+incremental = N
+format = file
+compressed = N
+encrypted = N
+lock_ddl_type = ON
+backup_size = 88689086
+</code></pre></div>
+<p>The XtraBackup error log contains the corresponding backup size entry:</p>
+<div class="highlight"><pre><span></span><code>2026-05-05T19:27:28.140024+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 84.58 MiB (88689086 bytes)
+2026-05-05T19:27:29.382428+01:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
+</code></pre></div>
+<h3 id="compressed-backup-example">Compressed backup example<a class="headerlink" href="#compressed-backup-example" title="Permanent link">&para;</a></h3>
+<p>Compressed backups additionally report the uncompressed backup size and compression ratio.</p>
+<p>The following example shows the final lines of <code>xtrabackup_info</code> with backup size values reported in bytes:</p>
+<div class="highlight"><pre><span></span><code>backup_size = 1832398
+uncompressed_backup_size = 88689148
+</code></pre></div>
+<p>The XtraBackup error log contains the corresponding output:</p>
+<div class="highlight"><pre><span></span><code>2026-05-05T19:27:42.851038+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 1.75 MiB (1832398 bytes)
+2026-05-05T19:27:42.851055+01:00 0 [Note] [MY-011825] [Xtrabackup] Uncompressed backup size: 84.58 MiB (88689148 bytes)
+2026-05-05T19:27:42.851065+01:00 0 [Note] [MY-011825] [Xtrabackup] Compression ratio: 48.40x
+</code></pre></div>
+<p>Percona XtraBackup calculates the compression ratio as:</p>
+<div class="highlight"><pre><span></span><code>uncompressed_backup_size / backup_size
+</code></pre></div>
 
 
 
@@ -6332,7 +6249,7 @@ Enter password:
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 9, 2026 10:04:19 UTC">June 9, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 24, 2026 14:00:24 UTC">June 24, 2026</span>
   </span>
 
     
@@ -6342,7 +6259,7 @@ Enter password:
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 8, 2024 09:00:17 UTC">October 8, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 24, 2026 14:00:24 UTC">June 24, 2026</span>
   </span>
 
     
@@ -6360,24 +6277,14 @@ Enter password:
     
     <nav>
       
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
-        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
-          
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
         <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
           <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
         </a>
       
-        <a href="https://github.com/fuzzfree" class="md-author" title="@fuzzfree">
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
           
-          <img src="https://avatars.githubusercontent.com/u/12214846?v=4&size=72" alt="fuzzfree">
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
         </a>
       
       

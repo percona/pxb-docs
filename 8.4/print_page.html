@@ -1330,6 +1330,8 @@
       
         
       
+        
+      
     
     
     
@@ -1460,6 +1462,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="backup-size-reporting.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup size reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1475,10 +1505,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1_5" >
         
           
-          <label class="md-nav__link" for="__nav_6_1_4" id="__nav_6_1_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_1_5" id="__nav_6_1_5_label" tabindex="0">
             
   
   
@@ -1496,8 +1526,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_1_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_1_4">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6208,7 +6238,18 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
         
           <li class="md-nav__item">
-  <a href="#section-6-1-4" class="md-nav__link">
+  <a href="#backup-size-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup size reporting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-6-1-5" class="md-nav__link">
     <span class="md-ellipsis">
       
         xbstream features
@@ -7776,7 +7817,7 @@ Percona XtraDB Cluster.</p>
 <p>Percona XtraBackup introduces the <a href="#innodb-btree-check"><code>--check-tables</code></a> option to validate the structural integrity of InnoDB B-tree indexes during the <a href="#release-notes-xtrabackup-option-reference.md-prepare"><code>--prepare</code></a> phase. Validation during <code>--prepare</code> helps detect corrupted indexes before restore or production deployment.</p>
 </li>
 <li>
-<p>Percona XtraBackup introduces <a href="#backup-size-reporting.md">backup size reporting</a> for successful backups. Percona XtraBackup now records backup size in <code>xtrabackup_info</code> and reports the same information in the XtraBackup error log. Backup size reporting helps estimate storage requirements, check that backups work correctly, and plan restores for compressed and streamed backups.</p>
+<p>Percona XtraBackup introduces <a href="#backup-size-reporting">backup size reporting</a> for successful backups. Percona XtraBackup now records backup size in <code>xtrabackup_info</code> and reports the same information in the XtraBackup error log. Backup size reporting helps estimate storage requirements, check that backups work correctly, and plan restores for compressed and streamed backups.</p>
 </li>
 <li>
 <p>Percona XtraBackup adds support for Azure Storage accounts with <a href="https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-namespace">Hierarchical Namespace (HNS)</a> enabled in <code>xbcloud delete</code>. Percona XtraBackup now correctly removes backups from Azure Data Lake Storage Gen2 environments where deletion previously failed due to unsupported HNS behavior.</p>
@@ -10220,11 +10261,179 @@ line and not within a configuration file in order to be effective.</p>
 options must be specified only on the command line and not within
 a configuration file in order to be effective.</p>
 </li>
-</ul></section>
-                    <section class='print-page md-section' id='section-6-1-4' heading-number='6.1.4'>
-                        <h1>xbstream features<a class='headerlink' href='#section-6-1-4' title='Permanent link'></a>
+</ul></section><section class="print-page" id="backup-size-reporting" heading-number="6.1.4"><h1 id="backup-size-reporting-backup-size-reporting">Backup size reporting<a class="headerlink" href="#backup-size-reporting-backup-size-reporting" title="Permanent link">&para;</a></h1>
+<h2 id="backup-size-reporting-overview">Overview<a class="headerlink" href="#backup-size-reporting-overview" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup reports the size of every successful backup in <code>xtrabackup_info</code> and reports the same values in the XtraBackup error log.</p>
+<p>Backup size reporting helps estimate storage requirements, check that backups work correctly, and plan restores for compressed and streamed backups.</p>
+<h3 id="backup-size-reporting-version-changes">Version changes<a class="headerlink" href="#backup-size-reporting-version-changes" title="Permanent link">&para;</a></h3>
+<p><a href="#release-notes-8.4.0-6">Percona XtraBackup 8.4.0-6</a> introduces backup size reporting.</p>
+<h2 id="backup-size-reporting-why-external-tools-cannot-accurately-measure-backup-size">Why external tools cannot accurately measure backup size<a class="headerlink" href="#backup-size-reporting-why-external-tools-cannot-accurately-measure-backup-size" title="Permanent link">&para;</a></h2>
+<p>External tools cannot reliably determine the final size of XtraBackup output in many backup configurations.</p>
+<p>Backup size often differs from the MySQL datadir size because Percona XtraBackup also copies redo log data generated during the backup process.</p>
+<p>Several backup features further change the final output size:</p>
+<ul>
+<li>
+<p><a href="#binaries-overview-xbstream"><code>--stream=xbstream</code></a> adds xbstream metadata</p>
+</li>
+<li>
+<p><a href="#create-compressed-backup"><code>--compress</code></a> reduces the final backup size according to data compressibility</p>
+</li>
+<li>
+<p>Sparse InnoDB tablespaces affect filesystem size reporting</p>
+</li>
+<li>
+<p>Streaming and cloud uploads may not produce local backup files for measurement</p>
+</li>
+<li>
+<p>Compression, encryption, and streaming pipelines prevent external tools from accurately calculating final backup size</p>
+</li>
+</ul>
+<p>Compressed backups also require sufficient free space during decompression and restore. Reporting the uncompressed backup size helps estimate restore storage requirements before recovery operations begin.</p>
+<h2 id="backup-size-reporting-how-backup-size-reporting-works">How backup size reporting works<a class="headerlink" href="#backup-size-reporting-how-backup-size-reporting-works" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup records backup size at the end of every successful backup. Backup size reporting is enabled by default and requires no additional configuration.</p>
+<p>Percona XtraBackup calculates backup size after all backup operations complete, including:</p>
+<ul>
+<li>
+<p>Compression</p>
+</li>
+<li>
+<p>Encryption</p>
+</li>
+<li>
+<p>xbstream formatting</p>
+</li>
+<li>
+<p>Sparse file handling</p>
+</li>
+</ul>
+<p>For sparse InnoDB tablespaces, Percona XtraBackup counts only written data fragments and excludes filesystem hole ranges.</p>
+<p>The reported backup size matches the exact number of bytes written to the backup destination.</p>
+<p>Compressed backups additionally report:</p>
+<ul>
+<li>
+<p><code>uncompressed_backup_size</code></p>
+</li>
+<li>
+<p>Compression ratio</p>
+</li>
+</ul>
+<p>Percona XtraBackup calculates <code>uncompressed_backup_size</code> separately from the final compressed backup size so that the reported value reflects the logical backup size before compression.</p>
+<p>Percona XtraBackup stores the reported values in:</p>
+<ul>
+<li>
+<p><code>xtrabackup_info</code></p>
+</li>
+<li>
+<p>XtraBackup error log</p>
+</li>
+</ul>
+<h3 id="backup-size-reporting-reported-values">Reported values<a class="headerlink" href="#backup-size-reporting-reported-values" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>backup_size</code></td>
+<td>Final backup output size in bytes</td>
+</tr>
+<tr>
+<td><code>uncompressed_backup_size</code></td>
+<td>Total uncompressed logical backup size in bytes</td>
+</tr>
+<tr>
+<td>Compression ratio</td>
+<td>Ratio between <code>uncompressed_backup_size</code> and <code>backup_size</code> reported in the XtraBackup error log</td>
+</tr>
+</tbody>
+</table>
+<h3 id="backup-size-reporting-xtrabackup_info"><code>xtrabackup_info</code><a class="headerlink" href="#backup-size-reporting-xtrabackup_info" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup writes backup size metadata to <code>xtrabackup_info</code> in the backup output.</p>
+<p>Depending on backup configuration, <code>xtrabackup_info</code> in the backup output may be:</p>
+<ul>
+<li>
+<p>Plaintext</p>
+</li>
+<li>
+<p>Compressed</p>
+</li>
+<li>
+<p>Encrypted</p>
+</li>
+<li>
+<p>Embedded inside an xbstream archive</p>
+</li>
+</ul>
+<p>Streamed backups store <code>xtrabackup_info</code> inside the xbstream output.</p>
+<p>If <code>xtrabackup_info</code> is not plaintext, you can create a separate plaintext copy of <code>xtrabackup_info</code> using the <code>--extra-lsndir=&lt;dir&gt;</code> option.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Files created in the <code>--extra-lsndir=&lt;dir&gt;</code> directory are not part of the backup.</p>
+</div>
+<h3 id="backup-size-reporting-xtrabackup-error-log">XtraBackup error log<a class="headerlink" href="#backup-size-reporting-xtrabackup-error-log" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup prints information about backup size near the end of the backup operation before the <code>completed OK!</code> message.</p>
+<p>The log output includes:</p>
+<ul>
+<li>
+<p>Human-readable size</p>
+</li>
+<li>
+<p>Exact byte count</p>
+</li>
+<li>
+<p>Compression ratio</p>
+</li>
+</ul>
+<h2 id="backup-size-reporting-output">Output<a class="headerlink" href="#backup-size-reporting-output" title="Permanent link">&para;</a></h2>
+<h3 id="backup-size-reporting-uncompressed-backup-example">Uncompressed backup example<a class="headerlink" href="#backup-size-reporting-uncompressed-backup-example" title="Permanent link">&para;</a></h3>
+<p>The following example shows <code>xtrabackup_info</code> from a backup created with <code>--target-dir</code>.</p>
+<div class="highlight"><pre><span></span><code>uuid = 122a291d-48b0-11f1-9d76-047bcbcb6b7e
+name =
+tool_name = xtrabackup
+tool_command = --backup --no-defaults --user=root --socket=/tmp/pxb-folder/mysql.sock --target-dir=/tmp/pxb-folder/backup --extra-lsndir=/tmp/pxb-folder/lsndir --datadir=/tmp/pxb-folder/datadir
+tool_version = 8.4.0-6
+ibbackup_version = 8.4.0-6
+server_version = 8.4.8-8
+server_flavor = Percona Server (GPL), Release 8, Revision 1c288264
+start_time = 2026-05-05 19:27:26
+end_time = 2026-05-05 19:27:28
+lock_time = 0
+binlog_pos = filename &#39;binlog.000002&#39;, position &#39;158&#39;
+innodb_from_lsn = 0
+innodb_to_lsn = 24785178
+partial = N
+incremental = N
+format = file
+compressed = N
+encrypted = N
+lock_ddl_type = ON
+backup_size = 88689086
+</code></pre></div>
+<p>The XtraBackup error log contains the corresponding backup size entry:</p>
+<div class="highlight"><pre><span></span><code>2026-05-05T19:27:28.140024+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 84.58 MiB (88689086 bytes)
+2026-05-05T19:27:29.382428+01:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
+</code></pre></div>
+<h3 id="backup-size-reporting-compressed-backup-example">Compressed backup example<a class="headerlink" href="#backup-size-reporting-compressed-backup-example" title="Permanent link">&para;</a></h3>
+<p>Compressed backups additionally report the uncompressed backup size and compression ratio.</p>
+<p>The following example shows the final lines of <code>xtrabackup_info</code> with backup size values reported in bytes:</p>
+<div class="highlight"><pre><span></span><code>backup_size = 1832398
+uncompressed_backup_size = 88689148
+</code></pre></div>
+<p>The XtraBackup error log contains the corresponding output:</p>
+<div class="highlight"><pre><span></span><code>2026-05-05T19:27:42.851038+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 1.75 MiB (1832398 bytes)
+2026-05-05T19:27:42.851055+01:00 0 [Note] [MY-011825] [Xtrabackup] Uncompressed backup size: 84.58 MiB (88689148 bytes)
+2026-05-05T19:27:42.851065+01:00 0 [Note] [MY-011825] [Xtrabackup] Compression ratio: 48.40x
+</code></pre></div>
+<p>Percona XtraBackup calculates the compression ratio as:</p>
+<div class="highlight"><pre><span></span><code>uncompressed_backup_size / backup_size
+</code></pre></div></section>
+                    <section class='print-page md-section' id='section-6-1-5' heading-number='6.1.5'>
+                        <h1>xbstream features<a class='headerlink' href='#section-6-1-5' title='Permanent link'></a>
                         </h1>
-                    <section class="print-page" id="take-streaming-backup" heading-number="6.1.4.1"><h1 id="take-streaming-backup-take-a-streaming-backup">Take a streaming backup<a class="headerlink" href="#take-streaming-backup-take-a-streaming-backup" title="Permanent link">&para;</a></h1>
+                    <section class="print-page" id="take-streaming-backup" heading-number="6.1.5.1"><h1 id="take-streaming-backup-take-a-streaming-backup">Take a streaming backup<a class="headerlink" href="#take-streaming-backup-take-a-streaming-backup" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup supports streaming mode. Streaming mode sends a backup to <code>STDOUT</code> in the <em>xbstream</em> format instead of copying the files to the backup directory.</p>
 <p>This method allows you to use other programs to filter the output of the backup,
 providing greater flexibility for storage of the backup. For example,
@@ -10307,7 +10516,7 @@ to <code>STDOUT</code>, it stops xtrabackup and streams the saved log file too.<
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>The streamed backup must be prepared before restoration. Streaming mode does not prepare the backup.</p>
-</div></section><section class="print-page" id="accelerate-backup-process" heading-number="6.1.4.2"><!---
+</div></section><section class="print-page" id="accelerate-backup-process" heading-number="6.1.5.2"><!---
  fix and rewrite
  20230817
  --->
@@ -18750,10 +18959,12 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 
 .print-site-enumerate-headings #store-backup-history > h1:before { content: '6.1.3 ' }
 
-.print-site-enumerate-headings #section-6-1-4 > h1:before { content: '6.1.4 ' }
-.print-site-enumerate-headings #take-streaming-backup > h1:before { content: '6.1.4.1 ' }
+.print-site-enumerate-headings #backup-size-reporting > h1:before { content: '6.1.4 ' }
 
-.print-site-enumerate-headings #accelerate-backup-process > h1:before { content: '6.1.4.2 ' }
+.print-site-enumerate-headings #section-6-1-5 > h1:before { content: '6.1.5 ' }
+.print-site-enumerate-headings #take-streaming-backup > h1:before { content: '6.1.5.1 ' }
+
+.print-site-enumerate-headings #accelerate-backup-process > h1:before { content: '6.1.5.2 ' }
 
 .print-site-enumerate-headings #section-6-2 > h1:before { content: '6.2 ' }
 .print-site-enumerate-headings #innodb-btree-check > h1:before { content: '6.2.1 ' }
