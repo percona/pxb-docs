@@ -10730,6 +10730,9 @@ LOCK</code>.</p>
 <li>
 <p>For incremental backups, use <code>--check-tables</code> only during the final prepare stage because the option verifies all tables and indexes each time it runs</p>
 </li>
+<li>
+<p>Checksum corruption may cause XtraBackup to abort with an assertion failure instead of exiting gracefully</p>
+</li>
 </ul>
 <h2 id="innodb-btree-check-usage">Usage<a class="headerlink" href="#innodb-btree-check-usage" title="Permanent link">&para;</a></h2>
 <p>The <code>--check-tables</code> option uses the thread count specified by <code>--parallel</code>. Start with <code>--parallel=8</code> and adjust the value according to CPU availability and disk I/O capacity on the backup host.</p>
