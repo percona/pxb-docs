@@ -495,6 +495,8 @@
       
         
       
+        
+      
     
     
     
@@ -550,6 +552,34 @@
     
   
     Release notes index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/8.4.0-6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona XtraBackup 8.4.0-6 (2026-06-24)
   
 
     
@@ -5890,7 +5920,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h1 id="install-percona-xtrabackup-84-using-downloaded-rpm-packages">Install Percona XtraBackup 8.4 using downloaded RPM packages<a class="headerlink" href="#install-percona-xtrabackup-84-using-downloaded-rpm-packages" title="Permanent link">&para;</a></h1>
 <p>Download <code>RPM</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads">Percona Software Downloads <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. If needed, <a href="download-instructions.html">Percona Software Download instructions</a> are available. </p>
 <p>This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.</p>
-<p class="power-number">The following example downloads <em>Percona XtraBackup</em> 8.4.0-5 release packages for <em>RHEL</em> 9. Run the following commands as root or use the sudo command.</p>
+<p class="power-number">The following example downloads <em>Percona XtraBackup</em> 8.4.0-6 release packages for <em>RHEL</em> 9. Run the following commands as root or use the sudo command.</p>
 <ol>
 <li>
 <p>Install wget</p>
@@ -5899,12 +5929,12 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 <li>
 <p>Use <code>wget</code> to download the <code>RPM</code> package:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-5/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-6/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-6.1.el9.x86_64.rpm
 </code></pre></div>
 </li>
 <li>
 <p>Install Percona XtraBackup by running:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>./percona-xtrabackup-84-8.4.0-5.1.el9.x86_64.rpm
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>./percona-xtrabackup-84-8.4.0-6.1.el9.x86_64.rpm
 </code></pre></div>
 </li>
 </ol>
