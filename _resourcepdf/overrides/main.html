@@ -5,19 +5,20 @@
   
   {# Import the theme's layout. #}
   {% extends "base.html" %}
+
   {% block scripts %}
+  {{ super() }}
 <script src="https://cmp.osano.com/Azqe5vTyLOSbN3OuT/49ad85b5-0418-4794-ab81-7599dddd534c/osano.js"></script>
-{{ super() }}
 {% endblock %}
 
 {% block announce %}
 <div class="md-banner" style="text-align: center;">
   Where the open source database community meets:
-  Use code <strong>PERCONA75</strong> and secure your spot for Percona Live.
+  Secure your spot for Percona Live.
 
   <a
     class="breakdance-link button-atom button-atom--primary bde-button__button"
-    href="https://perconalive.com/2026-usa/"
+    href="https://perconalive.com/2026-amsterdam/registration/"
     target="_blank"
     data-type="url"
     style="
@@ -58,13 +59,7 @@
                 <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" {{ hidden }}>
                   <div class="md-sidebar__scrollwrap">
                     <div class="md-sidebar__inner">
-                      {% include "partials/nav.html" %}
-                      <br>
-                      <label class="md-nav__title" for="__drawer">
-      <a href="https://learn.percona.com/download-manual-percona-xtrabackup-innovation-releases" onclick="_gaq.push(['b._trackEvent', 'Percona XtraBackup', 'Download', 'Download Manual Percona XtraBackup']);" class="md-nav__link md-nav__link--active" style="font-size: .7rem;">
-        Download PDF
-      </a>
-    </label> 
+                      {% include "partials/nav.html" %} 
                     </div>
                   </div>
                 </div>

@@ -1,17 +1,25 @@
-# Clean up
+# Clean up quickstart resources
 
-In this document you'll learn how to:
+This tutorial describes how to remove the Docker containers, images, and volumes created during the quickstart.
 
-* Exit the MySQL command client shell and the Docker container
+## Resources to remove
 
-* Remove the Docker container and the Docker image
+The following table lists all resources created during the quickstart tutorials:
 
-* Remove the Docker volume.
+| Resource | Type | Created in |
+|----------|------|------------|
+| `psmysql` | Container | [Percona Server quickstart :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/quickstart-docker.html) |
+| `ps-restore-target` | Container | [Restore the backup](quickstart-restore-back.md) |
+| `pxb` | Container | [Take a backup with Docker](quickstart-docker.md) |
+| `backupvol` | Volume | [Take a backup with Docker](quickstart-docker.md) |
+| `restore_data` | Volume | [Restore the backup](quickstart-restore-back.md) |
 
-The steps are as follows:
+## Step 1: Exit the MySQL client
+
+If the MySQL client session remains open, exit the session before removing containers.
 {.power-number}
 
-1. To exit the MySQL command client shell in `psmysql2` container, we use `exit`. You can also use the `\q` or `quit` commands. The execution of the statement also closes the connection.
+1. Exit the MySQL command client:
 
     ```sql
     exit
@@ -23,73 +31,93 @@ The steps are as follows:
         Bye
         ```
 
-2. Remove docker containers and images, if you no longer need docker containers / images or want to free up disk space. To remove a docker container, use the command `docker rm` followed by the container name or the container ID. To remove a docker image, use the command `docker rmi` followed by the image ID or name and the tag. The example uses the `-f` option to force the removal.
+    Alternative commands: `\q` or `quit`
 
-    * Remove `psmysql2`, `psmysql` and `pxb` Docker containers:
+## Step 2: Remove Docker containers
 
-        ```shell
-        docker container rm psmysql2 -f
+Remove the containers created during the quickstart. The `-f` option forces removal of running containers.
+{.power-number}
+
+1. Remove the restore target container:
+
+    ```shell
+    docker container rm ps-restore-target -f
+    ```
+
+    ??? example "Expected output"
+
+        ```{.text .no-copy}
+        ps-restore-target
         ```
 
-        ??? example "Expected output"
+2. Remove the Percona Server container:
 
-            ```{.text .no-copy}
-            psmysql2
-            ```
+    ```shell
+    docker container rm psmysql -f
+    ```
 
-        ```shell
-        docker container rm psmysql -f
+    ??? example "Expected output"
+
+        ```{.text .no-copy}
+        psmysql
         ```
 
-        ??? example "Expected output"
+3. Remove the Percona XtraBackup container:
 
-            ```{.text .no-copy}
-            psmysql
-            ```
-        
-        ```shell
-        docker container rm pxb -f
+    ```shell
+    docker container rm pxb -f
+    ```
+
+    ??? example "Expected output"
+
+        ```{.text .no-copy}
+        pxb
         ```
 
-        ??? example "Expected output"
+## Step 3: Remove Docker images (optional)
 
-            ```{.text .no-copy}
-            pxb
-            ```
+Remove the Docker images to free disk space. Skip this step to retain images for future use.
+{.power-number}
 
-    * Remove `percona/percona-server:8.0.34` and `percona/percona-xtrabackup:8.0.34` Docker images
+1. Remove the Percona Server image:
 
-        ```shell
-        docker image rmi percona/percona-server:8.0.34
+    ```shell
+    docker image rmi percona/percona-server:8.4
+    ```
+
+    ??? example "Expected output"
+
+        ```{.text .no-copy}
+        Untagged: percona/percona-server:8.4
+        Untagged: percona/percona-server@sha256:...
+        Deleted: sha256:...
         ```
 
-        ??? example "Expected output"
+2. Remove the Percona XtraBackup image:
 
-            ```{.text .no-copy}
-            Untagged: percona/percona-server:8.0.34
-            ```
+    ```shell
+    docker image rmi percona/percona-xtrabackup:8.4
+    ```
 
-        ```shell
-        docker image rmi percona/percona-xtrabackup:8.0.34
+    ??? example "Expected output"
+
+        ```{.text .no-copy}
+        Untagged: percona/percona-xtrabackup:8.4
+        Untagged: percona/percona-xtrabackup@sha256:...
+        Deleted: sha256:...
         ```
 
-        ??? example "Expected output"
+## Step 4: Remove Docker volumes
 
-            ```{.text .no-copy}
-            Untagged: percona/percona-server:8.0.34
-            Untagged: percona/percona-server@sha256:4944f9b365e0dc88f41b3b704ff2a02d1459fd07763d7d1a444b263db8498e1f
-            Deleted: sha256:b2588da614b1f382468fc9f44600863e324067a9cae57c204a30a2105d61d9d9
-            Deleted: sha256:1ceaa6dc89e328281b426854a3b00509b5df13826a9618a09e819a830b752ebd
-            Deleted: sha256:77471692427a227eb16d06907357956c3bb43f0fdc3ecf6f8937e1acecae24fe
-            Deleted: sha256:8db06cc7b0430437edc7f118b139d2195cb65e2e8025f9a4517d16778f615384
-            Deleted: sha256:e5a57a2fafec4ab9482240f28927651d56545c19626e344aceb8be3704c3c397
-            Deleted: sha256:f86198f39b893674d44d424c958f23183bf919d2ced20e1f519714d0972d75ed
-            Deleted: sha256:db9672f7e12e374d5e9016b758a29d5444e8b0fd1246a6f1fc5c2b3c847dddcf
-            ```
+Remove the volumes that stored database and backup data.
 
-3. Remove docker volume if a container does not use the volume, and you no longer need it
+!!! warning "Permanent data loss"
 
-    Remove `backupvol` and `myvol2` Docker volumes:
+    Removing volumes permanently deletes all stored data. Verify the data is no longer needed before proceeding.
+
+{.power-number}
+
+1. Remove the backup volume:
 
     ```shell
     docker volume rm backupvol
@@ -101,16 +129,49 @@ The steps are as follows:
         backupvol
         ```
 
+2. Remove the restore target volume:
+
     ```shell
-    docker volume rm myvol2
+    docker volume rm restore_data
     ```
 
     ??? example "Expected output"
 
         ```{.text .no-copy}
-        myvol2
+        restore_data
         ```
+
+## Verify resource removal
+
+Confirm all quickstart resources have been removed with the following commands:
+
+```shell
+docker ps -a --filter "name=psmysql" --filter "name=ps-restore-target" --filter "name=pxb"
+docker volume ls --filter "name=backupvol" --filter "name=restore_data"
+```
+
+??? example "Expected output"
+
+    ```{.text .no-copy}
+    CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+    DRIVER    VOLUME NAME
+    ```
+
+Empty results confirm resource removal completed.
+
+## Summary
+
+This tutorial covered the removal of the following quickstart resources:
+
+* Three Docker containers: `psmysql`, `ps-restore-target`, `pxb`
+
+* Two Docker images: `percona/percona-server:8.4`, `percona/percona-xtrabackup:8.4`
+
+* Two Docker volumes: `backupvol`, `restore_data`
+
+For information about running Percona XtraBackup in production environments, see [Installation](installation.md).
 
 ## Next step
 
-[Next steps](quickstart-next-steps.md){.md-button}
+[Explore next steps](quickstart-next-steps.md){.md-button}

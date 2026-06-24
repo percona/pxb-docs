@@ -186,7 +186,7 @@ To support simultaneous compression and streaming, Percona XtraBackup uses the x
 
 ## XtraDB
 
-Percona XtraDB is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. Percona XtraDB includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see [The Percona XtraDB Storage Engine :octicons-link-external-16:](https://www.percona.com/doc/percona-server/innovation-release/percona-xtradb.html).
+Percona XtraDB is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. Percona XtraDB includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see [The Percona XtraDB Storage Engine :octicons-link-external-16:](https://docs.percona.com/percona-server/8.4/percona-xtradb.html).
 
 ## Zstandard (ZSTD)
 
