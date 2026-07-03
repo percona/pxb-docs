@@ -24,7 +24,7 @@ With Percona XtraBackup you can:
 
 ## Support
 
-Percona’s enterprise-grade commercial [MySQL Support :octicons-link-external-16:](http://www.percona.com/mysql-support/) contracts include support for Percona XtraBackup. We recommend support for critical production deployments.
+Percona’s enterprise-grade commercial [MySQL Support :octicons-link-external-16:](https://www.percona.com/services/expert-support/) contracts include support for Percona XtraBackup. We recommend support for critical production deployments.
 
 ## Supported storage engines
 

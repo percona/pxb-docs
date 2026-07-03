@@ -1,13 +1,9 @@
 # Use a YUM repository to install Percona XtraBackup
 
-<!-- Varify the instruction for 9.7 version-->
-
 Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads). The Percona yum repository supports popular `RPM`-based operating systems, including the `Amazon Linux AMI`.
 
-The easiest way to install the Percona Yum repository is to install an `RPM` that configures yum and installs the [Percona GPG key :octicons-link-external-16:](https://www.percona.com/downloads/RPM-GPG-KEY-percona).
-
-Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle :octicons-link-external-16:](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
+Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle :octicons-link-external-16:](https://www.percona.com/release-lifecycle-overview/#mysql).
 
 ## Install Percona XtraBackup from Percona `yum` repository
 
@@ -46,7 +42,7 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
 2. Enable the repository: 
 
     ```shell
-    sudo percona-release enable pxb-84-lts
+    sudo percona-release enable {{pkg}}
     ```
 
     ??? example "Expected output"
@@ -59,7 +55,7 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
 3. Install Percona XtraBackup.
 
     ```shell
-    sudo yum install percona-xtrabackup-84
+    sudo yum install percona-xtrabackup-97
     ```
 
     ??? example "Expected output"
@@ -86,7 +82,7 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
     ??? example "Expected output"
 
         ```{.text .no-copy}
-        xtrabackup version 8.4.0-1 based on MySQL server 8.4.0 Linux (x86_64) (revision id: da6e1abd)
+        xtrabackup version 9.7.0-1 based on MySQL server 9.7.1-1 Linux (x86_64) (revision id: da6e1abd)
         ```
 
 5. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:
