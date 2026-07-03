@@ -11463,7 +11463,6 @@ backup1:/var/lib/mysql-redo-archive/
 <li>Replace the <code>meta</code> and <code>delta</code> files that match the name without the <code>.new</code> in the name using <code>.new.meta</code> and <code>.new.delta</code>.</li>
 </ol>
 <p>After <code>Phase 3</code> is completed, the regular <a href="#how-xtrabackup-works">crash recovery</a> starts.</p></section><section class="print-page" id="smart-memory-estimation" heading-number="6.8"><h1 id="smart-memory-estimation-smart-memory-estimation">Smart memory estimation<a class="headerlink" href="#smart-memory-estimation-smart-memory-estimation" title="Permanent link">&para;</a></h1>
-<p>The Smart memory estimation is <a href="#glossary-tech-preview">tech preview</a> feature. Before using Smart memory estimation in production, we recommend that you test restoring production from physical backups in your environment and also use the alternative backup method for redundancy.</p>
 <p>Percona XtraBackup supports the Smart memory estimation feature. With this feature, Percona XtraBackup computes the memory required for <code>prepare</code> phase, while copying redo log entries during the <code>backup</code> phase. Percona XtraBackup also considers the number of InnoDB pages to be fetched from the disk.  </p>
 <p>Percona XtraBackup performs the backup procedure in two steps: </p>
 <ul>
@@ -12427,7 +12426,6 @@ xtrabackup child process.</p>
 <p>To adjust the chunk size for encrypted files, use <a href="#xtrabackup-option-reference-read-buffer-size"><code>--read-buffer-size</code></a> and this option.</p>
 <h3 id="xtrabackup-option-reference-estimate-memory">estimate-memory<a class="headerlink" href="#xtrabackup-option-reference-estimate-memory" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--estimate-memory=#</code></p>
-<p>This option is in <a href="#glossary-tech-preview">tech preview</a>.</p>
 <p>The option lets you enable or disable the <a href="#smart-memory-estimation">Smart memory estimation</a> feature. The default value is OFF. Enable the feature by setting <code>--estimate-memory=ON</code> in the backup phase and setting the <code>--use-free-memory-pct</code> option in the <code>--prepare</code> phase. If the <code>--estimate-memory</code> setting is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
@@ -12892,7 +12890,6 @@ value, xtrabackup will ask for it. The same passphrase should be
 specified for the <code>--prepare</code> command.</p>
 <h3 id="xtrabackup-option-reference-use-free-memory-pct">use-free-memory-pct<a class="headerlink" href="#xtrabackup-option-reference-use-free-memory-pct" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--use-free-memory-pct</code></p>
-<p>The <code>--use-free-memory-pct</code> is a <a href="#glossary-tech-preview">tech preview</a> option.</p>
 <p>This option lets you configure the <a href="#smart-memory-estimation">Smart memory estimation</a> feature. The option controls the amount of free memory that can be used to <code>--prepare</code> a backup. The default value is 0 (zero), which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100.</p>
 <p>This option works only if <code>--estimate-memory</code> option is enabled. If the <code>--estimate-memory</code> option is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
