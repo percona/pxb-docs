@@ -1,7 +1,5 @@
 # Smart memory estimation
 
-The Smart memory estimation is [tech preview](glossary.md#tech-preview) feature. Before using Smart memory estimation in production, we recommend that you test restoring production from physical backups in your environment and also use the alternative backup method for redundancy.
-
 Percona XtraBackup supports the Smart memory estimation feature. With this feature, Percona XtraBackup computes the memory required for `prepare` phase, while copying redo log entries during the `backup` phase. Percona XtraBackup also considers the number of InnoDB pages to be fetched from the disk.  
 
 Percona XtraBackup performs the backup procedure in two steps: 

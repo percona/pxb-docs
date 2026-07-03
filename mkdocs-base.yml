@@ -69,12 +69,14 @@ extra_css:
   - css/nocopy.css
   - css/mysql.css
   - css/rating.css
+  - css/kapa.css
 
 extra_javascript:
   - js/version-select.js
   - js/promptremover.js
   - js/consent.js
   - js/rating.js
+  - js/kapa.js
 
 markdown_extensions:
   attr_list: {}
@@ -191,15 +193,14 @@ nav:
         - lru-dump-backup.md
         - throttling-backups.md
         - store-backup-history.md
-
+        - backup-size-reporting.md
         - xbstream features: 
           - take-streaming-backup.md
           - accelerate-backup-process.md
-
+      - Prepare features:
+        - innodb-btree-check.md
       - Restore features:
         - point-in-time-recovery.md
-
-
       - flush-tables-with-read-lock.md
       - log-enhancements.md
       - redo-log-archiving.md

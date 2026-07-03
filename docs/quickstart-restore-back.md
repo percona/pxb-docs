@@ -25,18 +25,18 @@ The following steps describe how to restore your backup to another Percona Serve
     | `-d` | Detaches the container. The container runs in the background. |
     | `-e` | Adds an environmental variable. This example adds the  ` MYSQL_ROOT_PASSWORD `  environment variable. The instance refuses to initialize if no environmental variable is added. Choose a more secure password, if needed. |
     | `myvol2` | Indicates the persistent storage for the database. |
-    | `8.4` | Use this tag to specify a specific version. |
+    | `9.7` | Use this tag to specify a specific version. |
 
     You must provide at least one environment variable to access the database, such as `MYSQL_ROOT_PASSWORD`, `MYSQL_DATABASE`, `MYSQL_USER`, and `MYSQL_PASSWORD` or the instance refuses to initialize.
 
-    For this document, we are using the `8.4` tag. In Docker, a tag is a label assigned to an image. Tags are used to maintain different versions of an image. If we did not add a tag, Docker uses `latest` as the default tag and downloads the latest image from [percona/percona-server on the Docker Hub].
+    For this document, we are using the `9.7` tag. In Docker, a tag is a label assigned to an image. Tags are used to maintain different versions of an image. If we did not add a tag, Docker uses `latest` as the default tag and downloads the latest image from [percona/percona-server on the Docker Hub].
 
     To use a Docker volume for persistent storage with a database, specify the path where the database stores its data inside the container, usually `/var/lib/mysql`.
 
     * Run a Docker container example
 
         ```shell
-        docker run -d -p 3307:3306 --name psmysql2 -e MYSQL_ROOT_PASSWORD=secret -v myvol2:/var/lib/mysql percona/percona-server:8.4
+        docker run -d -p 3307:3306 --name psmysql2 -e MYSQL_ROOT_PASSWORD=secret -v myvol2:/var/lib/mysql percona/percona-server:9.7
         ```
 
     ??? example "Expected output"
@@ -63,7 +63,7 @@ The following steps describe how to restore your backup to another Percona Serve
     The `--rm` option automatically removes the temporary container created from percona/percona-xtrabackup:8.0.34 image after the container exits. 
 
     ```shell
-    docker run --volumes-from psmysql2 -v backupvol:/backup_84 -it --rm --user root percona/percona-xtrabackup:8.4 /bin/bash -c "rm -rf /var/lib/mysql/*"
+    docker run --volumes-from psmysql2 -v backupvol:/backup_97 -it --rm --user root percona/percona-xtrabackup:9.7 /bin/bash -c "rm -rf /var/lib/mysql/*"
     ```
 
     If the command executes successfully, the expected output is empty.
@@ -71,16 +71,16 @@ The following steps describe how to restore your backup to another Percona Serve
 5. Restore backup of `psmysql` from `backupvol` to a new `psmysql2` instance.
 
     ```shell
-    docker run --platform linux/amd64 --volumes-from psmysql2 -v backupvol:/backup_84 -it --rm --user root percona/percona-xtrabackup:8.4 /bin/bash -c "xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_84" 
+    docker run --platform linux/amd64 --volumes-from psmysql2 -v backupvol:/backup_97 -it --rm --user root percona/percona-xtrabackup:9.7 /bin/bash -c "xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_97" 
     ```
 
     ??? example "Expected output"
     
         ```{.text .no-copy}
         2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
-        2024-10-07T14:08:59.128951-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --copy-back=1 --target-dir=/backup_84
-        xtrabackup version 8.4.0-1 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 3792f907)
-        2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /backup_84/
+        2024-10-07T14:08:59.128951-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --copy-back=1 --target-dir=/backup_97
+        xtrabackup version 9.7.0-1 based on MySQL server 9.7.1-1 Linux (x86_64) (revision id: 3792f907)
+        2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /backup_97/
 
         ...
 
@@ -101,7 +101,7 @@ This section describes the backup validation steps assuming that you backed up `
     To avoid permission issues when running `psmysql2` container, you need to change the owner because the files were restored by `root` user and `psmysql2` will use `mysql` user.
 
     ```shell
-    docker run --volumes-from psmysql2 -v backupvol:/backup_84 -it --rm --user root percona/percona-xtrabackup:8.4 /bin/bash -c "chown -R mysql:mysql /var/lib/mysql/" 
+    docker run --volumes-from psmysql2 -v backupvol:/backup_97 -it --rm --user root percona/percona-xtrabackup:9.7 /bin/bash -c "chown -R mysql:mysql /var/lib/mysql/" 
     ```
 
     If the command executes successfully, the expected output is empty.
@@ -149,7 +149,7 @@ This section describes the backup validation steps assuming that you backed up `
             ```{.text .no-copy}
             Welcome to the MySQL monitor.  Commands end with ; or \g.
             Your MySQL connection id is 10
-            Server version: 8.4.0-1 Percona Server (GPL), Release 1, Revision 238b3c02
+            Server version: 9.7.0-1 Percona Server (GPL), Release 1, Revision 238b3c02
 
             Copyright (c) 2009-2024 Percona LLC and/or its affiliates
             Copyright (c) 2000, 2024, Oracle and/or its affiliates.
