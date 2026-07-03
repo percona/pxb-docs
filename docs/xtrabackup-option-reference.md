@@ -385,8 +385,6 @@ To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-b
 
 Usage: `--estimate-memory=#`
 
-This option is in [tech preview](glossary.md#tech-preview).
-
 The option lets you enable or disable the [Smart memory estimation](smart-memory-estimation.md) feature. The default value is OFF. Enable the feature by setting `--estimate-memory=ON` in the backup phase and setting the `--use-free-memory-pct` option in the `--prepare` phase. If the `--estimate-memory` setting is disabled, the `--use-free-memory-pct` setting is ignored.
 
 An example of how to enable the Smart memory estimation feature:
@@ -1130,8 +1128,6 @@ specified for the `--prepare` command.
 ### use-free-memory-pct
 
 Usage: `--use-free-memory-pct`
-
-The `--use-free-memory-pct` is a [tech preview](glossary.md#tech-preview) option.
 
 This option lets you configure the [Smart memory estimation](smart-memory-estimation.md) feature. The option controls the amount of free memory that can be used to `--prepare` a backup. The default value is 0 (zero), which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup. The maximum allowed value is 100.
 
