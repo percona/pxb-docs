@@ -11,7 +11,7 @@ You can now fetch the latest Percona XtraBackup {{vers}} sources:
 ```shell
 git clone https://github.com/percona/percona-xtrabackup.git
 cd percona-xtrabackup
-git checkout trunk
+git checkout {{vers}}
 git submodule update --init --recursive
 ```
 
@@ -22,7 +22,7 @@ These might vary from system to system.
 
 !!! important
  
-    To build **Percona XtraBackup {{vers}} from source, you must use `cmake` 
+    To build Percona XtraBackup {{vers}} from source, you must use `cmake` 
     version 3. To check which version is 
     currently installed, run `cmake --version` at a command prompt. If the 
     version is not `3`, install `cmake3`.
