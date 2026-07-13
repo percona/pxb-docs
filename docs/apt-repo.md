@@ -1,7 +1,5 @@
 # Install with the Percona-release Tool on Debian-based Systems
 
-<!-- Varify the instruction for 9.7 version-->
-
 Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads).
 
@@ -78,9 +76,9 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
         Building dependency tree... Done
         Reading state information... Done
         ...
-        For example, to enable the Percona Distribution for MySQL 8.0 repository use:
+        For example, to enable the Percona Distribution for MySQL 9.7 repository use:
 
-          percona-release setup pdps8.0
+          percona-release setup pdps9.7
 
         Note: To avoid conflicts with older product versions, the percona-release setup command may disable our original repository for some products.
 
@@ -112,7 +110,7 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 6. Enable the specific percona-release product.
 
     ```shell
-    sudo percona-release enable pxb-84-lts
+    sudo percona-release enable {{pkg}}
     ```
     ??? example "Expected output"
 
@@ -123,11 +121,11 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
         Hit:3 http://repo.percona.com/prel/apt jammy InRelease                     
         Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease
         Hit:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
-        Get:6 http://repo.percona.com/pxb-84-lts/apt jammy InRelease [12.8 kB]
+        Get:6 http://repo.percona.com/{{pkg}}/apt jammy InRelease [12.8 kB]
         Hit:7 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
         Hit:8 http://repo.percona.com/telemetry/apt jammy InRelease
-        Get:9 http://repo.percona.com/pxb-84-lts/apt jammy/main Sources [855 B]
-        Get:10 http://repo.percona.com/pxb-84-lts/apt jammy/main amd64 Packages [3547 B]
+        Get:9 http://repo.percona.com/{{pkg}}/apt jammy/main Sources [855 B]
+        Get:10 http://repo.percona.com/{{pkg}}/apt jammy/main amd64 Packages [3547 B]
         Fetched 17.2 kB in 4s (3958 B/s)   
         Reading package lists... Done
         ```
@@ -135,7 +133,7 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 7. Install Percona XtraBackup.
 
     ```shell
-    sudo apt install percona-xtrabackup-84
+    sudo apt install percona-xtrabackup-97
     ```
 
     ??? example "Expected output"
@@ -150,7 +148,7 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
         perl-modules-5.34 rsync zstd
         ...
         Setting up libdbd-mysql-perl:amd64 (4.050-5ubuntu0.22.04.1) ...##############.......] 
-        Setting up percona-xtrabackup-84 (8.4.0-1-1.jammy) ...#########################.....] 
+        Setting up percona-xtrabackup-97 (9.7.1-rc1.jammy) ...#########################.....] 
         Processing triggers for libc-bin (2.35-0ubuntu3.8) ...###########################...] 
         ```
 
@@ -163,7 +161,7 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
     ??? example "Expected output"
 
         ```{.text .no-copy}
-        xtrabackup version 8.4.0-1 based on MySQL server 8.4.0 Linux (x86_64) (revision id: da6e1abd)
+        xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: da6e1abd)
         ```
 
 9. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:

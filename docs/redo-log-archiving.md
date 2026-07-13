@@ -170,9 +170,9 @@ cat /tmp/b0-with-redo-archiving-as-mysql-os-user.log
 ??? example "Expected output"
     ```{.text .no-copy}
     [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql
-    [Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.4.0-3 based on MySQL server 8.4.0-3 Linux (aarch64) (revision id: cccec763) 250721 13:36:02  version_check Connecting to MySQL server with DSN 'dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost' as 'root'  (using password: YES). 250721 13:36:02  version_check Connected to MySQL server 250721 13:36:02  version_check Executing a version check against the server... 250721 13:36:02  version_check Done. 
+    [Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1-1 Linux (aarch64) (revision id: cccec763) 250721 13:36:02  version_check Connecting to MySQL server with DSN 'dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost' as 'root'  (using password: YES). 250721 13:36:02  version_check Connected to MySQL server 250721 13:36:02  version_check Executing a version check against the server... 250721 13:36:02  version_check Done. 
        [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
-       [Note] [MY-011825] [Xtrabackup] Using server version 8.4.0-3 
+       [Note] [MY-011825] [Xtrabackup] Using server version 9.7.1-1 
     ...
     [Note] [MY-011825] [Xtrabackup] xtrabackup redo_log_arch_dir is set to 
     backup1:/var/lib/mysql-redo-archive/  

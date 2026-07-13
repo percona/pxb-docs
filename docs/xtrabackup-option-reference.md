@@ -305,7 +305,7 @@ xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
 
 By default, this option is set to OFF.
 
-If [`innodb_buffer_pool_dump_status` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/8.3/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status) reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
+If [`innodb_buffer_pool_dump_status` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status) reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
 using the value of [`--dump-innodb-buffer-pool-timeout`](#dump-innodb-buffer-pool-timeout)
 
 The file `ib_buffer_pool` stores the tablespace ID and page ID
@@ -320,7 +320,7 @@ pages to dump.
 
 This option is effective if `--dump-innodb-buffer-pool` option is set
 to ON. If this option contains a value, xtrabackup sets the MySQL
-system variable [`innodb_buffer_pool_dump_pct` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/8.3/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct). As soon as the buffer pool
+system variable [`innodb_buffer_pool_dump_pct` :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct). As soon as the buffer pool
 dump completes or is stopped (see
 `--dump-innodb-buffer-pool-timeout`), the value of the MySQL system
 variable is restored.
@@ -637,14 +637,6 @@ With the `--lock-ddl=ON` option the backup process is as follows:
 If the backup lock is disabled with the [`--lock-ddl=OFF`](./xtrabackup-option-reference.md/#lock-ddl) option, a backup continues while concurrent DDL operations are executed. These backups may be invalid and may fail at either the `backup` or the `--prepare` step.
 
 Use a [safe-slave-backup](#safe-slave-backup) option to stop a SQL replica thread before copying the InnoDB files.
-
-### lock-ddl-per-table
-
-Usage: `--lock-ddl-per-table`
-
-Deprecated in Percona XtraBackup 8.0. Use the [`–lock-ddl`](#lock-ddl) option instead
-<!--26-1-24-->
-Lock DDL for each table before xtrabackup starts to copy it and until the backup is completed.
 
 ### lock-ddl-timeout
 

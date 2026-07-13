@@ -61,7 +61,7 @@ Percona XtraBackup {{vers}} supports backing up data from the following storage 
 	
 * MyRocks
 
-It does not support backups on MySQL 8.0 or 9.x servers.
+It does not support backups on MySQL 8.0 or 8.4 servers.
 
 Percona XtraBackup {{vers}} can take full backups of databases using the MyRocks storage engine. 
 

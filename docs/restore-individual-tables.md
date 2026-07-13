@@ -2,7 +2,7 @@
 
 Sometimes, you must restore just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to restore specific tables between different database systems while keeping your data safe.
 
-This process only works with InnoDB tables that use the `file-per-table` setup. This setup stores each table's data in its `.ibd` file. You can restore these tables to systems running Percona Server for MySQL with XtraDB or MySQL 8.0. Your source database can be any type, but the target database must be XtraDB or MySQL 8.0.
+This process only works with InnoDB tables that use the `file-per-table` setup. This setup stores each table's data in its `.ibd` file. You can restore these tables to systems running Percona Server for MySQL with XtraDB or MySQL 9.7. Your source database can be any type, but the target database must be XtraDB or MySQL 9.7.
 
 When moving tables, you'll work with several important files. Each file has a specific job in the restoration process:
 

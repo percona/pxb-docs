@@ -57,26 +57,26 @@ The steps are as follows:
             pxb
             ```
 
-    * Remove `percona/percona-server:8.0.34` and `percona/percona-xtrabackup:8.0.34` Docker images
+    * Remove `percona/percona-server:9.7.1` and `percona/percona-xtrabackup:9.7.1` Docker images
 
         ```shell
-        docker image rmi percona/percona-server:8.0.34
+        docker image rmi percona/percona-server:9.7.1
         ```
 
         ??? example "Expected output"
 
             ```{.text .no-copy}
-            Untagged: percona/percona-server:8.0.34
+            Untagged: percona/percona-server:9.7.1
             ```
 
         ```shell
-        docker image rmi percona/percona-xtrabackup:8.0.34
+        docker image rmi percona/percona-xtrabackup:9.7.1
         ```
 
         ??? example "Expected output"
 
             ```{.text .no-copy}
-            Untagged: percona/percona-server:8.0.34
+            Untagged: percona/percona-server:9.7.1
             Untagged: percona/percona-server@sha256:4944f9b365e0dc88f41b3b704ff2a02d1459fd07763d7d1a444b263db8498e1f
             Deleted: sha256:b2588da614b1f382468fc9f44600863e324067a9cae57c204a30a2105d61d9d9
             Deleted: sha256:1ceaa6dc89e328281b426854a3b00509b5df13826a9618a09e819a830b752ebd
