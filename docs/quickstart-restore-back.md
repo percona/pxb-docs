@@ -1,7 +1,5 @@
 # Restore the backup
 
-<!-- Varify the instruction for 9.7 version-->
-
 The following steps describe how to restore your backup to another Percona Server container and check whether the data is available.
 {.power-number}
 
@@ -60,7 +58,7 @@ The following steps describe how to restore your backup to another Percona Serve
 
 4. Remove all created files in `myvol2` to allow xtrabackup restore data to `myvol2`
 
-    The `--rm` option automatically removes the temporary container created from percona/percona-xtrabackup:8.0.34 image after the container exits. 
+    The `--rm` option automatically removes the temporary container created from percona/percona-xtrabackup:9.7.1 image after the container exits. 
 
     ```shell
     docker run --volumes-from psmysql2 -v backupvol:/backup_97 -it --rm --user root percona/percona-xtrabackup:9.7 /bin/bash -c "rm -rf /var/lib/mysql/*"
@@ -79,7 +77,7 @@ The following steps describe how to restore your backup to another Percona Serve
         ```{.text .no-copy}
         2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
         2024-10-07T14:08:59.128951-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --copy-back=1 --target-dir=/backup_97
-        xtrabackup version 9.7.0-1 based on MySQL server 9.7.1-1 Linux (x86_64) (revision id: 3792f907)
+        xtrabackup version 9.7.1-1 based on MySQL server 9.7.1-1 Linux (x86_64) (revision id: 3792f907)
         2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /backup_97/
 
         ...
@@ -89,7 +87,7 @@ The following steps describe how to restore your backup to another Percona Serve
         2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK! 
         ``` 
 
-    This command restores the backup files from the `backup_8034` volume to the `psmysql2` container. It uses the `percona/percona-xtrabackup:8.0.34` image to run a temporary container with root privileges. It executes the xtrabackup tool with the `--copy-back` option, which copies the files from the `backup_8034` volume to the /`var/lib/mysql/` directory in the `psmysql2` container. The command uses --rm option to delete the temporary container after it exits.
+    This command restores the backup files from the `backup_9711` volume to the `psmysql2` container. It uses the `percona/percona-xtrabackup:9.7.1` image to run a temporary container with root privileges. It executes the xtrabackup tool with the `--copy-back` option, which copies the files from the `backup_9711` volume to the /`var/lib/mysql/` directory in the `psmysql2` container. The command uses --rm option to delete the temporary container after it exits.
 
 ## Validate the backup
 

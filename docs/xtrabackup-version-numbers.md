@@ -1,12 +1,10 @@
 # Understand version numbers
 
-<!-- Varify the instruction for 9.7 version-->
-
 A version number identifies the product release. The product contains the latest features, improvements, and bug fixes at the time of that release.
 
-In the 8.0 series, Oracle followed a fast continuous delivery approach, frequently pushing both patches and new features, which sometimes led to stability and compatibility issues. In contrast, 8.4 as an LTS release limits changes to essential fixes, improving overall stability and reducing operational risk.
+In the 8.0 series, Oracle followed a fast continuous delivery approach, frequently pushing both patches and new features, which sometimes led to stability and compatibility issues. In contrast, 9.7 as an LTS release limits changes to essential fixes, improving overall stability and reducing operational risk.
 
-Any Percona XtraBackup 8.4 release can work with any Percona Server for MySQL 8.4 or MySQL 8.4 release. You no longer need to match the Percona XtraBackup version number with the server version number.
+Any Percona XtraBackup 9.7 release can work with any Percona Server for MySQL 9.7 or MySQL 9.7 release. You no longer need to match the Percona XtraBackup version number with the server version number.
 
 | {{vers}}.0 | -1 |
 |---|---|

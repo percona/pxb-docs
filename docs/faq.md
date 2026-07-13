@@ -1,6 +1,3 @@
-<!---
- Ask Satya to review and add/change as needed
- --->
 # Frequently asked questions
 
 ## Does Percona XtraBackup {{vers}} support making backups of databases in versions prior to {{vers}}?
@@ -58,9 +55,7 @@ In this case, the following error is printed:
 [FATAL] InnoDB: An optimized (without redo logging) DDL operation has been performed. All modified pages may not have been flushed to the disk yet.
 Percona XtraBackup will not be able to take a consistent backup. Retry the backup operation.
 ```
-<!---
- check if this is needed
- --->
+
 !!! note
    
     * Redo logging is disabled during a [sorted index build :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/sorted-index-builds.html). To avoid this error, Percona XtraBackup can use metadata locks on tables while they are copied:
