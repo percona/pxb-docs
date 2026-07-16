@@ -4,7 +4,7 @@ The Linux Security Module implements mandatory access controls (MAC) with AppArm
 
 Percona XtraBackup does not have a profile and is not confined by AppArmor.
 
-For a list of common AppArmor commands, see [Percona Server for MySQL - AppArmor :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/apparmor.html).
+For a list of common AppArmor commands, see [Percona Server for MySQL - AppArmor :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/apparmor.html).
 
 ## Develop a profile
 

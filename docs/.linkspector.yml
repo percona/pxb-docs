@@ -11,3 +11,10 @@ ignorePatterns:
   - pattern: "#mysql_alerts$"
   - pattern: "#postgresql_alerts$"
   - pattern: "#proxysql_alerts$"
+  - pattern: "^https://www\\.zmanda\\.com/zrm-community/?$"
+
+replacementPatterns:
+  - pattern: "\\{\\{vers\\}\\}"
+    replacement: "9.7"
+  - pattern: "\\{\\{ps\\}\\}"
+    replacement: "8.4"

@@ -90,7 +90,7 @@ The number of attempts to acquire metadata locks.
 
 Usage: `--backup-locks`
 
-This option controls if [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) are used instead of `FLUSH TABLES
+This option controls if [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html) are used instead of `FLUSH TABLES
 WITH READ LOCK` on the backup stage. The option has no effect when the server does not support backup locks. This option is enabled by default,
 disable with [`--no-backup-locks`](#no-backup-locks).
 
@@ -427,7 +427,7 @@ terminates with an error.
 
 The default value is `0`, xtrabackup does not wait
 for queries to complete and starts `FLUSH TABLES WITH READ LOCK`
-immediately. Where supported, xtrabackup automatically uses the [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
+immediately. Where supported, xtrabackup automatically uses the [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify the InnoDB tables.
 
 ### ftwrl-wait-threshold
@@ -440,7 +440,7 @@ xtrabackup to detect long-running queries with a non-zero value of
 is not started until such long-running queries exist.
 
 This option has no effect if `--ftwrl-wait-timeout` is `0`. The default value
-is `60` seconds. The xtrabackup binary automatically uses [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
+is `60` seconds. The xtrabackup binary automatically uses [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables when backup locks are supported.
 
 ### ftwrl-wait-query-type
@@ -452,7 +452,7 @@ Usage: `--ftwrl-wait-query-type=all|update`This option specifies which queries c
 Usage: `--galera-info`
 
 This option creates the `xtrabackup_galera_info` file, which contains the local node state at the backup time. This option should be used when
-performing the backup of a Percona XtraDB Cluster. The option has no effect when [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) are used to create the backup.
+performing the backup of a Percona XtraDB Cluster. The option has no effect when [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html) are used to create the backup.
 
 ### generate-new-master-key
 
@@ -594,7 +594,7 @@ To use this option xtrabackup user should have the
 `PROCESS` and `SUPER` privileges.
 
 Where supported, xtrabackup
-automatically uses [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
+automatically uses [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
 
 ### kill-long-query-type
 
@@ -707,7 +707,7 @@ about the binary log position of the backup. This option shouldn’t be used if 
 happening on non-InnoDB tables; this includes the system MyISAM tables in the
 mysql database. Otherwise, those operations could lead to an inconsistent backup.
 
-Where supported, xtrabackup will automatically use [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
+Where supported, xtrabackup will automatically use [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html) as a lightweight alternative to `FLUSH TABLES WITH READ LOCK` to copy
 non-InnoDB data to avoid blocking DML queries that modify InnoDB tables.
 
 If you consider using this option because your backups fail to acquire

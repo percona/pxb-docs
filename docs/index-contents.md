@@ -39,7 +39,6 @@
   - [Install Percona XtraBackup {{vers}} using downloaded RPM packages](yum-download-rpm.md)
   - [Install using downloaded DEB packages](apt-download-deb.md)
   - [Install with the Percona-release Tool on Debian-based Systems](apt-repo.md)
-  - [lock-ddl-per-table option improvements](lock-options.md)
   - [LRU dump backup](lru-dump-backup.md)
   - [Make backups in replication environments](make-backup-in-replication-env.md)
   - [Next steps](quickstart-next-steps.md)
