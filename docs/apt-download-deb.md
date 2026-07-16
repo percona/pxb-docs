@@ -10,13 +10,13 @@ The following example downloads Percona XtraBackup {{release}} release package f
 1. Use `wget` to download the `DEB` package:
 
     ```shell
-    wget https://downloads.percona.com/downloads/Percona-XtraBackup-{{vers}}/Percona-XtraBackup-{{release}}/binary/debian/jammy/x86_64/percona-xtrabackup-97_{{release}}-1.jammy_amd64.deb
+    wget https://downloads.percona.com/downloads/Percona-XtraBackup-{{vers}}/Percona-XtraBackup-{{release}}/binary/debian/jammy/x86_64/percona-xtrabackup-97_{{deb}}-1.jammy_amd64.deb
     ```
 
 2. Install Percona XtraBackup by using `dpkg`:
 
     ```shell
-    sudo dpkg -i percona-xtrabackup-97_{{release}}-1.jammy_amd64.deb
+    sudo dpkg -i percona-xtrabackup-97_{{deb}}-1.jammy_amd64.deb
     ```
 
 ## Common dependencies
