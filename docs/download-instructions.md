@@ -5,10 +5,10 @@
 Do the following steps to select the software:
 
 1. Open [Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads)
-2. Locate the Percona Software, for example, Percona XtraBackup
-3. In `Select Product`, select which product, for example, Percona XtraBackup {{vers}}
-4. In `Select Product Version`, select the version, for example, PERCONA-XTRABACKUP-{{release}}
-5. In `Select Platform`, select the operating system, for example, RED HAT ENTERPRISE LINUX / CENTOS/ ORACLE LINUX 9
+2. Select a product, for example, Percona XtraBackup
+3. In `Product Group`, select which product, for example, Percona XtraBackup {{vers}}
+4. In `Version`, select the version, for example, PERCONA-XTRABACKUP-{{release}}
+5. In `Platform`, select the operating system, for example, RED HAT ENTERPRISE LINUX / CENTOS/ ORACLE LINUX 9
 
 ## Download to a local computer
 
