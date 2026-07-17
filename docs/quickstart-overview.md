@@ -30,8 +30,8 @@ This guide will help you get started quickly, but there's a lot more to learn ab
 
 To take a backup of Percona Server for MySQL, run Percona Server for MySQL in a Docker container and create a database, and a table.
 
-* [Start Percona Server in a Docker container :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/quickstart-docker.html)
-* [Create a database and table in Percona Server :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/quickstart-docker.html#create-a-database)
+* [Start Percona Server in a Docker container :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/quickstart-docker.html)
+* [Create a database and table in Percona Server :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/quickstart-docker.html#create-a-database)
 
 ### Limitations
 

@@ -4,7 +4,7 @@ Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads).
 
 Specific information on the supported platforms, products, and versions is
-described in [Percona Release Lifecycle Overview].
+described in [Percona Release Lifecycle Overview :octicons-link-external-16:](https://www.percona.com/release-lifecycle-overview/).
 
 ## Install Percona XtraBackup through percona-release
 

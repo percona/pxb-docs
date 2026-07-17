@@ -60,7 +60,7 @@ the `FLUSH TABLES WITH READ LOCK`. Note that Percona XtraBackup will use
 [Backup locks] where available as a lightweight alternative to `FLUSH TABLES WITH READ
 LOCK`.
 
-Percona XtraBackup uses these locks automatically to copy non-InnoDB data to avoid blocking Data manipulation language (DML) queries that modify InnoDB tables. Find more information in [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/backup-locks.html)
+Percona XtraBackup uses these locks automatically to copy non-InnoDB data to avoid blocking Data manipulation language (DML) queries that modify InnoDB tables. Find more information in [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html)
 
 !!! note
    

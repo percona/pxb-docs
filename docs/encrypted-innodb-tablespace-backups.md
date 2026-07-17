@@ -16,8 +16,8 @@ Percona XtraBackup supports the following keyring components:
 
 * [keyring_vault](#keyring_vault-configuration)
 * [keyring_file](#keyring_file-configuration)
-* [Key Management Interoperability Protocol (KMIP) :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/using-kmip.html?h=kmip)
-* [Amazon Key Management Service (AWS KMS) :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/using-amz-kms.html)
+* [Key Management Interoperability Protocol (KMIP) :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/using-kmip.html?h=kmip)
+* [Amazon Key Management Service (AWS KMS) :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/using-amz-kms.html)
 
 Percona XtraBackup {{vers}} and later versions support only component versions of the security features.
 
@@ -65,7 +65,7 @@ The `component_keyring_vault.cnf` file uses JSON format:
 }
 ```
 
-For information on configuring the keyring vault component on the MySQL server, see [Use the keyring vault component :octicons-link-external-16:](https://docs.percona.com/percona-server/{{vers}}/use-keyring-vault-component.html).
+For information on configuring the keyring vault component on the MySQL server, see [Use the keyring vault component :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/use-keyring-vault-component.html).
 
 #### keyring_file configuration
 
