@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6002,7 +6002,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 </li>
 <li>
 <p>Gitignore: Add <code>.env</code> to your <code>.gitignore</code> file to prevent committing sensitive data:
-  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;.env&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
+  <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">".env"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
 </code></pre></div></p>
 </li>
 <li>
@@ -6079,7 +6079,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
 </li>
 <li>
 <p>Handle special characters: Quote values with special characters:
-  <div class="highlight"><pre><span></span><code><span class="nv">OS_PASSWORD</span><span class="o">=</span><span class="s2">&quot;my-password-with-special-chars!&quot;</span>
+  <div class="highlight"><pre><span></span><code><span class="nv">OS_PASSWORD</span><span class="o">=</span><span class="s2">"my-password-with-special-chars!"</span>
 </code></pre></div></p>
 </li>
 <li>
@@ -6095,10 +6095,10 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
 <span class="c1"># backup-script.sh</span>
 
 <span class="c1"># Load environment variables</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;/secure/path/.env&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">"/secure/path/.env"</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w">    </span><span class="nb">source</span><span class="w"> </span>/secure/path/.env
 <span class="k">else</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Error: .env file not found&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Error: .env file not found"</span>
 <span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="k">fi</span>
 
@@ -6106,7 +6106,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Backup completed successfully&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Backup completed successfully"</span>
 </code></pre></div>
 <p>This approach provides a secure, maintainable way to manage xbcloud credentials and configuration without exposing sensitive information in command lines or scripts.</p>
 
@@ -6235,7 +6235,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

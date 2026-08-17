@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -5836,35 +5836,35 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>This script is designed to dump the schemas of all tables from each database in a MySQL server instance, excluding the system databases, into separate files.</p>
 <p>The script should be modified for your specific use case before you run it. For example, you may want to exclude certain tables or databases, or specify a different output directory.</p>
 <div class="highlight"><pre><span></span><code>print_usage<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> [--defaults-file=&lt;file&gt;] [--destination-dir=&lt;directory&gt;]&quot;</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --defaults-file=&lt;file&gt;      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)&quot;</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --destination-dir=&lt;directory&gt; (Optional) Directory to save the schema dumps (default: schema_dumps)&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> [--defaults-file=&lt;file&gt;] [--destination-dir=&lt;directory&gt;]"</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"  --defaults-file=&lt;file&gt;      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)"</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"  --destination-dir=&lt;directory&gt; (Optional) Directory to save the schema dumps (default: schema_dumps)"</span>
 <span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="o">}</span>
 
-<span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-<span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-<span class="nv">HARDCODED_PASSWORD</span><span class="o">=</span><span class="s2">&quot;test2&quot;</span>
-<span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">&quot;schema_dumps&quot;</span>
+<span class="nv">USER</span><span class="o">=</span><span class="s2">""</span>
+<span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">""</span>
+<span class="nv">HARDCODED_PASSWORD</span><span class="o">=</span><span class="s2">"test2"</span>
+<span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">"schema_dumps"</span>
 
 <span class="c1"># Check for -h or --help option</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;-h&quot;</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;--help&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"-h"</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"--help"</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w">    </span>print_usage
 <span class="k">fi</span>
 
 <span class="c1"># Parse arguments using a loop to check for --defaults-file and --destination-dir options</span>
-<span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$#</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="nv">$#</span><span class="s2">"</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="w"> </span><span class="k">in</span>
 <span class="w">        </span>--defaults-file<span class="o">=</span>*<span class="o">)</span>
-<span class="w">            </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;--defaults-file=</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using provided defaults file: </span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">"--defaults-file=</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Using provided defaults file: </span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">"</span>
 <span class="w">            </span><span class="p">;;</span>
 <span class="w">        </span>--destination-dir<span class="o">=</span>*<span class="o">)</span>
-<span class="w">            </span><span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Saving schema dumps in: </span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Saving schema dumps in: </span><span class="nv">$DEST_DIR</span><span class="s2">"</span>
 <span class="w">            </span><span class="p">;;</span>
 <span class="w">        </span>*<span class="o">)</span>
-<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Error: Invalid option &#39;</span><span class="nv">$1</span><span class="s2">&#39;&quot;</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Error: Invalid option '</span><span class="nv">$1</span><span class="s2">'"</span>
 <span class="w">            </span>print_usage
 <span class="w">            </span><span class="p">;;</span>
 <span class="w">    </span><span class="k">esac</span>
@@ -5872,46 +5872,46 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <span class="k">done</span>
 
 <span class="c1"># Default behavior if no defaults-file is provided</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEFAULTS_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MYSQL_PWD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using password from environment variable MYSQL_PWD&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">"</span><span class="nv">$DEFAULTS_FILE</span><span class="s2">"</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"</span><span class="nv">$MYSQL_PWD</span><span class="s2">"</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Using password from environment variable MYSQL_PWD"</span>
 <span class="w">    </span><span class="k">else</span>
-<span class="w">        </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;--password=</span><span class="nv">$HARDCODED_PASSWORD</span><span class="s2">&quot;</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using hardcoded password in the script&quot;</span>
+<span class="w">        </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">"--password=</span><span class="nv">$HARDCODED_PASSWORD</span><span class="s2">"</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Using hardcoded password in the script"</span>
 <span class="w">    </span><span class="k">fi</span>
-<span class="w">    </span><span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;-uroot&quot;</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using hardcoded user: </span><span class="nv">$USER</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nv">USER</span><span class="o">=</span><span class="s2">"-uroot"</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Using hardcoded user: </span><span class="nv">$USER</span><span class="s2">"</span>
 <span class="k">fi</span>
 
-mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># Root directory for schema dumps</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Schema will be saved in: </span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="nv">$DEST_DIR</span><span class="s2">"</span><span class="w">  </span><span class="c1"># Root directory for schema dumps</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Schema will be saved in: </span><span class="nv">$DEST_DIR</span><span class="s2">"</span>
 
 <span class="c1"># Get the list of all databases, excluding system databases</span>
-<span class="nv">databases</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SHOW DATABASES&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-Ev<span class="w"> </span><span class="s2">&quot;^(information_schema|performance_schema|mysql|sys)</span>$<span class="s2">&quot;</span><span class="k">)</span>
+<span class="nv">databases</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">"SHOW DATABASES"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-Ev<span class="w"> </span><span class="s2">"^(information_schema|performance_schema|mysql|sys)</span>$<span class="s2">"</span><span class="k">)</span>
 
 <span class="k">for</span><span class="w"> </span>db<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$databases</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Dumping schemas for database: </span><span class="nv">$db</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Dumping schemas for database: </span><span class="nv">$db</span><span class="s2">"</span>
 
-<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># Create a directory for each database</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">"</span><span class="w">  </span><span class="c1"># Create a directory for each database</span>
 
 <span class="w">    </span><span class="c1"># Dump only the database creation statement</span>
-<span class="w">    </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--databases<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/create_database_</span><span class="si">${</span><span class="nv">db</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+<span class="w">    </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--databases<span class="w"> </span><span class="s2">"</span><span class="nv">$db</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/create_database_</span><span class="si">${</span><span class="nv">db</span><span class="si">}</span><span class="s2">.sql"</span>
 
 <span class="w">    </span><span class="c1"># Get the list of tables for the current database</span>
-<span class="w">    </span><span class="nv">tables</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SHOW TABLES FROM </span><span class="nv">$db</span><span class="s2">&quot;</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">tables</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">"SHOW TABLES FROM </span><span class="nv">$db</span><span class="s2">"</span><span class="k">)</span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span>table<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$tables</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  Dumping schema for table: </span><span class="nv">$table</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"  Dumping schema for table: </span><span class="nv">$table</span><span class="s2">"</span>
 
-<span class="w">        </span><span class="c1"># Ensure `USE &lt;database&gt;;` is at the top of each table&#39;s schema file</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;USE \`</span><span class="nv">$db</span><span class="s2">\`;&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+<span class="w">        </span><span class="c1"># Ensure `USE &lt;database&gt;;` is at the top of each table's schema file</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"USE \`</span><span class="nv">$db</span><span class="s2">\`;"</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql"</span>
 
 <span class="w">        </span><span class="c1"># Append the table schema dump</span>
-<span class="w">        </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--skip-add-drop-table<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$table</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+<span class="w">        </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--skip-add-drop-table<span class="w"> </span><span class="s2">"</span><span class="nv">$db</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$table</span><span class="s2">"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">"</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql"</span>
 <span class="w">    </span><span class="k">done</span>
 <span class="k">done</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Schema dumps are saved in the &#39;</span><span class="nv">$DEST_DIR</span><span class="s2">&#39; directory.&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Schema dumps are saved in the '</span><span class="nv">$DEST_DIR</span><span class="s2">' directory."</span>
 </code></pre></div>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>To use this script, follow these steps. Run all the commands as root or use the sudo command.</p>
@@ -6064,6 +6064,39 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</
     
     
     
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
+          
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
+        </a>
+      
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
+    
   </aside>
 
 
@@ -6152,7 +6185,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

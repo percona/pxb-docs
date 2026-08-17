@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -5906,13 +5906,13 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li>
 <p>Remove all created files in <code>myvol2</code> to allow xtrabackup restore data to <code>myvol2</code></p>
 <p>The <code>--rm</code> option automatically removes the temporary container created from percona/percona-xtrabackup:9.7.1 image after the container exits. </p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"rm -rf /var/lib/mysql/*"</span>
 </code></pre></div>
 <p>If the command executes successfully, the expected output is empty.</p>
 </li>
 <li>
 <p>Restore backup of <code>psmysql</code> from <code>backupvol</code> to a new <code>psmysql2</code> instance.</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_97&quot;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_97"</span><span class="w"> </span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -5937,7 +5937,7 @@ xtrabackup version 9.7.1-1 based on MySQL server 9.7.1-1 Linux (x86_64) (revisio
 <li>
 <p>Change the owner of the files in <code>myvol2</code> from <code>root</code> to <code>mysql</code></p>
 <p>To avoid permission issues when running <code>psmysql2</code> container, you need to change the owner because the files were restored by <code>root</code> user and <code>psmysql2</code> will use <code>mysql</code> user.</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;chown -R mysql:mysql /var/lib/mysql/&quot;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"chown -R mysql:mysql /var/lib/mysql/"</span><span class="w"> </span>
 </code></pre></div>
 <p>If the command executes successfully, the expected output is empty.</p>
 </li>
@@ -6006,7 +6006,7 @@ Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
 owners.
 
-Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement. 
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement. 
 </code></pre></div>
 </details>
 </li>
@@ -6217,7 +6217,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

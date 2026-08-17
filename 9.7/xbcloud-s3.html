@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -5884,10 +5884,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h2 id="create-a-full-backup-with-amazon-s3">Create a full backup with Amazon S3<a class="headerlink" href="#create-a-full-backup-with-amazon-s3" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span><span class="se">\</span>
---s3-endpoint<span class="o">=</span><span class="s1">&#39;s3.amazonaws.com&#39;</span><span class="w"> </span><span class="se">\</span>
---s3-access-key<span class="o">=</span><span class="s1">&#39;YOUR-ACCESSKEYID&#39;</span><span class="w"> </span><span class="se">\</span>
---s3-secret-key<span class="o">=</span><span class="s1">&#39;YOUR-SECRETACCESSKEY&#39;</span><span class="w"> </span><span class="se">\</span>
---s3-bucket<span class="o">=</span><span class="s1">&#39;mysql_backups&#39;</span>
+--s3-endpoint<span class="o">=</span><span class="s1">'s3.amazonaws.com'</span><span class="w"> </span><span class="se">\</span>
+--s3-access-key<span class="o">=</span><span class="s1">'YOUR-ACCESSKEYID'</span><span class="w"> </span><span class="se">\</span>
+--s3-secret-key<span class="o">=</span><span class="s1">'YOUR-SECRETACCESSKEY'</span><span class="w"> </span><span class="se">\</span>
+--s3-bucket<span class="o">=</span><span class="s1">'mysql_backups'</span>
 --parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="k">$(</span>date<span class="w"> </span>-I<span class="k">)</span>-full_backup
 </code></pre></div>
@@ -5934,25 +5934,25 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 <p>Following the principle of &ldquo;least-privilege&rdquo;, these are the minimum bucket permissions needed for xbcloud to write backups to S3: <strong><em>LIST/PUT/GET/DELETE</em></strong>.</p>
 <p>The following example shows the policy definition for writing to the <code>xbcloud-testing</code> bucket on the AWS S3 storage.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nt">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="s2">&quot;s3:ListBucket&quot;</span>
+<span class="w">            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">"s3:ListBucket"</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:s3:::xbcloud-testing&quot;</span>
+<span class="w">            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::xbcloud-testing"</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;s3:PutObjectAcl&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;s3:GetObjectAcl&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;s3:DeleteObject&quot;</span>
+<span class="w">            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">"s3:PutObject"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"s3:PutObjectAcl"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"s3:GetObject"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"s3:GetObjectAcl"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"s3:DeleteObject"</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:s3:::xbcloud-testing/*&quot;</span>
+<span class="w">            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::xbcloud-testing/*"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
@@ -6108,7 +6108,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       
