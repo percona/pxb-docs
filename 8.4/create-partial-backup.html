@@ -29,7 +29,7 @@ innodb_file_per_table option is enabled.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -37,7 +37,7 @@ innodb_file_per_table option is enabled.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6025,11 +6025,11 @@ value is a regular expression that is matched against the fully-qualified databa
 <p>To back up only tables in the <code>test</code> database, use the following
 command:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span><span class="se">\</span>
---tables<span class="o">=</span><span class="s2">&quot;^test[.].*&quot;</span>
+--tables<span class="o">=</span><span class="s2">"^test[.].*"</span>
 </code></pre></div>
 <p>To back up only the <code>test.t1</code> table, use the following command:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span><span class="se">\</span>
---tables<span class="o">=</span><span class="s2">&quot;^test[.]t1&quot;</span>
+--tables<span class="o">=</span><span class="s2">"^test[.]t1"</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -6038,7 +6038,7 @@ names, one table name per line in the file. Only the tables named in the file
 will be backed up. Names are matched exactly, case-sensitive, with no pattern or
 regular expression matching. The table names must be fully-qualified in
 <code>databasename.tablename</code> format.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;mydatabase.mytable&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/tables.txt
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">"mydatabase.mytable"</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/tables.txt
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables-file<span class="o">=</span>/tmp/tables.txt
 </code></pre></div>
 </div>
@@ -6054,7 +6054,7 @@ the databases using xtrabackup –copy-back.</p>
 even if they are not explicitly listed by the parameter if they were created
 after the backup started.</p>
 </div>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--databases<span class="o">=</span><span class="s1">&#39;mysql sys performance_schema test ...&#39;</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--databases<span class="o">=</span><span class="s1">'mysql sys performance_schema test ...'</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -6229,7 +6229,7 @@ after the backup started.</p>
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

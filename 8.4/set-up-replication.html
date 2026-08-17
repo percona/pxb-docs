@@ -33,7 +33,7 @@ task. Percona XtraBackup is designed to solve this problem.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -41,7 +41,7 @@ task. Percona XtraBackup is designed to solve this problem.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6252,10 +6252,10 @@ datadir, you must put these files in their proper place after the logs have
 been applied.</p>
 <h2 id="3-configure-the-sources-mysql-server">3. Configure the Source’s MySQL server<a class="headerlink" href="#3-configure-the-sources-mysql-server" title="Permanent link">&para;</a></h2>
 <p>On the source, create a user specifically for replication tasks. Use the following command to define the user and set a secure password:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;$replicaip&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">'repl'</span><span class="o">@</span><span class="s1">'$replicaip'</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">'$replicapass'</span><span class="p">;</span>
 </code></pre></div>
 <p>Grant the replication privileges to the newly created user to allow the replica to connect to the source server:</p>
-<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;$replicaip&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">'repl'</span><span class="o">@</span><span class="s1">'$replicaip'</span><span class="p">;</span>
 </code></pre></div>
 <p>Apply the changes:</p>
 <div class="highlight"><pre><span></span><code><span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
@@ -6295,10 +6295,10 @@ and updated in <code>/etc/mysql/debian.cnf</code>.</p>
 password you’ve set up in STEP 3:</p>
 <p>Use the <code>CHANGE_REPLICATION_SOURCE_TO</code> statement</p>
 <div class="highlight"><pre><span></span><code><span class="n">CHANGE</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="k">SOURCE</span><span class="w"> </span><span class="k">TO</span>
-<span class="w">    </span><span class="n">SOURCE_HOST</span><span class="o">=</span><span class="s1">&#39;$sourceip&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">SOURCE_USER</span><span class="o">=</span><span class="s1">&#39;repl&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">SOURCE_PASSWORD</span><span class="o">=</span><span class="s1">&#39;$replicapass&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">SOURCE_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;Source-bin.000001&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_HOST</span><span class="o">=</span><span class="s1">'$sourceip'</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_USER</span><span class="o">=</span><span class="s1">'repl'</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_PASSWORD</span><span class="o">=</span><span class="s1">'$replicapass'</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_LOG_FILE</span><span class="o">=</span><span class="s1">'Source-bin.000001'</span><span class="p">,</span>
 <span class="w">    </span><span class="n">SOURCE_LOG_POS</span><span class="o">=</span><span class="mi">481</span><span class="p">;</span>
 </code></pre></div>
 <p>Start the replica:</p>
@@ -6348,8 +6348,8 @@ called <code>xtrabackup_slave_info</code>.</p>
 </code></pre></div>
 <p>For example, to set up a new user, <code>user2</code>, you add another grant on
 the Source:</p>
-<div class="highlight" data-prompt=">"><pre><span></span><code>&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>REPLICA<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w">  </span>TO<span class="w"> </span><span class="s1">&#39;user2&#39;</span>@<span class="s1">&#39;$newreplicaip&#39;</span>
-<span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt=">"><pre><span></span><code>&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>REPLICA<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w">  </span>TO<span class="w"> </span><span class="s1">'user2'</span>@<span class="s1">'$newreplicaip'</span>
+<span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">'$replicapass'</span><span class="p">;</span>
 </code></pre></div>
 <p>On the <code>NewReplica</code>, copy the configuration file from the <code>Replica</code>:</p>
 <div class="highlight"><pre><span></span><code>scp<span class="w"> </span>user@Replica:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
@@ -6364,10 +6364,10 @@ server-id=3
 file <code>xtrabackup_slave_info</code>, execute the statement for setting up the
 source and the log file for the NewReplica:</p>
 <div class="highlight"><pre><span></span><code><span class="n">CHANGE</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="k">SOURCE</span><span class="w"> </span><span class="k">TO</span>
-<span class="w">    </span><span class="n">SOURCE_HOST</span><span class="o">=</span><span class="s1">&#39;$sourceip&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">SOURCE_USER</span><span class="o">=</span><span class="s1">&#39;repl&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">SOURCE_PASSWORD</span><span class="o">=</span><span class="s1">&#39;$replicapass&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">SOURCE_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;Source-bin.000001&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_HOST</span><span class="o">=</span><span class="s1">'$sourceip'</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_USER</span><span class="o">=</span><span class="s1">'repl'</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_PASSWORD</span><span class="o">=</span><span class="s1">'$replicapass'</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_LOG_FILE</span><span class="o">=</span><span class="s1">'Source-bin.000001'</span><span class="p">,</span>
 <span class="w">    </span><span class="n">SOURCE_LOG_POS</span><span class="o">=</span><span class="mi">481</span><span class="p">;</span>
 </code></pre></div>
 <p>Start the replica:</p>
@@ -6504,7 +6504,7 @@ server is replicating the <code>Source</code>.</p>
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

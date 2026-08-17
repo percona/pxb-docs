@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6126,19 +6126,19 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h4 id="keyring_vault-configuration">keyring_vault configuration<a class="headerlink" href="#keyring_vault-configuration" title="Permanent link">&para;</a></h4>
 <p>The <code>component_keyring_vault.cnf</code> file uses JSON format:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;vault_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_URL}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;secret_mount_point&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_MOUNT_POINT}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;secret_mount_point_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_CONFIG_VERSION}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_TOKEN}&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;vault_ca&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${VAULT_CA}&quot;</span>
+<span class="w">  </span><span class="nt">"vault_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${VAULT_URL}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"secret_mount_point"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${VAULT_MOUNT_POINT}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"secret_mount_point_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${VAULT_CONFIG_VERSION}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${VAULT_TOKEN}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"vault_ca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${VAULT_CA}"</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>For information on configuring the keyring vault component on the MySQL server, see <a href="https://docs.percona.com/percona-server/8.4/use-keyring-vault-component.html">Use the keyring vault component <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <h4 id="keyring_file-configuration">keyring_file configuration<a class="headerlink" href="#keyring_file-configuration" title="Permanent link">&para;</a></h4>
 <p>The <code>component_keyring_file.cnf</code> file uses JSON format:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql-keyring/keyring&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;read_only&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/var/lib/mysql-keyring/keyring"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"read_only"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
@@ -6148,22 +6148,22 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h4 id="keyring_kmip-configuration">keyring_kmip configuration<a class="headerlink" href="#keyring_kmip-configuration" title="Permanent link">&para;</a></h4>
 <p>The <code>component_keyring_kmip.cnf</code> file uses JSON format:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;server_addr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kmip.example.com&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;server_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5696</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;client_ca&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/path/to/client/ca.pem&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;client_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/path/to/client/key.pem&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;server_ca&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/path/to/server/ca.pem&quot;</span>
+<span class="w">  </span><span class="nt">"server_addr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kmip.example.com"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"server_port"</span><span class="p">:</span><span class="w"> </span><span class="mi">5696</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"client_ca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/path/to/client/ca.pem"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"client_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/path/to/client/key.pem"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"server_ca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/path/to/server/ca.pem"</span>
 <span class="p">}</span>
 </code></pre></div>
 <h4 id="keyring_kms-configuration">keyring_kms configuration<a class="headerlink" href="#keyring_kms-configuration" title="Permanent link">&para;</a></h4>
 <p>The <code>component_keyring_kms.cnf</code> file uses JSON format:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql-keyring/keyring&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;read_only&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;auth_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-auth-key&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;secret_access_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-secret-access-key&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;kms_key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-kms-key-id&quot;</span>
+<span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/var/lib/mysql-keyring/keyring"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"read_only"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-east-1"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"auth_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-auth-key"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"secret_access_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-secret-access-key"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"kms_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-kms-key-id"</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="backup-and-restore-with-keyring-components">Backup and restore with keyring components<a class="headerlink" href="#backup-and-restore-with-keyring-components" title="Permanent link">&para;</a></h3>
@@ -6291,7 +6291,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 <p>To create an encrypted backup, use the <a href="xtrabackup-option-reference.html#encrypt"><code>--encrypt</code></a> option along with either <a href="xtrabackup-option-reference.html#encrypt-key"><code>--encrypt-key</code></a> or <a href="xtrabackup-option-reference.html#encrypt-key-file"><code>--encrypt-key-file</code></a> to specify the encryption key. The <code>--encrypt-key</code> and <code>--encrypt-key-file</code> options are mutually exclusive. Use one or the other, but do not both. If you specify both options, XtraBackup returns an error and exits.</p>
 <p>The <code>--encrypt</code> option specifies the encryption algorithm: <code>AES128</code>, <code>AES192</code>, or <code>AES256</code>. To generate an encryption key, use a command such as <code>openssl rand -base64 24</code>.</p>
 <h4 id="using-encrypt-key">Using &ndash;encrypt-key<a class="headerlink" href="#using-encrypt-key" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">"{randomly-generated-alphanumeric-string}"</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -6299,7 +6299,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 </div>
 <h4 id="using-encrypt-key-file">Using &ndash;encrypt-key-file<a class="headerlink" href="#using-encrypt-key-file" title="Permanent link">&para;</a></h4>
 <p>The recommended method uses <code>--encrypt-key-file</code> to read the key from a file:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/data/backups/keyfile
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"{randomly-generated-alphanumeric-string}"</span><span class="w"> </span>&gt;<span class="w"> </span>/data/backups/keyfile
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <div class="admonition warning">
@@ -6313,7 +6313,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>Alternatively, you can use the <code>xbcrypt</code> binary directly:</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">&quot;*\.xbcrypt&quot;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">"*\.xbcrypt"</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -6481,7 +6481,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

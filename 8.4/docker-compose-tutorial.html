@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6370,7 +6370,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 <li>
 <p>Create the password file:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;YourSecurePassword123&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>secrets/db_root_pwd.txt
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">"YourSecurePassword123"</span><span class="w"> </span>&gt;<span class="w"> </span>secrets/db_root_pwd.txt
 </code></pre></div>
 <p>If the command executes successfully, the expected output is empty.</p>
 <div class="admonition warning">
@@ -6407,7 +6407,7 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 <span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql</span>
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3306:3306&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"3306:3306"</span>
 <span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
 
@@ -6424,11 +6424,11 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 <span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
 <span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
-<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
+<span class="w">      </span><span class="no">/bin/bash -c "</span>
 <span class="w">      </span><span class="no">export MYSQL_PWD=$$(cat /run/secrets/db_root_pwd);</span>
 <span class="w">      </span><span class="no">xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root;</span>
 <span class="w">      </span><span class="no">xtrabackup --prepare --target-dir=/backup_84</span>
-<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">      </span><span class="no">"</span>
 <span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup</span>
 
@@ -6441,14 +6441,14 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backupvol:/backup_84</span>
 <span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
-<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
-<span class="w">      </span><span class="no">echo &#39;==&gt; Clearing current database directory...&#39;;</span>
+<span class="w">      </span><span class="no">/bin/bash -c "</span>
+<span class="w">      </span><span class="no">echo '==&gt; Clearing current database directory...';</span>
 <span class="w">      </span><span class="no">rm -rf /var/lib/mysql/* &amp;&amp;</span>
-<span class="w">      </span><span class="no">echo &#39;==&gt; Restoring physical data files from backupvol...&#39;;</span>
+<span class="w">      </span><span class="no">echo '==&gt; Restoring physical data files from backupvol...';</span>
 <span class="w">      </span><span class="no">xtrabackup --copy-back --target-dir=/backup_84 --datadir=/var/lib/mysql/ &amp;&amp;</span>
-<span class="w">      </span><span class="no">echo &#39;==&gt; Fixing file permissions for Percona Server...&#39;;</span>
+<span class="w">      </span><span class="no">echo '==&gt; Fixing file permissions for Percona Server...';</span>
 <span class="w">      </span><span class="no">chown -R mysql:mysql /var/lib/mysql</span>
-<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">      </span><span class="no">"</span>
 <span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restore</span>
 
@@ -6461,15 +6461,15 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 <span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backupvol:/var/lib/mysql</span>
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3307:3306&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"3307:3306"</span>
 <span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
 <span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
 <span class="w">    </span><span class="nt">entrypoint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
-<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
+<span class="w">      </span><span class="no">/bin/bash -c "</span>
 <span class="w">      </span><span class="no">chown -R mysql:mysql /var/lib/mysql &amp;&amp;</span>
 <span class="w">      </span><span class="no">exec gosu mysql mysqld</span>
-<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">      </span><span class="no">"</span>
 <span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">validate</span>
 
@@ -6493,7 +6493,7 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 <span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql</span>
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3306:3306&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"3306:3306"</span>
 <span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
 
@@ -6510,11 +6510,11 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 <span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
 <span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
-<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
+<span class="w">      </span><span class="no">/bin/bash -c "</span>
 <span class="w">      </span><span class="no">export MYSQL_PWD=$$(cat /run/secrets/db_root_pwd);</span>
 <span class="w">      </span><span class="no">xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_84 --user=root;</span>
 <span class="w">      </span><span class="no">xtrabackup --prepare --target-dir=/backup_84</span>
-<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">      </span><span class="no">"</span>
 <span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup</span>
 
@@ -6527,14 +6527,14 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backupvol:/backup_84</span>
 <span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
-<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
-<span class="w">      </span><span class="no">echo &#39;==&gt; Clearing current database directory...&#39;;</span>
+<span class="w">      </span><span class="no">/bin/bash -c "</span>
+<span class="w">      </span><span class="no">echo '==&gt; Clearing current database directory...';</span>
 <span class="w">      </span><span class="no">rm -rf /var/lib/mysql/* &amp;&amp;</span>
-<span class="w">      </span><span class="no">echo &#39;==&gt; Restoring physical data files from backupvol...&#39;;</span>
+<span class="w">      </span><span class="no">echo '==&gt; Restoring physical data files from backupvol...';</span>
 <span class="w">      </span><span class="no">xtrabackup --copy-back --target-dir=/backup_84 --datadir=/var/lib/mysql/ &amp;&amp;</span>
-<span class="w">      </span><span class="no">echo &#39;==&gt; Fixing file permissions for Percona Server...&#39;;</span>
+<span class="w">      </span><span class="no">echo '==&gt; Fixing file permissions for Percona Server...';</span>
 <span class="w">      </span><span class="no">chown -R mysql:mysql /var/lib/mysql</span>
-<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">      </span><span class="no">"</span>
 <span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restore</span>
 
@@ -6547,15 +6547,15 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 <span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backupvol:/var/lib/mysql</span>
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3307:3306&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"3307:3306"</span>
 <span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_root_pwd</span>
 <span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
 <span class="w">    </span><span class="nt">entrypoint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
-<span class="w">      </span><span class="no">/bin/bash -c &quot;</span>
+<span class="w">      </span><span class="no">/bin/bash -c "</span>
 <span class="w">      </span><span class="no">chown -R mysql:mysql /var/lib/mysql &amp;&amp;</span>
 <span class="w">      </span><span class="no">exec gosu mysql mysqld</span>
-<span class="w">      </span><span class="no">&quot;</span>
+<span class="w">      </span><span class="no">"</span>
 <span class="w">    </span><span class="nt">profiles</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">validate</span>
 
@@ -6616,7 +6616,7 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>[+] Running 3/3
  ✔ Network pxb-tutorial_default  Created
- ✔ Volume &quot;pxb-tutorial_mysql_data&quot;  Created
+ ✔ Volume "pxb-tutorial_mysql_data"  Created
  ✔ Container psmysql  Started
 </code></pre></div>
 </details>
@@ -6639,7 +6639,7 @@ Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
 owners.
 
-Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql&gt;
 </code></pre></div>
@@ -6675,9 +6675,9 @@ mysql&gt;
 </code></pre></div>
 </details>
 <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">country</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
-<span class="w">    </span><span class="p">(</span><span class="s1">&#39;Erasmus Richardson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;erasmus@example.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;England&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="p">(</span><span class="s1">&#39;Jenna French&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jenna@example.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Canada&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="p">(</span><span class="s1">&#39;Alfred Dejesus&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;alfred@example.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Austria&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">'Erasmus Richardson'</span><span class="p">,</span><span class="w"> </span><span class="s1">'erasmus@example.com'</span><span class="p">,</span><span class="w"> </span><span class="s1">'England'</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">'Jenna French'</span><span class="p">,</span><span class="w"> </span><span class="s1">'jenna@example.com'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Canada'</span><span class="p">),</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">'Alfred Dejesus'</span><span class="p">,</span><span class="w"> </span><span class="s1">'alfred@example.com'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Austria'</span><span class="p">);</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -6776,7 +6776,7 @@ pxb_validate  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connec
 </li>
 <li>
 <p>Connect to the validation instance on port <code>3307</code> and verify your data:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>pxb_validate<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SELECT * FROM mydb.employees;&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>pxb_validate<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">"SELECT * FROM mydb.employees;"</span>
 </code></pre></div>
 <p>Enter the password (<code>YourSecurePassword123</code>) when prompted.</p>
 <details class="example">
@@ -6825,7 +6825,7 @@ pxb_validate  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connec
 </li>
 <li>
 <p>Wipe the production data directory (simulating drive failure or data corruption):</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>psmysql<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>psmysql<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"rm -rf /var/lib/mysql/*"</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -6854,7 +6854,7 @@ pxb_validate  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connec
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>psmysql  | [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.4.2-2) starting as process 1
 psmysql  | [System] [MY-013576] [InnoDB] InnoDB initialization has started.
-psmysql  | [ERROR] [MY-012224] [InnoDB] Tablespace open failed for &#39;&quot;./ibdata1&quot;&#39;
+psmysql  | [ERROR] [MY-012224] [InnoDB] Tablespace open failed for '"./ibdata1"'
 psmysql  | [ERROR] [MY-012930] [InnoDB] Plugin initialization aborted with error: Generic error.
 psmysql  | [ERROR] [MY-010334] [Server] Failed to initialize DD Storage Engine
 psmysql  | [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
@@ -6924,15 +6924,15 @@ xtrabackup version 8.4.0-2 based on MySQL server 8.4.2 Linux (x86_64)
 <div class="no-copy highlight"><pre><span></span><code>psmysql  | [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.4.2-2) starting as process 1
 psmysql  | [System] [MY-013576] [InnoDB] InnoDB initialization has started.
 psmysql  | [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
-psmysql  | [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: &#39;::&#39; port: 33060
-psmysql  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: &#39;8.4.2-2&#39;  socket: &#39;/var/lib/mysql/mysql.sock&#39;  port: 3306  Percona Server (GPL), Release 2, Revision b575402d.
+psmysql  | [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+psmysql  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.4.2-2'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  Percona Server (GPL), Release 2, Revision b575402d.
 </code></pre></div>
 </details>
 <p>Look for <code>ready for connections</code> in the output to confirm the server started successfully.</p>
 </li>
 <li>
 <p>Connect and verify your data is restored:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>psmysql<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SELECT * FROM mydb.employees;&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>psmysql<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">"SELECT * FROM mydb.employees;"</span>
 </code></pre></div>
 <p>Enter the password (<code>YourSecurePassword123</code>) when prompted.</p>
 <details class="example">
@@ -6979,7 +6979,7 @@ psmysql  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections
 </tbody>
 </table>
 <p>If you skip the <code>chown -R mysql:mysql /var/lib/mysql</code> step, MySQL fails to start with permission errors similar to:</p>
-<div class="no-copy highlight"><pre><span></span><code>[ERROR] [MY-010187] [Server] Could not open file &#39;/var/lib/mysql/ibdata1&#39; for reading: Permission denied
+<div class="no-copy highlight"><pre><span></span><code>[ERROR] [MY-010187] [Server] Could not open file '/var/lib/mysql/ibdata1' for reading: Permission denied
 </code></pre></div>
 <h2 id="clean-up">Clean up<a class="headerlink" href="#clean-up" title="Permanent link">&para;</a></h2>
 <p class="power-number">To remove all containers, volumes, and resources created by this tutorial:</p>
@@ -7186,7 +7186,7 @@ psmysql  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

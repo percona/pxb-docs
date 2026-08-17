@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6302,9 +6302,9 @@ s3-api-version=4
 <h4 id="example-usage">Example usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h4>
 <p>Set environment variables for your storage provider:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># For Amazon S3</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">&quot;your-access-key&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">&quot;your-secret-key&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span><span class="s2">&quot;us-west-2&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">"your-access-key"</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">"your-secret-key"</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span><span class="s2">"us-west-2"</span>
 
 <span class="c1"># Now use xbcloud without specifying credentials</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
@@ -6410,9 +6410,9 @@ header with the server side encryption while specifying a customer key.</p>
 <p>An example of using the <code>--header</code> for AES256 encryption.</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>s3://operator-testing/bak-enc/<span class="w"> </span><span class="se">\</span>
---header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256&quot;</span><span class="w"> </span><span class="se">\</span>
---header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey=&quot;</span><span class="w"> </span><span class="se">\</span>
---header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Key-MD5: CuStoMerKeyMd5==&quot;</span><span class="w"> </span><span class="se">\</span>
+--header<span class="o">=</span><span class="s2">"X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256"</span><span class="w"> </span><span class="se">\</span>
+--header<span class="o">=</span><span class="s2">"X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey="</span><span class="w"> </span><span class="se">\</span>
+--header<span class="o">=</span><span class="s2">"X-Amz-Server-Side-Encryption-Customer-Key-MD5: CuStoMerKeyMd5=="</span><span class="w"> </span><span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
 <p>The <code>--header</code> parameter is also useful to set the access control list (ACL)
@@ -6627,7 +6627,7 @@ xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

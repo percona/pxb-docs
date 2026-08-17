@@ -33,7 +33,7 @@ replica.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -41,7 +41,7 @@ replica.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -6112,7 +6112,7 @@ The result could look like this:</p>
 <p>That information is also printed by xtrabackup after taking the backup:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: MySQL binlog position: filename &#39;mysql-bin.000002&#39;, position 1232, GTID of the last change &#39;c777888a-b6df-11e2-a604-080027635ef5:1-4&#39;
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup: MySQL binlog position: filename 'mysql-bin.000002', position 1232, GTID of the last change 'c777888a-b6df-11e2-a604-080027635ef5:1-4'
 </code></pre></div>
 </details>
 <h2 id="2-prepare-the-backup">2. Prepare the backup<a class="headerlink" href="#2-prepare-the-backup" title="Permanent link">&para;</a></h2>
@@ -6147,11 +6147,11 @@ The <code>wsrep_on</code> variable is set to 0 before resetting the source (<cod
 <span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">RESET</span><span class="w"> </span><span class="nb">BINARY</span><span class="w"> </span><span class="n">LOGS</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">GTIDS</span><span class="p">;</span>
 <span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">gtid_purged</span><span class="o">=</span><span class="s1">&#39;&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;&#39;</span><span class="p">;</span>
+<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">gtid_purged</span><span class="o">=</span><span class="s1">'&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;'</span><span class="p">;</span>
 <span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="k">SOURCE</span><span class="w"> </span><span class="k">TO</span>
-<span class="w">             </span><span class="n">SOURCE_HOST</span><span class="o">=</span><span class="ss">&quot;$sourceip&quot;</span><span class="p">,</span>
-<span class="w">             </span><span class="n">SOURCE_USER</span><span class="o">=</span><span class="ss">&quot;repl&quot;</span><span class="p">,</span>
-<span class="w">             </span><span class="n">SOURCE_PASSWORD</span><span class="o">=</span><span class="ss">&quot;$replicapass&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="n">SOURCE_HOST</span><span class="o">=</span><span class="ss">"$sourceip"</span><span class="p">,</span>
+<span class="w">             </span><span class="n">SOURCE_USER</span><span class="o">=</span><span class="ss">"repl"</span><span class="p">,</span>
+<span class="w">             </span><span class="n">SOURCE_PASSWORD</span><span class="o">=</span><span class="ss">"$replicapass"</span><span class="p">,</span>
 <span class="w">             </span><span class="n">SOURCE_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="n">REPLICA</span><span class="p">;</span>
 </code></pre></div>
@@ -6332,7 +6332,7 @@ environment.</p>
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       
