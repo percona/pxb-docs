@@ -6,10 +6,6 @@ Percona XtraBackup is an open-source hot backup utility for MySQL - based server
 
 Whether it is a 24x7 highly loaded server or a low-transaction-volume environment, Percona XtraBackup is designed to make backups a seamless procedure without disrupting the performance of the server in a production environment. Commercial support contracts are available.
 
-Percona XtraBackup 8.4 can back up data from InnoDB, XtraDB, MyISAM, and MyRocks tables on MySQL 8.4 servers as well as Percona Server for MySQL with XtraDB, Percona Server for MySQL 8.4, and Percona XtraDB Cluster 8.4. 
-
-Percona XtraBackup 8.0 can back up data from InnoDB, XtraDB, and MyISAM tables on MySQL 8.0 servers, as well as Percona Server for MySQL with XtraDB.
-
 For more information about the Percona XtraBackup components and how to use this product, see the [Percona XtraBackup documentation](https://docs.percona.com/percona-xtrabackup/).
 
 ## Installation
