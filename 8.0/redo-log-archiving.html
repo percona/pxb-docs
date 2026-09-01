@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -7093,10 +7093,10 @@ $<span class="w"> </span>chown<span class="w"> </span>mysql.<span class="w"> </s
 $<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">700</span><span class="w"> </span>/var/lib/mysql-redo-archive/
 </code></pre></div>
 <p>The <code>innodb_redo_log_archive_dirs</code> global variable contains labeled directories. The format is <code>label:directory-path</code>. Multiple objects can be listed with a semi-colon between each set.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SET<span class="w"> </span>PERSIST<span class="w"> </span><span class="nv">innodb_redo_log_archive_dirs</span><span class="o">=</span><span class="s1">&#39;backup1:/var/lib/mysql-redo-archive/&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SET<span class="w"> </span>PERSIST<span class="w"> </span><span class="nv">innodb_redo_log_archive_dirs</span><span class="o">=</span><span class="s1">'backup1:/var/lib/mysql-redo-archive/'</span><span class="p">;</span>
 </code></pre></div>
 <p>Verify that the archive was created with the following command:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GLOBAL<span class="w"> </span>VARIABLES<span class="w"> </span>LIKE<span class="w"> </span><span class="s1">&#39;innodb_redo_log_ar%&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GLOBAL<span class="w"> </span>VARIABLES<span class="w"> </span>LIKE<span class="w"> </span><span class="s1">'innodb_redo_log_ar%'</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -7109,12 +7109,12 @@ $<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span>
 </code></pre></div>
 </details>
 <p>Users with the <a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_innodb-redo-log-archive">INNODB_REDO_LOG_ARCHIVE</a> privilege can call the <code>innodb_redo_log_archive_start()</code> or <code>innodb_redo_log_archive_stop()</code> functions. to either start or stop archiving. </p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_start<span class="o">(</span><span class="s1">&#39;backup1&#39;</span>,<span class="s1">&#39;backup1&#39;</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_start<span class="o">(</span><span class="s1">'backup1'</span>,<span class="s1">'backup1'</span><span class="o">)</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>+-----------------------------------------------------+
-| innodb_redo_log_archive_start(&#39;backup1&#39;,&#39;backup1&#39;)  |
+| innodb_redo_log_archive_start('backup1','backup1')  |
 +------------------------------+----------------------+
 |                                                   0 |
 +------------------- ---------------------------------+
@@ -7125,7 +7125,7 @@ $<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span>
 <p>Percona XtraBackup 8.0.34-29 added the <a href="xtrabackup-option-reference.html#redo-log-arch-dir">redo-log-arch-dir</a> option. If the archiving directory is not configured in MySQL, Percona XtraBackup creates a temporary directory for the archive file. To use this option, you must run Percona XtraBackup as the same owner as <code>mysqld</code>. If Percona XtraBackup does not have the appropriate permissions, the action generates a &ldquo;Permission denied&rdquo; error, and archiving is not used.</p>
 <h2 id="example-of-reading-a-log">Example of reading a log<a class="headerlink" href="#example-of-reading-a-log" title="Permanent link">&para;</a></h2>
 <div class="highlight" data-prompt="data-prompt"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>-u<span class="w"> </span>mysql<span class="w"> </span>bash
-$<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class="o">=</span><span class="m">1</span><span class="w"> </span>--compress<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--host<span class="o">=</span>localhost<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span><span class="s1">&#39;password_string&#39;</span><span class="w"> </span>--backup<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/Backup/13oct<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class="o">=</span><span class="m">1</span><span class="w"> </span>--compress<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--host<span class="o">=</span>localhost<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span><span class="s1">'password_string'</span><span class="w"> </span>--backup<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/Backup/13oct<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
 </code></pre></div>
 <p>Verify that the archiving is used:</p>
 <div class="highlight" data-prompt="data-prompt"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
@@ -7133,14 +7133,14 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class=
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>[Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql  
-[Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.0.34-29 based on MySQL server 8.0.34 Linux (x86_64) (revision id: 5ba706ee) 230822 13:36:02  version_check Connecting to MySQL server with DSN &#39;dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost&#39; as &#39;root&#39;  (using password: YES). 230822 13:36:02  version_check Connected to MySQL server 230822 13:36:02  version_check Executing a version check against the server... 230822 13:36:02  version_check Done. 
+[Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.0.34-29 based on MySQL server 8.0.34 Linux (x86_64) (revision id: 5ba706ee) 230822 13:36:02  version_check Connecting to MySQL server with DSN 'dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost' as 'root'  (using password: YES). 230822 13:36:02  version_check Connected to MySQL server 230822 13:36:02  version_check Executing a version check against the server... 230822 13:36:02  version_check Done. 
 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
 [Note] [MY-011825] [Xtrabackup] Using server version 8.0.34 
 .... 
 .... 
 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
 [Note] [MY-011825] [Xtrabackup] xtrabackup redo_log_arch_dir is set to backup1:/var/lib/mysql-redo-archive/ 
-[Note] [MY-011825] [Xtrabackup] Waiting for archive file &#39;/var/lib/mysql-redo-archive//1692711362986/archive.94f4ab58-3d1c-11ee-9e4f-0af1fd7c44c9.000001.log&#39; 
+[Note] [MY-011825] [Xtrabackup] Waiting for archive file '/var/lib/mysql-redo-archive//1692711362986/archive.94f4ab58-3d1c-11ee-9e4f-0af1fd7c44c9.000001.log' 
 [Note] [MY-011825] [Xtrabackup] &gt;&gt; log scanned up to (19630018) 
 .... 
 .... 
@@ -7274,7 +7274,7 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class=
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

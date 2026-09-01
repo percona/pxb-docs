@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -7170,8 +7170,8 @@ Hub</a>, making it easy to get started. You have two options for the image versi
 <li>
 <p>Set up the Docker repository:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \</span>
-<span class="s2">  </span><span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> stable&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="w">  </span><span class="s2">"deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \</span>
+<span class="s2">  </span><span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> stable"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 </code></pre></div>
 </li>
 <li>
@@ -7498,7 +7498,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span
 </li>
 <li>
 <p>Remove all files in the new volume to prepare for restoration:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"rm -rf /var/lib/mysql/*"</span>
 </code></pre></div>
 </li>
 <li>
@@ -7761,7 +7761,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

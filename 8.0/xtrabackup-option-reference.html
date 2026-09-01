@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -7822,15 +7822,15 @@ backup. Note that this option has a higher priority than
 <h3 id="backing-up-selected-tables-together-with-whole-system-databases">Backing up selected tables together with whole system databases<a class="headerlink" href="#backing-up-selected-tables-together-with-whole-system-databases" title="Permanent link">&para;</a></h3>
 <p>When you need to back up specific tables from user databases along with entire system databases (such as <code>mysql</code>, <code>performance_schema</code>, or <code>sys</code>), you must use the <code>--tables</code> option with a regular expression. This is the only way to combine specific table selection with full-database inclusion, because <code>--tables</code> and <code>--databases</code> are mutually exclusive.</p>
 <p>Example 1: Back up specific tables plus entire mysql database</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">&#39;^(mydb\.(t1|t2)|mysql\.)&#39;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">'^(mydb\.(t1|t2)|mysql\.)'</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <p>This command backs up tables <code>t1</code> and <code>t2</code> from <code>mydb</code>, plus all tables in the <code>mysql</code> database.</p>
 <p>Example 2: Back up tables from multiple databases plus system databases</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">&#39;^(db1\.t1|db2\.t.*|mysql\.|performance_schema\.|sys\.)&#39;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">'^(db1\.t1|db2\.t.*|mysql\.|performance_schema\.|sys\.)'</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <p>This command backs up <code>t1</code> from <code>db1</code>, all tables starting with <code>t</code> from <code>db2</code>, plus the entire <code>mysql</code>, <code>performance_schema</code>, and <code>sys</code> databases.</p>
 <p>Example 3: Back up all tables from a database plus specific tables from another</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">&#39;^(mydb\.|otherdb\.(important_table|critical_table))&#39;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">'^(mydb\.|otherdb\.(important_table|critical_table))'</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <p>This command backs up all tables from <code>mydb</code> plus specific tables from <code>otherdb</code>.</p>
 <h3 id="common-pitfalls">Common pitfalls<a class="headerlink" href="#common-pitfalls" title="Permanent link">&para;</a></h3>
@@ -8058,7 +8058,7 @@ mysql –help for details.</p>
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

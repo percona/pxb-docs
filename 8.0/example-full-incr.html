@@ -28,7 +28,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -36,7 +36,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -7141,24 +7141,24 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># Set server details (replace with your actual values)</span>
-<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">&quot;your_server_hostname&quot;</span>
-<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">&quot;your_db_username&quot;</span>
-<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_db_password&quot;</span>
-<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;/var/lib/mysql&quot;</span><span class="w">  </span><span class="c1"># Replace with your data directory path</span>
-<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/full&quot;</span>
+<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">"your_server_hostname"</span>
+<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">"your_db_username"</span>
+<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">"your_db_password"</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">"/var/lib/mysql"</span><span class="w">  </span><span class="c1"># Replace with your data directory path</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/backups/mysql/full"</span>
 
 <span class="c1"># Get current date for filename</span>
 <span class="nv">TODAY</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
-<span class="nv">FULL_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">FULL_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">"</span>
 
 <span class="c1"># Run xtrabackup with full backup command</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">FULL_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--datadir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DATA_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--user<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--password<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">FULL_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--datadir<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">DATA_DIR</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--password<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">"</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Daily full backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Daily full backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span>
 </code></pre></div>
 <h2 id="running-the-daily-script">Running the Daily Script<a class="headerlink" href="#running-the-daily-script" title="Permanent link">&para;</a></h2>
 <p>You can schedule this script to run automatically using cron. For example, to run it every day at midnight (00:00), add this line to your crontab:</p>
@@ -7169,29 +7169,29 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="s
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># Set server details (same as daily script)</span>
-<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">&quot;your_server_hostname&quot;</span>
-<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">&quot;your_db_username&quot;</span>
-<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_db_password&quot;</span>
-<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;/var/lib/mysql&quot;</span><span class="w">  </span><span class="c1"># Replace with your data directory path</span>
-<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/incr&quot;</span>
+<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">"your_server_hostname"</span>
+<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">"your_db_username"</span>
+<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">"your_db_password"</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">"/var/lib/mysql"</span><span class="w">  </span><span class="c1"># Replace with your data directory path</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/backups/mysql/incr"</span>
 
 <span class="c1"># Get current date and hour for filename</span>
 <span class="nv">TODAY</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
 <span class="nv">HOUR</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%H<span class="k">)</span><span class="w">  </span><span class="c1"># Get current hour (00-23)</span>
-<span class="nv">INCR_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">HOUR</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">INCR_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">HOUR</span><span class="si">}</span><span class="s2">"</span>
 
 <span class="c1"># Set the base directory for incremental backups (point to the latest full backup)</span>
-<span class="nv">BASE_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/full/</span><span class="k">$(</span>ls<span class="w"> </span>-tr<span class="w"> </span>/backups/mysql/full<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">BASE_DIR</span><span class="o">=</span><span class="s2">"/backups/mysql/full/</span><span class="k">$(</span>ls<span class="w"> </span>-tr<span class="w"> </span>/backups/mysql/full<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span><span class="s2">"</span>
 
 <span class="c1"># Run xtrabackup with incremental backup command</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--incremental<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--base-dir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--user<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--password<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--base-dir<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--password<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">"</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hourly incremental backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Hourly incremental backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span>
 </code></pre></div>
 <h2 id="run-the-hourly-script">Run the Hourly Script<a class="headerlink" href="#run-the-hourly-script" title="Permanent link">&para;</a></h2>
 <p>Schedule this script to run every hour using cron.</p>
@@ -7350,7 +7350,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="s
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

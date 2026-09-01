@@ -35,7 +35,7 @@ replica.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -43,7 +43,7 @@ replica.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -7138,7 +7138,7 @@ The result could look like this:</p>
 <p>That information is also printed by xtrabackup after taking the backup:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: MySQL binlog position: filename &#39;mysql-bin.000002&#39;, position 1232, GTID of the last change &#39;c777888a-b6df-11e2-a604-080027635ef5:1-4&#39;
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup: MySQL binlog position: filename 'mysql-bin.000002', position 1232, GTID of the last change 'c777888a-b6df-11e2-a604-080027635ef5:1-4'
 </code></pre></div>
 </details>
 <h2 id="2-prepare-the-backup">2. Prepare the backup<a class="headerlink" href="#2-prepare-the-backup" title="Permanent link">&para;</a></h2>
@@ -7170,11 +7170,11 @@ the replica if you are using a version before 8.0.22:</p>
 <span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>RESET<span class="w"> </span>MASTER<span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>GLOBAL<span class="w"> </span><span class="nv">gtid_purged</span><span class="o">=</span><span class="s1">&#39;&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;&#39;</span><span class="p">;</span>
+<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>GLOBAL<span class="w"> </span><span class="nv">gtid_purged</span><span class="o">=</span><span class="s1">'&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;'</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>CHANGE<span class="w"> </span>MASTER<span class="w"> </span>TO
-<span class="w">             </span><span class="nv">MASTER_HOST</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$masterip</span><span class="s2">&quot;</span>,
-<span class="w">             </span><span class="nv">MASTER_USER</span><span class="o">=</span><span class="s2">&quot;repl&quot;</span>,
-<span class="w">             </span><span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$slavepass</span><span class="s2">&quot;</span>,
+<span class="w">             </span><span class="nv">MASTER_HOST</span><span class="o">=</span><span class="s2">"</span><span class="nv">$masterip</span><span class="s2">"</span>,
+<span class="w">             </span><span class="nv">MASTER_USER</span><span class="o">=</span><span class="s2">"repl"</span>,
+<span class="w">             </span><span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s2">"</span><span class="nv">$slavepass</span><span class="s2">"</span>,
 <span class="w">             </span><span class="nv">MASTER_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>START<span class="w"> </span>SLAVE<span class="p">;</span>
 </code></pre></div>
@@ -7186,11 +7186,11 @@ are using version 8.0.21 or earlier, use <code>START SLAVE</code>.</p>
 <span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>RESET<span class="w"> </span>MASTER<span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>GLOBAL<span class="w"> </span><span class="nv">gtid_purged</span><span class="o">=</span><span class="s1">&#39;&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;&#39;</span><span class="p">;</span>
+<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>GLOBAL<span class="w"> </span><span class="nv">gtid_purged</span><span class="o">=</span><span class="s1">'&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;'</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>CHANGE<span class="w"> </span>REPLICATION<span class="w"> </span>SOURCE<span class="w"> </span>TO
-<span class="w">             </span><span class="nv">SOURCE_HOST</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$masterip</span><span class="s2">&quot;</span>,
-<span class="w">             </span><span class="nv">SOURCE_USER</span><span class="o">=</span><span class="s2">&quot;repl&quot;</span>,
-<span class="w">             </span><span class="nv">SOURCE_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$slavepass</span><span class="s2">&quot;</span>,
+<span class="w">             </span><span class="nv">SOURCE_HOST</span><span class="o">=</span><span class="s2">"</span><span class="nv">$masterip</span><span class="s2">"</span>,
+<span class="w">             </span><span class="nv">SOURCE_USER</span><span class="o">=</span><span class="s2">"repl"</span>,
+<span class="w">             </span><span class="nv">SOURCE_PASSWORD</span><span class="o">=</span><span class="s2">"</span><span class="nv">$slavepass</span><span class="s2">"</span>,
 <span class="w">             </span><span class="nv">SOURCE_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>START<span class="w"> </span>REPLICA<span class="p">;</span>
 </code></pre></div>
@@ -7377,7 +7377,7 @@ environment.</p>
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

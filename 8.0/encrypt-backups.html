@@ -29,7 +29,7 @@ encryption is implemented using the libgcrypt library from GnuPG.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -37,7 +37,7 @@ encryption is implemented using the libgcrypt library from GnuPG.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -7124,7 +7124,7 @@ encryption is implemented using the <code>libgcrypt</code> library from GnuPG.</
 <p>For an encryption key, use a command, such as <code>openssl rand -base64 24</code>, to generate a random alphanumeric string.</p>
 <h3 id="the-encrypt-key-option">The <code>--encrypt-key</code> option<a class="headerlink" href="#the-encrypt-key-option" title="Permanent link">&para;</a></h3>
 <p>An example of the <em>xtrabackup</em> command using the <code>--encrypt-key</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w">  </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w">  </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">"{randomly-generated-alphanumeric-string}"</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <h3 id="the-encrypt-key-file-option">The <code>--encrypt-key-file</code> option<a class="headerlink" href="#the-encrypt-key-file-option" title="Permanent link">&para;</a></h3>
 <p>The recommended method uses the command line: <code>echo -n “{randomly-generated-alphanumeric-string}” &gt; /data/backups/keyfile</code> to create the file.</p>
@@ -7140,10 +7140,10 @@ encryption is implemented using the <code>libgcrypt</code> library from GnuPG.</
 <h2 id="decrypt-encrypted-backups">Decrypt encrypted backups<a class="headerlink" href="#decrypt-encrypted-backups" title="Permanent link">&para;</a></h2>
 <p>You can decrypt backups with the <code>xbcrypt</code> binary. The following example encrypts a backup.</p>
 <p>You can use the <code>--parallel</code> option and the <code>--decrypt</code> option to decrypt multiple files simultaneously.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">&quot;*\.xbcrypt&quot;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">"*\.xbcrypt"</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </code></pre></div>
 <p>The following example shows a decryption process.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">"{randomly-generated-alphanumeric-string}"</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <p>Percona XtraBackup doesn’t automatically remove the encrypted files. You must remove the <code>\*.xbcrypt</code> files manually.</p>
 <h2 id="prepare-encrypted-backups">Prepare encrypted backups<a class="headerlink" href="#prepare-encrypted-backups" title="Permanent link">&para;</a></h2>
@@ -7319,7 +7319,7 @@ encryption is implemented using the <code>libgcrypt</code> library from GnuPG.</
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -10537,10 +10537,10 @@ using xbcloud. The following example demonstrates how to use an Amazon
 S3 storage to make a full backup:</p>
 <div class="highlight"><pre><span></span><code><span class="w">  </span>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--s3-endpoint<span class="o">=</span><span class="s1">&#39;s3.amazonaws.com&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--s3-access-key<span class="o">=</span><span class="s1">&#39;YOUR-ACCESSKEYID&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--s3-secret-key<span class="o">=</span><span class="s1">&#39;YOUR-SECRETACCESSKEY&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--s3-bucket<span class="o">=</span><span class="s1">&#39;mysql_backups&#39;</span>
+<span class="w">  </span>--s3-endpoint<span class="o">=</span><span class="s1">'s3.amazonaws.com'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--s3-access-key<span class="o">=</span><span class="s1">'YOUR-ACCESSKEYID'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--s3-secret-key<span class="o">=</span><span class="s1">'YOUR-SECRETACCESSKEY'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--s3-bucket<span class="o">=</span><span class="s1">'mysql_backups'</span>
 <span class="w">  </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="si">${</span><span class="nv">date</span><span class="p"> -I</span><span class="si">}</span>-full_backup
 
@@ -10882,7 +10882,7 @@ option could roll back uncommitted transactions</p>
 <h3 id="quickstart-docker-connect-the-percona-xtrabackup-container-to-the-percona-server-container">Connect the Percona XtraBackup container to the Percona Server container<a class="headerlink" href="#quickstart-docker-connect-the-percona-xtrabackup-container-to-the-percona-server-container" title="Permanent link">&para;</a></h3>
 <p>We recommend using the <code>–-user root</code> option in the Docker command.</p>
 <p>Run a Docker container example</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>pxb<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_8034<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_8034 --user=root --password; xtrabackup --prepare --target-dir=/backup_8034&quot;</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>pxb<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_8034<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_8034 --user=root --password; xtrabackup --prepare --target-dir=/backup_8034"</span>
 </code></pre></div>
 <p>You are prompted to enter the password. In our example, the password is <code>secret</code>.</p>
 <div class="no-copy highlight"><pre><span></span><code>2023-12-21T16:16:10.796716-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/2023-12-21T16:16:10.799979-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --backup=1 --target-dir=/backup_8034 --user=root --password
@@ -10998,13 +10998,13 @@ xtrabackup version 8.0.34-29 based on MySQL server 8.0.34 Linux (x86_64) (revisi
 <li>
 <p>Remove all created files in <code>myvol2</code> to allow xtrabackup restore data to <code>myvol2</code></p>
 <p>The <code>--rm</code> option automatically removes the temporary container created from percona/percona-xtrabackup:8.0.34 image after the container exits. </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_8034<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_8034<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"rm -rf /var/lib/mysql/*"</span>
 </code></pre></div>
 <p>If the command executes successfully, the expected output is empty.</p>
 </li>
 <li>
 <p>Restore backup of <code>psmysql</code> from <code>backupvol</code> to a new <code>psmysql2</code> instance.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_8034<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_8034&quot;</span><span class="w"> </span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_8034<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_8034"</span><span class="w"> </span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -11038,7 +11038,7 @@ xtrabackup version 8.0.34-29 based on MySQL server 8.0.34 Linux (x86_64) (revisi
 <li>
 <p>Change the owner of the files in <code>myvol2</code> from <code>root</code> to <code>mysql</code></p>
 <p>To avoid permission issues when running <code>psmysql2</code> container, you need to change the owner because the files were restored by <code>root</code> user and <code>psmysql2</code> will use <code>mysql</code> user.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_8034<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;chown -R mysql:mysql /var/lib/mysql/&quot;</span><span class="w"> </span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_8034<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"chown -R mysql:mysql /var/lib/mysql/"</span><span class="w"> </span>
 </code></pre></div>
 <p>If the command executes successfully, the expected output is empty.</p>
 </li>
@@ -11110,7 +11110,7 @@ Oracle is a registered trademark of Oracle Corporation and/or its
 
 affiliates. Other names may be trademarks of their respective owners. 
 
-Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement. 
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement. 
 </code></pre></div>
 </details>
 </li>
@@ -11955,24 +11955,24 @@ They are an option for platform-independent data migration.</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># Set server details (replace with your actual values)</span>
-<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">&quot;your_server_hostname&quot;</span>
-<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">&quot;your_db_username&quot;</span>
-<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_db_password&quot;</span>
-<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;/var/lib/mysql&quot;</span><span class="w">  </span><span class="c1"># Replace with your data directory path</span>
-<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/full&quot;</span>
+<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">"your_server_hostname"</span>
+<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">"your_db_username"</span>
+<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">"your_db_password"</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">"/var/lib/mysql"</span><span class="w">  </span><span class="c1"># Replace with your data directory path</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/backups/mysql/full"</span>
 
 <span class="c1"># Get current date for filename</span>
 <span class="nv">TODAY</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
-<span class="nv">FULL_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">FULL_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">"</span>
 
 <span class="c1"># Run xtrabackup with full backup command</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">FULL_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--datadir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DATA_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--user<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--password<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">FULL_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--datadir<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">DATA_DIR</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--password<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">"</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Daily full backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Daily full backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span>
 </code></pre></div>
 <h2 id="example-full-incr-running-the-daily-script">Running the Daily Script<a class="headerlink" href="#example-full-incr-running-the-daily-script" title="Permanent link">&para;</a></h2>
 <p>You can schedule this script to run automatically using cron. For example, to run it every day at midnight (00:00), add this line to your crontab:</p>
@@ -11983,29 +11983,29 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="s
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># Set server details (same as daily script)</span>
-<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">&quot;your_server_hostname&quot;</span>
-<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">&quot;your_db_username&quot;</span>
-<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;your_db_password&quot;</span>
-<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;/var/lib/mysql&quot;</span><span class="w">  </span><span class="c1"># Replace with your data directory path</span>
-<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/incr&quot;</span>
+<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">"your_server_hostname"</span>
+<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">"your_db_username"</span>
+<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">"your_db_password"</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">"/var/lib/mysql"</span><span class="w">  </span><span class="c1"># Replace with your data directory path</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/backups/mysql/incr"</span>
 
 <span class="c1"># Get current date and hour for filename</span>
 <span class="nv">TODAY</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
 <span class="nv">HOUR</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%H<span class="k">)</span><span class="w">  </span><span class="c1"># Get current hour (00-23)</span>
-<span class="nv">INCR_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">HOUR</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">INCR_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">HOUR</span><span class="si">}</span><span class="s2">"</span>
 
 <span class="c1"># Set the base directory for incremental backups (point to the latest full backup)</span>
-<span class="nv">BASE_DIR</span><span class="o">=</span><span class="s2">&quot;/backups/mysql/full/</span><span class="k">$(</span>ls<span class="w"> </span>-tr<span class="w"> </span>/backups/mysql/full<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">BASE_DIR</span><span class="o">=</span><span class="s2">"/backups/mysql/full/</span><span class="k">$(</span>ls<span class="w"> </span>-tr<span class="w"> </span>/backups/mysql/full<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span><span class="s2">"</span>
 
 <span class="c1"># Run xtrabackup with incremental backup command</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--incremental<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--base-dir<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--user<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--password<span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--base-dir<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--password<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">"</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hourly incremental backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Hourly incremental backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span>
 </code></pre></div>
 <h2 id="example-full-incr-run-the-hourly-script">Run the Hourly Script<a class="headerlink" href="#example-full-incr-run-the-hourly-script" title="Permanent link">&para;</a></h2>
 <p>Schedule this script to run every hour using cron.</p>
@@ -12635,7 +12635,7 @@ must extract the queries with one process.</p>
 corresponds to the wanted point-in-time. Once determined, pipe it to the
 server. For example, if the point is <code>11-12-25 01:00:00</code>, the command moves the the database forward to that point-in-time.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--start-position<span class="o">=</span><span class="m">57</span><span class="w"> </span>--stop-datetime<span class="o">=</span><span class="s2">&quot;11-12-25 01:00:00&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
+<span class="w">    </span>--start-position<span class="o">=</span><span class="m">57</span><span class="w"> </span>--stop-datetime<span class="o">=</span><span class="s2">"11-12-25 01:00:00"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
 </code></pre></div></section></section><section class="print-page" id="encrypted-innodb-tablespace-backups" heading-number="6.4"><h1 id="encrypted-innodb-tablespace-backups-encrypted-innodb-tablespace-backups">Encrypted InnoDB tablespace backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups-encrypted-innodb-tablespace-backups" title="Permanent link">&para;</a></h1>
 <p>InnoDB supports <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html">data encryption for InnoDB tables</a>
 stored in file-per-table tablespaces. This feature provides an at-rest
@@ -12738,12 +12738,12 @@ information.</p>
 <p>An example of a manifest and a configuration file follows:</p>
 <p>An example of <code>./bin/mysqld.my</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">   </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file://component_keyring_file&quot;</span>
+<span class="w">   </span><span class="nt">"components"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file://component_keyring_file"</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>An example of <code>/lib/plugin/component_keyring_file.cnf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">   </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql-keyring/keyring_file&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;read_only&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">   </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/var/lib/mysql-keyring/keyring_file"</span><span class="p">,</span><span class="w"> </span><span class="nt">"read_only"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>For more information,
@@ -13299,10 +13299,10 @@ $<span class="w"> </span>chown<span class="w"> </span>mysql.<span class="w"> </s
 $<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">700</span><span class="w"> </span>/var/lib/mysql-redo-archive/
 </code></pre></div>
 <p>The <code>innodb_redo_log_archive_dirs</code> global variable contains labeled directories. The format is <code>label:directory-path</code>. Multiple objects can be listed with a semi-colon between each set.</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SET<span class="w"> </span>PERSIST<span class="w"> </span><span class="nv">innodb_redo_log_archive_dirs</span><span class="o">=</span><span class="s1">&#39;backup1:/var/lib/mysql-redo-archive/&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SET<span class="w"> </span>PERSIST<span class="w"> </span><span class="nv">innodb_redo_log_archive_dirs</span><span class="o">=</span><span class="s1">'backup1:/var/lib/mysql-redo-archive/'</span><span class="p">;</span>
 </code></pre></div>
 <p>Verify that the archive was created with the following command:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GLOBAL<span class="w"> </span>VARIABLES<span class="w"> </span>LIKE<span class="w"> </span><span class="s1">&#39;innodb_redo_log_ar%&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GLOBAL<span class="w"> </span>VARIABLES<span class="w"> </span>LIKE<span class="w"> </span><span class="s1">'innodb_redo_log_ar%'</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
@@ -13315,12 +13315,12 @@ $<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span>
 </code></pre></div>
 </details>
 <p>Users with the <a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_innodb-redo-log-archive">INNODB_REDO_LOG_ARCHIVE</a> privilege can call the <code>innodb_redo_log_archive_start()</code> or <code>innodb_redo_log_archive_stop()</code> functions. to either start or stop archiving. </p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_start<span class="o">(</span><span class="s1">&#39;backup1&#39;</span>,<span class="s1">&#39;backup1&#39;</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SELECT<span class="w"> </span>innodb_redo_log_archive_start<span class="o">(</span><span class="s1">'backup1'</span>,<span class="s1">'backup1'</span><span class="o">)</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>+-----------------------------------------------------+
-| innodb_redo_log_archive_start(&#39;backup1&#39;,&#39;backup1&#39;)  |
+| innodb_redo_log_archive_start('backup1','backup1')  |
 +------------------------------+----------------------+
 |                                                   0 |
 +------------------- ---------------------------------+
@@ -13331,7 +13331,7 @@ $<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span>
 <p>Percona XtraBackup 8.0.34-29 added the <a href="#xtrabackup-option-reference-redo-log-arch-dir">redo-log-arch-dir</a> option. If the archiving directory is not configured in MySQL, Percona XtraBackup creates a temporary directory for the archive file. To use this option, you must run Percona XtraBackup as the same owner as <code>mysqld</code>. If Percona XtraBackup does not have the appropriate permissions, the action generates a &ldquo;Permission denied&rdquo; error, and archiving is not used.</p>
 <h2 id="redo-log-archiving-example-of-reading-a-log">Example of reading a log<a class="headerlink" href="#redo-log-archiving-example-of-reading-a-log" title="Permanent link">&para;</a></h2>
 <div class="highlight" data-prompt="data-prompt"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>-u<span class="w"> </span>mysql<span class="w"> </span>bash
-$<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class="o">=</span><span class="m">1</span><span class="w"> </span>--compress<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--host<span class="o">=</span>localhost<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span><span class="s1">&#39;password_string&#39;</span><span class="w"> </span>--backup<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/Backup/13oct<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
+$<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class="o">=</span><span class="m">1</span><span class="w"> </span>--compress<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--host<span class="o">=</span>localhost<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span><span class="s1">'password_string'</span><span class="w"> </span>--backup<span class="o">=</span><span class="m">1</span><span class="w"> </span>--target-dir<span class="o">=</span>/Backup/13oct<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
 </code></pre></div>
 <p>Verify that the archiving is used:</p>
 <div class="highlight" data-prompt="data-prompt"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/tmp/b0-with-redo-archiving-as-mysql-os-user.log
@@ -13339,14 +13339,14 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class=
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>[Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql  
-[Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.0.34-29 based on MySQL server 8.0.34 Linux (x86_64) (revision id: 5ba706ee) 230822 13:36:02  version_check Connecting to MySQL server with DSN &#39;dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost&#39; as &#39;root&#39;  (using password: YES). 230822 13:36:02  version_check Connected to MySQL server 230822 13:36:02  version_check Executing a version check against the server... 230822 13:36:02  version_check Done. 
+[Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 8.0.34-29 based on MySQL server 8.0.34 Linux (x86_64) (revision id: 5ba706ee) 230822 13:36:02  version_check Connecting to MySQL server with DSN 'dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost' as 'root'  (using password: YES). 230822 13:36:02  version_check Connected to MySQL server 230822 13:36:02  version_check Executing a version check against the server... 230822 13:36:02  version_check Done. 
 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
 [Note] [MY-011825] [Xtrabackup] Using server version 8.0.34 
 .... 
 .... 
 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 
 [Note] [MY-011825] [Xtrabackup] xtrabackup redo_log_arch_dir is set to backup1:/var/lib/mysql-redo-archive/ 
-[Note] [MY-011825] [Xtrabackup] Waiting for archive file &#39;/var/lib/mysql-redo-archive//1692711362986/archive.94f4ab58-3d1c-11ee-9e4f-0af1fd7c44c9.000001.log&#39; 
+[Note] [MY-011825] [Xtrabackup] Waiting for archive file '/var/lib/mysql-redo-archive//1692711362986/archive.94f4ab58-3d1c-11ee-9e4f-0af1fd7c44c9.000001.log' 
 [Note] [MY-011825] [Xtrabackup] &gt;&gt; log scanned up to (19630018) 
 .... 
 .... 
@@ -13459,8 +13459,8 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--no-lock<span class=
 <p>You can find the binary log position corresponding to a backup after the backup has been taken. If your backup is from a server with binary logging enabled, <code>xtrabackup</code> creates a file named <code>xtrabackup_binlog_info</code> in the target directory. This file contains the binary log file name and position of the exact point when the backup was taken.</p>
 <details class="example">
 <summary>Expected output during the backup stage</summary>
-<div class="no-copy highlight"><pre><span></span><code>210715 14:14:59 Backup created in directory &#39;/backup/&#39;
-MySQL binlog position: filename &#39;binlog.000002&#39;, position &#39;156&#39;
+<div class="no-copy highlight"><pre><span></span><code>210715 14:14:59 Backup created in directory '/backup/'
+MySQL binlog position: filename 'binlog.000002', position '156'
 . . .
 210715 14:15:00 completed OK!
 </code></pre></div>
@@ -13559,8 +13559,8 @@ statistics information:</p>
 
 #!/usr/bin/env perl
 use strict;
-use warnings FATAL =&gt; &#39;all&#39;;
-my $script_version = &quot;0.1&quot;;
+use warnings FATAL =&gt; 'all';
+my $script_version = "0.1";
 
 my $PG_SIZE = 16_384; # InnoDB defaults to 16k pages, change if needed.
 my ($cur_idx, $cur_tbl);
@@ -13593,14 +13593,14 @@ while ( my $line = &lt;&gt; ) {
    }
 }
 
-my $hdr_fmt = &quot;%${max_tbl_len}s %${max_idx_len}s %9s %10s %10s\n&quot;;
+my $hdr_fmt = "%${max_tbl_len}s %${max_idx_len}s %9s %10s %10s\n";
 my @headers = qw(TABLE INDEX TOT_PAGES FREE_PAGES PCT_FULL);
 printf $hdr_fmt, @headers;
 
-my $row_fmt = &quot;%${max_tbl_len}s %${max_idx_len}s %9d %10d %9.1f%%\n&quot;;
+my $row_fmt = "%${max_tbl_len}s %${max_idx_len}s %9d %10d %9.1f%%\n";
 foreach my $t ( sort keys %tbl_stats ) {
   my $tbl = $tbl_stats{$t};
-  printf $row_fmt, $t, &quot;&quot;, $tbl-&gt;{est_sp}, $tbl-&gt;{est_sp} - $tbl-&gt;{real_pages},
+  printf $row_fmt, $t, "", $tbl-&gt;{est_sp}, $tbl-&gt;{est_sp} - $tbl-&gt;{real_pages},
       $tbl-&gt;{real_bytes} / ($tbl-&gt;{real_pages} * $PG_SIZE) * 100;
    foreach my $i ( sort keys %{$idx_stats{$t}} ) {
       my $idx = $idx_stats{$t}-&gt;{$i};
@@ -14663,15 +14663,15 @@ backup. Note that this option has a higher priority than
 <h3 id="xtrabackup-option-reference-backing-up-selected-tables-together-with-whole-system-databases">Backing up selected tables together with whole system databases<a class="headerlink" href="#xtrabackup-option-reference-backing-up-selected-tables-together-with-whole-system-databases" title="Permanent link">&para;</a></h3>
 <p>When you need to back up specific tables from user databases along with entire system databases (such as <code>mysql</code>, <code>performance_schema</code>, or <code>sys</code>), you must use the <code>--tables</code> option with a regular expression. This is the only way to combine specific table selection with full-database inclusion, because <code>--tables</code> and <code>--databases</code> are mutually exclusive.</p>
 <p>Example 1: Back up specific tables plus entire mysql database</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">&#39;^(mydb\.(t1|t2)|mysql\.)&#39;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">'^(mydb\.(t1|t2)|mysql\.)'</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <p>This command backs up tables <code>t1</code> and <code>t2</code> from <code>mydb</code>, plus all tables in the <code>mysql</code> database.</p>
 <p>Example 2: Back up tables from multiple databases plus system databases</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">&#39;^(db1\.t1|db2\.t.*|mysql\.|performance_schema\.|sys\.)&#39;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">'^(db1\.t1|db2\.t.*|mysql\.|performance_schema\.|sys\.)'</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <p>This command backs up <code>t1</code> from <code>db1</code>, all tables starting with <code>t</code> from <code>db2</code>, plus the entire <code>mysql</code>, <code>performance_schema</code>, and <code>sys</code> databases.</p>
 <p>Example 3: Back up all tables from a database plus specific tables from another</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">&#39;^(mydb\.|otherdb\.(important_table|critical_table))&#39;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables<span class="o">=</span><span class="s1">'^(mydb\.|otherdb\.(important_table|critical_table))'</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <p>This command backs up all tables from <code>mydb</code> plus specific tables from <code>otherdb</code>.</p>
 <h3 id="xtrabackup-option-reference-common-pitfalls">Common pitfalls<a class="headerlink" href="#xtrabackup-option-reference-common-pitfalls" title="Permanent link">&para;</a></h3>
@@ -15097,9 +15097,9 @@ header with the server side encryption while specifying a customer key.</p>
 <p>An example of using the <code>--header</code> for AES256 encryption.</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>s3://operator-testing/bak-enc/<span class="w"> </span><span class="se">\</span>
---header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256&quot;</span><span class="w"> </span><span class="se">\</span>
---header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey=&quot;</span><span class="w"> </span><span class="se">\</span>
---header<span class="o">=</span><span class="s2">&quot;X-Amz-Server-Side-Encryption-Customer-Key-MD5: CuStoMerKeyMd5==&quot;</span><span class="w"> </span><span class="se">\</span>
+--header<span class="o">=</span><span class="s2">"X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256"</span><span class="w"> </span><span class="se">\</span>
+--header<span class="o">=</span><span class="s2">"X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey="</span><span class="w"> </span><span class="se">\</span>
+--header<span class="o">=</span><span class="s2">"X-Amz-Server-Side-Encryption-Customer-Key-MD5: CuStoMerKeyMd5=="</span><span class="w"> </span><span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
 <p>The <code>--header</code> parameter is also useful to set the access control list (ACL)
@@ -15407,10 +15407,10 @@ authenticate against keystone with API version 2 and 3.</p>
 <h2 id="xbcloud-s3-create-a-full-backup-with-amazon-s3">Create a full backup with Amazon S3<a class="headerlink" href="#xbcloud-s3-create-a-full-backup-with-amazon-s3" title="Permanent link">&para;</a></h2>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span><span class="se">\</span>
---s3-endpoint<span class="o">=</span><span class="s1">&#39;s3.amazonaws.com&#39;</span><span class="w"> </span><span class="se">\</span>
---s3-access-key<span class="o">=</span><span class="s1">&#39;YOUR-ACCESSKEYID&#39;</span><span class="w"> </span><span class="se">\</span>
---s3-secret-key<span class="o">=</span><span class="s1">&#39;YOUR-SECRETACCESSKEY&#39;</span><span class="w"> </span><span class="se">\</span>
---s3-bucket<span class="o">=</span><span class="s1">&#39;mysql_backups&#39;</span>
+--s3-endpoint<span class="o">=</span><span class="s1">'s3.amazonaws.com'</span><span class="w"> </span><span class="se">\</span>
+--s3-access-key<span class="o">=</span><span class="s1">'YOUR-ACCESSKEYID'</span><span class="w"> </span><span class="se">\</span>
+--s3-secret-key<span class="o">=</span><span class="s1">'YOUR-SECRETACCESSKEY'</span><span class="w"> </span><span class="se">\</span>
+--s3-bucket<span class="o">=</span><span class="s1">'mysql_backups'</span>
 --parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="k">$(</span>date<span class="w"> </span>-I<span class="k">)</span>-full_backup
 </code></pre></div>
@@ -15457,31 +15457,31 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 <p>Following the principle of &ldquo;least-privilege&rdquo;, these are the minimum bucket permissions needed for xbcloud to write backups to S3: <strong><em>LIST/PUT/GET/DELETE</em></strong>.</p>
 <p>The following example shows the policy definition for writing to the <code>xbcloud-testing</code> bucket on the AWS S3 storage.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nt">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;Principal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;AWS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span>
+<span class="w">            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"AWS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="s2">&quot;s3:ListBucket&quot;</span>
+<span class="w">            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">"s3:ListBucket"</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:s3:::xbcloud-testing&quot;</span>
+<span class="w">            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::xbcloud-testing"</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;Principal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;AWS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span>
+<span class="w">            </span><span class="nt">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Principal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"AWS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;s3:PutObjectAcl&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;s3:GetObjectAcl&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;s3:DeleteObject&quot;</span>
+<span class="w">            </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">"s3:PutObject"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"s3:PutObjectAcl"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"s3:GetObject"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"s3:GetObjectAcl"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"s3:DeleteObject"</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:s3:::xbcloud-testing/*&quot;</span>
+<span class="w">            </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::xbcloud-testing/*"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
@@ -15638,9 +15638,9 @@ compatible with Amazon S3.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>google<span class="w"> </span><span class="se">\</span>
 --google-endpoint<span class="o">=</span><span class="sb">`</span>storage.googleapis.com<span class="sb">`</span><span class="w"> </span><span class="se">\</span>
---google-access-key<span class="o">=</span><span class="s1">&#39;YOUR-ACCESSKEYID&#39;</span><span class="w"> </span><span class="se">\</span>
---google-secret-key<span class="o">=</span><span class="s1">&#39;YOUR-SECRETACCESSKEY&#39;</span><span class="w"> </span><span class="se">\</span>
---google-bucket<span class="o">=</span><span class="s1">&#39;mysql_backups&#39;</span>
+--google-access-key<span class="o">=</span><span class="s1">'YOUR-ACCESSKEYID'</span><span class="w"> </span><span class="se">\</span>
+--google-secret-key<span class="o">=</span><span class="s1">'YOUR-SECRETACCESSKEY'</span><span class="w"> </span><span class="se">\</span>
+--google-bucket<span class="o">=</span><span class="s1">'mysql_backups'</span>
 --parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="k">$(</span>date<span class="w"> </span>-I<span class="k">)</span>-full_backup
 </code></pre></div>
@@ -15745,10 +15745,10 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>backup_name<span class
 <h2 id="xbcloud-minio-create-a-full-backup-with-minio">Create a full backup with MinIO<a class="headerlink" href="#xbcloud-minio-create-a-full-backup-with-minio" title="Permanent link">&para;</a></h2>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span><span class="se">\</span>
---s3-endpoint<span class="o">=</span><span class="s1">&#39;play.minio.io:9000&#39;</span><span class="w"> </span><span class="se">\</span>
---s3-access-key<span class="o">=</span><span class="s1">&#39;YOUR-ACCESSKEYID&#39;</span><span class="w"> </span><span class="se">\</span>
---s3-secret-key<span class="o">=</span><span class="s1">&#39;YOUR-SECRETACCESSKEY&#39;</span><span class="w"> </span><span class="se">\</span>
---s3-bucket<span class="o">=</span><span class="s1">&#39;mysql_backups&#39;</span>
+--s3-endpoint<span class="o">=</span><span class="s1">'play.minio.io:9000'</span><span class="w"> </span><span class="se">\</span>
+--s3-access-key<span class="o">=</span><span class="s1">'YOUR-ACCESSKEYID'</span><span class="w"> </span><span class="se">\</span>
+--s3-secret-key<span class="o">=</span><span class="s1">'YOUR-SECRETACCESSKEY'</span><span class="w"> </span><span class="se">\</span>
+--s3-bucket<span class="o">=</span><span class="s1">'mysql_backups'</span>
 --parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="k">$(</span>date<span class="w"> </span>-I<span class="k">)</span>-full_backup
 </code></pre></div></section></section><section class="print-page" id="update-curl-utility" heading-number="7.5.4"><h1 id="update-curl-utility-dependency-compatibility-and-limitations">Dependency compatibility and limitations<a class="headerlink" href="#update-curl-utility-dependency-compatibility-and-limitations" title="Permanent link">&para;</a></h1>
@@ -16018,11 +16018,11 @@ PERCONA_SCHEMA.xtrabackup_history table.</p>
 </li>
 </ul>
 <p>A SQL example of creating a database user with the minimum privileges required to take full backups would be:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;bkpuser&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;s3cr%T&#39;</span><span class="p">;</span>
-mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>BACKUP_ADMIN,<span class="w"> </span>PROCESS,<span class="w"> </span>RELOAD,<span class="w"> </span>LOCK<span class="w"> </span>TABLES,<span class="w"> </span>REPLICATION<span class="w"> </span>CLIENT<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w"> </span>TO<span class="w"> </span><span class="s1">&#39;bkpuser&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>SELECT<span class="w"> </span>ON<span class="w"> </span>performance_schema.log_status<span class="w"> </span>TO<span class="w"> </span><span class="s1">&#39;bkpuser&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>SELECT<span class="w"> </span>ON<span class="w"> </span>performance_schema.keyring_component_status<span class="w"> </span>TO<span class="w"> </span>bkpuser@<span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>SELECT<span class="w"> </span>ON<span class="w"> </span>performance_schema.replication_group_members<span class="w"> </span>TO<span class="w"> </span>bkpuser@<span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>USER<span class="w"> </span><span class="s1">'bkpuser'</span>@<span class="s1">'localhost'</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">'s3cr%T'</span><span class="p">;</span>
+mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>BACKUP_ADMIN,<span class="w"> </span>PROCESS,<span class="w"> </span>RELOAD,<span class="w"> </span>LOCK<span class="w"> </span>TABLES,<span class="w"> </span>REPLICATION<span class="w"> </span>CLIENT<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w"> </span>TO<span class="w"> </span><span class="s1">'bkpuser'</span>@<span class="s1">'localhost'</span><span class="p">;</span>
+mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>SELECT<span class="w"> </span>ON<span class="w"> </span>performance_schema.log_status<span class="w"> </span>TO<span class="w"> </span><span class="s1">'bkpuser'</span>@<span class="s1">'localhost'</span><span class="p">;</span>
+mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>SELECT<span class="w"> </span>ON<span class="w"> </span>performance_schema.keyring_component_status<span class="w"> </span>TO<span class="w"> </span>bkpuser@<span class="s1">'localhost'</span><span class="p">;</span>
+mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>SELECT<span class="w"> </span>ON<span class="w"> </span>performance_schema.replication_group_members<span class="w"> </span>TO<span class="w"> </span>bkpuser@<span class="s1">'localhost'</span><span class="p">;</span>
 mysql&gt;<span class="w"> </span>FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
 </code></pre></div>
 <h3 id="privileges-query-the-privileges">Query the privileges<a class="headerlink" href="#privileges-query-the-privileges" title="Permanent link">&para;</a></h3>
@@ -16030,7 +16030,7 @@ mysql&gt;<span class="w"> </span>FLUSH<span class="w"> </span>PRIVILEGES<span cl
 <div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GRANTS<span class="p">;</span>
 </code></pre></div>
 <p>or for a particular user with:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GRANTS<span class="w"> </span>FOR<span class="w"> </span><span class="s1">&#39;db-user&#39;</span>@<span class="s1">&#39;host&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>GRANTS<span class="w"> </span>FOR<span class="w"> </span><span class="s1">'db-user'</span>@<span class="s1">'host'</span><span class="p">;</span>
 </code></pre></div>
 <p>It will display the privileges using the same format as for
 the <a href="http://dev.mysql.com/doc/refman/8.0/en/show-grants.html">GRANT statement</a>.</p>
@@ -16188,7 +16188,7 @@ Fetched 31.4 MB in 7s (4264 kB/s)
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
-9 packages can be upgraded. Run &#39;apt list --upgradable&#39; to see them.
+9 packages can be upgraded. Run 'apt list --upgradable' to see them.
 </code></pre></div>
 </details>
 </li>
@@ -16233,7 +16233,7 @@ done.
 <div class="no-copy highlight"><pre><span></span><code>Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
-Note, selecting &#39;percona-release&#39; instead of &#39;./percona-release_latest.generic_all.deb&#39;
+Note, selecting 'percona-release' instead of './percona-release_latest.generic_all.deb'
 The following additional packages will be installed:
 </code></pre></div>
 </details>
@@ -16656,7 +16656,7 @@ Complete!
 <ol>
 <li>
 <p>This command checks for missing libraries.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>ldd<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>xtrabackup<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;not found&quot;</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>ldd<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>xtrabackup<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"not found"</span>
 </code></pre></div>
 </li>
 <li>
@@ -16970,7 +16970,7 @@ Resolving downloads.percona.com (downloads.percona.com)... 147.135.54.159, 2604:
 Connecting to downloads.percona.com (downloads.percona.com)|147.135.54.159|:443... connected.
 ...
 percona-xtrabackup-8.0 100%[==========================&gt;] 448.02M  2.56MB/s    in 5m 5s
-2024-03-18 11:39:56 (1.47 MB/s) - &#39;percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz&#39; saved [469780148/469780148]
+2024-03-18 11:39:56 (1.47 MB/s) - 'percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz' saved [469780148/469780148]
 </code></pre></div>
 </details>
 <h2 id="binary-tarball-extract-the-tarball">Extract the tarball<a class="headerlink" href="#binary-tarball-extract-the-tarball" title="Permanent link">&para;</a></h2>
@@ -17276,8 +17276,8 @@ Hub</a>, making it easy to get started. You have two options for the image versi
 <li>
 <p>Set up the Docker repository:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \</span>
-<span class="s2">  </span><span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> stable&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="w">  </span><span class="s2">"deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \</span>
+<span class="s2">  </span><span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> stable"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 </code></pre></div>
 </li>
 <li>
@@ -17604,7 +17604,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span
 </li>
 <li>
 <p>Remove all files in the new volume to prepare for restoration:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;rm -rf /var/lib/mysql/*&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-it<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.0.34<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"rm -rf /var/lib/mysql/*"</span>
 </code></pre></div>
 </li>
 <li>
@@ -17736,12 +17736,12 @@ scanning the log in the background, and a file copying thread working on the <co
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>160906 10:19:17 Finished backing up non-InnoDB tables and files
 160906 10:19:17 Executing FLUSH NO_WRITE_TO_BINLOG ENGINE LOGS...
-xtrabackup: The latest check point (for incremental): &#39;62988944&#39;
+xtrabackup: The latest check point (for incremental): '62988944'
 xtrabackup: Stopping log copying thread.
 .160906 10:19:18 &gt;&gt; log scanned up to (137343534)
 160906 10:19:18 Executing UNLOCK TABLES
 160906 10:19:18 All tables unlocked
-160906 10:19:18 Backup created in directory &#39;/data/backups/&#39;
+160906 10:19:18 Backup created in directory '/data/backups/'
 160906 10:19:18 [00] Writing backup-my.cnf
 160906 10:19:18 [00]        ...done
 160906 10:19:18 [00] Writing xtrabackup_info
@@ -17803,7 +17803,7 @@ databases. Releases prior to 8.0 are not supported.</p>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>xtrabackup: This target seems to be already prepared.
-xtrabackup: notice: xtrabackup_logfile was already used to &#39;--prepare&#39;.
+xtrabackup: notice: xtrabackup_logfile was already used to '--prepare'.
 </code></pre></div>
 </details>
 <p>It is not recommended to interrupt xtrabackup process while preparing backup because it may cause data files corruption and backup will become unusable. Backup validity is not guaranteed if prepare process was interrupted.</p>
@@ -17980,12 +17980,12 @@ tracking feature can improve the speed of incremental backups.</p>
 <ol>
 <li>
 <p>Install the <code>mysqlbackup</code> component and enable it on the server:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>INSTALL<span class="w"> </span>COMPONENT<span class="w"> </span><span class="s2">&quot;file://component_mysqlbackup&quot;</span><span class="p">;</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>INSTALL<span class="w"> </span>COMPONENT<span class="w"> </span><span class="s2">"file://component_mysqlbackup"</span><span class="p">;</span>
 </code></pre></div>
 </li>
 <li>
 <p>Check whether the <code>mysqlbackup</code> component is installed successfully:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>SELECT<span class="w"> </span>COUNT<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>FROM<span class="w"> </span>mysql.component<span class="w"> </span>WHERE<span class="w"> </span><span class="nv">component_urn</span><span class="o">=</span><span class="s1">&#39;file://component_mysqlbackup&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>SELECT<span class="w"> </span>COUNT<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>FROM<span class="w"> </span>mysql.component<span class="w"> </span>WHERE<span class="w"> </span><span class="nv">component_urn</span><span class="o">=</span><span class="s1">'file://component_mysqlbackup'</span><span class="p">;</span>
 </code></pre></div>
 </li>
 </ol>
@@ -18070,7 +18070,7 @@ incremental backup using page tracking. For more details
 see <a href="https://jira.percona.com/browse/PS-8032">PS-8032</a>.</p>
 <h2 id="page-tracking-uninstall-the-mysqlbackup-component">Uninstall the mysqlbackup component<a class="headerlink" href="#page-tracking-uninstall-the-mysqlbackup-component" title="Permanent link">&para;</a></h2>
 <p>To uninstall the mysqlbackup component, use the following statement:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>UNINSTALL<span class="w"> </span>COMPONENT<span class="w"> </span><span class="s2">&quot;file://component_mysqlbackup&quot;</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>UNINSTALL<span class="w"> </span>COMPONENT<span class="w"> </span><span class="s2">"file://component_mysqlbackup"</span>
 </code></pre></div></section></section>
                     <section class='print-page md-section' id='section-9-3' heading-number='9.3'>
                         <h1>Take a compressed backup<a class='headerlink' href='#section-9-3' title='Permanent link'></a>
@@ -18252,7 +18252,7 @@ encryption is implemented using the <code>libgcrypt</code> library from GnuPG.</
 <p>For an encryption key, use a command, such as <code>openssl rand -base64 24</code>, to generate a random alphanumeric string.</p>
 <h3 id="encrypt-backups-the-encrypt-key-option">The <code>--encrypt-key</code> option<a class="headerlink" href="#encrypt-backups-the-encrypt-key-option" title="Permanent link">&para;</a></h3>
 <p>An example of the <em>xtrabackup</em> command using the <code>--encrypt-key</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w">  </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w">  </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">"{randomly-generated-alphanumeric-string}"</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <h3 id="encrypt-backups-the-encrypt-key-file-option">The <code>--encrypt-key-file</code> option<a class="headerlink" href="#encrypt-backups-the-encrypt-key-file-option" title="Permanent link">&para;</a></h3>
 <p>The recommended method uses the command line: <code>echo -n “{randomly-generated-alphanumeric-string}” &gt; /data/backups/keyfile</code> to create the file.</p>
@@ -18268,10 +18268,10 @@ encryption is implemented using the <code>libgcrypt</code> library from GnuPG.</
 <h2 id="encrypt-backups-decrypt-encrypted-backups">Decrypt encrypted backups<a class="headerlink" href="#encrypt-backups-decrypt-encrypted-backups" title="Permanent link">&para;</a></h2>
 <p>You can decrypt backups with the <code>xbcrypt</code> binary. The following example encrypts a backup.</p>
 <p>You can use the <code>--parallel</code> option and the <code>--decrypt</code> option to decrypt multiple files simultaneously.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">&quot;*\.xbcrypt&quot;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">"*\.xbcrypt"</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </code></pre></div>
 <p>The following example shows a decryption process.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">&quot;{randomly-generated-alphanumeric-string}&quot;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">"{randomly-generated-alphanumeric-string}"</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/
 </code></pre></div>
 <p>Percona XtraBackup doesn’t automatically remove the encrypted files. You must remove the <code>\*.xbcrypt</code> files manually.</p>
 <h2 id="encrypt-backups-prepare-encrypted-backups">Prepare encrypted backups<a class="headerlink" href="#encrypt-backups-prepare-encrypted-backups" title="Permanent link">&para;</a></h2>
@@ -18352,11 +18352,11 @@ named <code>test</code> which contains tables named <code>t1</code> and <code>t2
 <p>To back up only tables in the <code>test</code> database, use the following
 command:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span><span class="se">\</span>
---tables<span class="o">=</span><span class="s2">&quot;^test[.].*&quot;</span>
+--tables<span class="o">=</span><span class="s2">"^test[.].*"</span>
 </code></pre></div>
 <p>To back up only the <code>test.t1</code> table, use the following command:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span><span class="se">\</span>
---tables<span class="o">=</span><span class="s2">&quot;^test[.]t1&quot;</span>
+--tables<span class="o">=</span><span class="s2">"^test[.]t1"</span>
 </code></pre></div>
 <h2 id="create-partial-backup-the-tables-file-option">The <code>-–tables-file</code> option<a class="headerlink" href="#create-partial-backup-the-tables-file-option" title="Permanent link">&para;</a></h2>
 <p>The <code>--tables-file</code> option specifies a file that can contain multiple table
@@ -18364,7 +18364,7 @@ names, one table name per line in the file. Only the tables named in the file
 will be backed up. Names are matched exactly, case-sensitive, with no pattern or
 regular expression matching. The table names must be fully-qualified in
 <code>databasename.tablename</code> format.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;mydatabase.mytable&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/tables.txt
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"mydatabase.mytable"</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/tables.txt
 $<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables-file<span class="o">=</span>/tmp/tables.txt
 </code></pre></div>
 <h2 id="create-partial-backup-the-databases-and-databases-file-options">The <code>--databases</code> and <code>-–databases-file</code> options<a class="headerlink" href="#create-partial-backup-the-databases-and-databases-file-options" title="Permanent link">&para;</a></h2>
@@ -18376,7 +18376,7 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="
 even if they are not explicitly listed by the parameter if they were created
 after the backup started.</p>
 </div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--databases<span class="o">=</span><span class="s1">&#39;mysql sys performance_schema test&#39;</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--databases<span class="o">=</span><span class="s1">'mysql sys performance_schema test'</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <h2 id="create-partial-backup-the-databases-file-option">The <code>--databases-file</code> option<a class="headerlink" href="#create-partial-backup-the-databases-file-option" title="Permanent link">&para;</a></h2>
 <p>The –databases-file option specifies a file that can contain multiple
@@ -18548,8 +18548,8 @@ database) to the datadir you are moving the backup to. A system database can be 
 <p>Once you start the server, you may see mysql complaining about missing tablespaces:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>2021-07-19T12:42:11.077200Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name &#39;test1/t1&#39;, file &#39;./d2/test1.ibd&#39; is missing!
-2021-07-19T12:42:11.077300Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name &#39;test1/t1&#39;, file &#39;./d2/test1.ibd&#39; is missing!
+<div class="no-copy highlight"><pre><span></span><code>2021-07-19T12:42:11.077200Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name 'test1/t1', file './d2/test1.ibd' is missing!
+2021-07-19T12:42:11.077300Z 1 [Warning] [MY-012351] [InnoDB] Tablespace 4, name 'test1/t1', file './d2/test1.ibd' is missing!
 </code></pre></div>
 </details>
 <p>In order to clean the orphan database from the data dictionary, you must manually create the missing database directory and then <code>DROP</code> this database from the server.</p>
@@ -18643,7 +18643,7 @@ that table:</p>
 </tbody>
 </table>
 <p>The following example shows the export and import process for a table called <code>export_test</code>:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>mysql<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE DATABASE create_database_test;&quot;</span>
+<div class="highlight" data-prompt="$"><pre><span></span><code>mysql<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">"CREATE DATABASE create_database_test;"</span>
 </code></pre></div>
 <div class="highlight" data-prompt="$"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>TABLE<span class="w"> </span>export_test<span class="w"> </span><span class="o">(</span>
 a<span class="w"> </span>int<span class="o">(</span><span class="m">11</span><span class="o">)</span><span class="w"> </span>DEFAULT<span class="w"> </span>NULL
@@ -18818,10 +18818,10 @@ datadir, you must put these files in their proper place after the logs have
 been applied.</p>
 <h2 id="set-up-replication-3-configure-the-sources-mysql-server">3. Configure the Source’s MySQL server<a class="headerlink" href="#set-up-replication-3-configure-the-sources-mysql-server" title="Permanent link">&para;</a></h2>
 <p>On the source, create a user specifically for replication tasks. Use the following command to define the user and set a secure password:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;repl&#39;</span>@<span class="s1">&#39;$replicaip&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>CREATE<span class="w"> </span>USER<span class="w"> </span><span class="s1">'repl'</span>@<span class="s1">'$replicaip'</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">'$replicapass'</span><span class="p">;</span>
 </code></pre></div>
 <p>Grant the replication privileges to the newly created user to allow the replica to connect to the source server:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>SLAVE<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w"> </span>TO<span class="w"> </span><span class="s1">&#39;repl&#39;</span>@<span class="s1">&#39;$replicaip&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>SLAVE<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w"> </span>TO<span class="w"> </span><span class="s1">'repl'</span>@<span class="s1">'$replicaip'</span><span class="p">;</span>
 </code></pre></div>
 <p>Apply the changes:</p>
 <div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
@@ -18870,10 +18870,10 @@ password you’ve set up in STEP 3 :</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">CHANGE</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="k">SOURCE</span><span class="w"> </span><span class="k">TO</span>
-<span class="w">    </span><span class="n">SOURCE_HOST</span><span class="o">=</span><span class="s1">&#39;$sourceip&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">SOURCE_USER</span><span class="o">=</span><span class="s1">&#39;repl&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">SOURCE_PASSWORD</span><span class="o">=</span><span class="s1">&#39;$replicapass&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="n">SOURCE_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;Source-bin.000001&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_HOST</span><span class="o">=</span><span class="s1">'$sourceip'</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_USER</span><span class="o">=</span><span class="s1">'repl'</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_PASSWORD</span><span class="o">=</span><span class="s1">'$replicapass'</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SOURCE_LOG_FILE</span><span class="o">=</span><span class="s1">'Source-bin.000001'</span><span class="p">,</span>
 <span class="w">    </span><span class="n">SOURCE_LOG_POS</span><span class="o">=</span><span class="mi">481</span><span class="p">;</span>
 </code></pre></div>
 <p>Start the replica:</p>
@@ -18926,8 +18926,8 @@ the snapshot into its datadir.):</p>
 </code></pre></div>
 <p>For example, to set up a new user, <code>user2</code>, you add another grant on
 the Source:</p>
-<div class="highlight" data-prompt=">"><pre><span></span><code>&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>SLAVE<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w">  </span>TO<span class="w"> </span><span class="s1">&#39;user2&#39;</span>@<span class="s1">&#39;$newreplicaip&#39;</span>
-<span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;$replicapass&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt=">"><pre><span></span><code>&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>SLAVE<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w">  </span>TO<span class="w"> </span><span class="s1">'user2'</span>@<span class="s1">'$newreplicaip'</span>
+<span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">'$replicapass'</span><span class="p">;</span>
 </code></pre></div>
 <p>On the <code>NewReplica</code>, copy the configuration file from the <code>Replica</code>:</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>scp<span class="w"> </span>user@Replica:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
@@ -18942,10 +18942,10 @@ server-id=3
 file <code>xtrabackup_slave_info</code>, execute the statement for setting up the
 source and the log file for the NewReplica:</p>
 <div class="highlight" data-prompt=">"><pre><span></span><code>&gt;<span class="w"> </span>CHANGE<span class="w"> </span>MASTER<span class="w"> </span>TO
-<span class="w">     </span><span class="nv">MASTER_HOST</span><span class="o">=</span><span class="s1">&#39;$Sourceip&#39;</span>,
-<span class="w">     </span><span class="nv">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;repl&#39;</span>,
-<span class="w">     </span><span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;$replicapass&#39;</span>,
-<span class="w">     </span><span class="nv">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;Source-bin.000001&#39;</span>,
+<span class="w">     </span><span class="nv">MASTER_HOST</span><span class="o">=</span><span class="s1">'$Sourceip'</span>,
+<span class="w">     </span><span class="nv">MASTER_USER</span><span class="o">=</span><span class="s1">'repl'</span>,
+<span class="w">     </span><span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">'$replicapass'</span>,
+<span class="w">     </span><span class="nv">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">'Source-bin.000001'</span>,
 <span class="w">     </span><span class="nv">MASTER_LOG_POS</span><span class="o">=</span><span class="m">481</span><span class="p">;</span>
 </code></pre></div>
 <p><a href="#set-up-replication-version-updates">The term <code>master</code> is deprecated</a>. Do the following 
@@ -18998,7 +18998,7 @@ The result could look like this:</p>
 <p>That information is also printed by xtrabackup after taking the backup:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: MySQL binlog position: filename &#39;mysql-bin.000002&#39;, position 1232, GTID of the last change &#39;c777888a-b6df-11e2-a604-080027635ef5:1-4&#39;
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup: MySQL binlog position: filename 'mysql-bin.000002', position 1232, GTID of the last change 'c777888a-b6df-11e2-a604-080027635ef5:1-4'
 </code></pre></div>
 </details>
 <h2 id="create-gtid-replica-2-prepare-the-backup">2. Prepare the backup<a class="headerlink" href="#create-gtid-replica-2-prepare-the-backup" title="Permanent link">&para;</a></h2>
@@ -19030,11 +19030,11 @@ the replica if you are using a version before 8.0.22:</p>
 <span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>RESET<span class="w"> </span>MASTER<span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>GLOBAL<span class="w"> </span><span class="nv">gtid_purged</span><span class="o">=</span><span class="s1">&#39;&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;&#39;</span><span class="p">;</span>
+<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>GLOBAL<span class="w"> </span><span class="nv">gtid_purged</span><span class="o">=</span><span class="s1">'&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;'</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>CHANGE<span class="w"> </span>MASTER<span class="w"> </span>TO
-<span class="w">             </span><span class="nv">MASTER_HOST</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$masterip</span><span class="s2">&quot;</span>,
-<span class="w">             </span><span class="nv">MASTER_USER</span><span class="o">=</span><span class="s2">&quot;repl&quot;</span>,
-<span class="w">             </span><span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$slavepass</span><span class="s2">&quot;</span>,
+<span class="w">             </span><span class="nv">MASTER_HOST</span><span class="o">=</span><span class="s2">"</span><span class="nv">$masterip</span><span class="s2">"</span>,
+<span class="w">             </span><span class="nv">MASTER_USER</span><span class="o">=</span><span class="s2">"repl"</span>,
+<span class="w">             </span><span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s2">"</span><span class="nv">$slavepass</span><span class="s2">"</span>,
 <span class="w">             </span><span class="nv">MASTER_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>START<span class="w"> </span>SLAVE<span class="p">;</span>
 </code></pre></div>
@@ -19046,11 +19046,11 @@ are using version 8.0.21 or earlier, use <code>START SLAVE</code>.</p>
 <span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>RESET<span class="w"> </span>MASTER<span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>GLOBAL<span class="w"> </span><span class="nv">gtid_purged</span><span class="o">=</span><span class="s1">&#39;&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;&#39;</span><span class="p">;</span>
+<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>GLOBAL<span class="w"> </span><span class="nv">gtid_purged</span><span class="o">=</span><span class="s1">'&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;'</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>CHANGE<span class="w"> </span>REPLICATION<span class="w"> </span>SOURCE<span class="w"> </span>TO
-<span class="w">             </span><span class="nv">SOURCE_HOST</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$masterip</span><span class="s2">&quot;</span>,
-<span class="w">             </span><span class="nv">SOURCE_USER</span><span class="o">=</span><span class="s2">&quot;repl&quot;</span>,
-<span class="w">             </span><span class="nv">SOURCE_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$slavepass</span><span class="s2">&quot;</span>,
+<span class="w">             </span><span class="nv">SOURCE_HOST</span><span class="o">=</span><span class="s2">"</span><span class="nv">$masterip</span><span class="s2">"</span>,
+<span class="w">             </span><span class="nv">SOURCE_USER</span><span class="o">=</span><span class="s2">"repl"</span>,
+<span class="w">             </span><span class="nv">SOURCE_PASSWORD</span><span class="o">=</span><span class="s2">"</span><span class="nv">$slavepass</span><span class="s2">"</span>,
 <span class="w">             </span><span class="nv">SOURCE_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
 <span class="w"> </span>&gt;<span class="w"> </span>START<span class="w"> </span>REPLICA<span class="p">;</span>
 </code></pre></div>
@@ -19173,7 +19173,7 @@ consistent with the current setup.</p>
 difference and point to the table that does not match. Following example
 shows adding new user on the backed up replica in order to simulate the
 inconsistent backup:</p>
-<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>grant<span class="w"> </span>usage<span class="w"> </span>on<span class="w"> </span>exampledb.*<span class="w"> </span>to<span class="w"> </span>exampledb@localhost<span class="w"> </span>identified<span class="w"> </span>by<span class="w"> </span><span class="s1">&#39;thisisnewpassword&#39;</span><span class="p">;</span>
+<div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>grant<span class="w"> </span>usage<span class="w"> </span>on<span class="w"> </span>exampledb.*<span class="w"> </span>to<span class="w"> </span>exampledb@localhost<span class="w"> </span>identified<span class="w"> </span>by<span class="w"> </span><span class="s1">'thisisnewpassword'</span><span class="p">;</span>
 </code></pre></div>
 <p>If we run the <em>pt-table-checksum</em> now difference should be spotted</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>./pt-table-checksum
@@ -19684,35 +19684,35 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
 <p>This script is designed to dump the schemas of all tables from each database in a MySQL server instance, excluding the system databases, into separate files.</p>
 <p>Before you run the script, modify it for your specific use case. For example, you may want to exclude certain tables or databases or specify a different output directory.</p>
 <div class="highlight" data-prompt="$"><pre><span></span><code>print_usage<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> [--defaults-file=&lt;file&gt;] [--destination-dir=&lt;directory&gt;]&quot;</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --defaults-file=&lt;file&gt;      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)&quot;</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  --destination-dir=&lt;directory&gt; (Optional) Directory to save the schema dumps (default: schema_dumps)&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> [--defaults-file=&lt;file&gt;] [--destination-dir=&lt;directory&gt;]"</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"  --defaults-file=&lt;file&gt;      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)"</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"  --destination-dir=&lt;directory&gt; (Optional) Directory to save the schema dumps (default: schema_dumps)"</span>
 <span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="o">}</span>
 
-<span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-<span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-<span class="nv">HARDCODED_PASSWORD</span><span class="o">=</span><span class="s2">&quot;test2&quot;</span>
-<span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">&quot;schema_dumps&quot;</span>
+<span class="nv">USER</span><span class="o">=</span><span class="s2">""</span>
+<span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">""</span>
+<span class="nv">HARDCODED_PASSWORD</span><span class="o">=</span><span class="s2">"test2"</span>
+<span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">"schema_dumps"</span>
 
 <span class="c1"># Check for -h or --help option</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;-h&quot;</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;--help&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"-h"</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"--help"</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w">    </span>print_usage
 <span class="k">fi</span>
 
 <span class="c1"># Parse arguments using a loop to check for --defaults-file and --destination-dir options</span>
-<span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$#</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="nv">$#</span><span class="s2">"</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="w"> </span><span class="k">in</span>
 <span class="w">        </span>--defaults-file<span class="o">=</span>*<span class="o">)</span>
-<span class="w">            </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;--defaults-file=</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using provided defaults file: </span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">"--defaults-file=</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Using provided defaults file: </span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">"</span>
 <span class="w">            </span><span class="p">;;</span>
 <span class="w">        </span>--destination-dir<span class="o">=</span>*<span class="o">)</span>
-<span class="w">            </span><span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Saving schema dumps in: </span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span>
+<span class="w">            </span><span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">1</span><span class="p">#*=</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Saving schema dumps in: </span><span class="nv">$DEST_DIR</span><span class="s2">"</span>
 <span class="w">            </span><span class="p">;;</span>
 <span class="w">        </span>*<span class="o">)</span>
-<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Error: Invalid option &#39;</span><span class="nv">$1</span><span class="s2">&#39;&quot;</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Error: Invalid option '</span><span class="nv">$1</span><span class="s2">'"</span>
 <span class="w">            </span>print_usage
 <span class="w">            </span><span class="p">;;</span>
 <span class="w">    </span><span class="k">esac</span>
@@ -19720,46 +19720,46 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
 <span class="k">done</span>
 
 <span class="c1"># Default behavior if no defaults-file is provided</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEFAULTS_FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$MYSQL_PWD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using password from environment variable MYSQL_PWD&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">"</span><span class="nv">$DEFAULTS_FILE</span><span class="s2">"</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"</span><span class="nv">$MYSQL_PWD</span><span class="s2">"</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Using password from environment variable MYSQL_PWD"</span>
 <span class="w">    </span><span class="k">else</span>
-<span class="w">        </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">&quot;--password=</span><span class="nv">$HARDCODED_PASSWORD</span><span class="s2">&quot;</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using hardcoded password in the script&quot;</span>
+<span class="w">        </span><span class="nv">DEFAULTS_FILE</span><span class="o">=</span><span class="s2">"--password=</span><span class="nv">$HARDCODED_PASSWORD</span><span class="s2">"</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Using hardcoded password in the script"</span>
 <span class="w">    </span><span class="k">fi</span>
-<span class="w">    </span><span class="nv">USER</span><span class="o">=</span><span class="s2">&quot;-uroot&quot;</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Using hardcoded user: </span><span class="nv">$USER</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nv">USER</span><span class="o">=</span><span class="s2">"-uroot"</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Using hardcoded user: </span><span class="nv">$USER</span><span class="s2">"</span>
 <span class="k">fi</span>
 
-mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># Root directory for schema dumps</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Schema will be saved in: </span><span class="nv">$DEST_DIR</span><span class="s2">&quot;</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="nv">$DEST_DIR</span><span class="s2">"</span><span class="w">  </span><span class="c1"># Root directory for schema dumps</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Schema will be saved in: </span><span class="nv">$DEST_DIR</span><span class="s2">"</span>
 
 <span class="c1"># Get the list of all databases, excluding system databases</span>
-<span class="nv">databases</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SHOW DATABASES&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-Ev<span class="w"> </span><span class="s2">&quot;^(information_schema|performance_schema|mysql|sys)</span>$<span class="s2">&quot;</span><span class="k">)</span>
+<span class="nv">databases</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">"SHOW DATABASES"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-Ev<span class="w"> </span><span class="s2">"^(information_schema|performance_schema|mysql|sys)</span>$<span class="s2">"</span><span class="k">)</span>
 
 <span class="k">for</span><span class="w"> </span>db<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$databases</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Dumping schemas for database: </span><span class="nv">$db</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Dumping schemas for database: </span><span class="nv">$db</span><span class="s2">"</span>
 
-<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># Create a directory for each database</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">"</span><span class="w">  </span><span class="c1"># Create a directory for each database</span>
 
 <span class="w">    </span><span class="c1"># Dump only the database creation statement</span>
-<span class="w">    </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--databases<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/create_database_</span><span class="si">${</span><span class="nv">db</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+<span class="w">    </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--databases<span class="w"> </span><span class="s2">"</span><span class="nv">$db</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/create_database_</span><span class="si">${</span><span class="nv">db</span><span class="si">}</span><span class="s2">.sql"</span>
 
 <span class="w">    </span><span class="c1"># Get the list of tables for the current database</span>
-<span class="w">    </span><span class="nv">tables</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;SHOW TABLES FROM </span><span class="nv">$db</span><span class="s2">&quot;</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">tables</span><span class="o">=</span><span class="k">$(</span>mysql<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-N<span class="w"> </span>-e<span class="w"> </span><span class="s2">"SHOW TABLES FROM </span><span class="nv">$db</span><span class="s2">"</span><span class="k">)</span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span>table<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$tables</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  Dumping schema for table: </span><span class="nv">$table</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"  Dumping schema for table: </span><span class="nv">$table</span><span class="s2">"</span>
 
-<span class="w">        </span><span class="c1"># Ensure `USE &lt;database&gt;;` is at the top of each table&#39;s schema file</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;USE \`</span><span class="nv">$db</span><span class="s2">\`;&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+<span class="w">        </span><span class="c1"># Ensure `USE &lt;database&gt;;` is at the top of each table's schema file</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"USE \`</span><span class="nv">$db</span><span class="s2">\`;"</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql"</span>
 
 <span class="w">        </span><span class="c1"># Append the table schema dump</span>
-<span class="w">        </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--skip-add-drop-table<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$db</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$table</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql&quot;</span>
+<span class="w">        </span>mysqldump<span class="w"> </span><span class="nv">$DEFAULTS_FILE</span><span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>--no-data<span class="w"> </span>--skip-add-drop-table<span class="w"> </span><span class="s2">"</span><span class="nv">$db</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$table</span><span class="s2">"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">"</span><span class="nv">$DEST_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">/</span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="s2">.sql"</span>
 <span class="w">    </span><span class="k">done</span>
 <span class="k">done</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Schema dumps are saved in the &#39;</span><span class="nv">$DEST_DIR</span><span class="s2">&#39; directory.&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"Schema dumps are saved in the '</span><span class="nv">$DEST_DIR</span><span class="s2">' directory."</span>
 </code></pre></div>
 <h2 id="dump-schema-usage">Usage<a class="headerlink" href="#dump-schema-usage" title="Permanent link">&para;</a></h2>
 <p>To use this script, follow these steps:</p>
@@ -20553,7 +20553,7 @@ we will do our very best to be helpful.</p></section><section class="print-page"
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

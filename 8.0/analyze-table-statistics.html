@@ -31,7 +31,7 @@ files to examine. It also uses the –use-memory option.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -39,7 +39,7 @@ files to examine. It also uses the –use-memory option.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
@@ -7100,8 +7100,8 @@ statistics information:</p>
 
 #!/usr/bin/env perl
 use strict;
-use warnings FATAL =&gt; &#39;all&#39;;
-my $script_version = &quot;0.1&quot;;
+use warnings FATAL =&gt; 'all';
+my $script_version = "0.1";
 
 my $PG_SIZE = 16_384; # InnoDB defaults to 16k pages, change if needed.
 my ($cur_idx, $cur_tbl);
@@ -7134,14 +7134,14 @@ while ( my $line = &lt;&gt; ) {
    }
 }
 
-my $hdr_fmt = &quot;%${max_tbl_len}s %${max_idx_len}s %9s %10s %10s\n&quot;;
+my $hdr_fmt = "%${max_tbl_len}s %${max_idx_len}s %9s %10s %10s\n";
 my @headers = qw(TABLE INDEX TOT_PAGES FREE_PAGES PCT_FULL);
 printf $hdr_fmt, @headers;
 
-my $row_fmt = &quot;%${max_tbl_len}s %${max_idx_len}s %9d %10d %9.1f%%\n&quot;;
+my $row_fmt = "%${max_tbl_len}s %${max_idx_len}s %9d %10d %9.1f%%\n";
 foreach my $t ( sort keys %tbl_stats ) {
   my $tbl = $tbl_stats{$t};
-  printf $row_fmt, $t, &quot;&quot;, $tbl-&gt;{est_sp}, $tbl-&gt;{est_sp} - $tbl-&gt;{real_pages},
+  printf $row_fmt, $t, "", $tbl-&gt;{est_sp}, $tbl-&gt;{est_sp} - $tbl-&gt;{real_pages},
       $tbl-&gt;{real_bytes} / ($tbl-&gt;{real_pages} * $PG_SIZE) * 100;
    foreach my $i ( sort keys %{$idx_stats{$t}} ) {
       my $idx = $idx_stats{$t}-&gt;{$i};
@@ -7330,7 +7330,7 @@ empty, is a summary of the entire table.</p>
     
     
   
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="js/print-site.js"></script>
       
