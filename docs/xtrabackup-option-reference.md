@@ -773,7 +773,7 @@ The maximum number of file descriptors to reserve with [setrlimit :octicons-link
 
 Controls how Percona XtraBackup combines reads of changed pages during incremental backups with page tracking.
 
-The default value, `auto`, measures storage performance at the start of the backup and determines the appropriate gap for each tablespace based on the storage characteristics and page size.
+The default value, auto, measures storage performance at the start of the backup and determines the appropriate gap for each tablespace based on the storage characteristics and page size.
 
 The option accepts the following values:
 
@@ -792,7 +792,7 @@ The option accepts the following values:
 
 * 0 — disables merging of non-consecutive changed pages. Only consecutive changed pages are read together.
 
-The backup log reports the storage measurement once and, for each tablespace with at least 1000 changed pages, reports the number of changed pages, the number of read requests before and after combining pages, and the resulting read amplification. Use these messages to evaluate a fixed value against the `auto` setting.
+The backup log reports the storage measurement once and, for each tablespace with at least 1000 changed pages, reports the number of changed pages, the number of read requests before and after combining pages, and the resulting read amplification. Use these messages to evaluate a fixed value against the auto setting.
 
 Combining reads can cause XtraBackup to read unchanged pages between changed pages. This can increase the amount of data read during the backup. If storage bandwidth is metered or constrained, consider setting `--page-tracking-merge-gap=0`.
 
