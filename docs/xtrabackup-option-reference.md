@@ -777,9 +777,9 @@ The default value, `auto`, measures storage performance at the start of the back
 
 The option accepts the following values:
 
-* `auto` (default) — automatically determines the appropriate gap for each tablespace. This is the recommended setting for most workloads.
+* auto (default) — automatically determines the appropriate gap for each tablespace. This is the recommended setting for most workloads.
 
-* A positive integer, such as `8` — combines changed pages separated by up to the specified number of unchanged pages into a single read request. The same value applies to all tablespaces. Use a fixed value only after benchmarking your workload. A value that is too large can cause XtraBackup to read unnecessary data, while a value that is too small can result in more individual read requests.
+* A positive integer, such as 8 — combines changed pages separated by up to the specified number of unchanged pages into a single read request. The same value applies to all tablespaces. Use a fixed value only after benchmarking your workload. A value that is too large can cause XtraBackup to read unnecessary data, while a value that is too small can result in more individual read requests.
 
     For example:
 
@@ -790,7 +790,7 @@ The option accepts the following values:
     --page-tracking-merge-gap=8
     ```
 
-* `0` — disables merging of non-consecutive changed pages. Only consecutive changed pages are read together.
+* 0 — disables merging of non-consecutive changed pages. Only consecutive changed pages are read together.
 
 The backup log reports the storage measurement once and, for each tablespace with at least 1000 changed pages, reports the number of changed pages, the number of read requests before and after combining pages, and the resulting read amplification. Use these messages to evaluate a fixed value against the `auto` setting.
 
