@@ -767,7 +767,34 @@ a random UUID; no client information is collected or stored.
 
 Usage: `--open-files-limit=#`
 
-The maximum number of file descriptors to reserve with [setrlimit :octicons-link-external-16:]( https://man7.org/linux/man-pages/man2/setrlimit.2.html)git .
+The maximum number of file descriptors to reserve with [setrlimit :octicons-link-external-16:]( https://man7.org/linux/man-pages/man2/setrlimit.2.html)git.
+
+### `--page-tracking-merge-gap`
+
+Controls how Percona XtraBackup combines reads of changed pages during incremental backups with page tracking.
+
+The default value, auto, measures storage performance at the start of the backup and determines the appropriate gap for each tablespace based on the storage characteristics and page size.
+
+The option accepts the following values:
+
+* auto (default) — automatically determines the appropriate gap for each tablespace. This is the recommended setting for most workloads.
+
+* A positive integer, such as 8 — combines changed pages separated by up to the specified number of unchanged pages into a single read request. The same value applies to all tablespaces. Use a fixed value only after benchmarking your workload. A value that is too large can cause XtraBackup to read unnecessary data, while a value that is too small can result in more individual read requests.
+
+    For example:
+
+    ```bash
+    xtrabackup --backup --target-dir=/data/inc1 \
+    --incremental-basedir=/data/full \
+    --page-tracking \
+    --page-tracking-merge-gap=8
+    ```
+
+* 0 — disables merging of non-consecutive changed pages. Only consecutive changed pages are read together.
+
+The backup log reports the storage measurement once and, for each tablespace with at least 1000 changed pages, reports the number of changed pages, the number of read requests before and after combining pages, and the resulting read amplification. Use these messages to evaluate a fixed value against the auto setting.
+
+Combining reads can cause XtraBackup to read unchanged pages between changed pages. This can increase the amount of data read during the backup. If storage bandwidth is metered or constrained, consider setting `--page-tracking-merge-gap=0`.
 
 ### parallel
 

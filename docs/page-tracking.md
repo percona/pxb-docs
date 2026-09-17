@@ -68,6 +68,8 @@ The first full backup using page tracking, Percona XtraBackup may have a delay. 
 
 Enable page tracking before creating the first backup to avoid this delay. This method ensures that the page tracking log sequence number (LSN) is higher than the checkpoint LSN of the server.
 
+See also [`--page-tracking-merge-gap`](xtrabackup-option-reference.md#page-tracking-merge-gap).
+
 ## Start page tracking manually
 
 After the mysqlbackup component is loaded and active on the server, you can
