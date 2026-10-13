@@ -65,15 +65,12 @@ xtrabackup --backup --compress --compress-threads=4 \
 
     ```{.text .no-copy}
     ...
-    170223 13:00:38 [01] Compressing ./test/sbtest1.frm to /tmp/compressed/test/sbtest1.frm.qp
-    170223 13:00:38 [01]        ...done
-    170223 13:00:38 [01] Compressing ./test/sbtest2.frm to /tmp/compressed/test/sbtest2.frm.qp
-    170223 13:00:38 [01]        ...done
+    2026-10-13T17:15:05.557481-00:00 2 [Note] [MY-011825] [Xtrabackup] space_id: 2, Compressing ./test/t1.ibd to /data/compressed/test/t1.ibd.zst, size 11534336 (11.00 MiB)
+    2026-10-13T17:15:05.575040-00:00 2 [Note] [MY-011825] [Xtrabackup] space_id: 2, Done: Compressing ./test/t1.ibd to /data/compressed/test/t1.ibd.zst
     ...
-    170223 13:00:39 [00] Compressing xtrabackup_info
-    170223 13:00:39 [00]        ...done
-    xtrabackup: Transaction log of lsn (9291934) to (9291934) was copied.
-    170223 13:00:39 completed OK!
+    2026-10-13T17:15:06.622555-00:00 0 [Note] [MY-011825] [Xtrabackup] Compression ratio: 21.73x
+    2026-10-13T17:15:07.624119-00:00 0 [Note] [MY-011825] [Xtrabackup] Transaction log of lsn (38173174) to (38173210) was copied.
+    2026-10-13T17:15:07.853292-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
     ```
 
 ## Next step

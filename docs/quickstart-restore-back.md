@@ -213,7 +213,7 @@ Copy the backup files from `backupvol` to the restore target data directory.
         ```{.text .no-copy}
         2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
         2024-10-07T14:08:59.128951-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --copy-back=1 --target-dir=/backup_84
-        xtrabackup version 8.4.0-1 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 3792f907)
+        xtrabackup version {{release}} based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
         2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /backup_84/
 
         ...

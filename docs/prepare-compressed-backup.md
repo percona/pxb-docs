@@ -57,9 +57,9 @@ xtrabackup --prepare --target-dir=/data/compressed/
 ??? example "Confirmation message"
 
     ```{.text .no-copy}
-    InnoDB: Starting shutdown...
-    InnoDB: Shutdown completed; log sequence number 9293846
-    170223 13:39:31 completed OK!
+    ...
+    2026-10-13T17:15:23.335977-00:00 0 [Note] [MY-012980] [InnoDB] Shutdown completed; log sequence number 38173718
+    2026-10-13T17:15:23.343329-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
     ```
 
 Now the files in `/data/compressed/` are ready to be used by the server.

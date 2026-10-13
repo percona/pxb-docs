@@ -52,13 +52,14 @@ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
 
 The log sequence number (LSN) identifies a point in the database redo log. Incremental backups use LSNs to identify which changes occurred after the base backup.
 
-The log sequence number in the output should match the `to_lsn` value of the base backup. The output should end with text similar to the following:
+The output should end with text similar to the following:
 
 ??? example "Expected output"
 
     ```text
-    InnoDB: Shutdown completed; log sequence number 1626007
-    161011 12:41:04 completed OK!
+    ...
+    2026-10-13T17:14:53.677847-00:00 0 [Note] [MY-012980] [InnoDB] Shutdown completed; log sequence number 36483326
+    2026-10-13T17:14:53.687033-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
     ```
 
 !!! warning
@@ -99,15 +100,15 @@ You should see output similar to the following:
 ??? example "Expected output"
 
     ```text
-    incremental backup from 1626007 is enabled.
-    xtrabackup: cd to /data/backups/base
-    xtrabackup: This target seems to be already prepared with --apply-log-only.
-    xtrabackup: xtrabackup_logfile detected: size=2097152, start_lsn=(4124244)
+    2026-10-13T17:14:55.375776-00:00 0 [Note] [MY-011825] [Xtrabackup] incremental backup from 36483306 is enabled.
+    2026-10-13T17:14:55.376077-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /data/backups/base/
+    2026-10-13T17:14:55.376794-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be already prepared with --apply-log-only.
+    2026-10-13T17:14:55.390075-00:00 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(37325944)
     ...
-    xtrabackup: page size for /tmp/backups/inc1/ibdata1.delta is 16384 bytes
-    Applying /tmp/backups/inc1/ibdata1.delta to ./ibdata1...
+    2026-10-13T17:14:55.649252-00:00 1 [Note] [MY-011825] [Xtrabackup] page size for /data/backups/inc1//ibdata1.delta is 16384 bytes
+    2026-10-13T17:14:55.649388-00:00 1 [Note] [MY-011825] [Xtrabackup] Applying /data/backups/inc1//ibdata1.delta to ./ibdata1
     ...
-    161011 12:45:56 completed OK!
+    2026-10-13T17:14:59.036089-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
     ```
 
 The LSN should match the LSN from the first incremental backup. At this point, `/data/backups/base` contains the state of the database as of the first incremental backup.

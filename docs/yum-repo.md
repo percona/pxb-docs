@@ -73,16 +73,15 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
     ??? example "Expected output"
 
         ```{.text .no-copy}
-        PMM2 Client release/x86_64 YUM repository        17 kB/s | 7.1 kB     00:00    
-        Percona Release release/noarch YUM repository   5.3 kB/s | 2.0 kB     00:00    
-        Percona Packaging Repository release/x86_64 YUM  95 kB/s |  52 kB     00:00    
-        Percona Telemetry release/x86_64 YUM repository 4.3 kB/s | 1.7 kB     00:00    
+        Percona Release release/noarch YUM repository    16 kB/s | 2.8 kB     00:00
+        Percona Packaging Repository release/x86_64 YUM 971 kB/s | 371 kB     00:00
+        Percona Telemetry release/x86_64 YUM repository  35 kB/s | 5.4 kB     00:00
         Dependencies resolved.
         ...
-        perl-subs-1.03-481.el9.noarch                                                 
-        perl-vars-1.05-481.el9.noarch                                                 
-        rsync-3.2.3-20.el9.x86_64                                                     
-        zstd-1.5.1-2.el9.x86_64 
+        Installing:
+         percona-xtrabackup-84    x86_64  8.4.0-7.1.el9       pxb-84-lts-release-x86_64   38 M
+        ...
+        Complete!
         ```
         
 4. Verify the installation.
@@ -94,7 +93,7 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
     ??? example "Expected output"
 
         ```{.text .no-copy}
-        xtrabackup version 8.4.0-1 based on MySQL server 8.4.0 Linux (x86_64) (revision id: da6e1abd)
+        xtrabackup version {{release}} based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
         ```
 
 5. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:

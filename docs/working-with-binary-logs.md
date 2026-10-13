@@ -9,10 +9,10 @@ You can find the binary log position corresponding to a backup after the backup 
 ??? example "Expected output during the backup stage"
 
     ```{.text .no-copy}
-    210715 14:14:59 Backup created in directory '/backup/'
-    MySQL binlog position: filename 'binlog.000002', position '156'
-    . . .
-    210715 14:15:00 completed OK!
+    2026-10-13T17:14:12.917457-00:00 0 [Note] [MY-011825] [Xtrabackup] Backup created in directory '/data/backups/'
+    2026-10-13T17:14:12.917481-00:00 0 [Note] [MY-011825] [Xtrabackup] MySQL binlog position: filename 'binlog.000004', position '198', GTID of the last change '78cf2c47-c729-11f1-90e4-f23a559b785b:1-5'
+    ...
+    2026-10-13T17:14:14.161363-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
     ```
 
 ## Point-in-time recovery
