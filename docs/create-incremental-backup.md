@@ -34,7 +34,7 @@ xtrabackup --backup --target-dir=/data/backups/base
 ```
 
 If you look at the `xtrabackup_checkpoints` file, you should see similar
-content depending on your LSN nuber:
+content depending on your LSN number:
 
 ??? example "Expected output"
 

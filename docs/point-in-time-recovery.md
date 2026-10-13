@@ -93,7 +93,7 @@ mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 
 
 Inspect the file with the queries to determine which position or date
 corresponds to the wanted point-in-time. Once determined, pipe it to the
-server. For example, if the point is `11-12-25 01:00:00`, the command moves the the database forward to that point-in-time.
+server. For example, if the point is `11-12-25 01:00:00`, the command moves the database forward to that point-in-time.
 
 ```shell
 mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 \

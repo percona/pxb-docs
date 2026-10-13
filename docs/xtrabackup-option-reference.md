@@ -719,7 +719,7 @@ used with caution.
 
 Usage: `--no-backup-locks`
 
-Explicity disables the `--backup-locks` option which is enabled by
+Explicitly disables the `--backup-locks` option which is enabled by
 default.
 
 ### no-defaults
