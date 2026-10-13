@@ -52,7 +52,7 @@ TABLES WITH READ LOCK` and once during to minimize the time the read lock is
 being held. During the second `rsync` call, it will only synchronize the
 changes to non-transactional data (if any) since the first call performed before
 the `FLUSH TABLES WITH READ LOCK`. Note that *Percona XtraBackup* will use
-[Backup locks](https://www.percona.com/doc/percona-server/5.6/management/backup_locks.html#backup-locks)
+[Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
 where available as a lightweight alternative to `FLUSH TABLES WITH READ
 LOCK`. This feature is available in *Percona Server for MySQL* 5.6+. *Percona XtraBackup*
 uses this automatically to copy non-InnoDB data to avoid blocking DML queries

@@ -1,7 +1,7 @@
 # Verify backups with replication and pt-checksum
 
 One way to verify if the backup is consistent is by setting up the
-replication and running [pt-table-checksum](http://www.percona.com/doc/percona-toolkit/pt-table-checksum.html). This can be used to verify any type of backups, but before setting up
+replication and running [pt-table-checksum](https://docs.percona.com/percona-toolkit/pt-table-checksum.html). This can be used to verify any type of backups, but before setting up
 replication, backup should be prepared and be able to run (this means that
 incremental backups should be merged to full backups, encrypted backups
 decrypted etc.).
@@ -25,7 +25,7 @@ which produces different results on replicas that are inconsistent with the
 source.
 
 After you confirmed that replication has been set up successfully, you
-can [install](http://www.percona.com/doc/percona-toolkit/installation.html)
+can [install](https://docs.percona.com/percona-toolkit/installation.html)
 or download *pt-table-checksum*. This example shows downloading the latest
 version of *pt-table-checksum*:
 
@@ -110,4 +110,4 @@ This output shows that source and the replica aren’t in consistent state
 and that the difference is in the `mysql.user` table.
 
 More information on different options that pt-table-checksum provides can
-be found in the *pt-table-checksum* [documentation](http://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html).
+be found in the *pt-table-checksum* [documentation](https://docs.percona.com/percona-toolkit/pt-table-checksum.html).

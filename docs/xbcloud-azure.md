@@ -14,7 +14,7 @@ The following are the options, environment variables, and descriptions for uploa
 | --azure-endpoint=name        | AZURE_ENDPOINT        | The endpoint allows clients to securely access data                                                                                                                                                                                                                                                              |
 | --azure-tier-class=name      | AZURE_STORAGE_CLASS   | Cloud tier can decrease the local storage required while maintaining the performance. When enabled, this feature has the following categories: <br/><br/>Hot - Frequently accessed or modified data <br/><br/>Cool - Infrequently accessed or modified data <br/><br/>Archive - Rarely accessed or modified data |
 
-Test your Azure applications with the [Azurite open-source emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio). For testing purposes, the **xbcloud** binary adds the `--azure-development-storage` option that uses the default `access_key` and `storage account` of azurite and `testcontainer` for the container. You can overwrite these options, if needed.
+Test your Azure applications with the [Azurite open-source emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite). For testing purposes, the **xbcloud** binary adds the `--azure-development-storage` option that uses the default `access_key` and `storage account` of azurite and `testcontainer` for the container. You can overwrite these options, if needed.
 
 ## Usage
 
