@@ -689,7 +689,7 @@ Use this option with caution since the operation removes backup files.
 
 Usage: `--no-backup-locks`
 
-Explicity disables the [`--backup-locks`](#backup-locks) option which is enabled by default.
+Explicitly disables the [`--backup-locks`](#backup-locks) option which is enabled by default.
 
 ### no-defaults
 

@@ -11,7 +11,7 @@ described in [Percona Release Lifecycle Overview :octicons-link-external-16:](ht
 Install Percona XtraBackup, like many other Percona products, with the `percona-release` package configuration tool. Run the following commands as root or use the sudo command.
 {.power-number}
 
-1. Use the apt package manager to dowload `percona-release`:
+1. Use the apt package manager to download `percona-release`:
 
     ```shell
     sudo apt update

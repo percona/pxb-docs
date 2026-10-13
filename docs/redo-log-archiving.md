@@ -1,6 +1,6 @@
 # InnoDB Redo Log Archiving
 
-<!-- Varify the instruction for 9.7 version-->
+<!-- Verify the instruction for 9.7 version-->
 
 A physical backup includes raw copies of database contents and related files, such as configuration files and logs. During crash recovery, InnoDB uses the redo log to correct data from incomplete transactions. The redo log contains entries that restore the database to a consistent state. An LSN value identifies the position of data in the redo log.
 
