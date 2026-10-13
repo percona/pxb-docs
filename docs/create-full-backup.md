@@ -15,8 +15,8 @@ system error 17, `file exists`.
 
 To start the backup process run:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backups/
+```shell
+xtrabackup --backup --target-dir=/data/backups/
 ```
 
 This will store the backup at `/data/backups/`. If you specify a
@@ -59,8 +59,8 @@ xtrabackup: Transaction log of lsn (<LSN>) to (<LSN>) was copied.
 
 After the backup is finished, the target directory will contain files such as the following, assuming you have a single InnoDB table `test.tbl1` and you are using MySQL’s innodb_file_per_table option:
 
-```{.bash data-prompt="$"}
-$ ls -lh /data/backups/
+```shell
+ls -lh /data/backups/
 ```
 
 The result should look like this:

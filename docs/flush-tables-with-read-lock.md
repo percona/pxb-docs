@@ -98,8 +98,8 @@ Running the *xtrabackup* with the following options will cause *xtrabackup*
 to spend no longer than 3 minutes waiting for all queries older than 40 seconds
 to complete.
 
-```{.bash data-prompt="$"}
-$  xtrabackup --backup --ftwrl-wait-threshold=40 \
+```shell
+ xtrabackup --backup --ftwrl-wait-threshold=40 \
 --ftwrl-wait-query-type=all --ftwrl-wait-timeout=180 \
 --kill-long-queries-timeout=20 --kill-long-query-type=all \
 --target-dir=/data/backups/

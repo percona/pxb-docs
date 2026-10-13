@@ -309,8 +309,8 @@ We recommend that the architectures match. If the server is ARM64, you should al
 
 Start the Percona XtraBackup container with exactly the same parameters that were used when the container was created. The following command starts the percona-xtrabackup Docker container, attaches to its output, and keeps STDIN open for interactive input. This is useful if you want to monitor the container's logs and interact with it directly.
 
-```{.bash data-prompt="$"}
-$ sudo docker start -ai percona-xtrabackup
+```shell
+sudo docker start -ai percona-xtrabackup
 ```
 
 The command sudo docker start -ai percona-xtrabackup does the following:
@@ -331,8 +331,8 @@ The command sudo docker start -ai percona-xtrabackup does the following:
 
 This command creates and starts a new Docker container named `percona-xtrabackup`, mounts the volumes from the existing `percona-server-mysql:8.0` container, and performs a backup of the MySQL data using `xtrabackup`. The backup is stored in the `/backup` directory inside the new container..
 
-```{.bash data-prompt="$"}
-$ sudo docker run --name percona-xtrabackup --volumes-from percona-server-mysql:8.0 \
+```shell
+sudo docker run --name percona-xtrabackup --volumes-from percona-server-mysql:8.0 \
 percona/percona-xtrabackup:8.0
 xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/backup --user=root --password=root
 ```

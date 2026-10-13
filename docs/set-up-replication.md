@@ -63,8 +63,8 @@ later, use `START REPLICA` instead.
 
 At the  `Source`, issue the following to a shell:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --user=yourDBuser --password=MaGiCdB1 --target-dir=/path/to/backupdir
+```shell
+xtrabackup --backup --user=yourDBuser --password=MaGiCdB1 --target-dir=/path/to/backupdir
 ```
 
 After this is finished you should get:
@@ -85,8 +85,8 @@ and do a hot backup of all your data in it
 In order for snapshot to be consistent you need to prepare the data on the
 source:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/path/to/backupdir
+```shell
+xtrabackup --prepare --target-dir=/path/to/backupdir
 ```
 
 You need to select path where your snapshot has been taken.
@@ -118,8 +118,8 @@ On the Source, use rsync or scp to copy the data from the Source to the
 Replica. If you are syncing the data directly to replica’s data directory,
 we recommend that you stop the `mysqld` there.
 
-```{.bash data-prompt="$"}
-$ rsync -avpP -e ssh /path/to/backupdir Replica:/path/to/mysql/
+```shell
+rsync -avpP -e ssh /path/to/backupdir Replica:/path/to/mysql/
 ```
 
 After data has been copied, you can back up the original or previously
@@ -127,21 +127,21 @@ installed *MySQL* datadir (**NOTE**: Make sure mysqld is shut down before
 you move the contents of its datadir, or move the snapshot into its
 datadir.). Run the following commands on the Replica:
 
-```{.bash data-prompt="$"}
-$ mv /path/to/mysql/datadir /path/to/mysql/datadir_bak
+```shell
+mv /path/to/mysql/datadir /path/to/mysql/datadir_bak
 ```
 
 and move the snapshot from the `Source` in its place:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --move-back --target-dir=/path/to/mysql/backupdir
+```shell
+xtrabackup --move-back --target-dir=/path/to/mysql/backupdir
 ```
 
 After you copy data over, make sure the Replica *MySQL* has the proper
 permissions to access them.
 
-```{.bash data-prompt="$"}
-$ chown mysql:mysql /path/to/mysql/datadir
+```shell
+chown mysql:mysql /path/to/mysql/datadir
 ```
 
 If the ibdata and iblog files are located in directories outside the
@@ -152,20 +152,20 @@ been applied.
 
 On the source, create a user specifically for replication tasks. Use the following command to define the user and set a secure password:
 
-```{.sql data-prompt="mysql>"}
-mysql> CREATE USER 'repl'@'$replicaip' IDENTIFIED BY '$replicapass';
+```sql
+CREATE USER 'repl'@'$replicaip' IDENTIFIED BY '$replicapass';
 ```
 
 Grant the replication privileges to the newly created user to allow the replica to connect to the source server:
 
-```{.sql data-prompt="mysql>"}
-mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl'@'$replicaip';
+```sql
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'$replicaip';
 ```
 
 Apply the changes:
 
-```{.sql data-prompt="mysql>"}
-mysql> FLUSH PRIVILEGES;
+```sql
+FLUSH PRIVILEGES;
 ```
 
 Also make sure that firewall rules are correct and that the `Replica` can
@@ -173,22 +173,22 @@ connect to the `Source`. Run the following command on the Replica to test
 that you can run the mysql client on `Replica`, connect to the `Source`,
 and authenticate.
 
-```{.bash data-prompt="mysql>"}
-mysql> mysql --host=Source --user=repl --password=$replicapass
+```sql
+mysql --host=Source --user=repl --password=$replicapass
 ```
 
 Verify the privileges.
 
-```{.sql data-prompt="mysql>"}
-mysql> SHOW GRANTS;
+```sql
+SHOW GRANTS;
 ```
 
 ## 4. Configure the Replica’s MySQL server
 
 Copy the `my.cnf` file from the `Source` to the `Replica`:
 
-```{.bash data-prompt="$"}
-$ scp user@Source:/etc/mysql/my.cnf /etc/mysql/my.cnf
+```shell
+scp user@Source:/etc/mysql/my.cnf /etc/mysql/my.cnf
 ```
 
 and change the following options in /etc/mysql/my.cnf:
@@ -209,8 +209,8 @@ and updated in `/etc/mysql/debian.cnf`.
 On the `Replica`, review the content of the file `xtrabackup_binlog_info`,
 it will be something like:
 
-```{.bash data-prompt="$"}
-$ cat /var/lib/mysql/xtrabackup_binlog_info
+```shell
+cat /var/lib/mysql/xtrabackup_binlog_info
 ```
 
 The results should resemble the following:
@@ -283,8 +283,8 @@ we will add a `NewReplica` to the plot.
 
 At the `Replica`, do a full backup:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --user=yourDBuser --password=MaGiCiGaM \
+```shell
+xtrabackup --user=yourDBuser --password=MaGiCiGaM \
    --backup --slave-info --target-dir=/path/to/backupdir
 ```
 
@@ -293,8 +293,8 @@ called `xtrabackup_slave_info`.
 
 Apply the logs:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --use-memory=2G --target-dir=/path/to/backupdir/
+```shell
+xtrabackup --prepare --use-memory=2G --target-dir=/path/to/backupdir/
 ```
 
 !!! note
@@ -312,15 +312,15 @@ rsync -avprP -e ssh /path/to/backupdir NewReplica:/path/to/mysql/datadir
 For example, to set up a new user, `user2`, you add another grant on
 the Source:
 
-```{.bash data-prompt=">"}
-> GRANT REPLICATION SLAVE ON *.*  TO 'user2'@'$newreplicaip'
+```sql
+GRANT REPLICATION SLAVE ON *.*  TO 'user2'@'$newreplicaip'
  IDENTIFIED BY '$replicapass';
 ```
 
 On the `NewReplica`, copy the configuration file from the `Replica`:
 
-```{.bash data-prompt="$"}
-$ scp user@Replica:/etc/mysql/my.cnf /etc/mysql/my.cnf
+```shell
+scp user@Replica:/etc/mysql/my.cnf /etc/mysql/my.cnf
 ```
 
 Make sure you change the server-id variable in `/etc/mysql/my.cnf` to 3 and
@@ -337,8 +337,8 @@ Fetch the master_log_file and master_log_pos from the
 file `xtrabackup_slave_info`, execute the statement for setting up the
 source and the log file for the NewReplica:
 
-```{.bash data-prompt=">"}
-> CHANGE MASTER TO
+```sql
+CHANGE MASTER TO
      MASTER_HOST='$Sourceip',
      MASTER_USER='repl',
      MASTER_PASSWORD='$replicapass',
@@ -358,8 +358,8 @@ and then start the replica:
 * Version 8.0.22 or later, use `START REPLICA`.
 * Before version 8.0.22, use `START SLAVE`
 
-```{.bash data-prompt=">"}
-> START REPLICA;
+```sql
+START REPLICA;
 ```
 
 If both IO and SQL threads are running when you check the `NewReplica`,

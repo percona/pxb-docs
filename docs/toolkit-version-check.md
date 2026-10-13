@@ -86,7 +86,7 @@ Disabling *version checking* permanently can be done by placing
 in case of *Percona Toolkit* [this can be done](https://www.percona.com/doc/percona-toolkit/LATEST/configuration_files.html)
 in a global configuration file `/etc/percona-toolkit/percona-toolkit.conf`:
 
-```{.bash data-prompt="#"}
+```ini
 # Disable Version Check for all tools:
 no-version-check
 ```

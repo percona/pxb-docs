@@ -41,14 +41,14 @@ The following profile sections should be updated with your system information, s
 
 Move the updated file:
 
-```{.bash data-prompt="$"}
-$ sudo mv usr.sbin.xtrabackup /etc/apparmor.d/
+```shell
+sudo mv usr.sbin.xtrabackup /etc/apparmor.d/
 ```
 
 Install the profile with the following command:
 
-```{.bash data-prompt="$"}
-$ sudo apparmor_parser -r -T -W /etc/apparmor.d/usr.sbin.xtrabackup
+```shell
+sudo apparmor_parser -r -T -W /etc/apparmor.d/usr.sbin.xtrabackup
 ```
 
 Run the backup as usual.

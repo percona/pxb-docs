@@ -2,8 +2,8 @@
 
 To prepare partial backups, follow a procedure similar to restoring individual tables. Apply the logs and use the `--export` option:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --export --target-dir=/mnt/backup/2012-08-28_10-29-09
+```shell
+xtrabackup --prepare --export --target-dir=/mnt/backup/2012-08-28_10-29-09
 ```
 
 You may see warnings in the output about tables that do not exist. This happens

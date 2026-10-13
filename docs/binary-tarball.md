@@ -21,8 +21,8 @@ You can download the binary tarballs from the `Linux - Generic` section on the [
 
 The following command is an example of downloading a tarball for Linux/Generic:
 
-```{.bash data-prompt="$"}
-$ wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.0/Percona-XtraBackup-8.0.35-30/binary/tarball/percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz
+```shell
+wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.0/Percona-XtraBackup-8.0.35-30/binary/tarball/percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz
 ```
 
 ??? example "Expected result"
@@ -40,8 +40,8 @@ $ wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.0/Percona-Xt
 
 After downloading the tarball to the selected location, use the following command to extract the tarball:
 
-```{.bash data-prompt="$"}
-$ tar -xvf percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz
+```shell
+tar -xvf percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz
 ```
 
 ??? example "Expected result"
@@ -60,14 +60,14 @@ $ tar -xvf percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17.tar.gz
 After the extraction, navigate to the `bin` directory to find the binary files. 
 
 
-```{.bash data-prompt="$"}
-$ cd percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17/bin
+```shell
+cd percona-xtrabackup-8.0.35-30-Linux-x86_64.glibc2.17/bin
 ```
 
 In the bin directory, run one of the binary files.
 
-```{.bash data-prompt="$"}
-$ ./xtrabackup --version
+```shell
+./xtrabackup --version
 ```
 
 ??? example "Expected result"

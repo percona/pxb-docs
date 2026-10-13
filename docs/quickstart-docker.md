@@ -13,8 +13,8 @@ The benefits of using a Docker volume are the following:
 
 * You can quickly backup and restore your data using the `docker cp` command or mount the volume to another container.
 
-```{.bash data-prompt="$"}
-$ docker volume create backupvol
+```shell
+docker volume create backupvol
 ```
     
 ??? example "Expected output"
@@ -52,8 +52,8 @@ We recommend using the `–-user root` option in the Docker command.
     
 Run a Docker container example
 
-```{.bash data-prompt="$"}
-$ docker run --name pxb --volumes-from psmysql -v backupvol:/backup_8034 -it --user root percona/percona-xtrabackup:8.0.34 /bin/bash -c "xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_8034 --user=root --password; xtrabackup --prepare --target-dir=/backup_8034"
+```shell
+docker run --name pxb --volumes-from psmysql -v backupvol:/backup_8034 -it --user root percona/percona-xtrabackup:8.0.34 /bin/bash -c "xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_8034 --user=root --password; xtrabackup --prepare --target-dir=/backup_8034"
 ```
 
 You are prompted to enter the password. In our example, the password is `secret`.
@@ -99,8 +99,8 @@ You can check the Xtrabackup logs with the `docker container logs <container-nam
 
 For example:
 
-```{.bash data-prompt="$"}
-$ docker container logs pxb
+```shell
+docker container logs pxb
 ```
 
 ## Next steps

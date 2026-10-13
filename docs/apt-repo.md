@@ -43,8 +43,8 @@ The following procedure installs Percona XtraBackup 8.0.
 
 1. Update the system package list
 
-    ```{.bash data-prompt="$"}
-    $ sudo apt update
+    ```shell
+    sudo apt update
     ```
 
     ??? example "Example output"
@@ -78,8 +78,8 @@ The following procedure installs Percona XtraBackup 8.0.
 
 2. Install the curl download utility if it's not installed:
 
-    ```{.bash data-prompt="$"}
-    $ sudo apt install curl
+    ```shell
+    sudo apt install curl
     ```
 
     ??? example "Example output"
@@ -100,8 +100,8 @@ The following procedure installs Percona XtraBackup 8.0.
 
 3. Download the percona-release the repository package:
 
-    ```{.bash data-prompt="$"}
-    $ curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+    ```shell
+    curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
     ```
 
     ??? example "Example output"
@@ -114,8 +114,8 @@ The following procedure installs Percona XtraBackup 8.0.
 
 4. Install the downloaded package and its dependencies using apt:
 
-    ```{.bash data-prompt="$"}
-    $ sudo apt install gnupg2 lsb-release ./percona-release_latest.generic_all.deb
+    ```shell
+    sudo apt install gnupg2 lsb-release ./percona-release_latest.generic_all.deb
     ```
 
     ??? example "Example output"
@@ -131,8 +131,8 @@ The following procedure installs Percona XtraBackup 8.0.
 
 5. Refresh the local cache to update the package information:
 
-    ```{.bash data-prompt="$"}
-    $ sudo apt update
+    ```shell
+    sudo apt update
     ```
 
     ??? example "Example output"
@@ -146,8 +146,8 @@ The following procedure installs Percona XtraBackup 8.0.
 
 6. Enable the repository:
 
-    ```{.bash data-prompt="$"}
-    $ sudo percona-release setup pxb-80
+    ```shell
+    sudo percona-release setup pxb-80
     ```
     ??? example "Example output"
 
@@ -168,8 +168,8 @@ The following procedure installs Percona XtraBackup 8.0.
 
 7. Install the package:
 
-    ```{.bash data-prompt="$"}
-    $ sudo apt install percona-xtrabackup-80
+    ```shell
+    sudo apt install percona-xtrabackup-80
     ```
 
     ??? example "Example output"
@@ -190,8 +190,8 @@ The following procedure installs Percona XtraBackup 8.0.
 
 9. Verify the installation:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --version
+    ```shell
+    xtrabackup --version
     ```
 
     ??? example "Example output"
@@ -204,22 +204,22 @@ The following procedure installs Percona XtraBackup 8.0.
 
     === "Install the `lz4` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo apt install lz4
+        ```shell
+        sudo apt install lz4
         ```
 
     === "Install the `zstd` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo apt install zstd
+        ```shell
+        sudo apt install zstd
         ```
 
 ## Troubleshooting
 
 If you encounter any errors during the installation process, check your system's error logs:
 
-```{.bash data-prompt="$"}
-$ sudo tail -n 50 /var/log/syslog
+```shell
+sudo tail -n 50 /var/log/syslog
 ```
 
 Ensure your system meets the minimum requirements for Percona XtraBackup. 

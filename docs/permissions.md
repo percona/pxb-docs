@@ -11,8 +11,8 @@ There are many ways for checking the permission on a file or directory. For
 example, `ls -ls /path/to/file` or `stat /path/to/file | grep Access` will
 do the job:
 
-```{.bash data-prompt="$"}
-$ stat /etc/mysql | grep Access
+```shell
+stat /etc/mysql | grep Access
 ``` 
 The result could look like this:
 
@@ -29,8 +29,8 @@ As in this example, `my.cnf` is owned by `root` and not writable for anyone
 else. Assuming that you do not have `root`‘s password, you can check what
 permissions you have on these types of files with `sudo -l`:
 
-```{.bash data-prompt="$"}
-$ sudo -l
+```shell
+sudo -l
 ```
 The results could look like this:
 

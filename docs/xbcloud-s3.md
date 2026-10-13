@@ -2,8 +2,8 @@
 
 ## Create a full backup with Amazon S3
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+```shell
+xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=s3 \
 --s3-endpoint='s3.amazonaws.com' \
 --s3-access-key='YOUR-ACCESSKEYID' \
@@ -86,8 +86,8 @@ automatically to corresponding parameters applicable to the selected storage.
 
 ## Restore with S3
 
-```{.bash data-prompt="$"}
-$ xbcloud get s3://operator-testing/bak22 \
+```shell
+xbcloud get s3://operator-testing/bak22 \
 --s3-endpoint=https://storage.googleapis.com/ \
 --parallel=10 2>download.log | xbstream -x -C restore --parallel=8
 ```

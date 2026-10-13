@@ -29,8 +29,8 @@ can [install](http://www.percona.com/doc/percona-toolkit/installation.html)
 or download *pt-table-checksum*. This example shows downloading the latest
 version of *pt-table-checksum*:
 
-```{.bash data-prompt="$"}
-$ wget percona.com/get/pt-table-checksum
+```shell
+wget percona.com/get/pt-table-checksum
 ```
 
 !!! note
@@ -44,8 +44,8 @@ Running the *pt-table-checksum* on the source will create `percona`
 database with the `checksums` table which will be replicated to the
 replicas as well. Example of the *pt-table-checksum* will look like this:
 
-```{.bash data-prompt="$"}
-$ ./pt-table-checksum
+```shell
+./pt-table-checksum
 ```
 
 The results are similar to the following:
@@ -76,14 +76,14 @@ difference and point to the table that does not match. Following example
 shows adding new user on the backed up replica in order to simulate the
 inconsistent backup:
 
-```{.sql data-prompt="mysql>"}
-mysql> grant usage on exampledb.* to exampledb@localhost identified by 'thisisnewpassword';
+```sql
+grant usage on exampledb.* to exampledb@localhost identified by 'thisisnewpassword';
 ```
 
 If we run the *pt-table-checksum* now difference should be spotted
 
-```{.bash data-prompt="$"}
-$ ./pt-table-checksum
+```shell
+./pt-table-checksum
 ```
 
 The results are similar to the following:

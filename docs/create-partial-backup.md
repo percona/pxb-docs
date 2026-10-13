@@ -55,15 +55,15 @@ The first method involves the xtrabackup `--tables` option. This option accepts 
 To back up only tables in the `test` database, use the following
 command:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
+```shell
+xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 --tables="^test[.].*"
 ```
 
 To back up only the `test.t1` table, use the following command:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
+```shell
+xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 --tables="^test[.]t1"
 ```
 
@@ -75,9 +75,9 @@ will be backed up. Names are matched exactly, case-sensitive, with no pattern or
 regular expression matching. The table names must be fully-qualified in
 `databasename.tablename` format.
 
-```{.bash data-prompt="$"}
-$ echo "mydatabase.mytable" > /tmp/tables.txt
-$ xtrabackup --backup --tables-file=/tmp/tables.txt
+```shell
+echo "mydatabase.mytable" > /tmp/tables.txt
+xtrabackup --backup --tables-file=/tmp/tables.txt
 ```
 
 ## The `--databases` and `-–databases-file` options
@@ -92,8 +92,8 @@ In addition to your selected databases, make sure to specify the `mysql`, `sys`,
     even if they are not explicitly listed by the parameter if they were created
     after the backup started.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --databases='mysql sys performance_schema test' --target-dir=/data/backups/
+```shell
+xtrabackup --backup --databases='mysql sys performance_schema test' --target-dir=/data/backups/
 ```
 
 ## The `--databases-file` option

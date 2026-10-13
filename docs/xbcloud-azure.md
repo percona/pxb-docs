@@ -26,27 +26,27 @@ max-retries, and others, can be used. For more information, see the
 
 An example of an **xbcloud** backup.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream  | 
+```shell
+xtrabackup --backup --stream=xbstream  | 
 xbcloud put backup_name --azure-storage-account=pxbtesting --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure
 ```
 
 An example of restoring a backup from **xbcloud**.
 
-```{.bash data-prompt="$"}
-$ xbcloud get backup_name  --azure-storage-account=pxbtesting 
+```shell
+xbcloud get backup_name  --azure-storage-account=pxbtesting 
 --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure --parallel=10 2>download.log | xbstream -x -C restore
 ```
 
 An example of deleting a backup from **xbcloud**.
 
-```{.bash data-prompt="$"}
-$ xbcloud delete backup_name --azure-storage-account=pxbtesting 
+```shell
+xbcloud delete backup_name --azure-storage-account=pxbtesting 
 --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure
 ```
 
 An example of using a shortcut restore.
 
-```{.bash data-prompt="$"}
-$ xbcloud get azure://operator-testing/bak22 ...
+```shell
+xbcloud get azure://operator-testing/bak22 ...
 ```

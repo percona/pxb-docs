@@ -57,8 +57,8 @@ echo "Daily full backup completed at $(date)"
 
 You can schedule this script to run automatically using cron. For example, to run it every day at midnight (00:00), add this line to your crontab:
 
-```{.bash data-prompt="$"}
-$ 0 0 * * * /path/to/daily_full_backup.sh
+```shell
+0 0 * * * /path/to/daily_full_backup.sh
 ```
 
 ## Hourly Incremental Backup Script
@@ -99,6 +99,6 @@ echo "Hourly incremental backup completed at $(date)"
 
 Schedule this script to run every hour using cron.
 
-```{.bash data-prompt="$"}
-$ 0 * * * * /path/to/your/script.sh
+```shell
+0 * * * * /path/to/your/script.sh
 ```
