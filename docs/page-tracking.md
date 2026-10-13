@@ -118,7 +118,7 @@ SELECT mysqlbackup_page_track_set(true);
 If the index is built in place using an exclusive algorithm and then is
 added to a table after the last LSN checkpoint, you may generate a bad
 incremental backup using page tracking. For more details
-see [PS-8032 :octicons-link-external-16:](https://jira.percona.com/browse/PS-8032).
+see [PS-8032 :octicons-link-external-16:](https://perconadev.atlassian.net/browse/PS-8032).
 
 ## Uninstall the mysqlbackup component
 

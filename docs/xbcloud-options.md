@@ -295,7 +295,7 @@ Turns on the cURL tracing.
 
 ## Swift authentication options
 
-The Swift specification describes several [authentication options :octicons-link-external-16:](http://docs.openstack.org/developer/swift/overview_auth.html). The *xbcloud* tool can
+The Swift specification describes several [authentication options :octicons-link-external-16:](https://docs.openstack.org/swift/latest/overview_auth.html). The *xbcloud* tool can
 authenticate against keystone with API version 2 and 3.
 
 ## swift-auth-version
