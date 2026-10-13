@@ -34,7 +34,7 @@ xtrabackup --backup --parallel=4 --target-dir=/path/to/backup
 
 By using the xbstream in streaming backups, you can additionally speed up the
 compression process with the `--compress-threads` option. This option
-specifies the number of threads created by xtrabackup for for parallel data
+specifies the number of threads created by xtrabackup for parallel data
 compression. The default value for this option is 1.
 
 To use this feature, simply add the option to a local backup, for example:
