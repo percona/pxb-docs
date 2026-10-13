@@ -60,22 +60,19 @@ or review the log to diagnose issues.
 ??? example "Expected output"
 
     ```{.text .no-copy}
-    2022-03-22T19:15:36.142247+05:30 0 [Note] [MY-011825] [Xtrabackup] This target seems to be not prepared yet.
-    2022-03-22T19:15:36.142792+05:30 0 [Note] [MY-013251] [InnoDB] Number of pools: 1
-    2022-03-22T19:15:36.149212+05:30 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(33311656)
-    2022-03-22T19:15:36.149998+05:30 0 [Note] [MY-011825] [Xtrabackup] using the following InnoDB configuration for recovery:
-    2022-03-22T19:15:36.150023+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_data_home_dir = .
-    2022-03-22T19:15:36.150036+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_data_file_path = ibdata1:12M:autoextend
-    2022-03-22T19:15:36.150078+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_group_home_dir = .
-    2022-03-22T19:15:36.150095+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_files_in_group = 1
-    2022-03-22T19:15:36.150111+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_file_size = 8388608
-    2022-03-22T19:15:36.151667+05:30 0 [Note] [MY-011825] [Xtrabackup] inititialize_service_handles suceeded
-    2022-03-22T19:15:36.151903+05:30 0 [Note] [MY-011825] [Xtrabackup] using the following InnoDB configuration for recovery:
-    2022-03-22T19:15:36.151926+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_data_home_dir = .
-    2022-03-22T19:15:36.151954+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_data_file_path = ibdata1:12M:autoextend
-    2022-03-22T19:15:36.151976+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_group_home_dir = .
-    2022-03-22T19:15:36.151991+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_files_in_group = 1
-    2022-03-22T19:15:36.152004+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_file_size = 8388608
-    2022-03-22T19:15:36.152021+05:30 0 [Note] [MY-011825] [Xtrabackup] Starting InnoDB instance for recovery.
-    2022-03-22T19:15:36.152035+05:30 0 [Note] [MY-011825] [Xtrabackup] Using 104857600 bytes for buffer pool (set by --use-memory parameter)
+    2026-10-13T17:24:07.116234-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be not prepared yet.
+    2026-10-13T17:24:07.130815-00:00 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(36616867)
+    2026-10-13T17:24:07.135585-00:00 0 [Note] [MY-011825] [Xtrabackup] using the following InnoDB configuration for recovery:
+    2026-10-13T17:24:07.135620-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_data_home_dir = .
+    2026-10-13T17:24:07.135625-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_data_file_path = ibdata1:12M:autoextend
+    2026-10-13T17:24:07.136805-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_log_group_home_dir = .
+    2026-10-13T17:24:07.136957-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_redo_log_capacity = 8388608
+    2026-10-13T17:24:07.138693-00:00 0 [Note] [MY-011825] [Xtrabackup] inititialize_service_handles suceeded
+    2026-10-13T17:24:07.141331-00:00 0 [Note] [MY-011825] [Xtrabackup] using the following InnoDB configuration for recovery:
+    2026-10-13T17:24:07.141346-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_data_home_dir = .
+    2026-10-13T17:24:07.141349-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_data_file_path = ibdata1:12M:autoextend
+    2026-10-13T17:24:07.141356-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_log_group_home_dir = .
+    2026-10-13T17:24:07.141359-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_redo_log_capacity = 8388608
+    2026-10-13T17:24:07.141364-00:00 0 [Note] [MY-011825] [Xtrabackup] Starting InnoDB instance for recovery.
+    2026-10-13T17:24:07.141369-00:00 0 [Note] [MY-011825] [Xtrabackup] Using 104857600 bytes for buffer pool (set by --use-memory parameter)
     ```

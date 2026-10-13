@@ -87,5 +87,6 @@ You should check the last line of the output for a success message:
 ??? example "Expected output"
 
     ```{.text .no-copy}
-    150318 11:08:13  xtrabackup: completed OK!
+    ...
+    2026-10-13T17:25:10.030046-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
     ```

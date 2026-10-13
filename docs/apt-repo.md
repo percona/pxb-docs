@@ -20,14 +20,11 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
     ??? example "Expected output"
 
         ```{.text .no-copy}
-        Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
-        Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
-        Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
-        Get:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [2458 kB]
-        ...
-        Building dependency tree... Done
-        Reading state information... Done
-        All packages are up to date.
+        Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease
+        Hit:2 http://security.ubuntu.com/ubuntu noble-security InRelease
+        Hit:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+        Hit:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+        Reading package lists... Done
         ```
 
 2. Install the `curl` download utility if it's not installed:
@@ -97,14 +94,13 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
     ??? example "Expected output"
 
         ```{.text .no-copy}
-        Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
-        Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
-        Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
-        Get:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [2458 kB]
-        ...
-        Building dependency tree... Done
-        Reading state information... Done
-        All packages are up to date.
+        Hit:1 http://repo.percona.com/prel/apt noble InRelease
+        Hit:2 http://repo.percona.com/telemetry/apt noble InRelease
+        Hit:3 http://archive.ubuntu.com/ubuntu noble InRelease
+        Hit:4 http://security.ubuntu.com/ubuntu noble-security InRelease
+        Hit:5 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+        Hit:6 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+        Reading package lists... Done
         ```
 
 6. Enable the specific percona-release product.
@@ -116,18 +112,17 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
         ```{.text .no-copy}
         * Enabling the Percona Packaging Repository repository
-        Hit:1 http://repo.percona.com/pmm2-client/apt jammy InRelease
-        Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease                     
-        Hit:3 http://repo.percona.com/prel/apt jammy InRelease                     
-        Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease
-        Hit:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
-        Get:6 http://repo.percona.com/{{pkg}}/apt jammy InRelease [12.8 kB]
-        Hit:7 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
-        Hit:8 http://repo.percona.com/telemetry/apt jammy InRelease
-        Get:9 http://repo.percona.com/{{pkg}}/apt jammy/main Sources [855 B]
-        Get:10 http://repo.percona.com/{{pkg}}/apt jammy/main amd64 Packages [3547 B]
-        Fetched 17.2 kB in 4s (3958 B/s)   
-        Reading package lists... Done
+        Hit:1 http://repo.percona.com/prel/apt noble InRelease
+        Get:2 http://repo.percona.com/pxb-97-lts/apt noble InRelease [12.8 kB]
+        Hit:3 http://repo.percona.com/telemetry/apt noble InRelease
+        Hit:4 http://archive.ubuntu.com/ubuntu noble InRelease
+        Hit:5 http://security.ubuntu.com/ubuntu noble-security InRelease
+        Hit:6 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+        Hit:7 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+        Get:8 http://repo.percona.com/pxb-97-lts/apt noble/main Sources [863 B]
+        Get:9 http://repo.percona.com/pxb-97-lts/apt noble/main amd64 Packages [3739 B]
+        Fetched 17.4 kB in 4s (3907 B/s)
+        Reading package lists...
         ```
 
 7. Install Percona XtraBackup.
@@ -139,17 +134,22 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
     ??? example "Expected output"
 
         ```{.text .no-copy}
-        Reading package lists... Done
-        Building dependency tree... Done
-        Reading state information... Done
+        Reading package lists...
+        Building dependency tree...
+        Reading state information...
         The following additional packages will be installed:
-        libaio1 libcurl4-openssl-dev libdbd-mysql-perl libdbi-perl libev4 libgdbm-compat4
-        libgdbm6 libmysqlclient21 libperl5.34 libpopt0 mysql-common netbase perl
-        perl-modules-5.34 rsync zstd
+          libaio1t64 libcurl4-openssl-dev libev4t64 libpopt0 lz4 rsync zstd
+        Suggested packages:
+          libcurl4-doc libidn-dev libkrb5-dev libldap2-dev librtmp-dev libssh2-1-dev
+          libssl-dev pkg-config zlib1g-dev openssh-client openssh-server python3
+          python3-braceexpand
+        The following NEW packages will be installed:
+          libaio1t64 libcurl4-openssl-dev libev4t64 libpopt0 lz4 percona-xtrabackup-97
+          rsync zstd
+        0 upgraded, 8 newly installed, 0 to remove and 2 not upgraded.
         ...
-        Setting up libdbd-mysql-perl:amd64 (4.050-5ubuntu0.22.04.1) ...##############.......] 
-        Setting up percona-xtrabackup-97 (9.7.1-rc1.jammy) ...#########################.....] 
-        Processing triggers for libc-bin (2.35-0ubuntu3.8) ...###########################...] 
+        Setting up percona-xtrabackup-97 ({{deb}}-1.noble) ...
+        Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
         ```
 
 8. Verify the installation.
@@ -161,7 +161,7 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
     ??? example "Expected output"
 
         ```{.text .no-copy}
-        xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: da6e1abd)
+        xtrabackup version {{release}} based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
         ```
 
 9. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:

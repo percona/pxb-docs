@@ -835,7 +835,7 @@ When enabled, this options lets Percona XtraBackup register as a redo log consum
 
 Usage: `--remove-original`
 
-This option removes `.qp`, `.xbcrypt` and `.qp.xbcrypt` files after decryption and decompression.
+This option removes `.qp`, `.zst`, `.lz4`, and `.xbcrypt` files after decryption and decompression.
 
 ### rocksdb-datadir
 
