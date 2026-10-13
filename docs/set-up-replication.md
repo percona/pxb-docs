@@ -293,8 +293,8 @@ rsync -avprP -e ssh /path/to/backupdir NewReplica:/path/to/mysql/datadir
 For example, to set up a new user, `user2`, you add another grant on
 the Source:
 
-```{.bash data-prompt=">"}
-> GRANT REPLICATION REPLICA ON *.*  TO 'user2'@'$newreplicaip'
+```sql
+GRANT REPLICATION REPLICA ON *.*  TO 'user2'@'$newreplicaip'
  IDENTIFIED BY '$replicapass';
 ```
 
@@ -329,8 +329,8 @@ CHANGE REPLICATION SOURCE TO
 
 Start the replica:
 
-```{.bash data-prompt=">"}
-> START REPLICA;
+```sql
+START REPLICA;
 ```
 
 If both IO and SQL threads are running when you check the `NewReplica`,

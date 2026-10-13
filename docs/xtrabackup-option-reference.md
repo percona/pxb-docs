@@ -15,7 +15,7 @@ You invoke xtrabackup in one of the following modes:
 When you intend to run xtrabackup in any of these modes, use the following syntax:
 
 ```shell
-xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back| [OPTIONS]
+xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back [OPTIONS]
 ```
 
 For example, the `--prepare` mode is applied as follows:
@@ -105,10 +105,10 @@ If a privilege is not needed for the current operation but is missing and may be
 
 ??? example "Example output"
 
-        ```{.text .no-copy}
-        xtrabackup: Error: missing required privilege LOCK TABLES on *.*
-        xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
-        ```
+    ```{.text .no-copy}
+    xtrabackup: Error: missing required privilege LOCK TABLES on *.*
+    xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
+    ```
 
 ### check-tables
 
@@ -390,11 +390,11 @@ The option lets you enable or disable the [Smart memory estimation](smart-memory
 An example of how to enable the Smart memory estimation feature:
 
 ```shell
-$ xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
+xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
 ```shell
-$ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
+xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 
 ### export
@@ -571,7 +571,7 @@ This option is ignored for MySQL option compatibility.
 
 ### innodb-miscellaneous
 
-Usage: `--innodb-miscellaneous
+Usage: `--innodb-miscellaneous`
 xtrabackup boots up its embedded InnoDB with the same configuration as your current server using the InnoDB options read from that server's `my.cnf` file. You do not need to specify these options explicitly.
 
 These options behave the same in either InnoDB or XtraDB.
@@ -1163,11 +1163,11 @@ This option works only if `--estimate-memory` option is enabled. If the `--estim
 An example of how to enable the Smart memory estimation feature:
 
 ```shell
-$ xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
+xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
 ```shell
-$ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
+xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 
 ### use-memory

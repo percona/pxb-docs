@@ -44,7 +44,7 @@ To set up a database server on a host machine or in Docker
 container, follow the documentation of the supported product that you
 intend to use with Percona XtraBackup.
 
-!!! admontion "See also"
+!!! admonition "See also"
 
     [Docker volumes as container persistent data storage :octicons-link-external-16:](https://docs.docker.com/storage/volumes/)
 

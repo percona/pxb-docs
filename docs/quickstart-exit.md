@@ -109,12 +109,11 @@ Remove the Docker images to free disk space. Skip this step to retain images for
 
 ## Step 4: Remove Docker volumes
 
-Remove the volumes that stored database and backup data.
-
 !!! warning "Permanent data loss"
 
     Removing volumes permanently deletes all stored data. Verify the data is no longer needed before proceeding.
 
+Remove the volumes that stored database and backup data.
 {.power-number}
 
 1. Remove the backup volume:

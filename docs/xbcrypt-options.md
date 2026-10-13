@@ -3,7 +3,7 @@
 Usage: 
  
 ```shell
-xbcrypt[OPTIONS]
+xbcrypt [OPTIONS]
 ```
 
 The `xbcrypt` binary has the following command line options:

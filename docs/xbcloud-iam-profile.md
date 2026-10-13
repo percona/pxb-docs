@@ -16,7 +16,7 @@ An IAM instance profile does not need the `--s3-secret-key` nor the `--s3-access
 An example of the command:
 
 ```text
-$ xtrabackup ... | xbcloud put --storage=s3 --s3-bucket=bucket-name backup-name
+xtrabackup ... | xbcloud put --storage=s3 --s3-bucket=bucket-name backup-name
 ```
 
 The xbcloud binary outputs a connect message when successful.
