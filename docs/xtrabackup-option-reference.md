@@ -769,7 +769,7 @@ Usage: `--open-files-limit=#`
 
 The maximum number of file descriptors to reserve with [setrlimit :octicons-link-external-16:]( https://man7.org/linux/man-pages/man2/setrlimit.2.html)git.
 
-### `--page-tracking-merge-gap`
+### page-tracking-merge-gap
 
 Controls how Percona XtraBackup combines reads of changed pages during incremental backups with page tracking.
 
