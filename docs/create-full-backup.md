@@ -49,8 +49,8 @@ scanning the log in the background, and a file copying thread working on the `ib
 The last thing you should see is something like the following, where the
 value of the `<LSN>` will be a number that depends on your system:
 
-```{.bash data-prompt="$"}
-$ xtrabackup: Transaction log of lsn (<LSN>) to (<LSN>) was copied.
+```{.text .no-copy}
+xtrabackup: Transaction log of lsn (<LSN>) to (<LSN>) was copied.
 ```
 
 !!! note

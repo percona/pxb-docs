@@ -13,7 +13,7 @@ reducing the warm up time. It restores the buffer pool state from
 `ib_buffer_pool` and backs it up automatically.
 
 
-![image](_static/lru_dump.png)
+![Diagram: page IDs from the InnoDB buffer pool LRU list, ordered from most to least recently used, are written to the ib_lru_dump file](_static/lru_dump.png)
 
 If the buffer restore option is enabled in `my.cnf` buffer pool will be in
 the warm state after backup is restored.

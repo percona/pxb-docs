@@ -152,19 +152,19 @@ been applied.
 
 On the source, create a user specifically for replication tasks. Use the following command to define the user and set a secure password:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> CREATE USER 'repl'@'$replicaip' IDENTIFIED BY '$replicapass';
 ```
 
 Grant the replication privileges to the newly created user to allow the replica to connect to the source server:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl'@'$replicaip';
 ```
 
 Apply the changes:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> FLUSH PRIVILEGES;
 ```
 
@@ -179,7 +179,7 @@ mysql> mysql --host=Source --user=repl --password=$replicapass
 
 Verify the privileges.
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> SHOW GRANTS;
 ```
 

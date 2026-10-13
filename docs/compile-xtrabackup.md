@@ -198,10 +198,10 @@ Update your PATH environment variable if you would like to use the command on
 the command line directly.
 
 ```{.bash data-prompt="$"}
-$# Setting $PATH on the command line
+# Setting $PATH on the command line
 $ PATH=$PATH:/usr/local/xtrabackup/bin/xtrabackup
 
-$# Run xtrabackup directly
+# Run xtrabackup directly
 $ xtrabackup
 ```
 

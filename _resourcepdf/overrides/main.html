@@ -98,7 +98,10 @@
   
             {% block content%}
   
+            {# Stop Cloudflare Email Obfuscation from rewriting addresses in code samples #}
+            <!--email_off-->
             {{ super() }}
+            <!--email_on-->
   
   
   <script>

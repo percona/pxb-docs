@@ -27,7 +27,7 @@ The following steps describe how to restore your backup to another Percona Serve
 
     You must provide at least one environment variable to access the database, such as `MYSQL_ROOT_PASSWORD`, `MYSQL_DATABASE`, `MYSQL_USER`, and `MYSQL_PASSWORD` or the instance refuses to initialize.
 
-    For this document, we are using the `8.0.34` tag. In Docker, a tag is a label assigned to an image. Tags are used to maintain different versions of an image. If we did not add a tag, Docker uses `latest` as the default tag and downloads the latest image from [percona/percona-server on the Docker Hub].
+    For this document, we are using the `8.0.34` tag. In Docker, a tag is a label assigned to an image. Tags are used to maintain different versions of an image. If we did not add a tag, Docker uses `latest` as the default tag and downloads the latest image from [percona/percona-server on Docker Hub :octicons-link-external-16:](https://hub.docker.com/r/percona/percona-server).
 
     To use a Docker volume for persistent storage with a database, specify the path where the database stores its data inside the container, usually `/var/lib/mysql`.
 
@@ -173,7 +173,7 @@ This section describes the backup validation steps assuming that you backed up `
 
 4. Check the list of databases to make sure, the backed up, `mydb` database is in the list.
 
-    ```{.bash data-prompt="mysql>"}
+    ```{.sql data-prompt="mysql>"}
     mysql> show databases; 
     ```
 
@@ -203,7 +203,7 @@ This section describes the backup validation steps assuming that you backed up `
 
 5. Use the `mydb` database.
 
-    ```{.bash data-prompt="mysql>"}
+    ```{.sql data-prompt="mysql>"}
     mysql> use mydb; 
     ```
 
@@ -215,7 +215,7 @@ This section describes the backup validation steps assuming that you backed up `
 
 6. Check that your table contains data
 
-    ```{.bash data-prompt="mysql>"} 
+    ```{.sql data-prompt="mysql>"}
     mysql> SELECT * FROM employees; 
     ```
 

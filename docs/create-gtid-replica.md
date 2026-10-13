@@ -126,7 +126,7 @@ use [CHANGE_REPLICATION_SOURCE_TO and the appropriate options](https://dev.mysql
 
 The following command returns the replica status:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> SHOW REPLICA STATUS\G
 ```
 The results should be similar to the following:

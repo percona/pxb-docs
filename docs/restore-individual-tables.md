@@ -23,7 +23,7 @@ The following example shows the export and import process for a table called `ex
 mysql -u <username> -p -e "CREATE DATABASE create_database_test;"
 ```
 
-```{.bash data-prompt="$"}
+```{.sql data-prompt="mysql>"}
 mysql> CREATE TABLE export_test (
 a int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -89,7 +89,7 @@ The following is the detailed process:
 
 2. Run this SQL command to disconnect the new table from its default tablespace. This command prepares it to receive the imported data:
 
-    ```{.bash data-prompt="mysql>"}
+    ```{.sql data-prompt="mysql>"}
     mysql> ALTER TABLE test.export_test DISCARD TABLESPACE;
     ```
 
@@ -99,7 +99,7 @@ The following is the detailed process:
 
 4. Run this SQL command to attach the restored tablespace to the destination table, finishing the data restore:
 
-    ```{.bash data-prompt="mysql>"}
+    ```{.sql data-prompt="mysql>"}
     mysql> ALTER TABLE test.export_test IMPORT TABLESPACE;
     ```
 

@@ -52,7 +52,7 @@ taken with [--history] option.
 | uuid              | Unique backup id                                                                                                                    |
 | name              | User provided name of backup series. There may be multiple entries with the same name used to identify related backups in a series. |
 | tool_name         | Name of tool used to take backup                                                                                                    |
-| tool_command      | Exact command line given to the tool with [--password] and [--encrypt_key] obfuscated                                                |
+| tool_command      | Exact command line given to the tool with [--password] and [--encrypt-key] obfuscated                                                |
 | tool_version      | Version of tool used to take backup                                                                                                 |
 | ibbackup_version  | Version of the xtrabackup binary used to take backup                                                                                |
 | server_version    | Server version on which backup was taken                                                                                            |

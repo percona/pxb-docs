@@ -18,13 +18,13 @@ You invoke xtrabackup in one of the following modes:
 
 When you intend to run xtrabackup in any of these modes, use the following syntax:
 
-```{.bash data-prompt="$"} data-prompt="$"}
+```{.bash data-prompt="$"}
 $ xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back|--stats [OPTIONS]
 ```
 
 For example, the `--prepare` mode is applied as follows:
 
-```{.bash data-prompt="$"} data-prompt="$"}
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --target-dir=/data/backup/mysql/
 ```
 
@@ -109,12 +109,12 @@ If a privilege is not needed for the current operation,
 but is missing and may be necessary for another XtraBackup operation,
 the operation is not aborted, and prints a warning.
 
-??? example "Example output" 
+??? example "Example output"
 
-        ```{.text .no-copy}
-        xtrabackup: Error: missing required privilege LOCK TABLES on *.*
-        xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
-        ```
+    ```{.text .no-copy}
+    xtrabackup: Error: missing required privilege LOCK TABLES on *.*
+    xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
+    ```
 
 ### close-files
 
@@ -323,7 +323,7 @@ beginning of a backup provided the status variable
 `innodb_buffer_pool_dump_status` reports that the dump has been
 completed.
 
-```{.bash data-prompt="$"} data-prompt="$"}
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
 ```
 
@@ -416,11 +416,11 @@ Implemented in Percona XtraBackup 8.0.32-26, the option lets you enable or disab
 
 An example of how to enable the Smart memory estimation feature:
 
-```{.bash data-prompt="$"} data-prompt="$"}
+```{.bash data-prompt="$"}
 $ xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
-```{.bash data-prompt="$"} data-prompt="$"}
+```{.bash data-prompt="$"}
 $ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 
@@ -667,7 +667,7 @@ it and until the backup is completed.
 
 !!! note 
 
-     The [–lock-ddl-per-table] option is deprecated. Use the [–lock-ddl] option instead.
+     The [--lock-ddl-per-table] option is deprecated. Use the [--lock-ddl] option instead.
 
 ### lock-ddl-timeout
 

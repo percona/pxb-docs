@@ -29,7 +29,7 @@ $ mkdir /var/lib/mysql/test1/d2
 
 Example of dropping the database from the server:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> DROP DATABASE d2;
 ```
 

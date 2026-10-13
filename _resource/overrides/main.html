@@ -88,3 +88,10 @@
           </script>
           
           {% endblock %}
+
+{# Stop Cloudflare Email Obfuscation from rewriting addresses in code samples #}
+{% block content %}
+<!--email_off-->
+{{ super() }}
+<!--email_on-->
+{% endblock %}

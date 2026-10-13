@@ -76,7 +76,7 @@ difference and point to the table that does not match. Following example
 shows adding new user on the backed up replica in order to simulate the
 inconsistent backup:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> grant usage on exampledb.* to exampledb@localhost identified by 'thisisnewpassword';
 ```
 

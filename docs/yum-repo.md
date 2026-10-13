@@ -67,10 +67,10 @@ The following procedure installs Percona XtraBackup 8.0.
 
     ??? example "Example output"
 
-            ```{.text .no-copy}
-            * Enabling the Percona XtraBackup 8.0 repository
-            <*> All done!
-            ```
+        ```{.text .no-copy}
+        * Enabling the Percona XtraBackup 8.0 repository
+        <*> All done!
+        ```
 
 3. Install *Percona XtraBackup* by running:
 
@@ -125,7 +125,7 @@ To troubleshoot a Percona XtraBackup 8.0.x installation on a Red Hat-based syste
 
 1. This command checks for missing libraries.
 
-    ```{.bash data-prompt="$"}   
+    ```{.bash data-prompt="$"}
     $ ldd $(which xtrabackup) | grep "not found"
     ```
 
@@ -164,19 +164,19 @@ To troubleshoot a Percona XtraBackup 8.0.x installation on a Red Hat-based syste
 
 7. SELinux might block XtraBackup. Check its status:
 
-    ```{.bash data-prompt="$"} 
+    ```{.bash data-prompt="$"}
     $ getenforce
     ```
 
 8. Set SELinux to permissive temporarily:
 
-    ```{.bash data-prompt="$"} 
+    ```{.bash data-prompt="$"}
     $ sudo setenforce 0
     ```
 
 9. Create a backup to verify functionality:
 
-     ```{.bash data-prompt="$"} 
+     ```{.bash data-prompt="$"}
      $ xtrabackup --backup --target-dir=/tmp/test_backup
      ```
 

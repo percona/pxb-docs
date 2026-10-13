@@ -27,7 +27,7 @@ It would help if you created a directory for the redo log archives. The system u
 
 You can verify if MySQL has configured the archive directory with the following command. The result provides the path or returns NULL, meaning you have not set the archiving directory.
 
-```{.bash data-prompt"}
+```{.bash data-prompt="$"}
 $ mkdir -p /var/lib/mysql-redo-archive/backup1
 $ chown mysql. -R /var/lib/mysql-redo-archive
 $ chmod -R 700 /var/lib/mysql-redo-archive/
@@ -35,13 +35,13 @@ $ chmod -R 700 /var/lib/mysql-redo-archive/
 
 The `innodb_redo_log_archive_dirs` global variable contains labeled directories. The format is `label:directory-path`. Multiple objects can be listed with a semi-colon between each set.
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> SET PERSIST innodb_redo_log_archive_dirs='backup1:/var/lib/mysql-redo-archive/';
 ```
 
 Verify that the archive was created with the following command:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> SHOW GLOBAL VARIABLES LIKE 'innodb_redo_log_ar%';
 ```
 
@@ -57,7 +57,7 @@ mysql> SHOW GLOBAL VARIABLES LIKE 'innodb_redo_log_ar%';
 
 Users with the [INNODB_REDO_LOG_ARCHIVE] privilege can call the `innodb_redo_log_archive_start()` or `innodb_redo_log_archive_stop()` functions. to either start or stop archiving. 
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> SELECT innodb_redo_log_archive_start('backup1','backup1');
 ```
 
@@ -77,14 +77,14 @@ Percona XtraBackup 8.0.34-29 added the [redo-log-arch-dir](xtrabackup-option-ref
 
 ## Example of reading a log
 
-```{.bash data-prompt}
+```{.bash data-prompt="$"}
 $ sudo -H -u mysql bash
 $ xtrabackup --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password='password_string' --backup=1 --target-dir=/Backup/13oct 2> /tmp/b0-with-redo-archiving-as-mysql-os-user.log
 ```
 
 Verify that the archiving is used:
 
-```{.bash data-prompt}
+```{.bash data-prompt="$"}
 $ cat /tmp/b0-with-redo-archiving-as-mysql-os-user.log
 ```
 

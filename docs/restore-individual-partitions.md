@@ -5,7 +5,7 @@ server.
 
 First step is to create new table in which data will be restored.
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> CREATE TABLE `name_p4` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `name` text NOT NULL,
@@ -26,7 +26,7 @@ PRIMARY KEY (`id`)
 To restore the partition from the backup, the tablespace must be discarded for
 that table:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> ALTER TABLE name_p4 DISCARD TABLESPACE;
 ```
 
@@ -42,7 +42,7 @@ cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p
 
 The last step is to import the tablespace:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> ALTER TABLE name_p4 IMPORT TABLESPACE;
 ```
 

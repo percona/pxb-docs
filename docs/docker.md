@@ -25,31 +25,31 @@ You need Docker to run Percona XtraBackup in a container. The instructions are s
     1. Remove any existing Docker version to prevent conflicts:
         
         ```bash
-        $ sudo apt-get remove docker docker-engine docker.io containerd runc
+        sudo apt-get remove docker docker-engine docker.io containerd runc
         ```
         
     2. Update package lists:
         
         ```bash
-        $ sudo apt-get update
+        sudo apt-get update
         ```
         
     3. Install prerequisites to allow the use of repositories over HTTPS:
         
         ```bash
-        $ sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
+        sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
         ```
         
     4. Add Docker's official GPG key:
         
-        ```bash  
-        $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+        ```bash
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
         ```
         
     5. Set up the Docker repository:
         
         ```bash
-        $ echo \
+        echo \
           "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
           $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         ```
@@ -57,14 +57,14 @@ You need Docker to run Percona XtraBackup in a container. The instructions are s
     6. Install the Docker Engine:
         
         ```bash
-        $ sudo apt-get update
-        $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        sudo apt-get update
+        sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
         ```
         
     7. Verify the installation:
         
-        ```bash  
-        $ sudo docker --version
+        ```bash
+        sudo docker --version
         ```
 
 === "Red Hat Enterprise Linux (RHEL) 7 or below"
@@ -72,37 +72,37 @@ You need Docker to run Percona XtraBackup in a container. The instructions are s
     1. Remove any existing Docker version to prevent conflicts:
         
         ```bash
-        $ sudo yum remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+        sudo yum remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
         ```
     
     2. Install the required packages:
         
         ```bash
-        $ sudo yum install -y yum-utils
+        sudo yum install -y yum-utils
         ```
     
     3. Set up the Docker repository:
         
         ```bash
-        $ sudo yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+        sudo yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
         ```
     
     4. Install the Docker Engine:
         
         ```bash
-        $ sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
         ```
     
     5. Start the Docker service:
         
         ```bash
-        $ sudo systemctl start docker
+        sudo systemctl start docker
         ```
     
     6. Verify the installation:
         
-        ```bash  
-        $ sudo docker --version
+        ```bash
+        sudo docker --version
         ```
 
 === "Red Hat Enterprise Linux (RHEL) 8+"
@@ -110,37 +110,37 @@ You need Docker to run Percona XtraBackup in a container. The instructions are s
     1. Remove any existing Docker version to prevent conflicts:
         
         ```bash
-        $ sudo dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+        sudo dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
         ```
     
     2. Install the required packages:
         
         ```bash
-        $ sudo dnf install dnf-plugins-core
+        sudo dnf install dnf-plugins-core
         ```
     
     3. Set up the Docker repository:
         
         ```bash
-        $ sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+        sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
         ```
     
     4. Install the Docker Engine:
         
         ```bash
-        $ sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
         ```
     
     5. Start the Docker service:
         
         ```bash
-        $ sudo systemctl enable --now docker
+        sudo systemctl enable --now docker
         ```
     
     6. Verify the installation:
         
-        ```bash  
-        $ sudo docker --version
+        ```bash
+        sudo docker --version
         ```
 
 ## Docker images

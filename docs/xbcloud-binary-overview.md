@@ -13,7 +13,7 @@ needing a local storage.
     ${PIPESTATUS[x]} array parameter returns the exit code for each 
     binary in the pipe string.
 
-    ```shell
+    ```{.bash data-prompt="$"}
     xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
     ...
     $ ${PIPESTATUS[x]}

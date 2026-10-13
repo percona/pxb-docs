@@ -35,7 +35,7 @@ global lock from being acquired
 ## Wait for queries to finish
 
 You should issue a global lock when no long queries are running. Waiting to issue the global lock for extended period of time is not a good method. The wait can extend the time needed for
-backup to take place. The [–ftwrl-wait-timeout] option can limit the
+backup to take place. The [--ftwrl-wait-timeout] option can limit the
 waiting time. If it cannot issue the lock during this
 time, *xtrabackup* stops the option, exits with an error message, and backup is
 not be taken.
@@ -51,7 +51,7 @@ used *xtrabackup* will wait on `UPDATE/ALTER/REPLACE/INSERT` queries to
 finish.
 
 The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. *xtrabackup* uses the value of the
-[–ftwrl-wait-threshold] option to specify the long-running queries
+[--ftwrl-wait-threshold] option to specify the long-running queries
 and will block a global lock. In order to use this option
 xtrabackup user should have `PROCESS` and `SUPER` privileges.
 

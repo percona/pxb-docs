@@ -1,6 +1,6 @@
 # Binary tarball file names available
 
-Download the binary tarballs from [Percona Product Downloads](https://www.percona.com/downloads). For more information, see the [download instructions]. To install Percona XtraBackup, see [install with binary tarball].
+Download the binary tarballs from [Percona Product Downloads](https://www.percona.com/downloads). For more information, see the [download instructions](download-instructions.md). To install Percona XtraBackup, see [install with binary tarball].
 
 The following table lists the tarball types available in `Linux - Generic`. Select the Percona XtraBackup 8.0 version, the software or the operating system, and the tarball type for your installation. Binary tarballs support all AMD64 distributions.
 

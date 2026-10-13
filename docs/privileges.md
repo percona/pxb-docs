@@ -110,7 +110,7 @@ PERCONA_SCHEMA.xtrabackup_history table.
 
 A SQL example of creating a database user with the minimum privileges required to take full backups would be:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> CREATE USER 'bkpuser'@'localhost' IDENTIFIED BY 's3cr%T';
 mysql> GRANT BACKUP_ADMIN, PROCESS, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'bkpuser'@'localhost';
 mysql> GRANT SELECT ON performance_schema.log_status TO 'bkpuser'@'localhost';
@@ -123,13 +123,13 @@ mysql> FLUSH PRIVILEGES;
 
 To query the privileges that your database user has been granted at the console of the server execute:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> SHOW GRANTS;
 ```
 
 or for a particular user with:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> SHOW GRANTS FOR 'db-user'@'host';
 ```
 
@@ -140,7 +140,7 @@ Note that privileges may vary across versions of the server. To list the
 exact list of privileges that your server support (and a brief description
 of them) execute:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> SHOW PRIVILEGES;
 ```
 

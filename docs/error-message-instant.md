@@ -30,7 +30,7 @@ If you already have such tables (information below on how to find such tables), 
 To find tables with `INSTANT ADD/DROP COLUMNS` run the following command:
 
 ```sql
-mysql> SELECT NAME FROM INFORMATION_SCHEMA.INNODB_TABLES WHERE TOTAL_ROW_VERSIONS > 0;
+SELECT NAME FROM INFORMATION_SCHEMA.INNODB_TABLES WHERE TOTAL_ROW_VERSIONS > 0;
 +---------+
 | NAME    |
 +---------+

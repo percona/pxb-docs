@@ -20,7 +20,7 @@ point where the snapshot was taken.
 To find out what is the situation of binary logging in the server, execute the
 following queries:
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> SHOW BINARY LOGS;
 ```
 
@@ -39,7 +39,7 @@ mysql> SHOW BINARY LOGS;
 
 This query returns the binary log names and file size.
 
-```{.bash data-prompt="mysql>"}
+```{.sql data-prompt="mysql>"}
 mysql> SHOW MASTER STATUS;
 ```
 
