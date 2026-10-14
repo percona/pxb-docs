@@ -6683,6 +6683,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
 
 
+<!--email_off-->
+
                   
 
 
@@ -6710,7 +6712,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h2 id="general-availability-ga">General availability (GA)<a class="headerlink" href="#general-availability-ga" title="Permanent link">&para;</a></h2>
 <p>A finalized version of the product which is made available to the general public. It is the final stage in the software release cycle.</p>
 <h2 id="ibd">.ibd<a class="headerlink" href="#ibd" title="Permanent link">&para;</a></h2>
-<p>On a multiple tablespace setup ([innodb_file_per_table] enabled), MySQL will store each newly created table on a file with a <code>.ibd</code> extension.</p>
+<p>On a multiple tablespace setup (<a href="#innodb_file_per_table"><code>innodb_file_per_table</code></a> enabled), MySQL will store each newly created table on a file with a <code>.ibd</code> extension.</p>
 <h2 id="mrg">.MRG<a class="headerlink" href="#mrg" title="Permanent link">&para;</a></h2>
 <p>Each table using the MERGE storage engine, besides of a <code>.frm</code> file, 
 will have <code>.MRG</code> file containing the names of the MyISAM tables 
@@ -6753,37 +6755,31 @@ key support, among others improvements over MyISAM. It is the default
 engine for MySQL 9.7.</p>
 <h2 id="innodb_buffer_pool_size">innodb_buffer_pool_size<a class="headerlink" href="#innodb_buffer_pool_size" title="Permanent link">&para;</a></h2>
 <p>The size in bytes of the memory buffer to cache data and indexes of InnoDB’s tables. This aims to reduce disk access to provide better performance. </p>
-<blockquote>
-<p>[mysqld]<br/>
-innodb_buffer_pool_size=8MB</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">innodb_buffer_pool_size</span><span class="o">=</span><span class="s">8MB</span>
+</code></pre></div>
 <h2 id="innodb_data_home_dir">innodb_data_home_dir<a class="headerlink" href="#innodb_data_home_dir" title="Permanent link">&para;</a></h2>
 <p>The directory (relative to <code>datadir</code>) where the database server stores 
 the files in a shared tablespace setup. This option does not affect the location of <code>innodb\_file\_per\_table</code>. For example:</p>
-<blockquote>
-<p>[mysqld]<br/>
-innodb_data_home_dir = ./</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">innodb_data_home_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">./</span>
+</code></pre></div>
 <h2 id="innodb_data_file_path">innodb_data_file_path<a class="headerlink" href="#innodb_data_file_path" title="Permanent link">&para;</a></h2>
 <p>Specifies the names, sizes and location of shared tablespace files:</p>
-<blockquote>
-<p>[mysqld]<br/>
-innodb_data_file_path=ibdata1:50M;ibdata2:50M:autoextend</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">innodb_data_file_path</span><span class="o">=</span><span class="s">ibdata1:50M</span><span class="c1">;ibdata2:50M:autoextend</span>
+</code></pre></div>
 <h2 id="innodb_file_per_table">innodb_file_per_table<a class="headerlink" href="#innodb_file_per_table" title="Permanent link">&para;</a></h2>
 <p>By default, InnoDB creates tables and indexes in a <a href="https://dev.mysql.com/doc/refman/9.7/en/innodb-file-per-table-tablespaces.html">file-per-tablespace <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. If the <code>innodb_file_per_table</code> variable is disabled, you can enable the variable in your configuration file:</p>
-<blockquote>
-<p>[mysqld]<br/>
-innodb_file_per_table <br/>
-or <br/>
-start the server with <code>--innodb_file_per_table</code>.</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">innodb_file_per_table</span>
+</code></pre></div>
+<p>Alternatively, start the server with <code>--innodb_file_per_table</code>.</p>
 <h2 id="innodb_log_group_home_dir">innodb_log_group_home_dir<a class="headerlink" href="#innodb_log_group_home_dir" title="Permanent link">&para;</a></h2>
 <p>Specifies the location of the InnoDB log files:</p>
-<blockquote>
-<p>[mysqld]<br/>
-innodb_log_group_home=/var/lib/mysql</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">innodb_log_group_home</span><span class="o">=</span><span class="s">/var/lib/mysql</span>
+</code></pre></div>
 <h2 id="logical-backup">logical backup<a class="headerlink" href="#logical-backup" title="Permanent link">&para;</a></h2>
 <p>A backup which contains a set of SQL statements. The statements can be used to recreate the databases.</p>
 <h2 id="lsn">LSN<a class="headerlink" href="#lsn" title="Permanent link">&para;</a></h2>
@@ -6834,7 +6830,7 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 17, 2026 13:32:48 UTC">July 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 16:52:58 UTC">October 14, 2026</span>
   </span>
 
     
@@ -6892,6 +6888,7 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
 
 
                 
+<!--email_on-->
 
 <script>
 window.addEventListener('beforeprint', (event) => {
