@@ -19,7 +19,7 @@ Long-running queries with `FLUSH TABLES WITH READ LOCK` enabled can leave the se
 !!! note
    
     All described in this section has no effect when backup locks are
-    used. *Percona XtraBackup* will use [Backup locks](https://www.percona.com/doc/percona-server/5.6/management/backup_locks.html#backup-locks)
+    used. *Percona XtraBackup* will use [Backup locks](https://docs.percona.com/percona-server/8.0/backup-locks.html)
     where available as a lightweight alternative to `FLUSH TABLES WITH READ
     LOCK`. This feature is available in *Percona Server for MySQL* 5.6+.
     *Percona XtraBackup* uses this automatically to copy non-InnoDB data to avoid blocking
@@ -35,7 +35,7 @@ global lock from being acquired
 ## Wait for queries to finish
 
 You should issue a global lock when no long queries are running. Waiting to issue the global lock for extended period of time is not a good method. The wait can extend the time needed for
-backup to take place. The [–ftwrl-wait-timeout] option can limit the
+backup to take place. The [--ftwrl-wait-timeout] option can limit the
 waiting time. If it cannot issue the lock during this
 time, *xtrabackup* stops the option, exits with an error message, and backup is
 not be taken.
@@ -51,7 +51,7 @@ used *xtrabackup* will wait on `UPDATE/ALTER/REPLACE/INSERT` queries to
 finish.
 
 The time needed for a specific query to complete is hard to predict. We assume that the long-running queries will not finish in a timely manner. Other queries which run for a short time finish quickly. *xtrabackup* uses the value of the
-[–ftwrl-wait-threshold] option to specify the long-running queries
+[--ftwrl-wait-threshold] option to specify the long-running queries
 and will block a global lock. In order to use this option
 xtrabackup user should have `PROCESS` and `SUPER` privileges.
 
@@ -98,8 +98,8 @@ Running the *xtrabackup* with the following options will cause *xtrabackup*
 to spend no longer than 3 minutes waiting for all queries older than 40 seconds
 to complete.
 
-```{.bash data-prompt="$"}
-$  xtrabackup --backup --ftwrl-wait-threshold=40 \
+```shell
+ xtrabackup --backup --ftwrl-wait-threshold=40 \
 --ftwrl-wait-query-type=all --ftwrl-wait-timeout=180 \
 --kill-long-queries-timeout=20 --kill-long-query-type=all \
 --target-dir=/data/backups/

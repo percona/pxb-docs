@@ -10,35 +10,35 @@ Before you can prepare the backup you need to decompress all the files.
 
     === "Install the `lz4` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo apt install lz4
+        ```shell
+        sudo apt install lz4
         ```
 
     === "Install the `zstd` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo apt install zstd
+        ```shell
+        sudo apt install zstd
         ```
 
     `Install on YUM systems`
     
     === "Install the `lz4` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo yum install lz4
+        ```shell
+        sudo yum install lz4
         ```
 
     === "Install the `zstd` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo yum install zstd
+        ```shell
+        sudo yum install zstd
         ```
 
 
 *  Use the `--decompress` option to decompress the backup.
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --decompress --target-dir=/data/compressed/
+    ```shell
+    xtrabackup --decompress --target-dir=/data/compressed/
     ```
 
     !!! note
@@ -51,8 +51,8 @@ Before you can prepare the backup you need to decompress all the files.
 
 When the files are decompressed you can prepare the backup with the `--prepare` option.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/compressed/
+```shell
+xtrabackup --prepare --target-dir=/data/compressed/
 ```
 
 ??? example "Confirmation message"

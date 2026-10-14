@@ -6,8 +6,8 @@ It can also be done by copying back the prepared backup to a “clean”
 datadir (in that case, make sure to include the `mysql`
 database) to the datadir you are moving the backup to. A system database can be created with the following:
 
-```{.bash data-prompt="$"}
-$ sudo mysql --initialize --user=mysql
+```shell
+sudo mysql --initialize --user=mysql
 ```
 
 Once you start the server, you may see mysql complaining about missing tablespaces:
@@ -23,14 +23,14 @@ In order to clean the orphan database from the data dictionary, you must manuall
 
 Example of creating the missing database:
 
-```{.bash data-prompt="$"}
-$ mkdir /var/lib/mysql/test1/d2
+```shell
+mkdir /var/lib/mysql/test1/d2
 ```
 
 Example of dropping the database from the server:
 
-```{.bash data-prompt="mysql>"}
-mysql> DROP DATABASE d2;
+```sql
+DROP DATABASE d2;
 ```
 
 ??? example "Expected output"

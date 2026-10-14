@@ -81,7 +81,7 @@ Each cloud provider may return a different CURL error or an HTTP error,
 depending on the issue. Add new errors by setting the following
 variables `--curl-retriable-errors` or `--http-retriable-errors` on the
 command line or in `my.cnf` or in a custom configuration file under
-the [xbcloud] section. You can add multiple errors using a comma-separated list of codes.
+the `[xbcloud]` section. You can add multiple errors using a comma-separated list of codes.
 
 The error handling is enhanced when using the `--verbose` output. This
 output specifies which error caused xbcloud to fail and what parameter a

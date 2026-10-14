@@ -35,8 +35,8 @@ In order to back up and prepare a database containing encrypted InnoDB
 tablespaces, specify the path to a keyring file as the value of the
 `--keyring-file-data` option.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backup/ --user=root \
+```shell
+xtrabackup --backup --target-dir=/data/backup/ --user=root \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
@@ -58,8 +58,8 @@ message confirms the action:
 
 To prepare the backup specify the keyring-file-data.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backup \
+```shell
+xtrabackup --prepare --target-dir=/data/backup \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
@@ -85,8 +85,8 @@ How to use the keyring vault plugin is described [in this document](https://docs
 
 The following command creates a backup in the `/data/backup` directory:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backup --user=root
+```shell
+xtrabackup --backup --target-dir=/data/backup --user=root
 ```
 
 After *xtrabackup* completes the action, the following message confirms
@@ -106,8 +106,8 @@ To prepare the backup, *xtrabackup* must access the keyring.
 default `my.cnf` configuration file. Specify the keyring settings in the
 command line:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backup \
+```shell
+xtrabackup --prepare --target-dir=/data/backup \
 --keyring-vault-config=/etc/vault.cnf
 ```
 
@@ -126,8 +126,8 @@ the action:
 The backup is now prepared and can be restored with the `--copy-back`
 option:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql
+```shell
+xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql
 ```
 
 ## Use the `keyring_file` component
@@ -168,8 +168,8 @@ when in use.
 The component has no special requirements for backing up a database that
 contains encrypted InnoDB tablespaces.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backup --user=root
+```shell
+xtrabackup --backup --target-dir=/data/backup --user=root
 ```
 
 After *xtrabackup* completes the action, the following message confirms
@@ -186,8 +186,8 @@ the action:
 
 You can copy the `component_keyring_file.cnf` file to the backup directory before starting the `prepare` step or add the `component_keyring_config` option. You must specify the path if the `component-keyring-config` is not in the default location.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backup \
+```shell
+xtrabackup --prepare --target-dir=/data/backup \
 --component-keyring-config=/usr/lib64/mysql/plugin/component_keyring_file.cnf
 ```
 
@@ -219,8 +219,8 @@ directory. This file contains a line showing the `to_lsn`, which is the
 database’s LSN at the end of the backup. First you need to create a full
 backup with the following command:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backups/base \
+```shell
+xtrabackup --backup --target-dir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
@@ -243,8 +243,8 @@ the output similar to the following:
 Now that you have a full backup, you can make an incremental backup based
 on it. Use a command such as the following:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backups/inc1 \
+```shell
+xtrabackup --backup --target-dir=/data/backups/inc1 \
 --incremental-basedir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
@@ -276,8 +276,8 @@ the output similar to the following:
 
 Use this directory as the base for yet another incremental backup:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dir=/data/backups/inc2 \
+```shell
+xtrabackup --backup --target-dir=/data/backups/inc2 \
 --incremental-basedir=/data/backups/inc1 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
@@ -313,8 +313,8 @@ apply the incremental differences to it. Recall that you have the following back
 To prepare the base backup, you need to run `--prepare` as usual, but
 prevent the rollback phase:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+```shell
+xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```
 
@@ -329,8 +329,8 @@ $ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 To apply the first incremental backup to the full backup, you should use
 the following command:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+```shell
+xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1 \
 --keyring-file-data=/var/lib/mysql-keyring/keyring
 ```

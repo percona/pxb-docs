@@ -18,19 +18,19 @@ To use FIFO data sink, you can either run two commands in separate terminal sess
 
 For example, run the following commands in separate terminal sessions:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream --fifo-streams=2 --fifo-dir=/tmp/fifo
+```shell
+xtrabackup --backup --stream --fifo-streams=2 --fifo-dir=/tmp/fifo
 ```
 
-```{.bash data-prompt="$"}
-$ xbcloud put --fifo-streams=2 --fifo-dir=/tmp/fifo full
+```shell
+xbcloud put --fifo-streams=2 --fifo-dir=/tmp/fifo full
 ```
 
 Run xtrabackup in the background with the following commands:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream --fifo-streams=2 --fifo-dir=/tmp/fifo &
-$ xbcloud put --fifo-streams=2 --fifo-dir=/tmp/fifo full
+```shell
+xtrabackup --backup --stream --fifo-streams=2 --fifo-dir=/tmp/fifo &
+xbcloud put --fifo-streams=2 --fifo-dir=/tmp/fifo full
 ```
 
 ## Stream to an object storage
@@ -41,7 +41,7 @@ Before [Percona XtraBackup 8.0.33-28](release-notes/8.0/8.0.33-28.0.md), XtraBac
 
 XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then each copy thread writes the data chunks to a pipe (STDOUT). An xbcloud read thread reads each chunk of STDIN data. Then xbcloud uploads the chunks to an object storage using an async request, and adds a callback to an event handler list. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure).
 
-![image](_static/backup-streamed-to-object-storage.png)
+![Diagram: XtraBackup copy threads write data chunks to a single STDOUT pipe; an xbcloud read thread reads them from STDIN and uploads them to object storage with asynchronous requests](_static/backup-streamed-to-object-storage.png)
 
 The streaming capacity for XtraBackup using STDOUT is 1.8G. This capacity is sufficient for streaming data using Wide Area Network (WAN) into, for example, Amazon Web Services or Google Cloud Platform. 
 
@@ -49,7 +49,7 @@ Starting with [Percona XtraBackup 8.0.33-28](release-notes/8.0/8.0.33-28.0.md), 
 
 XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then multiple FIFO files are created to store the data from XtraBackup. Each XtraBackup copy thread writes the data chunks to a specific FIFO file. Xbcloud reads from the FIFO streams and uploads data to an object storage using an async request. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure). 
 
-![image](_static/fifo-datasink.png)
+![Diagram: parallel XtraBackup copy threads write data chunks to FIFO files; xbcloud read threads and event handlers upload them to object storage with asynchronous PUT operations](_static/fifo-datasink.png)
 
 ## Performance improvement 
 

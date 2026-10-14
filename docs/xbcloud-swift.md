@@ -6,8 +6,8 @@ For details on the command-line options,  see the [xbcloud command-line options]
 
 The following example shows how to make a full backup and upload it to Swift.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
+```shell
+xtrabackup --backup --stream=xbstream --extra-lsndir=/tmp --target-dir=/tmp | \
 xbcloud put --storage=swift \
 --swift-container=test \
 --swift-user=test:tester \
@@ -45,21 +45,21 @@ The following [OpenStack](https://docs.openstack.org/2023.2/) environment variab
 
 ## Restore with Swift
 
-```{.bash data-prompt="$"}
-$ xbcloud get [options] <name> [<list-of-files>] | xbstream -x
+```shell
+xbcloud get [options] <name> [<list-of-files>] | xbstream -x
 ```
 
 The following example shows how to fetch and restore the backup from Swift:
 
-```{.bash data-prompt="$"}
-$ xbcloud get --storage=swift \
+```shell
+xbcloud get --storage=swift \
 --swift-container=test \
 --swift-user=test:tester \
 --swift-auth-url=http://192.168.8.80:8080/ \
 --swift-key=testing \
 full_backup | xbstream -xv -C /tmp/downloaded_full
 
-$ xbcloud delete --storage=swift --swift-user=xtrabackup \
+xbcloud delete --storage=swift --swift-user=xtrabackup \
 --swift-password=xtrabackup123! --swift-auth-version=3 \
 --swift-auth-url=http://openstack.ci.percona.com:5000/ \
 --swift-container=mybackup1 --swift-domain=Default

@@ -9,13 +9,13 @@ Percona fixed the corruption issue and several other issues with the INSTANT ADD
 For more details, see the following:
 
 
-* [PS-8291](https://jira.percona.com/browse/PS-8291),
+* [PS-8291](https://perconadev.atlassian.net/browse/PS-8291),
 
 
-* [PS-8292](https://jira.percona.com/browse/PS-8292)
+* [PS-8292](https://perconadev.atlassian.net/browse/PS-8292)
 
 
-* [PS-8303](https://jira.percona.com/browse/PS-8303)
+* [PS-8303](https://perconadev.atlassian.net/browse/PS-8303)
 
 Percona XtraBackup 8.0.32-25 allows instant columns in the backup for MySQL 8.0.32. This limitation remains for backing up MySQL 8.0.31 and lower versions. This limitation does not exist for backing up Percona Server for any version.
 
@@ -30,7 +30,7 @@ If you already have such tables (information below on how to find such tables), 
 To find tables with `INSTANT ADD/DROP COLUMNS` run the following command:
 
 ```sql
-mysql> SELECT NAME FROM INFORMATION_SCHEMA.INNODB_TABLES WHERE TOTAL_ROW_VERSIONS > 0;
+SELECT NAME FROM INFORMATION_SCHEMA.INNODB_TABLES WHERE TOTAL_ROW_VERSIONS > 0;
 +---------+
 | NAME    |
 +---------+

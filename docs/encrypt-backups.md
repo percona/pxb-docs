@@ -19,20 +19,20 @@ For an encryption key, use a command, such as `openssl rand -base64 24`, to gene
 
 An example of the *xtrabackup* command using the `--encrypt-key`:
 
-```{.bash data-prompt="$"}
-$  xtrabackup --backup --encrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup
+```shell
+ xtrabackup --backup --encrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup
 ```
 
 ### The `--encrypt-key-file` option
 
 The recommended method uses the command line: `echo -n “{randomly-generated-alphanumeric-string}” > /data/backups/keyfile` to create the file.
 
-Remember that your text editor can automatically insert a CRLF (end of line) character in the `KEYFILE` when using the-- `encrypt-key-file` option. This inserted character invalidates the key because the size is wrong. 
+Remember that your text editor can automatically insert a CRLF (end of line) character in the `KEYFILE` when using the `--encrypt-key-file` option. This inserted character invalidates the key because the size is wrong. 
 
 An example of using the `--encrypt-key-file` option:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
+```shell
+xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 ```
 
 ## Optimize the encryption process
@@ -50,14 +50,14 @@ You can decrypt backups with the `xbcrypt` binary. The following example encrypt
 
 You can use the `--parallel` option and the `--decrypt` option to decrypt multiple files simultaneously.
 
-```{.bash data-prompt="$"}
-$ for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 < $i > $(dirname $i)/$(basename $i .xbcrypt) && rm $i; done
+```shell
+for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 < $i > $(dirname $i)/$(basename $i .xbcrypt) && rm $i; done
 ```
 
 The following example shows a decryption process.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --decrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup/
+```shell
+xtrabackup --decrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup/
 ```
 
 Percona XtraBackup doesn’t automatically remove the encrypted files. You must remove the `\*.xbcrypt` files manually.
@@ -66,16 +66,16 @@ Percona XtraBackup doesn’t automatically remove the encrypted files. You must 
 
 After decrypting the backups, prepare the backups with the `--prepare` option:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backup/
+```shell
+xtrabackup --prepare --target-dir=/data/backup/
 ```
 
 ## Restore encrypted backups
 
 *xtrabackup* offers the `--copy-back` option to restore a backup to the server’s datadir:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --copy-back --target-dir=/data/backup/
+```shell
+xtrabackup --copy-back --target-dir=/data/backup/
 ```
 
 The option copies all the data-related files to the server’s datadir. The server’s `my.cnf` configuration file determines the location. 

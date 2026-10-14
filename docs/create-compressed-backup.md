@@ -18,22 +18,22 @@ To make a compressed backup, use the `--compress` option along with the `--backu
     
     To compress files using the `ZSTD` compression algorithm, run the following command:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress --target-dir=/data/backup
+    ```shell
+    xtrabackup --backup --compress --target-dir=/data/backup
     ```
    
     You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](xtrabackup-option-reference.md#compress-zstd-level) option. The default value is `1`.
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress --compress-zstd-level=1 --target-dir=/data/backup
+    ```shell
+    xtrabackup --backup --compress --compress-zstd-level=1 --target-dir=/data/backup
     ```
 
     If you want to speed up the compression you can use the parallel
     compression, which can be enabled with `--compress-threads` option.
     Following example will use four threads for compression:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress --compress-threads=4 \
+    ```shell
+    xtrabackup --backup --compress --compress-threads=4 \
     --target-dir=/data/compressed/
     ```
 
@@ -56,8 +56,8 @@ To make a compressed backup, use the `--compress` option along with the `--backu
 
     To compress files using the `lz4` compression algorithm, set `--compress` option to `lz4`:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
+    ```shell
+    xtrabackup --backup --compress=lz4 --target-dir=/data/backup
     ```
     
     To decompress files, use the `--decompress` option. 
@@ -70,10 +70,10 @@ To make a compressed backup, use the `--compress` option along with the `--backu
 
     By default, the `--compress` option uses the `qpress` tool that you can install with the `percona-release` package configuration tool as follows:
 
-    ```{.bash data-prompt="$"}
-    $ sudo percona-release enable tools
-    $ sudo apt update
-    $ sudo apt install qpress
+    ```shell
+    sudo percona-release enable tools
+    sudo apt update
+    sudo apt install qpress
     ```
 
 
@@ -93,16 +93,16 @@ To make a compressed backup, use the `--compress` option along with the `--backu
 
     To compress files using the `quicklz` compression algorithm, use `--compress` option:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress --target-dir=/data/backup
+    ```shell
+    xtrabackup --backup --compress --target-dir=/data/backup
     ```
 
     `lz4`
 
     To compress files using the `lz4` compression algorithm, set `--compress` option to `lz4`:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress=lz4 --target-dir=/data/backup
+    ```shell
+    xtrabackup --backup --compress=lz4 --target-dir=/data/backup
     ```
 
     `Zstandard (ZSTD)`
@@ -113,22 +113,22 @@ To make a compressed backup, use the `--compress` option along with the `--backu
     
     To compress files using the `ZSTD` compression algorithm, set `--compress` option to `zstd`:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress=zstd --target-dir=/data/backup
+    ```shell
+    xtrabackup --backup --compress=zstd --target-dir=/data/backup
     ```
    
     You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](xtrabackup-option-reference.md#compress-zstd-level) option. The default value is `1`.
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress --compress-zstd-level=1 --target-dir=/data/backup
+    ```shell
+    xtrabackup --backup --compress --compress-zstd-level=1 --target-dir=/data/backup
     ```
 
     If you want to speed up the compression you can use the parallel
     compression, which can be enabled with `--compress-threads` option.
     Following example will use four threads for compression:
 
-    ```{.bash data-prompt="$"}
-    $ xtrabackup --backup --compress --compress-threads=4 \
+    ```shell
+    xtrabackup --backup --compress --compress-threads=4 \
     --target-dir=/data/compressed/
     ```
     

@@ -23,8 +23,8 @@ Percona XtraBackup 8.0.22-15: introduced `--no-server-version-check`. This optio
 
 You can add the `--no-server-version-check` option to your backup command to override the server version check and proceed with the backup. Here’s an example of how to use this option:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --no-server-version-check --target-dir=$mysql/backup1
+```shell
+xtrabackup --backup --no-server-version-check --target-dir=$mysql/backup1
 ```
 
 ## Additional resources

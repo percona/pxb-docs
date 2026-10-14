@@ -20,7 +20,7 @@ Percona XtraBackup {{release}} can take backups of MySQL-compatible databases ru
 
 For more information, see [Percona XtraBackup Version Compatibility and Server Version Checks](server-backup-version-comparison.md).
 
-Taking your backup with Percona XtraBackup is easy. Follow our documentation guides, and you’ll be set up in quickly.
+Taking your backup with Percona XtraBackup is easy. Follow our documentation guides, and you’ll be set up quickly.
 
 <div data-grid markdown><div data-banner markdown>
 

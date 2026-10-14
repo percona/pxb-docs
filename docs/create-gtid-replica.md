@@ -14,16 +14,16 @@ replica.
 The following command takes a backup and saves it in
 the `/data/backups/$TIMESTAMP` folder:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --backup --target-dirs=/data/backups/
+```shell
+xtrabackup --backup --target-dirs=/data/backups/
 ```
 
 In the destination folder, there will be a file with the name
 `xtrabackup_binlog_info`. This file contains both binary log coordinates
 and the `GTID` information.
 
-```{.bash data-prompt="$"}
-$ cat xtrabackup_binlog_info
+```shell
+cat xtrabackup_binlog_info
 ```
 The result could look like this:
 
@@ -45,8 +45,8 @@ That information is also printed by xtrabackup after taking the backup:
 
 The backup will be prepared with the following command on the Source:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --prepare --target-dir=/data/backup
+```shell
+xtrabackup --prepare --target-dir=/data/backup
 ```
 
 You need to select the path where your snapshot has been taken, for example
@@ -62,15 +62,15 @@ server. If you are synchronizing the data directly to the already running
 replica’s data
 directory it is advised to stop the *MySQL* server there.
 
-```{.bash data-prompt="$"}
-$ rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewSlave:/path/to/mysql/
+```shell
+rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewSlave:/path/to/mysql/
 ```
 
 After you copy the data over, make sure *MySQL* has proper permissions to
 access them.
 
-```{.bash data-prompt="$"}
-$ chown mysql:mysql /path/to/mysql/datadir
+```shell
+chown mysql:mysql /path/to/mysql/datadir
 ```
 
 ## 4. Configure and start replication
@@ -78,40 +78,38 @@ $ chown mysql:mysql /path/to/mysql/datadir
 Set the `gtid_purged` variable to the `GTID` from
 `xtrabackup_binlog_info`. Then, update the information about the
 source node and, finally, start the replica. Run the following commands on
-the replica if you are using a version before 8.0.22:
+the replica in the MySQL client if you are using a version before 8.0.22:
 
-```{.bash data-prompt="#"}
-# Using the mysql shell
- > SET SESSION wsrep_on = 0;
- > RESET MASTER;
- > SET SESSION wsrep_on = 1;
- > SET GLOBAL gtid_purged='<gtid_string_found_in_xtrabackup_binlog_info>';
- > CHANGE MASTER TO
+```sql
+SET SESSION wsrep_on = 0;
+RESET MASTER;
+SET SESSION wsrep_on = 1;
+SET GLOBAL gtid_purged='<gtid_string_found_in_xtrabackup_binlog_info>';
+CHANGE MASTER TO
              MASTER_HOST="$masterip",
              MASTER_USER="repl",
              MASTER_PASSWORD="$slavepass",
              MASTER_AUTO_POSITION = 1;
- > START SLAVE;
+START SLAVE;
 ```
 
 If you are using version 8.0.22 or later, use `START REPLICA` instead
 of `START SLAVE`. `START SLAVE` is deprecated as of that release. If you
 are using version 8.0.21 or earlier, use `START SLAVE`.
 
-If you are using a version 8.0.23 or later, run the following commands:
+If you are using a version 8.0.23 or later, run the following commands in the MySQL client:
 
-```{.bash data-prompt="#"}
-# Using the mysql shell
- > SET SESSION wsrep_on = 0;
- > RESET MASTER;
- > SET SESSION wsrep_on = 1;
- > SET GLOBAL gtid_purged='<gtid_string_found_in_xtrabackup_binlog_info>';
- > CHANGE REPLICATION SOURCE TO
+```sql
+SET SESSION wsrep_on = 0;
+RESET MASTER;
+SET SESSION wsrep_on = 1;
+SET GLOBAL gtid_purged='<gtid_string_found_in_xtrabackup_binlog_info>';
+CHANGE REPLICATION SOURCE TO
              SOURCE_HOST="$masterip",
              SOURCE_USER="repl",
              SOURCE_PASSWORD="$slavepass",
              SOURCE_AUTO_POSITION = 1;
- > START REPLICA;
+START REPLICA;
 ```
 
 If you are using version 8.0.23 or later,
@@ -126,8 +124,8 @@ use [CHANGE_REPLICATION_SOURCE_TO and the appropriate options](https://dev.mysql
 
 The following command returns the replica status:
 
-```{.bash data-prompt="mysql>"}
-mysql> SHOW REPLICA STATUS\G
+```sql
+SHOW REPLICA STATUS\G
 ```
 The results should be similar to the following:
 

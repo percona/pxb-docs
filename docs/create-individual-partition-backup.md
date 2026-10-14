@@ -26,8 +26,8 @@ If the partition 0 is not backed up, Percona XtraBackup cannot generate a .cfg f
 For example, this operation takes a back-up of the partition `p4` from 
 the table `name` located in the database `imdb`:
 
-```{.bash data-prompt="$"}
-$ xtrabackup --tables=^imdb[.]name#p#p4 --backup
+```shell
+xtrabackup --tables=^imdb[.]name#p#p4 --backup
 ```
 
 If partition 0 is not backed up, the following errors may occur:

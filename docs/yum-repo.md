@@ -3,7 +3,7 @@
 Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [download page](https://www.percona.com/downloads/). The Percona yum repository supports popular `RPM`-based operating systems, including the `Amazon Linux AMI`, which has reached its end of life. `Amazon Linux 2` is not supported at this time. 
 
-The easiest way to install the Percona Yum repository is to install an `RPM` that configures yum and installs the [Percona GPG key](https://www.percona.com/downloads/RPM-GPG-KEY-percona).
+The easiest way to install the Percona Yum repository is to install an `RPM` that configures yum and installs the [Percona GPG key](https://repo.percona.com/yum/PERCONA-PACKAGING-KEY).
 
 Specific information on the supported platforms, products, and versions is described in [Percona Software and Platform Lifecycle](https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql).
 
@@ -31,8 +31,8 @@ The following procedure installs Percona XtraBackup 8.0.
 
 1. Install the Percona yum repository by running the following command as the `root` user or with sudo: 
 
-    ```{.bash data-prompt="$"}
-    $ sudo yum install \
+    ```shell
+    sudo yum install \
     https://repo.percona.com/yum/percona-release-latest.\
     noarch.rpm
     ```
@@ -61,21 +61,21 @@ The following procedure installs Percona XtraBackup 8.0.
 
 2. Enable the repository: 
 
-    ```{.bash data-prompt="$"}
-    $ sudo percona-release enable pxb-80
+    ```shell
+    sudo percona-release enable pxb-80
     ```
 
     ??? example "Example output"
 
-            ```{.text .no-copy}
-            * Enabling the Percona XtraBackup 8.0 repository
-            <*> All done!
-            ```
+        ```{.text .no-copy}
+        * Enabling the Percona XtraBackup 8.0 repository
+        <*> All done!
+        ```
 
 3. Install *Percona XtraBackup* by running:
 
-    ```{.bash data-prompt="$"}
-    $ sudo yum install percona-xtrabackup-80
+    ```shell
+    sudo yum install percona-xtrabackup-80
     ```
 
     ??? example "Example output"
@@ -98,22 +98,22 @@ The following procedure installs Percona XtraBackup 8.0.
 
     === "Install the `lz4` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo yum install lz4
+        ```shell
+        sudo yum install lz4
         ```
 
     === "Install the `zstd` package"
 
-        ```{.bash data-prompt="$"}
-        $ sudo yum install zstd
+        ```shell
+        sudo yum install zstd
         ```
 
 ## Verify the installation
 
    Run Percona XtraBackup:
 
-   ```{.bash data-prompt="$"}
-   $ xtrabackup --version
+   ```shell
+   xtrabackup --version
    ```
 
    If this command fails, the installation is incomplete or incorrect.
@@ -125,59 +125,59 @@ To troubleshoot a Percona XtraBackup 8.0.x installation on a Red Hat-based syste
 
 1. This command checks for missing libraries.
 
-    ```{.bash data-prompt="$"}   
-    $ ldd $(which xtrabackup) | grep "not found"
+    ```shell
+    ldd $(which xtrabackup) | grep "not found"
     ```
 
 2. Install missing dependencies:
 
 
-    ```{.bash data-prompt="$"}
-    $ sudo yum install <missing-library-name>
+    ```shell
+    sudo yum install <missing-library-name>
     ```
 
 3. Examine log files:
 
-    ```{.bash data-prompt="$"}
-    $ sudo journalctl -xe | grep xtrabackup
+    ```shell
+    sudo journalctl -xe | grep xtrabackup
     ```
 
 4. Ensure the Percona repository is correctly set up:
 
-    ```{.bash data-prompt="$"}
-    $ cat /etc/yum.repos.d/percona-release.repo
+    ```shell
+    cat /etc/yum.repos.d/percona-release.repo
     ```
 
 5. Update the system to ensure all packages are current:
 
-    ```{.bash data-prompt="$"}
-    $ sudo yum update
+    ```shell
+    sudo yum update
     ```
 
 6. If issues persist, try a clean reinstall:
 
-    ```{.bash data-prompt="$"}
-    $ sudo yum remove percona-xtrabackup-80 
-    $ sudo yum clean all 
-    $ sudo yum install percona-xtrabackup-80
+    ```shell
+    sudo yum remove percona-xtrabackup-80 
+    sudo yum clean all 
+    sudo yum install percona-xtrabackup-80
     ```
 
 7. SELinux might block XtraBackup. Check its status:
 
-    ```{.bash data-prompt="$"} 
-    $ getenforce
+    ```shell
+    getenforce
     ```
 
 8. Set SELinux to permissive temporarily:
 
-    ```{.bash data-prompt="$"} 
-    $ sudo setenforce 0
+    ```shell
+    sudo setenforce 0
     ```
 
 9. Create a backup to verify functionality:
 
-     ```{.bash data-prompt="$"} 
-     $ xtrabackup --backup --target-dir=/tmp/test_backup
+     ```shell
+     xtrabackup --backup --target-dir=/tmp/test_backup
      ```
 
 If problems continue, gather all error messages and logs, then consult Percona's documentation or support forums for further assistance.

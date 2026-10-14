@@ -16,8 +16,8 @@ This method enables you to utilize other programs to filter the backup output, e
 
 To utilize the streaming feature, you need to employ the `--stream` option, specifying the stream format (xbstream). Specifying the stream format (xbstream) is optional, starting with Percona XtraBackup 8.0.33-28.
 
-```{.bash data-prompt="$"}
-$ xtrabackup --stream=xbstream
+```shell
+xtrabackup --stream=xbstream
 ```
 
 xtrabackup uses xbstream to stream all of the data files to `STDOUT`, in a
