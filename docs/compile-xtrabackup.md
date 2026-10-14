@@ -4,7 +4,7 @@ The following instructions compile Percona XtraBackup {{vers}} from source and i
 
 !!! note "Disk space and build time"
 
-    The source tree with its submodules takes about 5.6 GB, and the build directory takes about 7.8 GB. Plan for at least 15 GB of free disk space. On a machine with 2 vCPUs, the build takes about 70 minutes.
+    The source tree with its submodules takes about 5.7 GB, and the build directory takes from about 2 GB to 8 GB, depending on the platform. Plan for at least 15 GB of free disk space. On a machine with 2 vCPUs, the build takes about 70 minutes.
 
 ## 1. Install the prerequisites
 
