@@ -4,11 +4,11 @@ The following instructions compile Percona XtraBackup {{vers}} from source and i
 
 !!! note "Disk space and build time"
 
-    The source tree with its submodules takes about 5.6 GB, and the build directory takes about 7.8 GB. Plan for at least 15 GB of free disk space. On a machine with 2 vCPUs, the build takes about 70 minutes. These figures were measured with Percona XtraBackup 8.4.
+    The source tree with its submodules takes about 5.7 GB, and the build directory takes from about 2 GB to 8 GB, depending on the platform. Plan for at least 15 GB of free disk space. On a machine with 2 vCPUs, the build takes about 70 minutes. These figures were measured with Percona XtraBackup 8.4.
 
 ## 1. Install the prerequisites
 
-Install `git`, a supported compiler, `cmake`, and the libraries that Percona XtraBackup links against. Percona XtraBackup {{vers}} requires GCC 11 or later, or Clang 14 or later.
+Install `git`, a supported compiler, `cmake`, and the libraries that Percona XtraBackup links against. Percona XtraBackup {{vers}} also needs the TI-RPC library and the `rpcgen` tool. Percona XtraBackup {{vers}} requires GCC 11 or later, or Clang 14 or later.
 
 === "RHEL 9 and compatible (Rocky Linux, AlmaLinux, Oracle Linux)"
 
@@ -20,7 +20,8 @@ Install `git`, a supported compiler, `cmake`, and the libraries that Percona Xtr
     sudo dnf install -y gcc-toolset-14-gcc gcc-toolset-14-gcc-c++ gcc-toolset-14-binutils \
       gcc-toolset-14-annobin-annocheck gcc-toolset-14-annobin-plugin-gcc \
       cmake make openssl-devel libaio-devel bison libtool ncurses-devel libgcrypt-devel \
-      libev-devel libcurl-devel zlib-devel zstd vim-common procps-ng-devel
+      libev-devel libcurl-devel zlib-devel zstd vim-common procps-ng-devel \
+      libtirpc-devel rpcgen
     ```
 
     The repository name differs by distribution:
@@ -45,7 +46,7 @@ Install `git`, a supported compiler, `cmake`, and the libraries that Percona Xtr
       ca-certificates libproc2-dev libcurl4-openssl-dev libaio-dev libncurses-dev \
       libssl-dev libtool zlib1g-dev libgcrypt20-dev libev-dev lsb-release build-essential \
       rsync libdbd-mysql-perl libnuma1 socat librtmp-dev vim-common lz4 liblz4-dev zstd \
-      python3-docutils
+      libtirpc-dev rpcsvc-proto python3-docutils
     ```
 
     To install the man pages, install the `python3-sphinx` package first:
@@ -62,7 +63,7 @@ Install `git`, a supported compiler, `cmake`, and the libraries that Percona Xtr
       ca-certificates libprocps-dev libcurl4-openssl-dev libaio-dev libncurses-dev \
       libssl-dev libtool zlib1g-dev libgcrypt20-dev libev-dev lsb-release build-essential \
       rsync libdbd-mysql-perl libnuma1 socat librtmp-dev vim-common lz4 liblz4-dev zstd \
-      python3-docutils
+      libtirpc-dev rpcsvc-proto python3-docutils
     ```
 
     To install the man pages, install the `python3-sphinx` package first:
