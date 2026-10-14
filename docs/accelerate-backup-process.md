@@ -34,7 +34,7 @@ xtrabackup --backup --parallel=4 --target-dir=/path/to/backup
 
 By using the xbstream in streaming backups, you can additionally speed up the
 compression process with the `--compress-threads` option. This option
-specifies the number of threads created by xtrabackup for for parallel data
+specifies the number of threads created by xtrabackup for parallel data
 compression. The default value for this option is 1.
 
 To use this feature, simply add the option to a local backup, for example:
@@ -57,7 +57,7 @@ TABLES WITH READ LOCK` and once during to minimize the time the read lock is
 being held. During the second `rsync` call, it will only synchronize the
 changes to non-transactional data (if any) since the first call performed before
 the `FLUSH TABLES WITH READ LOCK`. Note that Percona XtraBackup will use
-[Backup locks] where available as a lightweight alternative to `FLUSH TABLES WITH READ
+[backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html) where available as a lightweight alternative to `FLUSH TABLES WITH READ
 LOCK`.
 
 Percona XtraBackup uses these locks automatically to copy non-InnoDB data to avoid blocking Data manipulation language (DML) queries that modify InnoDB tables. Find more information in [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html)

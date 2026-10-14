@@ -53,7 +53,7 @@ Compressed backups additionally report:
 Percona XtraBackup calculates `uncompressed_backup_size` separately from the final compressed backup size so that the reported value reflects the logical backup size before compression.
 
 Percona XtraBackup stores the reported values in:
-Expand commentComment on line R60Resolved
+
 * `xtrabackup_info`
 
 * XtraBackup error log

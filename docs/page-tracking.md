@@ -16,13 +16,13 @@ To start using the page tracking functionality, do the following:
 
 1. Install the `mysqlbackup` component and enable it on the server:
 
-    ```shell
+    ```sql
     INSTALL COMPONENT "file://component_mysqlbackup";
     ```
 
 2. Check whether the `mysqlbackup` component is installed successfully:
 
-    ```shell
+    ```sql
     SELECT COUNT(1) FROM mysql.component WHERE component_urn='file://component_mysqlbackup';
     ```
 
@@ -73,7 +73,7 @@ Enable page tracking before creating the first backup to avoid this delay. This 
 After the mysqlbackup component is loaded and active on the server, you can
 start page tracking manually with the following option:
 
-```shell
+```sql
 SELECT mysqlbackup_page_track_set(true);
 ```
 
@@ -82,7 +82,7 @@ SELECT mysqlbackup_page_track_set(true);
 Check the LSN value starting from which changed pages are tracked with the
 following option:
 
-```shell
+```sql
 SELECT mysqlbackup_page_track_get_start_lsn();
 ```
 
@@ -90,7 +90,7 @@ SELECT mysqlbackup_page_track_get_start_lsn();
 
 To stop page tracking, use the following command:
 
-```shell
+```sql
 SELECT mysqlbackup_page_track_set(false);
 ```
 
@@ -105,7 +105,7 @@ grow until you stop the page tracking explicitly.
 If you purge the page tracking data, you should create a full backup
 afterward. To purge the page tracking data, do the following steps:
 
-```shell
+```sql
 SELECT mysqlbackup_page_track_set(false);
 SELECT mysqlbackup_page_track_purge_up_to(9223372036854775807);
 /* Specify the LSN up to which you want to purge page tracking data. /
@@ -118,12 +118,12 @@ SELECT mysqlbackup_page_track_set(true);
 If the index is built in place using an exclusive algorithm and then is
 added to a table after the last LSN checkpoint, you may generate a bad
 incremental backup using page tracking. For more details
-see [PS-8032 :octicons-link-external-16:](https://jira.percona.com/browse/PS-8032).
+see [PS-8032 :octicons-link-external-16:](https://perconadev.atlassian.net/browse/PS-8032).
 
 ## Uninstall the mysqlbackup component
 
 To uninstall the mysqlbackup component, use the following statement:
 
-```shell
+```sql
 UNINSTALL COMPONENT "file://component_mysqlbackup"
 ```

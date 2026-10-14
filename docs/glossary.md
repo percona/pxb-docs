@@ -22,7 +22,7 @@ A finalized version of the product which is made available to the general public
 
 ## .ibd
 
-On a multiple tablespace setup ([innodb\_file\_per\_table] enabled), MySQL will store each newly created table on a file with a `.ibd` extension.
+On a multiple tablespace setup ([`innodb_file_per_table`](#innodb_file_per_table) enabled), MySQL will store each newly created table on a file with a `.ibd` extension.
 
 ## .MRG
 
@@ -104,39 +104,49 @@ engine for MySQL {{vers}}.
 
 The size in bytes of the memory buffer to cache data and indexes of InnoDB’s tables. This aims to reduce disk access to provide better performance. 
 
-> \[mysqld\]<br/>
-> innodb\_buffer\_pool\_size=8MB
+```ini
+[mysqld]
+innodb_buffer_pool_size=8MB
+```
 
 ## innodb\_data\_home\_dir
 
 The directory (relative to `datadir`) where the database server stores 
 the files in a shared tablespace setup. This option does not affect the location of `innodb\_file\_per\_table`. For example:
 
-> \[mysqld\]<br/>
-> innodb\_data\_home\_dir = ./
+```ini
+[mysqld]
+innodb_data_home_dir = ./
+```
 
 ## innodb\_data\_file\_path
 
 Specifies the names, sizes and location of shared tablespace files:
 
-> \[mysqld\]<br/>
-> innodb\_data\_file\_path=ibdata1:50M;ibdata2:50M:autoextend
+```ini
+[mysqld]
+innodb_data_file_path=ibdata1:50M;ibdata2:50M:autoextend
+```
 
 ## innodb\_file\_per\_table
 
 By default, InnoDB creates tables and indexes in a [file-per-tablespace :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-file-per-table-tablespaces.html). If the `innodb_file_per_table` variable is disabled, you can enable the variable in your configuration file:
 
-> \[mysqld\]<br/>
-> innodb\_file\_per\_table <br/>
-> or <br/>
-> start the server with `--innodb_file_per_table`.
+```ini
+[mysqld]
+innodb_file_per_table
+```
+
+Alternatively, start the server with `--innodb_file_per_table`.
 
 ## innodb\_log\_group\_home\_dir
 
 Specifies the location of the InnoDB log files:
 
-> \[mysqld\]<br/>
-> innodb\_log\_group\_home=/var/lib/mysql
+```ini
+[mysqld]
+innodb_log_group_home=/var/lib/mysql
+```
 
 ## logical backup
 

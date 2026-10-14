@@ -12,7 +12,7 @@ Percona XtraBackup is designed to make backups seamless without disrupting the p
 
 ## Percona XtraBackup features
 
-Taking your backup with Percona XtraBackup is easy. Follow our documentation guides, and you’ll be set up in quickly.
+Taking your backup with Percona XtraBackup is easy. Follow our documentation guides, and you’ll be set up quickly.
 
 <div data-grid markdown><div data-banner markdown>
 
