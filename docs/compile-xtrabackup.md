@@ -1,74 +1,88 @@
 # Compile and install from source
 
-The following instructions install Percona XtraBackup {{vers}}. Run the following command as root or use the sudo command.
+The following instructions compile Percona XtraBackup {{vers}} from source and install it. Run the commands as root or use `sudo`.
 
-## 1. Install Percona XtraBackup from the Git Source Tree
+!!! note "Disk space and build time"
 
-Percona uses the [Github :octicons-link-external-16:](https://github.com/) revision control system for development. To build the latest Percona Server for MySQL from the source tree, you will need `git` installed on your system.
+    The source tree with its submodules takes about 5.6 GB, and the build directory takes about 7.8 GB. Plan for at least 15 GB of free disk space. On a machine with 2 vCPUs, the build takes about 70 minutes.
 
-You can now fetch the latest Percona XtraBackup {{vers}} sources:
+## 1. Install the prerequisites
 
-```shell
-git clone https://github.com/percona/percona-xtrabackup.git
-cd percona-xtrabackup
-git checkout {{vers}}
-git submodule update --init --recursive
-```
+Install `git`, a supported compiler, `cmake`, and the libraries that Percona XtraBackup links against. Percona XtraBackup {{vers}} requires GCC 10 or later, or Clang 12 or later.
 
-## 2. Installation prerequisites
+=== "RHEL 9 and compatible (Rocky Linux, AlmaLinux, Oracle Linux)"
 
-The following packages and tools must be installed to compile *Percona XtraBackup* from source.
-These might vary from system to system.
-
-!!! important
- 
-    To build Percona XtraBackup {{vers}} from source, you must use `cmake` 
-    version 3. To check which version is 
-    currently installed, run `cmake --version` at a command prompt. If the 
-    version is not `3`, install `cmake3`.
-
-
-This `cmake` version may be available 
-in your distribution as a separate package `cmake3`. For more information, see [cmake.org :octicons-link-external-16:](https://cmake.org/).
-
-=== "Debian or Ubuntu using `apt`"
+    Some build dependencies, such as `libev-devel` and `procps-ng-devel`, are in the CodeReady Linux Builder (CRB) repository. Enable the repository, then install the packages:
 
     ```shell
-    sudo apt install bison pkg-config cmake devscripts debconf \
-    debhelper automake bison ca-certificates libprocps-dev \
-    libcurl4-openssl-dev cmake debhelper libaio-dev \
-    libncurses-dev libssl-dev libtool libz-dev libgcrypt-dev libev-dev libprocps-dev \
-    lsb-release build-essential rsync libdbd-mysql-perl \
-    libnuma1 socat librtmp-dev libtinfo5 vim-common \
-    liblz4-tool liblz4-1 liblz4-dev zstd python-docutils
+    sudo dnf install -y git dnf-plugins-core
+    sudo dnf config-manager --set-enabled crb
+    sudo dnf install -y gcc-toolset-12-gcc gcc-toolset-12-gcc-c++ gcc-toolset-12-binutils \
+      gcc-toolset-12-annobin-annocheck gcc-toolset-12-annobin-plugin-gcc \
+      cmake make openssl-devel libaio-devel bison libtool ncurses-devel libgcrypt-devel \
+      libev-devel libcurl-devel zlib-devel zstd vim-common procps-ng-devel
     ```
 
-    To install the man pages, install the python3-sphinx package first:
+    The repository name differs by distribution:
+
+    * Rocky Linux and AlmaLinux: `crb`, as in the command above.
+    * Red Hat Enterprise Linux: run `sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms` instead of the `dnf config-manager` command.
+    * Oracle Linux 9: run `sudo dnf config-manager --set-enabled ol9_codeready_builder` instead.
+
+    On RHEL 9, `cmake` does not accept the system GCC. It looks for the compiler in `/opt/rh/gcc-toolset-12` and stops with an error if the gcc-toolset-12 packages are missing. You do not need to enable the toolset with `scl`: `cmake` finds it.
+
+    To install the man pages, install the `python3-sphinx` package first:
+
+    ```shell
+    sudo dnf install -y python3-sphinx
+    ```
+
+=== "Ubuntu 24.04 or later, Debian 13"
+
+    ```shell
+    sudo apt update
+    sudo apt install git bison pkg-config cmake devscripts debconf debhelper automake \
+      ca-certificates libproc2-dev libcurl4-openssl-dev libaio-dev libncurses-dev \
+      libssl-dev libtool zlib1g-dev libgcrypt20-dev libev-dev lsb-release build-essential \
+      rsync libdbd-mysql-perl libnuma1 socat librtmp-dev vim-common lz4 liblz4-dev zstd \
+      python3-docutils
+    ```
+
+    To install the man pages, install the `python3-sphinx` package first:
 
     ```shell
     sudo apt install python3-sphinx
     ```
 
-=== "CentOS or Red Hat using `yum`"
-
-    Percona Xtrabackup requires GCC version 5.3 or higher. If the
-    version of GCC installed on your system is lower then you may need to
-    install and enable [the Developer Toolset] on
-    `RPM`-based distributions to make sure that you use the latest GCC
-    compiler and development tools.  Then, install `cmake` and other
-    dependencies:
+=== "Ubuntu 22.04"
 
     ```shell
-    sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
-    bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel \
-    zstd vim-common procps-ng-devel
+    sudo apt update
+    sudo apt install git bison pkg-config cmake devscripts debconf debhelper automake \
+      ca-certificates libprocps-dev libcurl4-openssl-dev libaio-dev libncurses-dev \
+      libssl-dev libtool zlib1g-dev libgcrypt20-dev libev-dev lsb-release build-essential \
+      rsync libdbd-mysql-perl libnuma1 socat librtmp-dev vim-common lz4 liblz4-dev zstd \
+      python3-docutils
     ```
 
-    To install the man pages, install the python3-sphinx package first:
+    To install the man pages, install the `python3-sphinx` package first:
 
     ```shell
-    sudo yum install python3-sphinx
+    sudo apt install python3-sphinx
     ```
+
+## 2. Get the source code
+
+Clone the repository, check out the release tag, and fetch the submodules:
+
+```shell
+git clone https://github.com/percona/percona-xtrabackup.git
+cd percona-xtrabackup
+git checkout percona-xtrabackup-{{release}}
+git submodule update --init --recursive
+```
+
+The `percona-xtrabackup-{{release}}` tag is the Percona XtraBackup {{release}} release. The `{{vers}}` branch contains unreleased development changes, so check it out only if you need them.
 
 ## 3. Generate the build pipeline
 
@@ -91,8 +105,7 @@ directory:
     cd build
     ```
 
-3. If you use a regular build, run cmake or cmake3. In either case, the options you need to use are the
-same.
+3. Run `cmake`:
 
 !!! note
  
@@ -132,7 +145,7 @@ cmake -DPROBUILD=1 -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF ..
 To compile the source code in your `build` directory, use the `make` command.
 {.power-number}
 
-1. Change to the `build` directory (created at Step 2: Generating the build pipeline).
+1. Change to the `build` directory (created in step 3).
 
 2. Run the `make` command. This command may take a long time to complete.
 
@@ -169,7 +182,7 @@ sudo make DESTDIR=<DIR_NAME> install
 
 In fact, the destination directory is determined by the installation layout
 (`-DINSTALL_LAYOUT`) that `cmake` applies (see
-Step 2: Generating the build pipeline). In addition to
+step 3). In addition to
 the installation directory, this parameter controls a number of other
 destinations that you can adjust for your system.
 
@@ -189,19 +202,25 @@ the full path to the `xtrabackup` command:
 /usr/local/xtrabackup/bin/xtrabackup
 ```
 
-Update your PATH environment variable if you would like to use the command on
-the command line directly.
+To run `xtrabackup` without the full path, add the `bin` directory to your `PATH` environment variable:
 
 ```shell
-$# Setting $PATH on the command line
-PATH=$PATH:/usr/local/xtrabackup/bin/xtrabackup
-
-$# Run xtrabackup directly
-xtrabackup
+export PATH=$PATH:/usr/local/xtrabackup/bin
+xtrabackup --version
 ```
 
 Alternatively, you may consider placing a soft link (using `ln -s`) to one of
 the locations listed in your `PATH` environment variable.
 
 To view the documentation with `man`, update the `MANPATH` variable.
+
+!!! note "Default socket"
+
+    A binary built from source connects to the server through `/tmp/mysql.sock` by default. If your server uses a different socket, for example `/var/lib/mysql/mysql.sock`, pass it with the `--socket` option:
+
+    ```shell
+    xtrabackup --backup --socket=/var/lib/mysql/mysql.sock --target-dir=/data/backups/
+    ```
+
+    To change the default when you build, add `-DMYSQL_UNIX_ADDR=<path>` to the `cmake` command.
 
