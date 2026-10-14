@@ -6947,6 +6947,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -6974,7 +6976,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h3 id="general-availability-ga">General availability (GA)<a class="headerlink" href="#general-availability-ga" title="Permanent link">&para;</a></h3>
 <p>A finalized version of the product which is made available to the general public. It is the final stage in the software release cycle.</p>
 <h3 id="ibd">.ibd<a class="headerlink" href="#ibd" title="Permanent link">&para;</a></h3>
-<p>On a multiple tablespace setup ([innodb_file_per_table] enabled), <em>MySQL</em> will store each newly created table on a file with a <code>.ibd</code> extension.</p>
+<p>On a multiple tablespace setup (<a href="#innodb_file_per_table"><code>innodb_file_per_table</code></a> enabled), <em>MySQL</em> will store each newly created table on a file with a <code>.ibd</code> extension.</p>
 <h3 id="mrg">.MRG<a class="headerlink" href="#mrg" title="Permanent link">&para;</a></h3>
 <p>Each table using the <strong>MERGE</strong> storage engine, besides of a <code>.frm</code> file, 
 will have <code>.MRG</code> file containing the names of the <em>MyISAM</em> tables 
@@ -7017,37 +7019,31 @@ key support, among others improvements over <em>MyISAM</em>. It is the default
 engine for <em>MySQL</em> as of the 8.0 series.</p>
 <h3 id="innodb_buffer_pool_size">innodb_buffer_pool_size<a class="headerlink" href="#innodb_buffer_pool_size" title="Permanent link">&para;</a></h3>
 <p>The size in bytes of the memory buffer to cache data and indexes of <em>InnoDB</em>’s tables. This aims to reduce disk access to provide better performance. </p>
-<blockquote>
-<p>[mysqld]<br/>
-innodb_buffer_pool_size=8MB</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">innodb_buffer_pool_size</span><span class="o">=</span><span class="s">8MB</span>
+</code></pre></div>
 <h3 id="innodb_data_home_dir">innodb_data_home_dir<a class="headerlink" href="#innodb_data_home_dir" title="Permanent link">&para;</a></h3>
 <p>The directory (relative to <code>datadir</code>) where the database server stores 
 the files in a shared tablespace setup. This option does not affect the location of <code>innodb\_file\_per\_table</code>. For example:</p>
-<blockquote>
-<p>[mysqld]<br/>
-innodb_data_home_dir = ./</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">innodb_data_home_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">./</span>
+</code></pre></div>
 <h3 id="innodb_data_file_path">innodb_data_file_path<a class="headerlink" href="#innodb_data_file_path" title="Permanent link">&para;</a></h3>
 <p>Specifies the names, sizes and location of shared tablespace files:</p>
-<blockquote>
-<p>[mysqld]<br/>
-innodb_data_file_path=ibdata1:50M;ibdata2:50M:autoextend</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">innodb_data_file_path</span><span class="o">=</span><span class="s">ibdata1:50M</span><span class="c1">;ibdata2:50M:autoextend</span>
+</code></pre></div>
 <h3 id="innodb_file_per_table">innodb_file_per_table<a class="headerlink" href="#innodb_file_per_table" title="Permanent link">&para;</a></h3>
 <p>By default, InnoDB creates tables and indexes in a <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-file-per-table-tablespaces.html">file-per-tablespace</a>. If the <code>innodb_file_per_table</code> variable is disabled, you can enable the variable in your configuration file:</p>
-<blockquote>
-<p>[mysqld]<br/>
-innodb_file_per_table <br/>
-or <br/>
-start the server with <code>--innodb_file_per_table</code>.</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">innodb_file_per_table</span>
+</code></pre></div>
+<p>Alternatively, start the server with <code>--innodb_file_per_table</code>.</p>
 <h3 id="innodb_log_group_home_dir">innodb_log_group_home_dir<a class="headerlink" href="#innodb_log_group_home_dir" title="Permanent link">&para;</a></h3>
 <p>Specifies the location of the <em>InnoDB</em> log files:</p>
-<blockquote>
-<p>[mysqld]<br/>
-innodb_log_group_home=/var/lib/mysql</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[mysqld]</span>
+<span class="na">innodb_log_group_home</span><span class="o">=</span><span class="s">/var/lib/mysql</span>
+</code></pre></div>
 <h3 id="logical-backup">logical backup<a class="headerlink" href="#logical-backup" title="Permanent link">&para;</a></h3>
 <p>A backup which contains a set of SQL statements. The statements can be used to recreate the databases.</p>
 <h3 id="lsn">LSN<a class="headerlink" href="#lsn" title="Permanent link">&para;</a></h3>
@@ -7073,7 +7069,7 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
 <h3 id="xbstream">xbstream<a class="headerlink" href="#xbstream" title="Permanent link">&para;</a></h3>
 <p>To support simultaneous compression and streaming, <strong>Percona XtraBackup</strong> uses the <strong>xbstream</strong> format. For more information see <a href="xbstream-binary-overview.html">xbstream</a></p>
 <h3 id="xtradb">XtraDB<a class="headerlink" href="#xtradb" title="Permanent link">&para;</a></h3>
-<p><em>Percona XtraDB</em> is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. <em>Percona XtraDB</em> includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see <a href="https://www.percona.com/doc/percona-server/8.0/percona-xtradb.html">The Percona XtraDB Storage Engine</a>.</p>
+<p><em>Percona XtraDB</em> is an enhanced version of the InnoDB storage engine, designed to better scale on modern hardware. <em>Percona XtraDB</em> includes features which are useful in a high performance environment. It is fully backward-compatible, and is a drop-in replacement for the standard InnoDB storage engine. For more information, see <a href="https://docs.percona.com/percona-server/8.0/percona-xtradb.html">The Percona XtraDB Storage Engine</a>.</p>
 <h3 id="zstandard-zstd">Zstandard (ZSTD)<a class="headerlink" href="#zstandard-zstd" title="Permanent link">&para;</a></h3>
 <p><code>ZSTD</code> is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios.</p>
 <p><code>ZSTD</code> compression algorithm was implemented in <a href="release-notes/8.0/8.0.30-23.0.html">Percona XtraBackup 8.0.30-23</a>.</p>
@@ -7099,7 +7095,7 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 8, 2025 16:56:36 UTC">July 8, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7115,6 +7111,39 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
     
     
     
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
+          
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
+        </a>
+      
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
+    
   </aside>
 
 
@@ -7124,6 +7153,7 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7207,8 +7237,6 @@ Each table is stored on disk in 3 files: <code>.frm</code>, <code>.MYD</code>, <
         <script src="js/print-site.js"></script>
       
         <script src="js/version-select.js"></script>
-      
-        <script src="js/promptremover.js"></script>
       
         <script src="js/consent.js"></script>
       

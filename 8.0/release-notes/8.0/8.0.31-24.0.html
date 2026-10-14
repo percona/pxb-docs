@@ -7104,6 +7104,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7144,7 +7146,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <tbody>
 <tr>
 <td>Install instructions</td>
-<td><a href="https://www.percona.com/doc/percona-xtrabackup/8.0/installation.html">Install Percona XtraBackup</a></td>
+<td><a href="../../installation.html">Install Percona XtraBackup</a></td>
 </tr>
 <tr>
 <td>Download this version</td>
@@ -7158,16 +7160,16 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>This release adds the ability to use an IAM instance profile when running xbcloud from an EC2 instance. An IAM instance profile does not need the <code>--s3-secret-key</code> nor the <code>--s3-access-key</code> but the profile has a six-hour lifespan.</p>
 <p>With this version, <code>qpress</code>/<code>QuickLZ</code> are deprecated. </p>
 <h2 id="new-features">New features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
-<p><a href="https://jira.percona.com/browse/PXB-2856">PXB-2856</a>: Use <a href="../../xbcloud-iam-profile.html">IAM instance profile when running xbcloud from an EC2 instance</a>.</p>
-<p><a href="https://jira.percona.com/browse/PXB-2869">PXB-2869</a>: A warning is printed on backup that qpress/QuickLZ is deprecated.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2856">PXB-2856</a>: Use <a href="../../xbcloud-iam-profile.html">IAM instance profile when running xbcloud from an EC2 instance</a>.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2869">PXB-2869</a>: A warning is printed on backup that qpress/QuickLZ is deprecated.</p>
 <h2 id="bug-fixes">Bug fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
-<p><a href="https://jira.percona.com/browse/PXB-2890">PXB-2890</a>: XtraBackup did not compress already compressed tables.</p>
-<p><a href="https://jira.percona.com/browse/PXB-2928">PXB-2928</a>: XtraBackup exits with signal 11 when taking a backup using page tracking.</p>
-<p><a href="https://jira.percona.com/browse/PXB-2854">PXB-2854</a>: Fixed a memory corruption issue in QuickLZ.</p>
-<p><a href="https://jira.percona.com/browse/PXB-2925">PXB-2925</a>: The PXB start_lsn, during the prepare phase, did not match the redo file start LSN when a wait was added in the backup phase after calling <code>recv_find_max_checkpoint</code> and before copying the checkpoint header.</p>
-<p><a href="https://jira.percona.com/browse/PXB-2964">PXB-2964</a>: XtraBackup required a very high open files limit.</p>
-<p><a href="https://jira.percona.com/browse/PXB-2959">PXB-2959</a>: XtraBackup now compiles on platforms with OpenSSL 3.0.</p>
-<p><a href="https://jira.percona.com/browse/PXB-2971">PXB-2971</a>: XtraBackup copied local manifest files which caused node failures when the files overrode settings on another node.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2890">PXB-2890</a>: XtraBackup did not compress already compressed tables.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2928">PXB-2928</a>: XtraBackup exits with signal 11 when taking a backup using page tracking.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2854">PXB-2854</a>: Fixed a memory corruption issue in QuickLZ.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2925">PXB-2925</a>: The PXB start_lsn, during the prepare phase, did not match the redo file start LSN when a wait was added in the backup phase after calling <code>recv_find_max_checkpoint</code> and before copying the checkpoint header.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2964">PXB-2964</a>: XtraBackup required a very high open files limit.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2959">PXB-2959</a>: XtraBackup now compiles on platforms with OpenSSL 3.0.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2971">PXB-2971</a>: XtraBackup copied local manifest files which caused node failures when the files overrode settings on another node.</p>
 <h2 id="deprecation-and-removal">Deprecation and removal<a class="headerlink" href="#deprecation-and-removal" title="Permanent link">&para;</a></h2>
 <p>Starting with Percona XtraBackup 8.0.31-24, using qpress/QuickLZ to compress backups is deprecated and may be removed in future versions. We recommend using either the <code>LZ4</code> or the Zstandard (<code>ZSTD</code>) compression algorithms.</p>
 <h2 id="useful-links">Useful links<a class="headerlink" href="#useful-links" title="Permanent link">&para;</a></h2>
@@ -7201,7 +7203,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 12, 2023 12:58:57 UTC">June 12, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7226,6 +7228,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7309,8 +7312,6 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         <script src="../../js/print-site.js"></script>
       
         <script src="../../js/version-select.js"></script>
-      
-        <script src="../../js/promptremover.js"></script>
       
         <script src="../../js/consent.js"></script>
       

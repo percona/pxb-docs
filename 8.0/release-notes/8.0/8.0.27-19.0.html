@@ -7084,6 +7084,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7107,7 +7109,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 <li>
 <p><strong>Installation</strong></p>
-<p><a href="https://www.percona.com/doc/percona-xtrabackup/8.0/installation.html">Installing Percona XtraBackup</a></p>
+<p><a href="../../installation.html">Installing Percona XtraBackup</a></p>
 </li>
 </ul>
 <p>Percona XtraBackup enables MySQL backups without blocking user queries, making it ideal for companies with large data sets and mission-critical applications that cannot tolerate long periods of downtime. Offered free as an open source solution, it drives down backup costs while providing unique features for MySQL backups.</p>
@@ -7127,31 +7129,31 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Find the full list of bug fixes and changes in the <a href="https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-27.html">MySQL 8.0.27 Release Notes</a>.</p>
 <h2 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://jira.percona.com/browse/PXB-1883">PXB-1883</a>: Added support for Microsoft Azure Cloud Storage in the xbcloud binary. (Thanks to Ivan for reporting this issue)</li>
+<li><a href="https://perconadev.atlassian.net/browse/PXB-1883">PXB-1883</a>: Added support for Microsoft Azure Cloud Storage in the xbcloud binary. (Thanks to Ivan for reporting this issue)</li>
 </ul>
 <h2 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://jira.percona.com/browse/PXB-2434">PXB-2434</a>: Use MySQL page tracking for incremental backup</li>
+<li><a href="https://perconadev.atlassian.net/browse/PXB-2434">PXB-2434</a>: Use MySQL page tracking for incremental backup</li>
 </ul>
 <h2 id="bugs-fixed">Bugs Fixed<a class="headerlink" href="#bugs-fixed" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-1741">PXB-1741</a>: PS startup displays errors for databases excluded during partial backup</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-1741">PXB-1741</a>: PS startup displays errors for databases excluded during partial backup</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-2614">PXB-2614</a>: The <code>xbstream</code> binary was enhanced to support sparse files  on the XFS file system.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2614">PXB-2614</a>: The <code>xbstream</code> binary was enhanced to support sparse files  on the XFS file system.</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-2608">PXB-2608</a>: Upgrade the Vault API to V2 (Thanks to Benedito Marques Magalhaes for reporting this issue)</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2608">PXB-2608</a>: Upgrade the Vault API to V2 (Thanks to Benedito Marques Magalhaes for reporting this issue)</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-2543">PXB-2543</a>: Fix that adds <code>IB_EXPORT_CFG_VERSION_V6</code> when exporting a <code>.cfg</code> file for a table (Thanks to Peng Gao for reporting this issue)</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2543">PXB-2543</a>: Fix that adds <code>IB_EXPORT_CFG_VERSION_V6</code> when exporting a <code>.cfg</code> file for a table (Thanks to Peng Gao for reporting this issue)</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-2465">PXB-2465</a>: Fix for querying the <code>ps.log_status</code> when group replication channels are items on that list. XtraBackup skips the name if it matches either <code>group_replication_applier</code>or <code>group_replication_recovery</code>.(Thanks to Galamb Gergő for reporting this issue)</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2465">PXB-2465</a>: Fix for querying the <code>ps.log_status</code> when group replication channels are items on that list. XtraBackup skips the name if it matches either <code>group_replication_applier</code>or <code>group_replication_recovery</code>.(Thanks to Galamb Gergő for reporting this issue)</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-2625">PXB-2625</a>: The default version of CURL in Debian Buster failed to identify a TLS HTTP2 connection as closed and attempted to reuse the connection. (Thanks to Johan Andersson for reporting this issue)</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2625">PXB-2625</a>: The default version of CURL in Debian Buster failed to identify a TLS HTTP2 connection as closed and attempted to reuse the connection. (Thanks to Johan Andersson for reporting this issue)</p>
 </li>
 </ul>
 
@@ -7176,7 +7178,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 24, 2022 16:51:05 UTC">August 24, 2022</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7201,6 +7203,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7284,8 +7287,6 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         <script src="../../js/print-site.js"></script>
       
         <script src="../../js/version-select.js"></script>
-      
-        <script src="../../js/promptremover.js"></script>
       
         <script src="../../js/consent.js"></script>
       

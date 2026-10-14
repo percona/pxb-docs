@@ -7104,6 +7104,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7130,26 +7132,26 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>The <code>QuickLZ</code> compression algorithm is removed and is not used for <code>--backup</code>. The <code>--decompress</code> option still uses <code>qpress</code> for backward compatibility to decompress backups taken by older versions of Percona XtraBackup.</p>
 <h2 id="new-features">New features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://jira.percona.com/browse/PXB-3059">PXB-3059</a>: Adds the <code>--redo-log-arch-dir=name</code> option to<br />
+<li><a href="https://perconadev.atlassian.net/browse/PXB-3059">PXB-3059</a>: Adds the <code>--redo-log-arch-dir=name</code> option to<br />
 set the redo log archive destination directory. (Thanks to wangbincmss for providing the patch)</li>
 </ul>
 <h2 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://jira.percona.com/browse/PXB-3007">PXB-3007</a>: The <a href="../../create-compressed-backup.html">ZSTD compression algorithm</a> is moved to <a href="../../glossary.html#general-availability-ga">General Availability</a> and becomes the default compression algorithm for the <a href="../../create-compressed-backup.html"><code>--compress</code></a> option.</li>
+<li><a href="https://perconadev.atlassian.net/browse/PXB-3007">PXB-3007</a>: The <a href="../../create-compressed-backup.html">ZSTD compression algorithm</a> is moved to <a href="../../glossary.html#general-availability-ga">General Availability</a> and becomes the default compression algorithm for the <a href="../../create-compressed-backup.html"><code>--compress</code></a> option.</li>
 </ul>
 <h2 id="bug-fix">Bug fix<a class="headerlink" href="#bug-fix" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-3073">PXB-3073</a>: An unresponsive host may cause <code>xbcloud</code> to become stuck. Added a <code>--timeout</code> option to <code>xbcloud</code>.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3073">PXB-3073</a>: An unresponsive host may cause <code>xbcloud</code> to become stuck. Added a <code>--timeout</code> option to <code>xbcloud</code>.</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-3088">PXB-3088</a>: Percona XtraBackup could not prepare the backup if the redo log size was more than 128G. (Thanks to Ahmed Et-tanany for providing the fix for this issue)</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3088">PXB-3088</a>: Percona XtraBackup could not prepare the backup if the redo log size was more than 128G. (Thanks to Ahmed Et-tanany for providing the fix for this issue)</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-3079">PXB-3079</a>: The prepare phase skipped rollback on encrypted tables and was completed successfully if the keyring plugin was not loaded.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3079">PXB-3079</a>: The prepare phase skipped rollback on encrypted tables and was completed successfully if the keyring plugin was not loaded.</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-2860">PXB-2860</a>: Percona XtraBackup locked table even when the  <code>--tables-exclude</code> and <code>--lock-ddl-per-table</code> options were used.</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-2860">PXB-2860</a>: Percona XtraBackup locked table even when the  <code>--tables-exclude</code> and <code>--lock-ddl-per-table</code> options were used.</p>
 </li>
 </ul>
 <h2 id="useful-links">Useful links<a class="headerlink" href="#useful-links" title="Permanent link">&para;</a></h2>
@@ -7180,7 +7182,7 @@ set the redo log archive destination directory. (Thanks to wangbincmss for provi
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 12, 2024 08:57:46 UTC">June 12, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7205,6 +7207,7 @@ set the redo log archive destination directory. (Thanks to wangbincmss for provi
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7288,8 +7291,6 @@ set the redo log archive destination directory. (Thanks to wangbincmss for provi
         <script src="../../js/print-site.js"></script>
       
         <script src="../../js/version-select.js"></script>
-      
-        <script src="../../js/promptremover.js"></script>
       
         <script src="../../js/consent.js"></script>
       

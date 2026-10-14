@@ -7042,6 +7042,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7075,7 +7077,7 @@ for use in a production environment.</p>
 back up your instances: <code>$ xtrabackup --backup --target-dir=/data/backup</code></p>
 </li>
 <li>
-<p>When migrating from earlier database server versions, <a href="https://www.percona.com/doc/percona-xtrabackup/2.4/how-tos.html#recipes-for-xtrabackup">backup and restore and
+<p>When migrating from earlier database server versions, <a href="https://docs.percona.com/percona-xtrabackup/2.4/how-tos.html#recipes-for-xtrabackup">backup and restore and
 using Percona XtraBackup 2.4</a>
 and then use <code>mysql_upgrade</code> from <em>MySQL</em> 8.0.x</p>
 </li>
@@ -7098,16 +7100,16 @@ Percona Server for <em>MySQL</em> 8.0 series and <em>MySQL</em> 8.0 series.</li>
 <h2 id="bugs-fixed">Bugs Fixed<a class="headerlink" href="#bugs-fixed" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-1699">PXB-1699</a>: xtrabackup –prepare could fail on backups of MySQL 8.0.13 databases</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-1699">PXB-1699</a>: xtrabackup –prepare could fail on backups of MySQL 8.0.13 databases</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-1704">PXB-1704</a>: xtrabackup –prepare could hang while performing insert buffer merge</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-1704">PXB-1704</a>: xtrabackup –prepare could hang while performing insert buffer merge</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-1668">PXB-1668</a>: When the –throttle option was used, the applied value was different from the one specified by the user (off by one error)</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-1668">PXB-1668</a>: When the –throttle option was used, the applied value was different from the one specified by the user (off by one error)</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-1679">PXB-1679</a>: PXB could crash when <code>ALTER TABLE ... TRUNCATE PARTITION</code> command was run during a backup without locking DDL</p>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-1679">PXB-1679</a>: PXB could crash when <code>ALTER TABLE ... TRUNCATE PARTITION</code> command was run during a backup without locking DDL</p>
 </li>
 </ul>
 
@@ -7132,7 +7134,7 @@ Percona Server for <em>MySQL</em> 8.0 series and <em>MySQL</em> 8.0 series.</li>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 24, 2022 16:51:05 UTC">August 24, 2022</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7157,6 +7159,7 @@ Percona Server for <em>MySQL</em> 8.0 series and <em>MySQL</em> 8.0 series.</li>
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7240,8 +7243,6 @@ Percona Server for <em>MySQL</em> 8.0 series and <em>MySQL</em> 8.0 series.</li>
         <script src="../../js/print-site.js"></script>
       
         <script src="../../js/version-select.js"></script>
-      
-        <script src="../../js/promptremover.js"></script>
       
         <script src="../../js/consent.js"></script>
       

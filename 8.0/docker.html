@@ -7128,6 +7128,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7167,40 +7169,40 @@ Hub</a>, making it easy to get started. You have two options for the image versi
 <ol>
 <li>
 <p>Remove any existing Docker version to prevent conflicts:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>docker<span class="w"> </span>docker-engine<span class="w"> </span>docker.io<span class="w"> </span>containerd<span class="w"> </span>runc
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>docker<span class="w"> </span>docker-engine<span class="w"> </span>docker.io<span class="w"> </span>containerd<span class="w"> </span>runc
 </code></pre></div>
 </li>
 <li>
 <p>Update package lists:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 </code></pre></div>
 </li>
 <li>
 <p>Install prerequisites to allow the use of repositories over HTTPS:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>apt-transport-https<span class="w"> </span>ca-certificates<span class="w"> </span>curl<span class="w"> </span>gnupg<span class="w"> </span>lsb-release
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>apt-transport-https<span class="w"> </span>ca-certificates<span class="w"> </span>curl<span class="w"> </span>gnupg<span class="w"> </span>lsb-release
 </code></pre></div>
 </li>
 <li>
 <p>Add Docker&rsquo;s official GPG key:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/docker-archive-keyring.gpg
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/docker-archive-keyring.gpg
 </code></pre></div>
 </li>
 <li>
 <p>Set up the Docker repository:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="s2">"deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \</span>
 <span class="s2">  </span><span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> stable"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 </code></pre></div>
 </li>
 <li>
 <p>Install the Docker Engine:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
 </code></pre></div>
 </li>
 <li>
 <p>Verify the installation:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>--version
 </code></pre></div>
 </li>
 </ol>
@@ -7209,32 +7211,32 @@ $<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </s
 <ol>
 <li>
 <p>Remove any existing Docker version to prevent conflicts:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>remove<span class="w"> </span>docker<span class="w"> </span>docker-client<span class="w"> </span>docker-client-latest<span class="w"> </span>docker-common<span class="w"> </span>docker-latest<span class="w"> </span>docker-latest-logrotate<span class="w"> </span>docker-logrotate<span class="w"> </span>docker-engine
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>remove<span class="w"> </span>docker<span class="w"> </span>docker-client<span class="w"> </span>docker-client-latest<span class="w"> </span>docker-common<span class="w"> </span>docker-latest<span class="w"> </span>docker-latest-logrotate<span class="w"> </span>docker-logrotate<span class="w"> </span>docker-engine
 </code></pre></div>
 </li>
 <li>
 <p>Install the required packages:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>yum-utils
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>yum-utils
 </code></pre></div>
 </li>
 <li>
 <p>Set up the Docker repository:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum-config-manager<span class="w"> </span>--add-repo<span class="w"> </span>https://download.docker.com/linux/rhel/docker-ce.repo
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum-config-manager<span class="w"> </span>--add-repo<span class="w"> </span>https://download.docker.com/linux/rhel/docker-ce.repo
 </code></pre></div>
 </li>
 <li>
 <p>Install the Docker Engine:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
 </code></pre></div>
 </li>
 <li>
 <p>Start the Docker service:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker
 </code></pre></div>
 </li>
 <li>
 <p>Verify the installation:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>--version
 </code></pre></div>
 </li>
 </ol>
@@ -7243,32 +7245,32 @@ $<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </s
 <ol>
 <li>
 <p>Remove any existing Docker version to prevent conflicts:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>remove<span class="w"> </span>docker<span class="w"> </span>docker-client<span class="w"> </span>docker-client-latest<span class="w"> </span>docker-common<span class="w"> </span>docker-latest<span class="w"> </span>docker-latest-logrotate<span class="w"> </span>docker-logrotate<span class="w"> </span>docker-engine
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>remove<span class="w"> </span>docker<span class="w"> </span>docker-client<span class="w"> </span>docker-client-latest<span class="w"> </span>docker-common<span class="w"> </span>docker-latest<span class="w"> </span>docker-latest-logrotate<span class="w"> </span>docker-logrotate<span class="w"> </span>docker-engine
 </code></pre></div>
 </li>
 <li>
 <p>Install the required packages:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>dnf-plugins-core
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>dnf-plugins-core
 </code></pre></div>
 </li>
 <li>
 <p>Set up the Docker repository:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>config-manager<span class="w"> </span>--add-repo<span class="w"> </span>https://download.docker.com/linux/rhel/docker-ce.repo
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>config-manager<span class="w"> </span>--add-repo<span class="w"> </span>https://download.docker.com/linux/rhel/docker-ce.repo
 </code></pre></div>
 </li>
 <li>
 <p>Install the Docker Engine:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
 </code></pre></div>
 </li>
 <li>
 <p>Start the Docker service:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>docker
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>docker
 </code></pre></div>
 </li>
 <li>
 <p>Verify the installation:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>--version
 </code></pre></div>
 </li>
 </ol>
@@ -7432,7 +7434,7 @@ docker<span class="w"> </span>create<span class="w"> </span><span class="se">\</
 <p>We recommend that the architectures match. If the server is ARM64, you should also use Percona XtraBackup in ARM64.</p>
 <h3 id="start-the-percona-xtrabackup-container">Start the Percona XtraBackup container<a class="headerlink" href="#start-the-percona-xtrabackup-container" title="Permanent link">&para;</a></h3>
 <p>Start the Percona XtraBackup container with exactly the same parameters that were used when the container was created. The following command starts the percona-xtrabackup Docker container, attaches to its output, and keeps STDIN open for interactive input. This is useful if you want to monitor the container&rsquo;s logs and interact with it directly.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>percona-xtrabackup
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>percona-xtrabackup
 </code></pre></div>
 <p>The command sudo docker start -ai percona-xtrabackup does the following:</p>
 <ul>
@@ -7457,7 +7459,7 @@ docker<span class="w"> </span>create<span class="w"> </span><span class="se">\</
 </ul>
 <h3 id="take-a-backup">Take a backup<a class="headerlink" href="#take-a-backup" title="Permanent link">&para;</a></h3>
 <p>This command creates and starts a new Docker container named <code>percona-xtrabackup</code>, mounts the volumes from the existing <code>percona-server-mysql:8.0</code> container, and performs a backup of the MySQL data using <code>xtrabackup</code>. The backup is stored in the <code>/backup</code> directory inside the new container..</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql:8.0<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql:8.0<span class="w"> </span><span class="se">\</span>
 percona/percona-xtrabackup:8.0
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>root
 </code></pre></div>
@@ -7638,7 +7640,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 12, 2025 12:45:35 UTC">February 12, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7666,11 +7668,6 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span
     
     <nav>
       
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
         <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
           <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
@@ -7679,6 +7676,11 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
           
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
+        </a>
+      
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
         </a>
       
         <a href="https://github.com/mpapply11" class="md-author" title="@mpapply11">
@@ -7701,6 +7703,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7784,8 +7787,6 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span
         <script src="js/print-site.js"></script>
       
         <script src="js/version-select.js"></script>
-      
-        <script src="js/promptremover.js"></script>
       
         <script src="js/consent.js"></script>
       

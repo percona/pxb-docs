@@ -7084,6 +7084,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7112,23 +7114,23 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h2 id="how-to-enable-fifo-data-sink">How to enable FIFO data sink<a class="headerlink" href="#how-to-enable-fifo-data-sink" title="Permanent link">&para;</a></h2>
 <p>To use FIFO data sink, you can either run two commands in separate terminal sessions or run xtrabackup in the background.</p>
 <p>For example, run the following commands in separate terminal sessions:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo
 </code></pre></div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span>full
+<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>put<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span>full
 </code></pre></div>
 <p>Run xtrabackup in the background with the following commands:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span><span class="p">&amp;</span>
-$<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span>full
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span><span class="p">&amp;</span>
+xbcloud<span class="w"> </span>put<span class="w"> </span>--fifo-streams<span class="o">=</span><span class="m">2</span><span class="w"> </span>--fifo-dir<span class="o">=</span>/tmp/fifo<span class="w"> </span>full
 </code></pre></div>
 <h2 id="stream-to-an-object-storage">Stream to an object storage<a class="headerlink" href="#stream-to-an-object-storage" title="Permanent link">&para;</a></h2>
 <p>When taking a backup, you can save the files locally or stream the files to either a different server or an object storage. </p>
 <p>Before <a href="release-notes/8.0/8.0.33-28.0.html">Percona XtraBackup 8.0.33-28</a>, XtraBackup streams data to an object storage writing to STDOUT (a pipe) and using <a href="xbcloud-binary-overview.html"><code>xbcloud</code></a> to read from STDIN (standard input device). </p>
 <p>XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then each copy thread writes the data chunks to a pipe (STDOUT). An xbcloud read thread reads each chunk of STDIN data. Then xbcloud uploads the chunks to an object storage using an async request, and adds a callback to an event handler list. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure).</p>
-<p><img alt="image" src="_static/backup-streamed-to-object-storage.png" /></p>
+<p><img alt="Diagram: XtraBackup copy threads write data chunks to a single STDOUT pipe; an xbcloud read thread reads them from STDIN and uploads them to object storage with asynchronous requests" src="_static/backup-streamed-to-object-storage.png" /></p>
 <p>The streaming capacity for XtraBackup using STDOUT is 1.8G. This capacity is sufficient for streaming data using Wide Area Network (WAN) into, for example, Amazon Web Services or Google Cloud Platform. </p>
 <p>Starting with <a href="release-notes/8.0/8.0.33-28.0.html">Percona XtraBackup 8.0.33-28</a>, when you stream backups to Amazon S3 compatible storage using LAN with a streaming capacity of 10Gbps, XtraBackup can use multiple FIFO streams to stream the backups faster. </p>
 <p>XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then multiple FIFO files are created to store the data from XtraBackup. Each XtraBackup copy thread writes the data chunks to a specific FIFO file. Xbcloud reads from the FIFO streams and uploads data to an object storage using an async request. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure). </p>
-<p><img alt="image" src="_static/fifo-datasink.png" /></p>
+<p><img alt="Diagram: parallel XtraBackup copy threads write data chunks to FIFO files; xbcloud read threads and event handlers upload them to object storage with asynchronous PUT operations" src="_static/fifo-datasink.png" /></p>
 <h2 id="performance-improvement">Performance improvement<a class="headerlink" href="#performance-improvement" title="Permanent link">&para;</a></h2>
 <p>Consider an example of using a FIFO data sink compared to the STDOUT method.</p>
 <p>The database has 1TB of data in multiple tables. The link speed between the source server and destination server using MinIO is ~ 9.2 Gbps.</p>
@@ -7161,7 +7163,7 @@ $<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </sp
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 19, 2023 16:00:43 UTC">July 19, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7186,6 +7188,7 @@ $<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </sp
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7269,8 +7272,6 @@ $<span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </sp
         <script src="js/print-site.js"></script>
       
         <script src="js/version-select.js"></script>
-      
-        <script src="js/promptremover.js"></script>
       
         <script src="js/consent.js"></script>
       

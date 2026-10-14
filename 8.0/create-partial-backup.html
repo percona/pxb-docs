@@ -7086,6 +7086,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7160,11 +7162,11 @@ named <code>test</code> which contains tables named <code>t1</code> and <code>t2
 * A POSIX regular expression surrounded by single quotes that is matched against the fully-qualified database name and table name using the <code>databasename.tablename</code> format</p>
 <p>To back up only tables in the <code>test</code> database, use the following
 command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span><span class="se">\</span>
 --tables<span class="o">=</span><span class="s2">"^test[.].*"</span>
 </code></pre></div>
 <p>To back up only the <code>test.t1</code> table, use the following command:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span><span class="se">\</span>
 --tables<span class="o">=</span><span class="s2">"^test[.]t1"</span>
 </code></pre></div>
 <h2 id="the-tables-file-option">The <code>-–tables-file</code> option<a class="headerlink" href="#the-tables-file-option" title="Permanent link">&para;</a></h2>
@@ -7173,8 +7175,8 @@ names, one table name per line in the file. Only the tables named in the file
 will be backed up. Names are matched exactly, case-sensitive, with no pattern or
 regular expression matching. The table names must be fully-qualified in
 <code>databasename.tablename</code> format.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"mydatabase.mytable"</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/tables.txt
-$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables-file<span class="o">=</span>/tmp/tables.txt
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">"mydatabase.mytable"</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/tables.txt
+xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--tables-file<span class="o">=</span>/tmp/tables.txt
 </code></pre></div>
 <h2 id="the-databases-and-databases-file-options">The <code>--databases</code> and <code>-–databases-file</code> options<a class="headerlink" href="#the-databases-and-databases-file-options" title="Permanent link">&para;</a></h2>
 <p>The <code>--databases</code> option accepts a space-separated list of database names. To include all tables in a database, add <code>.*</code> after the database name (for example, <code>mydb.*</code>). Regular expressions are not supported.</p>
@@ -7185,7 +7187,7 @@ $<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="
 even if they are not explicitly listed by the parameter if they were created
 after the backup started.</p>
 </div>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--databases<span class="o">=</span><span class="s1">'mysql sys performance_schema test'</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--databases<span class="o">=</span><span class="s1">'mysql sys performance_schema test'</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <h2 id="the-databases-file-option">The <code>--databases-file</code> option<a class="headerlink" href="#the-databases-file-option" title="Permanent link">&para;</a></h2>
 <p>The –databases-file option specifies a file that can contain multiple
@@ -7219,7 +7221,7 @@ after the backup started.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 8, 2026 15:17:16 UTC">June 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7247,9 +7249,9 @@ after the backup started.</p>
     
     <nav>
       
-        <a href="https://github.com/A1EF" class="md-author" title="@A1EF">
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
-          <img src="https://avatars.githubusercontent.com/u/18084006?v=4&size=72" alt="A1EF">
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
         </a>
       
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
@@ -7257,14 +7259,14 @@ after the backup started.</p>
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
         </a>
       
+        <a href="https://github.com/A1EF" class="md-author" title="@A1EF">
+          
+          <img src="https://avatars.githubusercontent.com/u/18084006?v=4&size=72" alt="A1EF">
+        </a>
+      
         <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
           
           <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
-          
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
         </a>
       
       
@@ -7282,6 +7284,7 @@ after the backup started.</p>
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7365,8 +7368,6 @@ after the backup started.</p>
         <script src="js/print-site.js"></script>
       
         <script src="js/version-select.js"></script>
-      
-        <script src="js/promptremover.js"></script>
       
         <script src="js/consent.js"></script>
       

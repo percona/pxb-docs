@@ -7113,6 +7113,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7140,12 +7142,12 @@ replica.</p>
 <h2 id="1-take-a-backup-from-any-server-on-the-replication-environment-source-or-replica">1. Take a backup from any server on the replication environment, source or replica<a class="headerlink" href="#1-take-a-backup-from-any-server-on-the-replication-environment-source-or-replica" title="Permanent link">&para;</a></h2>
 <p>The following command takes a backup and saves it in
 the <code>/data/backups/$TIMESTAMP</code> folder:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dirs<span class="o">=</span>/data/backups/
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dirs<span class="o">=</span>/data/backups/
 </code></pre></div>
 <p>In the destination folder, there will be a file with the name
 <code>xtrabackup_binlog_info</code>. This file contains both binary log coordinates
 and the <code>GTID</code> information.</p>
-<p><div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>xtrabackup_binlog_info
+<p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>xtrabackup_binlog_info
 </code></pre></div>
 The result could look like this:</p>
 <details class="example">
@@ -7161,7 +7163,7 @@ The result could look like this:</p>
 </details>
 <h2 id="2-prepare-the-backup">2. Prepare the backup<a class="headerlink" href="#2-prepare-the-backup" title="Permanent link">&para;</a></h2>
 <p>The backup will be prepared with the following command on the Source:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>You need to select the path where your snapshot has been taken, for example
 <code>/data/backups/2013-05-07_08-33-33</code>. If everything is ok you should get the
@@ -7173,44 +7175,42 @@ ones are created: your data files are ready to be used by the MySQL server.</p>
 server. If you are synchronizing the data directly to the already running
 replica’s data
 directory it is advised to stop the <em>MySQL</em> server there.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>rsync<span class="w"> </span>-avprP<span class="w"> </span>-e<span class="w"> </span>ssh<span class="w"> </span>/path/to/backupdir/<span class="nv">$TIMESTAMP</span><span class="w"> </span>NewSlave:/path/to/mysql/
+<div class="highlight"><pre><span></span><code>rsync<span class="w"> </span>-avprP<span class="w"> </span>-e<span class="w"> </span>ssh<span class="w"> </span>/path/to/backupdir/<span class="nv">$TIMESTAMP</span><span class="w"> </span>NewSlave:/path/to/mysql/
 </code></pre></div>
 <p>After you copy the data over, make sure <em>MySQL</em> has proper permissions to
 access them.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>chown<span class="w"> </span>mysql:mysql<span class="w"> </span>/path/to/mysql/datadir
+<div class="highlight"><pre><span></span><code>chown<span class="w"> </span>mysql:mysql<span class="w"> </span>/path/to/mysql/datadir
 </code></pre></div>
 <h2 id="4-configure-and-start-replication">4. Configure and start replication<a class="headerlink" href="#4-configure-and-start-replication" title="Permanent link">&para;</a></h2>
 <p>Set the <code>gtid_purged</code> variable to the <code>GTID</code> from
 <code>xtrabackup_binlog_info</code>. Then, update the information about the
 source node and, finally, start the replica. Run the following commands on
-the replica if you are using a version before 8.0.22:</p>
-<div class="highlight" data-prompt="#"><pre><span></span><code><span class="c1"># Using the mysql shell</span>
-<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>RESET<span class="w"> </span>MASTER<span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>GLOBAL<span class="w"> </span><span class="nv">gtid_purged</span><span class="o">=</span><span class="s1">'&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;'</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>CHANGE<span class="w"> </span>MASTER<span class="w"> </span>TO
-<span class="w">             </span><span class="nv">MASTER_HOST</span><span class="o">=</span><span class="s2">"</span><span class="nv">$masterip</span><span class="s2">"</span>,
-<span class="w">             </span><span class="nv">MASTER_USER</span><span class="o">=</span><span class="s2">"repl"</span>,
-<span class="w">             </span><span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s2">"</span><span class="nv">$slavepass</span><span class="s2">"</span>,
-<span class="w">             </span><span class="nv">MASTER_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>START<span class="w"> </span>SLAVE<span class="p">;</span>
+the replica in the MySQL client if you are using a version before 8.0.22:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">RESET</span><span class="w"> </span><span class="n">MASTER</span><span class="p">;</span>
+<span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">gtid_purged</span><span class="o">=</span><span class="s1">'&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;'</span><span class="p">;</span>
+<span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span>
+<span class="w">             </span><span class="n">MASTER_HOST</span><span class="o">=</span><span class="ss">"$masterip"</span><span class="p">,</span>
+<span class="w">             </span><span class="n">MASTER_USER</span><span class="o">=</span><span class="ss">"repl"</span><span class="p">,</span>
+<span class="w">             </span><span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="ss">"$slavepass"</span><span class="p">,</span>
+<span class="w">             </span><span class="n">MASTER_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">START</span><span class="w"> </span><span class="n">SLAVE</span><span class="p">;</span>
 </code></pre></div>
 <p>If you are using version 8.0.22 or later, use <code>START REPLICA</code> instead
 of <code>START SLAVE</code>. <code>START SLAVE</code> is deprecated as of that release. If you
 are using version 8.0.21 or earlier, use <code>START SLAVE</code>.</p>
-<p>If you are using a version 8.0.23 or later, run the following commands:</p>
-<div class="highlight" data-prompt="#"><pre><span></span><code><span class="c1"># Using the mysql shell</span>
-<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>RESET<span class="w"> </span>MASTER<span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>SESSION<span class="w"> </span><span class="nv">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>SET<span class="w"> </span>GLOBAL<span class="w"> </span><span class="nv">gtid_purged</span><span class="o">=</span><span class="s1">'&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;'</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>CHANGE<span class="w"> </span>REPLICATION<span class="w"> </span>SOURCE<span class="w"> </span>TO
-<span class="w">             </span><span class="nv">SOURCE_HOST</span><span class="o">=</span><span class="s2">"</span><span class="nv">$masterip</span><span class="s2">"</span>,
-<span class="w">             </span><span class="nv">SOURCE_USER</span><span class="o">=</span><span class="s2">"repl"</span>,
-<span class="w">             </span><span class="nv">SOURCE_PASSWORD</span><span class="o">=</span><span class="s2">"</span><span class="nv">$slavepass</span><span class="s2">"</span>,
-<span class="w">             </span><span class="nv">SOURCE_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="w"> </span>&gt;<span class="w"> </span>START<span class="w"> </span>REPLICA<span class="p">;</span>
+<p>If you are using a version 8.0.23 or later, run the following commands in the MySQL client:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">RESET</span><span class="w"> </span><span class="n">MASTER</span><span class="p">;</span>
+<span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">wsrep_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">gtid_purged</span><span class="o">=</span><span class="s1">'&lt;gtid_string_found_in_xtrabackup_binlog_info&gt;'</span><span class="p">;</span>
+<span class="n">CHANGE</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="k">SOURCE</span><span class="w"> </span><span class="k">TO</span>
+<span class="w">             </span><span class="n">SOURCE_HOST</span><span class="o">=</span><span class="ss">"$masterip"</span><span class="p">,</span>
+<span class="w">             </span><span class="n">SOURCE_USER</span><span class="o">=</span><span class="ss">"repl"</span><span class="p">,</span>
+<span class="w">             </span><span class="n">SOURCE_PASSWORD</span><span class="o">=</span><span class="ss">"$slavepass"</span><span class="p">,</span>
+<span class="w">             </span><span class="n">SOURCE_AUTO_POSITION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">START</span><span class="w"> </span><span class="n">REPLICA</span><span class="p">;</span>
 </code></pre></div>
 <p>If you are using version 8.0.23 or later,
 use <a href="https://dev.mysql.com/doc/refman/8.0/en/change-replication-source-to.html">CHANGE_REPLICATION_SOURCE_TO and the appropriate options</a>. <code>CHANGE_MASTER_TO</code> is deprecated as of that release.</p>
@@ -7221,7 +7221,7 @@ The <code>wsrep_on</code> variable is set to 0 before resetting the source (<cod
 </div>
 <h2 id="5-check-the-replication-status">5. Check the replication status<a class="headerlink" href="#5-check-the-replication-status" title="Permanent link">&para;</a></h2>
 <p>The following command returns the replica status:</p>
-<p><div class="highlight" data-prompt="mysql>"><pre><span></span><code>mysql&gt;<span class="w"> </span>SHOW<span class="w"> </span>REPLICA<span class="w"> </span>STATUS<span class="se">\G</span>
+<p><div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">REPLICA</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
 </code></pre></div>
 The results should be similar to the following:</p>
 <details class="example">
@@ -7264,7 +7264,7 @@ environment.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 6, 2022 17:01:15 UTC">December 6, 2022</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7317,6 +7317,7 @@ environment.</p>
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7400,8 +7401,6 @@ environment.</p>
         <script src="js/print-site.js"></script>
       
         <script src="js/version-select.js"></script>
-      
-        <script src="js/promptremover.js"></script>
       
         <script src="js/consent.js"></script>
       

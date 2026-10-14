@@ -7107,6 +7107,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7125,7 +7127,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h1 id="install-percona-xtrabackup-on-red-hat-based-systems">Install Percona XtraBackup on Red Hat-based systems<a class="headerlink" href="#install-percona-xtrabackup-on-red-hat-based-systems" title="Permanent link">&para;</a></h1>
 <p>Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the <a href="https://www.percona.com/downloads/">download page</a>. The Percona yum repository supports popular <code>RPM</code>-based operating systems, including the <code>Amazon Linux AMI</code>, which has reached its end of life. <code>Amazon Linux 2</code> is not supported at this time. </p>
-<p>The easiest way to install the Percona Yum repository is to install an <code>RPM</code> that configures yum and installs the <a href="https://www.percona.com/downloads/RPM-GPG-KEY-percona">Percona GPG key</a>.</p>
+<p>The easiest way to install the Percona Yum repository is to install an <code>RPM</code> that configures yum and installs the <a href="https://repo.percona.com/yum/PERCONA-PACKAGING-KEY">Percona GPG key</a>.</p>
 <p>Specific information on the supported platforms, products, and versions is described in <a href="https://www.percona.com/services/policies/percona-software-platform-lifecycle#mysql">Percona Software and Platform Lifecycle</a>.</p>
 <p>Check out our <a href="get-help.html">Get more help</a> for ways that we can work with you.</p>
 <h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
@@ -7146,7 +7148,7 @@ repositories and the <a href="https://www.percona.com/downloads/">download page<
 <ol>
 <li>
 <p>Install the Percona yum repository by running the following command as the <code>root</code> user or with sudo: </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
 https://repo.percona.com/yum/percona-release-latest.<span class="se">\</span>
 noarch.rpm
 </code></pre></div>
@@ -7174,20 +7176,18 @@ Complete!
 </li>
 <li>
 <p>Enable the repository: </p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>pxb-80
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>pxb-80
 </code></pre></div>
 <details class="example">
 <summary>Example output</summary>
-<div class="highlight"><pre><span></span><code>```{.text .no-copy}
-* Enabling the Percona XtraBackup 8.0 repository
+<div class="no-copy highlight"><pre><span></span><code>* Enabling the Percona XtraBackup 8.0 repository
 &lt;*&gt; All done!
-```
 </code></pre></div>
 </details>
 </li>
 <li>
 <p>Install <em>Percona XtraBackup</em> by running:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-80
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-80
 </code></pre></div>
 <details class="example">
 <summary>Example output</summary>
@@ -7210,11 +7210,11 @@ Complete!
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Install the <code>lz4</code> package</label><label for="__tabbed_1_2">Install the <code>zstd</code> package</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>lz4
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>lz4
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>zstd
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>zstd
 </code></pre></div>
 </div>
 </div>
@@ -7223,7 +7223,7 @@ Complete!
 </ol>
 <h2 id="verify-the-installation">Verify the installation<a class="headerlink" href="#verify-the-installation" title="Permanent link">&para;</a></h2>
 <p>Run Percona XtraBackup:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
 </code></pre></div>
 <p>If this command fails, the installation is incomplete or incorrect.</p>
 <h2 id="troubleshoot">Troubleshoot<a class="headerlink" href="#troubleshoot" title="Permanent link">&para;</a></h2>
@@ -7231,49 +7231,49 @@ Complete!
 <ol>
 <li>
 <p>This command checks for missing libraries.</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>ldd<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>xtrabackup<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"not found"</span>
+<div class="highlight"><pre><span></span><code>ldd<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>xtrabackup<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"not found"</span>
 </code></pre></div>
 </li>
 <li>
 <p>Install missing dependencies:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>&lt;missing-library-name&gt;
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>&lt;missing-library-name&gt;
 </code></pre></div>
 </li>
 <li>
 <p>Examine log files:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>journalctl<span class="w"> </span>-xe<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>xtrabackup
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>journalctl<span class="w"> </span>-xe<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>xtrabackup
 </code></pre></div>
 </li>
 <li>
 <p>Ensure the Percona repository is correctly set up:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>/etc/yum.repos.d/percona-release.repo
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/etc/yum.repos.d/percona-release.repo
 </code></pre></div>
 </li>
 <li>
 <p>Update the system to ensure all packages are current:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>update
 </code></pre></div>
 </li>
 <li>
 <p>If issues persist, try a clean reinstall:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>remove<span class="w"> </span>percona-xtrabackup-80<span class="w"> </span>
-$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>clean<span class="w"> </span>all<span class="w"> </span>
-$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-80
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>remove<span class="w"> </span>percona-xtrabackup-80<span class="w"> </span>
+sudo<span class="w"> </span>yum<span class="w"> </span>clean<span class="w"> </span>all<span class="w"> </span>
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-80
 </code></pre></div>
 </li>
 <li>
 <p>SELinux might block XtraBackup. Check its status:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>getenforce
+<div class="highlight"><pre><span></span><code>getenforce
 </code></pre></div>
 </li>
 <li>
 <p>Set SELinux to permissive temporarily:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>setenforce<span class="w"> </span><span class="m">0</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>setenforce<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 </li>
 <li>
 <p>Create a backup to verify functionality:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/test_backup
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/test_backup
 </code></pre></div>
 </li>
 </ol>
@@ -7305,7 +7305,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 21, 2024 13:04:59 UTC">November 21, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7330,6 +7330,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7413,8 +7414,6 @@ $<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>
         <script src="js/print-site.js"></script>
       
         <script src="js/version-select.js"></script>
-      
-        <script src="js/promptremover.js"></script>
       
         <script src="js/consent.js"></script>
       

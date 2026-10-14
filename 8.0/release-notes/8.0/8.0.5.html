@@ -7042,6 +7042,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7083,7 +7085,7 @@ in a production environment.</p>
 back up your instances: <code>$ xtrabackup --backup --target-dir=/data/backup</code></p>
 </li>
 <li>
-<p>When migrating from earlier database server versions, <a href="https://www.percona.com/doc/percona-xtrabackup/2.4/how-tos.html#recipes-for-xtrabackup">backup and restore and
+<p>When migrating from earlier database server versions, <a href="https://docs.percona.com/percona-xtrabackup/2.4/how-tos.html#recipes-for-xtrabackup">backup and restore and
 using Percona XtraBackup 2.4</a>
 and then use <code>mysql_upgrade</code> from <em>MySQL</em> 8.0.x</p>
 </li>
@@ -7097,21 +7099,21 @@ percona-xtrabackup-80 package.</p>
 <h2 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-1548">PXB-1548</a>: <em>Percona XtraBackup</em> enables updating the <code>ib_buffer_pool</code> file
+<p><a href="https://perconadev.atlassian.net/browse/PXB-1548">PXB-1548</a>: <em>Percona XtraBackup</em> enables updating the <code>ib_buffer_pool</code> file
 with the latest pages present in the buffer pool using the
 <code>--dump-innodb-buffer-pool</code> option. Thanks to Marcelo Altmann for
 contribution.</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-1768">PXB-1768</a>: Added support for undo tablespaces created with the new
+<p><a href="https://perconadev.atlassian.net/browse/PXB-1768">PXB-1768</a>: Added support for undo tablespaces created with the new
 <em>MySQL</em> 8.0.14 syntax.</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-1781">PXB-1781</a>: Added support for binary log encryption introduced
+<p><a href="https://perconadev.atlassian.net/browse/PXB-1781">PXB-1781</a>: Added support for binary log encryption introduced
 in <em>MySQL</em> 8.0.14.</p>
 </li>
 <li>
-<p><a href="https://jira.percona.com/browse/PXB-1797">PXB-1797</a>: For <em>xbstream</em>, two new options were added. The
+<p><a href="https://perconadev.atlassian.net/browse/PXB-1797">PXB-1797</a>: For <em>xbstream</em>, two new options were added. The
 <code>--decompress</code> option enables <em>xbstream</em> to decompress
 individual qpress files. The <code>--decompress-threads</code> option
 controls the number of threads to apply when decompressing. Thanks to
@@ -7123,29 +7125,29 @@ controls the number of threads to apply when decompressing. Thanks to
 <li>
 <p>Using <code>--lock-ddl-per-table</code> caused the server to scan all records of
 partitioned tables which could lead to the “out of memory” error. Bugs fixed
-<a href="https://jira.percona.com/browse/PXB-1691">PXB-1691</a> and <a href="https://jira.percona.com/browse/PXB-1698">PXB-1698</a>.</p>
+<a href="https://perconadev.atlassian.net/browse/PXB-1691">PXB-1691</a> and <a href="https://perconadev.atlassian.net/browse/PXB-1698">PXB-1698</a>.</p>
 </li>
 <li>
 <p>When <em>Percona XtraBackup</em> was started run with the <code>--slave-info</code>, incorrect
-coordinates were written to the xtrabackup_slave_info file.. Bug fixed <a href="https://jira.percona.com/browse/PXB-1737">PXB-1737</a></p>
+coordinates were written to the xtrabackup_slave_info file.. Bug fixed <a href="https://perconadev.atlassian.net/browse/PXB-1737">PXB-1737</a></p>
 </li>
 <li>
 <p><em>Percona XtraBackup</em> could crash at the prepare stage when making an
 incremental backup if the variable <code>innodb-rollback-segments</code> was
 changed after starting the <em>MySQL</em> Server. Bug fixed
-<a href="https://jira.percona.com/browse/PXB-1785">PXB-1785</a>.</p>
+<a href="https://perconadev.atlassian.net/browse/PXB-1785">PXB-1785</a>.</p>
 </li>
 <li>
 <p>The full backup could fail when <em>Percona Server for MySQL</em> was started with the <code>--innodb-encrypt-tables</code>
-parameter. Bug fixed <a href="https://jira.percona.com/browse/PXB-1793">PXB-1793</a>.</p>
+parameter. Bug fixed <a href="https://perconadev.atlassian.net/browse/PXB-1793">PXB-1793</a>.</p>
 </li>
 </ul>
 <p>Other bugs fixed:
-<a href="https://jira.percona.com/browse/PXB-1632">PXB-1632</a>,
-<a href="https://jira.percona.com/browse/PXB-1715">PXB-1715</a>,
-<a href="https://jira.percona.com/browse/PXB-1770">PXB-1770</a>,
-<a href="https://jira.percona.com/browse/PXB-1771">PXB-1771</a>,
-<a href="https://jira.percona.com/browse/PXB-1773">PXB-1773</a>.</p>
+<a href="https://perconadev.atlassian.net/browse/PXB-1632">PXB-1632</a>,
+<a href="https://perconadev.atlassian.net/browse/PXB-1715">PXB-1715</a>,
+<a href="https://perconadev.atlassian.net/browse/PXB-1770">PXB-1770</a>,
+<a href="https://perconadev.atlassian.net/browse/PXB-1771">PXB-1771</a>,
+<a href="https://perconadev.atlassian.net/browse/PXB-1773">PXB-1773</a>.</p>
 
 
 
@@ -7168,7 +7170,7 @@ parameter. Bug fixed <a href="https://jira.percona.com/browse/PXB-1793">PXB-1793
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 24, 2022 16:51:05 UTC">August 24, 2022</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7193,6 +7195,7 @@ parameter. Bug fixed <a href="https://jira.percona.com/browse/PXB-1793">PXB-1793
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7276,8 +7279,6 @@ parameter. Bug fixed <a href="https://jira.percona.com/browse/PXB-1793">PXB-1793
         <script src="../../js/print-site.js"></script>
       
         <script src="../../js/version-select.js"></script>
-      
-        <script src="../../js/promptremover.js"></script>
       
         <script src="../../js/consent.js"></script>
       

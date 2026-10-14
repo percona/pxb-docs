@@ -7085,6 +7085,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
                 
   
             
+            <!--email_off-->
+            
                   
 
 
@@ -7143,7 +7145,7 @@ described in <a href="https://www.percona.com/services/policies/percona-software
 <ol>
 <li>
 <p>Update the system package list</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
 <details class="example">
 <summary>Example output</summary>
@@ -7175,7 +7177,7 @@ Reading state information... Done
 </li>
 <li>
 <p>Install the curl download utility if it&rsquo;s not installed:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
 </code></pre></div>
 <details class="example">
 <summary>Example output</summary>
@@ -7195,7 +7197,7 @@ done.
 </li>
 <li>
 <p>Download the percona-release the repository package:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.percona.com/apt/percona-release_latest.generic_all.deb
 </code></pre></div>
 <details class="example">
 <summary>Example output</summary>
@@ -7207,7 +7209,7 @@ done.
 </li>
 <li>
 <p>Install the downloaded package and its dependencies using apt:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg2<span class="w"> </span>lsb-release<span class="w"> </span>./percona-release_latest.generic_all.deb
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg2<span class="w"> </span>lsb-release<span class="w"> </span>./percona-release_latest.generic_all.deb
 </code></pre></div>
 <details class="example">
 <summary>Example output</summary>
@@ -7221,7 +7223,7 @@ The following additional packages will be installed:
 </li>
 <li>
 <p>Refresh the local cache to update the package information:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
 <details class="example">
 <summary>Example output</summary>
@@ -7234,7 +7236,7 @@ Hit:3 http://repo.percona.com/prel/apt jammy InRelease
 </li>
 <li>
 <p>Enable the repository:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>percona-release<span class="w"> </span>setup<span class="w"> </span>pxb-80
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>percona-release<span class="w"> </span>setup<span class="w"> </span>pxb-80
 </code></pre></div>
 <details class="example">
 <summary>Example output</summary>
@@ -7255,7 +7257,7 @@ Reading package lists... Done
 </li>
 <li>
 <p>Install the package:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-80
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-80
 </code></pre></div>
 <details class="example">
 <summary>Example output</summary>
@@ -7274,7 +7276,7 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
 </li>
 <li>
 <p>Verify the installation:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>xtrabackup<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
 </code></pre></div>
 <details class="example">
 <summary>Example output</summary>
@@ -7287,11 +7289,11 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Install the <code>lz4</code> package</label><label for="__tabbed_1_2">Install the <code>zstd</code> package</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lz4
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lz4
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstd
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstd
 </code></pre></div>
 </div>
 </div>
@@ -7300,7 +7302,7 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
 </ol>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <p>If you encounter any errors during the installation process, check your system&rsquo;s error logs:</p>
-<div class="highlight" data-prompt="$"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span><span class="w"> </span>/var/log/syslog
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span><span class="w"> </span>/var/log/syslog
 </code></pre></div>
 <p>Ensure your system meets the minimum requirements for Percona XtraBackup. </p>
 <p>If you encounter permission errors, ensure you&rsquo;re running the commands with <code>sudo</code> or have root access.</p>
@@ -7332,7 +7334,7 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 21, 2024 13:04:59 UTC">November 21, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:34:36 UTC">October 14, 2026</span>
   </span>
 
     
@@ -7360,9 +7362,9 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
     
     <nav>
       
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
         </a>
       
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
@@ -7370,14 +7372,14 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
         </a>
       
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
         <a href="https://github.com/ChetanTechnource" class="md-author" title="@ChetanTechnource">
           
           <img src="https://avatars.githubusercontent.com/u/87816669?v=4&size=72" alt="ChetanTechnource">
-        </a>
-      
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
-          
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
         </a>
       
       
@@ -7395,6 +7397,7 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
 
 
                 
+            <!--email_on-->
   
   
   <script>
@@ -7478,8 +7481,6 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
         <script src="js/print-site.js"></script>
       
         <script src="js/version-select.js"></script>
-      
-        <script src="js/promptremover.js"></script>
       
         <script src="js/consent.js"></script>
       
