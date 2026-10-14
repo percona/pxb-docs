@@ -4,14 +4,14 @@ Ready-to-use packages are available from the Percona XtraBackup software
 repositories and the [Percona Software Downloads :octicons-link-external-16:](https://www.percona.com/downloads).
 
 Specific information on the supported platforms, products, and versions is
-described in [Percona Release Lifecycle Overview].
+described in [Percona Release Lifecycle Overview :octicons-link-external-16:](https://www.percona.com/services/policies/percona-software-support-lifecycle).
 
 ## Install Percona XtraBackup through percona-release
 
 Install Percona XtraBackup, like many other Percona products, with the `percona-release` package configuration tool. Run the following commands as root or use the sudo command.
 {.power-number}
 
-1. Use the apt package manager to dowload `percona-release`:
+1. Use the apt package manager to download `percona-release`:
 
     ```shell
     sudo apt update

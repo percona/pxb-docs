@@ -29,7 +29,7 @@ xtrabackup --backup --encrypt=AES256 --encrypt-key="{randomly-generated-alphanum
 ### encrypt-key-file option
 
 The recommended method uses the command line: `echo -n “{randomly-generated-alphanumeric-string}” > /data/backups/keyfile` to create the file.
-Remember that using the-- encrypt-key-file option, your text editor can automatically insert a CRLF (end of line) character in the `KEYFILE`. This inserted character invalidates the key because the size is wrong. 
+Remember that when you use the `--encrypt-key-file` option, your text editor can automatically insert a CRLF (end of line) character in the `KEYFILE`. This inserted character invalidates the key because the size is wrong. 
 
 An example of using the `--encrypt-key-file` option:
 

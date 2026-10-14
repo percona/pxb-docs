@@ -53,7 +53,7 @@ in your distribution as a separate package `cmake3`. For more information, see [
 
     Percona Xtrabackup requires GCC version 5.3 or higher. If the
     version of GCC installed on your system is lower then you may need to
-    install and enable [the Developer Toolset] on
+    install and enable [the Developer Toolset :octicons-link-external-16:](https://developers.redhat.com/products/developertoolset/overview) on
     `RPM`-based distributions to make sure that you use the latest GCC
     compiler and development tools.  Then, install `cmake` and other
     dependencies:
@@ -193,10 +193,10 @@ Update your PATH environment variable if you would like to use the command on
 the command line directly.
 
 ```shell
-$# Setting $PATH on the command line
+# Setting $PATH on the command line
 PATH=$PATH:/usr/local/xtrabackup/bin/xtrabackup
 
-$# Run xtrabackup directly
+# Run xtrabackup directly
 xtrabackup
 ```
 

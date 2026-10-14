@@ -39,7 +39,7 @@ When you stream backups to Amazon S3 compatible storage using LAN with a streami
 
 XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then multiple FIFO files are created to store the data from XtraBackup. Each XtraBackup copy thread writes the data chunks to a specific FIFO file. Xbcloud reads from the FIFO streams and uploads data to an object storage using an async request. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure). 
 
-![image](_static/fifo-datasink.png)
+![Diagram: parallel XtraBackup copy threads write data chunks to FIFO files; xbcloud read threads and event handlers upload them to object storage with asynchronous PUT operations](_static/fifo-datasink.png)
 
 ## Performance improvement 
 

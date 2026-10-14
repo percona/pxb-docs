@@ -10,13 +10,11 @@ created in versions prior to {{vers}} of MySQL, Percona Server for MySQL or
 Percona XtraDB Cluster. 
 
 
-## Are you aware of any web-based backup management tools (commercial or not) built around Percona XtraBackup*?
+## Are you aware of any web-based backup management tools (commercial or not) built around Percona XtraBackup?
 
-[ZRM Community :octicons-link-external-16:](https://www.zmanda.com/zrm-community/) is a community tool that uses Percona XtraBackup for Non-Blocking Backups:
+[Percona Monitoring and Management (PMM) :octicons-link-external-16:](https://docs.percona.com/percona-monitoring-and-management/3/backup/index.html) includes backup management for MySQL. PMM uses Percona XtraBackup to create on-demand and scheduled physical backups and to restore them from the PMM web interface.
 
-“ZRM provides support for non-blocking backups of MySQL using Percona
-XtraBackup. ZRM with \Percona XtraBackup provides resource utilization
-management by providing throttling based on the number of IO operations per second. Percona XtraBackup based backups also allow for table level recovery even though the backup was done at the database level (needs the recovery database server to be Percona Server for MySQL with XtraDB).”\*
+For the required XtraBackup version and setup, see [MySQL backup prerequisites :octicons-link-external-16:](https://docs.percona.com/percona-monitoring-and-management/3/backup/mysql-backup/mysql_prerequisites.html).
 
 ## xtrabackup binary fails with a floating point exception
 
