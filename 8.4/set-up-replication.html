@@ -6364,8 +6364,8 @@ called <code>xtrabackup_slave_info</code>.</p>
 </code></pre></div>
 <p>For example, to set up a new user, <code>user2</code>, you add another grant on
 the Source:</p>
-<div class="highlight" data-prompt=">"><pre><span></span><code>&gt;<span class="w"> </span>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>REPLICA<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w">  </span>TO<span class="w"> </span><span class="s1">'user2'</span>@<span class="s1">'$newreplicaip'</span>
-<span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">'$replicapass'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">REPLICA</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w">  </span><span class="k">TO</span><span class="w"> </span><span class="s1">'user2'</span><span class="o">@</span><span class="s1">'$newreplicaip'</span>
+<span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">'$replicapass'</span><span class="p">;</span>
 </code></pre></div>
 <p>On the <code>NewReplica</code>, copy the configuration file from the <code>Replica</code>:</p>
 <div class="highlight"><pre><span></span><code>scp<span class="w"> </span>user@Replica:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
@@ -6387,7 +6387,7 @@ source and the log file for the NewReplica:</p>
 <span class="w">    </span><span class="n">SOURCE_LOG_POS</span><span class="o">=</span><span class="mi">481</span><span class="p">;</span>
 </code></pre></div>
 <p>Start the replica:</p>
-<div class="highlight" data-prompt=">"><pre><span></span><code>&gt;<span class="w"> </span>START<span class="w"> </span>REPLICA<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">START</span><span class="w"> </span><span class="n">REPLICA</span><span class="p">;</span>
 </code></pre></div>
 <p>If both IO and SQL threads are running when you check the <code>NewReplica</code>,
 server is replicating the <code>Source</code>.</p>
@@ -6417,7 +6417,7 @@ server is replicating the <code>Source</code>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:52:02 UTC">October 14, 2026</span>
   </span>
 
     
