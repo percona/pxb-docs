@@ -76,8 +76,7 @@ In this example of expected output, we provide the first and last section of the
 
     ```{.text .no-copy}
 
-    xtrabackup version {{release}} based on MySQL server 9.7.1 Linux (x86_64) (revision id: 3792f907)
-    2024-10-07T13:55:51.255518-00:00 0 [Note] [MY-011825] [Xtrabackup] perl binary not found. Skipping the version check
+    xtrabackup version {{release}} based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
     2024-10-07T13:55:51.256080-00:00 0 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set
     2024-10-07T13:55:51.270222-00:00 0 [Note] [MY-011825] [Xtrabackup] Using server version 9.7.1-1
     2024-10-07T13:55:51.272839-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing LOCK TABLES FOR BACKUP

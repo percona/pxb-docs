@@ -54,34 +54,26 @@ The following is an example of the output:
 ??? example "Expected output"
 
     ```{.text .no-copy}
-    160906 10:19:17 Finished backing up non-InnoDB tables and files
-    160906 10:19:17 Executing FLUSH NO_WRITE_TO_BINLOG ENGINE LOGS...
-    xtrabackup: The latest check point (for incremental): '62988944'
-    xtrabackup: Stopping log copying thread.
-    .160906 10:19:18 >> log scanned up to (137343534)
-    160906 10:19:18 Executing UNLOCK TABLES
-    160906 10:19:18 All tables unlocked
-    160906 10:19:18 Backup created in directory '/data/backups/'
-    160906 10:19:18 [00] Writing backup-my.cnf
-    160906 10:19:18 [00]        ...done
-    160906 10:19:18 [00] Writing xtrabackup_info
-    160906 10:19:18 [00]        ...done
-    xtrabackup: Transaction log of lsn (26970807) to (137343534) was copied.
-    160906 10:19:18 completed OK!
+    ...
+    2026-10-13T17:23:55.415104-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing FLUSH NO_WRITE_TO_BINLOG ENGINE LOGS...
+    2026-10-13T17:23:55.416681-00:00 0 [Note] [MY-011825] [Xtrabackup] The latest check point (for incremental): '36616867'
+    2026-10-13T17:23:55.416693-00:00 0 [Note] [MY-011825] [Xtrabackup] Stopping log copying thread at LSN 36617774
+    2026-10-13T17:23:55.422875-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing UNLOCK TABLES
+    2026-10-13T17:23:55.423067-00:00 0 [Note] [MY-011825] [Xtrabackup] All tables unlocked
+    2026-10-13T17:23:55.425280-00:00 0 [Note] [MY-011825] [Xtrabackup] Backup created in directory '/data/backups/'
+    2026-10-13T17:23:55.425295-00:00 0 [Note] [MY-011825] [Xtrabackup] MySQL binlog position: filename 'binlog.000004', position '198', GTID of the last change 'd4193d59-c72a-11f1-90c5-46b9213cf448:1-5'
+    2026-10-13T17:23:55.429852-00:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 98.60 MiB (103391867 bytes)
+    2026-10-13T17:23:56.432866-00:00 0 [Note] [MY-011825] [Xtrabackup] Transaction log of lsn (36616867) to (36617784) was copied.
+    2026-10-13T17:23:56.662202-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
     ```
 
-The process ends with the following statement; the
-value of the `<LSN>` depends on your system:
-
-```shell
-xtrabackup: Transaction log of lsn (<LSN>) to (<LSN>) was copied.
-```
+The last line of the output is `completed OK!`. Also check the exit code of the command: `0` means that the backup succeeded, any other value means that it failed.
 
 !!! note
    
     Log copying thread checks the transactional log every second to see if there were any new log records written that need to be copied, but there is a chance that the log copying thread might not be able to keep up with the amount of writes that go to the transactional logs, and will hit an error when the log records are overwritten before they could be read.
 
-After the backup is finished, the target directory will contain files such as the following, assuming you have a single InnoDB table `test.tbl1` and you are using MySQL’s innodb_file_per_table option:
+After the backup is finished, the target directory will contain files such as the following, for a server with a `test` database that contains two InnoDB tables:
 
 ```shell
 ls -lh /data/backups/
@@ -92,19 +84,24 @@ The result should look like this:
 ??? example "Expected output"
 
     ```{.text .no-copy}
-    total 182M
-    drwx------  7 root root 4.0K Sep  6 10:19 .
-    drwxrwxrwt 11 root root 4.0K Sep  6 11:05 ..
-    -rw-r-----  1 root root  387 Sep  6 10:19 backup-my.cnf
-    -rw-r-----  1 root root  76M Sep  6 10:19 ibdata1
-    drwx------  2 root root 4.0K Sep  6 10:19 mysql
-    drwx------  2 root root 4.0K Sep  6 10:19 performance_schema
-    drwx------  2 root root 4.0K Sep  6 10:19 sbtest
-    drwx------  2 root root 4.0K Sep  6 10:19 test
-    drwx------  2 root root 4.0K Sep  6 10:19 world2
-    -rw-r-----  1 root root  116 Sep  6 10:19 xtrabackup_checkpoints
-    -rw-r-----  1 root root  433 Sep  6 10:19 xtrabackup_info
-    -rw-r-----  1 root root 106M Sep  6 10:19 xtrabackup_logfile
+    total 76M
+    -rw-r----- 1 root root  452 Oct 13 17:23 backup-my.cnf
+    -rw-r----- 1 root root  198 Oct 13 17:23 binlog.000004
+    -rw-r----- 1 root root   16 Oct 13 17:23 binlog.index
+    -rw-r----- 1 root root 5.7K Oct 13 17:23 ib_buffer_pool
+    -rw-r----- 1 root root  12M Oct 13 17:23 ibdata1
+    drwxr-x--- 2 root root 4.0K Oct 13 17:23 mysql
+    -rw-r----- 1 root root  31M Oct 13 17:23 mysql.ibd
+    drwxr-x--- 2 root root 4.0K Oct 13 17:23 performance_schema
+    drwxr-x--- 2 root root 4.0K Oct 13 17:23 sys
+    drwxr-x--- 2 root root 4.0K Oct 13 17:23 test
+    -rw-r----- 1 root root  16M Oct 13 17:23 undo_001
+    -rw-r----- 1 root root  16M Oct 13 17:23 undo_002
+    -rw-r----- 1 root root   59 Oct 13 17:23 xtrabackup_binlog_info
+    -rw-r----- 1 root root  134 Oct 13 17:23 xtrabackup_checkpoints
+    -rw-r----- 1 root root  676 Oct 13 17:23 xtrabackup_info
+    -rw-r----- 1 root root 3.5K Oct 13 17:23 xtrabackup_logfile
+    -rw-r----- 1 root root   39 Oct 13 17:23 xtrabackup_tablespaces
     ```
 
 The backup can take a long time, depending on how large the database is. It is safe to cancel at any time, because xtrabackup does not modify the database.
