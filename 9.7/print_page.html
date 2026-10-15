@@ -7742,8 +7742,7 @@ Enter password:
 <p>In this example of expected output, we provide the first and last section of the backup log and use ellipses instead of the entire backup log.</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: 3792f907)
-2024-10-07T13:55:51.255518-00:00 0 [Note] [MY-011825] [Xtrabackup] perl binary not found. Skipping the version check
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 2024-10-07T13:55:51.256080-00:00 0 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set
 2024-10-07T13:55:51.270222-00:00 0 [Note] [MY-011825] [Xtrabackup] Using server version 9.7.1-1
 2024-10-07T13:55:51.272839-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing LOCK TABLES FOR BACKUP
@@ -7854,7 +7853,7 @@ Enter password:
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
 2024-10-07T14:08:59.128951-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --copy-back=1 --target-dir=/backup_97
-xtrabackup version 9.7.1-1 based on MySQL server 9.7.1-1 Linux (x86_64) (revision id: 3792f907)
+xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /backup_97/
 
 ...
@@ -10104,24 +10103,21 @@ The uniformity of the headers makes it easier to follow an operation’s progres
 or review the log to diagnose issues.</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>2022-03-22T19:15:36.142247+05:30 0 [Note] [MY-011825] [Xtrabackup] This target seems to be not prepared yet.
-2022-03-22T19:15:36.142792+05:30 0 [Note] [MY-013251] [InnoDB] Number of pools: 1
-2022-03-22T19:15:36.149212+05:30 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(33311656)
-2022-03-22T19:15:36.149998+05:30 0 [Note] [MY-011825] [Xtrabackup] using the following InnoDB configuration for recovery:
-2022-03-22T19:15:36.150023+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_data_home_dir = .
-2022-03-22T19:15:36.150036+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_data_file_path = ibdata1:12M:autoextend
-2022-03-22T19:15:36.150078+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_group_home_dir = .
-2022-03-22T19:15:36.150095+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_files_in_group = 1
-2022-03-22T19:15:36.150111+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_file_size = 8388608
-2022-03-22T19:15:36.151667+05:30 0 [Note] [MY-011825] [Xtrabackup] inititialize_service_handles suceeded
-2022-03-22T19:15:36.151903+05:30 0 [Note] [MY-011825] [Xtrabackup] using the following InnoDB configuration for recovery:
-2022-03-22T19:15:36.151926+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_data_home_dir = .
-2022-03-22T19:15:36.151954+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_data_file_path = ibdata1:12M:autoextend
-2022-03-22T19:15:36.151976+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_group_home_dir = .
-2022-03-22T19:15:36.151991+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_files_in_group = 1
-2022-03-22T19:15:36.152004+05:30 0 [Note] [MY-011825] [Xtrabackup] innodb_log_file_size = 8388608
-2022-03-22T19:15:36.152021+05:30 0 [Note] [MY-011825] [Xtrabackup] Starting InnoDB instance for recovery.
-2022-03-22T19:15:36.152035+05:30 0 [Note] [MY-011825] [Xtrabackup] Using 104857600 bytes for buffer pool (set by --use-memory parameter)
+<div class="no-copy highlight"><pre><span></span><code>2026-10-13T17:24:07.116234-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be not prepared yet.
+2026-10-13T17:24:07.130815-00:00 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(36616867)
+2026-10-13T17:24:07.135585-00:00 0 [Note] [MY-011825] [Xtrabackup] using the following InnoDB configuration for recovery:
+2026-10-13T17:24:07.135620-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_data_home_dir = .
+2026-10-13T17:24:07.135625-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_data_file_path = ibdata1:12M:autoextend
+2026-10-13T17:24:07.136805-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_log_group_home_dir = .
+2026-10-13T17:24:07.136957-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_redo_log_capacity = 8388608
+2026-10-13T17:24:07.138693-00:00 0 [Note] [MY-011825] [Xtrabackup] inititialize_service_handles suceeded
+2026-10-13T17:24:07.141331-00:00 0 [Note] [MY-011825] [Xtrabackup] using the following InnoDB configuration for recovery:
+2026-10-13T17:24:07.141346-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_data_home_dir = .
+2026-10-13T17:24:07.141349-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_data_file_path = ibdata1:12M:autoextend
+2026-10-13T17:24:07.141356-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_log_group_home_dir = .
+2026-10-13T17:24:07.141359-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_redo_log_capacity = 8388608
+2026-10-13T17:24:07.141364-00:00 0 [Note] [MY-011825] [Xtrabackup] Starting InnoDB instance for recovery.
+2026-10-13T17:24:07.141369-00:00 0 [Note] [MY-011825] [Xtrabackup] Using 104857600 bytes for buffer pool (set by --use-memory parameter)
 </code></pre></div>
 </details></section><section class="print-page" id="redo-log-archiving" heading-number="6.6"><h1 id="redo-log-archiving-innodb-redo-log-archiving">InnoDB Redo Log Archiving<a class="headerlink" href="#redo-log-archiving-innodb-redo-log-archiving" title="Permanent link">&para;</a></h1>
 <p>A physical backup includes raw copies of database contents and related files, such as configuration files and logs. During crash recovery, InnoDB uses the redo log to correct data from incomplete transactions. The redo log contains entries that restore the database to a consistent state. An LSN value identifies the position of data in the redo log.</p>
@@ -10592,10 +10588,10 @@ backup1:/var/lib/mysql-redo-archive/
 <p>You can find the binary log position corresponding to a backup after the backup has been taken. If your backup is from a server with binary logging enabled, <code>xtrabackup</code> creates a file named <code>xtrabackup_binlog_info</code> in the target directory. This file contains the binary log file name and position of the exact point when the backup was taken.</p>
 <details class="example">
 <summary>Expected output during the backup stage</summary>
-<div class="no-copy highlight"><pre><span></span><code>210715 14:14:59 Backup created in directory '/backup/'
-MySQL binlog position: filename 'binlog.000002', position '156'
-. . .
-210715 14:15:00 completed OK!
+<div class="no-copy highlight"><pre><span></span><code>2026-10-13T17:23:55.425280-00:00 0 [Note] [MY-011825] [Xtrabackup] Backup created in directory '/data/backups/'
+2026-10-13T17:23:55.425295-00:00 0 [Note] [MY-011825] [Xtrabackup] MySQL binlog position: filename 'binlog.000004', position '198', GTID of the last change 'd4193d59-c72a-11f1-90c5-46b9213cf448:1-5'
+...
+2026-10-13T17:23:56.662202-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 </details>
 <h2 id="working-with-binary-logs-point-in-time-recovery">Point-in-time recovery<a class="headerlink" href="#working-with-binary-logs-point-in-time-recovery" title="Permanent link">&para;</a></h2>
@@ -11760,7 +11756,7 @@ main thread).</p>
 <p>When enabled, this options lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. The server determines when to purge the log based on the redo log consumption.</p>
 <h3 id="xtrabackup-option-reference-remove-original">remove-original<a class="headerlink" href="#xtrabackup-option-reference-remove-original" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--remove-original</code></p>
-<p>This option removes <code>.qp</code>, <code>.xbcrypt</code> and <code>.qp.xbcrypt</code> files after decryption and decompression.</p>
+<p>This option removes <code>.qp</code>, <code>.zst</code>, <code>.lz4</code>, and <code>.xbcrypt</code> files after decryption and decompression.</p>
 <h3 id="xtrabackup-option-reference-rocksdb-datadir">rocksdb-datadir<a class="headerlink" href="#xtrabackup-option-reference-rocksdb-datadir" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--rocksdb-datadir</code></p>
 <p>Names the RocksDB data directory</p>
@@ -13560,14 +13556,11 @@ described in <a href="https://www.percona.com/release-lifecycle-overview/">Perco
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
-Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
-Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
-Get:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [2458 kB]
-...
-Building dependency tree... Done
-Reading state information... Done
-All packages are up to date.
+<div class="no-copy highlight"><pre><span></span><code>Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease
+Hit:2 http://security.ubuntu.com/ubuntu noble-security InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Reading package lists... Done
 </code></pre></div>
 </details>
 </li>
@@ -13630,14 +13623,13 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
-Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
-Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
-Get:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [2458 kB]
-...
-Building dependency tree... Done
-Reading state information... Done
-All packages are up to date.
+<div class="no-copy highlight"><pre><span></span><code>Hit:1 http://repo.percona.com/prel/apt noble InRelease
+Hit:2 http://repo.percona.com/telemetry/apt noble InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu noble InRelease
+Hit:4 http://security.ubuntu.com/ubuntu noble-security InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Reading package lists... Done
 </code></pre></div>
 </details>
 </li>
@@ -13648,18 +13640,17 @@ All packages are up to date.
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>* Enabling the Percona Packaging Repository repository
-Hit:1 http://repo.percona.com/pmm2-client/apt jammy InRelease
-Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease                     
-Hit:3 http://repo.percona.com/prel/apt jammy InRelease                     
-Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease
-Hit:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
-Get:6 http://repo.percona.com/pxb-97-lts/apt jammy InRelease [12.8 kB]
-Hit:7 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
-Hit:8 http://repo.percona.com/telemetry/apt jammy InRelease
-Get:9 http://repo.percona.com/pxb-97-lts/apt jammy/main Sources [855 B]
-Get:10 http://repo.percona.com/pxb-97-lts/apt jammy/main amd64 Packages [3547 B]
-Fetched 17.2 kB in 4s (3958 B/s)   
-Reading package lists... Done
+Hit:1 http://repo.percona.com/prel/apt noble InRelease
+Get:2 http://repo.percona.com/pxb-97-lts/apt noble InRelease [12.8 kB]
+Hit:3 http://repo.percona.com/telemetry/apt noble InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu noble InRelease
+Hit:5 http://security.ubuntu.com/ubuntu noble-security InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:7 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Get:8 http://repo.percona.com/pxb-97-lts/apt noble/main Sources [863 B]
+Get:9 http://repo.percona.com/pxb-97-lts/apt noble/main amd64 Packages [3739 B]
+Fetched 17.4 kB in 4s (3907 B/s)
+Reading package lists...
 </code></pre></div>
 </details>
 </li>
@@ -13669,17 +13660,22 @@ Reading package lists... Done
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
+<div class="no-copy highlight"><pre><span></span><code>Reading package lists...
+Building dependency tree...
+Reading state information...
 The following additional packages will be installed:
-libaio1 libcurl4-openssl-dev libdbd-mysql-perl libdbi-perl libev4 libgdbm-compat4
-libgdbm6 libmysqlclient21 libperl5.34 libpopt0 mysql-common netbase perl
-perl-modules-5.34 rsync zstd
+  libaio1t64 libcurl4-openssl-dev libev4t64 libpopt0 lz4 rsync zstd
+Suggested packages:
+  libcurl4-doc libidn-dev libkrb5-dev libldap2-dev librtmp-dev libssh2-1-dev
+  libssl-dev pkg-config zlib1g-dev openssh-client openssh-server python3
+  python3-braceexpand
+The following NEW packages will be installed:
+  libaio1t64 libcurl4-openssl-dev libev4t64 libpopt0 lz4 percona-xtrabackup-97
+  rsync zstd
+0 upgraded, 8 newly installed, 0 to remove and 2 not upgraded.
 ...
-Setting up libdbd-mysql-perl:amd64 (4.050-5ubuntu0.22.04.1) ...##############.......] 
-Setting up percona-xtrabackup-97 (9.7.1-rc1.jammy) ...#########################.....] 
-Processing triggers for libc-bin (2.35-0ubuntu3.8) ...###########################...] 
+Setting up percona-xtrabackup-97 (9.7.1~rc1-1.noble) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
 </code></pre></div>
 </details>
 </li>
@@ -13689,7 +13685,7 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: da6e1abd)
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 </code></pre></div>
 </details>
 </li>
@@ -13751,12 +13747,12 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...##########################
 <ol>
 <li>
 <p>Use <code>wget</code> to download the <code>DEB</code> package:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.1-rc1/binary/debian/jammy/x86_64/percona-xtrabackup-97_9.7.1~rc1-1.jammy_amd64.deb
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.1-rc1/binary/debian/noble/x86_64/percona-xtrabackup-97_9.7.1~rc1-1.noble_amd64.deb
 </code></pre></div>
 </li>
 <li>
 <p>Install Percona XtraBackup by using <code>dpkg</code>:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>percona-xtrabackup-97_9.7.1~rc1-1.jammy_amd64.deb
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>percona-xtrabackup-97_9.7.1~rc1-1.noble_amd64.deb
 </code></pre></div>
 </li>
 </ol>
@@ -13935,16 +13931,15 @@ Complete!
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>PMM2 Client release/x86_64 YUM repository        17 kB/s | 7.1 kB     00:00    
-Percona Release release/noarch YUM repository   5.3 kB/s | 2.0 kB     00:00    
-Percona Packaging Repository release/x86_64 YUM  95 kB/s |  52 kB     00:00    
-Percona Telemetry release/x86_64 YUM repository 4.3 kB/s | 1.7 kB     00:00    
+<div class="no-copy highlight"><pre><span></span><code>Percona Release release/noarch YUM repository    16 kB/s | 2.8 kB     00:00
+Percona Packaging Repository release/x86_64 YUM 209 kB/s |  60 kB     00:00
+Percona Telemetry release/x86_64 YUM repository  25 kB/s | 5.4 kB     00:00
 Dependencies resolved.
 ...
-perl-subs-1.03-481.el9.noarch                                                 
-perl-vars-1.05-481.el9.noarch                                                 
-rsync-3.2.3-20.el9.x86_64                                                     
-zstd-1.5.1-2.el9.x86_64 
+Installing:
+ percona-xtrabackup-97    x86_64  9.7.1-1.rc1.el9     pxb-97-lts-release-x86_64   41 M
+...
+Complete!
 </code></pre></div>
 </details>
 </li>
@@ -13954,7 +13949,7 @@ zstd-1.5.1-2.el9.x86_64
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.0-1 based on MySQL server 9.7.1-1 Linux (x86_64) (revision id: da6e1abd)
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 </code></pre></div>
 </details>
 </li>
@@ -14680,49 +14675,48 @@ log files.</p>
 <p>The following is an example of the output:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>160906 10:19:17 Finished backing up non-InnoDB tables and files
-160906 10:19:17 Executing FLUSH NO_WRITE_TO_BINLOG ENGINE LOGS...
-xtrabackup: The latest check point (for incremental): '62988944'
-xtrabackup: Stopping log copying thread.
-.160906 10:19:18 &gt;&gt; log scanned up to (137343534)
-160906 10:19:18 Executing UNLOCK TABLES
-160906 10:19:18 All tables unlocked
-160906 10:19:18 Backup created in directory '/data/backups/'
-160906 10:19:18 [00] Writing backup-my.cnf
-160906 10:19:18 [00]        ...done
-160906 10:19:18 [00] Writing xtrabackup_info
-160906 10:19:18 [00]        ...done
-xtrabackup: Transaction log of lsn (26970807) to (137343534) was copied.
-160906 10:19:18 completed OK!
+<div class="no-copy highlight"><pre><span></span><code>...
+2026-10-13T17:23:55.415104-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing FLUSH NO_WRITE_TO_BINLOG ENGINE LOGS...
+2026-10-13T17:23:55.416681-00:00 0 [Note] [MY-011825] [Xtrabackup] The latest check point (for incremental): '36616867'
+2026-10-13T17:23:55.416693-00:00 0 [Note] [MY-011825] [Xtrabackup] Stopping log copying thread at LSN 36617774
+2026-10-13T17:23:55.422875-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing UNLOCK TABLES
+2026-10-13T17:23:55.423067-00:00 0 [Note] [MY-011825] [Xtrabackup] All tables unlocked
+2026-10-13T17:23:55.425280-00:00 0 [Note] [MY-011825] [Xtrabackup] Backup created in directory '/data/backups/'
+2026-10-13T17:23:55.425295-00:00 0 [Note] [MY-011825] [Xtrabackup] MySQL binlog position: filename 'binlog.000004', position '198', GTID of the last change 'd4193d59-c72a-11f1-90c5-46b9213cf448:1-5'
+2026-10-13T17:23:55.429852-00:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 98.60 MiB (103391867 bytes)
+2026-10-13T17:23:56.432866-00:00 0 [Note] [MY-011825] [Xtrabackup] Transaction log of lsn (36616867) to (36617784) was copied.
+2026-10-13T17:23:56.662202-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 </details>
-<p>The process ends with the following statement; the
-value of the <code>&lt;LSN&gt;</code> depends on your system:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup:<span class="w"> </span>Transaction<span class="w"> </span>log<span class="w"> </span>of<span class="w"> </span>lsn<span class="w"> </span><span class="o">(</span>&lt;LSN&gt;<span class="o">)</span><span class="w"> </span>to<span class="w"> </span><span class="o">(</span>&lt;LSN&gt;<span class="o">)</span><span class="w"> </span>was<span class="w"> </span>copied.
-</code></pre></div>
+<p>The last line of the output is <code>completed OK!</code>. Also check the exit code of the command: <code>0</code> means that the backup succeeded, any other value means that it failed.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Log copying thread checks the transactional log every second to see if there were any new log records written that need to be copied, but there is a chance that the log copying thread might not be able to keep up with the amount of writes that go to the transactional logs, and will hit an error when the log records are overwritten before they could be read.</p>
 </div>
-<p>After the backup is finished, the target directory will contain files such as the following, assuming you have a single InnoDB table <code>test.tbl1</code> and you are using MySQL’s innodb_file_per_table option:</p>
+<p>After the backup is finished, the target directory will contain files such as the following, for a server with a <code>test</code> database that contains two InnoDB tables:</p>
 <div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-lh<span class="w"> </span>/data/backups/
 </code></pre></div>
 <p>The result should look like this:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>total 182M
-drwx------  7 root root 4.0K Sep  6 10:19 .
-drwxrwxrwt 11 root root 4.0K Sep  6 11:05 ..
--rw-r-----  1 root root  387 Sep  6 10:19 backup-my.cnf
--rw-r-----  1 root root  76M Sep  6 10:19 ibdata1
-drwx------  2 root root 4.0K Sep  6 10:19 mysql
-drwx------  2 root root 4.0K Sep  6 10:19 performance_schema
-drwx------  2 root root 4.0K Sep  6 10:19 sbtest
-drwx------  2 root root 4.0K Sep  6 10:19 test
-drwx------  2 root root 4.0K Sep  6 10:19 world2
--rw-r-----  1 root root  116 Sep  6 10:19 xtrabackup_checkpoints
--rw-r-----  1 root root  433 Sep  6 10:19 xtrabackup_info
--rw-r-----  1 root root 106M Sep  6 10:19 xtrabackup_logfile
+<div class="no-copy highlight"><pre><span></span><code>total 76M
+-rw-r----- 1 root root  452 Oct 13 17:23 backup-my.cnf
+-rw-r----- 1 root root  198 Oct 13 17:23 binlog.000004
+-rw-r----- 1 root root   16 Oct 13 17:23 binlog.index
+-rw-r----- 1 root root 5.7K Oct 13 17:23 ib_buffer_pool
+-rw-r----- 1 root root  12M Oct 13 17:23 ibdata1
+drwxr-x--- 2 root root 4.0K Oct 13 17:23 mysql
+-rw-r----- 1 root root  31M Oct 13 17:23 mysql.ibd
+drwxr-x--- 2 root root 4.0K Oct 13 17:23 performance_schema
+drwxr-x--- 2 root root 4.0K Oct 13 17:23 sys
+drwxr-x--- 2 root root 4.0K Oct 13 17:23 test
+-rw-r----- 1 root root  16M Oct 13 17:23 undo_001
+-rw-r----- 1 root root  16M Oct 13 17:23 undo_002
+-rw-r----- 1 root root   59 Oct 13 17:23 xtrabackup_binlog_info
+-rw-r----- 1 root root  134 Oct 13 17:23 xtrabackup_checkpoints
+-rw-r----- 1 root root  676 Oct 13 17:23 xtrabackup_info
+-rw-r----- 1 root root 3.5K Oct 13 17:23 xtrabackup_logfile
+-rw-r----- 1 root root   39 Oct 13 17:23 xtrabackup_tablespaces
 </code></pre></div>
 </details>
 <p>The backup can take a long time, depending on how large the database is. It is safe to cancel at any time, because xtrabackup does not modify the database.</p>
@@ -14783,8 +14777,9 @@ consistent until they are prepared, because they were copied at different times 
 <p>When this finishes, you should see an <code>InnoDB shutdown</code> with a message such as the following, where again the value of LSN will depend on your system:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 137345046
-160906 11:21:01 completed OK!
+<div class="no-copy highlight"><pre><span></span><code>...
+2026-10-13T17:24:08.568744-00:00 0 [Note] [MY-012980] [InnoDB] Shutdown completed; log sequence number 36618262
+2026-10-13T17:24:08.576103-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 </details>
 <p>All following prepares will not change the already prepared data files, you’ll see that output says:</p>
@@ -14831,10 +14826,11 @@ content depending on your LSN number:</p>
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>backup_type = full-backuped
 from_lsn = 0
-to_lsn = 1626007
-last_lsn = 1626007
-compact = 0
-recover_binlog_info = 1
+to_lsn = 36621132
+last_lsn = 36621132
+flushed_lsn = 36621122
+redo_memory = 0
+redo_frames = 0
 </code></pre></div>
 </details>
 <p>Now that you have a full backup, you can make an incremental backup based on it. Use the following command:</p>
@@ -14849,11 +14845,12 @@ content to the following:</p>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>backup_type = incremental
-from_lsn = 1626007
-to_lsn = 4124244
-last_lsn = 4124244
-compact = 0
-recover_binlog_info = 1
+from_lsn = 36621132
+to_lsn = 37463526
+last_lsn = 37464185
+flushed_lsn = 37464150
+redo_memory = 0
+redo_frames = 0
 </code></pre></div>
 </details>
 <p><code>from_lsn</code> is the starting LSN of the backup and for incremental it has to be the same as <code>to_lsn</code> (if it is the last checkpoint) of the previous/base backup.</p>
@@ -14865,11 +14862,12 @@ recover_binlog_info = 1
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>backup_type = incremental
-from_lsn = 4124244
-to_lsn = 6938371
-last_lsn = 7110572
-compact = 0
-recover_binlog_info = 1
+from_lsn = 37463526
+to_lsn = 38308481
+last_lsn = 38308481
+flushed_lsn = 38308446
+redo_memory = 0
+redo_frames = 0
 </code></pre></div>
 </details>
 <div class="admonition note">
@@ -14916,8 +14914,9 @@ recover_binlog_info = 1
 <p>The log sequence number in the output should match the <code>to_lsn</code> value of the base backup. The output should end with text similar to the following:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="highlight"><pre><span></span><code>InnoDB: Shutdown completed; log sequence number 1626007
-161011 12:41:04 completed OK!
+<div class="highlight"><pre><span></span><code>...
+2026-10-13T17:24:33.641122-00:00 0 [Note] [MY-012980] [InnoDB] Shutdown completed; log sequence number 36621142
+2026-10-13T17:24:33.649010-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 </details>
 <div class="admonition warning">
@@ -14942,15 +14941,15 @@ recover_binlog_info = 1
 <p>You should see output similar to the following:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="highlight"><pre><span></span><code>incremental backup from 1626007 is enabled.
-xtrabackup: cd to /data/backups/base
-xtrabackup: This target seems to be already prepared with --apply-log-only.
-xtrabackup: xtrabackup_logfile detected: size=2097152, start_lsn=(4124244)
+<div class="highlight"><pre><span></span><code>2026-10-13T17:24:35.387201-00:00 0 [Note] [MY-011825] [Xtrabackup] incremental backup from 36621132 is enabled.
+2026-10-13T17:24:35.387458-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /data/backups/base/
+2026-10-13T17:24:35.388208-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be already prepared with --apply-log-only.
+2026-10-13T17:24:35.412988-00:00 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(37463526)
 ...
-xtrabackup: page size for /tmp/backups/inc1/ibdata1.delta is 16384 bytes
-Applying /tmp/backups/inc1/ibdata1.delta to ./ibdata1...
+2026-10-13T17:24:35.668534-00:00 1 [Note] [MY-011825] [Xtrabackup] page size for /data/backups/inc1//ibdata1.delta is 16384 bytes
+2026-10-13T17:24:35.668646-00:00 1 [Note] [MY-011825] [Xtrabackup] Applying /data/backups/inc1//ibdata1.delta to ./ibdata1
 ...
-161011 12:45:56 completed OK!
+2026-10-13T17:24:38.518719-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 </details>
 <p>The LSN should match the LSN from the first incremental backup. At this point, <code>/data/backups/base</code> contains the state of the database as of the first incremental backup.</p>
@@ -15126,15 +15125,12 @@ Following example will use four threads for compression:</p>
 <details class="example">
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>...
-170223 13:00:38 [01] Compressing ./test/sbtest1.frm to /tmp/compressed/test/sbtest1.frm.qp
-170223 13:00:38 [01]        ...done
-170223 13:00:38 [01] Compressing ./test/sbtest2.frm to /tmp/compressed/test/sbtest2.frm.qp
-170223 13:00:38 [01]        ...done
+2026-10-13T17:24:45.357945-00:00 2 [Note] [MY-011825] [Xtrabackup] Compressing file with space_id 2 ./test/t1.ibd to /data/compressed/test/t1.ibd.zst
+2026-10-13T17:24:45.376746-00:00 2 [Note] [MY-011825] [Xtrabackup] Done: Compressing file with space_id 2 ./test/t1.ibd to /data/compressed/test/t1.ibd.zst
 ...
-170223 13:00:39 [00] Compressing xtrabackup_info
-170223 13:00:39 [00]        ...done
-xtrabackup: Transaction log of lsn (9291934) to (9291934) was copied.
-170223 13:00:39 completed OK!
+2026-10-13T17:24:46.558442-00:00 0 [Note] [MY-011825] [Xtrabackup] Compression ratio: 21.25x
+2026-10-13T17:24:47.563990-00:00 0 [Note] [MY-011825] [Xtrabackup] Transaction log of lsn (38309754) to (38309774) was copied.
+2026-10-13T17:24:47.796682-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 </details>
 <h2 id="create-compressed-backup-next-step">Next step<a class="headerlink" href="#create-compressed-backup-next-step" title="Permanent link">&para;</a></h2>
@@ -15188,9 +15184,9 @@ xtrabackup: Transaction log of lsn (9291934) to (9291934) was copied.
 </code></pre></div>
 <details class="example">
 <summary>Confirmation message</summary>
-<div class="no-copy highlight"><pre><span></span><code>InnoDB: Starting shutdown...
-InnoDB: Shutdown completed; log sequence number 9293846
-170223 13:39:31 completed OK!
+<div class="no-copy highlight"><pre><span></span><code>...
+2026-10-13T17:25:02.032550-00:00 0 [Note] [MY-012980] [InnoDB] Shutdown completed; log sequence number 38309910
+2026-10-13T17:25:02.039421-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 </details>
 <p>Now the files in <code>/data/compressed/</code> are ready to be used by the server.</p>
@@ -15254,7 +15250,8 @@ Remember that when you use the <code>--encrypt-key-file</code> option, your text
 <p>You should check the last line of the output for a success message:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>150318 11:08:13  xtrabackup: completed OK!
+<div class="no-copy highlight"><pre><span></span><code>...
+2026-10-13T17:25:10.030046-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 </details></section><section class="print-page" id="encrypted-innodb-tablespace-backups" heading-number="9.4.2"><h1 id="encrypted-innodb-tablespace-backups-encrypted-innodb-tablespace-backups">Encrypted InnoDB tablespace backups<a class="headerlink" href="#encrypted-innodb-tablespace-backups-encrypted-innodb-tablespace-backups" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup supports two distinct types of encryption:</p>
