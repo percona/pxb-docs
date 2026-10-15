@@ -52,8 +52,9 @@ When this finishes, you should see an `InnoDB shutdown` with a message such as t
 ??? example "Expected output"
 
     ```{.text .no-copy}
-    InnoDB: Shutdown completed; log sequence number 137345046
-    160906 11:21:01 completed OK!
+    ...
+    2026-10-13T17:14:25.137625-00:00 0 [Note] [MY-012980] [InnoDB] Shutdown completed; log sequence number 36479510
+    2026-10-13T17:14:25.144514-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
     ```
 
 All following prepares will not change the already prepared data files, you’ll see that output says:

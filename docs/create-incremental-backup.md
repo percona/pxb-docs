@@ -38,10 +38,11 @@ content depending on your LSN number:
     ```{.text .no-copy}
     backup_type = full-backuped
     from_lsn = 0
-    to_lsn = 1626007
-    last_lsn = 1626007
-    compact = 0
-    recover_binlog_info = 1
+    to_lsn = 36483306
+    last_lsn = 36483316
+    flushed_lsn = 36483306
+    redo_memory = 0
+    redo_frames = 0
     ```
 
 Now that you have a full backup, you can make an incremental backup based on it. Use the following command:
@@ -61,11 +62,12 @@ content to the following:
 
     ```{.text .no-copy}
     backup_type = incremental
-    from_lsn = 1626007
-    to_lsn = 4124244
-    last_lsn = 4124244
-    compact = 0
-    recover_binlog_info = 1
+    from_lsn = 36483306
+    to_lsn = 37325944
+    last_lsn = 37326587
+    flushed_lsn = 37326552
+    redo_memory = 0
+    redo_frames = 0
     ```
 
 `from_lsn` is the starting LSN of the backup and for incremental it has to be the same as `to_lsn` (if it is the last checkpoint) of the previous/base backup.
@@ -83,11 +85,12 @@ This folder also contains the `xtrabackup_checkpoints`:
 
     ```{.text .no-copy}
     backup_type = incremental
-    from_lsn = 4124244
-    to_lsn = 6938371
-    last_lsn = 7110572
-    compact = 0
-    recover_binlog_info = 1
+    from_lsn = 37325944
+    to_lsn = 38170427
+    last_lsn = 38170427
+    flushed_lsn = 38170427
+    redo_memory = 0
+    redo_frames = 0
     ```
 
 !!! note
