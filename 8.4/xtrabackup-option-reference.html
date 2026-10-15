@@ -6618,7 +6618,7 @@ main thread).</p>
 <p>When enabled, this options lets Percona XtraBackup register as a redo log consumer at the start of the backup. The server does not remove a redo log that Percona XtraBackup (the consumer) has not yet copied. The consumer reads the redo log and manually advances the log sequence number (LSN). The server blocks the writes during the process. The server determines when to purge the log based on the redo log consumption.</p>
 <h3 id="remove-original">remove-original<a class="headerlink" href="#remove-original" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--remove-original</code></p>
-<p>This option removes <code>.qp</code>, <code>.xbcrypt</code> and <code>.qp.xbcrypt</code> files after decryption and decompression.</p>
+<p>This option removes <code>.qp</code>, <code>.zst</code>, <code>.lz4</code>, and <code>.xbcrypt</code> files after decryption and decompression.</p>
 <h3 id="rocksdb-datadir">rocksdb-datadir<a class="headerlink" href="#rocksdb-datadir" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--rocksdb-datadir</code></p>
 <p>Names the RocksDB data directory</p>
@@ -6816,7 +6816,7 @@ mysql –help for details.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:52:02 UTC">October 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 15, 2026 15:45:21 UTC">October 15, 2026</span>
   </span>
 
     
