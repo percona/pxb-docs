@@ -51,11 +51,20 @@ Before applying logs, compressed files will need to be uncompressed.
 
 Percona XtraBackup 9.7.2-2 deprecates the [`--rsync`](xtrabackup-option-reference.md#rsync) option. A future release removes the option. Use [`--lock-ddl=REDUCED`](xtrabackup-option-reference.md#lock-ddl) instead.
 
-### How `--rsync` works
+In order to speed up the backup process and to minimize the time `FLUSH TABLES
+WITH READ LOCK` is blocking the writes, the option `--rsync` should be
+used. When this option is specified, xtrabackup uses `rsync` to copy all
+non-InnoDB files instead of spawning a separate `cp` for each file, which can
+be much faster for servers with a large number of databases or
+tables. xtrabackup will call the `rsync` twice, once before the `FLUSH
+TABLES WITH READ LOCK` and once during to minimize the time the read lock is
+being held. During the second `rsync` call, it will only synchronize the
+changes to non-transactional data (if any) since the first call performed before
+the `FLUSH TABLES WITH READ LOCK`. Note that Percona XtraBackup will use
+[backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html) where available as a lightweight alternative to `FLUSH TABLES WITH READ
+LOCK`.
 
-With `--rsync`, Percona XtraBackup copies all non-InnoDB files with the `rsync` utility instead of a separate `cp` call for each file. Percona XtraBackup calls `rsync` twice: once before `FLUSH TABLES WITH READ LOCK` and once while the lock is held. The second call copies only the changes to non-transactional data since the first call. The two calls shorten the time that the read lock blocks writes.
-
-You do not need `--rsync` anymore. Percona XtraBackup uses [backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html) where available as a lightweight alternative to `FLUSH TABLES WITH READ LOCK`. Backup locks and [`--lock-ddl=REDUCED`](xtrabackup-option-reference.md#lock-ddl) let DDL and Data manipulation language (DML) statements run during the backup.
+Percona XtraBackup uses these locks automatically to copy non-InnoDB data to avoid blocking Data manipulation language (DML) queries that modify InnoDB tables. Find more information in [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html)
 
 !!! note
 
