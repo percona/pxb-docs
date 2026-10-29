@@ -491,6 +491,104 @@ Usage: `--history=NAME`
 This option enables the tracking of backup history in the
 `PERCONA_SCHEMA.xtrabackup_history` table. You can specify a history series name placed with the current backup's history record.
 
+By default, Percona XtraBackup writes the history record to the server you back up. To write the record to a different server, use the `--history-*` options. See [Store backup history on a different server](store-backup-history.md#store-backup-history-on-a-different-server).
+
+### history-host
+
+Usage: `--history-host=HOST`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+This option specifies the host of the server that stores the backup history table. Use this option when the server you back up does not accept writes, for example, a read-only replica. The default value is the value of [`--host`](#host).
+
+If you set this option, Percona XtraBackup ignores the [`--socket`](#socket) value for the history connection.
+
+This option requires [`--history`](#history), [`--incremental-history-name`](#incremental-history-name), or [`--incremental-history-uuid`](#incremental-history-uuid).
+
+### history-password
+
+Usage: `--history-password=PASSWORD`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+This option specifies the password of the user that connects to the server that stores the backup history table. The default value is the value of [`--password`](#password). If you set [`--history-user`](#history-user), Percona XtraBackup ignores the `--password` value, and you must set this option.
+
+Percona XtraBackup hides this value in the process list, in the log, and in the history record.
+
+### history-port
+
+Usage: `--history-port=PORT`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+This option specifies the TCP/IP port of the server that stores the backup history table. The default value is the value of [`--port`](#port).
+
+### history-socket
+
+Usage: `--history-socket=SOCKET`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+This option specifies the UNIX domain socket of the server that stores the backup history table. If you do not set [`--history-host`](#history-host), the default value is the value of [`--socket`](#socket).
+
+### history-ssl-ca
+
+Usage: `--history-ssl-ca=FILE`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+This option specifies the CA file in PEM format that Percona XtraBackup uses to verify the certificate of the server that stores the backup history table.
+
+If you set this option without [`--history-ssl-mode`](#history-ssl-mode), Percona XtraBackup uses the `VERIFY_CA` SSL mode for the history connection.
+
+### history-ssl-capath
+
+Usage: `--history-ssl-capath=DIRECTORY`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+This option specifies the directory of CA certificates that Percona XtraBackup uses to verify the certificate of the server that stores the backup history table.
+
+If you set this option without [`--history-ssl-mode`](#history-ssl-mode), Percona XtraBackup uses the `VERIFY_CA` SSL mode for the history connection.
+
+### history-ssl-cert
+
+Usage: `--history-ssl-cert=FILE`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+This option specifies the X509 certificate in PEM format that Percona XtraBackup presents to the server that stores the backup history table.
+
+### history-ssl-key
+
+Usage: `--history-ssl-key=FILE`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+This option specifies the X509 key in PEM format for [`--history-ssl-cert`](#history-ssl-cert).
+
+Percona XtraBackup treats the `--history-ssl-*` options as a group. If you set any of these options, Percona XtraBackup takes all five values from the `--history-ssl-*` options and ignores the [`--ssl-*`](#ssl-mode) values for the history connection.
+
+### history-ssl-mode
+
+Usage: `--history-ssl-mode=MODE`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+This option specifies the security state of the connection to the server that stores the backup history table. This option accepts the same values as [`--ssl-mode`](#ssl-mode). The default value is the value of `--ssl-mode`.
+
+If you set [`--history-ssl-ca`](#history-ssl-ca) or [`--history-ssl-capath`](#history-ssl-capath) without this option, Percona XtraBackup uses the `VERIFY_CA` mode.
+
+### history-user
+
+Usage: `--history-user=USERNAME`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+This option specifies the user that connects to the server that stores the backup history table. The default value is the value of [`--user`](#user).
+
+If you set this option, Percona XtraBackup ignores the [`--password`](#password) value. Set [`--history-password`](#history-password).
+
 ### host
 
 Usage: `--host=HOST`
