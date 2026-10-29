@@ -1,18 +1,22 @@
 # Prepare a full backup
 
+## Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](xtrabackup-option-reference.md#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 ## Command reference
 
 Quick syntax for preparing a full backup:
 
 ```bash
-xtrabackup --prepare --target-dir=<path> [--apply-log-only] [--parallel=<N>]
+xtrabackup --prepare --target-dir=<path> [--apply-redo-only] [--parallel=<N>]
 ```
 
 | Flag | Required | Description |
 |------|----------|-------------|
 | `--prepare` | Yes | Runs xtrabackup in prepare mode (applies redo/undo logs for a consistent snapshot). |
 | `--target-dir=<path>` | Yes | Directory containing the backup to prepare. |
-| `--apply-log-only` | No | Apply log only; do not roll back uncommitted transactions. Use when this backup will be the base for incremental backups. |
+| `--apply-redo-only` | No | Applies the redo log without rolling back uncommitted transactions. Use the option when the backup is the base for incremental backups. Replaces the deprecated `--apply-log-only` option. |
 | `--parallel=<N>` | No | Use N threads to speed up prepare (for example, `--parallel=4`). |
 
 Example (full backup, then restore):
@@ -24,7 +28,7 @@ xtrabackup --prepare --target-dir=/data/backups/
 Example (base for incremental backups):
 
 ```bash
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/
+xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/
 ```
 
 ---
@@ -70,7 +74,7 @@ It is not recommended to interrupt xtrabackup process while preparing backup bec
 
 !!! note
    
-    If you intend the backup to be the basis for further incremental backups, you should use the `--apply-log-only` option when preparing the backup, or you will not be able to apply incremental backups to it. See the documentation on preparing incremental backups for more details.
+    If you plan to apply incremental backups to the backup, use the `--apply-redo-only` option when you prepare the backup. Without the option, you cannot apply incremental backups. For details, see [Prepare an incremental backup](prepare-incremental-backup.md).
 
 ## Next step
 

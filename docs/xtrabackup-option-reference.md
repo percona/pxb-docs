@@ -65,8 +65,21 @@ and XtraDB. See [`--innodb-miscellaneous`](#innodb-miscellaneous) for more infor
 
 Usage: `--apply-log-only`
 
-This option causes only the redo stage to be performed when preparing a
-backup. It is essential for incremental backups.
+Deprecated in Percona XtraBackup 9.7.2-2. Use [`--apply-redo-only`](#apply-redo-only) instead.
+
+The `--apply-log-only` option works the same way as `--apply-redo-only`. When you use `--apply-log-only`, Percona XtraBackup prints a deprecation warning at startup. A future Long-Term Support (LTS) release will remove the option.
+
+### apply-redo-only
+
+Usage: `--apply-redo-only`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+During the `--prepare` phase, Percona XtraBackup applies the redo log and does not roll back uncommitted transactions. Use the `--apply-redo-only` option when you prepare a full backup or an incremental backup that more incremental backups follow. Do not use the option for the final incremental backup.
+
+The `--apply-redo-only` option replaces the deprecated [`--apply-log-only`](#apply-log-only) option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
+For details, see [Prepare an incremental backup](prepare-incremental-backup.md).
 
 ### backup
 
@@ -118,7 +131,7 @@ Enables InnoDB B-tree structural validation during the `--prepare` phase after r
 
 The option runs `btr_validate_index()` on every committed index in each `.ibd` tablespace in the backup. Validation detects structural inconsistencies that page checksum verification cannot detect, including broken B-tree relationships, invalid page metadata, and inconsistent external LOB references.
 
-Percona XtraBackup runs validation in read-only mode and does not modify backup data. The option supports `--apply-log-only`, `--parallel`, and `--export`.
+Percona XtraBackup runs validation in read-only mode and does not modify backup data. The option supports `--apply-redo-only`, `--parallel`, and `--export`.
 
 If validation detects corruption, xtrabackup reports the affected tables and returns a non-zero exit code after completing all checks.
 
