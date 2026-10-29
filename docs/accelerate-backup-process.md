@@ -47,6 +47,10 @@ Before applying logs, compressed files will need to be uncompressed.
 
 ## The `--rsync` option
 
+### Version changes
+
+Percona XtraBackup 9.7.2-2 deprecates the [`--rsync`](xtrabackup-option-reference.md#rsync) option. A future release will remove the option. Use [`--lock-ddl=REDUCED`](xtrabackup-option-reference.md#lock-ddl) instead.
+
 In order to speed up the backup process and to minimize the time `FLUSH TABLES
 WITH READ LOCK` is blocking the writes, the option `--rsync` should be
 used. When this option is specified, xtrabackup uses `rsync` to copy all
@@ -63,5 +67,5 @@ LOCK`.
 Percona XtraBackup uses these locks automatically to copy non-InnoDB data to avoid blocking Data manipulation language (DML) queries that modify InnoDB tables. Find more information in [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/{{ps}}/backup-locks.html)
 
 !!! note
-   
-    This option cannot be used together with the `--stream` option.
+
+    You cannot use `--rsync` with the `--stream` option.
