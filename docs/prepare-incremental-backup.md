@@ -30,24 +30,28 @@ The `--prepare` step for incremental backups differs from the prepare step for f
 
 When preparing an incremental chain, you must delay the rollback of uncommitted transactions until you apply the final incremental backup. A transaction that was uncommitted when one backup was created might be committed in a later incremental backup.
 
-Use `--apply-log-only` to apply redo without rolling back uncommitted transactions.
+### Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](xtrabackup-option-reference.md#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
+Use `--apply-redo-only` to apply the redo log without rolling back uncommitted transactions.
 
 !!! warning
 
-    If you do not use the `--apply-log-only` option to prevent the rollback phase, then your incremental backups are unusable. After transactions have been rolled back, further incremental backups cannot be applied.
+    If you skip `--apply-redo-only`, Percona XtraBackup rolls back uncommitted transactions, and you cannot apply more incremental backups.
 
 Prepare an incremental backup chain in the following order:
 
-1. Prepare the full backup with `--apply-log-only`.
-2. Apply each intermediate incremental backup in order with `--apply-log-only`.
-3. Apply the final incremental backup without `--apply-log-only`.
+1. Prepare the full backup with `--apply-redo-only`.
+2. Apply each intermediate incremental backup in order with `--apply-redo-only`.
+3. Apply the final incremental backup without `--apply-redo-only`.
 
 ## Prepare the full backup
 
-Start by preparing the full backup with `--apply-log-only` to prevent the rollback phase:
+Start by preparing the full backup with `--apply-redo-only` to prevent the rollback phase:
 
 ```shell
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
+xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base
 ```
 
 The log sequence number (LSN) identifies a point in the database redo log. Incremental backups use LSNs to identify which changes occurred after the base backup.
@@ -83,7 +87,7 @@ Percona XtraBackup applies the changes from each incremental backup to `/data/ba
 Apply the first incremental backup to the full backup:
 
 ```shell
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
 
@@ -91,7 +95,7 @@ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
 
 The command applies the delta files from `/data/backups/inc1` to the files in `/data/backups/base`, moving the full backup forward to the state of the first incremental backup. Percona XtraBackup then applies the redo log.
 
-Because another incremental backup follows `inc1`, use `--apply-log-only` to prevent the rollback phase.
+Because another incremental backup follows `inc1`, use `--apply-redo-only` to prevent the rollback phase.
 
 The final data remains in `/data/backups/base`, not in the incremental directory.
 
@@ -102,7 +106,7 @@ You should see output similar to the following:
     ```text
     2026-10-13T17:24:35.387201-00:00 0 [Note] [MY-011825] [Xtrabackup] incremental backup from 36621132 is enabled.
     2026-10-13T17:24:35.387458-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /data/backups/base/
-    2026-10-13T17:24:35.388208-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be already prepared with --apply-log-only.
+    2026-10-13T17:24:35.388208-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be already prepared with --apply-redo-only.
     2026-10-13T17:24:35.412988-00:00 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(37463526)
     ...
     2026-10-13T17:24:35.668534-00:00 1 [Note] [MY-011825] [Xtrabackup] page size for /data/backups/inc1//ibdata1.delta is 16384 bytes
@@ -119,7 +123,7 @@ Percona XtraBackup does not support using the same incremental backup directory 
 
 After applying `/data/backups/inc1`, apply `/data/backups/inc2` to the same base backup.
 
-In this example, `inc2` is the final incremental backup. Apply it without `--apply-log-only`:
+In this example, `inc2` is the final incremental backup. Apply it without `--apply-redo-only`:
 
 ```shell
 xtrabackup --prepare --target-dir=/data/backups/base \
@@ -130,19 +134,19 @@ The command applies the changes from `inc2` to `/data/backups/base` and complete
 
 !!! note
 
-    Use `--apply-log-only` when merging the incremental backups except for the last one. This is why the previous command does not include the `--apply-log-only` option. If `--apply-log-only` is used on the last step, backup remains consistent but the server performs the rollback phase.
+    Use `--apply-redo-only` for every incremental backup except the last one. The previous command applies the last incremental backup, so the command does not include `--apply-redo-only`. If you use `--apply-redo-only` on the last step, the backup stays consistent, but the server runs the rollback phase.
 
 After you apply the final incremental backup, `/data/backups/base` contains the prepared backup with all changes through `inc2`.
 
-If your backup chain contains more incremental backups, apply them in order. Use `--apply-log-only` for every intermediate incremental backup and omit it only when applying the final incremental backup.
+If your backup chain contains more incremental backups, apply them in order. Use `--apply-redo-only` for every intermediate incremental backup and omit the option only for the final incremental backup.
 
 For example:
 
 ```text
-base    → --apply-log-only
-inc1    → --apply-log-only
-inc2    → --apply-log-only
-inc3    → final incremental, no --apply-log-only
+base    → --apply-redo-only
+inc1    → --apply-redo-only
+inc2    → --apply-redo-only
+inc3    → final incremental, no --apply-redo-only
 ```
 
 ## Speed up the prepare step with --parallel
@@ -154,11 +158,11 @@ Using `--parallel=X` has effect on the prepare phase. It will use X threads to a
 To apply an intermediate incremental backup with four worker threads, run:
 
 ```shell
-xtrabackup --prepare --parallel=4 --apply-log-only --target-dir=/data/backups/base \
+xtrabackup --prepare --parallel=4 --apply-redo-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
 
-You can also use `--parallel` when applying the final incremental backup. Omit `--apply-log-only` for the final step:
+You can also use `--parallel` when applying the final incremental backup. Omit `--apply-redo-only` for the final step:
 
 ```shell
 xtrabackup --prepare --parallel=4 --target-dir=/data/backups/base \

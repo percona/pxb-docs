@@ -4,6 +4,8 @@ xbcloud is a cloud storage utility that works with Percona XtraBackup to upload,
 
 ## What's in this document
 
+* [Version changes](#version-changes) - Option changes in recent releases
+
 * [What xbcloud does](#what-xbcloud-does) - Core operations and capabilities
 
 * [Supported cloud storage providers](#supported-cloud-storage-providers) - Available storage options
@@ -329,6 +331,10 @@ inc_backup_20240101_1200
 
 #### Step 3: Restore incremental backups
 
+##### Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](xtrabackup-option-reference.md#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 To restore from incremental backups, you must download and prepare them in sequence:
 
 ```shell
@@ -336,13 +342,13 @@ To restore from incremental backups, you must download and prepare them in seque
 xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 full_backup_20240101 | xbstream -xv -C /tmp/restore
 
-xtrabackup --prepare --apply-log-only --target-dir=/tmp/restore
+xtrabackup --prepare --apply-redo-only --target-dir=/tmp/restore
 
 # Download and apply the incremental backup
 xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 inc_backup_20240101_1200 | xbstream -xv -C /tmp/inc1
 
-xtrabackup --prepare --apply-log-only --target-dir=/tmp/restore \
+xtrabackup --prepare --apply-redo-only --target-dir=/tmp/restore \
 --incremental-dir=/tmp/inc1
 
 # Final prepare step
@@ -354,7 +360,7 @@ xtrabackup --prepare --target-dir=/tmp/restore
     Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the `--parallel` option to process delta files concurrently. When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
     
     ```shell
-    xtrabackup --prepare --apply-log-only \
+    xtrabackup --prepare --apply-redo-only \
     --target-dir=/tmp/restore \
     --incremental-dir=/tmp/inc1 --parallel=4
 
