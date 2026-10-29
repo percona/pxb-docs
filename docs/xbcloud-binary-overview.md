@@ -4,6 +4,8 @@ xbcloud is a cloud storage utility that works with Percona XtraBackup to upload,
 
 ## What's in this document
 
+* [Version changes](#version-changes) - Option changes in recent releases
+
 * [What xbcloud does](#what-xbcloud-does) - Core operations and capabilities
 
 * [Supported cloud storage providers](#supported-cloud-storage-providers) - Available storage options
@@ -15,6 +17,10 @@ xbcloud is a cloud storage utility that works with Percona XtraBackup to upload,
 * [Supplying parameters](#supplying-parameters) - Configuration methods
 
 * [Advanced usage patterns](#advanced-usage-patterns) - Incremental backups and partial restore
+
+## Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base) and the `--incremental-dir` option to [`--prepare-incremental-from-dir`](xtrabackup-option-reference.md#prepare-incremental-from-dir). Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.
 
 ## What xbcloud does
 
@@ -82,7 +88,7 @@ This command:
 An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:
 
 ```shell
-xtrabackup --backup --stream=xbstream --incremental-basedir=/tmp/backup \
+xtrabackup --backup --stream=xbstream --backup-incremental-base=/tmp/backup \
 --target-dir=/tmp/inc-backup | \
 xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 inc_backup_$(date +%Y%m%d_%H%M)
 ```
@@ -321,7 +327,7 @@ full_backup_20240101
 #### Step 2: Create incremental backups
 
 ```shell
-xtrabackup --backup --stream=xbstream --incremental-basedir=/tmp/base \
+xtrabackup --backup --stream=xbstream --backup-incremental-base=/tmp/base \
 --target-dir=/tmp/inc1 | \
 xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 inc_backup_20240101_1200
@@ -343,7 +349,7 @@ xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 inc_backup_20240101_1200 | xbstream -xv -C /tmp/inc1
 
 xtrabackup --prepare --apply-log-only --target-dir=/tmp/restore \
---incremental-dir=/tmp/inc1
+--prepare-incremental-from-dir=/tmp/inc1
 
 # Final prepare step
 xtrabackup --prepare --target-dir=/tmp/restore
@@ -356,7 +362,7 @@ xtrabackup --prepare --target-dir=/tmp/restore
     ```shell
     xtrabackup --prepare --apply-log-only \
     --target-dir=/tmp/restore \
-    --incremental-dir=/tmp/inc1 --parallel=4
+    --prepare-incremental-from-dir=/tmp/inc1 --parallel=4
 
     xtrabackup --prepare --target-dir=/tmp/restore --parallel=4
     ```

@@ -74,6 +74,16 @@ Usage: `--backup`
 
 Make a backup and place it in `--target-dir`. See [Create a full backup](create-full-backup.md)
 
+### backup-incremental-base
+
+Usage: `--backup-incremental-base=DIRECTORY`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+Specifies the directory with the base backup for an incremental backup. The base backup can be a full backup or an earlier incremental backup. Use the option with `--backup`.
+
+The `--backup-incremental-base` option replaces the deprecated [`--incremental-basedir`](#incremental-basedir) option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 ### backup-lock-timeout
 
 Usage: `--backup-lock-timeout`
@@ -503,11 +513,15 @@ child process without alteration. See mysql --help for details.
 
 Usage: `--incremental-basedir=DIRECTORY`
 
+Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option. Use [`--backup-incremental-base`](#backup-incremental-base) instead.
+
 This is the directory that contains the full backup, which is the base dataset for the incremental backups.
 
 ### incremental-dir
 
 Usage: `--incremental-dir=DIRECTORY`
+
+Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option. Use [`--prepare-incremental-from-dir`](#prepare-incremental-from-dir) instead.
 
 This is the directory where the incremental backup is combined with the full backup to make a new full backup.
 
@@ -528,7 +542,7 @@ recent (highest `innodb_to_lsn`), successful backup in the series and takes the 
 backup.
 
 This options is mutually exclusive with
-[`--incremental-history-uuid`](#incremental-history-uuid), [`--incremental-basedir`](#incremental-basedir), and
+[`--incremental-history-uuid`](#incremental-history-uuid), [`--backup-incremental-base`](#backup-incremental-base), and
 [`--incremental-lsn`](#incremental-lsn).
 
 If no valid lsn can be found, either no series by that
@@ -543,7 +557,7 @@ Usage: `--incremental-history-uuid=name`
 
 This option specifies the Universal Unique Identifier (UUID) of the history record in `PERCONA_SCHEMA.xtrabackup_history` used as the base for an incremental backup.
 
-This options is mutually exclusive with [`--incremental-history-name`](#incremental-history-name), [`--incremental-basedir`](#incremental-basedir), and
+This options is mutually exclusive with [`--incremental-history-name`](#incremental-history-name), [`--backup-incremental-base`](#backup-incremental-base), and
 [`--incremental-lsn`](#incremental-lsn).
 
 If there is no success record with that UUID, xtrabackup returns an error.
@@ -555,7 +569,7 @@ The option is used with the `-–incremental` option.
 Usage: `--incremental-lsn=LSN`
 
 When creating an incremental backup, you can specify the log sequence number
-(LSN), a single 64-bit integer, instead of the  [`--incremental-basedir`](#incremental-basedir).
+(LSN), a single 64-bit integer, instead of the  [`--backup-incremental-base`](#backup-incremental-base).
 
 !!! important
 
@@ -802,6 +816,16 @@ Usage: `--prepare`
 Makes xtrabackup perform a recovery on a backup created with `--backup`, so that the backup data is ready to use.
 
 For details, see [Prepare a full backup](prepare-full-backup.md).
+
+### prepare-incremental-from-dir
+
+Usage: `--prepare-incremental-from-dir=DIRECTORY`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+Specifies the directory with the incremental backup that Percona XtraBackup applies to the full backup. Use the option with `--prepare`.
+
+The `--prepare-incremental-from-dir` option replaces the deprecated [`--incremental-dir`](#incremental-dir) option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ### print-defaults
 
