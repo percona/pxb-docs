@@ -185,6 +185,14 @@ Usage: `--core-file`
 
 Write core on fatal signals.
 
+### create-ib-logfile
+
+Usage: `--create-ib-logfile`
+
+Deprecated in Percona XtraBackup 9.7.2-2. A future release removes the option.
+
+The `--create-ib-logfile` option has no effect. The `--prepare` phase does not create redo log files.
+
 ### databases
 
 Usage: `--databases=#`
@@ -565,7 +573,9 @@ When creating an incremental backup, you can specify the log sequence number
 
 Usage: `--innodb=name`
 
-This option is ignored for MySQL option compatibility.
+Deprecated in Percona XtraBackup 9.7.2-2. A future release removes the option.
+
+The `--innodb` option has no effect. Percona XtraBackup accepts the option only for compatibility with MySQL client options.
 
 ### innodb-miscellaneous
 
@@ -649,7 +659,9 @@ within a given time, abort the backup.
 
 Usage: `--log`
 
-This option is ignored for MySQL
+Deprecated in Percona XtraBackup 9.7.2-2. A future release removes the option.
+
+The `--log` option has no effect. Percona XtraBackup accepts the option only for compatibility with MySQL client options.
 
 ### log-bin
 
@@ -730,28 +742,11 @@ See [Server Version and Backup Version Comparison](server-backup-version-compari
 
 Usage: `--no-version-check`
 
-This option disables the version check. 
+Deprecated in Percona XtraBackup 9.7.2-2. A future release removes the option.
 
-If you do not pass this option, xtrabackup implicitly enables the
-automatic version check in the `--backup` mode. 
+The `--no-version-check` option has no effect. Percona XtraBackup no longer has the version check that the option turned off.
 
-To disable the version check, invoke xtrabackup and explicitly pass this option.
-
-When the automatic version check is enabled, xtrabackup performs a
-version check against the server on the backup stage after creating a server
-connection. xtrabackup sends the following information to the server:
-
-* MySQL flavour and version
-
-* Operating system name
-
-* Percona Toolkit version
-
-* Perl version
-
-Each piece of information has a unique identifier. This identifier is a MD5 hash value
-that Percona Toolkit uses to obtain statistics about its use. This information is
-a random UUID; no client information is collected or stored.
+Do not confuse `--no-version-check` with [`--no-server-version-check`](#no-server-version-check), which still works.
 
 ### open-files-limit
 
@@ -823,6 +818,14 @@ Set the read buffer size. The given value is scaled up to page size. The default
 
 To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-buffer-size) and [`--encrypt-chunk-size`](#encrypt-chunk-size).
 
+### rebuild-threads
+
+Usage: `--rebuild-threads=#`
+
+Deprecated in Percona XtraBackup 9.7.2-2. A future release removes the option.
+
+The `--rebuild-threads` option has no effect. The option worked only with `--rebuild-indexes`, and Percona XtraBackup no longer has `--rebuild-indexes`.
+
 ### register-redo-log-consumer
 
 Usage: `--register-redo-log-consumer`
@@ -871,9 +874,11 @@ Force rollback prepared InnoDB transactions.
 
 Usage: `--rsync`
 
-Uses the rsync utility to optimize local file transfers. The xtrabackup binary uses rsync to copy all non-InnoDB files instead of spawning a separate cp for each file, which can be much faster for servers with many databases or tables.
+Deprecated in Percona XtraBackup 9.7.2-2. A future release removes the option. Use [`--lock-ddl=REDUCED`](#lock-ddl) instead.
 
-You cannot use this option with [`--stream`](#stream).
+With `--rsync`, Percona XtraBackup copies all non-InnoDB files with the `rsync` utility instead of a separate `cp` call for each file. The option shortened the time that `FLUSH TABLES WITH READ LOCK` blocked writes. Percona XtraBackup now takes backup locks by default, so DML statements continue during the backup.
+
+You cannot use `--rsync` with [`--stream`](#stream).
 
 ### safe-slave-backup
 
