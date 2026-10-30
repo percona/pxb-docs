@@ -759,6 +759,14 @@ Usage: `--open-files-limit=#`
 
 The maximum number of file descriptors to reserve with [setrlimit :octicons-link-external-16:]( https://man7.org/linux/man-pages/man2/setrlimit.2.html)git .
 
+### page-tracking-merge-gap
+
+Usage: `--page-tracking-merge-gap=auto|N`
+
+Introduced in Percona XtraBackup 9.7.2-2.
+
+Controls the largest gap between two changed pages that Percona XtraBackup reads in a single request during an incremental backup with page tracking. The option accepts a string or an integer. The default value is `auto`. Keep the default value. For details, see [Read scattered changed pages](page-tracking.md#read-scattered-changed-pages).
+
 ### parallel
 
 Usage: `--parallel=#`
