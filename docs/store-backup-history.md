@@ -46,13 +46,13 @@ For the necessary privileges, see [Permissions and Privileges Needed](privileges
 
 ### Version changes
 
-Percona XtraBackup 9.7.2-2 introduces the `--history-*` options to store the backup history on a different server.
+Percona XtraBackup 9.7.2-2 introduces the ability to store backup history on a different server.
 
 ### Overview
 
 By default, Percona XtraBackup writes the history record to the server you back up. The write fails if that server does not accept writes, for example, a replica or a secondary member of a single-primary Group Replication cluster with `super_read_only` enabled. In this case, the server returns error 1290 and does not store the record.
 
-To write the history record to another, writable server, add one or more `--history-*` options that describe the connection to that server:
+To write the history record to another, writeable server, use the below options to describe the connections parameters of the server:
 
 | Option | Description | Default |
 | ------ | ----------- | ------- |
