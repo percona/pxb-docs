@@ -19,7 +19,31 @@ There are multiple ways of specifying which part of data is backed up:
 
 * Use the `--databases-file` option to list the databases
 
+The `--tables` and `--databases` options are mutually exclusive. If you use both options in the same command, XtraBackup ignores `--databases` and only uses `--tables`. Use only one of these options per backup operation.
+
 The following examples assume a database named `test` that contains tables named `t1` and `t2`. Run all the commands as root or use the sudo command.
+
+Only `--databases`:
+
+```shell
+xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
+--databases='mysql sys performance_schema test'
+```
+
+Only `--tables`:
+
+```shell
+xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
+--tables="^test[.]t1"
+```
+
+Both options. XtraBackup ignores `--databases` and backs up only tables matching `--tables`:
+
+```shell
+xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
+--databases='mysql sys performance_schema test' \
+--tables="^test[.]t1"
+```
 
 === "`–-tables` option"
 
