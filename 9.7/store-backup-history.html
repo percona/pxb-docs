@@ -32,7 +32,7 @@ PERCONA_SCHEMA.XTRABACKUP_HISTORY table.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -57,10 +57,10 @@ PERCONA_SCHEMA.XTRABACKUP_HISTORY table.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -1285,6 +1285,24 @@ PERCONA_SCHEMA.XTRABACKUP_HISTORY table.">
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Store backup history on the server
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="store-backup-history.html" class="md-nav__link md-nav__link--active">
         
   
@@ -1301,6 +1319,38 @@ PERCONA_SCHEMA.XTRABACKUP_HISTORY table.">
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#store-backup-history-on-a-different-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Store backup history on a different server
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -5704,6 +5754,25 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#store-backup-history-on-a-different-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Store backup history on a different server
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
       </div>
     </div>
@@ -5777,7 +5846,141 @@ not be added to that table until after the backup has been taken.</p>
 some catastrophic event, you will need to either perform a <code>mysqldump</code>,
 partial backup or <code>SELECT</code> * on the history table after <em>xtrabackup</em>
 completes and store the results with you backup set.</p>
-<p>For the necessary privileges, see Permissions and Privileges Needed.</p>
+<p>For the necessary privileges, see <a href="privileges.html">Permissions and Privileges Needed</a>.</p>
+<h2 id="store-backup-history-on-a-different-server">Store backup history on a different server<a class="headerlink" href="#store-backup-history-on-a-different-server" title="Permanent link">&para;</a></h2>
+<h3 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 9.7.2-2 introduces the ability to store backup history on a different server.</p>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
+<p>By default, Percona XtraBackup writes the history record to the server you back up. The write fails if that server does not accept writes, for example, a replica or a secondary member of a single-primary Group Replication cluster with <code>super_read_only</code> enabled. In this case, the server returns error 1290 and does not store the record.</p>
+<p>To write the history record to another, writeable server, use the below options to describe the connections parameters of the server:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="xtrabackup-option-reference.html#history-host"><code>--history-host</code></a></td>
+<td>Host of the history server</td>
+<td>Value of <code>--host</code></td>
+</tr>
+<tr>
+<td><a href="xtrabackup-option-reference.html#history-port"><code>--history-port</code></a></td>
+<td>TCP/IP port of the history server</td>
+<td>Value of <code>--port</code></td>
+</tr>
+<tr>
+<td><a href="xtrabackup-option-reference.html#history-socket"><code>--history-socket</code></a></td>
+<td>UNIX socket of the history server</td>
+<td>Value of <code>--socket</code>, if you do not set <code>--history-host</code></td>
+</tr>
+<tr>
+<td><a href="xtrabackup-option-reference.html#history-user"><code>--history-user</code></a></td>
+<td>User account on the history server</td>
+<td>Value of <code>--user</code></td>
+</tr>
+<tr>
+<td><a href="xtrabackup-option-reference.html#history-password"><code>--history-password</code></a></td>
+<td>Password of the history user</td>
+<td>Value of <code>--password</code>, if you do not set <code>--history-user</code></td>
+</tr>
+<tr>
+<td><a href="xtrabackup-option-reference.html#history-ssl-mode"><code>--history-ssl-mode</code></a></td>
+<td>Security state of the connection</td>
+<td>Value of <code>--ssl-mode</code></td>
+</tr>
+<tr>
+<td><a href="xtrabackup-option-reference.html#history-ssl-ca"><code>--history-ssl-ca</code></a></td>
+<td>CA file in PEM format</td>
+<td>Value of <code>--ssl-ca</code></td>
+</tr>
+<tr>
+<td><a href="xtrabackup-option-reference.html#history-ssl-capath"><code>--history-ssl-capath</code></a></td>
+<td>Directory of CA certificates</td>
+<td>Value of <code>--ssl-capath</code></td>
+</tr>
+<tr>
+<td><a href="xtrabackup-option-reference.html#history-ssl-cert"><code>--history-ssl-cert</code></a></td>
+<td>X509 certificate in PEM format</td>
+<td>Value of <code>--ssl-cert</code></td>
+</tr>
+<tr>
+<td><a href="xtrabackup-option-reference.html#history-ssl-key"><code>--history-ssl-key</code></a></td>
+<td>X509 key in PEM format</td>
+<td>Value of <code>--ssl-key</code></td>
+</tr>
+</tbody>
+</table>
+<p>If you do not set an option, Percona XtraBackup takes the value of the matching connection option for the server you back up, with the following exceptions:</p>
+<ul>
+<li>
+<p>If you set <code>--history-host</code>, Percona XtraBackup ignores the <code>--socket</code> value, because that socket belongs to the server you back up.</p>
+</li>
+<li>
+<p>If you set <code>--history-user</code>, Percona XtraBackup ignores the <code>--password</code> value. Set <code>--history-password</code> for the history user.</p>
+</li>
+<li>
+<p>Percona XtraBackup treats the <code>--history-ssl-*</code> options as a group. If you set any of these options, Percona XtraBackup uses only the <code>--history-ssl-*</code> values and ignores all <code>--ssl-*</code> values for the history connection.</p>
+</li>
+<li>
+<p>If you set <code>--history-ssl-ca</code> or <code>--history-ssl-capath</code> without <code>--history-ssl-mode</code>, Percona XtraBackup uses the <code>VERIFY_CA</code> SSL mode for the history connection.</p>
+</li>
+</ul>
+<p>The following example backs up a read-only replica and stores the history record on the source server:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span>bkpuser<span class="w"> </span>--password<span class="o">=</span>&lt;backup_password&gt;<span class="w"> </span>--socket<span class="o">=</span>/var/run/mysqld/mysqld.sock<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--history<span class="o">=</span>nightly<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--history-host<span class="o">=</span>source.example.com<span class="w"> </span>--history-port<span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--history-user<span class="o">=</span>history_user<span class="w"> </span>--history-password<span class="o">=</span>&lt;history_password&gt;
+</code></pre></div>
+<p>Percona XtraBackup uses the history server only to store and read the history record. Percona XtraBackup runs all other backup operations, such as locks and redo log copying, on the server you back up.</p>
+<p>The <a href="xtrabackup-option-reference.html#incremental-history-name"><code>--incremental-history-name</code></a> and <a href="xtrabackup-option-reference.html#incremental-history-uuid"><code>--incremental-history-uuid</code></a> options also read from the history server. For incremental backups, pass the same <code>--history-*</code> options so that Percona XtraBackup reads the base LSN from the server that stores the records:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--incremental<span class="w"> </span>--target-dir<span class="o">=</span>/backups/inc1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span>bkpuser<span class="w"> </span>--password<span class="o">=</span>&lt;backup_password&gt;<span class="w"> </span>--socket<span class="o">=</span>/var/run/mysqld/mysqld.sock<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--incremental-history-name<span class="o">=</span>nightly<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--history-host<span class="o">=</span>source.example.com<span class="w"> </span>--history-port<span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--history-user<span class="o">=</span>history_user<span class="w"> </span>--history-password<span class="o">=</span>&lt;history_password&gt;
+</code></pre></div>
+<h3 id="requirements-and-behavior">Requirements and behavior<a class="headerlink" href="#requirements-and-behavior" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>The <code>--history-*</code> options require <a href="xtrabackup-option-reference.html#history"><code>--history</code></a>, <a href="xtrabackup-option-reference.html#incremental-history-name"><code>--incremental-history-name</code></a>, or <a href="xtrabackup-option-reference.html#incremental-history-uuid"><code>--incremental-history-uuid</code></a>. If you set a <code>--history-*</code> option without any of these options, Percona XtraBackup reports an error and does not start the backup.</p>
+</li>
+<li>
+<p>Percona XtraBackup connects to the history server when the backup starts. If the connection fails, Percona XtraBackup stops the backup before copying any data.</p>
+</li>
+<li>
+<p>If Percona XtraBackup cannot apply the TLS settings to the history connection, Percona XtraBackup does not connect to the history server.</p>
+</li>
+<li>
+<p>If you set <code>--history-ssl-ca</code> or <code>--history-ssl-capath</code> and set <code>--history-ssl-mode</code> lower than <code>VERIFY_CA</code>, Percona XtraBackup prints a warning that the certificate of the history server remains unverified.</p>
+</li>
+<li>
+<p>Percona XtraBackup hides the <code>--history-password</code> value in the same way as the <code>--password</code> value: in the process list, in the log, and in the <code>tool_command</code> column of the history record.</p>
+</li>
+</ul>
+<h3 id="history-server-privileges">History server privileges<a class="headerlink" href="#history-server-privileges" title="Permanent link">&para;</a></h3>
+<p>If you store the backup history on a different server with the <code>--history-*</code> options, Percona XtraBackup checks the <code>CREATE</code>, <code>ALTER</code>, <code>INSERT</code>, and <code>SELECT</code> privileges on <code>PERCONA_SCHEMA</code> for the history user on the history server, not for the backup user. The backup user does not need these privileges.</p>
+<p>The history user needs the following privileges on the history server:</p>
+<ul>
+<li>
+<p><code>CREATE</code>, <code>ALTER</code>, and <code>INSERT</code> on <code>PERCONA_SCHEMA</code> to use <code>--history</code>. The history user needs the <code>CREATE</code> privilege even if the <code>PERCONA_SCHEMA.xtrabackup_history</code> table already exists.</p>
+</li>
+<li>
+<p><code>SELECT</code> on <code>PERCONA_SCHEMA.xtrabackup_history</code> to use <code>--incremental-history-name</code> or <code>--incremental-history-uuid</code>.</p>
+</li>
+<li>
+<p><code>SELECT</code> on <code>performance_schema.replication_group_members</code>.</p>
+</li>
+</ul>
+<p>To create a history user with the minimum privileges, run the following statements on the history server:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">'history_user'</span><span class="o">@</span><span class="s1">'%'</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">'&lt;history_password&gt;'</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">CREATE</span><span class="p">,</span><span class="w"> </span><span class="k">ALTER</span><span class="p">,</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">PERCONA_SCHEMA</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">'history_user'</span><span class="o">@</span><span class="s1">'%'</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">'history_user'</span><span class="o">@</span><span class="s1">'%'</span><span class="p">;</span>
+</code></pre></div>
 <h3 id="percona_schemaxtrabackup_history-table">PERCONA_SCHEMA.XTRABACKUP_HISTORY table<a class="headerlink" href="#percona_schemaxtrabackup_history-table" title="Permanent link">&para;</a></h3>
 <p>This table contains the information about the previous server
 backups. Information about the backups will only be written if the backup was
@@ -5804,7 +6007,7 @@ taken with <code>--history</code> option.</p>
 </tr>
 <tr>
 <td>tool_command</td>
-<td>Exact command line given to the tool with &ndash;password and &ndash;encryption_key obfuscated</td>
+<td>Exact command line given to the tool, with the &ndash;password, &ndash;history-password, and &ndash;encryption_key values hidden</td>
 </tr>
 <tr>
 <td>tool_version</td>
@@ -5898,7 +6101,7 @@ a configuration file in order to be effective.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 30, 2024 10:49:01 UTC">May 30, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:21:49 UTC">November 4, 2026</span>
   </span>
 
     
@@ -5999,11 +6202,11 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
 
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="js/print-site.js"></script>
       
