@@ -5921,6 +5921,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h1 id="innodb-b-tree-integrity-validation-during-prepare">InnoDB B-tree integrity validation during prepare<a class="headerlink" href="#innodb-b-tree-integrity-validation-during-prepare" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>The <a href="xtrabackup-option-reference.html#check-tables"><code>--check-tables</code></a> option validates the structural integrity of InnoDB B-tree indexes during the <a href="xtrabackup-option-reference.html#prepare"><code>--prepare</code></a> phase. Validation during <code>--prepare</code> helps detect corrupted indexes before restore or production deployment.</p>
+<h3 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 9.7.2-2 renames the <code>--apply-log-only</code> option to <a href="xtrabackup-option-reference.html#apply-redo-only"><code>--apply-redo-only</code></a>. Percona XtraBackup still accepts <code>--apply-log-only</code> but prints a deprecation warning. A future Long-Term Support (LTS) release will remove <code>--apply-log-only</code>, so update your scripts to use <code>--apply-redo-only</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="why-checksum-validation-is-not-enough">Why checksum validation is not enough<a class="headerlink" href="#why-checksum-validation-is-not-enough" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup verifies InnoDB page checksums during <code>--backup</code>. These checks ensure that the backup contains checksum-valid pages at backup time.</p>
 <p>Checksum validation detects physical corruption within individual pages, including:</p>
@@ -5977,7 +5979,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p><a href="#parallel-execution">Parallel execution</a> through <a href="xtrabackup-option-reference.html#parallel"><code>--parallel</code></a></p>
 </li>
 <li>
-<p>Workflows that use <a href="xtrabackup-option-reference.html#apply-log-only"><code>--apply-log-only</code></a></p>
+<p>Workflows that use <a href="xtrabackup-option-reference.html#apply-redo-only"><code>--apply-redo-only</code></a></p>
 </li>
 <li>
 <p>Transportable tablespace export with <a href="xtrabackup-option-reference.html#export"><code>--export</code></a></p>
@@ -6088,7 +6090,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <span class="w">  </span>--parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
 <h3 id="validate-an-incremental-backup">Validate an incremental backup<a class="headerlink" href="#validate-an-incremental-backup" title="Permanent link">&para;</a></h3>
-<p>The <code>--check-tables</code> option can be used together with <code>--apply-log-only</code>. However, because validation scans all tables and indexes each time it runs, it&rsquo;s recommended using the option during the final prepare stage of an incremental backup.</p>
+<p>You can use <code>--check-tables</code> together with <code>--apply-redo-only</code>. Validation scans all tables and indexes on every run, so use <code>--check-tables</code> during the final prepare stage of an incremental backup.</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--check-tables<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--parallel<span class="o">=</span><span class="m">8</span>
@@ -6196,7 +6198,7 @@ at level '0' for index 'PRIMARY' of table 'sys/sys_config'.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 3, 2026 16:29:46 UTC">July 3, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 18:49:15 UTC">November 4, 2026</span>
   </span>
 
     

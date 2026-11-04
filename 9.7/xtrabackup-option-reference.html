@@ -5918,8 +5918,14 @@ and XtraDB. See <a href="#innodb-miscellaneous"><code>--innodb-miscellaneous</co
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
 <h3 id="apply-log-only">apply-log-only<a class="headerlink" href="#apply-log-only" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--apply-log-only</code></p>
-<p>This option causes only the redo stage to be performed when preparing a
-backup. It is essential for incremental backups.</p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. Use <a href="#apply-redo-only"><code>--apply-redo-only</code></a> instead.</p>
+<p>The <code>--apply-log-only</code> option works the same way as <code>--apply-redo-only</code>. When you use <code>--apply-log-only</code>, Percona XtraBackup prints a deprecation warning at startup. A future Long-Term Support (LTS) release will remove the option.</p>
+<h3 id="apply-redo-only">apply-redo-only<a class="headerlink" href="#apply-redo-only" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--apply-redo-only</code></p>
+<p>Introduced in Percona XtraBackup 9.7.2-2.</p>
+<p>During the <code>--prepare</code> phase, Percona XtraBackup applies the redo log and does not roll back uncommitted transactions. Use the <code>--apply-redo-only</code> option when you prepare a full backup or an incremental backup that more incremental backups follow. Do not use the option for the final incremental backup.</p>
+<p>The <code>--apply-redo-only</code> option replaces the deprecated <a href="#apply-log-only"><code>--apply-log-only</code></a> option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
+<p>For details, see <a href="prepare-incremental-backup.html">Prepare an incremental backup</a>.</p>
 <h3 id="backup">backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup</code></p>
 <p>Make a backup and place it in <code>--target-dir</code>. See <a href="create-full-backup.html">Create a full backup</a></p>
@@ -5955,7 +5961,7 @@ xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
 <p>Usage: <code>--check-tables</code></p>
 <p>Enables InnoDB B-tree structural validation during the <code>--prepare</code> phase after redo log application completes.</p>
 <p>The option runs <code>btr_validate_index()</code> on every committed index in each <code>.ibd</code> tablespace in the backup. Validation detects structural inconsistencies that page checksum verification cannot detect, including broken B-tree relationships, invalid page metadata, and inconsistent external LOB references.</p>
-<p>Percona XtraBackup runs validation in read-only mode and does not modify backup data. The option supports <code>--apply-log-only</code>, <code>--parallel</code>, and <code>--export</code>.</p>
+<p>Percona XtraBackup runs validation in read-only mode and does not modify backup data. The option supports <code>--apply-redo-only</code>, <code>--parallel</code>, and <code>--export</code>.</p>
 <p>If validation detects corruption, xtrabackup reports the affected tables and returns a non-zero exit code after completing all checks.</p>
 <p>For more information, see <a href="innodb-btree-check.html">InnoDB B-tree integrity validation during prepare</a>.</p>
 <h3 id="close-files">close-files<a class="headerlink" href="#close-files" title="Permanent link">&para;</a></h3>
@@ -6677,7 +6683,7 @@ mysql –help for details.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:34:39 UTC">November 4, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 18:49:15 UTC">November 4, 2026</span>
   </span>
 
     

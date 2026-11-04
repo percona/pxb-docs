@@ -4180,7 +4180,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#version-changes" class="md-nav__link">
+  <a href="#version-changes_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Version changes
@@ -5832,7 +5832,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#version-changes" class="md-nav__link">
+  <a href="#version-changes_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Version changes
@@ -5938,22 +5938,24 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>During the prepare process, Percona XtraBackup applies each incremental backup to the full backup in order. Each step updates the files in <code>/data/backups/base</code> and moves the state of the full backup forward to the point when that incremental backup was created. The final prepared backup remains in <code>/data/backups/base</code>.</p>
 <p>The <code>--prepare</code> step for incremental backups differs from the prepare step for full backups. When preparing a full backup, Percona XtraBackup applies committed transactions from the redo log to the data files and rolls back uncommitted transactions to make the backup consistent.</p>
 <p>When preparing an incremental chain, you must delay the rollback of uncommitted transactions until you apply the final incremental backup. A transaction that was uncommitted when one backup was created might be committed in a later incremental backup.</p>
-<p>Use <code>--apply-log-only</code> to apply redo without rolling back uncommitted transactions.</p>
+<h3 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 9.7.2-2 renames the <code>--apply-log-only</code> option to <a href="xtrabackup-option-reference.html#apply-redo-only"><code>--apply-redo-only</code></a>. Percona XtraBackup still accepts <code>--apply-log-only</code> but prints a deprecation warning. A future Long-Term Support (LTS) release will remove <code>--apply-log-only</code>, so update your scripts to use <code>--apply-redo-only</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
+<p>Use <code>--apply-redo-only</code> to apply the redo log without rolling back uncommitted transactions.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If you do not use the <code>--apply-log-only</code> option to prevent the rollback phase, then your incremental backups are unusable. After transactions have been rolled back, further incremental backups cannot be applied.</p>
+<p>If you skip <code>--apply-redo-only</code>, Percona XtraBackup rolls back uncommitted transactions, and you cannot apply more incremental backups.</p>
 </div>
 <p>Prepare an incremental backup chain in the following order:</p>
 <ol>
-<li>Prepare the full backup with <code>--apply-log-only</code>.</li>
-<li>Apply each intermediate incremental backup in order with <code>--apply-log-only</code>.</li>
-<li>Apply the final incremental backup without <code>--apply-log-only</code>.</li>
+<li>Prepare the full backup with <code>--apply-redo-only</code>.</li>
+<li>Apply each intermediate incremental backup in order with <code>--apply-redo-only</code>.</li>
+<li>Apply the final incremental backup without <code>--apply-redo-only</code>.</li>
 </ol>
-<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<h2 id="version-changes_1">Version changes<a class="headerlink" href="#version-changes_1" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--incremental-dir</code> option to <a href="xtrabackup-option-reference.html#prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a>. Percona XtraBackup still accepts <code>--incremental-dir</code> but prints a deprecation warning. A future release will remove <code>--incremental-dir</code>, so update your scripts to use <code>--prepare-incremental-from-dir</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="prepare-the-full-backup">Prepare the full backup<a class="headerlink" href="#prepare-the-full-backup" title="Permanent link">&para;</a></h2>
-<p>Start by preparing the full backup with <code>--apply-log-only</code> to prevent the rollback phase:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
+<p>Start by preparing the full backup with <code>--apply-redo-only</code> to prevent the rollback phase:</p>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
 </code></pre></div>
 <p>The log sequence number (LSN) identifies a point in the database redo log. Incremental backups use LSNs to identify which changes occurred after the base backup.</p>
 <p>The log sequence number in the output should match the <code>to_lsn</code> value of the base backup. The output should end with text similar to the following:</p>
@@ -5976,19 +5978,19 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Percona XtraBackup applies the changes from each incremental backup to <code>/data/backups/base</code>. The incremental directories contain the changes to apply, but the resulting prepared backup remains in the full backup directory.</p>
 <h3 id="apply-the-first-incremental-backup">Apply the first incremental backup<a class="headerlink" href="#apply-the-first-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>Apply the first incremental backup to the full backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc1
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
 <p><code>--target-dir</code> points to the full backup that you are preparing. <code>--prepare-incremental-from-dir</code> points to the incremental backup whose changes you want to apply.</p>
 <p>The command applies the delta files from <code>/data/backups/inc1</code> to the files in <code>/data/backups/base</code>, moving the full backup forward to the state of the first incremental backup. Percona XtraBackup then applies the redo log.</p>
-<p>Because another incremental backup follows <code>inc1</code>, use <code>--apply-log-only</code> to prevent the rollback phase.</p>
+<p>Because another incremental backup follows <code>inc1</code>, use <code>--apply-redo-only</code> to prevent the rollback phase.</p>
 <p>The final data remains in <code>/data/backups/base</code>, not in the incremental directory.</p>
 <p>You should see output similar to the following:</p>
 <details class="example">
 <summary>Expected output</summary>
 <div class="highlight"><pre><span></span><code>2026-10-13T17:24:35.387201-00:00 0 [Note] [MY-011825] [Xtrabackup] incremental backup from 36621132 is enabled.
 2026-10-13T17:24:35.387458-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /data/backups/base/
-2026-10-13T17:24:35.388208-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be already prepared with --apply-log-only.
+2026-10-13T17:24:35.388208-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be already prepared with --apply-redo-only.
 2026-10-13T17:24:35.412988-00:00 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(37463526)
 ...
 2026-10-13T17:24:35.668534-00:00 1 [Note] [MY-011825] [Xtrabackup] page size for /data/backups/inc1//ibdata1.delta is 16384 bytes
@@ -6001,31 +6003,31 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h3 id="apply-the-final-incremental-backup">Apply the final incremental backup<a class="headerlink" href="#apply-the-final-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup does not support using the same incremental backup directory to prepare two copies of a backup. Do not run <code>--prepare</code> with the same incremental backup directory (the value of <code>--prepare-incremental-from-dir</code>) more than once.</p>
 <p>After applying <code>/data/backups/inc1</code>, apply <code>/data/backups/inc2</code> to the same base backup.</p>
-<p>In this example, <code>inc2</code> is the final incremental backup. Apply it without <code>--apply-log-only</code>:</p>
+<p>In this example, <code>inc2</code> is the final incremental backup. Apply it without <code>--apply-redo-only</code>:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
 <p>The command applies the changes from <code>inc2</code> to <code>/data/backups/base</code> and completes the prepare process.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Use <code>--apply-log-only</code> when merging the incremental backups except for the last one. This is why the previous command does not include the <code>--apply-log-only</code> option. If <code>--apply-log-only</code> is used on the last step, backup remains consistent but the server performs the rollback phase.</p>
+<p>Use <code>--apply-redo-only</code> for every incremental backup except the last one. The previous command applies the last incremental backup, so the command does not include <code>--apply-redo-only</code>. If you use <code>--apply-redo-only</code> on the last step, the backup stays consistent, but the server runs the rollback phase.</p>
 </div>
 <p>After you apply the final incremental backup, <code>/data/backups/base</code> contains the prepared backup with all changes through <code>inc2</code>.</p>
-<p>If your backup chain contains more incremental backups, apply them in order. Use <code>--apply-log-only</code> for every intermediate incremental backup and omit it only when applying the final incremental backup.</p>
+<p>If your backup chain contains more incremental backups, apply them in order. Use <code>--apply-redo-only</code> for every intermediate incremental backup and omit the option only for the final incremental backup.</p>
 <p>For example:</p>
-<div class="highlight"><pre><span></span><code>base    → --apply-log-only
-inc1    → --apply-log-only
-inc2    → --apply-log-only
-inc3    → final incremental, no --apply-log-only
+<div class="highlight"><pre><span></span><code>base    → --apply-redo-only
+inc1    → --apply-redo-only
+inc2    → --apply-redo-only
+inc3    → final incremental, no --apply-redo-only
 </code></pre></div>
 <h2 id="speed-up-the-prepare-step-with-parallel">Speed up the prepare step with &ndash;parallel<a class="headerlink" href="#speed-up-the-prepare-step-with-parallel" title="Permanent link">&para;</a></h2>
 <p>For incremental backups with many InnoDB Data (IBD) files, you can significantly reduce prepare time by using the <code>--parallel</code> option. The <code>--parallel</code> option enables the concurrent processing of multiple delta files, thereby maximizing storage bandwidth. The <code>--parallel</code> option is especially beneficial when there are many IBD files, even if the IBD files didn&rsquo;t change between backups, as empty delta files are processed quickly in parallel. </p>
 <p>Using <code>--parallel=X</code> has effect on the prepare phase. It will use X threads to apply the changes from <code>.delta</code> files to the IBD files. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>). Note that each thread operates on a single file. If you have a large delta file, there is still only one thread that processes that <code>.delta</code> file. Parallelization occurs at the file level, not within individual files.</p>
 <p>To apply an intermediate incremental backup with four worker threads, run:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
---prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc1
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--incremental-dir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
-<p>You can also use <code>--parallel</code> when applying the final incremental backup. Omit <code>--apply-log-only</code> for the final step:</p>
+<p>You can also use <code>--parallel</code> when applying the final incremental backup. Omit <code>--apply-redo-only</code> for the final step:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
@@ -6053,7 +6055,7 @@ inc3    → final incremental, no --apply-log-only
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:32:03 UTC">November 4, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 18:49:15 UTC">November 4, 2026</span>
   </span>
 
     
