@@ -475,6 +475,8 @@
       
         
       
+        
+      
     
     
     
@@ -530,6 +532,34 @@
     
   
     Release notes index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/9.7.2-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Percona XtraBackup 9.7.2-2 (2026-11-04)
   
 
     
@@ -5739,6 +5769,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
         
           <li class="md-nav__item">
+  <a href="#release-notes-9.7.2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Percona XtraBackup 9.7.2-2 (2026-11-04)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#release-notes-9.7.1-rc1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7419,7 +7460,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 <h1>Documentation</h1>
  
-<h2>9.7.1-rc1 (July 15, 2026)</h2>
+<h2>9.7.2-2 (November 04, 2026)</h2>
 <!--<h3>Percona Technical Documentation Team</h3>-->
         </section>
         
@@ -7432,7 +7473,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         </section>
         <section class="print-page" id="index" heading-number="1"><h1 id="index-percona-xtrabackup-97-documentation">Percona XtraBackup 9.7 Documentation<a class="headerlink" href="#index-percona-xtrabackup-97-documentation" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
-<p>This documentation is for the latest release: <a href="#release-notes-9.7.1-rc1">Percona XtraBackup 9.7.1-rc1</a> release notes.</p>
+<p>This documentation is for the latest release: <a href="#release-notes-9.7.2-2">Percona XtraBackup 9.7.2-2</a> release notes.</p>
 </div>
 <p>Percona XtraBackup is an open source hot backup utility for
 MySQL-based servers that keep your database fully available during planned maintenance windows.</p>
@@ -7532,8 +7573,129 @@ Percona XtraDB Cluster.</p>
                         </h1>
                     <section class="print-page" id="release-notes-release-notes" heading-number="3.1"><h1 id="release-notes-release-notes-percona-xtrabackup-97-release-notes-index">Percona XtraBackup 9.7 release notes index<a class="headerlink" href="#release-notes-release-notes-percona-xtrabackup-97-release-notes-index" title="Permanent link">&para;</a></h1>
 <ul>
-<li><a href="#release-notes-9.7.1-rc1">Percona XtraBackup 9.7.1-rc1 (2026-07-15)</a></li>
-</ul></section><section class="print-page" id="release-notes-9.7.1-rc1" heading-number="3.2"><h1 id="release-notes-9.7.1-rc1-percona-xtrabackup-971-rc1-2026-07-15">Percona XtraBackup 9.7.1-rc1 (2026-07-15)<a class="headerlink" href="#release-notes-9.7.1-rc1-percona-xtrabackup-971-rc1-2026-07-15" title="Permanent link">&para;</a></h1>
+<li>
+<p><a href="#release-notes-9.7.2-2">Percona XtraBackup 9.7.2-2 (2026-11-04</a></p>
+</li>
+<li>
+<p><a href="#release-notes-9.7.1-rc1">Percona XtraBackup 9.7.1-rc1 (2026-07-15)</a></p>
+</li>
+</ul></section><section class="print-page" id="release-notes-9.7.2-2" heading-number="3.2"><h1 id="release-notes-9.7.2-2-percona-xtrabackup-972-2-2026-11-04">Percona XtraBackup 9.7.2-2 (2026-11-04)<a class="headerlink" href="#release-notes-9.7.2-2-percona-xtrabackup-972-2-2026-11-04" title="Permanent link">&para;</a></h1>
+<p>Get started with <a href="#quickstart-overview">Quickstart Guide for Percona XtraBackup</a>.</p>
+<h2 id="release-notes-9.7.2-2-release-highlights">Release Highlights<a class="headerlink" href="#release-notes-9.7.2-2-release-highlights" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 9.7.2-2 supports backing up Percona Server for MySQL 9.7.x and MySQL 9.7.x.</p>
+<p>Use the Percona XtraBackup 8.4 series to take backups of Percona Server for MySQL 8.4.x and MySQL 8.4.x series.</p>
+<p>We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.</p>
+<p>Percona XtraBackup 9.7.2-2 release includes new features, improvements, deprecations, and bug fixes.</p>
+<h3 id="release-notes-9.7.2-2-renamed-options">Renamed options<a class="headerlink" href="#release-notes-9.7.2-2-renamed-options" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 9.7.2-2 renames the following options. The new names describe the phase or the action of each option more clearly.</p>
+<table>
+<thead>
+<tr>
+<th>Deprecated name</th>
+<th>New name</th>
+<th>Used with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--apply-log-only</code></td>
+<td><a href="#xtrabackup-option-reference-apply-redo-only"><code>--apply-redo-only</code></a></td>
+<td><code>--prepare</code></td>
+</tr>
+<tr>
+<td><code>--incremental-basedir</code></td>
+<td><a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a></td>
+<td><code>--backup</code></td>
+</tr>
+<tr>
+<td><code>--incremental-dir</code></td>
+<td><a href="#xtrabackup-option-reference-prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a></td>
+<td><code>--prepare</code></td>
+</tr>
+</tbody>
+</table>
+<p>Percona XtraBackup still accepts the old names but prints a deprecation warning at startup. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start. A future Long-Term Support (LTS) release will remove <code>--apply-log-only</code>, <code>--incremental-basedir</code> and <code>--incremental-dir</code>.</p>
+<h3 id="release-notes-9.7.2-2-deprecated-options">Deprecated options<a class="headerlink" href="#release-notes-9.7.2-2-deprecated-options" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 9.7.2-2 deprecates the following options.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Use instead</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--create-ib-logfile</code></td>
+<td>No replacement. The option has no effect.</td>
+</tr>
+<tr>
+<td><a href="#xtrabackup-option-reference-innodb"><code>--innodb</code></a></td>
+<td>No replacement. The option has no effect.</td>
+</tr>
+<tr>
+<td><a href="#xtrabackup-option-reference-log"><code>--log</code></a></td>
+<td>No replacement. The option has no effect.</td>
+</tr>
+<tr>
+<td><a href="#xtrabackup-option-reference-no-version-check"><code>--no-version-check</code></a></td>
+<td>No replacement. The option has no effect.</td>
+</tr>
+<tr>
+<td><code>--rebuild-threads</code></td>
+<td>No replacement. The option has no effect.</td>
+</tr>
+<tr>
+<td><a href="#xtrabackup-option-reference-rsync"><code>--rsync</code></a></td>
+<td><a href="#xtrabackup-option-reference-lock-ddl"><code>--lock-ddl=REDUCED</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Percona XtraBackup still accepts the options but prints a deprecation warning at startup. A future release will remove the options.</p>
+<h2 id="release-notes-9.7.2-2-new-features">New features<a class="headerlink" href="#release-notes-9.7.2-2-new-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://perconadev.atlassian.net/browse/PXB-2559">PXB-2559</a>: Adds the <code>--history-host</code>, <code>--history-port</code>, <code>--history-socket</code>, <code>--history-user</code>, <code>--history-password</code>, and <code>--history-ssl-*</code> options to <a href="#store-backup-history-store-backup-history-on-a-different-server">store the backup history on a different server</a>. Before, Percona XtraBackup always wrote the history record to the server you back up. The write failed when that server ran with <code>super_read_only</code> enabled, for example, a replica or a secondary member of a single-primary Group Replication cluster. The <code>--incremental-history-name</code> and <code>--incremental-history-uuid</code> options also read the base LSN from the history server.</li>
+</ul>
+<h2 id="release-notes-9.7.2-2-improvements">Improvements<a class="headerlink" href="#release-notes-9.7.2-2-improvements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3502">PXB-3502</a>: Improves parallel processing performance. With <code>--parallel</code>, Percona XtraBackup now processes files in largest-first order instead of discovery order. Large tables and partitions start processing earlier, so you spend less time waiting for large files after other parallel tasks complete. The improvement applies to <code>--backup</code>, <code>--prepare --prepare-incremental-from-dir</code>, <code>--copy-back</code>, <code>--move-back</code>, and <code>--decompress</code>.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3758">PXB-3758</a>: Adds the <a href="#xtrabackup-option-reference-apply-redo-only"><code>--apply-redo-only</code></a> option as the new name for <code>--apply-log-only</code>. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start. For details, see <a href="#prepare-incremental-backup">Prepare an incremental backup</a>.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3840">PXB-3840</a>: Adds phase-specific names for the incremental backup options. Use <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a> instead of <code>--incremental-basedir</code> with <code>--backup</code>. Use <a href="#xtrabackup-option-reference-prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a> instead of <code>--incremental-dir</code> with <code>--prepare</code>. The old and new names work the same way. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3853">PXB-3853</a>: Fixed an issue where incremental backups with page tracking read the unchanged pages between blocks of changed pages. On large tablespaces, the incremental backup could read nearly the whole file. Percona XtraBackup now skips the unchanged page ranges between blocks of changed pages. (Thank you to Reto Giezendanner for your contribution)</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3862">PXB-3862</a>: Fixed an issue where incremental backups with page tracking were slow when a tablespace had scattered changed pages. Percona XtraBackup read each scattered changed page on its own, and thousands of small reads take much longer than a few large reads. Percona XtraBackup now reads nearby changed pages together when reading the unchanged pages between them costs less than another read. Percona XtraBackup measures your storage at the start of the backup, so you do not need to change the configuration. The backup contents and size stay the same. Use the new <a href="#xtrabackup-option-reference-page-tracking-merge-gap"><code>--page-tracking-merge-gap</code></a> option to set a fixed gap, or set the option to <code>0</code> to turn off the behavior. For details, see <a href="#page-tracking-read-scattered-changed-pages">Read scattered changed pages</a>.</p>
+</li>
+</ul>
+<h2 id="release-notes-9.7.2-2-bug-fixes">Bug fixes<a class="headerlink" href="#release-notes-9.7.2-2-bug-fixes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3609">PXB-3609</a>: Fixed an issue where <code>xbcloud delete</code> did not remove the <code>.md5</code> checksum files for backups uploaded with <code>xbcloud put --md5</code>.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3800">PXB-3800</a>: Fixed an issue where <code>xtrabackup</code> terminated unexpectedly with an assertion failure in <code>fil_tablespace_redo_extend()</code> when the redo log contained an <code>MLOG_FILE_EXTEND</code> record for the system tablespace.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3863">PXB-3863</a>: Fixed an issue where <code>xbcloud put</code>, <code>xbcloud get</code>, and <code>xbcloud delete</code> could fail on Azure Blob Storage containers with hierarchical namespace enabled when the backup name began with a slash, for example, <code>xbcloud put /db/hns</code>. Percona XtraBackup now handles leading slashes correctly.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3885">PXB-3885</a>: Fixed an issue where <code>xbcloud</code> ran the retry waits of parallel requests one after another when the network was slow or unavailable. As a result, several failed requests took the sum of their backoff delays instead of the longest delay. The waits now run at the same time.</p>
+</li>
+<li>
+<p><a href="https://perconadev.atlassian.net/browse/PXB-3882">PXB-3882</a>: Fixed an issue where the debug build did not compile with gcc 15.2. </p>
+</li>
+</ul>
+<h2 id="release-notes-9.7.2-2-additional-resources">Additional resources<a class="headerlink" href="#release-notes-9.7.2-2-additional-resources" title="Permanent link">&para;</a></h2>
+<p>Install <a href="#installation">Percona XtraBackup 9.7.2-2</a></p>
+<p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
+<p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads/">Percona Product Downloads</a></p></section><section class="print-page" id="release-notes-9.7.1-rc1" heading-number="3.3"><h1 id="release-notes-9.7.1-rc1-percona-xtrabackup-971-rc1-2026-07-15">Percona XtraBackup 9.7.1-rc1 (2026-07-15)<a class="headerlink" href="#release-notes-9.7.1-rc1-percona-xtrabackup-971-rc1-2026-07-15" title="Permanent link">&para;</a></h1>
 <p>Get started with <a href="#quickstart-overview">Quickstart Guide for Percona XtraBackup</a>.</p>
 <h2 id="release-notes-9.7.1-rc1-release-highlights">Release Highlights<a class="headerlink" href="#release-notes-9.7.1-rc1-release-highlights" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 9.7.1-rc1 is based on the MySQL 9.7 Long-Term Supported (LTS) release. Percona XtraBackup 9.7.1-rc1 is a Release Candidate. Interfaces and behavior are subject to change before the General Availability (GA) release.</p>
@@ -7742,7 +7904,7 @@ Enter password:
 <p>In this example of expected output, we provide the first and last section of the backup log and use ellipses instead of the entire backup log.</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 2024-10-07T13:55:51.256080-00:00 0 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set
 2024-10-07T13:55:51.270222-00:00 0 [Note] [MY-011825] [Xtrabackup] Using server version 9.7.1-1
 2024-10-07T13:55:51.272839-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing LOCK TABLES FOR BACKUP
@@ -7853,7 +8015,7 @@ Enter password:
 <summary>Expected output</summary>
 <div class="no-copy highlight"><pre><span></span><code>2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
 2024-10-07T14:08:59.128951-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --copy-back=1 --target-dir=/backup_97
-xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
+xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /backup_97/
 
 ...
@@ -10190,7 +10352,7 @@ provide the progress of an operation or more information about errors.</p>
 The output should be similar to the following:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>./bin/xtrabackup version 9.7.1-rc1 based on MySQL server 9.7 Linux (x86_64) (revision id: b0f75188ca3)
+<div class="no-copy highlight"><pre><span></span><code>./bin/xtrabackup version 9.7.2-2 based on MySQL server 9.7 Linux (x86_64) (revision id: b0f75188ca3)
 </code></pre></div>
 </details>
 <ul>
@@ -13738,7 +13900,7 @@ access. You should check them in that case.</p>
 <li>Open <a href="https://www.percona.com/downloads">Software Downloads <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></li>
 <li>Select a product, for example, Percona XtraBackup and click install.</li>
 <li>In <code>Product Group</code>, select which product, for example, Percona XtraBackup 9.7</li>
-<li>In <code>Version</code>, select the version, for example, Percona-XtraBackup-9.7.1-rc1</li>
+<li>In <code>Version</code>, select the version, for example, Percona-XtraBackup-9.7.2-2</li>
 <li>In <code>Platform</code>, select the operating system, for example, RED HAT ENTERPRISE LINUX / CENTOS/ ORACLE LINUX 9</li>
 </ol>
 <h2 id="download-instructions-download-to-a-local-computer">Download to a local computer<a class="headerlink" href="#download-instructions-download-to-a-local-computer" title="Permanent link">&para;</a></h2>
@@ -13881,7 +14043,7 @@ The following NEW packages will be installed:
   rsync zstd
 0 upgraded, 8 newly installed, 0 to remove and 2 not upgraded.
 ...
-Setting up percona-xtrabackup-97 (9.7.1~rc1-1.noble) ...
+Setting up percona-xtrabackup-97 (9.7.2~2-1.noble) ...
 Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
 </code></pre></div>
 </details>
@@ -13892,7 +14054,7 @@ Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 </code></pre></div>
 </details>
 </li>
@@ -13950,16 +14112,16 @@ Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
 </table></section><section class="print-page" id="apt-download-deb" heading-number="8.3.3"><h1 id="apt-download-deb-install-using-downloaded-deb-packages">Install using downloaded DEB packages<a class="headerlink" href="#apt-download-deb-install-using-downloaded-deb-packages" title="Permanent link">&para;</a></h1>
 <p>Download <code>DEB</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads">Percona Software Downloads <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. If needed, <a href="#download-instructions">Percona Software Download instructions</a> are available. </p>
 <p>This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.</p>
-<p class="power-number">The following example downloads Percona XtraBackup 9.7.1-rc1 release package for Ubuntu 22.04. Run the following commands as root or use the sudo command.</p>
+<p class="power-number">The following example downloads Percona XtraBackup 9.7.2-2 release package for Ubuntu 22.04. Run the following commands as root or use the sudo command.</p>
 <ol>
 <li>
 <p>Use <code>wget</code> to download the <code>DEB</code> package:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.1-rc1/binary/debian/noble/x86_64/percona-xtrabackup-97_9.7.1~rc1-1.noble_amd64.deb
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.2-2/binary/debian/noble/x86_64/percona-xtrabackup-97_9.7.2~2-1.noble_amd64.deb
 </code></pre></div>
 </li>
 <li>
 <p>Install Percona XtraBackup by using <code>dpkg</code>:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>percona-xtrabackup-97_9.7.1~rc1-1.noble_amd64.deb
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>percona-xtrabackup-97_9.7.2~2-1.noble_amd64.deb
 </code></pre></div>
 </li>
 </ol>
@@ -14156,7 +14318,7 @@ Complete!
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 </code></pre></div>
 </details>
 </li>
@@ -14210,7 +14372,7 @@ Complete!
 </table></section><section class="print-page" id="yum-download-rpm" heading-number="8.4.3"><h1 id="yum-download-rpm-install-percona-xtrabackup-97-using-downloaded-rpm-packages">Install Percona XtraBackup 9.7 using downloaded RPM packages<a class="headerlink" href="#yum-download-rpm-install-percona-xtrabackup-97-using-downloaded-rpm-packages" title="Permanent link">&para;</a></h1>
 <p>Download <code>RPM</code> packages of the desired series for your architecture from the <a href="https://www.percona.com/downloads">Percona Software Downloads <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. If needed, <a href="#download-instructions">Percona Software Download instructions</a> are available. </p>
 <p>This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.</p>
-<p class="power-number">The following example downloads <em>Percona XtraBackup</em> 9.7.1-rc1 release packages for <em>RHEL</em> 9. Run the following commands as root or use the sudo command.</p>
+<p class="power-number">The following example downloads <em>Percona XtraBackup</em> 9.7.2-2 release packages for <em>RHEL</em> 9. Run the following commands as root or use the sudo command.</p>
 <ol>
 <li>
 <p>Install wget</p>
@@ -14219,12 +14381,12 @@ Complete!
 </li>
 <li>
 <p>Use <code>wget</code> to download the <code>RPM</code> package:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.1-rc1/binary/redhat/9/x86_64/percona-xtrabackup-97-9.7.1-1.rc1.el9.x86_64.rpm
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.2-2/binary/redhat/9/x86_64/percona-xtrabackup-97-9.7.2-21.el9.x86_64.rpm
 </code></pre></div>
 </li>
 <li>
 <p>Install Percona XtraBackup by running:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>./percona-xtrabackup-97-9.7.1-1.rc1.el9.x86_64.rpm
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>./percona-xtrabackup-97-9.7.2-21.el9.x86_64.rpm
 </code></pre></div>
 </li>
 </ol>
@@ -14440,7 +14602,7 @@ Written by Roland McGrath and Ulrich Drepper.
 </details>
 <p>If the <code>glibc2</code> version from your operating system is not listed, then this Percona Server for MySQL version does not support that operating system.</p>
 <h2 id="binary-tarball-names-binary-tarball-file-name-organization">Binary tarball file name organization<a class="headerlink" href="#binary-tarball-names-binary-tarball-file-name-organization" title="Permanent link">&para;</a></h2>
-<p>The following lists the platform and the associated full binary file name used by Percona Server for MySQL tar files 9.7.1-rc1.</p>
+<p>The following lists the platform and the associated full binary file name used by Percona Server for MySQL tar files 9.7.2-2.</p>
 <table>
 <thead>
 <tr>
@@ -14452,37 +14614,37 @@ Written by Roland McGrath and Ulrich Drepper.
 <tbody>
 <tr>
 <td>Ubuntu 24.04</td>
-<td>Percona-XtraBackup-9.7.1-rc1-Linux.x86_64.glibc2.39.tar.gz</td>
+<td>Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.39.tar.gz</td>
 <td>glibc2.39</td>
 </tr>
 <tr>
 <td>Ubuntu 22.04</td>
-<td>Percona-XtraBackup-9.7.1-rc1-Linux.x86_64.glibc2.35.tar.gz</td>
+<td>Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.35.tar.gz</td>
 <td>glibc2.35</td>
 </tr>
 <tr>
 <td>Ubuntu 20.04</td>
-<td>Percona-XtraBackup-9.7.1-rc1-Linux.x86_64.glibc2.31.tar.gz</td>
+<td>Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.31.tar.gz</td>
 <td>glibc2.31</td>
 </tr>
 <tr>
 <td>Debian 12</td>
-<td>Percona-XtraBackup-9.7.1-rc1-Linux.x86_64.glibc2.36.tar.gz</td>
+<td>Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.36.tar.gz</td>
 <td>glibc2.36</td>
 </tr>
 <tr>
 <td>Debian 11</td>
-<td>Percona-XtraBackup-9.7.1-rc1-Linux.x86_64.glibc2.31.tar.gz</td>
+<td>Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.31.tar.gz</td>
 <td>glibc2.31</td>
 </tr>
 <tr>
 <td>Red Hat Enterprise 9</td>
-<td>Percona-XtraBackup-9.7.1-rc1-Linux.x86_64.glibc2.34.tar.gz</td>
+<td>Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.34.tar.gz</td>
 <td>glibc2.34</td>
 </tr>
 <tr>
 <td>Red Hat Enterprise 8</td>
-<td>Percona-XtraBackup-9.7.1-rc1-Linux.x86_64.glibc2.28.tar.gz</td>
+<td>Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.28.tar.gz</td>
 <td>glibc2.28</td>
 </tr>
 </tbody>
@@ -14500,59 +14662,59 @@ Written by Roland McGrath and Ulrich Drepper.
 <tbody>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux.x86_64.glibc2.17-minimal.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux.x86_64.glibc2.17-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux.x86_64.glibc2.17.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux.x86_64.glibc2.17.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.28-minimal.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.28-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.28.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.28.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.31-minimal.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.31-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.31.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.31.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.34-minimal.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.34-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.34.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.34.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.35-minimal.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.35-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.35.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.35.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.36-minimal.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.36-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.36.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.36.tar.gz</td>
 </tr>
 <tr>
 <td>Minimal</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.39-minimal.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.39-minimal.tar.gz</td>
 </tr>
 <tr>
 <td>Full</td>
-<td>percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.39.tar.gz</td>
+<td>percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.39.tar.gz</td>
 </tr>
 </tbody>
 </table>
@@ -16820,7 +16982,7 @@ Features: AsynchDNS IDN IPv6 Largefile NTLM NTLM_WB SSL libz TLS-SRP HTTP2 HSTS 
 </tbody>
 </table>
 <p>Percona uses semantic version numbering, which follows the pattern of base version and build version. Percona assigns unique, non-negative integers in increasing order for each version release. The version number combines the base <a href="https://dev.mysql.com/doc/relnotes/mysql/9.7/en/">MySQL 9.7 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> version number and the minor build version.</p>
-<p>The version numbers for Percona XtraBackup 9.7.1-rc1 define the following information:</p>
+<p>The version numbers for Percona XtraBackup 9.7.2-2 define the following information:</p>
 <ul>
 <li>
 <p>Base version - the leftmost numbers indicate the <a href="https://dev.mysql.com/doc/relnotes/mysql/9.7/en/">MySQL 9.7 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> version used as a base. An increase in base version resets the minor build version to 0.  </p>
@@ -17436,7 +17598,9 @@ we will do our very best to be helpful.</p></section><section class="print-page"
 .print-site-enumerate-headings #section-3 > h1:before { content: '3 ' }
 .print-site-enumerate-headings #release-notes-release-notes > h1:before { content: '3.1 ' }
 
-.print-site-enumerate-headings #release-notes-9.7.1-rc1 > h1:before { content: '3.2 ' }
+.print-site-enumerate-headings #release-notes-9.7.2-2 > h1:before { content: '3.2 ' }
+
+.print-site-enumerate-headings #release-notes-9.7.1-rc1 > h1:before { content: '3.3 ' }
 
 .print-site-enumerate-headings #section-4 > h1:before { content: '4 ' }
 .print-site-enumerate-headings #quickstart-overview > h1:before { content: '4.1 ' }
