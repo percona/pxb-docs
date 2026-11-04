@@ -188,19 +188,23 @@ xtrabackup --backup --target-dir=/data/backups/inc2 \
 
 #### Phase 2: Prepare
 
-The `--prepare` step for incremental backups requires the keyring configuration. Use [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only) for all incremental backups except the last one to prevent rolling back transactions that might be committed in subsequent incremental backups.
+##### Version changes
 
-Beginning with the full backup, prepare the full backup and then apply the incremental differences. Prepare the base backup with [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only). Use the appropriate configuration file name for your keyring component (see [Configuration file name requirements](#configuration-file-name-requirements)):
+Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](xtrabackup-option-reference.md#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
+The `--prepare` step for incremental backups requires the keyring configuration. Use [`--apply-redo-only`](xtrabackup-option-reference.md#apply-redo-only) for all incremental backups except the last one. The option prevents the rollback of transactions that a later incremental backup might commit.
+
+Beginning with the full backup, prepare the full backup and then apply the incremental differences. Prepare the base backup with [`--apply-redo-only`](xtrabackup-option-reference.md#apply-redo-only). Use the appropriate configuration file name for your keyring component (see [Configuration file name requirements](#configuration-file-name-requirements)):
 
 ```shell
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
+xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base
 ```
 
 Apply the first incremental backup to the full backup using [`--prepare-incremental-from-dir`](xtrabackup-option-reference.md#prepare-incremental-from-dir):
 
 ```shell
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
---prepare-incremental-from-dir=/data/backups/inc1
+xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base \
+--incremental-dir=/data/backups/inc1
 ```
 
 !!! note
@@ -210,8 +214,8 @@ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
     An example of the backup command using the `--parallel` option:
     
     ```shell
-    xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
-    --prepare-incremental-from-dir=/data/backups/inc1 --parallel=4
+    xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base \
+    --incremental-dir=/data/backups/inc1 --parallel=4
     ```
 
 Prepare the backup using the same keyring file and type that were used when the backup was created. If the keyring has changed or you upgraded from a plugin to a component between the base and incremental backup, use the keyring from when the first incremental backup was made. If the original keyring is missing or has changed, recover or replace it before restoring. If you cannot recover the keyring, restore from a backup that matches the most recent available keyring.
@@ -234,7 +238,7 @@ xtrabackup --prepare --target-dir=/data/backups/base \
 
 !!! note
 
-    Use [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only) when merging all incremental backups except for the last one. This is why the previous command does not include the `--apply-log-only` option. If `--apply-log-only` is used on the last step, backup remains consistent but the server performs the rollback phase.
+    Use [`--apply-redo-only`](xtrabackup-option-reference.md#apply-redo-only) for every incremental backup except the last one. The previous command applies the last incremental backup, so the command does not include `--apply-redo-only`. If you use `--apply-redo-only` on the last step, the backup stays consistent, but the server runs the rollback phase.
 
 #### Phase 3: Restore
 

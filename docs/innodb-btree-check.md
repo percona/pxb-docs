@@ -4,6 +4,10 @@
 
 The [`--check-tables`](xtrabackup-option-reference.md#check-tables) option validates the structural integrity of InnoDB B-tree indexes during the [`--prepare`](xtrabackup-option-reference.md#prepare) phase. Validation during `--prepare` helps detect corrupted indexes before restore or production deployment.
 
+### Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](xtrabackup-option-reference.md#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 ## Why checksum validation is not enough
 
 Percona XtraBackup verifies InnoDB page checksums during `--backup`. These checks ensure that the backup contains checksum-valid pages at backup time.
@@ -64,7 +68,7 @@ The option also works with:
 
 * [Parallel execution](#parallel-execution) through [`--parallel`](xtrabackup-option-reference.md#parallel)
 
-* Workflows that use [`--apply-log-only`](xtrabackup-option-reference.md#apply-log-only)
+* Workflows that use [`--apply-redo-only`](xtrabackup-option-reference.md#apply-redo-only)
 
 * Transportable tablespace export with [`--export`](xtrabackup-option-reference.md#export)
 
@@ -142,7 +146,7 @@ xtrabackup --prepare --check-tables \
 
 ### Validate an incremental backup
 
-The `--check-tables` option can be used together with `--apply-log-only`. However, because validation scans all tables and indexes each time it runs, it's recommended using the option during the final prepare stage of an incremental backup.
+You can use `--check-tables` together with `--apply-redo-only`. Validation scans all tables and indexes on every run, so use `--check-tables` during the final prepare stage of an incremental backup.
 
 ```bash
 xtrabackup --prepare --check-tables \
