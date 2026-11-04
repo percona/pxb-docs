@@ -15,6 +15,10 @@ entire database. Each page’s LSN shows how recently it was changed.
 An incremental backup copies each page which LSN is newer than the
 previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.
 
+## Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 ## Create an incremental backup 
 
 To make an incremental backup, begin with a full backup as usual. The
@@ -49,7 +53,7 @@ Now that you have a full backup, you can make an incremental backup based on it.
 
 ```shell
 xtrabackup --backup --target-dir=/data/backups/inc1 \
---incremental-basedir=/data/backups/base
+--backup-incremental-base=/data/backups/base
 ```
 
 The `/data/backups/inc1/` directory should now contain delta files, such
@@ -76,7 +80,7 @@ It’s now possible to use this directory as the base for yet another incrementa
 
 ```shell
 xtrabackup --backup --target-dir=/data/backups/inc2 \
---incremental-basedir=/data/backups/inc1
+--backup-incremental-base=/data/backups/inc1
 ```
 
 This folder also contains the `xtrabackup_checkpoints`:

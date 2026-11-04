@@ -9,6 +9,10 @@ tracking feature can improve the speed of incremental backups.
 
 Run the following commands as root or use the sudo command.
 
+## Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 ## Install the component
 
 To start using the page tracking functionality, do the following:
@@ -51,7 +55,7 @@ The examples of creating full and incremental backups using the `--page-tracking
 
     ```shell
     xtrabackup --backup --target-dir=$INC_BACKUP  
-    --incremental-basedir=$FULL_BACKUP --page-tracking
+    --backup-incremental-base=$FULL_BACKUP --page-tracking
     ```
 
 After enabling the functionality, the next incremental backup finds changed
