@@ -4122,6 +4122,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-an-incremental-backup_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5769,6 +5780,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-an-incremental-backup_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5834,6 +5856,8 @@ number, or LSN. The LSN is the system version number for the
 entire database. Each page’s LSN shows how recently it was changed.</p>
 <p>An incremental backup copies each page which LSN is newer than the
 previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.</p>
+<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 9.7.2-2 renames the <code>--incremental-basedir</code> option to <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="create-an-incremental-backup_1">Create an incremental backup<a class="headerlink" href="#create-an-incremental-backup_1" title="Permanent link">&para;</a></h2>
 <p>To make an incremental backup, begin with a full backup as usual. The
 xtrabackup binary writes a file called <code>xtrabackup_checkpoints</code> into
@@ -5858,7 +5882,7 @@ redo_frames = 0
 </details>
 <p>Now that you have a full backup, you can make an incremental backup based on it. Use the following command:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/base
+--backup-incremental-base<span class="o">=</span>/data/backups/base
 </code></pre></div>
 <p>The <code>/data/backups/inc1/</code> directory should now contain delta files, such
 as <code>ibdata1.delta</code> and <code>test/table1.ibd.delta</code>. These represent the
@@ -5879,7 +5903,7 @@ redo_frames = 0
 <p><code>from_lsn</code> is the starting LSN of the backup and for incremental it has to be the same as <code>to_lsn</code> (if it is the last checkpoint) of the previous/base backup.</p>
 <p>It’s now possible to use this directory as the base for yet another incremental backup:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/backups/inc1
+--backup-incremental-base<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
 <p>This folder also contains the <code>xtrabackup_checkpoints</code>:</p>
 <details class="example">
@@ -5921,7 +5945,7 @@ redo_frames = 0
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 15, 2026 15:48:39 UTC">October 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:32:03 UTC">November 4, 2026</span>
   </span>
 
     

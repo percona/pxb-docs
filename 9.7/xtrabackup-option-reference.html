@@ -5893,6 +5893,11 @@ backup. It is essential for incremental backups.</p>
 <h3 id="backup">backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup</code></p>
 <p>Make a backup and place it in <code>--target-dir</code>. See <a href="create-full-backup.html">Create a full backup</a></p>
+<h3 id="backup-incremental-base">backup-incremental-base<a class="headerlink" href="#backup-incremental-base" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup-incremental-base=DIRECTORY</code></p>
+<p>Introduced in Percona XtraBackup 9.7.2-2.</p>
+<p>Specifies the directory with the base backup for an incremental backup. The base backup can be a full backup or an earlier incremental backup. Use the option with <code>--backup</code>.</p>
+<p>The <code>--backup-incremental-base</code> option replaces the deprecated <a href="#incremental-basedir"><code>--incremental-basedir</code></a> option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h3 id="backup-lock-timeout">backup-lock-timeout<a class="headerlink" href="#backup-lock-timeout" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup-lock-timeout</code></p>
 <p>The timeout in seconds for attempts to acquire metadata locks.</p>
@@ -6198,9 +6203,11 @@ connecting to the database server with TCP/IP. It is passed to the mysql
 child process without alteration. See mysql &ndash;help for details.</p>
 <h3 id="incremental-basedir">incremental-basedir<a class="headerlink" href="#incremental-basedir" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-basedir=DIRECTORY</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option. Use <a href="#backup-incremental-base"><code>--backup-incremental-base</code></a> instead.</p>
 <p>This is the directory that contains the full backup, which is the base dataset for the incremental backups.</p>
 <h3 id="incremental-dir">incremental-dir<a class="headerlink" href="#incremental-dir" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-dir=DIRECTORY</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option. Use <a href="#prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a> instead.</p>
 <p>This is the directory where the incremental backup is combined with the full backup to make a new full backup.</p>
 <h3 id="incremental-force-scan">incremental-force-scan<a class="headerlink" href="#incremental-force-scan" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-force-scan</code></p>
@@ -6213,7 +6220,7 @@ that instance.</p>
 recent (highest <code>innodb_to_lsn</code>), successful backup in the series and takes the <code>to_lsn`` value to use as the starting</code>lsn` for the incremental
 backup.</p>
 <p>This options is mutually exclusive with
-<a href="#incremental-history-uuid"><code>--incremental-history-uuid</code></a>, <a href="#incremental-basedir"><code>--incremental-basedir</code></a>, and
+<a href="#incremental-history-uuid"><code>--incremental-history-uuid</code></a>, <a href="#backup-incremental-base"><code>--backup-incremental-base</code></a>, and
 <a href="#incremental-lsn"><code>--incremental-lsn</code></a>.</p>
 <p>If no valid lsn can be found, either no series by that
 name or no successful backups by that name, xtrabackup returns an
@@ -6222,14 +6229,14 @@ error.</p>
 <h3 id="incremental-history-uuid">incremental-history-uuid<a class="headerlink" href="#incremental-history-uuid" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-history-uuid=name</code></p>
 <p>This option specifies the Universal Unique Identifier (UUID) of the history record in <code>PERCONA_SCHEMA.xtrabackup_history</code> used as the base for an incremental backup.</p>
-<p>This options is mutually exclusive with <a href="#incremental-history-name"><code>--incremental-history-name</code></a>, <a href="#incremental-basedir"><code>--incremental-basedir</code></a>, and
+<p>This options is mutually exclusive with <a href="#incremental-history-name"><code>--incremental-history-name</code></a>, <a href="#backup-incremental-base"><code>--backup-incremental-base</code></a>, and
 <a href="#incremental-lsn"><code>--incremental-lsn</code></a>.</p>
 <p>If there is no success record with that UUID, xtrabackup returns an error.</p>
 <p>The option is used with the <code>-–incremental</code> option.</p>
 <h3 id="incremental-lsn">incremental-lsn<a class="headerlink" href="#incremental-lsn" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-lsn=LSN</code></p>
 <p>When creating an incremental backup, you can specify the log sequence number
-(LSN), a single 64-bit integer, instead of the  <a href="#incremental-basedir"><code>--incremental-basedir</code></a>.</p>
+(LSN), a single 64-bit integer, instead of the  <a href="#backup-incremental-base"><code>--backup-incremental-base</code></a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Percona XtraBackup does not detect if an incorrect LSN value is specified; the backup is unusable. Be careful!</p>
@@ -6416,6 +6423,11 @@ main thread).</p>
 <p>Usage: <code>--prepare</code></p>
 <p>Makes xtrabackup perform a recovery on a backup created with <code>--backup</code>, so that the backup data is ready to use.</p>
 <p>For details, see <a href="prepare-full-backup.html">Prepare a full backup</a>.</p>
+<h3 id="prepare-incremental-from-dir">prepare-incremental-from-dir<a class="headerlink" href="#prepare-incremental-from-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--prepare-incremental-from-dir=DIRECTORY</code></p>
+<p>Introduced in Percona XtraBackup 9.7.2-2.</p>
+<p>Specifies the directory with the incremental backup that Percona XtraBackup applies to the full backup. Use the option with <code>--prepare</code>.</p>
+<p>The <code>--prepare-incremental-from-dir</code> option replaces the deprecated <a href="#incremental-dir"><code>--incremental-dir</code></a> option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h3 id="print-defaults">print-defaults<a class="headerlink" href="#print-defaults" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--print-defaults</code></p>
 <p>Prints the program argument list and exit and must be the first option on the command line.</p>
@@ -6631,7 +6643,7 @@ mysql –help for details.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:29:28 UTC">November 4, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:32:03 UTC">November 4, 2026</span>
   </span>
 
     

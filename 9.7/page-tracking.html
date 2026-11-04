@@ -4183,6 +4183,17 @@ tracking feature can improve the speed of incremental backups.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-the-component" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5840,6 +5851,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-the-component" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5967,6 +5989,8 @@ pages. This operation removes the need to scan the pages in the
 database. If the majority of pages have not been modified, the page
 tracking feature can improve the speed of incremental backups.</p>
 <p>Run the following commands as root or use the sudo command.</p>
+<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 9.7.2-2 renames the <code>--incremental-basedir</code> option to <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="install-the-component">Install the component<a class="headerlink" href="#install-the-component" title="Permanent link">&para;</a></h2>
 <p class="power-number">To start using the page tracking functionality, do the following:</p>
 <ol>
@@ -6003,7 +6027,7 @@ backups with the <code>--page-tracking</code> option.</p>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$INC_BACKUP</span><span class="w">  </span>
---incremental-basedir<span class="o">=</span><span class="nv">$FULL_BACKUP</span><span class="w"> </span>--page-tracking
+--backup-incremental-base<span class="o">=</span><span class="nv">$FULL_BACKUP</span><span class="w"> </span>--page-tracking
 </code></pre></div>
 </div>
 </div>
@@ -6077,7 +6101,7 @@ see <a href="https://perconadev.atlassian.net/browse/PS-8032">PS-8032 <span clas
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 16:52:58 UTC">October 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:32:03 UTC">November 4, 2026</span>
   </span>
 
     

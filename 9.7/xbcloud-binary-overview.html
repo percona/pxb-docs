@@ -2548,6 +2548,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-xbcloud-does" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5846,6 +5857,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-xbcloud-does" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5959,6 +5981,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h2 id="whats-in-this-document">What&rsquo;s in this document<a class="headerlink" href="#whats-in-this-document" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
+<p><a href="#version-changes">Version changes</a> - Option changes in recent releases</p>
+</li>
+<li>
 <p><a href="#what-xbcloud-does">What xbcloud does</a> - Core operations and capabilities</p>
 </li>
 <li>
@@ -5977,6 +6002,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p><a href="#advanced-usage-patterns">Advanced usage patterns</a> - Incremental backups and partial restore</p>
 </li>
 </ul>
+<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 9.7.2-2 renames the <code>--incremental-basedir</code> option to <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a> and the <code>--incremental-dir</code> option to <a href="xtrabackup-option-reference.html#prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a>. Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="what-xbcloud-does">What xbcloud does<a class="headerlink" href="#what-xbcloud-does" title="Permanent link">&para;</a></h2>
 <p>xbcloud provides three essential operations:</p>
 <ul>
@@ -6028,7 +6055,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 3. Uploads the backup to the S3 bucket with a timestamped name</p>
 <h3 id="creating-an-incremental-backup">Creating an incremental backup<a class="headerlink" href="#creating-an-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>inc_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M<span class="k">)</span>
 </code></pre></div>
@@ -6234,7 +6261,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 full_backup_20240101
 </code></pre></div>
 <h4 id="step-2-create-incremental-backups">Step 2: Create incremental backups<a class="headerlink" href="#step-2-create-incremental-backups" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/tmp/base<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/base<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 inc_backup_20240101_1200
@@ -6252,7 +6279,7 @@ xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="
 inc_backup_20240101_1200<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/inc1
 
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/tmp/inc1
+--prepare-incremental-from-dir<span class="o">=</span>/tmp/inc1
 
 <span class="c1"># Final prepare step</span>
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
@@ -6262,7 +6289,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 <p>Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the <code>--parallel</code> option to process delta files concurrently. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span><span class="se">\</span>
---incremental-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+--prepare-incremental-from-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 </code></pre></div>
@@ -6332,7 +6359,7 @@ xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 20, 2026 16:23:31 UTC">January 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:32:03 UTC">November 4, 2026</span>
   </span>
 
     
