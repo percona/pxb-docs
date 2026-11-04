@@ -195,6 +195,14 @@ Usage: `--core-file`
 
 Write core on fatal signals.
 
+### create-ib-logfile
+
+Usage: `--create-ib-logfile`
+
+Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.
+
+The `--create-ib-logfile` option has no effect.
+
 ### databases
 
 Usage: `--databases=#`
@@ -958,6 +966,14 @@ Usage: `--read-buffer-size`
 Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size.
 
 To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-buffer-size) and [`--encrypt-chunk-size`](#encrypt-chunk-size).
+
+### rebuild-threads
+
+Usage: `--rebuild-threads=#`
+
+Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.
+
+The `--rebuild-threads` option has no effect. The option worked only with `--rebuild-indexes`, which Percona XtraBackup no longer supports.
 
 ### register-redo-log-consumer
 
