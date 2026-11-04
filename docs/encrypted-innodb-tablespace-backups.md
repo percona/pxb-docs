@@ -8,6 +8,10 @@ Percona XtraBackup supports two distinct types of encryption:
 
 These encryption types are independent. You can use them separately or together for enhanced security.
 
+## Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base) and the `--incremental-dir` option to [`--prepare-incremental-from-dir`](xtrabackup-option-reference.md#prepare-incremental-from-dir). Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.
+
 ## InnoDB tablespace encryption
 
 InnoDB supports [data encryption for InnoDB tables :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-data-encryption.html) in file-per-table tablespaces. When accessing an encrypted tablespace, InnoDB uses the master encryption key to decrypt the tablespace key. InnoDB stores the master encryption key in a keyring.
@@ -170,16 +174,16 @@ Make an incremental backup based on the full backup:
 
 ```shell
 xtrabackup --backup --target-dir=/data/backups/inc1 \
---incremental-basedir=/data/backups/base
+--backup-incremental-base=/data/backups/base
 ```
 
-The [`--incremental-basedir`](xtrabackup-option-reference.md#incremental-basedir) option specifies the base backup directory.
+The [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base) option specifies the base backup directory.
 
 Use this directory as the base for yet another incremental backup:
 
 ```shell
 xtrabackup --backup --target-dir=/data/backups/inc2 \
---incremental-basedir=/data/backups/inc1
+--backup-incremental-base=/data/backups/inc1
 ```
 
 #### Phase 2: Prepare
@@ -196,7 +200,7 @@ Beginning with the full backup, prepare the full backup and then apply the incre
 xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base
 ```
 
-Apply the first incremental backup to the full backup using [`--incremental-dir`](xtrabackup-option-reference.md#incremental-dir):
+Apply the first incremental backup to the full backup using [`--prepare-incremental-from-dir`](xtrabackup-option-reference.md#prepare-incremental-from-dir):
 
 ```shell
 xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base \
@@ -222,14 +226,14 @@ time to the point of the second incremental backup:
 
 ```shell
 xtrabackup --prepare --target-dir=/data/backups/base \
---incremental-dir=/data/backups/inc2
+--prepare-incremental-from-dir=/data/backups/inc2
 ```
 
 You can also use the `--parallel` option here to speed up the process:
 
 ```shell
 xtrabackup --prepare --target-dir=/data/backups/base \
---incremental-dir=/data/backups/inc2 --parallel=4
+--prepare-incremental-from-dir=/data/backups/inc2 --parallel=4
 ```
 
 !!! note

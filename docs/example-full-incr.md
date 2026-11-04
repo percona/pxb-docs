@@ -2,6 +2,10 @@
 
 This example demonstrates how to set up daily full backups and hourly incremental backups using Percona XtraBackup {{vers}} with a MySQL {{vers}}-compatible database server.
 
+## Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 ## Assumptions
 
 * Percona XtraBackup {{vers}} is installed on your system.
@@ -67,7 +71,7 @@ You can schedule this script to run automatically using cron. For example, to ru
 
 ## Hourly incremental backup script
 
-This script uses the same server details as the daily script. It retrieves the current date and hour for the incremental backup filename. The core command uses `xtrabackup` with the `--backup` and `--incremental` options for an incremental backup. `--target-dir` specifies the directory to store the incremental backup. `--incremental-basedir` must point to the base directory of a completed full or incremental backup. This example uses the **most recent** full backup as the base: `ls -t` lists full backups by modification time (newest first), and `head -n 1` selects that newest directory. The script checks that the base directory exists before running and reports success or failure based on the exit code.
+The hourly script uses the same server details as the daily script. The script uses the current date and hour to name the incremental backup directory. The core command runs `xtrabackup` with the `--backup` and `--incremental` options. `--target-dir` specifies the directory for the incremental backup. `--backup-incremental-base` must point to the directory of a completed full or incremental backup. The script uses the **most recent** full backup as the base: `ls -t` lists full backups by modification time (newest first), and `head -n 1` selects the newest directory. Before the backup, the script checks that the base directory exists. After the backup, the script reports success or failure based on the exit code.
 
 ```bash
 #!/bin/bash
@@ -98,7 +102,7 @@ mkdir -p "${INCR_BACKUP_FILENAME}"
 if xtrabackup --backup \
   --incremental \
   --target-dir="${INCR_BACKUP_FILENAME}" \
-  --incremental-basedir="${BASE_DIR}" \
+  --backup-incremental-base="${BASE_DIR}" \
   --user="${SERVER_USER}" \
   --password="${SERVER_PASSWORD}"; then
   echo "Hourly incremental backup completed at $(date)"

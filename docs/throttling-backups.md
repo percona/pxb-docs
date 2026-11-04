@@ -4,6 +4,10 @@ xtrabackup does not block database activity during a backup, but xtrabackup gene
 
 Use the [`--throttle`](xtrabackup-option-reference.md#throttle) option to limit the backup rate.
 
+## Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 ## How throttling works
 
 Use the `--throttle` option to minimize backup impact on system performance. By limiting the number of **10 MB chunks** processed per second, you primarily limit data throughput, which in turn reduces overall I/O pressure on the system.
@@ -248,7 +252,7 @@ For incremental backups, the limit applies only to read operations. Redo log cop
 xtrabackup \
   --backup \
   --target-dir=/backups/inc1 \
-  --incremental-basedir=/backups/full \
+  --backup-incremental-base=/backups/full \
   --throttle=5
 ```
 
