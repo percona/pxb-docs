@@ -9729,22 +9729,13 @@ compression. The default value for this option is 1.</p>
 </code></pre></div>
 <p>Before applying logs, compressed files will need to be uncompressed.</p>
 <h2 id="accelerate-backup-process-the-rsync-option">The <code>--rsync</code> option<a class="headerlink" href="#accelerate-backup-process-the-rsync-option" title="Permanent link">&para;</a></h2>
-<p>In order to speed up the backup process and to minimize the time <code>FLUSH TABLES
-WITH READ LOCK</code> is blocking the writes, the option <code>--rsync</code> should be
-used. When this option is specified, xtrabackup uses <code>rsync</code> to copy all
-non-InnoDB files instead of spawning a separate <code>cp</code> for each file, which can
-be much faster for servers with a large number of databases or
-tables. xtrabackup will call the <code>rsync</code> twice, once before the <code>FLUSH
-TABLES WITH READ LOCK</code> and once during to minimize the time the read lock is
-being held. During the second <code>rsync</code> call, it will only synchronize the
-changes to non-transactional data (if any) since the first call performed before
-the <code>FLUSH TABLES WITH READ LOCK</code>. Note that Percona XtraBackup will use
-<a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> where available as a lightweight alternative to <code>FLUSH TABLES WITH READ
-LOCK</code>.</p>
-<p>Percona XtraBackup uses these locks automatically to copy non-InnoDB data to avoid blocking Data manipulation language (DML) queries that modify InnoDB tables. Find more information in <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
+<h3 id="accelerate-backup-process-version-changes">Version changes<a class="headerlink" href="#accelerate-backup-process-version-changes" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 9.7.2-2 deprecates the <a href="#xtrabackup-option-reference-rsync"><code>--rsync</code></a> option. A future release will remove the option. Use <a href="#xtrabackup-option-reference-lock-ddl"><code>--lock-ddl=REDUCED</code></a> instead.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This option cannot be used together with the <code>--stream</code> option.</p>
+<p>You cannot use <code>--rsync</code> with the <code>--stream</code> option. If you pass both options, Percona XtraBackup reports the following error and does not start the backup:</p>
+<div class="no-copy highlight"><pre><span></span><code>--rsync doesn't work with --stream
+</code></pre></div>
 </div></section></section></section>
                     <section class='print-page md-section' id='section-6-2' heading-number='6.2'>
                         <h1>Prepare features<a class='headerlink' href='#section-6-2' title='Permanent link'></a>
@@ -11746,6 +11737,7 @@ error.</p>
 </div>
 <h3 id="xtrabackup-option-reference-innodb">innodb<a class="headerlink" href="#xtrabackup-option-reference-innodb" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--innodb=name</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.</p>
 <p>This option is ignored for MySQL option compatibility.</p>
 <h3 id="xtrabackup-option-reference-innodb-miscellaneous">innodb-miscellaneous<a class="headerlink" href="#xtrabackup-option-reference-innodb-miscellaneous" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--innodb-miscellaneous</code>
@@ -11827,6 +11819,7 @@ global lock. The default value is “select”.</p>
 within a given time, abort the backup.</p>
 <h3 id="xtrabackup-option-reference-log">log<a class="headerlink" href="#xtrabackup-option-reference-log" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--log</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.</p>
 <p>This option is ignored for MySQL</p>
 <h3 id="xtrabackup-option-reference-log-bin">log-bin<a class="headerlink" href="#xtrabackup-option-reference-log-bin" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--log-bin</code></p>
@@ -11872,6 +11865,7 @@ the lock from succeeding. Try the <code>--safe-slave-backup</code> option to sto
 <p>See <a href="#server-backup-version-comparison">Server Version and Backup Version Comparison</a> for more information.</p>
 <h3 id="xtrabackup-option-reference-no-version-check">no-version-check<a class="headerlink" href="#xtrabackup-option-reference-no-version-check" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--no-version-check</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.</p>
 <p>This option disables the version check. </p>
 <p>If you do not pass this option, xtrabackup implicitly enables the
 automatic version check in the <code>--backup</code> mode. </p>
@@ -11957,6 +11951,7 @@ main thread).</p>
 <p>Force rollback prepared InnoDB transactions.</p>
 <h3 id="xtrabackup-option-reference-rsync">rsync<a class="headerlink" href="#xtrabackup-option-reference-rsync" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--rsync</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option. Use <a href="#xtrabackup-option-reference-lock-ddl"><code>--lock-ddl=REDUCED</code></a> instead.</p>
 <p>Uses the rsync utility to optimize local file transfers. The xtrabackup binary uses rsync to copy all non-InnoDB files instead of spawning a separate cp for each file, which can be much faster for servers with many databases or tables.</p>
 <p>You cannot use this option with <a href="#xtrabackup-option-reference-stream"><code>--stream</code></a>.</p>
 <h3 id="xtrabackup-option-reference-safe-slave-backup">safe-slave-backup<a class="headerlink" href="#xtrabackup-option-reference-safe-slave-backup" title="Permanent link">&para;</a></h3>

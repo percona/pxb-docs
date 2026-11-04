@@ -6236,6 +6236,7 @@ error.</p>
 </div>
 <h3 id="innodb">innodb<a class="headerlink" href="#innodb" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--innodb=name</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.</p>
 <p>This option is ignored for MySQL option compatibility.</p>
 <h3 id="innodb-miscellaneous">innodb-miscellaneous<a class="headerlink" href="#innodb-miscellaneous" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--innodb-miscellaneous</code>
@@ -6317,6 +6318,7 @@ global lock. The default value is “select”.</p>
 within a given time, abort the backup.</p>
 <h3 id="log">log<a class="headerlink" href="#log" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--log</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.</p>
 <p>This option is ignored for MySQL</p>
 <h3 id="log-bin">log-bin<a class="headerlink" href="#log-bin" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--log-bin</code></p>
@@ -6362,6 +6364,7 @@ the lock from succeeding. Try the <code>--safe-slave-backup</code> option to sto
 <p>See <a href="server-backup-version-comparison.html">Server Version and Backup Version Comparison</a> for more information.</p>
 <h3 id="no-version-check">no-version-check<a class="headerlink" href="#no-version-check" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--no-version-check</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.</p>
 <p>This option disables the version check. </p>
 <p>If you do not pass this option, xtrabackup implicitly enables the
 automatic version check in the <code>--backup</code> mode. </p>
@@ -6447,6 +6450,7 @@ main thread).</p>
 <p>Force rollback prepared InnoDB transactions.</p>
 <h3 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--rsync</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option. Use <a href="#lock-ddl"><code>--lock-ddl=REDUCED</code></a> instead.</p>
 <p>Uses the rsync utility to optimize local file transfers. The xtrabackup binary uses rsync to copy all non-InnoDB files instead of spawning a separate cp for each file, which can be much faster for servers with many databases or tables.</p>
 <p>You cannot use this option with <a href="#stream"><code>--stream</code></a>.</p>
 <h3 id="safe-slave-backup">safe-slave-backup<a class="headerlink" href="#safe-slave-backup" title="Permanent link">&para;</a></h3>
@@ -6627,7 +6631,7 @@ mysql –help for details.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:21:49 UTC">November 4, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:29:28 UTC">November 4, 2026</span>
   </span>
 
     

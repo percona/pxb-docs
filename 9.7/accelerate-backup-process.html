@@ -5858,22 +5858,13 @@ compression. The default value for this option is 1.</p>
 </code></pre></div>
 <p>Before applying logs, compressed files will need to be uncompressed.</p>
 <h2 id="the-rsync-option">The <code>--rsync</code> option<a class="headerlink" href="#the-rsync-option" title="Permanent link">&para;</a></h2>
-<p>In order to speed up the backup process and to minimize the time <code>FLUSH TABLES
-WITH READ LOCK</code> is blocking the writes, the option <code>--rsync</code> should be
-used. When this option is specified, xtrabackup uses <code>rsync</code> to copy all
-non-InnoDB files instead of spawning a separate <code>cp</code> for each file, which can
-be much faster for servers with a large number of databases or
-tables. xtrabackup will call the <code>rsync</code> twice, once before the <code>FLUSH
-TABLES WITH READ LOCK</code> and once during to minimize the time the read lock is
-being held. During the second <code>rsync</code> call, it will only synchronize the
-changes to non-transactional data (if any) since the first call performed before
-the <code>FLUSH TABLES WITH READ LOCK</code>. Note that Percona XtraBackup will use
-<a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> where available as a lightweight alternative to <code>FLUSH TABLES WITH READ
-LOCK</code>.</p>
-<p>Percona XtraBackup uses these locks automatically to copy non-InnoDB data to avoid blocking Data manipulation language (DML) queries that modify InnoDB tables. Find more information in <a href="https://docs.percona.com/percona-server/8.4/backup-locks.html">Backup locks <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
+<h3 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 9.7.2-2 deprecates the <a href="xtrabackup-option-reference.html#rsync"><code>--rsync</code></a> option. A future release will remove the option. Use <a href="xtrabackup-option-reference.html#lock-ddl"><code>--lock-ddl=REDUCED</code></a> instead.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This option cannot be used together with the <code>--stream</code> option.</p>
+<p>You cannot use <code>--rsync</code> with the <code>--stream</code> option. If you pass both options, Percona XtraBackup reports the following error and does not start the backup:</p>
+<div class="no-copy highlight"><pre><span></span><code>--rsync doesn't work with --stream
+</code></pre></div>
 </div>
 
 
@@ -5897,7 +5888,7 @@ LOCK</code>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 16:52:58 UTC">October 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:29:28 UTC">November 4, 2026</span>
   </span>
 
     
