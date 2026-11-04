@@ -663,6 +663,8 @@ When creating an incremental backup, you can specify the log sequence number
 
 Usage: `--innodb=name`
 
+Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.
+
 This option is ignored for MySQL option compatibility.
 
 ### innodb-miscellaneous
@@ -747,6 +749,8 @@ within a given time, abort the backup.
 
 Usage: `--log`
 
+Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.
+
 This option is ignored for MySQL
 
 ### log-bin
@@ -827,6 +831,8 @@ See [Server Version and Backup Version Comparison](server-backup-version-compari
 ### no-version-check
 
 Usage: `--no-version-check`
+
+Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.
 
 This option disables the version check. 
 
@@ -968,6 +974,8 @@ Force rollback prepared InnoDB transactions.
 ### rsync
 
 Usage: `--rsync`
+
+Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option. Use [`--lock-ddl=REDUCED`](#lock-ddl) instead.
 
 Uses the rsync utility to optimize local file transfers. The xtrabackup binary uses rsync to copy all non-InnoDB files instead of spawning a separate cp for each file, which can be much faster for servers with many databases or tables.
 
