@@ -7626,7 +7626,7 @@ Percona XtraDB Cluster.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>--create-ib-logfile</code></td>
+<td><a href="#xtrabackup-option-reference-create-ib-logfile"><code>--create-ib-logfile</code></a></td>
 <td>No replacement. The option has no effect.</td>
 </tr>
 <tr>
@@ -7642,7 +7642,7 @@ Percona XtraDB Cluster.</p>
 <td>No replacement. The option has no effect.</td>
 </tr>
 <tr>
-<td><code>--rebuild-threads</code></td>
+<td><a href="#xtrabackup-option-reference-rebuild-threads"><code>--rebuild-threads</code></a></td>
 <td>No replacement. The option has no effect.</td>
 </tr>
 <tr>
@@ -11643,6 +11643,10 @@ unless the <a href="#xtrabackup-option-reference-force-non-empty-directories"><c
 <h3 id="xtrabackup-option-reference-core-file">core-file<a class="headerlink" href="#xtrabackup-option-reference-core-file" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--core-file</code></p>
 <p>Write core on fatal signals.</p>
+<h3 id="xtrabackup-option-reference-create-ib-logfile">create-ib-logfile<a class="headerlink" href="#xtrabackup-option-reference-create-ib-logfile" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--create-ib-logfile</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.</p>
+<p>The <code>--create-ib-logfile</code> option has no effect.</p>
 <h3 id="xtrabackup-option-reference-databases">databases<a class="headerlink" href="#xtrabackup-option-reference-databases" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--databases=#</code></p>
 <p>This option specifies a list of databases and tables that should be backed
@@ -12121,6 +12125,10 @@ main thread).</p>
 <p>Usage: <code>--read-buffer-size</code></p>
 <p>Set the read buffer size. The given value is scaled up to page size. The default size is 10MB. Use this option to increase the xbcloud/xbstream chunk size from the default size.</p>
 <p>To adjust the chunk size for encrypted files, use <a href="#xtrabackup-option-reference-read-buffer-size"><code>--read-buffer-size</code></a> and <a href="#xtrabackup-option-reference-encrypt-chunk-size"><code>--encrypt-chunk-size</code></a>.</p>
+<h3 id="xtrabackup-option-reference-rebuild-threads">rebuild-threads<a class="headerlink" href="#xtrabackup-option-reference-rebuild-threads" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--rebuild-threads=#</code></p>
+<p>Deprecated in Percona XtraBackup 9.7.2-2. A future release will remove the option.</p>
+<p>The <code>--rebuild-threads</code> option has no effect. The option worked only with <code>--rebuild-indexes</code>, which Percona XtraBackup no longer supports.</p>
 <h3 id="xtrabackup-option-reference-register-redo-log-consumer">register-redo-log-consumer<a class="headerlink" href="#xtrabackup-option-reference-register-redo-log-consumer" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--register-redo-log-consumer</code></p>
 <p>This option is disabled by default.</p>
