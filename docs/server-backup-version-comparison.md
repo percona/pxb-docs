@@ -5,6 +5,8 @@ record, can cause older versions of Percona XtraBackup to fail. To
 ensure that you can back up and restore your data, use a Percona
 XtraBackup version that is equal to your source server major version. This means if you use Percona XtraBackup {{vers}}.x, you can safely back up the source server from {{vers}}.x to {{vers}}.xx.
 
+Some server features require a minimum Percona XtraBackup patch version. See [Minimum Percona XtraBackup version for server features](#minimum-percona-xtrabackup-version-for-server-features).
+
 !!! admonition "See also"
    
     [How XtraBackup works](how-xtrabackup-works.md)
@@ -42,3 +44,31 @@ When you override the parameter, the following events can happen:
 * Creates a corrupted backup
 
 * Backup successful
+
+## Minimum Percona XtraBackup version for server features
+
+Some server features write new redo log record types. A Percona XtraBackup version that does not know the record type cannot back up a database that uses the feature.
+
+| Server version | Feature | Minimum Percona XtraBackup version |
+| -------------- | ------- | ---------------------------------- |
+| Percona Server for MySQL 9.7.4-4 | Vector Search data type | 9.7.2-3 |
+
+### Vector Search data type
+
+Starting with Percona XtraBackup 9.7.2-3, Percona XtraBackup handles the Vector Search data type. Percona XtraBackup 9.7.2-3 or later is required to back up Percona Server for MySQL 9.7.4-4 databases that use Vector Search. [Insert whether Percona XtraBackup 9.7.2-3 backs up and prepares Vector Search data fully, or only fails safely]
+
+Earlier Percona XtraBackup 9.7 versions cannot back up Vector Search data:
+
+* If the database does not use Vector Search, the backup succeeds.
+
+* If Percona XtraBackup reads the new record type in the redo log, the backup fails with exit code 1 and the following error message:
+
+    ```text
+    [Insert exact error message and the redo log record type that triggers the error]
+    ```
+
+    [Insert whether the backup fails on the first Vector Search redo log record or at the end of the backup]
+
+* If a user creates a table with a Vector Search column while an earlier version runs a backup, [Insert the result].
+
+To fix the failed backup, upgrade Percona XtraBackup to 9.7.2-3 or later and take the backup again.

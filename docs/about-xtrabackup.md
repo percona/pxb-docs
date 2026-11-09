@@ -30,6 +30,8 @@ Percona’s enterprise-grade commercial [MySQL Support :octicons-link-external-1
 
 Percona XtraBackup can back up data from InnoDB, XtraDB, MyISAM, and MyRocks tables on MySQL {{vers}} servers as well as Percona Server for MySQL {{vers}}.
 
+To back up Percona Server for MySQL 9.7.4-4 databases that use Vector Search, use Percona XtraBackup 9.7.2-3 or later. For details, see [Minimum Percona XtraBackup version for server features](server-backup-version-comparison.md#minimum-percona-xtrabackup-version-for-server-features).
+
 Percona XtraBackup supports the MyRocks storage engine. Percona XtraBackup copies all MyRocks files on every backup. Incremental backups for MyRocks are not truly incremental: each one copies all MyRocks files, whether or not those files were already in a full or earlier incremental backup.
 
 ## Where to go next

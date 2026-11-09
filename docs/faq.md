@@ -60,3 +60,12 @@ Percona XtraBackup will not be able to take a consistent backup. Retry the backu
 
     * To block all DDL operations, use the `--lock-ddl` option that issues `LOCK TABLES FOR BACKUP`.
 
+## Backup fails on a Percona Server for MySQL 9.7.4-4 database that uses Vector Search
+
+Percona XtraBackup versions earlier than 9.7.2-3 cannot back up Vector Search data. If Percona XtraBackup reads the new Vector Search record type in the redo log, the backup fails with exit code 1. In this case, the following error is printed:
+
+```{.text .no-copy}
+[Insert exact error message]
+```
+
+To fix the error, upgrade Percona XtraBackup to 9.7.2-3 or later and take the backup again. For details, see [Minimum Percona XtraBackup version for server features](server-backup-version-comparison.md#minimum-percona-xtrabackup-version-for-server-features).
