@@ -62,10 +62,10 @@ Percona XtraBackup will not be able to take a consistent backup. Retry the backu
 
 ## Backup fails on a Percona Server for MySQL 9.7.4-4 database that uses Vector Search
 
-Percona XtraBackup versions earlier than 9.7.2-3 cannot back up Vector Search data. If Percona XtraBackup reads the new Vector Search record type in the redo log, the backup fails with exit code 1. In this case, the following error is printed:
+Percona XtraBackup versions earlier than 9.7.2-3 cannot create a backup of Vector Search data. If Percona XtraBackup reads the Vector Search record type in the redo log, the backup fails with exit code `1`. In this case, Percona XtraBackup prints the following error message:
 
 ```{.text .no-copy}
 [Insert exact error message]
 ```
 
-To fix the error, upgrade Percona XtraBackup to 9.7.2-3 or later and take the backup again. For details, see [Minimum Percona XtraBackup version for server features](server-backup-version-comparison.md#minimum-percona-xtrabackup-version-for-server-features).
+To fix the error, upgrade Percona XtraBackup to 9.7.2-3 or higher and take the backup again. For details, see [Minimum Percona XtraBackup version for server features](server-backup-version-comparison.md#minimum-percona-xtrabackup-version-for-server-features).
