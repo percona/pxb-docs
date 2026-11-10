@@ -13,4 +13,4 @@ XtraBackup version that is equal to your source server major version. This means
 
 The `--no-server-version-check` option has no effect in Percona XtraBackup {{vers}}. XtraBackup accepts the option. The backup result is the same with or without the option.
 
-The option does not allow a backup of a source server with a version that XtraBackup {{vers}} does not support. To back up the source server, use a Percona XtraBackup version that matches the source server major version.
+To back up the source server, use a Percona XtraBackup version that matches the source server major version.
