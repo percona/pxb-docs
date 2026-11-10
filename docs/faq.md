@@ -62,10 +62,41 @@ Percona XtraBackup will not be able to take a consistent backup. Retry the backu
 
 ## Backup fails on a Percona Server for MySQL 9.7.4-4 database that uses Vector Search
 
-Percona XtraBackup versions earlier than 9.7.2-3 cannot create a backup of Vector Search data. If Percona XtraBackup reads the Vector Search record type in the redo log, the backup fails with exit code `1`. In this case, Percona XtraBackup prints the following error message:
+Percona XtraBackup versions earlier than 9.7.2-3 cannot create a backup of Vector Search data. If Percona XtraBackup reads the Vector Search record type in the redo log, the backup fails with exit code `2`. In this case, Percona XtraBackup prints the following error message:
 
 ```{.text .no-copy}
-[Insert exact error message]
+[ERROR] [MY-012519] [InnoDB] ############### CORRUPT LOG RECORD FOUND ###############
+[Note] [MY-012520] [InnoDB] Log record type 62, page 4294967295:4294967295. Log parsing proceeded successfully up to 19604413.
+[ERROR] [MY-014008] [InnoDB] [FATAL] Index log version 251 did not match. Max index version is 1. Recovery can't continue.
 ```
 
 To fix the error, upgrade Percona XtraBackup to 9.7.2-3 or higher and take the backup again. For details, see [Minimum Percona XtraBackup version for server features](server-backup-version-comparison.md#minimum-percona-xtrabackup-version-for-server-features).
+
+## Prepare fails on a Percona Server for MySQL 9.7.4-4 database that uses Vector Search
+
+Percona XtraBackup versions earlier than 9.7.2-3 can create a backup of a table with a vector index. The `--prepare` step can then fail with exit code `2` in two cases:
+
+* A transaction that changed the table was still open when the backup ended.
+
+* You run `--prepare --export`.
+
+In this case, Percona XtraBackup prints the following output:
+
+```{.text .no-copy}
+[Note] [MY-011825] [Xtrabackup] Time taken to build dictionary: ...
+mysqld got signal 11 ;
+ #1 ... dict_table_read_dynamic_metadata(...)
+ #2 ... dict_table_load_dynamic_metadata(dict_table_t*)
+```
+
+To fix the error, upgrade Percona XtraBackup to 9.7.2-3 or higher and take the backup again. For details, see [Minimum Percona XtraBackup version for server features](server-backup-version-comparison.md#minimum-percona-xtrabackup-version-for-server-features).
+
+## Import of an exported tablespace fails with a schema mismatch
+
+Percona XtraBackup versions earlier than 9.7.2-3 write a wrong column type to the `.cfg` file for a `VECTOR` column. The `ALTER TABLE ... IMPORT TABLESPACE` statement then prints the following error:
+
+```{.text .no-copy}
+ERROR 1808 (HY000): Schema mismatch (Column v main type mismatch.)
+```
+
+To fix the error, upgrade Percona XtraBackup to 9.7.2-3 or higher. Then run `--prepare --export` again. For details, see [Minimum Percona XtraBackup version for server features](server-backup-version-comparison.md#minimum-percona-xtrabackup-version-for-server-features).
