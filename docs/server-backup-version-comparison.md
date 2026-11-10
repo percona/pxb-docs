@@ -9,36 +9,8 @@ XtraBackup version that is equal to your source server major version. This means
    
     [How XtraBackup works](how-xtrabackup-works.md)
 
-The `--no-server-version-check` option performs the following test.
-Before the backup/prepare starts, XtraBackup compares the source server version to
-the Percona XtraBackup version. If the source server version is greater
-than the XtraBackup major version, XtraBackup stops the backup and returns an
-error message. This comparison prevents a failed backup or a corrupted
-backup due to source server changes.
+## The `--no-server-version-check` option
 
-The parameter checks for the following scenarios:
+The `--no-server-version-check` option has no effect in Percona XtraBackup {{vers}}. XtraBackup accepts the option. The backup result is the same with or without the option.
 
-* The source server and the PXB major version are the same, the backup proceeds
-
-* The source server is greater than the PXB major version, and the parameter is not overridden, the backup is stopped and returns an error message
-
-* The source server is less than the PXB major version, and the parameter is not overridden, the backup is stopped, and returns an error message
-
-* The source server is greater than the PXB major version up to the last release in the LTS series, and the parameter is overridden, the backup proceeds
-
-Explicitly adding the `--no-server-version-check` parameter, like the
-example, overrides the parameter and the backup proceeds.
-
-```shell
-xtrabackup --backup --no-server-version-check --target-dir=$mysql/backup1
-```
-
-Overriding the `--no-server-version-check` parameter allows taking backups using a Percona XtraBackup version that is equal to a version of your source server up to the last release in the LTS series. This means if you use Percona XtraBackup {{vers}}.x, you can back up the source server from {{vers}}.x to 9.7.xx.
-
-When you override the parameter, the following events can happen:
-
-* Backup fails
-
-* Creates a corrupted backup
-
-* Backup successful
+To back up the source server, use a Percona XtraBackup version that matches the source server major version.
