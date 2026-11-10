@@ -855,13 +855,9 @@ the lock from succeeding. Try the `--safe-slave-backup` option to stop the repli
 
 Usage: `--no-server-version-check`
 
-The `--no-server-version-check` option disables the server version check.
+The `--no-server-version-check` option has no effect in Percona XtraBackup {{vers}}. XtraBackup accepts the option. The backup result is the same with or without the option.
 
-The default behavior runs a check that compares the source system version to the Percona XtraBackup version. If the source system version is higher than the XtraBackup version, the backup is aborted with a message.
-
-Adding the option overrides this check, and the backup proceeds, but there may be issues with the backup.
-
-See [Server Version and Backup Version Comparison](server-backup-version-comparison.md) for more information.
+For more information, see [Server version and backup version comparison](server-backup-version-comparison.md).
 
 ### no-version-check
 
