@@ -74,6 +74,16 @@ Usage: `--backup`
 
 Make a backup and place it in `--target-dir`. See [Create a full backup](create-full-backup.md)
 
+### backup-incremental-base
+
+Usage: `--backup-incremental-base=DIRECTORY`
+
+Introduced in Percona XtraBackup 8.4.0-8.
+
+Specifies the directory with the base backup for an incremental backup. The base backup can be a full backup or an earlier incremental backup. Use the option with `--backup`.
+
+The `--backup-incremental-base` option replaces the deprecated [`--incremental-basedir`](#incremental-basedir) option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 ### backup-lock-timeout
 
 Usage: `--backup-lock-timeout`
@@ -505,11 +515,15 @@ child process without alteration. See mysql --help for details.
 
 Usage: `--incremental-basedir=DIRECTORY`
 
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option. Use [`--backup-incremental-base`](#backup-incremental-base) instead.
+
 This is the directory that contains the full backup, which is the base dataset for the incremental backups.
 
 ### incremental-dir
 
 Usage: `--incremental-dir=DIRECTORY`
+
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option. Use [`--prepare-incremental-from-dir`](#prepare-incremental-from-dir) instead.
 
 This is the directory where the incremental backup is combined with the full backup to make a new full backup.
 
@@ -530,7 +544,7 @@ recent (highest `innodb_to_lsn`), successful backup in the series and takes the 
 backup.
 
 This options is mutually exclusive with
-[`--incremental-history-uuid`](#incremental-history-uuid), [`--incremental-basedir`](#incremental-basedir), and
+[`--incremental-history-uuid`](#incremental-history-uuid), [`--backup-incremental-base`](#backup-incremental-base), and
 [`--incremental-lsn`](#incremental-lsn).
 
 If no valid lsn can be found, either no series by that
@@ -545,7 +559,7 @@ Usage: `--incremental-history-uuid=name`
 
 This option specifies the Universal Unique Identifier (UUID) of the history record in `PERCONA_SCHEMA.xtrabackup_history` used as the base for an incremental backup.
 
-This options is mutually exclusive with [`--incremental-history-name`](#incremental-history-name), [`--incremental-basedir`](#incremental-basedir), and
+This options is mutually exclusive with [`--incremental-history-name`](#incremental-history-name), [`--backup-incremental-base`](#backup-incremental-base), and
 [`--incremental-lsn`](#incremental-lsn).
 
 If there is no success record with that UUID, xtrabackup returns an error.
@@ -557,7 +571,7 @@ The option is used with the `-–incremental` option.
 Usage: `--incremental-lsn=LSN`
 
 When creating an incremental backup, you can specify the log sequence number
-(LSN), a single 64-bit integer, instead of the  [`--incremental-basedir`](#incremental-basedir).
+(LSN), a single 64-bit integer, instead of the  [`--backup-incremental-base`](#backup-incremental-base).
 
 !!! important
 
@@ -771,30 +785,11 @@ The maximum number of file descriptors to reserve with [setrlimit :octicons-link
 
 ### page-tracking-merge-gap
 
-Controls how Percona XtraBackup combines reads of changed pages during incremental backups with page tracking.
+Usage: `--page-tracking-merge-gap=auto|N`
 
-The default value, auto, measures storage performance at the start of the backup and determines the appropriate gap for each tablespace based on the storage characteristics and page size.
+Introduced in Percona XtraBackup 8.4.0-7.
 
-The option accepts the following values:
-
-* auto (default) — automatically determines the appropriate gap for each tablespace. This is the recommended setting for most workloads.
-
-* A positive integer, such as 8 — combines changed pages separated by up to the specified number of unchanged pages into a single read request. The same value applies to all tablespaces. Use a fixed value only after benchmarking your workload. A value that is too large can cause XtraBackup to read unnecessary data, while a value that is too small can result in more individual read requests.
-
-    For example:
-
-    ```bash
-    xtrabackup --backup --target-dir=/data/inc1 \
-    --incremental-basedir=/data/full \
-    --page-tracking \
-    --page-tracking-merge-gap=8
-    ```
-
-* 0 — disables merging of non-consecutive changed pages. Only consecutive changed pages are read together.
-
-The backup log reports the storage measurement once and, for each tablespace with at least 1000 changed pages, reports the number of changed pages, the number of read requests before and after combining pages, and the resulting read amplification. Use these messages to evaluate a fixed value against the auto setting.
-
-Combining reads can cause XtraBackup to read unchanged pages between changed pages. This can increase the amount of data read during the backup. If storage bandwidth is metered or constrained, consider setting `--page-tracking-merge-gap=0`.
+Controls the largest gap between two changed pages that Percona XtraBackup reads in a single request during an incremental backup with page tracking. The option accepts `auto` or a page count from `0` to `65536`. A page count is measured in `innodb_page_size` pages. The default value is `auto`. With `auto`, you do not choose a page count. Percona XtraBackup measures the storage at the start of the backup and selects the gap. Omit the option, or set `--page-tracking-merge-gap=auto`. For details, see [Read scattered changed pages](page-tracking.md#read-scattered-changed-pages).
 
 ### parallel
 
@@ -841,6 +836,16 @@ Usage: `--prepare`
 Makes xtrabackup perform a recovery on a backup created with `--backup`, so that the backup data is ready to use.
 
 For details, see [Prepare a full backup](prepare-full-backup.md).
+
+### prepare-incremental-from-dir
+
+Usage: `--prepare-incremental-from-dir=DIRECTORY`
+
+Introduced in Percona XtraBackup 8.4.0-8.
+
+Specifies the directory with the incremental backup that Percona XtraBackup applies to the full backup. Use the option with `--prepare`.
+
+The `--prepare-incremental-from-dir` option replaces the deprecated [`--incremental-dir`](#incremental-dir) option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ### print-defaults
 
