@@ -4,10 +4,16 @@ To create an incremental backup with page tracking, Percona XtraBackup uses
 the MySQL `mysqlbackup` component. This component provides a list of pages
 modified since the last backup, and Percona XtraBackup copies only those
 pages. This operation removes the need to scan the pages in the
-database. If the majority of pages have not been modified, the page
-tracking feature can improve the speed of incremental backups.
+database. Page tracking can improve the speed of incremental backups. The
+speed depends on the number of read requests, not on the number of changed
+pages. Scattered changed pages need more read requests than consecutive
+changed pages. For details, see [Read scattered changed pages](#read-scattered-changed-pages).
 
 Run the following commands as root or use the sudo command.
+
+## Version changes
+
+Percona XtraBackup 8.4.0-8 renames the `--incremental-basedir` option to [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ## Install the component
 
@@ -51,11 +57,51 @@ The examples of creating full and incremental backups using the `--page-tracking
 
     ```shell
     xtrabackup --backup --target-dir=$INC_BACKUP  
-    --incremental-basedir=$FULL_BACKUP --page-tracking
+    --backup-incremental-base=$FULL_BACKUP --page-tracking
     ```
 
 After enabling the functionality, the next incremental backup finds changed
 pages using page tracking.
+
+### Read scattered changed pages
+
+#### Version changes
+
+Percona XtraBackup 8.4.0-7 introduces the [`--page-tracking-merge-gap`](xtrabackup-option-reference.md#page-tracking-merge-gap) option.
+
+#### How Percona XtraBackup reads scattered changed pages
+
+During an incremental backup with page tracking, Percona XtraBackup reads only the pages that the server reports as changed. Percona XtraBackup reads consecutive changed pages together, but reads each scattered changed page on its own. Thousands of small reads take far longer than a few large ones, so an incremental backup of a large tablespace can be slow even when little data has changed.
+
+When two changed pages are close together, reading the unchanged pages between them costs less than issuing another read. Percona XtraBackup combines these reads automatically. Percona XtraBackup discards the extra pages when writing the delta, so the backup contents and size stay the same. Only the read pattern changes.
+
+Use `auto`. `auto` is the default, so you can omit `--page-tracking-merge-gap`. To set it explicitly:
+
+```shell
+xtrabackup --backup --target-dir=/data/inc1 \
+  --backup-incremental-base=/data/full \
+  --page-tracking --page-tracking-merge-gap=auto
+```
+
+With `auto`, Percona XtraBackup measures the storage once, at the start of the backup. It measures how long one read request takes and how fast the storage reads data sequentially. From that measurement, Percona XtraBackup chooses the largest gap of unchanged pages that costs less to read than starting another read request. The gap can differ for each tablespace, because it depends on the tablespace page size. A page count skips this measurement.
+
+`--page-tracking-merge-gap` accepts the following values:
+
+* `auto` (default): Omit the option, or set `--page-tracking-merge-gap=auto`. Percona XtraBackup measures the storage and selects the gap, as described above.
+
+* A page count, for example, `8`: Percona XtraBackup reads changed pages separated by up to 8 unchanged pages in a single request, and skips the measurement. For compressed tablespaces, Percona XtraBackup scales the count to the physical page size, so the byte limit stays the same. A fixed value does not adapt to the storage, so it can read far more data than necessary or split the reads into too many small requests. Both cases slow down the backup. Set a value only after you benchmark your own workload and confirm that `auto` does not give the best result. Check the value again after a hardware change.
+
+* `0`: turns off the feature. Percona XtraBackup reads together only strictly consecutive changed pages, as in releases before 8.4.0-7.
+
+```shell
+xtrabackup --backup --target-dir=/data/inc1 \
+  --backup-incremental-base=/data/full \
+  --page-tracking --page-tracking-merge-gap=8
+```
+
+The backup log reports the measurement once. For each tablespace with at least 1000 changed pages, the log then reports the number of changed pages, the number of reads without combining, the number of reads after combining, and the resulting read amplification. If the typical gap in a table costs too much to combine, the log reports the gap and suggests a value to set. Check these log lines when you compare a fixed value with `auto`.
+
+Combining reads more bytes than the changed pages alone. Keep that in mind if your storage provider charges for reads or limits read throughput. To avoid the extra reads, set the option to `0`.
 
 The first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:
 
