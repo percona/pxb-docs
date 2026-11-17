@@ -7,11 +7,11 @@ backups that are being taken. Backup history information will be stored in the
 
 To use this feature the following options are available:
 
-* `--history` =<name> : This option enables the history
+* `--history` =`<name>` : This option enables the history
 feature and allows the user to specify a backup series name that will be
 placed within the history record.
 
-* `--incremental-history-name` =<name> : This option allows an
+* `--incremental-history-name` =`<name>` : This option allows an
 incremental backup to be made based on a specific history series by
 name. *xtrabackup* will search the history table looking for the most recent
 (highest `to_lsn`) backup in the series and take the `to_lsn` value to use
@@ -20,7 +20,7 @@ as it’s starting lsn. This is mutually exclusive with
 `--incremental-lsn` options. If no valid LSN can be found
 (no series by that name) *xtrabackup* will return with an error.
 
-* `--incremental-history-uuid` =<uuid> : Allows an incremental backup to
+* `--incremental-history-uuid` =`<uuid>` : Allows an incremental backup to
 be made based on a specific history record identified by UUID. *xtrabackup*
 will search the history table looking for the record matching UUID and take
 the `to_lsn` value to use as it’s starting LSN. This options is mutually
