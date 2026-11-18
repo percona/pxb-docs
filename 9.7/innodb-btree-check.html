@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5918,12 +5918,12 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="innodb-b-tree-integrity-validation-during-prepare">InnoDB B-tree integrity validation during prepare<a class="headerlink" href="#innodb-b-tree-integrity-validation-during-prepare" title="Permanent link">&para;</a></h1>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<h1 id="innodb-b-tree-integrity-validation-during-prepare">InnoDB B-tree integrity validation during prepare<a data-markdown-ignore class="headerlink" href="#innodb-b-tree-integrity-validation-during-prepare" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a data-markdown-ignore class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>The <a href="xtrabackup-option-reference.html#check-tables"><code>--check-tables</code></a> option validates the structural integrity of InnoDB B-tree indexes during the <a href="xtrabackup-option-reference.html#prepare"><code>--prepare</code></a> phase. Validation during <code>--prepare</code> helps detect corrupted indexes before restore or production deployment.</p>
-<h3 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
+<h3 id="version-changes">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--apply-log-only</code> option to <a href="xtrabackup-option-reference.html#apply-redo-only"><code>--apply-redo-only</code></a>. Percona XtraBackup still accepts <code>--apply-log-only</code> but prints a deprecation warning. A future Long-Term Support (LTS) release will remove <code>--apply-log-only</code>, so update your scripts to use <code>--apply-redo-only</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
-<h2 id="why-checksum-validation-is-not-enough">Why checksum validation is not enough<a class="headerlink" href="#why-checksum-validation-is-not-enough" title="Permanent link">&para;</a></h2>
+<h2 id="why-checksum-validation-is-not-enough">Why checksum validation is not enough<a data-markdown-ignore class="headerlink" href="#why-checksum-validation-is-not-enough" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup verifies InnoDB page checksums during <code>--backup</code>. These checks ensure that the backup contains checksum-valid pages at backup time.</p>
 <p>Checksum validation detects physical corruption within individual pages, including:</p>
 <ul>
@@ -5942,16 +5942,16 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </ul>
 <p>When the server modifies a page while XtraBackup copies it, XtraBackup retries the copy until the checksum becomes consistent. The retry process prevents partially modified pages from entering the backup.</p>
 <p>A successful backup therefore guarantees checksum-valid pages, but checksum validation alone cannot guarantee a fully valid restore.</p>
-<h3 id="corruption-can-happen-after-backup-creation">Corruption can happen after backup creation<a class="headerlink" href="#corruption-can-happen-after-backup-creation" title="Permanent link">&para;</a></h3>
+<h3 id="corruption-can-happen-after-backup-creation">Corruption can happen after backup creation<a data-markdown-ignore class="headerlink" href="#corruption-can-happen-after-backup-creation" title="Permanent link">&para;</a></h3>
 <p>A backup can become corrupted after creation because of storage or filesystem issues.</p>
 <p>During <code>--prepare</code>, XtraBackup only re-validates pages involved in redo application. Pages outside redo processing may never undergo another checksum check.</p>
 <p>For this reason, running <code>CHECK TABLE</code> after restore remains a recommended practice. <code>CHECK TABLE</code> forces page reads and validates both checksums and structural consistency.</p>
-<h3 id="checksums-do-not-verify-page-relationships">Checksums do not verify page relationships<a class="headerlink" href="#checksums-do-not-verify-page-relationships" title="Permanent link">&para;</a></h3>
+<h3 id="checksums-do-not-verify-page-relationships">Checksums do not verify page relationships<a data-markdown-ignore class="headerlink" href="#checksums-do-not-verify-page-relationships" title="Permanent link">&para;</a></h3>
 <p>Checksum validation only confirms that the bytes within a page match the checksum stored in the page header.</p>
 <p>XtraBackup does not validate B-tree structure or relationships between pages during backup. As a result, structurally corrupted pages can still enter the backup if those pages remain checksum-valid on the source server.</p>
 <p>Structural corruption rarely occurs and usually results from server bugs, backup tool bugs, storage failures, or filesystem-level corruption.</p>
 <p>Structural corruption can break B-tree page relationships, page metadata consistency, and external LOB references. For a complete list of detected corruption conditions, see <a href="#detected-corruption-conditions">Detected corruption conditions</a>.</p>
-<h2 id="how-check-tables-works">How <code>--check-tables</code> works<a class="headerlink" href="#how-check-tables-works" title="Permanent link">&para;</a></h2>
+<h2 id="how-check-tables-works">How <code>--check-tables</code> works<a data-markdown-ignore class="headerlink" href="#how-check-tables-works" title="Permanent link">&para;</a></h2>
 <p>The <code>--check-tables</code> option executes <code>btr_validate_index()</code> on every index that is present and active in the InnoDB data dictionary for each <code>.ibd</code> tablespace, using the number of threads specified by <a href="xtrabackup-option-reference.html#parallel"><code>--parallel</code></a>. <code>--check-tables</code> detects structural inconsistencies that page checksum verification cannot detect. The option applies only to InnoDB tables.</p>
 <p>In addition to structural validation, when <code>--check-tables</code> is used, XtraBackup verifies page checksums during InnoDB B-tree index traversal and performs additional checksum verification of the system tablespace (<code>ibdata*</code>) and undo tablespaces (<code>undo*.ibu</code>).</p>
 <p>Percona XtraBackup runs validation during the <code>--prepare</code> phase after applying the redo log. The validation process operates in read-only mode against backup files and does not modify backup contents. Validation continues after detecting corruption so that Percona XtraBackup can report all problematic tables and indexes in a single run.</p>
@@ -5985,7 +5985,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Transportable tablespace export with <a href="xtrabackup-option-reference.html#export"><code>--export</code></a></p>
 </li>
 </ul>
-<h3 id="detected-corruption-conditions">Detected corruption conditions<a class="headerlink" href="#detected-corruption-conditions" title="Permanent link">&para;</a></h3>
+<h3 id="detected-corruption-conditions">Detected corruption conditions<a data-markdown-ignore class="headerlink" href="#detected-corruption-conditions" title="Permanent link">&para;</a></h3>
 <p>The validation process performs the following structural checks:</p>
 <table>
 <thead>
@@ -6025,7 +6025,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tr>
 </tbody>
 </table>
-<h3 id="offloading-check-table">Offloading <code>CHECK TABLE</code><a class="headerlink" href="#offloading-check-table" title="Permanent link">&para;</a></h3>
+<h3 id="offloading-check-table">Offloading <code>CHECK TABLE</code><a data-markdown-ignore class="headerlink" href="#offloading-check-table" title="Permanent link">&para;</a></h3>
 <p>Similar to the InnoDB <code>CHECK TABLE</code> command, the <code>--check-tables</code> option validates InnoDB tables. However, Percona XtraBackup performs this validation offline on backup files during the <code>--prepare</code> phase, avoiding any performance impact on a live production server.</p>
 <p>Validation during <code>--prepare</code> moves structural integrity verification from restored database instances to the backup preparation workflow. A backup or staging host can run validation without starting MySQL on the restored backup.</p>
 <p>Using <code>--check-tables</code> during <code>--prepare</code> provides the following operational benefits:</p>
@@ -6043,7 +6043,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Detects corruption before restore or deployment</p>
 </li>
 </ul>
-<h3 id="parallel-execution">Parallel execution<a class="headerlink" href="#parallel-execution" title="Permanent link">&para;</a></h3>
+<h3 id="parallel-execution">Parallel execution<a data-markdown-ignore class="headerlink" href="#parallel-execution" title="Permanent link">&para;</a></h3>
 <p>The <code>--check-tables</code> option uses the existing <code>--parallel</code> infrastructure from Percona XtraBackup. Worker threads process tablespaces independently.</p>
 <p>Each worker thread:</p>
 <ol>
@@ -6060,7 +6060,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Reports validation results</p>
 </li>
 </ol>
-<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<h3 id="limitations">Limitations<a data-markdown-ignore class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <p>The <code>--check-tables</code> option has the following limitations:</p>
 <ul>
 <li>
@@ -6082,25 +6082,25 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Checksum corruption may cause XtraBackup to abort with an assertion failure instead of exiting gracefully</p>
 </li>
 </ul>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<h2 id="usage">Usage<a data-markdown-ignore class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>The <code>--check-tables</code> option uses the thread count specified by <code>--parallel</code>. Start with <code>--parallel=8</code> and adjust the value according to CPU availability and disk I/O capacity on the backup host.</p>
-<h3 id="validate-a-full-backup">Validate a full backup<a class="headerlink" href="#validate-a-full-backup" title="Permanent link">&para;</a></h3>
+<h3 id="validate-a-full-backup">Validate a full backup<a data-markdown-ignore class="headerlink" href="#validate-a-full-backup" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--check-tables<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-<h3 id="validate-an-incremental-backup">Validate an incremental backup<a class="headerlink" href="#validate-an-incremental-backup" title="Permanent link">&para;</a></h3>
+<h3 id="validate-an-incremental-backup">Validate an incremental backup<a data-markdown-ignore class="headerlink" href="#validate-an-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>You can use <code>--check-tables</code> together with <code>--apply-redo-only</code>. Validation scans all tables and indexes on every run, so use <code>--check-tables</code> during the final prepare stage of an incremental backup.</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--check-tables<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-<h3 id="validate-and-export-tablespaces">Validate and export tablespaces<a class="headerlink" href="#validate-and-export-tablespaces" title="Permanent link">&para;</a></h3>
+<h3 id="validate-and-export-tablespaces">Validate and export tablespaces<a data-markdown-ignore class="headerlink" href="#validate-and-export-tablespaces" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--check-tables<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-<h2 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
+<h2 id="output">Output<a data-markdown-ignore class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
 <p>A successful validation operation typically ends with a message similar to:</p>
 <div class="highlight"><pre><span></span><code>2026-05-15T15:41:57.808327+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/replication_group_member_actions
 2026-05-15T15:41:57.808630+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/replication_group_configuration_version
@@ -6121,7 +6121,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <div class="highlight"><pre><span></span><code>2026-05-15T13:42:24.670469+01:00 0 [ERROR] [MY-011825] [Xtrabackup] Table check failed. The backup may be corrupted.
 </code></pre></div>
 <p>The log contains detailed information for each detected inconsistency.</p>
-<h3 id="corruption-examples">Corruption examples<a class="headerlink" href="#corruption-examples" title="Permanent link">&para;</a></h3>
+<h3 id="corruption-examples">Corruption examples<a data-markdown-ignore class="headerlink" href="#corruption-examples" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>Sibling page relationships corruption.</p>
@@ -6331,7 +6331,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

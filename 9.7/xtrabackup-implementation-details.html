@@ -30,7 +30,7 @@ operation.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -135,7 +135,7 @@ operation.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5875,17 +5875,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="xtrabackup-implementation-details">xtrabackup implementation details<a class="headerlink" href="#xtrabackup-implementation-details" title="Permanent link">&para;</a></h1>
+<h1 id="xtrabackup-implementation-details">xtrabackup implementation details<a data-markdown-ignore class="headerlink" href="#xtrabackup-implementation-details" title="Permanent link">&para;</a></h1>
 <p>This page contains notes on various internal aspects of the <em>xtrabackup</em> tool&rsquo;s
 operation.</p>
-<h2 id="file-permissions">File permissions<a class="headerlink" href="#file-permissions" title="Permanent link">&para;</a></h2>
+<h2 id="file-permissions">File permissions<a data-markdown-ignore class="headerlink" href="#file-permissions" title="Permanent link">&para;</a></h2>
 <p><em>xtrabackup</em> opens the source data files in read-write mode, although it does
 not modify the files. This means that you must run <em>xtrabackup</em> as a user who
 has permission to write the data files. The reason for opening the files in
 read-write mode is that <em>xtrabackup</em> uses the embedded <em>InnoDB</em> libraries to
 open and read the files, and <em>InnoDB</em> opens them in read-write mode because it
 normally assumes it is going to write to them.</p>
-<h2 id="tune-the-os-buffers">Tune the OS buffers<a class="headerlink" href="#tune-the-os-buffers" title="Permanent link">&para;</a></h2>
+<h2 id="tune-the-os-buffers">Tune the OS buffers<a data-markdown-ignore class="headerlink" href="#tune-the-os-buffers" title="Permanent link">&para;</a></h2>
 <p>Because <em>xtrabackup</em> reads large amounts of data from the filesystem, it uses
 <code>posix_fadvise()</code> where possible, to instruct the operating system not to try
 to cache the blocks it reads from disk. Without this hint, the operating system
@@ -5900,7 +5900,7 @@ following hint on both the source and destination files:</p>
 read-ahead optimizations on the source files:</p>
 <div class="highlight"><pre><span></span><code>posix_fadvise(file, 0, 0, POSIX_FADV_SEQUENTIAL)
 </code></pre></div>
-<h2 id="copy-data-files">Copy data files<a class="headerlink" href="#copy-data-files" title="Permanent link">&para;</a></h2>
+<h2 id="copy-data-files">Copy data files<a data-markdown-ignore class="headerlink" href="#copy-data-files" title="Permanent link">&para;</a></h2>
 <p>When copying the data files to the target directory, <em>xtrabackup</em> reads and
 writes 1 MB of data at a time. This is not configurable. When copying the log
 file, <em>xtrabackup</em> reads and writes 512 bytes at a time. This is also not
@@ -6039,7 +6039,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

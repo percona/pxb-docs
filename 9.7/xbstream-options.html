@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6160,62 +6160,62 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="the-xbstream-command-line-options">The xbstream command-line options<a class="headerlink" href="#the-xbstream-command-line-options" title="Permanent link">&para;</a></h1>
+<h1 id="the-xbstream-command-line-options">The xbstream command-line options<a data-markdown-ignore class="headerlink" href="#the-xbstream-command-line-options" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code>xbstream<span class="w"> </span>-c<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 xbstream<span class="w"> </span>-x<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </code></pre></div>
 <p>This utility has a tar-like interface.</p>
 <p>The xbstream binary has the following options:</p>
-<h2 id="absolute-names">absolute-names<a class="headerlink" href="#absolute-names" title="Permanent link">&para;</a></h2>
+<h2 id="absolute-names">absolute-names<a data-markdown-ignore class="headerlink" href="#absolute-names" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>-absolute-names</code></p>
 <p>Do not strip the leading // (slashes) from the file names when creating archives.</p>
-<h2 id="c">c<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
+<h2 id="c">c<a data-markdown-ignore class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>-c</code></p>
 <p>Streams files specified on the command line to its standard output.</p>
-<h2 id="decompress">decompress<a class="headerlink" href="#decompress" title="Permanent link">&para;</a></h2>
+<h2 id="decompress">decompress<a data-markdown-ignore class="headerlink" href="#decompress" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--decompress</code></p>
 <p>Decompress the individual backup files</p>
-<h2 id="decompress-threads">decompress-threads<a class="headerlink" href="#decompress-threads" title="Permanent link">&para;</a></h2>
+<h2 id="decompress-threads">decompress-threads<a data-markdown-ignore class="headerlink" href="#decompress-threads" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--decompress-threads=#</code></p>
 <p>The number of threads for parallel data decompression. The default value is 1.</p>
-<h2 id="decrypt">decrypt<a class="headerlink" href="#decrypt" title="Permanent link">&para;</a></h2>
+<h2 id="decrypt">decrypt<a data-markdown-ignore class="headerlink" href="#decrypt" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--decrypt=name</code></p>
 <p>Specifies that xbstream automatically decrypts encrypted files when extracting input stream. The supported values are: <code>AES128</code>, <code>AES192</code>, and <code>AES256</code>. </p>
 <p>You can specify either <code>--encrypt-key</code> or <code>--encrypt-key-file</code> to provide the encryption key, but do not use both options. </p>
-<h2 id="directory">directory<a class="headerlink" href="#directory" title="Permanent link">&para;</a></h2>
+<h2 id="directory">directory<a data-markdown-ignore class="headerlink" href="#directory" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--directory=name</code></p>
 <p>Change the current directory to this named directory before streaming or extracting.</p>
-<h2 id="encrypt-key">encrypt-key<a class="headerlink" href="#encrypt-key" title="Permanent link">&para;</a></h2>
+<h2 id="encrypt-key">encrypt-key<a data-markdown-ignore class="headerlink" href="#encrypt-key" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--encrypt-key=name</code></p>
 <p>Specify the encryption key used. Do not use this option with <code>--encrypt-key-file</code>; these options are mutually exclusive.</p>
-<h2 id="encrypt-key-file">encrypt-key-file<a class="headerlink" href="#encrypt-key-file" title="Permanent link">&para;</a></h2>
+<h2 id="encrypt-key-file">encrypt-key-file<a data-markdown-ignore class="headerlink" href="#encrypt-key-file" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--encrypt-key-file=name</code></p>
 <p>Specify the file that contains the encryption key. Do not use this option with <code>--encrypt-key</code>; these options are mutually exclusive.</p>
-<h2 id="encrypt-threads">encrypt-threads<a class="headerlink" href="#encrypt-threads" title="Permanent link">&para;</a></h2>
+<h2 id="encrypt-threads">encrypt-threads<a data-markdown-ignore class="headerlink" href="#encrypt-threads" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--encrypt-threads-=#</code></p>
 <p>Specify the number of threads for parallel data encryption. The default value is <code>1</code>. </p>
-<h2 id="extract">extract<a class="headerlink" href="#extract" title="Permanent link">&para;</a></h2>
+<h2 id="extract">extract<a data-markdown-ignore class="headerlink" href="#extract" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--extract</code></p>
 <p>Extract to disk the files from the stream to the standard input.</p>
-<h2 id="fifo-dir">fifo-dir<a class="headerlink" href="#fifo-dir" title="Permanent link">&para;</a></h2>
+<h2 id="fifo-dir">fifo-dir<a data-markdown-ignore class="headerlink" href="#fifo-dir" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--fifo-dir=name</code></p>
 <p>The directory used to read or write named pipes.</p>
-<h2 id="fifo-streams">fifo-streams<a class="headerlink" href="#fifo-streams" title="Permanent link">&para;</a></h2>
+<h2 id="fifo-streams">fifo-streams<a data-markdown-ignore class="headerlink" href="#fifo-streams" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--fifo-streams=#</code></p>
 <p>The number of FIFO files (named pipes) to use for parallel data file streaming. To disable the option and send the stream to STDOUT, set the value to 1. </p>
-<h2 id="fifo-timeout">fifo-timeout<a class="headerlink" href="#fifo-timeout" title="Permanent link">&para;</a></h2>
+<h2 id="fifo-timeout">fifo-timeout<a data-markdown-ignore class="headerlink" href="#fifo-timeout" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--fifo-timeout=#</code></p>
 <p>The number of seconds to wait for the other end to open the stream. The default value is 60.</p>
-<h2 id="parallel">parallel<a class="headerlink" href="#parallel" title="Permanent link">&para;</a></h2>
+<h2 id="parallel">parallel<a data-markdown-ignore class="headerlink" href="#parallel" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--parallel=#</code></p>
 <p>Defines the number of worker threads for reading or writing.</p>
-<h2 id="x">x<a class="headerlink" href="#x" title="Permanent link">&para;</a></h2>
+<h2 id="x">x<a data-markdown-ignore class="headerlink" href="#x" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>-x</code></p>
 <p>Extracts files from the stream read from its
 standard input to the current directory unless specified otherwise with the
 <code>-c</code> option. Support for parallel extraction with the <code>--parallel</code>
 option</p>
-<h2 id="verbose">verbose<a class="headerlink" href="#verbose" title="Permanent link">&para;</a></h2>
+<h2 id="verbose">verbose<a data-markdown-ignore class="headerlink" href="#verbose" title="Permanent link">&para;</a></h2>
 <p>Usage: <code>--verbose</code></p>
 <p>Print verbose output</p>
 
@@ -6345,7 +6345,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

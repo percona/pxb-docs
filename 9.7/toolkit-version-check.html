@@ -36,7 +36,7 @@ community.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -141,7 +141,7 @@ community.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5879,7 +5879,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="percona-toolkit-version-checking">Percona Toolkit version checking<a class="headerlink" href="#percona-toolkit-version-checking" title="Permanent link">&para;</a></h1>
+<h1 id="percona-toolkit-version-checking">Percona Toolkit version checking<a data-markdown-ignore class="headerlink" href="#percona-toolkit-version-checking" title="Permanent link">&para;</a></h1>
 <p>Some Percona software contains “version checking” functionality which is a
 feature that enables Percona software users to be notified of available software
 updates to improve your environment security and performance. Alongside this,
@@ -5890,7 +5890,7 @@ focus our development effort accordingly based on trends within our customer
 community.</p>
 <p>The purpose of this document is to articulate the information that is collected,
 as well as to provide guidance on how to disable this functionality if desired.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<h2 id="usage">Usage<a data-markdown-ignore class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p><em>Version Check</em> was implemented in <em>Percona Toolkit</em> 2.1.4, and was enabled by default in
 version 2.2.1. Currently, it is supported as a <code>--[no]version-check</code> option
 by a number of tools in Percona Toolkit, <em>Percona XtraBackup</em>, and <em>Percona Monitoring and Management</em> (PMM).</p>
@@ -5940,7 +5940,7 @@ c2b6d625ef3409164cbf8af4985c48d3;MySQL;MySQL Community Server (GPL) 5.7.22-log
 85624f3fb5d2af8816178ea1493ed41a;Perl;5.26.2
 </code></pre></div>
 </details>
-<h2 id="disabling-version-check">Disabling version check<a class="headerlink" href="#disabling-version-check" title="Permanent link">&para;</a></h2>
+<h2 id="disabling-version-check">Disabling version check<a data-markdown-ignore class="headerlink" href="#disabling-version-check" title="Permanent link">&para;</a></h2>
 <p>Although the <em>version checking</em> feature does not collect any personal information,
 you might prefer to disable this feature, either one time or permanently.  To
 disable it one time, use <code>--no-version-check</code> option when invoking the tool
@@ -5962,16 +5962,16 @@ in a similar way:</p>
 <div class="highlight"><pre><span></span><code>[xtrabackup]
 no-version-check
 </code></pre></div>
-<h2 id="frequently-asked-questions">Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h2>
-<h3 id="why-is-this-functionality-enabled-by-default">Why is this functionality enabled by default?<a class="headerlink" href="#why-is-this-functionality-enabled-by-default" title="Permanent link">&para;</a></h3>
+<h2 id="frequently-asked-questions">Frequently asked questions<a data-markdown-ignore class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h2>
+<h3 id="why-is-this-functionality-enabled-by-default">Why is this functionality enabled by default?<a data-markdown-ignore class="headerlink" href="#why-is-this-functionality-enabled-by-default" title="Permanent link">&para;</a></h3>
 <p>We believe having this functionality enabled improves security and performance
 of environments running Percona Software and it is good choice for majority of
 the users.</p>
-<h3 id="why-not-rely-on-operating-systems-built-in-functionality-for-software-updates">Why not rely on Operating System’s built in functionality for software updates?<a class="headerlink" href="#why-not-rely-on-operating-systems-built-in-functionality-for-software-updates" title="Permanent link">&para;</a></h3>
+<h3 id="why-not-rely-on-operating-systems-built-in-functionality-for-software-updates">Why not rely on Operating System’s built in functionality for software updates?<a data-markdown-ignore class="headerlink" href="#why-not-rely-on-operating-systems-built-in-functionality-for-software-updates" title="Permanent link">&para;</a></h3>
 <p>In many environments the Operating Systems repositories may not carry the latest
 version of software and newer versions of software often installed manually, so
 not being covered by operating system wide check for updates.</p>
-<h3 id="why-do-you-send-more-information-than-just-the-version-of-software-being-run-as-a-part-of-version-check-service">Why do you send more information than just the version of software being run as a part of version check service?<a class="headerlink" href="#why-do-you-send-more-information-than-just-the-version-of-software-being-run-as-a-part-of-version-check-service" title="Permanent link">&para;</a></h3>
+<h3 id="why-do-you-send-more-information-than-just-the-version-of-software-being-run-as-a-part-of-version-check-service">Why do you send more information than just the version of software being run as a part of version check service?<a data-markdown-ignore class="headerlink" href="#why-do-you-send-more-information-than-just-the-version-of-software-being-run-as-a-part-of-version-check-service" title="Permanent link">&para;</a></h3>
 <p>Compatibility problems can be caused by versions of various components in the
 environment, for example problematic versions of Perl, DBD or MySQL could cause
 operational problems with Percona Toolkit.</p>
@@ -6102,7 +6102,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

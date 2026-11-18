@@ -34,7 +34,7 @@ task. Percona XtraBackup is designed to solve this problem.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -139,7 +139,7 @@ task. Percona XtraBackup is designed to solve this problem.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5989,7 +5989,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="how-to-set-up-a-replica-for-replication-in-6-simple-steps-with-percona-xtrabackup">How to set up a replica for replication in 6 simple steps with Percona XtraBackup<a class="headerlink" href="#how-to-set-up-a-replica-for-replication-in-6-simple-steps-with-percona-xtrabackup" title="Permanent link">&para;</a></h1>
+<h1 id="how-to-set-up-a-replica-for-replication-in-6-simple-steps-with-percona-xtrabackup">How to set up a replica for replication in 6 simple steps with Percona XtraBackup<a data-markdown-ignore class="headerlink" href="#how-to-set-up-a-replica-for-replication-in-6-simple-steps-with-percona-xtrabackup" title="Permanent link">&para;</a></h1>
 <p>Data is, by far, the most valuable part of a system. Having a backup done
 systematically and available for a rapid recovery in case of failure is
 admittedly essential to a system. However, it is not common practice
@@ -5998,7 +5998,7 @@ its costs, infrastructure needed or even the boredom associated to the
 task. Percona XtraBackup is designed to solve this problem.</p>
 <p>You can have almost real-time backups in 6 simple steps by setting up a
 replication environment with Percona XtraBackup.</p>
-<h2 id="things-you-need">Things you need<a class="headerlink" href="#things-you-need" title="Permanent link">&para;</a></h2>
+<h2 id="things-you-need">Things you need<a data-markdown-ignore class="headerlink" href="#things-you-need" title="Permanent link">&para;</a></h2>
 <p>Setting up a replica for replication with <em>Percona XtraBackup</em> is a
 straightforward procedure. In order to keep it simple, here is a list of
 the things you need to follow the steps without hassles:</p>
@@ -6031,7 +6031,7 @@ we did about <code>Source</code>, except that the server-id on <code>Replica</co
 <p class="admonition-title">Note</p>
 <p>It is not recommended to mix MySQL variants (Percona Server, MySQL) in your replication setup. This may produce incorrect <code>xtrabackup_slave_info</code> file when adding a new replica. </p>
 </div>
-<h2 id="1-make-a-backup-on-the-source-and-prepare-it">1. Make a backup on the <code>Source</code> and prepare it<a class="headerlink" href="#1-make-a-backup-on-the-source-and-prepare-it" title="Permanent link">&para;</a></h2>
+<h2 id="1-make-a-backup-on-the-source-and-prepare-it">1. Make a backup on the <code>Source</code> and prepare it<a data-markdown-ignore class="headerlink" href="#1-make-a-backup-on-the-source-and-prepare-it" title="Permanent link">&para;</a></h2>
 <p>At the <code>Source</code>, issue the following to a shell:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>yourDBuser<span class="w"> </span>--password<span class="o">=</span>MaGiCdB1<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backupdir
 </code></pre></div>
@@ -6063,7 +6063,7 @@ you can set it up in <code>.mylogin.cnf</code> as follows:</p>
 </code></pre></div>
 <p>For more information, see <a href="https://dev.mysql.com/doc/refman/9.7/en/mysql-config-editor.html">MySQL Configuration Utility <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <p>This statement provides root access to MySQL.</p>
-<h2 id="2-copy-backed-up-data-to-the-replica">2.  Copy backed up data to the Replica<a class="headerlink" href="#2-copy-backed-up-data-to-the-replica" title="Permanent link">&para;</a></h2>
+<h2 id="2-copy-backed-up-data-to-the-replica">2.  Copy backed up data to the Replica<a data-markdown-ignore class="headerlink" href="#2-copy-backed-up-data-to-the-replica" title="Permanent link">&para;</a></h2>
 <p>On the Source, use rsync or scp to copy the data from the Source to the
 Replica. If you are syncing the data directly to replica’s data directory,
 we recommend that you stop the <code>mysqld</code> there.</p>
@@ -6088,7 +6088,7 @@ permissions to access them.</p>
 <p>If the ibdata and iblog files are located in directories outside the
 datadir, you must put these files in their proper place after the logs have
 been applied.</p>
-<h2 id="3-configure-the-sources-mysql-server">3. Configure the Source’s MySQL server<a class="headerlink" href="#3-configure-the-sources-mysql-server" title="Permanent link">&para;</a></h2>
+<h2 id="3-configure-the-sources-mysql-server">3. Configure the Source’s MySQL server<a data-markdown-ignore class="headerlink" href="#3-configure-the-sources-mysql-server" title="Permanent link">&para;</a></h2>
 <p>On the source, create a user specifically for replication tasks. Use the following command to define the user and set a secure password:</p>
 <div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">'repl'</span><span class="o">@</span><span class="s1">'$replicaip'</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">'$replicapass'</span><span class="p">;</span>
 </code></pre></div>
@@ -6107,7 +6107,7 @@ and authenticate.</p>
 <p>Verify the privileges.</p>
 <div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="p">;</span>
 </code></pre></div>
-<h2 id="4-configure-the-replicas-mysql-server">4. Configure the Replica’s MySQL server<a class="headerlink" href="#4-configure-the-replicas-mysql-server" title="Permanent link">&para;</a></h2>
+<h2 id="4-configure-the-replicas-mysql-server">4. Configure the Replica’s MySQL server<a data-markdown-ignore class="headerlink" href="#4-configure-the-replicas-mysql-server" title="Permanent link">&para;</a></h2>
 <p>Copy the <code>my.cnf</code> file from the <code>Source</code> to the <code>Replica</code>:</p>
 <div class="highlight"><pre><span></span><code>scp<span class="w"> </span>user@Source:/etc/mysql/my.cnf<span class="w"> </span>/etc/mysql/my.cnf
 </code></pre></div>
@@ -6119,7 +6119,7 @@ and authenticate.</p>
 sure that the password for <code>debian-sys-maint</code> user has been updated, and
 it’s the same as that user’s password on the <code>Source</code>. Password can be seen
 and updated in <code>/etc/mysql/debian.cnf</code>.</p>
-<h2 id="5-start-the-replication">5. Start the replication<a class="headerlink" href="#5-start-the-replication" title="Permanent link">&para;</a></h2>
+<h2 id="5-start-the-replication">5. Start the replication<a data-markdown-ignore class="headerlink" href="#5-start-the-replication" title="Permanent link">&para;</a></h2>
 <p>On the <code>Replica</code>, review the content of the <code>xtrabackup_binlog_info</code> file:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/lib/mysql/xtrabackup_binlog_info
 </code></pre></div>
@@ -6142,7 +6142,7 @@ password you’ve set up in STEP 3:</p>
 <p>Start the replica:</p>
 <div class="highlight"><pre><span></span><code><span class="k">START</span><span class="w"> </span><span class="n">REPLICA</span><span class="p">;</span>
 </code></pre></div>
-<h2 id="6-check">6. Check<a class="headerlink" href="#6-check" title="Permanent link">&para;</a></h2>
+<h2 id="6-check">6. Check<a data-markdown-ignore class="headerlink" href="#6-check" title="Permanent link">&para;</a></h2>
 <p>On the <code>Replica</code>, check that everything went OK with:</p>
 <div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">REPLICA</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
 </code></pre></div>
@@ -6159,7 +6159,7 @@ means the <code>SQL</code> currently being executed has a <code>current_timestam
 seconds ago. It is an estimation of the lag between the <code>Source</code> and
 the <code>Replica</code>. Note that at the beginning, a high value could be shown
 because the <code>Replica</code> has to “catch up” with the <code>Source</code>.</p>
-<h2 id="adding-more-replicas-to-the-source">Adding more replicas to the Source<a class="headerlink" href="#adding-more-replicas-to-the-source" title="Permanent link">&para;</a></h2>
+<h2 id="adding-more-replicas-to-the-source">Adding more replicas to the Source<a data-markdown-ignore class="headerlink" href="#adding-more-replicas-to-the-source" title="Permanent link">&para;</a></h2>
 <p>You can use this procedure with slight variation to add new replicas to a
 source. We will use <em>Percona XtraBackup</em> to clone an already configured
 replica. We will continue using the previous scenario for convenience, but
@@ -6344,7 +6344,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

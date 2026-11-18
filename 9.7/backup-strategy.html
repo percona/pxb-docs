@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5938,7 +5938,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="backup-strategy-and-backup-policy">Backup strategy and backup policy<a class="headerlink" href="#backup-strategy-and-backup-policy" title="Permanent link">&para;</a></h1>
+<h1 id="backup-strategy-and-backup-policy">Backup strategy and backup policy<a data-markdown-ignore class="headerlink" href="#backup-strategy-and-backup-policy" title="Permanent link">&para;</a></h1>
 <p>In conversation, &ldquo;backup strategy,&rdquo; &ldquo;backup policy,&rdquo; and &ldquo;backup plan&rdquo; are used interchangeably, but the terms have distinct meanings.</p>
 <p>A backup strategy is an overall approach or methodology for backing up the data in a database system. The strategy includes the decisions and considerations for what data to back up, how frequently backups should be taken, what backup methods and technologies to use, where to store the backup files, and what steps should be taken to ensure data integrity and the ability to recover.</p>
 <p>A backup strategy typically involves business requirements, the Recovery Point Objective (RPO), the maximum acceptable data loss in case of system failure or disaster, and the Recovery Time Objective (RTO), the acceptable downtime for restoring the system after a failure, and compliance regulations.</p>
@@ -5958,11 +5958,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li>How backups are monitored and audited</li>
 <li>What actions to take in case of backup failures or emergencies</li>
 </ul>
-<h2 id="types-of-backup">Types of backup<a class="headerlink" href="#types-of-backup" title="Permanent link">&para;</a></h2>
+<h2 id="types-of-backup">Types of backup<a data-markdown-ignore class="headerlink" href="#types-of-backup" title="Permanent link">&para;</a></h2>
 <p>A <a href="create-full-backup.html">full backup</a> copies all data to a storage location. This type of backup creates a complete copy of the data set. The benefit of a full backup is a quick recovery since the data is stored in one place. However, this type of backup is also the most time-consuming and storage-intensive; it duplicates all data regardless of whether it has changed since the last backup.</p>
 <p>An <a href="create-incremental-backup.html">incremental backup</a> only copies data that has changed since the last backup, whether that was a full or another incremental backup. This method is faster and more storage-efficient than a full backup. However, the recovery can be slower because you must restore each set of changes in sequence.</p>
 <p>For more information, see the <a href="example-full-incr.html">example of using a full backup with incremental backups</a>.</p>
-<h2 id="backup-policy-defined">Backup policy defined<a class="headerlink" href="#backup-policy-defined" title="Permanent link">&para;</a></h2>
+<h2 id="backup-policy-defined">Backup policy defined<a data-markdown-ignore class="headerlink" href="#backup-policy-defined" title="Permanent link">&para;</a></h2>
 <p>The backup policy sets the guidelines and objectives for data protection, while the backup strategy provides the roadmap for achieving those objectives.</p>
 <p>A backup policy may state that all customer data must be backed up daily, with a full backup at the start of each week and incremental backups taken each business day. These definitions are based on business and compliance needs. The policy also defines how long backups should be retained based on legal or regulatory requirements.</p>
 <p>The difference between a backup policy and a backup strategy lies in their scope and detail. A backup policy is more about the following:</p>
@@ -5975,7 +5975,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 </ul>
 <p>The backup strategy contains the how — how the backups are scheduled and includes information on the backup technologies and the restoration process. The backup strategy details the use of specific backup software, the configuration of backup schedules, the process for monitoring backup success, and the necessary steps for restoring data.</p>
-<h2 id="backup-policy-best-practices">Backup policy best practices<a class="headerlink" href="#backup-policy-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="backup-policy-best-practices">Backup policy best practices<a data-markdown-ignore class="headerlink" href="#backup-policy-best-practices" title="Permanent link">&para;</a></h2>
 <p>An effective backup policy is crucial for safeguarding an organization&rsquo;s data integrity and availability. Here are some best practices to consider:</p>
 <table>
 <thead>
@@ -6048,7 +6048,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tbody>
 </table>
 <p>By adhering to these best practices, organizations can create a robust backup policy that protects their data and supports their business continuity and disaster recovery strategies. The effectiveness of a backup policy depends not only on its creation but on its implementation and ongoing management. Regular reviews, updates, and staff training ensure the backup policy remains relevant and effective.</p>
-<h2 id="backup-policy-example">Backup policy example<a class="headerlink" href="#backup-policy-example" title="Permanent link">&para;</a></h2>
+<h2 id="backup-policy-example">Backup policy example<a data-markdown-ignore class="headerlink" href="#backup-policy-example" title="Permanent link">&para;</a></h2>
 <p>An example of a backup policy might include the following components:</p>
 <table>
 <thead>
@@ -6092,7 +6092,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tr>
 </tbody>
 </table>
-<h2 id="test-the-backups">Test the backups<a class="headerlink" href="#test-the-backups" title="Permanent link">&para;</a></h2>
+<h2 id="test-the-backups">Test the backups<a data-markdown-ignore class="headerlink" href="#test-the-backups" title="Permanent link">&para;</a></h2>
 <p>You must test the effectiveness of your backups and demonstrate that you can recover your data in the event of loss or corruption. Here are several methods to assess the reliability of your backup system:</p>
 <table>
 <thead>
@@ -6157,12 +6157,12 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tbody>
 </table>
 <p>By implementing these methods, you can be confident that your backup system protects your data and that you can recover your data when necessary. Regular testing and monitoring are key to maintaining an effective backup strategy and ensuring business continuity.</p>
-<h3 id="common-challenges">Common challenges<a class="headerlink" href="#common-challenges" title="Permanent link">&para;</a></h3>
+<h3 id="common-challenges">Common challenges<a data-markdown-ignore class="headerlink" href="#common-challenges" title="Permanent link">&para;</a></h3>
 <p>Common backup challenges often include issues such as damaged backups, missing or failed backups, maintaining legacy systems, adhering to strict privacy and security regulations, and managing the costs associated with data backup. To overcome these challenges, organizations can adopt several strategies.</p>
 <p>Implementing a modern, reliable backup solution that includes automated data consistency checking can help protect against damaged backups. Regular recovery tests can ensure that data is recoverable and not corrupt. For missing or failed backups, it&rsquo;s essential to have a robust monitoring system that alerts IT staff to any issues with the backup process, allowing for immediate action to rectify problems before they escalate.</p>
 <p>Maintaining legacy systems can be addressed by gradually phasing out older technology and replacing it with more current, supported solutions. Adhering to privacy and security regulations requires a thorough understanding of the laws and standards that apply to an organization&rsquo;s industry and geography. Implementing encryption and access controls can help ensure that backups are secure and compliant. Finally, managing the costs of data backup involves careful planning and budgeting, including the total cost of ownership of backup solutions.</p>
 <p>In addition to these strategies, follow best practices such as the 3-2-1 backup rule (three copies of data on two different media, with one copy stored offsite), regular testing and validation of backups, clear documentation of backup procedures, and continuous training for staff involved in the backup process.</p>
-<h2 id="disaster-recovery-plan">Disaster recovery plan<a class="headerlink" href="#disaster-recovery-plan" title="Permanent link">&para;</a></h2>
+<h2 id="disaster-recovery-plan">Disaster recovery plan<a data-markdown-ignore class="headerlink" href="#disaster-recovery-plan" title="Permanent link">&para;</a></h2>
 <p>A disaster recovery plan (DRP) is a structured approach with detailed instructions for responding to unplanned incidents such as natural disasters, power outages, cyber-attacks, and other disruptive events.</p>
 <table>
 <thead>
@@ -6375,7 +6375,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

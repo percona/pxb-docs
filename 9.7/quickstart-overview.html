@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5872,10 +5872,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="quickstart-overview">Quickstart Overview<a class="headerlink" href="#quickstart-overview" title="Permanent link">&para;</a></h1>
+<h1 id="quickstart-overview">Quickstart Overview<a data-markdown-ignore class="headerlink" href="#quickstart-overview" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems.</p>
 <p>To quickly start with Percona XtraBackup, we recommend using Docker. This Quickstart guide focuses on this installation method. You can explore alternative installation options in the <a href="installation.html">Install</a> section.</p>
-<h3 id="docker-containers">Docker containers<a class="headerlink" href="#docker-containers" title="Permanent link">&para;</a></h3>
+<h3 id="docker-containers">Docker containers<a data-markdown-ignore class="headerlink" href="#docker-containers" title="Permanent link">&para;</a></h3>
 <p>Docker containers are built from Docker images, which are configuration snapshots needed to run applications. With Docker, you can build, deploy, run, update, and manage containers, which isolate applications from the host system. A Docker container lets you work with Percona XtraBackup without installing the product on a local drive.</p>
 <p>Using Docker has benefits:</p>
 <ul>
@@ -5883,12 +5883,12 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li>Doesn&rsquo;t change anything on your computer</li>
 <li>Simply remove it when you&rsquo;re done</li>
 </ul>
-<h2 id="quickstart-purpose">Quickstart Purpose<a class="headerlink" href="#quickstart-purpose" title="Permanent link">&para;</a></h2>
+<h2 id="quickstart-purpose">Quickstart Purpose<a data-markdown-ignore class="headerlink" href="#quickstart-purpose" title="Permanent link">&para;</a></h2>
 <p>This section provides you with the basic steps to start Percona XtraBackup in a Docker container, take a backup, prepare a backup and restore a backup of Percona Server for MySQL database.</p>
 <p>We use specific names in our examples, but feel free to change them if you want. Just remember that if you do, your results might be different from our guide.</p>
 <p>When we talk about a &ldquo;container,&rdquo; we mean the Docker container where Percona XtraBackup is running. When we say &ldquo;instance,&rdquo; we&rsquo;re talking about the MySQL database server inside that container.</p>
 <p>This guide will help you get started quickly, but there&rsquo;s a lot more to learn about database backups as you go along.</p>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h2 id="prerequisites">Prerequisites<a data-markdown-ignore class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://docs.docker.com/engine/install/">Install Docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> on your system.</li>
 </ul>
@@ -5897,9 +5897,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li><a href="https://docs.percona.com/percona-server/8.4/quickstart-docker.html">Start Percona Server in a Docker container <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></li>
 <li><a href="https://docs.percona.com/percona-server/8.4/quickstart-database-script.html">Create a database and table in Percona Server <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></li>
 </ul>
-<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<h3 id="limitations">Limitations<a data-markdown-ignore class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 9.7 does not support making backups of databases created in versions before the 9.7 series of MySQL, Percona Server for MySQL, or Percona XtraDB Cluster.</p>
-<h3 id="support-servers-and-storage-engines">Support servers and storage engines<a class="headerlink" href="#support-servers-and-storage-engines" title="Permanent link">&para;</a></h3>
+<h3 id="support-servers-and-storage-engines">Support servers and storage engines<a data-markdown-ignore class="headerlink" href="#support-servers-and-storage-engines" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 9.7 supports backing up data from various MySQL-compatible servers and storage engines.</p>
 <p>Supported Servers:</p>
 <ul>
@@ -5914,7 +5914,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li>MyISAM</li>
 <li>MyRocks</li>
 </ul>
-<h2 id="steps-to-perform">Steps to perform<a class="headerlink" href="#steps-to-perform" title="Permanent link">&para;</a></h2>
+<h2 id="steps-to-perform">Steps to perform<a data-markdown-ignore class="headerlink" href="#steps-to-perform" title="Permanent link">&para;</a></h2>
 <p class="power-number">In this Quickstart, you will learn how to:</p>
 <ol>
 <li><a href="quickstart-docker.html">Start a Docker container and take a backup</a></li>
@@ -6082,7 +6082,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

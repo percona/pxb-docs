@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5982,11 +5982,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="backup-example">Backup example<a class="headerlink" href="#backup-example" title="Permanent link">&para;</a></h1>
+<h1 id="backup-example">Backup example<a data-markdown-ignore class="headerlink" href="#backup-example" title="Permanent link">&para;</a></h1>
 <p>This example demonstrates how to set up daily full backups and hourly incremental backups using Percona XtraBackup 9.7 with a MySQL 9.7-compatible database server.</p>
-<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<h2 id="version-changes">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--incremental-basedir</code> option to <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
-<h2 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h2>
+<h2 id="assumptions">Assumptions<a data-markdown-ignore class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Percona XtraBackup 9.7 is installed on your system.</li>
 <li>A MySQL 9.7-compatible database server (for example, Percona Server for MySQL 9.7) is running.</li>
@@ -5998,7 +5998,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p class="admonition-title">Credentials and security</p>
 <p>Using <code>--password</code> on the command line exposes the password in process lists (for example, <code>ps</code>). For production, use a <a href="configure-xtrabackup.html">configuration file</a> or a login path (for example, <code>--login-path</code>) instead of passing the password on the command line.</p>
 </div>
-<h2 id="daily-full-backup-script">Daily full backup script<a class="headerlink" href="#daily-full-backup-script" title="Permanent link">&para;</a></h2>
+<h2 id="daily-full-backup-script">Daily full backup script<a data-markdown-ignore class="headerlink" href="#daily-full-backup-script" title="Permanent link">&para;</a></h2>
 <p>The following script defines the server details such as hostname, username, password, data directory, and backup directory. Replace these with your actual values. The script:</p>
 <ul>
 <li>Defines the server credentials</li>
@@ -6038,11 +6038,11 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span>
 <span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="k">fi</span>
 </code></pre></div>
-<h2 id="running-the-daily-script">Running the daily script<a class="headerlink" href="#running-the-daily-script" title="Permanent link">&para;</a></h2>
+<h2 id="running-the-daily-script">Running the daily script<a data-markdown-ignore class="headerlink" href="#running-the-daily-script" title="Permanent link">&para;</a></h2>
 <p>You can schedule this script to run automatically using cron. For example, to run it every day at midnight (00:00), add this line to your crontab:</p>
 <div class="highlight"><pre><span></span><code><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/path/to/daily_full_backup.sh
 </code></pre></div>
-<h2 id="hourly-incremental-backup-script">Hourly incremental backup script<a class="headerlink" href="#hourly-incremental-backup-script" title="Permanent link">&para;</a></h2>
+<h2 id="hourly-incremental-backup-script">Hourly incremental backup script<a data-markdown-ignore class="headerlink" href="#hourly-incremental-backup-script" title="Permanent link">&para;</a></h2>
 <p>The hourly script uses the same server details as the daily script. The script uses the current date and hour to name the incremental backup directory. The core command runs <code>xtrabackup</code> with the <code>--backup</code> and <code>--incremental</code> options. <code>--target-dir</code> specifies the directory for the incremental backup. <code>--backup-incremental-base</code> must point to the directory of a completed full or incremental backup. The script uses the <strong>most recent</strong> full backup as the base: <code>ls -t</code> lists full backups by modification time (newest first), and <code>head -n 1</code> selects the newest directory. Before the backup, the script checks that the base directory exists. After the backup, the script reports success or failure based on the exit code.</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1"># Set server details (same as daily script)</span>
@@ -6089,11 +6089,11 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span>
 <p class="admonition-title">Schedule so the full backup completes before incrementals</p>
 <p>Each incremental must be based on a <strong>completed</strong> full or incremental backup. If the daily full runs at midnight and can take more than an hour, the 01:00 incremental might still see &ldquo;latest full&rdquo; as yesterday&rsquo;s backup, and the 02:00 incremental might see today&rsquo;s. That produces two different chains. Ensure the full backup finishes before the first incremental that depends on it: for example, run the full at 00:00 and start incrementals at 02:00, or use a wrapper that runs the first incremental only after the full has completed.</p>
 </div>
-<h2 id="running-the-hourly-script">Running the hourly script<a class="headerlink" href="#running-the-hourly-script" title="Permanent link">&para;</a></h2>
+<h2 id="running-the-hourly-script">Running the hourly script<a data-markdown-ignore class="headerlink" href="#running-the-hourly-script" title="Permanent link">&para;</a></h2>
 <p>Schedule this script to run every hour using cron:</p>
 <div class="highlight"><pre><span></span><code><span class="m">0</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/path/to/hourly_incremental_backup.sh
 </code></pre></div>
-<h2 id="restore-chain">Restore chain<a class="headerlink" href="#restore-chain" title="Permanent link">&para;</a></h2>
+<h2 id="restore-chain">Restore chain<a data-markdown-ignore class="headerlink" href="#restore-chain" title="Permanent link">&para;</a></h2>
 <p>To restore from a full backup and its incrementals you must:</p>
 <ol>
 <li><strong>Prepare the full backup</strong> once (apply redo only, no incremental yet).</li>
@@ -6101,7 +6101,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span>
 <li><strong>Prepare again</strong> (apply redo and undo) so the backup is consistent.</li>
 </ol>
 <p>All incrementals that you apply must form a single chain from one full backup: each incremental is based on the previous one or on the full. Do not mix incrementals from different full backups in one restore. For step-by-step commands, see <a href="prepare-full-backup.html">Prepare a full backup</a>, <a href="prepare-incremental-backup.html">Prepare an incremental backup</a>, and <a href="restore-a-backup.html">Restore full and incremental backups</a>.</p>
-<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<h2 id="next-steps">Next steps<a data-markdown-ignore class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="prepare-full-backup.html">Prepare a full backup</a> and <a href="prepare-incremental-backup.html">prepare an incremental backup</a> before restore.</li>
 <li><a href="restore-a-backup.html">Restore full and incremental backups</a> when you need to recover data.</li>
@@ -6266,7 +6266,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

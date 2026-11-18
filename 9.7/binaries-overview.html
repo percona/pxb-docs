@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5960,11 +5960,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="percona-xtrabackup-binaries-overview">Percona XtraBackup binaries overview<a class="headerlink" href="#percona-xtrabackup-binaries-overview" title="Permanent link">&para;</a></h1>
+<h1 id="percona-xtrabackup-binaries-overview">Percona XtraBackup binaries overview<a data-markdown-ignore class="headerlink" href="#percona-xtrabackup-binaries-overview" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup provides a comprehensive suite of command-line tools for MySQL database backup and recovery operations. This document introduces the four core binaries that form the foundation of Percona XtraBackup&rsquo;s functionality, helping you understand when and how to use each tool effectively.</p>
-<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<h2 id="version-changes">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--incremental-basedir</code> option to <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h2 id="prerequisites">Prerequisites<a data-markdown-ignore class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <p>Before using Percona XtraBackup binaries, ensure you have:</p>
 <ul>
 <li>
@@ -5977,8 +5977,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Network access (for cloud storage operations)</p>
 </li>
 </ul>
-<h2 id="core-binaries">Core binaries<a class="headerlink" href="#core-binaries" title="Permanent link">&para;</a></h2>
-<h3 id="xtrabackup">xtrabackup<a class="headerlink" href="#xtrabackup" title="Permanent link">&para;</a></h3>
+<h2 id="core-binaries">Core binaries<a data-markdown-ignore class="headerlink" href="#core-binaries" title="Permanent link">&para;</a></h2>
+<h3 id="xtrabackup">xtrabackup<a data-markdown-ignore class="headerlink" href="#xtrabackup" title="Permanent link">&para;</a></h3>
 <p>Purpose: The primary backup and restore utility for MySQL databases.</p>
 <p>Key Capabilities:</p>
 <ul>
@@ -6023,7 +6023,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 </code></pre></div>
 <p>Documentation: <a href="xtrabackup-binary-overview.html">xtrabackup Overview</a></p>
 <p>Command Line Options: <a href="xtrabackup-option-reference.html">xtrabackup Options</a></p>
-<h3 id="xbcloud">xbcloud<a class="headerlink" href="#xbcloud" title="Permanent link">&para;</a></h3>
+<h3 id="xbcloud">xbcloud<a data-markdown-ignore class="headerlink" href="#xbcloud" title="Permanent link">&para;</a></h3>
 <p>Purpose: Cloud storage management for backup files.</p>
 <p>Key Capabilities:</p>
 <ul>
@@ -6065,7 +6065,7 @@ xbcloud<span class="w"> </span>get<span class="w"> </span>s3://my-bucket/backup/
 </code></pre></div>
 <p>Documentation: <a href="xbcloud-binary-overview.html">xbcloud Overview</a></p>
 <p>Command Line Options: <a href="xbcloud-options.html">xbcloud Options</a></p>
-<h3 id="xbcrypt">xbcrypt<a class="headerlink" href="#xbcrypt" title="Permanent link">&para;</a></h3>
+<h3 id="xbcrypt">xbcrypt<a data-markdown-ignore class="headerlink" href="#xbcrypt" title="Permanent link">&para;</a></h3>
 <p>Purpose: Encryption and decryption of backup files.</p>
 <p>Key Capabilities:</p>
 <ul>
@@ -6107,7 +6107,7 @@ xbcrypt<span class="w"> </span>--decrypt<span class="w"> </span>--encrypt-key-fi
 </code></pre></div>
 <p>Documentation: <a href="xbcrypt-binary-overview.html">xbcrypt Overview</a></p>
 <p>Command Line Options: <a href="xbcrypt-options.html">xbcrypt Options</a></p>
-<h3 id="xbstream">xbstream<a class="headerlink" href="#xbstream" title="Permanent link">&para;</a></h3>
+<h3 id="xbstream">xbstream<a data-markdown-ignore class="headerlink" href="#xbstream" title="Permanent link">&para;</a></h3>
 <p>Purpose: Streaming backup data for efficient handling of large files.</p>
 <p>Key Capabilities:</p>
 <ul>
@@ -6149,8 +6149,8 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 </code></pre></div>
 <p>Documentation: <a href="https://docs.percona.com/percona-xtrabackup/9.7/xbstream-binary-overview.html">xbstream Overview <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
 <p>Command Line Options: <a href="xbstream-options.html">xbstream Options</a></p>
-<h2 id="common-workflows">Common workflows<a class="headerlink" href="#common-workflows" title="Permanent link">&para;</a></h2>
-<h3 id="basic-backup-workflow">Basic backup workflow<a class="headerlink" href="#basic-backup-workflow" title="Permanent link">&para;</a></h3>
+<h2 id="common-workflows">Common workflows<a data-markdown-ignore class="headerlink" href="#common-workflows" title="Permanent link">&para;</a></h2>
+<h3 id="basic-backup-workflow">Basic backup workflow<a data-markdown-ignore class="headerlink" href="#basic-backup-workflow" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>Create a full backup using <code>xtrabackup</code></p>
@@ -6165,7 +6165,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <p>Verify backup integrity</p>
 </li>
 </ol>
-<h3 id="incremental-backup-strategy">Incremental backup strategy<a class="headerlink" href="#incremental-backup-strategy" title="Permanent link">&para;</a></h3>
+<h3 id="incremental-backup-strategy">Incremental backup strategy<a data-markdown-ignore class="headerlink" href="#incremental-backup-strategy" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>Create initial full backup</p>
@@ -6180,7 +6180,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <p>Store encrypted backups in cloud storage</p>
 </li>
 </ol>
-<h3 id="disaster-recovery-workflow">Disaster recovery workflow<a class="headerlink" href="#disaster-recovery-workflow" title="Permanent link">&para;</a></h3>
+<h3 id="disaster-recovery-workflow">Disaster recovery workflow<a data-markdown-ignore class="headerlink" href="#disaster-recovery-workflow" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>Download backup from cloud storage</p>
@@ -6195,8 +6195,8 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <p>Restore database from prepared backup</p>
 </li>
 </ol>
-<h2 id="code-examples">Code examples<a class="headerlink" href="#code-examples" title="Permanent link">&para;</a></h2>
-<h3 id="complete-backup-and-upload-workflow">Complete backup and upload workflow<a class="headerlink" href="#complete-backup-and-upload-workflow" title="Permanent link">&para;</a></h3>
+<h2 id="code-examples">Code examples<a data-markdown-ignore class="headerlink" href="#code-examples" title="Permanent link">&para;</a></h2>
+<h3 id="complete-backup-and-upload-workflow">Complete backup and upload workflow<a data-markdown-ignore class="headerlink" href="#complete-backup-and-upload-workflow" title="Permanent link">&para;</a></h3>
 <p>Run the following commands as root or use the sudo command.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Create encrypted backup</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/etc/mysql/backup.key
@@ -6208,7 +6208,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <span class="c1"># Upload to cloud storage</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>/<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backup-bucket
 </code></pre></div>
-<h3 id="restore-from-cloud-storage">Restore from cloud storage<a class="headerlink" href="#restore-from-cloud-storage" title="Permanent link">&para;</a></h3>
+<h3 id="restore-from-cloud-storage">Restore from cloud storage<a data-markdown-ignore class="headerlink" href="#restore-from-cloud-storage" title="Permanent link">&para;</a></h3>
 <p>Run the following commands as root or use the sudo command.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Download backup from cloud</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>s3://my-backup-bucket/20241201/<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backup-bucket
@@ -6220,7 +6220,7 @@ xbcrypt<span class="w"> </span>--decrypt<span class="w"> </span>--encrypt-key-fi
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup
 xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup
 </code></pre></div>
-<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<h2 id="next-steps">Next steps<a data-markdown-ignore class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p>Now that you understand the core binaries, consider these next steps:</p>
 <ol>
 <li>
@@ -6236,7 +6236,7 @@ xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-di
 <p>Advanced Topics: Explore <a href="point-in-time-recovery.html">point-in-time recovery</a> and <a href="set-up-replication.html">replication setup</a></p>
 </li>
 </ol>
-<h2 id="related-documentation">Related documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<h2 id="related-documentation">Related documentation<a data-markdown-ignore class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><a href="backup-overview.html">Backup and Restore overview</a></p>
@@ -6405,7 +6405,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

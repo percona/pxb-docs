@@ -1,0 +1,66 @@
+> For the complete documentation index, see [llms.txt](https://docs.percona.com/percona-xtrabackup/9.7/llms.txt).
+
+# Take a streaming backup
+
+Percona XtraBackup supports streaming mode. Streaming mode sends a backup to `STDOUT` in the *xbstream* format instead of copying the files to the backup directory.
+
+This method allows you to use other programs to filter the output of the backup, providing greater flexibility for storage of the backup. For example, compression is achieved by piping the output to a compression utility. One of the benefits of streaming backups and using Unix pipes is that the backups can be automatically encrypted.
+
+To use the streaming feature, run the `--stream` option.
+
+```
+xtrabackup --stream
+```
+
+xtrabackup uses xbstream to stream all of the data files to `STDOUT`, in a special `xbstream` format. After it finishes streaming all of the data files to `STDOUT`, it stops xtrabackup and streams the saved log file too.
+
+When compression is enabled, xtrabackup compresses the output data, except for the meta and non-InnoDB files which are not compressed, using the specified compression algorithm. Percona XtraBackup supports the following compression algorithms:
+
+## Zstandard (ZSTD)
+
+The Zstandard (ZSTD) is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. `ZSTD` is the default compression algorithm for the `--compress` option.
+
+To compress files using the `ZSTD` compression algorithm, use the `--compress` option:
+
+```
+xtrabackup --backup --compress --target-dir=/data/backup
+```
+
+The resulting files have the `\*.zst` format.
+
+You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#compress-zstd-level) option. The default value is `1`.
+
+```
+xtrabackup –backup –compress –compress-zstd-level=1 –target-dir=/data/backup
+```
+
+## lz4
+
+To compress files using the `lz4` compression algorithm, set the `--compress` option to `lz4`:
+
+```
+xtrabackup --backup --compress=lz4 --target-dir=/data/backup
+```
+
+The resulting files have the `\*.lz4` format.
+
+To decompress files, use the `--decompress` option.
+
+In case backups were both compressed and encrypted, they must be decrypted before they are uncompressed.
+
+| Task                                                                                                                | Command                                                                                                |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Stream the backup into an archive named `backup.xbstream`                                                           | `xtrabackup --backup --stream > backup.xbstream`                                                       |
+| Stream the backup into a compressed archive named `backup.xbstream`                                                 | `xtrabackup --backup --stream --compress > backup.xbstream`                                            |
+| Encrypt the backup                                                                                                  | `xtrabackup --backup --stream \|gzip \| openssl des3 -salt -k 'password' -out backup.xbstream.gz.des3` |
+| Unpack the backup to the current directory                                                                          | `xbstream -x < backup.xbstream`                                                                        |
+| Send the backup compressed directly to another host and unpack it                                                   | \`xtrabackup --backup --compress --stream                                                              |
+| Send the backup to another server using `netcat`                                                                    | On the destination host: \`nc -l 9999                                                                  |
+| Send the backup to another server using a one-liner                                                                 | \`ssh user@desthost “( nc -l 9999 > /data/backups/backup.xbstream & )” && xtrabackup --backup --stream |
+| Throttle the throughput to 10MB/sec using the [pipe viewer](https://www.ivarch.com/programs/quickref/pv.shtml) tool | \`xtrabackup --backup --stream                                                                         |
+| Checksum the backup during the streaming                                                                            | On the destination host: \`nc -l 9999                                                                  |
+| Parallel compression with parallel copying backup                                                                   | `xtrabackup --backup --compress --compress-threads=8 --stream --parallel=4 > backup.xbstream`          |
+
+Important
+
+The streamed backup must be prepared before restoration. Streaming mode does not prepare the backup.

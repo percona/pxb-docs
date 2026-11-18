@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5828,9 +5828,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="reduced-backup-lock-time">Reduced backup lock time<a class="headerlink" href="#reduced-backup-lock-time" title="Permanent link">&para;</a></h1>
+<h1 id="reduced-backup-lock-time">Reduced backup lock time<a data-markdown-ignore class="headerlink" href="#reduced-backup-lock-time" title="Permanent link">&para;</a></h1>
 <p>The <a href="xtrabackup-option-reference.html#lock-ddl"><code>--lock-ddl=REDUCED</code></a> option reduces the time the server remains locked by <code>xtrabackup</code> during full and incremental backups. This allows you to perform <code>Data Definition Language</code> (DDL) operations while the backup is in progress.</p>
-<h3 id="benefits">Benefits<a class="headerlink" href="#benefits" title="Permanent link">&para;</a></h3>
+<h3 id="benefits">Benefits<a data-markdown-ignore class="headerlink" href="#benefits" title="Permanent link">&para;</a></h3>
 <p>The <code>--lock-ddl=REDUCED</code> option features are as follows:</p>
 <ul>
 <li>
@@ -5839,7 +5839,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <summary>Comparing the backup lock duration with &ndash;lock-ddl=REDUCED</summary>
 <p>While we strive to provide accurate performance benchmarks, real-world results may vary depending on your hardware and software configurations.</p>
 <p>The following tables illustrate the approximate time differences between <code>--lock-ddl=ON</code> and <code>--lock-ddl=REDUCED</code> for local and cloud backups (Amazon S3). The <code>Improvement (X times)</code> column shows how many times less the server is locked by xtrabackup using <code>--lock-ddl=ON</code> compared to <code>--lock-ddl=REDUCED</code>.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Local backup</label><label for="__tabbed_1_2">Cloud (Amazon s3) backup</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_1_1">Local backup</label><label for="__tabbed_1_2">Cloud (Amazon s3) backup</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <table>
@@ -5941,7 +5941,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li>Ensure consistency: The <code>--prepare</code> step processes generated metadata files and uses redo and undo logs to create a consistent database state.</li>
 <li>Reduce replication lag: When you take a backup with <code>--safe-slave-backup</code> and <code>--lock-ddl=reduced</code> enabled, the SQL thread on the replica server is stopped for less time, reducing replication lag.</li>
 </ul>
-<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<h3 id="limitations">Limitations<a data-markdown-ignore class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p>Certain DDL operations consume significant resources, and xtrabackup requires I/O to copy and read files simultaneously. This requirement can increase resource demand from DDL operations during the backup process.</p>
@@ -5959,10 +5959,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Taking a backup using <a href="page-tracking.html">page tracking</a> is not supported with <code>--lock-ddl=REDUCED</code> option.</p>
 </li>
 </ul>
-<h2 id="how-the-lock-ddlreduced-option-works">How the <code>--lock-ddl=REDUCED</code> option works<a class="headerlink" href="#how-the-lock-ddlreduced-option-works" title="Permanent link">&para;</a></h2>
+<h2 id="how-the-lock-ddlreduced-option-works">How the <code>--lock-ddl=REDUCED</code> option works<a data-markdown-ignore class="headerlink" href="#how-the-lock-ddlreduced-option-works" title="Permanent link">&para;</a></h2>
 <p>Percona Server for MySQL implemented <code>LOCK TABLES FOR BACKUP</code> to block <code>DDL</code> operations on a server. <code>xtrabackup</code> utilizes this lock during the backup process to ensure that any <code>DDL</code> operation does not corrupt the backup. With MySQL-compatible servers <code>xtrabackup</code> utilizes <code>LOCK INSTANCE FOR BACKUP</code> to lock the server during the backup. The lock does not affect the <code>Data Manipulation Language</code> (DML) operations. By default, <code>xtrabackup</code> enables the <a href="xtrabackup-option-reference.html#lock-ddl"><code>--lock-ddl=ON</code></a> option to apply the backup lock at the start of the backup.</p>
 <p>Taking backup with the <code>--lock-ddl=REDUCED</code> option includes the following phases:</p>
-<h3 id="phase-1-operations-performed-without-the-lock">Phase 1: Operations performed without the lock<a class="headerlink" href="#phase-1-operations-performed-without-the-lock" title="Permanent link">&para;</a></h3>
+<h3 id="phase-1-operations-performed-without-the-lock">Phase 1: Operations performed without the lock<a data-markdown-ignore class="headerlink" href="#phase-1-operations-performed-without-the-lock" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If your database contains encrypted tables, do not use the <code>ALTER INSTANCE ROTATE MASTER KEY</code> command during Phase 1. Running this command with encrypted tables present can cause backup operations to fail.</p>
@@ -5974,7 +5974,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li>Track file operations by parsing the <code>MLOG_FILE_*</code> records from the redo log. These records help track changes in the files being backed up to ensure consistency.</li>
 <li>Copy the <code>.ibd</code> files.</li>
 </ol>
-<h3 id="phase-2-operations-performed-under-the-lock">Phase 2: Operations performed under the lock<a class="headerlink" href="#phase-2-operations-performed-under-the-lock" title="Permanent link">&para;</a></h3>
+<h3 id="phase-2-operations-performed-under-the-lock">Phase 2: Operations performed under the lock<a data-markdown-ignore class="headerlink" href="#phase-2-operations-performed-under-the-lock" title="Permanent link">&para;</a></h3>
 <p class="power-number">The following operations are performed under the lock:</p>
 <ol>
 <li>Take the backup lock on the server to prevent new DDL operations, such as creating or altering tables.</li>
@@ -6022,7 +6022,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tbody>
 </table>
 </details>
-<h3 id="phase-3-handling-new-metadata-files-in-prepare">Phase 3. Handling new metadata files in <code>--prepare</code><a class="headerlink" href="#phase-3-handling-new-metadata-files-in-prepare" title="Permanent link">&para;</a></h3>
+<h3 id="phase-3-handling-new-metadata-files-in-prepare">Phase 3. Handling new metadata files in <code>--prepare</code><a data-markdown-ignore class="headerlink" href="#phase-3-handling-new-metadata-files-in-prepare" title="Permanent link">&para;</a></h3>
 <p class="power-number">The following operations are performed to ensure data remains intact and consistent:</p>
 <ol>
 <li>Remove the <code>.crpt</code> files that match the name after stripping the extension. This step is crucial before the <code>IBD</code> scan because these files are incomplete (they can be zero size).</li>
@@ -6160,7 +6160,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

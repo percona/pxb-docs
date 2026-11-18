@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5896,11 +5896,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="backup-size-reporting">Backup size reporting<a class="headerlink" href="#backup-size-reporting" title="Permanent link">&para;</a></h1>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<h1 id="backup-size-reporting">Backup size reporting<a data-markdown-ignore class="headerlink" href="#backup-size-reporting" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a data-markdown-ignore class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup reports the size of every successful backup in <code>xtrabackup_info</code> and reports the same values in the XtraBackup error log.</p>
 <p>Backup size reporting helps estimate storage requirements, check that backups work correctly, and plan restores for compressed and streamed backups.</p>
-<h2 id="why-external-tools-cannot-accurately-measure-backup-size">Why external tools cannot accurately measure backup size<a class="headerlink" href="#why-external-tools-cannot-accurately-measure-backup-size" title="Permanent link">&para;</a></h2>
+<h2 id="why-external-tools-cannot-accurately-measure-backup-size">Why external tools cannot accurately measure backup size<a data-markdown-ignore class="headerlink" href="#why-external-tools-cannot-accurately-measure-backup-size" title="Permanent link">&para;</a></h2>
 <p>External tools cannot reliably determine the final size of XtraBackup output in many backup configurations.</p>
 <p>Backup size often differs from the MySQL datadir size because Percona XtraBackup also copies redo log data generated during the backup process.</p>
 <p>Several backup features further change the final output size:</p>
@@ -5922,7 +5922,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 </ul>
 <p>Compressed backups also require sufficient free space during decompression and restore. Reporting the uncompressed backup size helps estimate restore storage requirements before recovery operations begin.</p>
-<h2 id="how-backup-size-reporting-works">How backup size reporting works<a class="headerlink" href="#how-backup-size-reporting-works" title="Permanent link">&para;</a></h2>
+<h2 id="how-backup-size-reporting-works">How backup size reporting works<a data-markdown-ignore class="headerlink" href="#how-backup-size-reporting-works" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup records backup size at the end of every successful backup. Backup size reporting is enabled by default and requires no additional configuration.</p>
 <p>Percona XtraBackup calculates backup size after all backup operations complete, including:</p>
 <ul>
@@ -5960,7 +5960,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>XtraBackup error log</p>
 </li>
 </ul>
-<h3 id="reported-values">Reported values<a class="headerlink" href="#reported-values" title="Permanent link">&para;</a></h3>
+<h3 id="reported-values">Reported values<a data-markdown-ignore class="headerlink" href="#reported-values" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5983,7 +5983,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tr>
 </tbody>
 </table>
-<h3 id="xtrabackup_info"><code>xtrabackup_info</code><a class="headerlink" href="#xtrabackup_info" title="Permanent link">&para;</a></h3>
+<h3 id="xtrabackup_info"><code>xtrabackup_info</code><a data-markdown-ignore class="headerlink" href="#xtrabackup_info" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup writes backup size metadata to <code>xtrabackup_info</code> in the backup output.</p>
 <p>Depending on backup configuration, <code>xtrabackup_info</code> in the backup output may be:</p>
 <ul>
@@ -6006,7 +6006,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p class="admonition-title">Note</p>
 <p>Files created in the <code>--extra-lsndir=&lt;dir&gt;</code> directory are not part of the backup.</p>
 </div>
-<h3 id="xtrabackup-error-log">XtraBackup error log<a class="headerlink" href="#xtrabackup-error-log" title="Permanent link">&para;</a></h3>
+<h3 id="xtrabackup-error-log">XtraBackup error log<a data-markdown-ignore class="headerlink" href="#xtrabackup-error-log" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup prints information about backup size near the end of the backup operation before the <code>completed OK!</code> message.</p>
 <p>The log output includes:</p>
 <ul>
@@ -6020,8 +6020,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Compression ratio</p>
 </li>
 </ul>
-<h2 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
-<h3 id="uncompressed-backup-example">Uncompressed backup example<a class="headerlink" href="#uncompressed-backup-example" title="Permanent link">&para;</a></h3>
+<h2 id="output">Output<a data-markdown-ignore class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
+<h3 id="uncompressed-backup-example">Uncompressed backup example<a data-markdown-ignore class="headerlink" href="#uncompressed-backup-example" title="Permanent link">&para;</a></h3>
 <p>The following example shows <code>xtrabackup_info</code> from a backup created with <code>--target-dir</code>.</p>
 <div class="highlight"><pre><span></span><code>uuid = 122a291d-48b0-11f1-9d76-047bcbcb6b7e
 name =
@@ -6049,7 +6049,7 @@ backup_size = 88689086
 <div class="highlight"><pre><span></span><code>2026-05-05T19:27:28.140024+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 84.58 MiB (88689086 bytes)
 2026-05-05T19:27:29.382428+01:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
-<h3 id="compressed-backup-example">Compressed backup example<a class="headerlink" href="#compressed-backup-example" title="Permanent link">&para;</a></h3>
+<h3 id="compressed-backup-example">Compressed backup example<a data-markdown-ignore class="headerlink" href="#compressed-backup-example" title="Permanent link">&para;</a></h3>
 <p>Compressed backups additionally report the uncompressed backup size and compression ratio.</p>
 <p>The following example shows the final lines of <code>xtrabackup_info</code> with backup size values reported in bytes:</p>
 <div class="highlight"><pre><span></span><code>backup_size = 1832398
@@ -6218,7 +6218,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

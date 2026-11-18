@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5874,14 +5874,14 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="decompress-and-prepare-a-backup">Decompress and prepare a backup<a class="headerlink" href="#decompress-and-prepare-a-backup" title="Permanent link">&para;</a></h1>
+<h1 id="decompress-and-prepare-a-backup">Decompress and prepare a backup<a data-markdown-ignore class="headerlink" href="#decompress-and-prepare-a-backup" title="Permanent link">&para;</a></h1>
 <p>Before you can prepare the backup you need to decompress all the files. Run the following commands as root or use the sudo command.</p>
-<h2 id="decompress-a-backup">Decompress a backup<a class="headerlink" href="#decompress-a-backup" title="Permanent link">&para;</a></h2>
+<h2 id="decompress-a-backup">Decompress a backup<a data-markdown-ignore class="headerlink" href="#decompress-a-backup" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>To decompress backups made using <code>LZ4</code> or <code>ZSTD</code> compression algorithm, install the corresponding package.</p>
 <p><code>Install on APT systems</code></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Install the <code>lz4</code> package</label><label for="__tabbed_1_2">Install the <code>zstd</code> package</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_1_1">Install the <code>lz4</code> package</label><label for="__tabbed_1_2">Install the <code>zstd</code> package</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lz4
@@ -5894,7 +5894,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </div>
 </div>
 <p><code>Install on YUM systems</code></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Install the <code>lz4</code> package</label><label for="__tabbed_2_2">Install the <code>zstd</code> package</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_2_1">Install the <code>lz4</code> package</label><label for="__tabbed_2_2">Install the <code>zstd</code> package</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>lz4
@@ -5918,7 +5918,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Percona XtraBackup does not automatically delete compressed files. To clean up the backup directory, use the <code>--remove-original</code> option. If you do not remove the compressed files, these files will not be copied or moved to the datadir when using the <code>--copy-back</code> or <code>--move-back</code> options.</p>
 </li>
 </ul>
-<h2 id="prepare-the-backup">Prepare the backup<a class="headerlink" href="#prepare-the-backup" title="Permanent link">&para;</a></h2>
+<h2 id="prepare-the-backup">Prepare the backup<a data-markdown-ignore class="headerlink" href="#prepare-the-backup" title="Permanent link">&para;</a></h2>
 <p>When the files are decompressed you can prepare the backup with the <code>--prepare</code> option.</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/compressed/
 </code></pre></div>
@@ -5930,7 +5930,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </code></pre></div>
 </details>
 <p>Now the files in <code>/data/compressed/</code> are ready to be used by the server.</p>
-<h2 id="next-step">Next step<a class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
+<h2 id="next-step">Next step<a data-markdown-ignore class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="restore-a-backup.html">Restore the backup</a></p>
 
 
@@ -6092,7 +6092,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

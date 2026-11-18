@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6006,9 +6006,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="the-xbcloud-binary-overview">The xbcloud binary overview<a class="headerlink" href="#the-xbcloud-binary-overview" title="Permanent link">&para;</a></h1>
+<h1 id="the-xbcloud-binary-overview">The xbcloud binary overview<a data-markdown-ignore class="headerlink" href="#the-xbcloud-binary-overview" title="Permanent link">&para;</a></h1>
 <p>xbcloud is a cloud storage utility that works with Percona XtraBackup to upload, download, and manage database backups in cloud storage. It enables you to stream backups directly to cloud storage without requiring local disk space, making it ideal for large database environments.</p>
-<h2 id="whats-in-this-document">What&rsquo;s in this document<a class="headerlink" href="#whats-in-this-document" title="Permanent link">&para;</a></h2>
+<h2 id="whats-in-this-document">What&rsquo;s in this document<a data-markdown-ignore class="headerlink" href="#whats-in-this-document" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><a href="#version-changes">Version changes</a> - Option changes in recent releases</p>
@@ -6032,9 +6032,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p><a href="#advanced-usage-patterns">Advanced usage patterns</a> - Incremental backups and partial restore</p>
 </li>
 </ul>
-<h2 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<h2 id="version-changes">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--incremental-basedir</code> option to <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a> and the <code>--incremental-dir</code> option to <a href="xtrabackup-option-reference.html#prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a>. Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.</p>
-<h2 id="what-xbcloud-does">What xbcloud does<a class="headerlink" href="#what-xbcloud-does" title="Permanent link">&para;</a></h2>
+<h2 id="what-xbcloud-does">What xbcloud does<a data-markdown-ignore class="headerlink" href="#what-xbcloud-does" title="Permanent link">&para;</a></h2>
 <p>xbcloud provides three essential operations:</p>
 <ul>
 <li><strong>put</strong> - Upload backups to cloud storage</li>
@@ -6042,7 +6042,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li><strong>delete</strong> - Remove backups from cloud storage</li>
 </ul>
 <p>These operations work seamlessly with xtrabackup&rsquo;s streaming capabilities, allowing you to create a complete backup pipeline that streams data directly from your database to cloud storage.</p>
-<h2 id="supported-cloud-storage-providers">Supported cloud storage providers<a class="headerlink" href="#supported-cloud-storage-providers" title="Permanent link">&para;</a></h2>
+<h2 id="supported-cloud-storage-providers">Supported cloud storage providers<a data-markdown-ignore class="headerlink" href="#supported-cloud-storage-providers" title="Permanent link">&para;</a></h2>
 <p>xbcloud supports multiple cloud storage providers:</p>
 <ul>
 <li>Amazon S3 and S3-compatible services (MinIO, Wasabi, Digital Ocean Spaces)</li>
@@ -6058,12 +6058,12 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li><a href="xbcloud-azure.html">Using the xbcloud binary with Microsoft Azure Cloud Storage</a></li>
 <li><a href="xbcloud-minio.html">Using the xbcloud binary with MinIO</a></li>
 </ul>
-<h2 id="key-features">Key features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
-<h3 id="streaming-backups">Streaming backups<a class="headerlink" href="#streaming-backups" title="Permanent link">&para;</a></h3>
+<h2 id="key-features">Key features<a data-markdown-ignore class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="streaming-backups">Streaming backups<a data-markdown-ignore class="headerlink" href="#streaming-backups" title="Permanent link">&para;</a></h3>
 <p>xbcloud accepts input via pipes from xbstream, enabling direct streaming from xtrabackup to cloud storage without requiring local storage space.</p>
-<h3 id="chunked-storage">Chunked storage<a class="headerlink" href="#chunked-storage" title="Permanent link">&para;</a></h3>
+<h3 id="chunked-storage">Chunked storage<a data-markdown-ignore class="headerlink" href="#chunked-storage" title="Permanent link">&para;</a></h3>
 <p>Backups are stored as separate objects with names like <code>backup_name/database/table.ibd.NNN...</code>, where <code>NNN...</code> is a zero-padded serial number. The default chunk size is 10MB, which you can adjust using <a href="xtrabackup-option-reference.html#read-buffer-size"><code>--read-buffer-size</code></a>.</p>
-<h3 id="advanced-features">Advanced features<a class="headerlink" href="#advanced-features" title="Permanent link">&para;</a></h3>
+<h3 id="advanced-features">Advanced features<a data-markdown-ignore class="headerlink" href="#advanced-features" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="xbcloud-exbackoff.html">Exponential Backoff</a> - Automatically retries failed operations with increasing delays</li>
 <li><a href="xbcloud-binary-fifo-datasink.html">FIFO data sink</a> - Enables parallel streaming for high-bandwidth networks (10Gbps+)</li>
@@ -6072,9 +6072,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p class="admonition-title">Important</p>
 <p>To prevent intermittent backup failures, <a href="update-curl-utility.html">update the curl utility</a>.</p>
 </div>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<h2 id="usage">Usage<a data-markdown-ignore class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>This section shows common xbcloud usage patterns. All examples use Amazon S3 for consistency, but the same principles apply to other storage providers.</p>
-<h3 id="creating-a-full-backup">Creating a full backup<a class="headerlink" href="#creating-a-full-backup" title="Permanent link">&para;</a></h3>
+<h3 id="creating-a-full-backup">Creating a full backup<a data-markdown-ignore class="headerlink" href="#creating-a-full-backup" title="Permanent link">&para;</a></h3>
 <p>A full backup captures the entire database at a point in time. The following command creates a full backup and uploads it to S3:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>full_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
@@ -6083,13 +6083,13 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 1. Creates a backup using xtrabackup in streaming mode
 2. Pipes the backup data to xbcloud
 3. Uploads the backup to the S3 bucket with a timestamped name</p>
-<h3 id="creating-an-incremental-backup">Creating an incremental backup<a class="headerlink" href="#creating-an-incremental-backup" title="Permanent link">&para;</a></h3>
+<h3 id="creating-an-incremental-backup">Creating an incremental backup<a data-markdown-ignore class="headerlink" href="#creating-an-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>inc_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M<span class="k">)</span>
 </code></pre></div>
-<h3 id="restoring-from-cloud-storage">Restoring from cloud storage<a class="headerlink" href="#restoring-from-cloud-storage" title="Permanent link">&para;</a></h3>
+<h3 id="restoring-from-cloud-storage">Restoring from cloud storage<a data-markdown-ignore class="headerlink" href="#restoring-from-cloud-storage" title="Permanent link">&para;</a></h3>
 <p>To restore a backup, download it from cloud storage and prepare it:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Download the backup</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>full_backup_20240101<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
@@ -6098,7 +6098,7 @@ xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </
 <span class="c1"># Prepare the backup for use</span>
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
 </code></pre></div>
-<h3 id="partial-restore">Partial restore<a class="headerlink" href="#partial-restore" title="Permanent link">&para;</a></h3>
+<h3 id="partial-restore">Partial restore<a data-markdown-ignore class="headerlink" href="#partial-restore" title="Permanent link">&para;</a></h3>
 <p>You can restore specific tables without downloading the entire backup:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Download only specific tables</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
@@ -6127,10 +6127,10 @@ binary in the pipe string.</p>
 <span class="m">0</span><span class="w"> </span><span class="m">1</span>
 </code></pre></div>
 </div>
-<h2 id="supplying-parameters">Supplying parameters<a class="headerlink" href="#supplying-parameters" title="Permanent link">&para;</a></h2>
+<h2 id="supplying-parameters">Supplying parameters<a data-markdown-ignore class="headerlink" href="#supplying-parameters" title="Permanent link">&para;</a></h2>
 <p>Each storage type has mandatory parameters that you can supply on the command
 line, in a configuration file, and via environment variables.</p>
-<h3 id="configuration-files">Configuration files<a class="headerlink" href="#configuration-files" title="Permanent link">&para;</a></h3>
+<h3 id="configuration-files">Configuration files<a data-markdown-ignore class="headerlink" href="#configuration-files" title="Permanent link">&para;</a></h3>
 <p>The parameters the values of which do not change frequently can be stored in
 <code>my.cnf</code> or in a custom configuration file. The following example is a
 template of configuration options under the <code>[xbcloud]</code> group:</p>
@@ -6147,16 +6147,16 @@ s3-api-version=4
 <p class="admonition-title">Note</p>
 <p>If you explicitly use a parameter on the command line and in a configuration file, xbcloud uses the value provided on the command line.</p>
 </div>
-<h3 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<h3 id="environment-variables">Environment variables<a data-markdown-ignore class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
 <p>Environment variables provide a secure way to configure xbcloud without exposing credentials in command lines or scripts. xbcloud automatically maps environment variables to their corresponding command-line parameters.</p>
-<h4 id="how-precedence-works">How precedence works<a class="headerlink" href="#how-precedence-works" title="Permanent link">&para;</a></h4>
+<h4 id="how-precedence-works">How precedence works<a data-markdown-ignore class="headerlink" href="#how-precedence-works" title="Permanent link">&para;</a></h4>
 <p>When the same parameter is specified in multiple ways, xbcloud uses this precedence order (highest to lowest):</p>
 <ol>
 <li>Command-line parameters</li>
 <li>Configuration file values  </li>
 <li>Environment variables</li>
 </ol>
-<h4 id="common-environment-variables">Common environment variables<a class="headerlink" href="#common-environment-variables" title="Permanent link">&para;</a></h4>
+<h4 id="common-environment-variables">Common environment variables<a data-markdown-ignore class="headerlink" href="#common-environment-variables" title="Permanent link">&para;</a></h4>
 <p>Each storage provider uses different environment variable names:</p>
 <ul>
 <li><strong>Amazon S3</strong>: <code>AWS_ACCESS_KEY_ID</code>, <code>AWS_SECRET_ACCESS_KEY</code>, <code>AWS_DEFAULT_REGION</code></li>
@@ -6164,7 +6164,7 @@ s3-api-version=4
 <li><strong>Microsoft Azure</strong>: <code>AZURE_STORAGE_ACCOUNT</code>, <code>AZURE_CONTAINER_NAME</code>, <code>AZURE_ACCESS_KEY</code></li>
 <li><strong>Google Cloud</strong>: <code>GOOGLE_ACCESS_KEY</code>, <code>GOOGLE_SECRET_KEY</code>, <code>GOOGLE_BUCKET_NAME</code></li>
 </ul>
-<h4 id="example-usage">Example usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h4>
+<h4 id="example-usage">Example usage<a data-markdown-ignore class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h4>
 <p>Set environment variables for your storage provider:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># For Amazon S3</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">"your-access-key"</span>
@@ -6175,7 +6175,7 @@ s3-api-version=4
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
 </code></pre></div>
 <p>For complete environment variable reference and advanced usage patterns, see <a href="xbcloud-env.html">Using environment variable files (.env) with xbcloud</a>.</p>
-<h4 id="security-best-practices">Security best practices<a class="headerlink" href="#security-best-practices" title="Permanent link">&para;</a></h4>
+<h4 id="security-best-practices">Security best practices<a data-markdown-ignore class="headerlink" href="#security-best-practices" title="Permanent link">&para;</a></h4>
 <p>Environment variable files (<code>.env</code>) provide a secure way to manage xbcloud credentials without exposing sensitive information in command lines or scripts. These files store your cloud storage credentials and configuration settings, making them easy to manage and share across different environments while keeping them out of version control.</p>
 <p>For detailed guidance on using <code>.env</code> files with xbcloud, including setup instructions, security best practices, and troubleshooting tips, see <a href="xbcloud-env.html">Using environment variable files (.env) with xbcloud</a>.</p>
 <ul>
@@ -6198,7 +6198,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <p>Use temporary credentials (session tokens) for short-term access</p>
 </li>
 </ul>
-<h4 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h4>
+<h4 id="troubleshooting">Troubleshooting<a data-markdown-ignore class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h4>
 <p>Environment variables not being recognized:</p>
 <ul>
 <li>
@@ -6244,7 +6244,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <p><a href="xbcloud-minio.html">Using the xbcloud binary with MinIO</a></p>
 </li>
 </ul>
-<h3 id="shortcuts">Shortcuts<a class="headerlink" href="#shortcuts" title="Permanent link">&para;</a></h3>
+<h3 id="shortcuts">Shortcuts<a data-markdown-ignore class="headerlink" href="#shortcuts" title="Permanent link">&para;</a></h3>
 <p>For all operations (put, get, and delete), you can use a shortcut to specify the
 storage type, bucket name, and backup name as one parameter instead of using
 three distinct parameters (–storage, –s3-bucket, and backup name per se).</p>
@@ -6261,7 +6261,7 @@ is a bucket name, and bak22 is the backup name. </p>
 </div>
 <p>You can supply the mandatory parameters on the command line,
 configuration files, and in environment variables.</p>
-<h3 id="additional-parameters">Additional parameters<a class="headerlink" href="#additional-parameters" title="Permanent link">&para;</a></h3>
+<h3 id="additional-parameters">Additional parameters<a data-markdown-ignore class="headerlink" href="#additional-parameters" title="Permanent link">&para;</a></h3>
 <p>xbcloud accepts additional parameters that you can use with any storage
 type. The <code>--md5</code> parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the <code>backup_name.md5</code>
@@ -6282,22 +6282,22 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://operator-testing/
 </code></pre></div>
 <p>The <code>--header</code> parameter is also useful to set the access control list (ACL)
 permissions: <code>--header="x-amz-acl: bucket-owner-full-control</code></p>
-<h2 id="advanced-usage-patterns">Advanced usage patterns<a class="headerlink" href="#advanced-usage-patterns" title="Permanent link">&para;</a></h2>
-<h3 id="incremental-backup-workflow">Incremental backup workflow<a class="headerlink" href="#incremental-backup-workflow" title="Permanent link">&para;</a></h3>
+<h2 id="advanced-usage-patterns">Advanced usage patterns<a data-markdown-ignore class="headerlink" href="#advanced-usage-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="incremental-backup-workflow">Incremental backup workflow<a data-markdown-ignore class="headerlink" href="#incremental-backup-workflow" title="Permanent link">&para;</a></h3>
 <p>Incremental backups capture only changes since the last backup, making them faster and more storage-efficient. Here&rsquo;s the complete workflow using S3:</p>
-<h4 id="step-1-create-the-base-full-backup">Step 1: Create the base full backup<a class="headerlink" href="#step-1-create-the-base-full-backup" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-create-the-base-full-backup">Step 1: Create the base full backup<a data-markdown-ignore class="headerlink" href="#step-1-create-the-base-full-backup" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/base<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 full_backup_20240101
 </code></pre></div>
-<h4 id="step-2-create-incremental-backups">Step 2: Create incremental backups<a class="headerlink" href="#step-2-create-incremental-backups" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-create-incremental-backups">Step 2: Create incremental backups<a data-markdown-ignore class="headerlink" href="#step-2-create-incremental-backups" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/base<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 inc_backup_20240101_1200
 </code></pre></div>
-<h4 id="step-3-restore-incremental-backups">Step 3: Restore incremental backups<a class="headerlink" href="#step-3-restore-incremental-backups" title="Permanent link">&para;</a></h4>
-<h5 id="version-changes_1">Version changes<a class="headerlink" href="#version-changes_1" title="Permanent link">&para;</a></h5>
+<h4 id="step-3-restore-incremental-backups">Step 3: Restore incremental backups<a data-markdown-ignore class="headerlink" href="#step-3-restore-incremental-backups" title="Permanent link">&para;</a></h4>
+<h5 id="version-changes_1">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes_1" title="Permanent link">&para;</a></h5>
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--apply-log-only</code> option to <a href="xtrabackup-option-reference.html#apply-redo-only"><code>--apply-redo-only</code></a>. Percona XtraBackup still accepts <code>--apply-log-only</code> but prints a deprecation warning. A future Long-Term Support (LTS) release will remove <code>--apply-log-only</code>, so update your scripts to use <code>--apply-redo-only</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <p>To restore from incremental backups, you must download and prepare them in sequence:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Download and prepare the full backup</span>
@@ -6326,7 +6326,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 </code></pre></div>
 </div>
-<h3 id="partial-restore_1">Partial restore<a class="headerlink" href="#partial-restore_1" title="Permanent link">&para;</a></h3>
+<h3 id="partial-restore_1">Partial restore<a data-markdown-ignore class="headerlink" href="#partial-restore_1" title="Permanent link">&para;</a></h3>
 <p>You can restore specific tables without downloading the entire backup:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Download only specific tables</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
@@ -6335,7 +6335,7 @@ full_backup_20240101<span class="w"> </span>ibdata1<span class="w"> </span>sakil
 <span class="c1"># Extract the partial backup</span>
 xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/partial<span class="w"> </span>&lt;<span class="w"> </span>/tmp/partial.xbs
 </code></pre></div>
-<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<h2 id="next-steps">Next steps<a data-markdown-ignore class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p>Now that you understand the basics of xbcloud, here are the recommended next steps:</p>
 <ul>
 <li>
@@ -6496,7 +6496,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

@@ -1,0 +1,108 @@
+> For the complete documentation index, see [llms.txt](https://docs.percona.com/percona-xtrabackup/9.7/llms.txt).
+
+# How to create a new (or repair a broken) GTID-based replica
+
+Percona XtraBackup automatically stores the `GTID` value in the `xtrabackup_binlog_info` when doing the backup of MySQL and Percona Server for MySQL 9.7 with the `GTID` mode enabled. This information can be used to create a new (or repair a broken) `GTID`-based replica.
+
+## 1. Take a backup from any server on the replication environment, source or replica
+
+Run all the commands as root or use the sudo command.
+
+The following command takes a backup and saves it in the `/data/backups/$TIMESTAMP` folder:
+
+```
+xtrabackup --backup --target-dir=/data/backups/
+```
+
+In the destination folder, there will be a file with the name `xtrabackup_binlog_info`. This file contains both binary log coordinates and the `GTID` information.
+
+```
+cat xtrabackup_binlog_info
+```
+
+The result could look like this:
+
+Expected output
+
+```
+mysql-bin.000002    1232        c777888a-b6df-11e2-a604-080027635ef5:1-4
+```
+
+That information is also printed by xtrabackup after taking the backup:
+
+Expected output
+
+```
+xtrabackup: MySQL binlog position: filename 'mysql-bin.000002', position 1232, GTID of the last change 'c777888a-b6df-11e2-a604-080027635ef5:1-4'
+```
+
+## 2. Prepare the backup
+
+The backup will be prepared with the following command on the Source:
+
+```
+xtrabackup --prepare --target-dir=/data/backup
+```
+
+You need to select the path where your snapshot has been taken, for example `/data/backups/2023-05-07_08-33-33`. If everything is ok you should get the same OK message. Now, the transaction logs are applied to the data files, and new ones are created: your data files are ready to be used by the MySQL server.
+
+## 3. Move the backup to the destination server
+
+Use rsync or scp to copy the data to the destination server. If you are synchronizing the data directly to the already running replica’s data directory it is advised to stop the MySQL server there.
+
+```
+rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewReplica:/path/to/mysql/
+```
+
+After you copy the data over, make sure MySQL has proper permissions to access them.
+
+```
+chown mysql:mysql /path/to/mysql/datadir
+```
+
+## 4. Configure and start replication
+
+Set the `gtid_purged` variable to the `GTID` from `xtrabackup_binlog_info`. Then, update the information about the source node and, finally, start the replica.
+
+Note
+
+The example above is applicable to Percona XtraDB Cluster. The `wsrep_on` variable is set to 0 before resetting the source (`RESET BINARY LOGS AND GTIDS`). The reason is that Percona XtraDB Cluster will not allow resetting the source if `wsrep_on=1`.
+
+```
+# Using the mysql shell
+ > SET SESSION wsrep_on = 0;
+ > RESET BINARY LOGS AND GTIDS;
+ > SET SESSION wsrep_on = 1;
+ > SET GLOBAL gtid_purged='<gtid_string_found_in_xtrabackup_binlog_info>';
+ > CHANGE REPLICATION SOURCE TO
+             SOURCE_HOST="$sourceip",
+             SOURCE_USER="repl",
+             SOURCE_PASSWORD="$replicapass",
+             SOURCE_AUTO_POSITION = 1;
+ > START REPLICA;
+```
+
+## 5. Check the replication status
+
+The following command returns the replica status:
+
+```
+SHOW REPLICA STATUS\G
+```
+
+The results should be similar to the following:
+
+Expected output
+
+```
+[..]
+Replica_IO_Running: Yes
+Replica_SQL_Running: Yes
+[...]
+Retrieved_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:5
+Executed_Gtid_Set: c777888a-b6df-11e2-a604-080027635ef5:1-5
+```
+
+We can see that the replica has retrieved a new transaction with step 5, so transactions from 1 to 5 are already on the replica.
+
+We have created a new replica in our `GTID` based replication environment.

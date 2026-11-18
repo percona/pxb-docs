@@ -32,7 +32,7 @@ consistent, usable database again.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -137,7 +137,7 @@ consistent, usable database again.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5853,7 +5853,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="how-percona-xtrabackup-works">How Percona XtraBackup works<a class="headerlink" href="#how-percona-xtrabackup-works" title="Permanent link">&para;</a></h1>
+<h1 id="how-percona-xtrabackup-works">How Percona XtraBackup works<a data-markdown-ignore class="headerlink" href="#how-percona-xtrabackup-works" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup is based on InnoDB’s crash-recovery functionality.
 It copies your InnoDB data files, which results in data that is internally
 inconsistent; but then it performs crash recovery on the files to make them a
@@ -5906,20 +5906,20 @@ will exit returning 0 if all went OK.</p>
 have to redirect it to a file, for example, <code>xtrabackup OPTIONS 2&gt; backupout.log</code>.</p>
 <p>It will also create the following files in the
 directory of the backup.</p>
-<h2 id="prepare-phase">Prepare phase<a class="headerlink" href="#prepare-phase" title="Permanent link">&para;</a></h2>
+<h2 id="prepare-phase">Prepare phase<a data-markdown-ignore class="headerlink" href="#prepare-phase" title="Permanent link">&para;</a></h2>
 <p>This phase involves two primary operations: applying the redo log and the undo log.</p>
-<h3 id="redo-log-application-physical-operation">Redo Log Application (Physical Operation)<a class="headerlink" href="#redo-log-application-physical-operation" title="Permanent link">&para;</a></h3>
+<h3 id="redo-log-application-physical-operation">Redo Log Application (Physical Operation)<a data-markdown-ignore class="headerlink" href="#redo-log-application-physical-operation" title="Permanent link">&para;</a></h3>
 <p>XtraBackup directly applies changes recorded in the redo log to specific page offsets within the tablespace (IBD file). This is a physical operation, meaning it works at the page level, without regard for rows or transactions.</p>
 <p>It&rsquo;s important to understand that the redo log might contain uncommitted transactions, as the server can flush or write these to the log. Therefore, the redo log application doesn&rsquo;t inherently guarantee transactional consistency.</p>
-<h3 id="undo-log-application-logical-operation">Undo Log Application (Logical Operation)<a class="headerlink" href="#undo-log-application-logical-operation" title="Permanent link">&para;</a></h3>
+<h3 id="undo-log-application-logical-operation">Undo Log Application (Logical Operation)<a data-markdown-ignore class="headerlink" href="#undo-log-application-logical-operation" title="Permanent link">&para;</a></h3>
 <p>Following the redo log application, XtraBackup uses the undo log to logically roll back changes from any uncommitted transactions present in the redo log.
 Undo log records are of two types: <code>INSERT</code> and <code>UPDATE</code>. Each record contains a <code>table_id</code>, which XtraBackup uses to locate the table definition.</p>
 <p>To perform the rollback, XtraBackup initializes the InnoDB engine and data dictionary, then uses Serialized Dictionary Information (SDI) from the tablespace (a JSON representation of the table) to parse index pages and apply undo operations.</p>
 <p>Tables are loaded as evictable, and XtraBackup scans data dictionary indexes to relate <code>table_id</code> to tablespace, which is used during rollback. User tables are loaded only when needed for rollback. This design significantly reduces memory and I/O usage, speeds up the <code>--prepare</code> phase, and improves Percona XtraDB Cluster SST performance.</p>
-<h3 id="achieving-consistency-redo-undo-and-myisam">Achieving Consistency: Redo, Undo, and MyISAM<a class="headerlink" href="#achieving-consistency-redo-undo-and-myisam" title="Permanent link">&para;</a></h3>
+<h3 id="achieving-consistency-redo-undo-and-myisam">Achieving Consistency: Redo, Undo, and MyISAM<a data-markdown-ignore class="headerlink" href="#achieving-consistency-redo-undo-and-myisam" title="Permanent link">&para;</a></h3>
 <p>The <code>--prepare</code> phase ensures that InnoDB tables are rolled forward to the point where the backup completed, not rolled back to where it began. This point aligns with the time a <code>FLUSH TABLES WITH READ LOCK</code> was taken, which is crucial for maintaining consistency with MyISAM tables.</p>
 <p>Therefore, after the <code>--prepare</code> phase, both InnoDB and MyISAM tables are eventually consistent with each other.</p>
-<h2 id="restore-a-backup">Restore a backup<a class="headerlink" href="#restore-a-backup" title="Permanent link">&para;</a></h2>
+<h2 id="restore-a-backup">Restore a backup<a data-markdown-ignore class="headerlink" href="#restore-a-backup" title="Permanent link">&para;</a></h2>
 <p>To restore a backup with xtrabackup you can use the <code>--copy-back</code> or
 <code>--move-back</code> options.</p>
 <p>xtrabackup will read from the <code>my.cnf</code> the variables datadir,
@@ -6097,7 +6097,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

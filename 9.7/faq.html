@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5938,26 +5938,26 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="frequently-asked-questions">Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h1>
-<h2 id="does-percona-xtrabackup-97-support-making-backups-of-databases-in-versions-prior-to-97">Does Percona XtraBackup 9.7 support making backups of databases in versions prior to 9.7?<a class="headerlink" href="#does-percona-xtrabackup-97-support-making-backups-of-databases-in-versions-prior-to-97" title="Permanent link">&para;</a></h2>
+<h1 id="frequently-asked-questions">Frequently asked questions<a data-markdown-ignore class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h1>
+<h2 id="does-percona-xtrabackup-97-support-making-backups-of-databases-in-versions-prior-to-97">Does Percona XtraBackup 9.7 support making backups of databases in versions prior to 9.7?<a data-markdown-ignore class="headerlink" href="#does-percona-xtrabackup-97-support-making-backups-of-databases-in-versions-prior-to-97" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 9.7 does not support making backups of databases
 created in versions prior to 9.7 of MySQL, Percona Server for MySQL or
 Percona XtraDB Cluster. </p>
-<h2 id="are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around-percona-xtrabackup">Are you aware of any web-based backup management tools (commercial or not) built around Percona XtraBackup?<a class="headerlink" href="#are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around-percona-xtrabackup" title="Permanent link">&para;</a></h2>
+<h2 id="are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around-percona-xtrabackup">Are you aware of any web-based backup management tools (commercial or not) built around Percona XtraBackup?<a data-markdown-ignore class="headerlink" href="#are-you-aware-of-any-web-based-backup-management-tools-commercial-or-not-built-around-percona-xtrabackup" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.percona.com/percona-monitoring-and-management/3/backup/index.html">Percona Monitoring and Management (PMM) <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> includes backup management for MySQL. PMM uses Percona XtraBackup to create on-demand and scheduled physical backups and to restore them from the PMM web interface.</p>
 <p>For the required XtraBackup version and setup, see <a href="https://docs.percona.com/percona-monitoring-and-management/3/backup/mysql-backup/mysql_prerequisites.html">MySQL backup prerequisites <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
-<h2 id="xtrabackup-binary-fails-with-a-floating-point-exception">xtrabackup binary fails with a floating point exception<a class="headerlink" href="#xtrabackup-binary-fails-with-a-floating-point-exception" title="Permanent link">&para;</a></h2>
+<h2 id="xtrabackup-binary-fails-with-a-floating-point-exception">xtrabackup binary fails with a floating point exception<a data-markdown-ignore class="headerlink" href="#xtrabackup-binary-fails-with-a-floating-point-exception" title="Permanent link">&para;</a></h2>
 <p>In most of the cases this is due to not having installed the required
 libraries (and version) by xtrabackup. Installing the GCC suite with the
 supporting libraries and recompiling xtrabackup solves the issue. See
 <a href="compile-xtrabackup.html">Compiling and Installing from Source Code</a> for instructions on the
 procedure.</p>
-<h2 id="how-xtrabackup-handles-the-ibdataib_log-files-on-restore-if-they-arent-in-mysql-datadir">How xtrabackup handles the ibdata/ib_log files on restore if they aren’t in mysql datadir?<a class="headerlink" href="#how-xtrabackup-handles-the-ibdataib_log-files-on-restore-if-they-arent-in-mysql-datadir" title="Permanent link">&para;</a></h2>
+<h2 id="how-xtrabackup-handles-the-ibdataib_log-files-on-restore-if-they-arent-in-mysql-datadir">How xtrabackup handles the ibdata/ib_log files on restore if they aren’t in mysql datadir?<a data-markdown-ignore class="headerlink" href="#how-xtrabackup-handles-the-ibdataib_log-files-on-restore-if-they-arent-in-mysql-datadir" title="Permanent link">&para;</a></h2>
 <p>In case the <code>ibdata</code> and <code>ib_log</code> files are located in different
 directories outside the datadir, you will have to put them in their
 proper
 place after the logs have been applied.</p>
-<h2 id="backup-fails-with-error-24-too-many-open-files">Backup fails with Error 24: ‘Too many open files’<a class="headerlink" href="#backup-fails-with-error-24-too-many-open-files" title="Permanent link">&para;</a></h2>
+<h2 id="backup-fails-with-error-24-too-many-open-files">Backup fails with Error 24: ‘Too many open files’<a data-markdown-ignore class="headerlink" href="#backup-fails-with-error-24-too-many-open-files" title="Permanent link">&para;</a></h2>
 <p>This usually happens when database being backed up contains large amount of
 files and Percona XtraBackup can’t open all of them to create a
 successful
@@ -5970,7 +5970,7 @@ by
 editing the <code>/etc/security/limits.conf</code> to change it globally (NOTE:
 the maximum possible value that can be set up is <code>1048576</code> which is a
 hard-coded constant in the Linux kernel).</p>
-<h2 id="how-to-deal-with-skipping-of-redo-logs-for-ddl-operations">How to deal with skipping of redo logs for DDL operations?<a class="headerlink" href="#how-to-deal-with-skipping-of-redo-logs-for-ddl-operations" title="Permanent link">&para;</a></h2>
+<h2 id="how-to-deal-with-skipping-of-redo-logs-for-ddl-operations">How to deal with skipping of redo logs for DDL operations?<a data-markdown-ignore class="headerlink" href="#how-to-deal-with-skipping-of-redo-logs-for-ddl-operations" title="Permanent link">&para;</a></h2>
 <p>To prevent creating corrupted backups when running DDL operations,
 Percona XtraBackup aborts if it detects that redo logging is disabled.
 In this case, the following error is printed:</p>
@@ -6148,7 +6148,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

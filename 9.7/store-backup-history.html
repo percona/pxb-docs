@@ -32,7 +32,7 @@ PERCONA_SCHEMA.XTRABACKUP_HISTORY table.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -137,7 +137,7 @@ PERCONA_SCHEMA.XTRABACKUP_HISTORY table.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5833,7 +5833,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="store-backup-history-on-the-server">Store backup history on the server<a class="headerlink" href="#store-backup-history-on-the-server" title="Permanent link">&para;</a></h1>
+<h1 id="store-backup-history-on-the-server">Store backup history on the server<a data-markdown-ignore class="headerlink" href="#store-backup-history-on-the-server" title="Permanent link">&para;</a></h1>
 <p><em>Percona XtraBackup</em> supports storing the backups history on the server. Storing backup history on
 the server was implemented to provide users with additional information about
 backups that are being taken. Backup history information will be stored in the
@@ -5877,10 +5877,10 @@ some catastrophic event, you will need to either perform a <code>mysqldump</code
 partial backup or <code>SELECT</code> * on the history table after <em>xtrabackup</em>
 completes and store the results with you backup set.</p>
 <p>For the necessary privileges, see <a href="privileges.html">Permissions and Privileges Needed</a>.</p>
-<h2 id="store-backup-history-on-a-different-server">Store backup history on a different server<a class="headerlink" href="#store-backup-history-on-a-different-server" title="Permanent link">&para;</a></h2>
-<h3 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
+<h2 id="store-backup-history-on-a-different-server">Store backup history on a different server<a data-markdown-ignore class="headerlink" href="#store-backup-history-on-a-different-server" title="Permanent link">&para;</a></h2>
+<h3 id="version-changes">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 9.7.2-2 introduces the ability to store backup history on a different server.</p>
-<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
+<h3 id="overview">Overview<a data-markdown-ignore class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
 <p>By default, Percona XtraBackup writes the history record to the server you back up. The write fails if that server does not accept writes, for example, a replica or a secondary member of a single-primary Group Replication cluster with <code>super_read_only</code> enabled. In this case, the server returns error 1290 and does not store the record.</p>
 <p>To write the history record to another, writeable server, use the below options to describe the connections parameters of the server:</p>
 <table>
@@ -5974,7 +5974,7 @@ completes and store the results with you backup set.</p>
 <span class="w">  </span>--history-host<span class="o">=</span>source.example.com<span class="w"> </span>--history-port<span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--history-user<span class="o">=</span>history_user<span class="w"> </span>--history-password<span class="o">=</span>&lt;history_password&gt;
 </code></pre></div>
-<h3 id="requirements-and-behavior">Requirements and behavior<a class="headerlink" href="#requirements-and-behavior" title="Permanent link">&para;</a></h3>
+<h3 id="requirements-and-behavior">Requirements and behavior<a data-markdown-ignore class="headerlink" href="#requirements-and-behavior" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p>The <code>--history-*</code> options require <a href="xtrabackup-option-reference.html#history"><code>--history</code></a>, <a href="xtrabackup-option-reference.html#incremental-history-name"><code>--incremental-history-name</code></a>, or <a href="xtrabackup-option-reference.html#incremental-history-uuid"><code>--incremental-history-uuid</code></a>. If you set a <code>--history-*</code> option without any of these options, Percona XtraBackup reports an error and does not start the backup.</p>
@@ -5992,7 +5992,7 @@ completes and store the results with you backup set.</p>
 <p>Percona XtraBackup hides the <code>--history-password</code> value in the same way as the <code>--password</code> value: in the process list, in the log, and in the <code>tool_command</code> column of the history record.</p>
 </li>
 </ul>
-<h3 id="history-server-privileges">History server privileges<a class="headerlink" href="#history-server-privileges" title="Permanent link">&para;</a></h3>
+<h3 id="history-server-privileges">History server privileges<a data-markdown-ignore class="headerlink" href="#history-server-privileges" title="Permanent link">&para;</a></h3>
 <p>If you store the backup history on a different server with the <code>--history-*</code> options, Percona XtraBackup checks the <code>CREATE</code>, <code>ALTER</code>, <code>INSERT</code>, and <code>SELECT</code> privileges on <code>PERCONA_SCHEMA</code> for the history user on the history server, not for the backup user. The backup user does not need these privileges.</p>
 <p>The history user needs the following privileges on the history server:</p>
 <ul>
@@ -6011,9 +6011,9 @@ completes and store the results with you backup set.</p>
 <span class="k">GRANT</span><span class="w"> </span><span class="k">CREATE</span><span class="p">,</span><span class="w"> </span><span class="k">ALTER</span><span class="p">,</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">PERCONA_SCHEMA</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">'history_user'</span><span class="o">@</span><span class="s1">'%'</span><span class="p">;</span>
 <span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">'history_user'</span><span class="o">@</span><span class="s1">'%'</span><span class="p">;</span>
 </code></pre></div>
-<h3 id="version-changes_1">Version changes<a class="headerlink" href="#version-changes_1" title="Permanent link">&para;</a></h3>
+<h3 id="version-changes_1">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes_1" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--incremental-basedir</code> option to <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
-<h3 id="percona_schemaxtrabackup_history-table">PERCONA_SCHEMA.XTRABACKUP_HISTORY table<a class="headerlink" href="#percona_schemaxtrabackup_history-table" title="Permanent link">&para;</a></h3>
+<h3 id="percona_schemaxtrabackup_history-table">PERCONA_SCHEMA.XTRABACKUP_HISTORY table<a data-markdown-ignore class="headerlink" href="#percona_schemaxtrabackup_history-table" title="Permanent link">&para;</a></h3>
 <p>This table contains the information about the previous server
 backups. Information about the backups will only be written if the backup was
 taken with <code>--history</code> option.</p>
@@ -6099,7 +6099,7 @@ taken with <code>--history</code> option.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<h3 id="limitations">Limitations<a data-markdown-ignore class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p><code>--history</code> option must be specified only on the command
@@ -6238,7 +6238,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

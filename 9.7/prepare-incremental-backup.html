@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5918,7 +5918,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="prepare-an-incremental-backup">Prepare an incremental backup<a class="headerlink" href="#prepare-an-incremental-backup" title="Permanent link">&para;</a></h1>
+<h1 id="prepare-an-incremental-backup">Prepare an incremental backup<a data-markdown-ignore class="headerlink" href="#prepare-an-incremental-backup" title="Permanent link">&para;</a></h1>
 <p>Preparing an incremental backup combines a full backup with one or more incremental backups to create a consistent backup that you can restore.</p>
 <p>An incremental backup contains the changes made after its base backup. When you create multiple incremental backups as a chain, each backup represents a later state of the database.</p>
 <p>For example, you could have the following backups:</p>
@@ -5938,7 +5938,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>During the prepare process, Percona XtraBackup applies each incremental backup to the full backup in order. Each step updates the files in <code>/data/backups/base</code> and moves the state of the full backup forward to the point when that incremental backup was created. The final prepared backup remains in <code>/data/backups/base</code>.</p>
 <p>The <code>--prepare</code> step for incremental backups differs from the prepare step for full backups. When preparing a full backup, Percona XtraBackup applies committed transactions from the redo log to the data files and rolls back uncommitted transactions to make the backup consistent.</p>
 <p>When preparing an incremental chain, you must delay the rollback of uncommitted transactions until you apply the final incremental backup. A transaction that was uncommitted when one backup was created might be committed in a later incremental backup.</p>
-<h3 id="version-changes">Version changes<a class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
+<h3 id="version-changes">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--apply-log-only</code> option to <a href="xtrabackup-option-reference.html#apply-redo-only"><code>--apply-redo-only</code></a>. Percona XtraBackup still accepts <code>--apply-log-only</code> but prints a deprecation warning. A future Long-Term Support (LTS) release will remove <code>--apply-log-only</code>, so update your scripts to use <code>--apply-redo-only</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <p>Use <code>--apply-redo-only</code> to apply the redo log without rolling back uncommitted transactions.</p>
 <div class="admonition warning">
@@ -5951,9 +5951,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li>Apply each intermediate incremental backup in order with <code>--apply-redo-only</code>.</li>
 <li>Apply the final incremental backup without <code>--apply-redo-only</code>.</li>
 </ol>
-<h2 id="version-changes_1">Version changes<a class="headerlink" href="#version-changes_1" title="Permanent link">&para;</a></h2>
+<h2 id="version-changes_1">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes_1" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--incremental-dir</code> option to <a href="xtrabackup-option-reference.html#prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a>. Percona XtraBackup still accepts <code>--incremental-dir</code> but prints a deprecation warning. A future release will remove <code>--incremental-dir</code>, so update your scripts to use <code>--prepare-incremental-from-dir</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
-<h2 id="prepare-the-full-backup">Prepare the full backup<a class="headerlink" href="#prepare-the-full-backup" title="Permanent link">&para;</a></h2>
+<h2 id="prepare-the-full-backup">Prepare the full backup<a data-markdown-ignore class="headerlink" href="#prepare-the-full-backup" title="Permanent link">&para;</a></h2>
 <p>Start by preparing the full backup with <code>--apply-redo-only</code> to prevent the rollback phase:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
 </code></pre></div>
@@ -5970,13 +5970,13 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p class="admonition-title">Warning</p>
 <p>This backup is actually safe to restore as-is now, even though the rollback phase has been skipped. If you restore the backup and start the server, InnoDB detects that the rollback phase was not performed, and completes the rollback in the background, as InnoDB usually does for a crash recovery. InnoDB notifies you that the database was not shut down normally.</p>
 </div>
-<h2 id="apply-incremental-backups">Apply incremental backups<a class="headerlink" href="#apply-incremental-backups" title="Permanent link">&para;</a></h2>
+<h2 id="apply-incremental-backups">Apply incremental backups<a data-markdown-ignore class="headerlink" href="#apply-incremental-backups" title="Permanent link">&para;</a></h2>
 <p>Apply incremental backups to the prepared full backup in the same order in which you created them.</p>
 <p>For the example chain, apply <code>inc1</code> first and <code>inc2</code> last:</p>
 <div class="highlight"><pre><span></span><code>base → inc1 → inc2
 </code></pre></div>
 <p>Percona XtraBackup applies the changes from each incremental backup to <code>/data/backups/base</code>. The incremental directories contain the changes to apply, but the resulting prepared backup remains in the full backup directory.</p>
-<h3 id="apply-the-first-incremental-backup">Apply the first incremental backup<a class="headerlink" href="#apply-the-first-incremental-backup" title="Permanent link">&para;</a></h3>
+<h3 id="apply-the-first-incremental-backup">Apply the first incremental backup<a data-markdown-ignore class="headerlink" href="#apply-the-first-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>Apply the first incremental backup to the full backup:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1
@@ -6000,7 +6000,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </code></pre></div>
 </details>
 <p>The LSN should match the LSN from the first incremental backup. At this point, <code>/data/backups/base</code> contains the state of the database as of the first incremental backup.</p>
-<h3 id="apply-the-final-incremental-backup">Apply the final incremental backup<a class="headerlink" href="#apply-the-final-incremental-backup" title="Permanent link">&para;</a></h3>
+<h3 id="apply-the-final-incremental-backup">Apply the final incremental backup<a data-markdown-ignore class="headerlink" href="#apply-the-final-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup does not support using the same incremental backup directory to prepare two copies of a backup. Do not run <code>--prepare</code> with the same incremental backup directory (the value of <code>--prepare-incremental-from-dir</code>) more than once.</p>
 <p>After applying <code>/data/backups/inc1</code>, apply <code>/data/backups/inc2</code> to the same base backup.</p>
 <p>In this example, <code>inc2</code> is the final incremental backup. Apply it without <code>--apply-redo-only</code>:</p>
@@ -6020,7 +6020,7 @@ inc1    → --apply-redo-only
 inc2    → --apply-redo-only
 inc3    → final incremental, no --apply-redo-only
 </code></pre></div>
-<h2 id="speed-up-the-prepare-step-with-parallel">Speed up the prepare step with &ndash;parallel<a class="headerlink" href="#speed-up-the-prepare-step-with-parallel" title="Permanent link">&para;</a></h2>
+<h2 id="speed-up-the-prepare-step-with-parallel">Speed up the prepare step with &ndash;parallel<a data-markdown-ignore class="headerlink" href="#speed-up-the-prepare-step-with-parallel" title="Permanent link">&para;</a></h2>
 <p>For incremental backups with many InnoDB Data (IBD) files, you can significantly reduce prepare time by using the <code>--parallel</code> option. The <code>--parallel</code> option enables the concurrent processing of multiple delta files, thereby maximizing storage bandwidth. The <code>--parallel</code> option is especially beneficial when there are many IBD files, even if the IBD files didn&rsquo;t change between backups, as empty delta files are processed quickly in parallel. </p>
 <p>Using <code>--parallel=X</code> has effect on the prepare phase. It will use X threads to apply the changes from <code>.delta</code> files to the IBD files. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>). Note that each thread operates on a single file. If you have a large delta file, there is still only one thread that processes that <code>.delta</code> file. Parallelization occurs at the file level, not within individual files.</p>
 <p>To apply an intermediate incremental backup with four worker threads, run:</p>
@@ -6031,7 +6031,7 @@ inc3    → final incremental, no --apply-redo-only
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
-<h2 id="next-step">Next step<a class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
+<h2 id="next-step">Next step<a data-markdown-ignore class="headerlink" href="#next-step" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="restore-a-backup.html">Restore the backup</a></p>
 
 
@@ -6193,7 +6193,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

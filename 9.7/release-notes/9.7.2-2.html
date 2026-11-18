@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5916,14 +5916,14 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="percona-xtrabackup-972-2-2026-11-04">Percona XtraBackup 9.7.2-2 (2026-11-04)<a class="headerlink" href="#percona-xtrabackup-972-2-2026-11-04" title="Permanent link">&para;</a></h1>
+<h1 id="percona-xtrabackup-972-2-2026-11-04">Percona XtraBackup 9.7.2-2 (2026-11-04)<a data-markdown-ignore class="headerlink" href="#percona-xtrabackup-972-2-2026-11-04" title="Permanent link">&para;</a></h1>
 <p>Get started with <a href="../quickstart-overview.html">Quickstart Guide for Percona XtraBackup</a>.</p>
-<h2 id="release-highlights">Release Highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<h2 id="release-highlights">Release Highlights<a data-markdown-ignore class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 9.7.2-2 supports backing up Percona Server for MySQL 9.7.x and MySQL 9.7.x.</p>
 <p>Use the Percona XtraBackup 8.4 series to take backups of Percona Server for MySQL 8.4.x and MySQL 8.4.x series.</p>
 <p>We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.</p>
 <p>Percona XtraBackup 9.7.2-2 release includes new features, improvements, deprecations, and bug fixes.</p>
-<h3 id="renamed-options">Renamed options<a class="headerlink" href="#renamed-options" title="Permanent link">&para;</a></h3>
+<h3 id="renamed-options">Renamed options<a data-markdown-ignore class="headerlink" href="#renamed-options" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 9.7.2-2 renames the following options. The new names describe the phase or the action of each option more clearly.</p>
 <table>
 <thead>
@@ -5952,7 +5952,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tbody>
 </table>
 <p>Percona XtraBackup still accepts the old names but prints a deprecation warning at startup. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start. A future Long-Term Support (LTS) release will remove <code>--apply-log-only</code>, <code>--incremental-basedir</code> and <code>--incremental-dir</code>.</p>
-<h3 id="deprecated-options">Deprecated options<a class="headerlink" href="#deprecated-options" title="Permanent link">&para;</a></h3>
+<h3 id="deprecated-options">Deprecated options<a data-markdown-ignore class="headerlink" href="#deprecated-options" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 9.7.2-2 deprecates the following options.</p>
 <table>
 <thead>
@@ -5989,11 +5989,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tbody>
 </table>
 <p>Percona XtraBackup still accepts the options but prints a deprecation warning at startup. A future release will remove the options.</p>
-<h2 id="new-features">New features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
+<h2 id="new-features">New features<a data-markdown-ignore class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://perconadev.atlassian.net/browse/PXB-2559">PXB-2559</a>: Adds the <code>--history-host</code>, <code>--history-port</code>, <code>--history-socket</code>, <code>--history-user</code>, <code>--history-password</code>, and <code>--history-ssl-*</code> options to <a href="../store-backup-history.html#store-backup-history-on-a-different-server">store the backup history on a different server</a>. Before, Percona XtraBackup always wrote the history record to the server you back up. The write failed when that server ran with <code>super_read_only</code> enabled, for example, a replica or a secondary member of a single-primary Group Replication cluster. The <code>--incremental-history-name</code> and <code>--incremental-history-uuid</code> options also read the base LSN from the history server.</li>
 </ul>
-<h2 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
+<h2 id="improvements">Improvements<a data-markdown-ignore class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3502">PXB-3502</a>: Improves parallel processing performance. With <code>--parallel</code>, Percona XtraBackup now processes files in largest-first order instead of discovery order. Large tables and partitions start processing earlier, so you spend less time waiting for large files after other parallel tasks complete. The improvement applies to <code>--backup</code>, <code>--prepare --prepare-incremental-from-dir</code>, <code>--copy-back</code>, <code>--move-back</code>, and <code>--decompress</code>.</p>
@@ -6011,7 +6011,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3862">PXB-3862</a>: Fixed an issue where incremental backups with page tracking were slow when a tablespace had scattered changed pages. Percona XtraBackup read each scattered changed page on its own, and thousands of small reads take much longer than a few large reads. Percona XtraBackup now reads nearby changed pages together when reading the unchanged pages between them costs less than another read. Percona XtraBackup measures your storage at the start of the backup, so you do not need to change the configuration. The backup contents and size stay the same. Use the new <a href="../xtrabackup-option-reference.html#page-tracking-merge-gap"><code>--page-tracking-merge-gap</code></a> option to set a fixed gap, or set the option to <code>0</code> to turn off the behavior. For details, see <a href="../page-tracking.html#read-scattered-changed-pages">Read scattered changed pages</a>.</p>
 </li>
 </ul>
-<h2 id="bug-fixes">Bug fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
+<h2 id="bug-fixes">Bug fixes<a data-markdown-ignore class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3609">PXB-3609</a>: Fixed an issue where <code>xbcloud delete</code> did not remove the <code>.md5</code> checksum files for backups uploaded with <code>xbcloud put --md5</code>.</p>
@@ -6029,7 +6029,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3882">PXB-3882</a>: Fixed an issue where the debug build did not compile with gcc 15.2. </p>
 </li>
 </ul>
-<h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<h2 id="additional-resources">Additional resources<a data-markdown-ignore class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
 <p>Install <a href="../installation.html">Percona XtraBackup 9.7.2-2</a></p>
 <p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
 <p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads/">Percona Product Downloads</a></p>
@@ -6160,7 +6160,7 @@ posthog.init('phc_7unoI9J6Fm0SMrfDp35xNOpCRTkOAibbffQwdGWbHnL',{api_host:'https:
     
     
 
-      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../js/print-site.js"></script>
       
