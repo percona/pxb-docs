@@ -789,7 +789,7 @@ Usage: `--page-tracking-merge-gap=auto|N`
 
 Introduced in Percona XtraBackup 8.4.0-7.
 
-Controls the largest gap between two changed pages that Percona XtraBackup reads in a single request during an incremental backup with page tracking. The option accepts `auto` or a page count from `0` to `65536`. A page count is measured in `innodb_page_size` pages. The default value is `auto`. With `auto`, you do not choose a page count. Percona XtraBackup measures the storage at the start of the backup and selects the gap. Omit the option, or set `--page-tracking-merge-gap=auto`. For details, see [Read scattered changed pages](page-tracking.md#read-scattered-changed-pages).
+Controls the largest gap between two changed pages that Percona XtraBackup reads in a single request during an incremental backup with page tracking. The option accepts `auto` or a page count from `0` to `65536`. A page count is measured in `innodb_page_size` pages. The default value is `auto`. With `auto`, you do not choose a page count. Percona XtraBackup measures the storage at the start of the backup and selects the gap. Omit the option, or set `--page-tracking-merge-gap=auto`. For details, see [Merge reads across gaps](page-tracking.md#merge-reads-across-gaps).
 
 ### parallel
 
