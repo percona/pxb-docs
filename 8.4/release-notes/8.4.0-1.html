@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,10 +54,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/8.4/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6094,22 +6094,22 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="percona-xtrabackup-840-1-2024-08-20">Percona XtraBackup 8.4.0-1 (2024-08-20)<a class="headerlink" href="#percona-xtrabackup-840-1-2024-08-20" title="Permanent link">&para;</a></h1>
+<h1 id="percona-xtrabackup-840-1-2024-08-20">Percona XtraBackup 8.4.0-1 (2024-08-20)<a data-markdown-ignore class="headerlink" href="#percona-xtrabackup-840-1-2024-08-20" title="Permanent link">&para;</a></h1>
 <p>Get started with <a href="../quickstart-overview.html">Quickstart Guide for Percona XtraBackup</a>.</p>
-<h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<h2 id="release-highlights">Release highlights<a data-markdown-ignore class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 8.4.0-1 is based on MySQL 8.4 Long Term Supported (LTS) Release. This release allows taking backups of Percona Server for MySQL and MySQL 8.4.0, 8.4.1, 8.4.2 and future 8.4 LTS releases.</p>
 <p>Use the <a href="https://docs.percona.com/percona-xtrabackup/8.0/">Percona XtraBackup 8.0 series</a> to take backups of <a href="https://docs.percona.com/percona-server/8.0/">Percona Server for MySQL 8.0.x</a> and MySQL 8.0.x series.</p>
 <p>Use the Percona XtraBackup Innovation series, the latest version is 8.3.0-1, to take backups of Percona Server for MySQL Innovation series and MySQL Innovation series.</p>
-<h2 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
-<h3 id="implementations-inherited-from-the-innovation-releases">Implementations inherited from the Innovation releases<a class="headerlink" href="#implementations-inherited-from-the-innovation-releases" title="Permanent link">&para;</a></h3>
+<h2 id="improvements">Improvements<a data-markdown-ignore class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
+<h3 id="implementations-inherited-from-the-innovation-releases">Implementations inherited from the Innovation releases<a data-markdown-ignore class="headerlink" href="#implementations-inherited-from-the-innovation-releases" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://perconadev.atlassian.net/browse/PXB-3155">PXB-3155</a>: The Percona Server for MySQL 8.0 series implemented the <a href="https://docs.percona.com/percona-server/8.4/use-keyring-vault-component.html">keyring_vault</a> plugin. In the Innovation series and 8.4 version, the server shifts to a component infrastructure, the keyring’s functionality remains the same. Percona XtraBackup 8.4.0-1 supports the <code>keyring_vault</code> component. Users can back up their encrypted data after they convert from the <code>keyring_vault</code> plugin to the <code>keyring_vault</code> component.</li>
 </ul>
-<h2 id="bug-fixes">Bug fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
+<h2 id="bug-fixes">Bug fixes<a data-markdown-ignore class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://perconadev.atlassian.net/browse/PXB-3302">PXB-3302</a>: When a MySQL instance had an exceptionally large number of Global Transaction Identifier (GTID) sets, the <code>GTID of the last change</code> in the Xtrabackup log output got truncated. This truncation did not occur in the full output found in the <code>xtrabackup_binlog_info</code> and <code>xtrabackup_info</code> files.</li>
 </ul>
-<h2 id="deprecated-or-removed">Deprecated or removed<a class="headerlink" href="#deprecated-or-removed" title="Permanent link">&para;</a></h2>
+<h2 id="deprecated-or-removed">Deprecated or removed<a data-markdown-ignore class="headerlink" href="#deprecated-or-removed" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>The terms MASTER and SLAVE have been replaced with SOURCE and REPLICA to align with MySQL 8.4.0. Find the full list of removed (MASTER/SLAVE) terminology in the <a href="https://dev.mysql.com/doc/relnotes/mysql/8.4/en/news-8-4-0.html">MySQL Deprecation and Removal Notes</a>.</p>
@@ -6121,7 +6121,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>The <code>--stats</code> mode of operation for the xtrabackup binary has been removed.</p>
 </li>
 </ul>
-<h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<h2 id="additional-resources">Additional resources<a data-markdown-ignore class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
 <p>Install <a href="../installation.html">Percona XtraBackup 8.4.0-1</a></p>
 <p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
 <p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p>
@@ -6246,11 +6246,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../js/print-site.js"></script>
       

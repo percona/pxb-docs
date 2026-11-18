@@ -1,0 +1,30 @@
+> For the complete documentation index, see [llms.txt](https://docs.percona.com/percona-xtrabackup/8.4/llms.txt).
+
+# Work with binary logs
+
+The `xtrabackup` binary integrates with the `log_status table`. This integration enables `xtrabackup` to print out the backup’s corresponding binary log position, so that you can use this binary log position to provision a new replica or perform point-in-time recovery.
+
+## Find the binary log position
+
+You can find the binary log position corresponding to a backup after the backup has been taken. If your backup is from a server with binary logging enabled, `xtrabackup` creates a file named `xtrabackup_binlog_info` in the target directory. This file contains the binary log file name and position of the exact point when the backup was taken.
+
+Expected output during the backup stage
+
+```
+2026-10-13T17:14:12.917457-00:00 0 [Note] [MY-011825] [Xtrabackup] Backup created in directory '/data/backups/'
+2026-10-13T17:14:12.917481-00:00 0 [Note] [MY-011825] [Xtrabackup] MySQL binlog position: filename 'binlog.000004', position '198', GTID of the last change '78cf2c47-c729-11f1-90e4-f23a559b785b:1-5'
+...
+2026-10-13T17:14:14.161363-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
+```
+
+## Point-in-time recovery
+
+To perform a point-in-time recovery from an `xtrabackup` backup, you should prepare and restore the backup, and then replay binary logs from the point shown in the `xtrabackup_binlog_info` file.
+
+Find a more detailed procedure in the [Point-in-time recovery](https://docs.percona.com/percona-xtrabackup/8.4/point-in-time-recovery.html) document.
+
+## Set up a new replication replica
+
+To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the [CHANGE_REPLICATION_SOURCE_TO with the appropriate options](https://dev.mysql.com/doc/refman/8.4/en/change-replication-source-to.html) command, use the binary log filename and position shown in the `xtrabackup_binlog_info` file to start replication.
+
+A more detailed procedure is found in [How to setup a replica for replication in 6 simple steps with Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/8.4/set-up-replication.html).

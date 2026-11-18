@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,10 +54,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/8.4/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6094,10 +6094,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="quickstart-overview">Quickstart overview<a class="headerlink" href="#quickstart-overview" title="Permanent link">&para;</a></h1>
+<h1 id="quickstart-overview">Quickstart overview<a data-markdown-ignore class="headerlink" href="#quickstart-overview" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup performs online, non-blocking physical backups for Percona Server for MySQL and MySQL databases. This quickstart guide uses Docker to demonstrate backup and restore operations.</p>
 <p>For alternative installation methods, see <a href="installation.html">Installation</a>.</p>
-<h2 id="why-use-docker-for-this-quickstart">Why use Docker for this quickstart<a class="headerlink" href="#why-use-docker-for-this-quickstart" title="Permanent link">&para;</a></h2>
+<h2 id="why-use-docker-for-this-quickstart">Why use Docker for this quickstart<a data-markdown-ignore class="headerlink" href="#why-use-docker-for-this-quickstart" title="Permanent link">&para;</a></h2>
 <p>Docker containers isolate applications from the host system. Running Percona XtraBackup in a container provides the following benefits:</p>
 <ul>
 <li>
@@ -6111,9 +6111,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 </ul>
 <p>For production deployments, see <a href="installation.html">Installation</a> for package-based installation options.</p>
-<h2 id="supported-configurations">Supported configurations<a class="headerlink" href="#supported-configurations" title="Permanent link">&para;</a></h2>
+<h2 id="supported-configurations">Supported configurations<a data-markdown-ignore class="headerlink" href="#supported-configurations" title="Permanent link">&para;</a></h2>
 <p>Verify your environment meets the following requirements before starting.</p>
-<h3 id="supported-servers">Supported servers<a class="headerlink" href="#supported-servers" title="Permanent link">&para;</a></h3>
+<h3 id="supported-servers">Supported servers<a data-markdown-ignore class="headerlink" href="#supported-servers" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 8.4 supports the following MySQL-compatible servers:</p>
 <ul>
 <li>
@@ -6126,7 +6126,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Percona XtraDB Cluster</p>
 </li>
 </ul>
-<h3 id="supported-storage-engines">Supported storage engines<a class="headerlink" href="#supported-storage-engines" title="Permanent link">&para;</a></h3>
+<h3 id="supported-storage-engines">Supported storage engines<a data-markdown-ignore class="headerlink" href="#supported-storage-engines" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 8.4 supports the following storage engines:</p>
 <ul>
 <li>
@@ -6142,12 +6142,12 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>XtraDB</p>
 </li>
 </ul>
-<h3 id="version-requirements">Version requirements<a class="headerlink" href="#version-requirements" title="Permanent link">&para;</a></h3>
+<h3 id="version-requirements">Version requirements<a data-markdown-ignore class="headerlink" href="#version-requirements" title="Permanent link">&para;</a></h3>
 <p>Percona XtraBackup 8.4 requires databases created with the 8.4 series or later. Databases created with earlier MySQL, Percona Server for MySQL, or Percona XtraDB Cluster versions are not supported.</p>
 <p>For detailed version compatibility information, see <a href="server-backup-version-comparison.html">Server and backup version comparison</a>.</p>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h2 id="prerequisites">Prerequisites<a data-markdown-ignore class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <p>Both learning paths require <a href="https://docs.docker.com/engine/install/">Docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> installed on your system. Each tutorial includes specific setup instructions for Percona Server for MySQL.</p>
-<h2 id="choose-your-learning-path">Choose your learning path<a class="headerlink" href="#choose-your-learning-path" title="Permanent link">&para;</a></h2>
+<h2 id="choose-your-learning-path">Choose your learning path<a data-markdown-ignore class="headerlink" href="#choose-your-learning-path" title="Permanent link">&para;</a></h2>
 <p>This quickstart offers two paths based on your experience level and goals:</p>
 <table>
 <thead>
@@ -6173,7 +6173,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tr>
 </tbody>
 </table>
-<h3 id="basic-quickstart">Basic quickstart<a class="headerlink" href="#basic-quickstart" title="Permanent link">&para;</a></h3>
+<h3 id="basic-quickstart">Basic quickstart<a data-markdown-ignore class="headerlink" href="#basic-quickstart" title="Permanent link">&para;</a></h3>
 <p>The <a href="quickstart-docker.html">basic quickstart</a> teaches core Percona XtraBackup operations using individual Docker commands:</p>
 <ul>
 <li>
@@ -6189,7 +6189,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Validate restored data</p>
 </li>
 </ul>
-<h3 id="docker-compose-tutorial">Docker Compose tutorial<a class="headerlink" href="#docker-compose-tutorial" title="Permanent link">&para;</a></h3>
+<h3 id="docker-compose-tutorial">Docker Compose tutorial<a data-markdown-ignore class="headerlink" href="#docker-compose-tutorial" title="Permanent link">&para;</a></h3>
 <p>The <a href="docker-compose-tutorial.html">Docker Compose tutorial</a> demonstrates a production-ready backup workflow with separate services for backup, validation, and restore:</p>
 <ul>
 <li>
@@ -6208,7 +6208,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Understand file permission requirements</p>
 </li>
 </ul>
-<h2 id="terminology">Terminology<a class="headerlink" href="#terminology" title="Permanent link">&para;</a></h2>
+<h2 id="terminology">Terminology<a data-markdown-ignore class="headerlink" href="#terminology" title="Permanent link">&para;</a></h2>
 <p>This quickstart uses the following terms:</p>
 <table>
 <thead>
@@ -6358,11 +6358,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

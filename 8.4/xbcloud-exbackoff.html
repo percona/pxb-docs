@@ -33,7 +33,7 @@ upload or download.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -58,10 +58,10 @@ upload or download.">
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -138,7 +138,7 @@ upload or download.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/8.4/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6034,7 +6034,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="exponential-backoff">Exponential backoff<a class="headerlink" href="#exponential-backoff" title="Permanent link">&para;</a></h1>
+<h1 id="exponential-backoff">Exponential backoff<a data-markdown-ignore class="headerlink" href="#exponential-backoff" title="Permanent link">&para;</a></h1>
 <p>Exponential backoff increases the chances for the completion of a backup or
 a restore operation. For example, a chunk upload or download may fail if
 you have an unstable network connection or other network issues. This
@@ -6070,7 +6070,7 @@ approximately 17 minutes after the first try. The number is no longer
 calculated when the milliseconds reach the <code>--max-backoff</code> setting. At that
 point, the retries continue by using the <code>--max-backoff</code> setting until
 the <code>max-retries</code> parameter is reached.</p>
-<h2 id="retriable-errors">Retriable errors<a class="headerlink" href="#retriable-errors" title="Permanent link">&para;</a></h2>
+<h2 id="retriable-errors">Retriable errors<a data-markdown-ignore class="headerlink" href="#retriable-errors" title="Permanent link">&para;</a></h2>
 <p>We retry for the following CURL operations:</p>
 <ul>
 <li>
@@ -6125,7 +6125,7 @@ user must add to retry on this error.</p>
 210701 14:34:23 /work/pxb/ins/8.4/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
 </code></pre></div>
 </details>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<h2 id="example">Example<a data-markdown-ignore class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>The following example adjusts the maximum number of retries and the maximum
 time between retries.</p>
 <div class="highlight"><pre><span></span><code>xbcloud [options] --max-retries=5 --max-backoff=10000
@@ -6286,11 +6286,11 @@ time between retries.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

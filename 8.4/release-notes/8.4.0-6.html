@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,10 +54,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/8.4/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6116,9 +6116,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="percona-xtrabackup-840-6-2026-06-24">Percona XtraBackup 8.4.0-6 (2026-06-24)<a class="headerlink" href="#percona-xtrabackup-840-6-2026-06-24" title="Permanent link">&para;</a></h1>
+<h1 id="percona-xtrabackup-840-6-2026-06-24">Percona XtraBackup 8.4.0-6 (2026-06-24)<a data-markdown-ignore class="headerlink" href="#percona-xtrabackup-840-6-2026-06-24" title="Permanent link">&para;</a></h1>
 <p>Get started with <a href="../quickstart-overview.html">Quickstart Guide for Percona XtraBackup</a>.</p>
-<h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<h2 id="release-highlights">Release highlights<a data-markdown-ignore class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 8.4.0-6 release includes new features, improvements and bug fixes.</p>
 <ul>
 <li>
@@ -6141,23 +6141,23 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 </ul>
 <p>We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.</p>
-<h2 id="new-features">New features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
+<h2 id="new-features">New features<a data-markdown-ignore class="headerlink" href="#new-features" title="Permanent link">&para;</a></h2>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3328">PXB-3328</a>: Adds the <code>--check-tables</code> option to validate InnoDB B-tree index integrity during the <code>--prepare</code> phase. The option detects structural corruption in backup files before restore or deployment.</p>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3747">PXB-3747</a>: Adds backup size reporting for successful backups. Percona XtraBackup now records backup size in <code>xtrabackup_info</code> and reports the same information in the XtraBackup error log.</p>
-<h2 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
+<h2 id="improvements">Improvements<a data-markdown-ignore class="headerlink" href="#improvements" title="Permanent link">&para;</a></h2>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3643">PXB-3643</a>: Adds support for Azure Storage accounts with <a href="https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-namespace">Hierarchical Namespace (HNS)</a> enabled in <code>xbcloud delete</code>. Percona XtraBackup now correctly removes backups from Azure Data Lake Storage Gen2 environments where deletion previously failed due to unsupported HNS behavior.</p>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3458">PXB-3458</a>: Improves <code>--copy-back</code> and <code>--move-back</code> handling for backups created from servers with non-default InnoDB configuration paths. Percona XtraBackup now automatically processes configuration values stored in <code>backup-my.cnf</code>, avoiding restore failures caused by custom <code>innodb_data_file_path</code> and related settings.</p>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3658">PXB-3658</a>: Improves sparse file handling efficiency by removing redundant <code>fallocate(PUNCH_HOLE)</code> calls from <code>local_write_sparse</code>.</p>
-<h2 id="bug-fixes">Bug fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
+<h2 id="bug-fixes">Bug fixes<a data-markdown-ignore class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3568">PXB-3568</a>: Fixed an issue where <code>xtrabackup</code> terminated unexpectedly on RHEL 9 when using <code>--compress=lz4</code>.</p>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3759">PXB-3759</a>: Fixed an issue where <code>xtrabackup</code> terminated unexpectedly when redo log encryption was enabled and <code>innodb_log_buffer_size</code> exceeded 16 MB.</p>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3762">PXB-3762</a>: Fixed an issue where <code>xtrabackup --backup --transition-key</code> terminated unexpectedly on servers where undo tablespace encryption keys existed only in redo logs.</p>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3543">PXB-3543</a>: Fixed an issue where incremental backups on instances containing around one million tables completed significantly slower than expected.</p>
-<h2 id="packaging-notes">Packaging notes<a class="headerlink" href="#packaging-notes" title="Permanent link">&para;</a></h2>
+<h2 id="packaging-notes">Packaging notes<a data-markdown-ignore class="headerlink" href="#packaging-notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Percona XtraBackup 8.4 adds support for Ubuntu 26.04.</li>
 </ul>
-<h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<h2 id="additional-resources">Additional resources<a data-markdown-ignore class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
 <p>Install <a href="../installation.html">Percona XtraBackup 8.4.0-6</a></p>
 <p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
 <p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads/">Percona Product Downloads</a></p>
@@ -6282,11 +6282,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../js/print-site.js"></script>
       

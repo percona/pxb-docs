@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,10 +54,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/8.4/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6050,7 +6050,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="restore-single-tables-between-databases">Restore single tables between databases<a class="headerlink" href="#restore-single-tables-between-databases" title="Permanent link">&para;</a></h1>
+<h1 id="restore-single-tables-between-databases">Restore single tables between databases<a data-markdown-ignore class="headerlink" href="#restore-single-tables-between-databases" title="Permanent link">&para;</a></h1>
 <p>Sometimes, you must restore just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to restore specific tables between different database systems while keeping your data safe.</p>
 <p>This process only works with InnoDB tables that use the <code>file-per-table</code> setup. This setup stores each table&rsquo;s data in its <code>.ibd</code> file. You can restore these tables to systems running Percona Server for MySQL with XtraDB or MySQL 8.0. Your source database can be any type, but the target database must be XtraDB or MySQL 8.0.</p>
 <p>When moving tables, you&rsquo;ll work with several important files. Each file has a specific job in the restoration process:</p>
@@ -6103,12 +6103,12 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
 <span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span>
 </code></pre></div>
-<h2 id="save-the-schema">Save the schema<a class="headerlink" href="#save-the-schema" title="Permanent link">&para;</a></h2>
+<h2 id="save-the-schema">Save the schema<a data-markdown-ignore class="headerlink" href="#save-the-schema" title="Permanent link">&para;</a></h2>
 <p>Before importing any table, you must save the schema definition for all tables you want to restore. Think of the schema as a blueprint for your table. XtraBackup only backs up data files, not these blueprints. Without the original schema, MySQL won&rsquo;t be able to use the restored .ibd files.</p>
 <p>When you back up your database, you may not know which tables to restore later. This operation prepares you for any future restoration needs. Also, table structures might change between the time when you create the backup and when you use mysqldump. Saving the most current structure helps ensure everything works during restoration.</p>
 <p>Review the script in <a href="dump-schema.html">Dump schema for all tables</a> for an easier way to save schemas. You&rsquo;ll likely need to adjust this script to fit your setup.</p>
 <p>By saving schemas ahead of time, you ensure that all the table blueprints are ready when you start restoring from backups, making data recovery go more smoothly.</p>
-<h2 id="export-the-table">Export the table<a class="headerlink" href="#export-the-table" title="Permanent link">&para;</a></h2>
+<h2 id="export-the-table">Export the table<a data-markdown-ignore class="headerlink" href="#export-the-table" title="Permanent link">&para;</a></h2>
 <p>First, create the table using the <code>innodb_file_per_table</code> setting. This setting tells MySQL to create a separate <code>.ibd</code> file for each table in your source directory. Run this command to find the created file in your system:</p>
 <div class="highlight"><pre><span></span><code>find<span class="w"> </span>/data/backups/mysql/<span class="w"> </span>-name<span class="w"> </span>export_test.*
 /data/backups/mysql/test/export_test.ibd
@@ -6125,7 +6125,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 /data/backups/mysql/test/export_test.cfg
 /data/backups/mysql/test/export_test.cfp
 </code></pre></div>
-<h2 id="restore-the-table">Restore the table<a class="headerlink" href="#restore-the-table" title="Permanent link">&para;</a></h2>
+<h2 id="restore-the-table">Restore the table<a data-markdown-ignore class="headerlink" href="#restore-the-table" title="Permanent link">&para;</a></h2>
 <p>Now that we&rsquo;ve exported the table, we can restore it to the destination system. You need to follow these steps in order on the target server:</p>
 <ul>
 <li>
@@ -6280,11 +6280,11 @@ mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> 
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

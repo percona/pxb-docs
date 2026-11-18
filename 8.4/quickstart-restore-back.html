@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,10 +54,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/8.4/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6204,9 +6204,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="restore-the-backup">Restore the backup<a class="headerlink" href="#restore-the-backup" title="Permanent link">&para;</a></h1>
+<h1 id="restore-the-backup">Restore the backup<a data-markdown-ignore class="headerlink" href="#restore-the-backup" title="Permanent link">&para;</a></h1>
 <p>This tutorial describes how to restore a Percona XtraBackup backup to a new database container. The tutorial also covers validating the restored data.</p>
-<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<h2 id="learning-objectives">Learning objectives<a data-markdown-ignore class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
 <p>This tutorial covers the following tasks:</p>
 <ul>
 <li>
@@ -6222,7 +6222,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Validate restored data accessibility</p>
 </li>
 </ul>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h2 id="prerequisites">Prerequisites<a data-markdown-ignore class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <p>Complete the following quickstart steps before starting this tutorial:</p>
 <ul>
 <li>
@@ -6232,7 +6232,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p><a href="quickstart-docker.html">Take a backup</a> - Creates the <code>backupvol</code> volume containing your prepared backup</p>
 </li>
 </ul>
-<h3 id="understanding-host-terminal-vs-container">Understanding host terminal vs container<a class="headerlink" href="#understanding-host-terminal-vs-container" title="Permanent link">&para;</a></h3>
+<h3 id="understanding-host-terminal-vs-container">Understanding host terminal vs container<a data-markdown-ignore class="headerlink" href="#understanding-host-terminal-vs-container" title="Permanent link">&para;</a></h3>
 <p>This tutorial requires running commands in two different places:</p>
 <table>
 <thead>
@@ -6256,7 +6256,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tbody>
 </table>
 <p>Commands starting with <code>docker</code> always run on your host terminal. SQL commands like <code>SELECT</code> run inside the MySQL client.</p>
-<h3 id="verify-the-backup-volume">Verify the backup volume<a class="headerlink" href="#verify-the-backup-volume" title="Permanent link">&para;</a></h3>
+<h3 id="verify-the-backup-volume">Verify the backup volume<a data-markdown-ignore class="headerlink" href="#verify-the-backup-volume" title="Permanent link">&para;</a></h3>
 <p>Before proceeding, verify the backup volume exists.</p>
 <p>If you are still in the MySQL client from the previous tutorial, exit to return to your host terminal:</p>
 <div class="highlight"><pre><span></span><code><span class="n">exit</span>
@@ -6276,7 +6276,7 @@ local     backupvol
 </code></pre></div>
 </details>
 <p>Confirm <code>backupvol</code> appears in the list. If the volume does not exist, complete the <a href="quickstart-docker.html">Take a backup</a> tutorial first.</p>
-<h2 id="restore-process-overview">Restore process overview<a class="headerlink" href="#restore-process-overview" title="Permanent link">&para;</a></h2>
+<h2 id="restore-process-overview">Restore process overview<a data-markdown-ignore class="headerlink" href="#restore-process-overview" title="Permanent link">&para;</a></h2>
 <p>Restoring a physical backup requires copying the backup files to a MySQL data directory. In Docker environments, the restore process requires the following steps:</p>
 <ol>
 <li>
@@ -6296,7 +6296,7 @@ local     backupvol
 </li>
 </ol>
 <p>For more information about the restore process, see <a href="restore-a-backup.html">Restore full, incremental, and compressed backups</a>.</p>
-<h2 id="step-1-create-a-restore-target-container">Step 1: Create a restore target container<a class="headerlink" href="#step-1-create-a-restore-target-container" title="Permanent link">&para;</a></h2>
+<h2 id="step-1-create-a-restore-target-container">Step 1: Create a restore target container<a data-markdown-ignore class="headerlink" href="#step-1-create-a-restore-target-container" title="Permanent link">&para;</a></h2>
 <p class="power-number">Create a second Percona Server container named <code>ps-restore-target</code> as the restore destination. This configuration simulates restoring to a different server, a common disaster recovery scenario.</p>
 <ol>
 <li>
@@ -6312,7 +6312,7 @@ local     backupvol
 </li>
 <li>
 <p>Start a Percona Server container:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">AMD64 (Intel/AMD)</label><label for="__tabbed_1_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_1_1">AMD64 (Intel/AMD)</label><label for="__tabbed_1_2">ARM64 (Apple Silicon Macs)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">3307</span>:3306<span class="w"> </span>--name<span class="w"> </span>ps-restore-target<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>secret<span class="w"> </span>-v<span class="w"> </span>restore_data:/var/lib/mysql<span class="w"> </span>percona/percona-server:8.4
@@ -6373,7 +6373,7 @@ local     backupvol
 </details>
 </li>
 </ol>
-<h2 id="step-2-prepare-the-target-for-restore">Step 2: Prepare the target for restore<a class="headerlink" href="#step-2-prepare-the-target-for-restore" title="Permanent link">&para;</a></h2>
+<h2 id="step-2-prepare-the-target-for-restore">Step 2: Prepare the target for restore<a data-markdown-ignore class="headerlink" href="#step-2-prepare-the-target-for-restore" title="Permanent link">&para;</a></h2>
 <p class="power-number">Stop the database and clear the data directory before restoring. The <code>xtrabackup --copy-back</code> command requires an empty target directory.</p>
 <ol>
 <li>
@@ -6393,7 +6393,7 @@ local     backupvol
 <li>
 <p>Clear the data directory:</p>
 <p>The <code>--rm</code> option creates a temporary container. Docker removes this container automatically after the command completes.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">AMD64 (Intel/AMD)</label><label for="__tabbed_2_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_2_1">AMD64 (Intel/AMD)</label><label for="__tabbed_2_2">ARM64 (Apple Silicon Macs)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>ps-restore-target<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"rm -rf /var/lib/mysql/*"</span>
@@ -6420,12 +6420,12 @@ local     backupvol
 </ul>
 </li>
 </ol>
-<h2 id="step-3-restore-the-backup-files">Step 3: Restore the backup files<a class="headerlink" href="#step-3-restore-the-backup-files" title="Permanent link">&para;</a></h2>
+<h2 id="step-3-restore-the-backup-files">Step 3: Restore the backup files<a data-markdown-ignore class="headerlink" href="#step-3-restore-the-backup-files" title="Permanent link">&para;</a></h2>
 <p class="power-number">Copy the backup files from <code>backupvol</code> to the restore target data directory.</p>
 <ol>
 <li>
 <p>Run the restore command:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">AMD64 (Intel/AMD)</label><label for="__tabbed_3_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_3_1">AMD64 (Intel/AMD)</label><label for="__tabbed_3_2">ARM64 (Apple Silicon Macs)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>ps-restore-target<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_84"</span>
@@ -6476,12 +6476,12 @@ xtrabackup version 8.4.0-7 based on MySQL server 8.4.0 Linux (x86_64) (revision 
 <p>For a complete list of options, see <a href="xtrabackup-option-reference.html">xtrabackup option reference</a>.</p>
 </li>
 </ol>
-<h2 id="step-4-fix-file-permissions">Step 4: Fix file permissions<a class="headerlink" href="#step-4-fix-file-permissions" title="Permanent link">&para;</a></h2>
+<h2 id="step-4-fix-file-permissions">Step 4: Fix file permissions<a data-markdown-ignore class="headerlink" href="#step-4-fix-file-permissions" title="Permanent link">&para;</a></h2>
 <p class="power-number">The restored files have <code>root</code> ownership because the restore command ran as root. MySQL runs as the <code>mysql</code> user and cannot read files owned by root.</p>
 <ol>
 <li>
 <p>Change ownership of the restored files:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">AMD64 (Intel/AMD)</label><label for="__tabbed_4_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_4_1">AMD64 (Intel/AMD)</label><label for="__tabbed_4_2">ARM64 (Apple Silicon Macs)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>ps-restore-target<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_84<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:8.4<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"chown -R mysql:mysql /var/lib/mysql/"</span>
@@ -6527,7 +6527,7 @@ xtrabackup version 8.4.0-7 based on MySQL server 8.4.0 Linux (x86_64) (revision 
 <p>The message <code>ready for connections</code> confirms the server started.</p>
 </li>
 </ol>
-<h2 id="step-5-validate-the-restored-data">Step 5: Validate the restored data<a class="headerlink" href="#step-5-validate-the-restored-data" title="Permanent link">&para;</a></h2>
+<h2 id="step-5-validate-the-restored-data">Step 5: Validate the restored data<a data-markdown-ignore class="headerlink" href="#step-5-validate-the-restored-data" title="Permanent link">&para;</a></h2>
 <p class="power-number">Connect to the restored database and verify data integrity.</p>
 <ol>
 <li>
@@ -6610,7 +6610,7 @@ mysql&gt;
 </details>
 </li>
 </ol>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<h2 id="summary">Summary<a data-markdown-ignore class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>This tutorial covered the following completed tasks:</p>
 <ul>
 <li>
@@ -6629,7 +6629,7 @@ mysql&gt;
 <p>Validated data recovery</p>
 </li>
 </ul>
-<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<h2 id="next-steps">Next steps<a data-markdown-ignore class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="quickstart-exit.html">Clean up</a></p>
 
 
@@ -6752,11 +6752,11 @@ mysql&gt;
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

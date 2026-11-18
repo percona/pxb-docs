@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="../assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,10 +54,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/8.4/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6072,9 +6072,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="percona-xtrabackup-840-2-2024-12-18">Percona XtraBackup 8.4.0-2 (2024-12-18)<a class="headerlink" href="#percona-xtrabackup-840-2-2024-12-18" title="Permanent link">&para;</a></h1>
+<h1 id="percona-xtrabackup-840-2-2024-12-18">Percona XtraBackup 8.4.0-2 (2024-12-18)<a data-markdown-ignore class="headerlink" href="#percona-xtrabackup-840-2-2024-12-18" title="Permanent link">&para;</a></h1>
 <p>Get started with <a href="../quickstart-overview.html">Quickstart Guide for Percona XtraBackup</a>.</p>
-<h2 id="release-highlights">Release highlights<a class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
+<h2 id="release-highlights">Release highlights<a data-markdown-ignore class="headerlink" href="#release-highlights" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup 8.4.0-2 merges the MySQL 8.4 code base and introduces Percona XtraBackup 8.4.0-2 Pro build, in addition to the regular community builds.</p>
 <p>Percona XtraBackup 8.4.0-2 Pro build includes the capabilities that are typically requested by large enterprises. These Pro builds are specifically created and tested by Percona, and the corresponding packages are supported only for Percona customers with a valid subscription. </p>
 <p>Percona XtraBackup 8.4.0-2 Pro build is available for the following platforms:</p>
@@ -6093,7 +6093,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 </ul>
 <p>Percona XtraBackup 8.4.0-2 Pro build includes the <a href="../reduction-in-locks.html"><code>Reduced backup lock time</code></a> feature. With the addition of the <a href="../xtrabackup-option-reference.html#lock-ddl"><code>--lock-ddl=REDUCED</code></a> option this feature minimizes the time the server remains locked by xtrabackup during both full and incremental backups. Now, you can execute <code>Data Definition Language</code> (DDL) operations while the backup is in progress.</p>
-<h3 id="benefits">Benefits<a class="headerlink" href="#benefits" title="Permanent link">&para;</a></h3>
+<h3 id="benefits">Benefits<a data-markdown-ignore class="headerlink" href="#benefits" title="Permanent link">&para;</a></h3>
 <p>The <code>--lock-ddl=REDUCED</code> option features are as follows:</p>
 <ul>
 <li>
@@ -6102,7 +6102,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <summary>Comparing the backup duration with &ndash;lock-ddl=REDUCED</summary>
 <p>While we strive to provide accurate performance benchmarks, real-world results may vary depending on your hardware and software configurations.</p>
 <p>The following tables illustrate the approximate time differences between <code>--lock-ddl=ON</code> and <code>--lock-ddl=REDUCED</code> for local and cloud backups (Amazon S3). The <code>Improvement (X times)</code> column shows how many times less the server is locked by xtrabackup using  <code>--lock-ddl=REDUCED</code> compared to <code>--lock-ddl=ON</code>.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Local backup</label><label for="__tabbed_1_2">Cloud (Amazon s3) backup</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_1_1">Local backup</label><label for="__tabbed_1_2">Cloud (Amazon s3) backup</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <table>
@@ -6203,7 +6203,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li>Handle DDL operations: The backup process generates metadata files to account for any DDL operations that occur while the backup is in progress.</li>
 <li>Ensure consistency: The <code>--prepare</code> step processes generated metadata files and uses redo and undo logs to create a consistent database state.</li>
 </ul>
-<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<h3 id="limitations">Limitations<a data-markdown-ignore class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p>Certain DDL operations consume significant resources, and xtrabackup simultaneously requires I/O to copy and read files. This requirement can increase resource demand from DDL operations during the backup process.</p>
@@ -6221,9 +6221,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Taking a backup using <a href="../page-tracking.html">page tracking</a> is not supported with <code>--lock-ddl=REDUCED</code> option.</p>
 </li>
 </ul>
-<h2 id="pro-features">Pro features<a class="headerlink" href="#pro-features" title="Permanent link">&para;</a></h2>
+<h2 id="pro-features">Pro features<a data-markdown-ignore class="headerlink" href="#pro-features" title="Permanent link">&para;</a></h2>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3269">PXB-3269</a>: Reduces the time the server is locked by <code>xtrabackup</code> during full and incremental backups.</p>
-<h2 id="bug-fixes">Bug fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
+<h2 id="bug-fixes">Bug fixes<a data-markdown-ignore class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3399">PXB-3399</a>: Taking a backup on a replica failed (Thanks to Hubertus Krogmann
@@ -6233,7 +6233,7 @@ for reporting this issue.)</p>
 <p><a href="https://perconadev.atlassian.net/browse/PXB-3168">PXB-3168</a>: Taking a backup under high write load failed with <code>log block numbers mismatch</code> error. This fix was originally made for version 8.0 and later added to version 8.4. This fix was accidentally omitted in a previous release.</p>
 </li>
 </ul>
-<h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<h2 id="additional-resources">Additional resources<a data-markdown-ignore class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
 <p>Install <a href="../installation.html">Percona XtraBackup 8.4.0-2</a></p>
 <p>The <a href="https://github.com/percona/percona-xtrabackup">Percona XtraBackup GitHub repository</a></p>
 <p>Download product binaries, packages, and tarballs at <a href="https://www.percona.com/downloads">Percona Product Downloads</a></p>
@@ -6358,11 +6358,11 @@ for reporting this issue.)</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../js/print-site.js"></script>
       

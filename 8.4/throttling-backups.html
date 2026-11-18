@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,10 +54,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/8.4/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6118,10 +6118,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="throttling-backups">Throttling backups<a class="headerlink" href="#throttling-backups" title="Permanent link">&para;</a></h1>
+<h1 id="throttling-backups">Throttling backups<a data-markdown-ignore class="headerlink" href="#throttling-backups" title="Permanent link">&para;</a></h1>
 <p>xtrabackup does not block database activity during a backup, but xtrabackup generates additional disk input/output (I/O) activity. On systems with limited I/O capacity, this can affect database performance.</p>
 <p>Use the <a href="xtrabackup-option-reference.html#throttle"><code>--throttle</code></a> option to limit the backup rate.</p>
-<h2 id="how-throttling-works">How throttling works<a class="headerlink" href="#how-throttling-works" title="Permanent link">&para;</a></h2>
+<h2 id="how-throttling-works">How throttling works<a data-markdown-ignore class="headerlink" href="#how-throttling-works" title="Permanent link">&para;</a></h2>
 <p>Use the <code>--throttle</code> option to minimize backup impact on system performance. By limiting the number of <strong>10 MB chunks</strong> processed per second, you primarily limit data throughput, which in turn reduces overall I/O pressure on the system.</p>
 <p>When used with the <code>--backup</code> option, <code>--throttle</code> limits the rate of read and write operations performed during the copy process. For incremental backups, the limit applies only to read operations.</p>
 <p>For example:</p>
@@ -6131,7 +6131,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </ul>
 <p>By default, throttling is <strong>disabled</strong>, and xtrabackup runs at the maximum rate permitted by the system.</p>
 <p>On write-heavy systems, overly aggressive throttling can cause backups to fall behind redo log generation, see <a href="#redo-log-wraparound-risk-important">Redo log wraparound risk</a>.</p>
-<h2 id="when-to-use-throttling">When to use throttling<a class="headerlink" href="#when-to-use-throttling" title="Permanent link">&para;</a></h2>
+<h2 id="when-to-use-throttling">When to use throttling<a data-markdown-ignore class="headerlink" href="#when-to-use-throttling" title="Permanent link">&para;</a></h2>
 <p>Use the <code>--throttle</code> option in the following scenarios:</p>
 <ul>
 <li>
@@ -6151,10 +6151,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   When multiple services share the same host, unthrottled backups can consume available I/O bandwidth and affect other applications.</p>
 </li>
 </ul>
-<h2 id="resource-monitoring-finding-your-baseline">Resource monitoring: finding your baseline<a class="headerlink" href="#resource-monitoring-finding-your-baseline" title="Permanent link">&para;</a></h2>
+<h2 id="resource-monitoring-finding-your-baseline">Resource monitoring: finding your baseline<a data-markdown-ignore class="headerlink" href="#resource-monitoring-finding-your-baseline" title="Permanent link">&para;</a></h2>
 <p>Before setting a throttle value, understand your storage subsystem limits. If your disk is already near saturation, an unthrottled backup can introduce significant I/O wait and increase query latency.</p>
 <p>Use the following tools to observe disk utilization and validate your throttle settings.</p>
-<h3 id="iostat-sysstat">iostat (sysstat)<a class="headerlink" href="#iostat-sysstat" title="Permanent link">&para;</a></h3>
+<h3 id="iostat-sysstat">iostat (sysstat)<a data-markdown-ignore class="headerlink" href="#iostat-sysstat" title="Permanent link">&para;</a></h3>
 <p>Use:</p>
 <div class="highlight"><pre><span></span><code>iostat<span class="w"> </span>-xz<span class="w"> </span><span class="m">1</span>
 </code></pre></div>
@@ -6170,7 +6170,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p><code>%util</code> — indicates how busy the device is (time spent servicing I/O), not saturation. A device can show 100% utilization and still have spare capacity.</p>
 </li>
 </ul>
-<h3 id="pidstat-sysstat">pidstat (sysstat)<a class="headerlink" href="#pidstat-sysstat" title="Permanent link">&para;</a></h3>
+<h3 id="pidstat-sysstat">pidstat (sysstat)<a data-markdown-ignore class="headerlink" href="#pidstat-sysstat" title="Permanent link">&para;</a></h3>
 <p>Use <code>pidstat</code> to monitor per-process I/O activity.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -6193,14 +6193,14 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>When run without elevated privileges, it only shows processes owned by the current user.</p>
 </li>
 </ul>
-<h3 id="pv-pipe-viewer">pv (Pipe Viewer)<a class="headerlink" href="#pv-pipe-viewer" title="Permanent link">&para;</a></h3>
+<h3 id="pv-pipe-viewer">pv (Pipe Viewer)<a data-markdown-ignore class="headerlink" href="#pv-pipe-viewer" title="Permanent link">&para;</a></h3>
 <p>For streaming backups, <code>pv</code> can display real-time throughput:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">5</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span>backup.xb.gz
 </code></pre></div>
 <p>This helps verify whether the effective throughput matches the configured throttle, although compression (<code>gzip</code>) may become a bottleneck on CPU-constrained systems.</p>
-<h2 id="configuration-guidelines">Configuration guidelines<a class="headerlink" href="#configuration-guidelines" title="Permanent link">&para;</a></h2>
+<h2 id="configuration-guidelines">Configuration guidelines<a data-markdown-ignore class="headerlink" href="#configuration-guidelines" title="Permanent link">&para;</a></h2>
 <p>Select a throttle value based on available I/O capacity and workload requirements. Use the insights from <a href="#resource-monitoring-finding-your-baseline">resource monitoring</a> to select and refine an appropriate throttle value.</p>
 <p>Typical starting points:</p>
 <ul>
@@ -6219,7 +6219,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>If the throttle value is too low, the backup may not keep up with the rate of transaction log generation and may not complete.</p>
 </div>
 <p>Adjust the value based on observed system performance.</p>
-<h3 id="redo-log-wraparound-risk-important">Redo log wraparound risk (important)<a class="headerlink" href="#redo-log-wraparound-risk-important" title="Permanent link">&para;</a></h3>
+<h3 id="redo-log-wraparound-risk-important">Redo log wraparound risk (important)<a data-markdown-ignore class="headerlink" href="#redo-log-wraparound-risk-important" title="Permanent link">&para;</a></h3>
 <p>When using <code>--throttle</code>, backups may become too slow to keep up with redo log generation rate on busy systems.</p>
 <p>Because the InnoDB redo log is a circular buffer with limited size, it can wrap around before xtrabackup has finished reading it. When this happens, the backup fails with an error similar to:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup: error: expected log block no. ..., but got no. ...
@@ -6228,7 +6228,7 @@ xtrabackup: Error: xtrabackup_copy_logfile() failed
 </code></pre></div>
 <p>This issue is more likely on write-heavy systems or when using very low throttle values.</p>
 <p>There are two primary ways to prevent this issue:</p>
-<h4 id="option-1-increase-redo-log-capacity-recommended">Option 1: Increase redo log capacity (recommended)<a class="headerlink" href="#option-1-increase-redo-log-capacity-recommended" title="Permanent link">&para;</a></h4>
+<h4 id="option-1-increase-redo-log-capacity-recommended">Option 1: Increase redo log capacity (recommended)<a data-markdown-ignore class="headerlink" href="#option-1-increase-redo-log-capacity-recommended" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">innodb_redo_log_capacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">larger</span><span class="w"> </span><span class="n">value</span><span class="o">&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p>Increasing redo log size:</p>
@@ -6243,7 +6243,7 @@ xtrabackup: Error: xtrabackup_copy_logfile() failed
 <p>May increase crash recovery time.</p>
 </li>
 </ul>
-<h4 id="option-2-prevent-redo-log-wraparound">Option 2: Prevent redo log wraparound<a class="headerlink" href="#option-2-prevent-redo-log-wraparound" title="Permanent link">&para;</a></h4>
+<h4 id="option-2-prevent-redo-log-wraparound">Option 2: Prevent redo log wraparound<a data-markdown-ignore class="headerlink" href="#option-2-prevent-redo-log-wraparound" title="Permanent link">&para;</a></h4>
 <p>Use the <code>--register-redo-log-consumer</code> option to prevent redo log wraparound by coordinating with the server.</p>
 <p>However:</p>
 <ul>
@@ -6254,7 +6254,7 @@ xtrabackup: Error: xtrabackup_copy_logfile() failed
 <p>It is best suited for replicas, where replication lag is acceptable.</p>
 </li>
 </ul>
-<h3 id="advanced-tuning-scenarios">Advanced tuning scenarios<a class="headerlink" href="#advanced-tuning-scenarios" title="Permanent link">&para;</a></h3>
+<h3 id="advanced-tuning-scenarios">Advanced tuning scenarios<a data-markdown-ignore class="headerlink" href="#advanced-tuning-scenarios" title="Permanent link">&para;</a></h3>
 <p>On high-performance storage (for example, NVMe), consider using higher <code>--parallel</code> values (4–8) with little or no throttling.</p>
 <p>On shared or limited environments (such as cloud volumes):</p>
 <ul>
@@ -6268,9 +6268,9 @@ xtrabackup: Error: xtrabackup_copy_logfile() failed
 <p>Use moderate <code>--parallel</code> values (2–4) to ensure consistent utilization without overwhelming the system.</p>
 </li>
 </ul>
-<h2 id="interaction-with-parallel">Interaction with &ndash;parallel<a class="headerlink" href="#interaction-with-parallel" title="Permanent link">&para;</a></h2>
+<h2 id="interaction-with-parallel">Interaction with &ndash;parallel<a data-markdown-ignore class="headerlink" href="#interaction-with-parallel" title="Permanent link">&para;</a></h2>
 <p>The <code>--throttle</code> and <code>--parallel</code> options control different aspects of backup performance and can be used together. If <code>--parallel</code> is set too high without adjusting <code>--throttle</code>, threads may compete for the limited throughput, reducing efficiency.</p>
-<h3 id="how-they-work-together">How they work together<a class="headerlink" href="#how-they-work-together" title="Permanent link">&para;</a></h3>
+<h3 id="how-they-work-together">How they work together<a data-markdown-ignore class="headerlink" href="#how-they-work-together" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>--throttle</code> sets a <strong>global limit</strong> on backup throughput.</li>
 <li><code>--parallel</code> controls the number of worker threads copying data.</li>
@@ -6286,21 +6286,21 @@ xtrabackup: Error: xtrabackup_copy_logfile() failed
 <li><code>--parallel=4</code></li>
 </ul>
 <p>Each thread will average approximately 25 MB/s to stay within the global limit.</p>
-<h3 id="why-use-both">Why use both<a class="headerlink" href="#why-use-both" title="Permanent link">&para;</a></h3>
+<h3 id="why-use-both">Why use both<a data-markdown-ignore class="headerlink" href="#why-use-both" title="Permanent link">&para;</a></h3>
 <p>Using both options allows you to:</p>
 <ul>
 <li>Improve efficiency when backing up many small tables (via parallelism)</li>
 <li>Control overall I/O impact (via throttling)</li>
 </ul>
 <p>This is especially useful on systems with mixed workloads.</p>
-<h2 id="example-usage">Example usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
-<h3 id="a-streaming-backup-with-throttling">A) Streaming backup with throttling<a class="headerlink" href="#a-streaming-backup-with-throttling" title="Permanent link">&para;</a></h3>
+<h2 id="example-usage">Example usage<a data-markdown-ignore class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
+<h3 id="a-streaming-backup-with-throttling">A) Streaming backup with throttling<a data-markdown-ignore class="headerlink" href="#a-streaming-backup-with-throttling" title="Permanent link">&para;</a></h3>
 <p>Limit the backup speed to approximately <strong>50 MB/s</strong>:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">5</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span>backup.xb.gz
 </code></pre></div>
-<h3 id="b-testing-throttling-behavior">B) Testing throttling behavior<a class="headerlink" href="#b-testing-throttling-behavior" title="Permanent link">&para;</a></h3>
+<h3 id="b-testing-throttling-behavior">B) Testing throttling behavior<a data-markdown-ignore class="headerlink" href="#b-testing-throttling-behavior" title="Permanent link">&para;</a></h3>
 <p>To measure the effective throughput of <code>--throttle</code> without interference from compression or disk writes:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">2</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="se">\</span>
@@ -6319,7 +6319,7 @@ xtrabackup: Error: xtrabackup_copy_logfile() failed
 </li>
 </ul>
 <p>Use this method to validate that the configured throttle produces the expected throughput.</p>
-<h3 id="local-backup-with-throttling">Local backup with throttling<a class="headerlink" href="#local-backup-with-throttling" title="Permanent link">&para;</a></h3>
+<h3 id="local-backup-with-throttling">Local backup with throttling<a data-markdown-ignore class="headerlink" href="#local-backup-with-throttling" title="Permanent link">&para;</a></h3>
 <p>Limit the backup to approximately <strong>100 MB/s</strong>:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span>--throttle<span class="o">=</span><span class="m">10</span>
 </code></pre></div>
@@ -6331,7 +6331,7 @@ xtrabackup: Throttling set to 10 chunks per second
 xtrabackup: completed OK!
 </code></pre></div>
 </details>
-<h3 id="incremental-backup-with-throttling">Incremental backup with throttling<a class="headerlink" href="#incremental-backup-with-throttling" title="Permanent link">&para;</a></h3>
+<h3 id="incremental-backup-with-throttling">Incremental backup with throttling<a data-markdown-ignore class="headerlink" href="#incremental-backup-with-throttling" title="Permanent link">&para;</a></h3>
 <p>For incremental backups, the limit applies only to read operations. Redo log copying continues independently and may become a bottleneck if the backup is throttled too aggressively.</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--backup<span class="w"> </span><span class="se">\</span>
@@ -6468,11 +6468,11 @@ xtrabackup: completed OK!
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

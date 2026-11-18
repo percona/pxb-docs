@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,10 +54,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/8.4/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6050,7 +6050,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="flush-tables-with-read-lock-option">FLUSH TABLES WITH READ LOCK option<a class="headerlink" href="#flush-tables-with-read-lock-option" title="Permanent link">&para;</a></h1>
+<h1 id="flush-tables-with-read-lock-option">FLUSH TABLES WITH READ LOCK option<a data-markdown-ignore class="headerlink" href="#flush-tables-with-read-lock-option" title="Permanent link">&para;</a></h1>
 <p>The <code>FLUSH TABLES WITH READ LOCK</code> option does the following with a global read lock:</p>
 <ul>
 <li>
@@ -6082,7 +6082,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Percona XtraBackup uses backup locks where available as a lightweight alternative to <code>FLUSH TABLES WITH READ
 LOCK</code>. This operation automatically copies non-InnoDB data and avoids blocking DML queries that modify InnoDB tables.</p>
 </div>
-<h2 id="wait-for-queries-to-finish">Wait for queries to finish<a class="headerlink" href="#wait-for-queries-to-finish" title="Permanent link">&para;</a></h2>
+<h2 id="wait-for-queries-to-finish">Wait for queries to finish<a data-markdown-ignore class="headerlink" href="#wait-for-queries-to-finish" title="Permanent link">&para;</a></h2>
 <p>You should issue a global lock when no long queries are running. Waiting to issue the global lock for extended period of time is not a good method. The wait can extend the time needed for
 backup to take place. The <code>–ftwrl-wait-timeout</code> option can limit the
 waiting time. If it cannot issue the lock during this
@@ -6101,7 +6101,7 @@ finish.</p>
 <code>–ftwrl-wait-threshold option to specify the long-running queries
 and will block a global lock. To use this option
 xtrabackup user should have</code>PROCESS<code>and</code>CONNECTION_ADMIN` privileges.</p>
-<h2 id="kill-the-blocking-queries">Kill the blocking queries<a class="headerlink" href="#kill-the-blocking-queries" title="Permanent link">&para;</a></h2>
+<h2 id="kill-the-blocking-queries">Kill the blocking queries<a data-markdown-ignore class="headerlink" href="#kill-the-blocking-queries" title="Permanent link">&para;</a></h2>
 <p>The second option is to kill all the queries which prevent from acquiring the
 global lock. In this case, all queries which run longer than <code>FLUSH TABLES WITH READ LOCK</code> are potential blockers. Although all queries can be killed,
 additional time can be specified for the short running queries to finish using
@@ -6109,7 +6109,7 @@ the <code>--kill-long-queries-timeout</code> option. This option specifies a que
 feature off.</p>
 <p>The <code>--kill-long-query-type</code> option can be used to specify all or only
 <code>SELECT</code> queries that are preventing global lock from being acquired. To use this option xtrabackup user should have <code>PROCESS</code> and <code>CONNECTION_ADMIN</code> privileges.</p>
-<h2 id="options-summary">Options summary<a class="headerlink" href="#options-summary" title="Permanent link">&para;</a></h2>
+<h2 id="options-summary">Options summary<a data-markdown-ignore class="headerlink" href="#options-summary" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><code>--ftwrl-wait-timeout</code> (seconds) - how long to wait for a
@@ -6134,7 +6134,7 @@ issued before start to kill. Default if <code>0</code>, not to kill.</p>
 <p><code>--kill-long-query-type</code> - which queries should be killed once <code>kill-long-queries-timeout</code> has expired.</p>
 </li>
 </ul>
-<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<h3 id="example">Example<a data-markdown-ignore class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>Running the xtrabackup with the following options will cause xtrabackup
 to spend no longer than 3 minutes waiting for all queries older than 40 seconds
 to complete.</p>
@@ -6300,11 +6300,11 @@ it will kill all queries which are running longer that the <code>FLUSH TABLES WI
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       

@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -54,10 +54,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/8.4/llms.txt" tabindex="-1">llms.txt</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6316,9 +6316,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   
 
 
-<h1 id="docker-compose-backup-and-restore-tutorial">Docker Compose backup and restore tutorial<a class="headerlink" href="#docker-compose-backup-and-restore-tutorial" title="Permanent link">&para;</a></h1>
+<h1 id="docker-compose-backup-and-restore-tutorial">Docker Compose backup and restore tutorial<a data-markdown-ignore class="headerlink" href="#docker-compose-backup-and-restore-tutorial" title="Permanent link">&para;</a></h1>
 <p>This tutorial demonstrates a production-ready approach to backing up, validating, and restoring Percona Server for MySQL using Percona XtraBackup in a Docker Compose environment.</p>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<h2 id="overview">Overview<a data-markdown-ignore class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>In a containerized environment, restoring a physical backup requires a strict sequence because you cannot overwrite data files while the database engine is running. Furthermore, physical files recovered by the <code>root</code> user cause permissions errors when the database tries to boot as the <code>mysql</code> user.</p>
 <p>This tutorial teaches you to:</p>
 <ul>
@@ -6329,13 +6329,13 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <li>Execute a complete restore operation</li>
 <li>Understand the critical role of file permissions in containerized restores</li>
 </ul>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h2 id="prerequisites">Prerequisites<a data-markdown-ignore class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://docs.docker.com/engine/install/">Docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> installed on your system</li>
 <li><a href="https://docs.docker.com/compose/install/">Docker Compose <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> installed (included with Docker Desktop)</li>
 <li>Basic familiarity with Docker concepts</li>
 </ul>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<h2 id="architecture">Architecture<a data-markdown-ignore class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <p>This tutorial uses Docker Compose profiles to separate backup operations into distinct tasks:</p>
 <table>
 <thead>
@@ -6369,7 +6369,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tbody>
 </table>
 <p>Using profiles ensures that backup, validation, and restore operations only run when explicitly invoked.</p>
-<h2 id="step-1-set-up-the-project-structure">Step 1: Set up the project structure<a class="headerlink" href="#step-1-set-up-the-project-structure" title="Permanent link">&para;</a></h2>
+<h2 id="step-1-set-up-the-project-structure">Step 1: Set up the project structure<a data-markdown-ignore class="headerlink" href="#step-1-set-up-the-project-structure" title="Permanent link">&para;</a></h2>
 <p class="power-number">Create a project directory with the following structure:</p>
 <ol>
 <li>
@@ -6408,9 +6408,9 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 </details>
 </li>
 </ol>
-<h2 id="step-2-create-the-docker-compose-file">Step 2: Create the Docker Compose file<a class="headerlink" href="#step-2-create-the-docker-compose-file" title="Permanent link">&para;</a></h2>
+<h2 id="step-2-create-the-docker-compose-file">Step 2: Create the Docker Compose file<a data-markdown-ignore class="headerlink" href="#step-2-create-the-docker-compose-file" title="Permanent link">&para;</a></h2>
 <p>Create a file named <code>docker-compose.yml</code> in your project directory. Select the configuration for your system architecture:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">AMD64 (Intel/AMD)</label><label for="__tabbed_1_2">ARM64 (Apple Silicon Macs)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_1_1">AMD64 (Intel/AMD)</label><label for="__tabbed_1_2">ARM64 (Apple Silicon Macs)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
@@ -6590,7 +6590,7 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 <p class="admonition-title">About the <code>$$</code> syntax</p>
 <p>The <code>$$</code> in the YAML file escapes the <code>$</code> character for Docker Compose. Docker Compose interprets <code>$</code> as a variable, so <code>$$</code> produces a literal <code>$</code> in the command.</p>
 </div>
-<h3 id="key-configuration-details">Key configuration details<a class="headerlink" href="#key-configuration-details" title="Permanent link">&para;</a></h3>
+<h3 id="key-configuration-details">Key configuration details<a data-markdown-ignore class="headerlink" href="#key-configuration-details" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -6621,7 +6621,7 @@ drwxr-xr-x  3 user  staff   96 Jun  4 10:00 secrets
 </tr>
 </tbody>
 </table>
-<h2 id="step-3-start-the-primary-database-and-add-test-data">Step 3: Start the primary database and add test data<a class="headerlink" href="#step-3-start-the-primary-database-and-add-test-data" title="Permanent link">&para;</a></h2>
+<h2 id="step-3-start-the-primary-database-and-add-test-data">Step 3: Start the primary database and add test data<a data-markdown-ignore class="headerlink" href="#step-3-start-the-primary-database-and-add-test-data" title="Permanent link">&para;</a></h2>
 <p class="power-number">Start the primary Percona Server instance and create some test data.</p>
 <ol>
 <li>
@@ -6730,7 +6730,7 @@ Records: 3  Duplicates: 0  Warnings: 0
 </details>
 </li>
 </ol>
-<h2 id="step-4-take-and-prepare-a-backup">Step 4: Take and prepare a backup<a class="headerlink" href="#step-4-take-and-prepare-a-backup" title="Permanent link">&para;</a></h2>
+<h2 id="step-4-take-and-prepare-a-backup">Step 4: Take and prepare a backup<a data-markdown-ignore class="headerlink" href="#step-4-take-and-prepare-a-backup" title="Permanent link">&para;</a></h2>
 <p class="power-number">Run the backup service to create a full backup and prepare it for restoration.</p>
 <ol>
 <li>
@@ -6757,7 +6757,7 @@ Records: 3  Duplicates: 0  Warnings: 0
 </ul>
 </li>
 </ol>
-<h2 id="step-5-validate-the-backup">Step 5: Validate the backup<a class="headerlink" href="#step-5-validate-the-backup" title="Permanent link">&para;</a></h2>
+<h2 id="step-5-validate-the-backup">Step 5: Validate the backup<a data-markdown-ignore class="headerlink" href="#step-5-validate-the-backup" title="Permanent link">&para;</a></h2>
 <p>Before relying on a backup for disaster recovery, verify that it is functional. The validation service launches an independent, temporary Percona Server instance that boots directly from the backup files.</p>
 <div class="admonition note">
 <p class="admonition-title">Why validate?</p>
@@ -6820,7 +6820,7 @@ pxb_validate  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connec
 </details>
 </li>
 </ol>
-<h2 id="step-6-simulate-a-disaster">Step 6: Simulate a disaster<a class="headerlink" href="#step-6-simulate-a-disaster" title="Permanent link">&para;</a></h2>
+<h2 id="step-6-simulate-a-disaster">Step 6: Simulate a disaster<a data-markdown-ignore class="headerlink" href="#step-6-simulate-a-disaster" title="Permanent link">&para;</a></h2>
 <p>To practice restoration, simulate total data loss by stopping the primary database and wiping its data volume.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -6881,7 +6881,7 @@ psmysql  | [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (my
 <p>The logs show that MySQL cannot find its system tablespace (<code>ibdata1</code>) and fails to start.</p>
 </li>
 </ol>
-<h2 id="step-7-execute-the-restore">Step 7: Execute the restore<a class="headerlink" href="#step-7-execute-the-restore" title="Permanent link">&para;</a></h2>
+<h2 id="step-7-execute-the-restore">Step 7: Execute the restore<a data-markdown-ignore class="headerlink" href="#step-7-execute-the-restore" title="Permanent link">&para;</a></h2>
 <p class="power-number">Run the restore service to copy the backup files back to the primary database volume and fix file permissions.</p>
 <ol>
 <li>
@@ -6917,7 +6917,7 @@ xtrabackup version 8.4.0-2 based on MySQL server 8.4.2 Linux (x86_64)
 </ul>
 </li>
 </ol>
-<h2 id="step-8-verify-the-restoration">Step 8: Verify the restoration<a class="headerlink" href="#step-8-verify-the-restoration" title="Permanent link">&para;</a></h2>
+<h2 id="step-8-verify-the-restoration">Step 8: Verify the restoration<a data-markdown-ignore class="headerlink" href="#step-8-verify-the-restoration" title="Permanent link">&para;</a></h2>
 <p class="power-number">Start the primary database and confirm that your data has been recovered.</p>
 <ol>
 <li>
@@ -6966,7 +6966,7 @@ psmysql  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections
 </li>
 </ol>
 <p>Your database has been fully restored from the backup.</p>
-<h2 id="understanding-file-permissions">Understanding file permissions<a class="headerlink" href="#understanding-file-permissions" title="Permanent link">&para;</a></h2>
+<h2 id="understanding-file-permissions">Understanding file permissions<a data-markdown-ignore class="headerlink" href="#understanding-file-permissions" title="Permanent link">&para;</a></h2>
 <p>One of the most common issues when restoring backups in Docker environments is file permission errors. The following table explains why the <code>chown</code> command is critical:</p>
 <table>
 <thead>
@@ -6997,7 +6997,7 @@ psmysql  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections
 <p>If you skip the <code>chown -R mysql:mysql /var/lib/mysql</code> step, MySQL fails to start with permission errors similar to:</p>
 <div class="no-copy highlight"><pre><span></span><code>[ERROR] [MY-010187] [Server] Could not open file '/var/lib/mysql/ibdata1' for reading: Permission denied
 </code></pre></div>
-<h2 id="clean-up">Clean up<a class="headerlink" href="#clean-up" title="Permanent link">&para;</a></h2>
+<h2 id="clean-up">Clean up<a data-markdown-ignore class="headerlink" href="#clean-up" title="Permanent link">&para;</a></h2>
 <p class="power-number">To remove all containers, volumes, and resources created by this tutorial:</p>
 <ol>
 <li>
@@ -7028,7 +7028,7 @@ psmysql  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections
 <p>If the command executes successfully, the expected output is empty.</p>
 </li>
 </ol>
-<h2 id="key-takeaways">Key takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
+<h2 id="key-takeaways">Key takeaways<a data-markdown-ignore class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><strong>Separation of concerns</strong>: Using Docker Compose profiles separates backup, validation, and restore into distinct operations, making each step explicit and auditable.</p>
@@ -7043,7 +7043,7 @@ psmysql  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections
 <p><strong>Prepared backups</strong>: Backups must be prepared with <code>xtrabackup --prepare</code> before they can be restored or used for validation.</p>
 </li>
 </ul>
-<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<h2 id="next-steps">Next steps<a data-markdown-ignore class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Learn about <a href="create-incremental-backup.html">incremental backups</a> to reduce backup time and storage</li>
 <li>Explore <a href="take-streaming-backup.html">streaming backups</a> for direct-to-cloud storage</li>
@@ -7198,11 +7198,11 @@ psmysql  | [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["search.highlight", "search.share", "search.suggest", "navigation.top", "navigation.tracking", "navigation.instant.progress", "navigation.indexes", "content.tooltips", "content.tabs.link", "content.action.view", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="js/print-site.js"></script>
       
