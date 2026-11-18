@@ -5841,12 +5841,12 @@ backups that are being taken. Backup history information will be stored in the
 <p>To use this feature the following options are available:</p>
 <ul>
 <li>
-<p><code>--history</code> =<name> : This option enables the history
+<p><code>--history</code> =<code>&lt;name&gt;</code> : This option enables the history
 feature and allows the user to specify a backup series name that will be
 placed within the history record.</p>
 </li>
 <li>
-<p><code>--incremental-history-name</code> =<name> : This option allows an
+<p><code>--incremental-history-name</code> =<code>&lt;name&gt;</code> : This option allows an
 incremental backup to be made based on a specific history series by
 name. <em>xtrabackup</em> will search the history table looking for the most recent
 (highest <code>to_lsn</code>) backup in the series and take the <code>to_lsn</code> value to use
@@ -5856,7 +5856,7 @@ as it’s starting lsn. This is mutually exclusive with
 (no series by that name) <em>xtrabackup</em> will return with an error.</p>
 </li>
 <li>
-<p><code>--incremental-history-uuid</code> =<uuid> : Allows an incremental backup to
+<p><code>--incremental-history-uuid</code> =<code>&lt;uuid&gt;</code> : Allows an incremental backup to
 be made based on a specific history record identified by UUID. <em>xtrabackup</em>
 will search the history table looking for the record matching UUID and take
 the <code>to_lsn</code> value to use as it’s starting LSN. This options is mutually
@@ -6133,7 +6133,7 @@ a configuration file in order to be effective.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 13:32:03 UTC">November 4, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 18, 2026 11:31:43 UTC">November 18, 2026</span>
   </span>
 
     

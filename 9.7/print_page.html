@@ -9341,12 +9341,12 @@ backups that are being taken. Backup history information will be stored in the
 <p>To use this feature the following options are available:</p>
 <ul>
 <li>
-<p><code>--history</code> =<name> : This option enables the history
+<p><code>--history</code> =<code>&lt;name&gt;</code> : This option enables the history
 feature and allows the user to specify a backup series name that will be
 placed within the history record.</p>
 </li>
 <li>
-<p><code>--incremental-history-name</code> =<name> : This option allows an
+<p><code>--incremental-history-name</code> =<code>&lt;name&gt;</code> : This option allows an
 incremental backup to be made based on a specific history series by
 name. <em>xtrabackup</em> will search the history table looking for the most recent
 (highest <code>to_lsn</code>) backup in the series and take the <code>to_lsn</code> value to use
@@ -9356,7 +9356,7 @@ as it’s starting lsn. This is mutually exclusive with
 (no series by that name) <em>xtrabackup</em> will return with an error.</p>
 </li>
 <li>
-<p><code>--incremental-history-uuid</code> =<uuid> : Allows an incremental backup to
+<p><code>--incremental-history-uuid</code> =<code>&lt;uuid&gt;</code> : Allows an incremental backup to
 be made based on a specific history record identified by UUID. <em>xtrabackup</em>
 will search the history table looking for the record matching UUID and take
 the <code>to_lsn</code> value to use as it’s starting LSN. This options is mutually
@@ -13530,13 +13530,13 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 <p>The following options are available when using Google Cloud Storage:</p>
 <ul>
 <li>
-<p>–google-access-key = <ACCESS KEY ID></p>
+<p>–google-access-key = <code>&lt;ACCESS KEY ID&gt;</code></p>
 </li>
 <li>
-<p>–google-secret-key = <SECRET ACCESS KEY></p>
+<p>–google-secret-key = <code>&lt;SECRET ACCESS KEY&gt;</code></p>
 </li>
 <li>
-<p>–google-bucket = <BUCKET NAME></p>
+<p>–google-bucket = <code>&lt;BUCKET NAME&gt;</code></p>
 </li>
 <li>
 <p>–google-storage-class=name</p>

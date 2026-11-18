@@ -23,9 +23,9 @@ $(date -I)-full_backup
 
 The following options are available when using Google Cloud Storage:
 
-- –google-access-key =
-- –google-secret-key =
-- –google-bucket =
+- –google-access-key = `<ACCESS KEY ID>`
+- –google-secret-key = `<SECRET ACCESS KEY>`
+- –google-bucket = `<BUCKET NAME>`
 - –google-storage-class=name
 
 Note
