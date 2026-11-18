@@ -86,7 +86,7 @@ Percona XtraBackup applies the changes from each incremental backup to `/data/ba
 
 Apply the first incremental backup to the full backup:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
@@ -134,7 +134,7 @@ After applying `/data/backups/inc1`, apply `/data/backups/inc2` to the same base
 
 In this example, `inc2` is the final incremental backup. Apply it without `--apply-log-only`:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --prepare --target-dir=/data/backups/base \
@@ -183,7 +183,7 @@ The option is especially useful when a backup contains many IBD files. Each work
 
 To apply an intermediate incremental backup with four worker threads, run:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --prepare --parallel=4 --apply-log-only --target-dir=/data/backups/base \
@@ -199,7 +199,7 @@ To apply an intermediate incremental backup with four worker threads, run:
 
 You can also use `--parallel` when applying the final incremental backup. Omit `--apply-log-only` for the final step:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --prepare --parallel=4 --target-dir=/data/backups/base \

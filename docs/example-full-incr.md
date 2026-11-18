@@ -73,7 +73,7 @@ You can schedule this script to run automatically using cron. For example, to ru
 
 The hourly script uses the same server details as the daily script. The script uses the current date and hour to name the incremental backup directory. The core command runs `xtrabackup` with the `--backup` and `--incremental` options. `--target-dir` specifies the directory for the incremental backup. `--backup-incremental-base` must point to the directory of a completed full or incremental backup. The script uses the **most recent** full backup as the base: `ls -t` lists full backups by modification time (newest first), and `head -n 1` selects the newest directory. Before the backup, the script checks that the base directory exists. After the backup, the script reports success or failure based on the exit code.
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```bash
     #!/bin/bash

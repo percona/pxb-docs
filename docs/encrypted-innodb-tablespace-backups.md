@@ -172,7 +172,7 @@ xtrabackup --backup --target-dir=/data/backups/base
 
 Make an incremental backup based on the full backup:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --backup --target-dir=/data/backups/inc1 \
@@ -190,7 +190,7 @@ The [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremen
 
 Use this directory as the base for yet another incremental backup:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --backup --target-dir=/data/backups/inc2 \
@@ -216,7 +216,7 @@ xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
 
 Apply the first incremental backup to the full backup using [`--prepare-incremental-from-dir`](xtrabackup-option-reference.md#prepare-incremental-from-dir):
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
@@ -236,7 +236,7 @@ Apply the first incremental backup to the full backup using [`--prepare-incremen
     
     An example of the backup command using the `--parallel` option:
 
-    === "Percona XtraBackup 8.4.0-8 and higher"
+    === "Percona XtraBackup 8.4.0-8 and later"
 
         ```shell
         xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
@@ -256,7 +256,7 @@ Preparing the second incremental backup is a similar process: apply the deltas
 to the (modified) base backup, and you will roll the base backup's data forward in 
 time to the point of the second incremental backup:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --prepare --target-dir=/data/backups/base \
@@ -272,7 +272,7 @@ time to the point of the second incremental backup:
 
 You can also use the `--parallel` option here to speed up the process:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --prepare --target-dir=/data/backups/base \

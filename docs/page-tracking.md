@@ -55,7 +55,7 @@ The examples of creating full and incremental backups using the `--page-tracking
 
 === "Incremental backup"
 
-    === "Percona XtraBackup 8.4.0-8 and higher"
+    === "Percona XtraBackup 8.4.0-8 and later"
 
         ```shell
         xtrabackup --backup --target-dir=$INC_BACKUP  
@@ -86,7 +86,7 @@ When two changed pages are close together, reading the unchanged pages between t
 
 Use `auto`. `auto` is the default, so you can omit `--page-tracking-merge-gap`. To set it explicitly:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --backup --target-dir=/data/inc1 \
@@ -112,7 +112,7 @@ With `auto`, Percona XtraBackup measures the storage once, at the start of the b
 
 * `0`: turns off the feature. Percona XtraBackup reads together only strictly consecutive changed pages, as in releases before 8.4.0-7.
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --backup --target-dir=/data/inc1 \

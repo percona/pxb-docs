@@ -51,7 +51,7 @@ content depending on your LSN number:
 
 Now that you have a full backup, you can make an incremental backup based on it. Use the following command:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --backup --target-dir=/data/backups/inc1 \
@@ -87,7 +87,7 @@ content to the following:
 
 It’s now possible to use this directory as the base for yet another incremental backup:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --backup --target-dir=/data/backups/inc2 \

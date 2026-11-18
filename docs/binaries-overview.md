@@ -47,7 +47,7 @@ Basic Syntax:
 
 Run the following commands as root or use the sudo command.
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     # Create a full backup

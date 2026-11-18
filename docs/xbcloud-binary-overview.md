@@ -87,7 +87,7 @@ This command:
 
 An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --backup --stream=xbstream --backup-incremental-base=/tmp/backup \
@@ -336,7 +336,7 @@ full_backup_20240101
 
 #### Step 2: Create incremental backups
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     xtrabackup --backup --stream=xbstream --backup-incremental-base=/tmp/base \
@@ -358,7 +358,7 @@ full_backup_20240101
 
 To restore from incremental backups, you must download and prepare them in sequence:
 
-=== "Percona XtraBackup 8.4.0-8 and higher"
+=== "Percona XtraBackup 8.4.0-8 and later"
 
     ```shell
     # Download and prepare the full backup
@@ -402,7 +402,7 @@ To restore from incremental backups, you must download and prepare them in seque
    
     Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the `--parallel` option to process delta files concurrently. When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
     
-    === "Percona XtraBackup 8.4.0-8 and higher"
+    === "Percona XtraBackup 8.4.0-8 and later"
 
         ```shell
         xtrabackup --prepare --apply-log-only \
