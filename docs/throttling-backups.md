@@ -248,13 +248,25 @@ xtrabackup --backup --target-dir=/backups/full --throttle=10
 
 For incremental backups, the limit applies only to read operations. Redo log copying continues independently and may become a bottleneck if the backup is throttled too aggressively.
 
-```bash
-xtrabackup \
-  --backup \
-  --target-dir=/backups/inc1 \
-  --backup-incremental-base=/backups/full \
-  --throttle=5
-```
+=== "Percona XtraBackup 8.4.0-8 and higher"
+
+    ```bash
+    xtrabackup \
+      --backup \
+      --target-dir=/backups/inc1 \
+      --backup-incremental-base=/backups/full \
+      --throttle=5
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```bash
+    xtrabackup \
+      --backup \
+      --target-dir=/backups/inc1 \
+      --incremental-basedir=/backups/full \
+      --throttle=5
+    ```
 
 ??? example "Expected output"
 

@@ -51,10 +51,19 @@ content depending on your LSN number:
 
 Now that you have a full backup, you can make an incremental backup based on it. Use the following command:
 
-```shell
-xtrabackup --backup --target-dir=/data/backups/inc1 \
---backup-incremental-base=/data/backups/base
-```
+=== "Percona XtraBackup 8.4.0-8 and higher"
+
+    ```shell
+    xtrabackup --backup --target-dir=/data/backups/inc1 \
+    --backup-incremental-base=/data/backups/base
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --backup --target-dir=/data/backups/inc1 \
+    --incremental-basedir=/data/backups/base
+    ```
 
 The `/data/backups/inc1/` directory should now contain delta files, such
 as `ibdata1.delta` and `test/table1.ibd.delta`. These represent the
@@ -78,10 +87,19 @@ content to the following:
 
 It’s now possible to use this directory as the base for yet another incremental backup:
 
-```shell
-xtrabackup --backup --target-dir=/data/backups/inc2 \
---backup-incremental-base=/data/backups/inc1
-```
+=== "Percona XtraBackup 8.4.0-8 and higher"
+
+    ```shell
+    xtrabackup --backup --target-dir=/data/backups/inc2 \
+    --backup-incremental-base=/data/backups/inc1
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --backup --target-dir=/data/backups/inc2 \
+    --incremental-basedir=/data/backups/inc1
+    ```
 
 This folder also contains the `xtrabackup_checkpoints`:
 

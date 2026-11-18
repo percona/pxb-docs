@@ -86,10 +86,19 @@ Percona XtraBackup applies the changes from each incremental backup to `/data/ba
 
 Apply the first incremental backup to the full backup:
 
-```shell
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
---prepare-incremental-from-dir=/data/backups/inc1
-```
+=== "Percona XtraBackup 8.4.0-8 and higher"
+
+    ```shell
+    xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+    --prepare-incremental-from-dir=/data/backups/inc1
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+    --incremental-dir=/data/backups/inc1
+    ```
 
 `--target-dir` points to the full backup that you are preparing. `--prepare-incremental-from-dir` points to the incremental backup whose changes you want to apply.
 
@@ -125,10 +134,19 @@ After applying `/data/backups/inc1`, apply `/data/backups/inc2` to the same base
 
 In this example, `inc2` is the final incremental backup. Apply it without `--apply-log-only`:
 
-```shell
-xtrabackup --prepare --target-dir=/data/backups/base \
---prepare-incremental-from-dir=/data/backups/inc2
-```
+=== "Percona XtraBackup 8.4.0-8 and higher"
+
+    ```shell
+    xtrabackup --prepare --target-dir=/data/backups/base \
+    --prepare-incremental-from-dir=/data/backups/inc2
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --prepare --target-dir=/data/backups/base \
+    --incremental-dir=/data/backups/inc2
+    ```
 
 The command applies the changes from `inc2` to `/data/backups/base` and completes the prepare process.
 
@@ -165,17 +183,35 @@ The option is especially useful when a backup contains many IBD files. Each work
 
 To apply an intermediate incremental backup with four worker threads, run:
 
-```shell
-xtrabackup --prepare --parallel=4 --apply-log-only --target-dir=/data/backups/base \
---prepare-incremental-from-dir=/data/backups/inc1
-```
+=== "Percona XtraBackup 8.4.0-8 and higher"
+
+    ```shell
+    xtrabackup --prepare --parallel=4 --apply-log-only --target-dir=/data/backups/base \
+    --prepare-incremental-from-dir=/data/backups/inc1
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --prepare --parallel=4 --apply-log-only --target-dir=/data/backups/base \
+    --incremental-dir=/data/backups/inc1
+    ```
 
 You can also use `--parallel` when applying the final incremental backup. Omit `--apply-log-only` for the final step:
 
-```shell
-xtrabackup --prepare --parallel=4 --target-dir=/data/backups/base \
---prepare-incremental-from-dir=/data/backups/inc2
-```
+=== "Percona XtraBackup 8.4.0-8 and higher"
+
+    ```shell
+    xtrabackup --prepare --parallel=4 --target-dir=/data/backups/base \
+    --prepare-incremental-from-dir=/data/backups/inc2
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --prepare --parallel=4 --target-dir=/data/backups/base \
+    --incremental-dir=/data/backups/inc2
+    ```
 
 ## Next step
 

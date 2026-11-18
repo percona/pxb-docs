@@ -73,44 +73,87 @@ You can schedule this script to run automatically using cron. For example, to ru
 
 The hourly script uses the same server details as the daily script. The script uses the current date and hour to name the incremental backup directory. The core command runs `xtrabackup` with the `--backup` and `--incremental` options. `--target-dir` specifies the directory for the incremental backup. `--backup-incremental-base` must point to the directory of a completed full or incremental backup. The script uses the **most recent** full backup as the base: `ls -t` lists full backups by modification time (newest first), and `head -n 1` selects the newest directory. Before the backup, the script checks that the base directory exists. After the backup, the script reports success or failure based on the exit code.
 
-```bash
-#!/bin/bash
-# Set server details (same as daily script)
-SERVER_HOST="your_server_hostname"
-SERVER_USER="your_db_username"
-SERVER_PASSWORD="your_db_password"
-DATA_DIR="/var/lib/mysql"          # Replace with your data directory path
-BACKUP_DIR="/backups/mysql/incr"
+=== "Percona XtraBackup 8.4.0-8 and higher"
 
-# Get current date and hour for filename
-TODAY=$(date +%Y-%m-%d)
-HOUR=$(date +%H)                  # Get current hour (00-23)
-INCR_BACKUP_FILENAME="${BACKUP_DIR}/${TODAY}_${HOUR}"
+    ```bash
+    #!/bin/bash
+    # Set server details (same as daily script)
+    SERVER_HOST="your_server_hostname"
+    SERVER_USER="your_db_username"
+    SERVER_PASSWORD="your_db_password"
+    DATA_DIR="/var/lib/mysql"          # Replace with your data directory path
+    BACKUP_DIR="/backups/mysql/incr"
 
-# Set the base directory to the most recent full backup (newest first: ls -t, then head -n 1)
-LATEST_FULL=$(ls -t /backups/mysql/full 2>/dev/null | head -n 1)
-if [ -z "${LATEST_FULL}" ]; then
-  echo "No full backup found; cannot take incremental backup" >&2
-  exit 1
-fi
-BASE_DIR="/backups/mysql/full/${LATEST_FULL}"
+    # Get current date and hour for filename
+    TODAY=$(date +%Y-%m-%d)
+    HOUR=$(date +%H)                  # Get current hour (00-23)
+    INCR_BACKUP_FILENAME="${BACKUP_DIR}/${TODAY}_${HOUR}"
 
-# Ensure target directory exists
-mkdir -p "${INCR_BACKUP_FILENAME}"
+    # Set the base directory to the most recent full backup (newest first: ls -t, then head -n 1)
+    LATEST_FULL=$(ls -t /backups/mysql/full 2>/dev/null | head -n 1)
+    if [ -z "${LATEST_FULL}" ]; then
+      echo "No full backup found; cannot take incremental backup" >&2
+      exit 1
+    fi
+    BASE_DIR="/backups/mysql/full/${LATEST_FULL}"
 
-# Run xtrabackup with incremental backup command
-if xtrabackup --backup \
-  --incremental \
-  --target-dir="${INCR_BACKUP_FILENAME}" \
-  --backup-incremental-base="${BASE_DIR}" \
-  --user="${SERVER_USER}" \
-  --password="${SERVER_PASSWORD}"; then
-  echo "Hourly incremental backup completed at $(date)"
-else
-  echo "Hourly incremental backup FAILED at $(date)" >&2
-  exit 1
-fi
-```
+    # Ensure target directory exists
+    mkdir -p "${INCR_BACKUP_FILENAME}"
+
+    # Run xtrabackup with incremental backup command
+    if xtrabackup --backup \
+      --incremental \
+      --target-dir="${INCR_BACKUP_FILENAME}" \
+      --backup-incremental-base="${BASE_DIR}" \
+      --user="${SERVER_USER}" \
+      --password="${SERVER_PASSWORD}"; then
+      echo "Hourly incremental backup completed at $(date)"
+    else
+      echo "Hourly incremental backup FAILED at $(date)" >&2
+      exit 1
+    fi
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```bash
+    #!/bin/bash
+    # Set server details (same as daily script)
+    SERVER_HOST="your_server_hostname"
+    SERVER_USER="your_db_username"
+    SERVER_PASSWORD="your_db_password"
+    DATA_DIR="/var/lib/mysql"          # Replace with your data directory path
+    BACKUP_DIR="/backups/mysql/incr"
+
+    # Get current date and hour for filename
+    TODAY=$(date +%Y-%m-%d)
+    HOUR=$(date +%H)                  # Get current hour (00-23)
+    INCR_BACKUP_FILENAME="${BACKUP_DIR}/${TODAY}_${HOUR}"
+
+    # Set the base directory to the most recent full backup (newest first: ls -t, then head -n 1)
+    LATEST_FULL=$(ls -t /backups/mysql/full 2>/dev/null | head -n 1)
+    if [ -z "${LATEST_FULL}" ]; then
+      echo "No full backup found; cannot take incremental backup" >&2
+      exit 1
+    fi
+    BASE_DIR="/backups/mysql/full/${LATEST_FULL}"
+
+    # Ensure target directory exists
+    mkdir -p "${INCR_BACKUP_FILENAME}"
+
+    # Run xtrabackup with incremental backup command
+    if xtrabackup --backup \
+      --incremental \
+      --target-dir="${INCR_BACKUP_FILENAME}" \
+      --incremental-basedir="${BASE_DIR}" \
+      --user="${SERVER_USER}" \
+      --password="${SERVER_PASSWORD}"; then
+      echo "Hourly incremental backup completed at $(date)"
+    else
+      echo "Hourly incremental backup FAILED at $(date)" >&2
+      exit 1
+    fi
+    ```
 
 !!! note "Incremental base directory"
     For a chain of incremental backups, you can set the base to the most recent incremental backup directory instead of the full backup, so each incremental is based on the previous one. The example above bases each hourly backup on the latest full backup for simplicity.

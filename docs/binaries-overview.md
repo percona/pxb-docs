@@ -47,16 +47,31 @@ Basic Syntax:
 
 Run the following commands as root or use the sudo command.
 
-```shell
-# Create a full backup
-xtrabackup --backup --target-dir=/backup/full
+=== "Percona XtraBackup 8.4.0-8 and higher"
 
-# Create an incremental backup
-xtrabackup --backup --target-dir=/backup/inc1 --backup-incremental-base=/backup/full
+    ```shell
+    # Create a full backup
+    xtrabackup --backup --target-dir=/backup/full
 
-# Prepare a backup for restore
-xtrabackup --prepare --target-dir=/backup/full
-```
+    # Create an incremental backup
+    xtrabackup --backup --target-dir=/backup/inc1 --backup-incremental-base=/backup/full
+
+    # Prepare a backup for restore
+    xtrabackup --prepare --target-dir=/backup/full
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    # Create a full backup
+    xtrabackup --backup --target-dir=/backup/full
+
+    # Create an incremental backup
+    xtrabackup --backup --target-dir=/backup/inc1 --incremental-basedir=/backup/full
+
+    # Prepare a backup for restore
+    xtrabackup --prepare --target-dir=/backup/full
+    ```
 
 Documentation: [xtrabackup Overview](xtrabackup-binary-overview.md)
 
