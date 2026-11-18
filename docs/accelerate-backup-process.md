@@ -47,21 +47,14 @@ Before applying logs, compressed files will need to be uncompressed.
 
 ## The `--rsync` option
 
-In order to speed up the backup process and to minimize the time `FLUSH TABLES
-WITH READ LOCK` is blocking the writes, the option `--rsync` should be
-used. When this option is specified, xtrabackup uses `rsync` to copy all
-non-InnoDB files instead of spawning a separate `cp` for each file, which can
-be much faster for servers with a large number of databases or
-tables. xtrabackup will call the `rsync` twice, once before the `FLUSH
-TABLES WITH READ LOCK` and once during to minimize the time the read lock is
-being held. During the second `rsync` call, it will only synchronize the
-changes to non-transactional data (if any) since the first call performed before
-the `FLUSH TABLES WITH READ LOCK`. Note that Percona XtraBackup will use
-[backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/8.4/backup-locks.html) where available as a lightweight alternative to `FLUSH TABLES WITH READ
-LOCK`.
+### Version changes
 
-Percona XtraBackup uses these locks automatically to copy non-InnoDB data to avoid blocking Data manipulation language (DML) queries that modify InnoDB tables. Find more information in [Backup locks :octicons-link-external-16:](https://docs.percona.com/percona-server/8.4/backup-locks.html)
+Percona XtraBackup 8.4.0-8 deprecates the [`--rsync`](xtrabackup-option-reference.md#rsync) option. A future release will remove the option. Use [`--lock-ddl=REDUCED`](xtrabackup-option-reference.md#lock-ddl) instead.
 
 !!! note
-   
-    This option cannot be used together with the `--stream` option.
+
+    You cannot use `--rsync` with the `--stream` option. If you pass both options, Percona XtraBackup reports the following error and does not start the backup:
+
+    ```{.text .no-copy}
+    --rsync doesn't work with --stream
+    ```

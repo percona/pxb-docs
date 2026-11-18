@@ -187,6 +187,14 @@ Usage: `--core-file`
 
 Write core on fatal signals.
 
+### create-ib-logfile
+
+Usage: `--create-ib-logfile`
+
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option.
+
+The `--create-ib-logfile` option has no effect.
+
 ### databases
 
 Usage: `--databases=#`
@@ -567,6 +575,8 @@ When creating an incremental backup, you can specify the log sequence number
 
 Usage: `--innodb=name`
 
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option.
+
 This option is ignored for MySQL option compatibility.
 
 ### innodb-miscellaneous
@@ -659,6 +669,8 @@ within a given time, abort the backup.
 
 Usage: `--log`
 
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option.
+
 This option is ignored for MySQL
 
 ### log-bin
@@ -739,6 +751,8 @@ See [Server Version and Backup Version Comparison](server-backup-version-compari
 ### no-version-check
 
 Usage: `--no-version-check`
+
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option.
 
 This option disables the version check. 
 
@@ -862,6 +876,14 @@ Set the read buffer size. The given value is scaled up to page size. The default
 
 To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-buffer-size) and [`--encrypt-chunk-size`](#encrypt-chunk-size).
 
+### rebuild-threads
+
+Usage: `--rebuild-threads=#`
+
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option.
+
+The `--rebuild-threads` option has no effect. The option worked only with `--rebuild-indexes`, which Percona XtraBackup no longer supports.
+
 ### register-redo-log-consumer
 
 Usage: `--register-redo-log-consumer`
@@ -909,6 +931,8 @@ Force rollback prepared InnoDB transactions.
 ### rsync
 
 Usage: `--rsync`
+
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option. Use [`--lock-ddl=REDUCED`](#lock-ddl) instead.
 
 Uses the rsync utility to optimize local file transfers. The xtrabackup binary uses rsync to copy all non-InnoDB files instead of spawning a separate cp for each file, which can be much faster for servers with many databases or tables.
 
