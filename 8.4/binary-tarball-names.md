@@ -22,17 +22,17 @@ If the `glibc2` version from your operating system is not listed, then this Perc
 
 ## Binary tarball file name organization
 
-The following lists the platform and the associated full binary file name used by Percona Server for MySQL tar files 8.4.0-7.
+The following lists the platform and the associated full binary file name used by Percona Server for MySQL tar files 8.4.0-8.
 
 | Platform             | Percona XtraBackup tarball name                          | glibc2 version |
 | -------------------- | -------------------------------------------------------- | -------------- |
-| Ubuntu 24.04         | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.39.tar.gz | glibc2.39      |
-| Ubuntu 22.04         | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.35.tar.gz | glibc2.35      |
-| Ubuntu 20.04         | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.31.tar.gz | glibc2.31      |
-| Debian 12            | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.36.tar.gz | glibc2.36      |
-| Debian 11            | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.31.tar.gz | glibc2.31      |
-| Red Hat Enterprise 9 | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.34.tar.gz | glibc2.34      |
-| Red Hat Enterprise 8 | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.28.tar.gz | glibc2.28      |
+| Ubuntu 24.04         | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.39.tar.gz | glibc2.39      |
+| Ubuntu 22.04         | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.35.tar.gz | glibc2.35      |
+| Ubuntu 20.04         | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.31.tar.gz | glibc2.31      |
+| Debian 12            | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.36.tar.gz | glibc2.36      |
+| Debian 11            | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.31.tar.gz | glibc2.31      |
+| Red Hat Enterprise 9 | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.34.tar.gz | glibc2.34      |
+| Red Hat Enterprise 8 | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.28.tar.gz | glibc2.28      |
 
 Download the binary tarballs from [Percona Software Downloads](https://www.percona.com/downloads) .
 
@@ -42,19 +42,19 @@ After you have downloaded the binary tarballs, extract the tarball in the file l
 
 | Type    | Name                                                             |
 | ------- | ---------------------------------------------------------------- |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux.x86_64.glibc2.17-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux.x86_64.glibc2.17.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.28-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.28.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.31-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.31.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.34-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.34.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.35-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.35.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.36-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.36.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.39-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.39.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux.x86_64.glibc2.17-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux.x86_64.glibc2.17.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.28-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.28.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.31-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.31.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.34-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.34.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.35-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.35.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.36-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.36.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.39-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.39.tar.gz         |
 
 Select a different software, such as Ubuntu 20.04 (Focal Fossa), for a tarball for that operating system. You can download the packages together or separately.

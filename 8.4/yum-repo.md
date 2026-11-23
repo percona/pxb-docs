@@ -81,7 +81,7 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
    Expected output
 
    ```
-   xtrabackup version 8.4.0-7 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
+   xtrabackup version 8.4.0-8 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
    ```
 
 1. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:

@@ -8,7 +8,7 @@ Each page below is also available as markdown. For the documentation of all Perc
 
 # Percona XtraBackup 8.4 Documentation
 
-This documentation is for the latest release: [Percona XtraBackup 8.4.0-7](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-7.html) release notes.
+This documentation is for the latest release: [Percona XtraBackup 8.4.0-8](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-8.html) release notes.
 
 Percona XtraBackup is an open source hot backup utility for MySQL-based servers that keep your database fully available during planned maintenance windows.
 
@@ -194,6 +194,7 @@ We’re here to help you every step of the way. Whether you need a quick fix or 
 
 # Percona XtraBackup 8.4 release notes index
 
+- [Percona XtraBackup 8.4.0-8 (2026-11-23)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-8.html)
 - [Percona XtraBackup 8.4.0-7 (2026-09-17)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-7.html)
 - [Percona XtraBackup 8.4.0-6 (2026-06-24)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-6.html)
 - [Percona XtraBackup 8.4.0-5 (2025-12-17)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-5.html)
@@ -201,6 +202,69 @@ We’re here to help you every step of the way. Whether you need a quick fix or 
 - [Percona XtraBackup 8.4.0-3 (2025-05-29)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-3.html)
 - [Percona XtraBackup 8.4.0-2 (2024-12-18)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-2.html)
 - [Percona XtraBackup 8.4.0-1 (2024-08-20)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-1.html)
+
+# Percona XtraBackup 8.4.0-8 (2026-11-23)
+
+Get started with [Quickstart Guide for Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/8.4/quickstart-overview.html).
+
+## Release highlights
+
+Percona XtraBackup 8.4.0-8 release includes new features, improvements, deprecations, and bug fixes.
+
+### Renamed options
+
+Percona XtraBackup 8.4.0-8 renames the following options. The new names describe the phase or the action of each option more clearly.
+
+| Deprecated name         | New name                                                                                                                                          | Used with   |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `--apply-log-only`      | [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#apply-redo-only)                           | `--prepare` |
+| `--incremental-basedir` | [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#backup-incremental-base)           | `--backup`  |
+| `--incremental-dir`     | [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#prepare-incremental-from-dir) | `--prepare` |
+
+Percona XtraBackup still accepts the old names but prints a deprecation warning at startup. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start. A future Long-Term Support (LTS) release will remove `--apply-log-only`, `--incremental-basedir` and `--incremental-dir`. For the `--apply-redo-only` option, see [PXB-3758](https://perconadev.atlassian.net/browse/PXB-3758). For the incremental options, see [PXB-2559](https://perconadev.atlassian.net/browse/PXB-2559).
+
+### Deprecated options
+
+Percona XtraBackup 8.4.0-8 deprecates the following options.
+
+| Option                                                                                                                    | Use instead                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `--create-ib-logfile`                                                                                                     | No replacement. The option has no effect.                                                                         |
+| [`--innodb`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#innodb)                     | No replacement. The option has no effect.                                                                         |
+| [`--log`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#log)                           | No replacement. The option has no effect.                                                                         |
+| [`--no-version-check`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#no-version-check) | No replacement. The option has no effect.                                                                         |
+| `--rebuild-threads`                                                                                                       | No replacement. The option has no effect.                                                                         |
+| [`--rsync`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#rsync)                       | [`--lock-ddl=REDUCED`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#lock-ddl) |
+
+Percona XtraBackup still accepts the options but prints a deprecation warning at startup. A future release will remove the options. For details, see [PXB-3788](https://perconadev.atlassian.net/browse/PXB-3788).
+
+We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.
+
+## New features
+
+- [PXB-2559](https://perconadev.atlassian.net/browse/PXB-2559): Adds the `--history-host`, `--history-port`, `--history-socket`, `--history-user`, `--history-password`, and `--history-ssl-*` options to [store backup history on a different server](https://docs.percona.com/percona-xtrabackup/8.4/store-backup-history.html). Before, Percona XtraBackup always wrote the history record to the server you back up. The write failed when that server ran with `super_read_only` enabled, for example, a replica or a secondary member of a single-primary Group Replication cluster. The `--incremental-history-name` and `--incremental-history-uuid` options also read the base LSN from the history server. (Thanks to Francisco Miguel Biete Banon for contributing the fix for this issue.)
+
+## Improvements
+
+- [PXB-3758](https://perconadev.atlassian.net/browse/PXB-3758): Adds the `--apply-redo-only` option as the new name for `--apply-log-only`. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start. For details, see [Prepare an incremental backup](https://docs.percona.com/percona-xtrabackup/8.4/prepare-incremental-backup.html).
+- [PXB-3788](https://perconadev.atlassian.net/browse/PXB-3788): `xtrabackup` now prints a startup warning for each deprecated option that has no effect, naming the option and the reason. The warnings cover `--log`, `--innodb`, `--create-ib-logfile`, `--no-version-check`, and `--rebuild-threads`. `--rsync` also gets a warning because option is deprecated and unsupported. Its warning does not say that the option has no effect. The options stay accepted, so existing scripts continue to work.
+- [PXB-3840](https://perconadev.atlassian.net/browse/PXB-3840): Adds phase-specific names for incremental backup options. Use `--backup-incremental-base` instead of `--incremental-basedir` with `--backup`. Use `--prepare-incremental-from-dir` instead of `--incremental-dir` with `--prepare`. The old and new names work the same way. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.
+
+## Bug fixes
+
+- [PXB-3800](https://perconadev.atlassian.net/browse/PXB-3800): `xtrabackup` no longer terminates unexpectedly with an assertion failure in `fil_tablespace_redo_extend()` when the redo log contains an `MLOG_FILE_EXTEND` record for the system tablespace. (Thanks to Matthew Kent for contributing the fix for this issue.)
+- [PXB-3882](https://perconadev.atlassian.net/browse/PXB-3882): The debug build now compiles with gcc 15.
+- [PXB-3885](https://perconadev.atlassian.net/browse/PXB-3885): `xbcloud` now runs the retry waits of parallel requests at the same time. Previously, when the network was slow or unavailable, several failed requests took the sum of their backoff delays instead of the longest delay.
+- [PXB-3889](https://perconadev.atlassian.net/browse/PXB-3889): `xtrabackup --prepare --use-free-memory-pct` no longer terminates unexpectedly with a segmentation fault on operating systems that use `libproc2` (such as RHEL 10, Debian 12 and 13, and Ubuntu 24.04). (Thank you to Alexander Olekhnovich for your contribution)
+- [PXB-3894](https://perconadev.atlassian.net/browse/PXB-3894): `xbcloud get` now works on Azure Blob Storage containers with Hierarchical Namespace (HNS) enabled. Previously, directory entries were parsed as backup chunks, which caused the get operation to fail.
+
+## Additional resources
+
+Install [Percona XtraBackup 8.4.0-8](https://docs.percona.com/percona-xtrabackup/8.4/installation.html)
+
+The [Percona XtraBackup GitHub repository](https://github.com/percona/percona-xtrabackup)
+
+Download product binaries, packages, and tarballs at [Percona Product Downloads](https://www.percona.com/downloads/)
 
 # Percona XtraBackup 8.4.0-7 (2026-09-17)
 
@@ -676,7 +740,7 @@ Enter password:
 Expected output
 
 ```
-xtrabackup version 8.4.0-7 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
+xtrabackup version 8.4.0-8 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
 2024-10-07T13:55:51.256080-00:00 0 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set
 2024-10-07T13:55:51.270222-00:00 0 [Note] [MY-011825] [Xtrabackup] Using server version 8.4.0-1
 2024-10-07T13:55:51.272839-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing LOCK TABLES FOR BACKUP
@@ -931,7 +995,7 @@ Copy the backup files from `backupvol` to the restore target data directory.
    ```
    2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
    2024-10-07T14:08:59.128951-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --copy-back=1 --target-dir=/backup_84
-   xtrabackup version 8.4.0-7 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
+   xtrabackup version 8.4.0-8 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
    2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /backup_84/
 
    ...
@@ -2894,7 +2958,7 @@ The output should be similar to the following:
 Expected output
 
 ```
-./bin/xtrabackup version 8.4.0-7 based on MySQL server 8.4 Linux (x86_64) (revision id: b0f75188ca3)
+./bin/xtrabackup version 8.4.0-8 based on MySQL server 8.4 Linux (x86_64) (revision id: b0f75188ca3)
 ```
 
 - The copy-back log statement has a timestamp but no module name. The timestamp is a mix of UTC and the local timezone.
@@ -6687,7 +6751,7 @@ Do the following steps to select the software:
 1. Open [Software Downloads](https://www.percona.com/downloads)
 1. Select a product, for example, Percona XtraBackup
 1. In `Product Group`, select which product, for example, Percona XtraBackup 8.4
-1. In `Version`, select the version, for example, PERCONA-XTRABACKUP-8.4.0-7
+1. In `Version`, select the version, for example, PERCONA-XTRABACKUP-8.4.0-8
 1. In `Platform`, select the operating system, for example, RED HAT ENTERPRISE LINUX / CENTOS/ ORACLE LINUX 9
 
 ## Download to a local computer
@@ -6849,7 +6913,7 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
      rsync zstd
    0 upgraded, 8 newly installed, 0 to remove and 2 not upgraded.
    ...
-   Setting up percona-xtrabackup-84 (8.4.0-7-1.noble) ...
+   Setting up percona-xtrabackup-84 (8.4.0-8-1.noble) ...
    Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
    ```
 
@@ -6862,7 +6926,7 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
    Expected output
 
    ```
-   xtrabackup version 8.4.0-7 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
+   xtrabackup version 8.4.0-8 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
    ```
 
 1. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:
@@ -6906,18 +6970,18 @@ Download `DEB` packages of the desired series for your architecture from the [Pe
 
 This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.
 
-The following example downloads Percona XtraBackup 8.4.0-7 release package for Ubuntu 22.04. Run the following commands as root or use the sudo command.
+The following example downloads Percona XtraBackup 8.4.0-8 release package for Ubuntu 22.04. Run the following commands as root or use the sudo command.
 
 1. Use `wget` to download the `DEB` package:
 
    ```
-   wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-7/binary/debian/noble/x86_64/percona-xtrabackup-84_8.4.0-7-1.noble_amd64.deb
+   wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-8/binary/debian/noble/x86_64/percona-xtrabackup-84_8.4.0-8-1.noble_amd64.deb
    ```
 
 1. Install Percona XtraBackup by using `dpkg`:
 
    ```
-   sudo dpkg -i percona-xtrabackup-84_8.4.0-7-1.noble_amd64.deb
+   sudo dpkg -i percona-xtrabackup-84_8.4.0-8-1.noble_amd64.deb
    ```
 
 ## Common dependencies
@@ -7120,7 +7184,7 @@ To install Percona XtraBackup from Percona `yum` repository, do the following st
    Expected output
 
    ```
-   xtrabackup version 8.4.0-7 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
+   xtrabackup version 8.4.0-8 based on MySQL server 8.4.0 Linux (x86_64) (revision id: 4093cfd8)
    ```
 
 1. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:
@@ -7160,7 +7224,7 @@ Download `RPM` packages of the desired series for your architecture from the [Pe
 
 This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.
 
-The following example downloads *Percona XtraBackup* 8.4.0-7 release packages for *RHEL* 9. Run the following commands as root or use the sudo command.
+The following example downloads *Percona XtraBackup* 8.4.0-8 release packages for *RHEL* 9. Run the following commands as root or use the sudo command.
 
 1. Install wget
 
@@ -7171,13 +7235,13 @@ The following example downloads *Percona XtraBackup* 8.4.0-7 release packages fo
 1. Use `wget` to download the `RPM` package:
 
    ```
-   wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-7/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-7.1.el9.x86_64.rpm
+   wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-8/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-8.1.el9.x86_64.rpm
    ```
 
 1. Install Percona XtraBackup by running:
 
    ```
-   sudo dnf install ./percona-xtrabackup-84-8.4.0-7.1.el9.x86_64.rpm
+   sudo dnf install ./percona-xtrabackup-84-8.4.0-8.1.el9.x86_64.rpm
    ```
 
 ## Common dependencies
@@ -7373,7 +7437,7 @@ Download the binary tarballs from the `Linux - Generic` section on [Percona Soft
 The following example downloads the tarball. Run the following command as root or use the sudo command.
 
 ```
-wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-7/binary/tarball/percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.28.tar.gz
+wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-8/binary/tarball/percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.28.tar.gz
 ```
 
 The output displays the following information:
@@ -7381,17 +7445,17 @@ The output displays the following information:
 Expected output
 
 ```
---2024-10-09 04:44:36--  https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-7/binary/tarball/percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.28.tar.gz
+--2024-10-09 04:44:36--  https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-8/binary/tarball/percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.28.tar.gz
 Resolving downloads.percona.com (downloads.percona.com)... 147.135.54.159, 2604:2dc0:200:69f::2
 Connecting to downloads.percona.com (downloads.percona.com)|147.135.54.159|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 439358509 (419M) [application/gzip]
-Saving to: ‘percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.28.tar.gz’
+Saving to: ‘percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.28.tar.gz’
 
-percona-xtrabackup-8.4.0-7-Linux-x86_6 100%  
+percona-xtrabackup-8.4.0-8-Linux-x86_6 100%  
 [============================================================================>] 419.00M  6.67MB/s    in 94s
 
-2024-10-09 04:46:10 (4.48 MB/s) - ‘percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.28.tar.gz’ saved 
+2024-10-09 04:46:10 (4.48 MB/s) - ‘percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.28.tar.gz’ saved 
 [439358509/439358509]
 ```
 
@@ -7417,17 +7481,17 @@ If the `glibc2` version from your operating system is not listed, then this Perc
 
 ## Binary tarball file name organization
 
-The following lists the platform and the associated full binary file name used by Percona Server for MySQL tar files 8.4.0-7.
+The following lists the platform and the associated full binary file name used by Percona Server for MySQL tar files 8.4.0-8.
 
 | Platform             | Percona XtraBackup tarball name                          | glibc2 version |
 | -------------------- | -------------------------------------------------------- | -------------- |
-| Ubuntu 24.04         | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.39.tar.gz | glibc2.39      |
-| Ubuntu 22.04         | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.35.tar.gz | glibc2.35      |
-| Ubuntu 20.04         | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.31.tar.gz | glibc2.31      |
-| Debian 12            | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.36.tar.gz | glibc2.36      |
-| Debian 11            | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.31.tar.gz | glibc2.31      |
-| Red Hat Enterprise 9 | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.34.tar.gz | glibc2.34      |
-| Red Hat Enterprise 8 | Percona-XtraBackup-8.4.0-7-Linux.x86_64.glibc2.28.tar.gz | glibc2.28      |
+| Ubuntu 24.04         | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.39.tar.gz | glibc2.39      |
+| Ubuntu 22.04         | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.35.tar.gz | glibc2.35      |
+| Ubuntu 20.04         | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.31.tar.gz | glibc2.31      |
+| Debian 12            | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.36.tar.gz | glibc2.36      |
+| Debian 11            | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.31.tar.gz | glibc2.31      |
+| Red Hat Enterprise 9 | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.34.tar.gz | glibc2.34      |
+| Red Hat Enterprise 8 | Percona-XtraBackup-8.4.0-8-Linux.x86_64.glibc2.28.tar.gz | glibc2.28      |
 
 Download the binary tarballs from [Percona Software Downloads](https://www.percona.com/downloads) .
 
@@ -7437,20 +7501,20 @@ After you have downloaded the binary tarballs, extract the tarball in the file l
 
 | Type    | Name                                                             |
 | ------- | ---------------------------------------------------------------- |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux.x86_64.glibc2.17-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux.x86_64.glibc2.17.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.28-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.28.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.31-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.31.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.34-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.34.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.35-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.35.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.36-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.36.tar.gz         |
-| Minimal | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.39-minimal.tar.gz |
-| Full    | percona-xtrabackup-8.4.0-7-Linux-x86_64.glibc2.39.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux.x86_64.glibc2.17-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux.x86_64.glibc2.17.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.28-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.28.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.31-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.31.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.34-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.34.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.35-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.35.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.36-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.36.tar.gz         |
+| Minimal | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.39-minimal.tar.gz |
+| Full    | percona-xtrabackup-8.4.0-8-Linux-x86_64.glibc2.39.tar.gz         |
 
 Select a different software, such as Ubuntu 20.04 (Focal Fossa), for a tarball for that operating system. You can download the packages together or separately.
 
@@ -10914,7 +10978,7 @@ Any Percona XtraBackup 8.4 release can work with any Percona Server for MySQL 8.
 
 Percona uses semantic version numbering, which follows the pattern of base version and build version. Percona assigns unique, non-negative integers in increasing order for each version release. The version number combines the base [MySQL 8.4](https://dev.mysql.com/doc/relnotes/mysql/8.4/en/) version number and the minor build version.
 
-The version numbers for Percona XtraBackup 8.4.0-7 define the following information:
+The version numbers for Percona XtraBackup 8.4.0-8 define the following information:
 
 - Base version - the leftmost numbers indicate the [MySQL 8.4](https://dev.mysql.com/doc/relnotes/mysql/8.4/en/) version used as a base. An increase in base version resets the minor build version to 0.
 - Minor build version - an internal number that denotes the version of the software. A build version increases by one each time the Percona XtraBackup is released.

@@ -2,6 +2,7 @@
 
 # Percona XtraBackup 8.4 release notes index
 
+- [Percona XtraBackup 8.4.0-8 (2026-11-23)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-8.html)
 - [Percona XtraBackup 8.4.0-7 (2026-09-17)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-7.html)
 - [Percona XtraBackup 8.4.0-6 (2026-06-24)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-6.html)
 - [Percona XtraBackup 8.4.0-5 (2025-12-17)](https://docs.percona.com/percona-xtrabackup/8.4/release-notes/8.4.0-5.html)

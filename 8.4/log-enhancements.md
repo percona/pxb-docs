@@ -17,7 +17,7 @@ The output should be similar to the following:
 Expected output
 
 ```
-./bin/xtrabackup version 8.4.0-7 based on MySQL server 8.4 Linux (x86_64) (revision id: b0f75188ca3)
+./bin/xtrabackup version 8.4.0-8 based on MySQL server 8.4 Linux (x86_64) (revision id: b0f75188ca3)
 ```
 
 - The copy-back log statement has a timestamp but no module name. The timestamp is a mix of UTC and the local timezone.

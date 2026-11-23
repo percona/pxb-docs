@@ -6,7 +6,7 @@ Download `RPM` packages of the desired series for your architecture from the [Pe
 
 This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.
 
-The following example downloads *Percona XtraBackup* 8.4.0-7 release packages for *RHEL* 9. Run the following commands as root or use the sudo command.
+The following example downloads *Percona XtraBackup* 8.4.0-8 release packages for *RHEL* 9. Run the following commands as root or use the sudo command.
 
 1. Install wget
 
@@ -17,13 +17,13 @@ The following example downloads *Percona XtraBackup* 8.4.0-7 release packages fo
 1. Use `wget` to download the `RPM` package:
 
    ```
-   wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-7/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-7.1.el9.x86_64.rpm
+   wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.4/Percona-XtraBackup-8.4.0-8/binary/redhat/9/x86_64/percona-xtrabackup-84-8.4.0-8.1.el9.x86_64.rpm
    ```
 
 1. Install Percona XtraBackup by running:
 
    ```
-   sudo dnf install ./percona-xtrabackup-84-8.4.0-7.1.el9.x86_64.rpm
+   sudo dnf install ./percona-xtrabackup-84-8.4.0-8.1.el9.x86_64.rpm
    ```
 
 ## Common dependencies
