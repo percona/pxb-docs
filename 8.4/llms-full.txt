@@ -2478,13 +2478,17 @@ Before applying logs, compressed files will need to be uncompressed.
 
 ## The `--rsync` option
 
-In order to speed up the backup process and to minimize the time `FLUSH TABLES WITH READ LOCK` is blocking the writes, the option `--rsync` should be used. When this option is specified, xtrabackup uses `rsync` to copy all non-InnoDB files instead of spawning a separate `cp` for each file, which can be much faster for servers with a large number of databases or tables. xtrabackup will call the `rsync` twice, once before the `FLUSH TABLES WITH READ LOCK` and once during to minimize the time the read lock is being held. During the second `rsync` call, it will only synchronize the changes to non-transactional data (if any) since the first call performed before the `FLUSH TABLES WITH READ LOCK`. Note that Percona XtraBackup will use [backup locks](https://docs.percona.com/percona-server/8.4/backup-locks.html) where available as a lightweight alternative to `FLUSH TABLES WITH READ LOCK`.
+### Version changes
 
-Percona XtraBackup uses these locks automatically to copy non-InnoDB data to avoid blocking Data manipulation language (DML) queries that modify InnoDB tables. Find more information in [Backup locks](https://docs.percona.com/percona-server/8.4/backup-locks.html)
+Percona XtraBackup 8.4.0-8 deprecates the [`--rsync`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#rsync) option. A future release will remove the option. Use [`--lock-ddl=REDUCED`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#lock-ddl) instead.
 
 Note
 
-This option cannot be used together with the `--stream` option.
+You cannot use `--rsync` with the `--stream` option. If you pass both options, Percona XtraBackup reports the following error and does not start the backup:
+
+```
+--rsync doesn't work with --stream
+```
 
 # InnoDB B-tree integrity validation during prepare
 
@@ -3964,6 +3968,14 @@ Usage: `--core-file`
 
 Write core on fatal signals.
 
+### create-ib-logfile
+
+Usage: `--create-ib-logfile`
+
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option.
+
+The `--create-ib-logfile` option has no effect.
+
 ### databases
 
 Usage: `--databases=#`
@@ -4276,6 +4288,8 @@ Percona XtraBackup does not detect if an incorrect LSN value is specified; the b
 
 Usage: `--innodb=name`
 
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option.
+
 This option is ignored for MySQL option compatibility.
 
 ### innodb-miscellaneous
@@ -4352,6 +4366,8 @@ If `LOCK TABLES FOR BACKUP` or `LOCK INSTANCE FOR BACKUP` does not return within
 
 Usage: `--log`
 
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option.
+
 This option is ignored for MySQL
 
 ### log-bin
@@ -4423,6 +4439,8 @@ See [Server Version and Backup Version Comparison](https://docs.percona.com/perc
 ### no-version-check
 
 Usage: `--no-version-check`
+
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option.
 
 This option disables the version check.
 
@@ -4523,6 +4541,14 @@ Set the read buffer size. The given value is scaled up to page size. The default
 
 To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-buffer-size) and [`--encrypt-chunk-size`](#encrypt-chunk-size).
 
+### rebuild-threads
+
+Usage: `--rebuild-threads=#`
+
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option.
+
+The `--rebuild-threads` option has no effect. The option worked only with `--rebuild-indexes`, which Percona XtraBackup no longer supports.
+
 ### register-redo-log-consumer
 
 Usage: `--register-redo-log-consumer`
@@ -4570,6 +4596,8 @@ Force rollback prepared InnoDB transactions.
 ### rsync
 
 Usage: `--rsync`
+
+Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option. Use [`--lock-ddl=REDUCED`](#lock-ddl) instead.
 
 Uses the rsync utility to optimize local file transfers. The xtrabackup binary uses rsync to copy all non-InnoDB files instead of spawning a separate cp for each file, which can be much faster for servers with many databases or tables.
 
