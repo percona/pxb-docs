@@ -8,6 +8,10 @@ Percona XtraBackup supports two distinct types of encryption:
 
 These encryption types are independent. You can use them separately or together for enhanced security.
 
+## Version changes
+
+Percona XtraBackup 8.4.0-8 renames the `--incremental-basedir` option to [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base) and the `--incremental-dir` option to [`--prepare-incremental-from-dir`](xtrabackup-option-reference.md#prepare-incremental-from-dir). Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.
+
 ## InnoDB tablespace encryption
 
 InnoDB supports [data encryption for InnoDB tables :octicons-link-external-16:](https://dev.mysql.com/doc/refman/{{vers}}/en/innodb-data-encryption.html) in file-per-table tablespaces. When accessing an encrypted tablespace, InnoDB uses the master encryption key to decrypt the tablespace key. InnoDB stores the master encryption key in a keyring.
@@ -168,19 +172,37 @@ xtrabackup --backup --target-dir=/data/backups/base
 
 Make an incremental backup based on the full backup:
 
-```shell
-xtrabackup --backup --target-dir=/data/backups/inc1 \
---incremental-basedir=/data/backups/base
-```
+=== "Percona XtraBackup 8.4.0-8 and later"
 
-The [`--incremental-basedir`](xtrabackup-option-reference.md#incremental-basedir) option specifies the base backup directory.
+    ```shell
+    xtrabackup --backup --target-dir=/data/backups/inc1 \
+    --backup-incremental-base=/data/backups/base
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --backup --target-dir=/data/backups/inc1 \
+    --incremental-basedir=/data/backups/base
+    ```
+
+The [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base) option specifies the base backup directory.
 
 Use this directory as the base for yet another incremental backup:
 
-```shell
-xtrabackup --backup --target-dir=/data/backups/inc2 \
---incremental-basedir=/data/backups/inc1
-```
+=== "Percona XtraBackup 8.4.0-8 and later"
+
+    ```shell
+    xtrabackup --backup --target-dir=/data/backups/inc2 \
+    --backup-incremental-base=/data/backups/inc1
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --backup --target-dir=/data/backups/inc2 \
+    --incremental-basedir=/data/backups/inc1
+    ```
 
 #### Phase 2: Prepare
 
@@ -192,23 +214,41 @@ Beginning with the full backup, prepare the full backup and then apply the incre
 xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base
 ```
 
-Apply the first incremental backup to the full backup using [`--incremental-dir`](xtrabackup-option-reference.md#incremental-dir):
+Apply the first incremental backup to the full backup using [`--prepare-incremental-from-dir`](xtrabackup-option-reference.md#prepare-incremental-from-dir):
 
-```shell
-xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
---incremental-dir=/data/backups/inc1
-```
+=== "Percona XtraBackup 8.4.0-8 and later"
+
+    ```shell
+    xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+    --prepare-incremental-from-dir=/data/backups/inc1
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+    --incremental-dir=/data/backups/inc1
+    ```
 
 !!! note
    
     If you have many InnoDB Data (IBD) files, speed up the prepare phase for incremental backups  by using the `--parallel` option. This option lets you process multiple delta files simultaneously. When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
     
     An example of the backup command using the `--parallel` option:
-    
-    ```shell
-    xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
-    --incremental-dir=/data/backups/inc1 --parallel=4
-    ```
+
+    === "Percona XtraBackup 8.4.0-8 and later"
+
+        ```shell
+        xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+        --prepare-incremental-from-dir=/data/backups/inc1 --parallel=4
+        ```
+
+    === "Before Percona XtraBackup 8.4.0-8"
+
+        ```shell
+        xtrabackup --prepare --apply-log-only --target-dir=/data/backups/base \
+        --incremental-dir=/data/backups/inc1 --parallel=4
+        ```
 
 Prepare the backup using the same keyring file and type that were used when the backup was created. If the keyring has changed or you upgraded from a plugin to a component between the base and incremental backup, use the keyring from when the first incremental backup was made. If the original keyring is missing or has changed, recover or replace it before restoring. If you cannot recover the keyring, restore from a backup that matches the most recent available keyring.
 
@@ -216,17 +256,35 @@ Preparing the second incremental backup is a similar process: apply the deltas
 to the (modified) base backup, and you will roll the base backup's data forward in 
 time to the point of the second incremental backup:
 
-```shell
-xtrabackup --prepare --target-dir=/data/backups/base \
---incremental-dir=/data/backups/inc2
-```
+=== "Percona XtraBackup 8.4.0-8 and later"
+
+    ```shell
+    xtrabackup --prepare --target-dir=/data/backups/base \
+    --prepare-incremental-from-dir=/data/backups/inc2
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --prepare --target-dir=/data/backups/base \
+    --incremental-dir=/data/backups/inc2
+    ```
 
 You can also use the `--parallel` option here to speed up the process:
 
-```shell
-xtrabackup --prepare --target-dir=/data/backups/base \
---incremental-dir=/data/backups/inc2 --parallel=4
-```
+=== "Percona XtraBackup 8.4.0-8 and later"
+
+    ```shell
+    xtrabackup --prepare --target-dir=/data/backups/base \
+    --prepare-incremental-from-dir=/data/backups/inc2 --parallel=4
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    xtrabackup --prepare --target-dir=/data/backups/base \
+    --incremental-dir=/data/backups/inc2 --parallel=4
+    ```
 
 !!! note
 

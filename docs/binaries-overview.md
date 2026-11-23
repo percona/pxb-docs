@@ -2,6 +2,10 @@
 
 Percona XtraBackup provides a comprehensive suite of command-line tools for MySQL database backup and recovery operations. This document introduces the four core binaries that form the foundation of Percona XtraBackup's functionality, helping you understand when and how to use each tool effectively.
 
+## Version changes
+
+Percona XtraBackup 8.4.0-8 renames the `--incremental-basedir` option to [`--backup-incremental-base`](xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 ## Prerequisites
 
 Before using Percona XtraBackup binaries, ensure you have:
@@ -43,16 +47,31 @@ Basic Syntax:
 
 Run the following commands as root or use the sudo command.
 
-```shell
-# Create a full backup
-xtrabackup --backup --target-dir=/backup/full
+=== "Percona XtraBackup 8.4.0-8 and later"
 
-# Create an incremental backup
-xtrabackup --backup --target-dir=/backup/inc1 --incremental-basedir=/backup/full
+    ```shell
+    # Create a full backup
+    xtrabackup --backup --target-dir=/backup/full
 
-# Prepare a backup for restore
-xtrabackup --prepare --target-dir=/backup/full
-```
+    # Create an incremental backup
+    xtrabackup --backup --target-dir=/backup/inc1 --backup-incremental-base=/backup/full
+
+    # Prepare a backup for restore
+    xtrabackup --prepare --target-dir=/backup/full
+    ```
+
+=== "Before Percona XtraBackup 8.4.0-8"
+
+    ```shell
+    # Create a full backup
+    xtrabackup --backup --target-dir=/backup/full
+
+    # Create an incremental backup
+    xtrabackup --backup --target-dir=/backup/inc1 --incremental-basedir=/backup/full
+
+    # Prepare a backup for restore
+    xtrabackup --prepare --target-dir=/backup/full
+    ```
 
 Documentation: [xtrabackup Overview](xtrabackup-binary-overview.md)
 
