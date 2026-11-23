@@ -7,8 +7,8 @@
 To use this feature the following options are available:
 
 - `--history` = : This option enables the history feature and allows the user to specify a backup series name that will be placed within the history record.
-- `--incremental-history-name` = : This option allows an incremental backup to be made based on a specific history series by name. *xtrabackup* will search the history table looking for the most recent (highest `to_lsn`) backup in the series and take the `to_lsn` value to use as it’s starting lsn. This is mutually exclusive with `--incremental-history-uuid`, `--incremental-basedir` and `--incremental-lsn` options. If no valid LSN can be found (no series by that name) *xtrabackup* will return with an error.
-- `--incremental-history-uuid` = : Allows an incremental backup to be made based on a specific history record identified by UUID. *xtrabackup* will search the history table looking for the record matching UUID and take the `to_lsn` value to use as it’s starting LSN. This options is mutually exclusive with `--incremental-basedir`, `--incremental-lsn` and `--incremental-history-name` options. If no valid LSN can be found (no record by that UUID or missing `to_lsn`), *xtrabackup* will return with an error.
+- `--incremental-history-name` = : This option allows an incremental backup to be made based on a specific history series by name. *xtrabackup* will search the history table looking for the most recent (highest `to_lsn`) backup in the series and take the `to_lsn` value to use as it’s starting lsn. This is mutually exclusive with `--incremental-history-uuid`, `--backup-incremental-base` and `--incremental-lsn` options. If no valid LSN can be found (no series by that name) *xtrabackup* will return with an error.
+- `--incremental-history-uuid` = : Allows an incremental backup to be made based on a specific history record identified by UUID. *xtrabackup* will search the history table looking for the record matching UUID and take the `to_lsn` value to use as it’s starting LSN. This options is mutually exclusive with `--backup-incremental-base`, `--incremental-lsn` and `--incremental-history-name` options. If no valid LSN can be found (no record by that UUID or missing `to_lsn`), *xtrabackup* will return with an error.
 
 Note
 
@@ -17,6 +17,10 @@ Backup that’s currently being performed will **NOT** exist in the xtrabackup_h
 If you want access to backup history outside of your backup set in the case of some catastrophic event, you will need to either perform a `mysqldump`, partial backup or `SELECT` * on the history table after *xtrabackup* completes and store the results with you backup set.
 
 For the necessary privileges, see Permissions and Privileges Needed.
+
+### Version changes
+
+Percona XtraBackup 8.4.0-8 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ### PERCONA_SCHEMA.XTRABACKUP_HISTORY table
 

@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.2">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -1264,6 +1264,17 @@
       On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#assumptions" class="md-nav__link">
@@ -6032,6 +6043,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#assumptions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6140,6 +6162,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 <h1 id="backup-example">Backup example<a data-markdown-ignore class="headerlink" href="#backup-example" title="Permanent link">&para;</a></h1>
 <p>This example demonstrates how to set up daily full backups and hourly incremental backups using Percona XtraBackup 8.4 with a MySQL 8.4-compatible database server.</p>
+<h2 id="version-changes">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="assumptions">Assumptions<a data-markdown-ignore class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Percona XtraBackup 8.4 is installed on your system.</li>
@@ -6197,7 +6221,49 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span>
 <div class="highlight"><pre><span></span><code><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/path/to/daily_full_backup.sh
 </code></pre></div>
 <h2 id="hourly-incremental-backup-script">Hourly incremental backup script<a data-markdown-ignore class="headerlink" href="#hourly-incremental-backup-script" title="Permanent link">&para;</a></h2>
-<p>This script uses the same server details as the daily script. It retrieves the current date and hour for the incremental backup filename. The core command uses <code>xtrabackup</code> with the <code>--backup</code> and <code>--incremental</code> options for an incremental backup. <code>--target-dir</code> specifies the directory to store the incremental backup. <code>--incremental-basedir</code> must point to the base directory of a completed full or incremental backup. This example uses the <strong>most recent</strong> full backup as the base: <code>ls -t</code> lists full backups by modification time (newest first), and <code>head -n 1</code> selects that newest directory. The script checks that the base directory exists before running and reports success or failure based on the exit code.</p>
+<p>The hourly script uses the same server details as the daily script. The script uses the current date and hour to name the incremental backup directory. The core command runs <code>xtrabackup</code> with the <code>--backup</code> and <code>--incremental</code> options. <code>--target-dir</code> specifies the directory for the incremental backup. <code>--backup-incremental-base</code> must point to the directory of a completed full or incremental backup. The script uses the <strong>most recent</strong> full backup as the base: <code>ls -t</code> lists full backups by modification time (newest first), and <code>head -n 1</code> selects the newest directory. Before the backup, the script checks that the base directory exists. After the backup, the script reports success or failure based on the exit code.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_1_1">Percona XtraBackup 8.4.0-8 and later</label><label for="__tabbed_1_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Set server details (same as daily script)</span>
+<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">"your_server_hostname"</span>
+<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">"your_db_username"</span>
+<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">"your_db_password"</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">"/var/lib/mysql"</span><span class="w">          </span><span class="c1"># Replace with your data directory path</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/backups/mysql/incr"</span>
+
+<span class="c1"># Get current date and hour for filename</span>
+<span class="nv">TODAY</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
+<span class="nv">HOUR</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%H<span class="k">)</span><span class="w">                  </span><span class="c1"># Get current hour (00-23)</span>
+<span class="nv">INCR_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">HOUR</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># Set the base directory to the most recent full backup (newest first: ls -t, then head -n 1)</span>
+<span class="nv">LATEST_FULL</span><span class="o">=</span><span class="k">$(</span>ls<span class="w"> </span>-t<span class="w"> </span>/backups/mysql/full<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">LATEST_FULL</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"No full backup found; cannot take incremental backup"</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+<span class="nv">BASE_DIR</span><span class="o">=</span><span class="s2">"/backups/mysql/full/</span><span class="si">${</span><span class="nv">LATEST_FULL</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># Ensure target directory exists</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># Run xtrabackup with incremental backup command</span>
+<span class="k">if</span><span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--incremental<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--backup-incremental-base<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--password<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hourly incremental backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hourly incremental backup FAILED at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1"># Set server details (same as daily script)</span>
 <span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">"your_server_hostname"</span>
@@ -6235,6 +6301,9 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span>
 <span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="k">fi</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Incremental base directory</p>
 <p>For a chain of incremental backups, you can set the base to the most recent incremental backup directory instead of the full backup, so each incremental is based on the previous one. The example above bases each hourly backup on the latest full backup for simplicity.</p>
@@ -6282,7 +6351,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 5, 2026 11:14:40 UTC">February 5, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 23, 2026 11:36:17 UTC">November 23, 2026</span>
   </span>
 
     
@@ -6313,6 +6382,11 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span>
         <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
           
           <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
         </a>
       
       

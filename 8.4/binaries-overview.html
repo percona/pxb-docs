@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.2">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -2217,6 +2217,17 @@
       On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#prerequisites" class="md-nav__link">
@@ -6021,6 +6032,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6118,6 +6140,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 <h1 id="percona-xtrabackup-binaries-overview">Percona XtraBackup binaries overview<a data-markdown-ignore class="headerlink" href="#percona-xtrabackup-binaries-overview" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup provides a comprehensive suite of command-line tools for MySQL database backup and recovery operations. This document introduces the four core binaries that form the foundation of Percona XtraBackup&rsquo;s functionality, helping you understand when and how to use each tool effectively.</p>
+<h2 id="version-changes">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="prerequisites">Prerequisites<a data-markdown-ignore class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <p>Before using Percona XtraBackup binaries, ensure you have:</p>
 <ul>
@@ -6166,6 +6190,20 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </ul>
 <p>Basic Syntax:</p>
 <p>Run the following commands as root or use the sudo command.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_1_1">Percona XtraBackup 8.4.0-8 and later</label><label for="__tabbed_1_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a full backup</span>
+xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
+
+<span class="c1"># Create an incremental backup</span>
+xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backup/inc1<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/backup/full
+
+<span class="c1"># Prepare a backup for restore</span>
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># Create a full backup</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
 
@@ -6175,6 +6213,9 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<s
 <span class="c1"># Prepare a backup for restore</span>
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>Documentation: <a href="xtrabackup-binary-overview.html">xtrabackup Overview</a></p>
 <p>Command Line Options: <a href="xtrabackup-option-reference.html">xtrabackup Options</a></p>
 <h3 id="xbcloud">xbcloud<a data-markdown-ignore class="headerlink" href="#xbcloud" title="Permanent link">&para;</a></h3>
@@ -6421,7 +6462,7 @@ xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-di
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 30, 2026 14:54:01 UTC">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 23, 2026 11:36:17 UTC">November 23, 2026</span>
   </span>
 
     
@@ -6449,9 +6490,9 @@ xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-di
     
     <nav>
       
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
           
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
         </a>
       
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
@@ -6459,9 +6500,9 @@ xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-di
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
         </a>
       
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
         </a>
       
       

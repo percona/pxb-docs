@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.2">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -6101,6 +6101,11 @@ backup. It is essential for incremental backups.</p>
 <h3 id="backup">backup<a data-markdown-ignore class="headerlink" href="#backup" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup</code></p>
 <p>Make a backup and place it in <code>--target-dir</code>. See <a href="create-full-backup.html">Create a full backup</a></p>
+<h3 id="backup-incremental-base">backup-incremental-base<a data-markdown-ignore class="headerlink" href="#backup-incremental-base" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup-incremental-base=DIRECTORY</code></p>
+<p>Introduced in Percona XtraBackup 8.4.0-8.</p>
+<p>Specifies the directory with the base backup for an incremental backup. The base backup can be a full backup or an earlier incremental backup. Use the option with <code>--backup</code>.</p>
+<p>The <code>--backup-incremental-base</code> option replaces the deprecated <a href="#incremental-basedir"><code>--incremental-basedir</code></a> option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h3 id="backup-lock-timeout">backup-lock-timeout<a data-markdown-ignore class="headerlink" href="#backup-lock-timeout" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup-lock-timeout</code></p>
 <p>The timeout in seconds for attempts to acquire metadata locks.</p>
@@ -6358,9 +6363,11 @@ connecting to the database server with TCP/IP. It is passed to the mysql
 child process without alteration. See mysql &ndash;help for details.</p>
 <h3 id="incremental-basedir">incremental-basedir<a data-markdown-ignore class="headerlink" href="#incremental-basedir" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-basedir=DIRECTORY</code></p>
+<p>Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option. Use <a href="#backup-incremental-base"><code>--backup-incremental-base</code></a> instead.</p>
 <p>This is the directory that contains the full backup, which is the base dataset for the incremental backups.</p>
 <h3 id="incremental-dir">incremental-dir<a data-markdown-ignore class="headerlink" href="#incremental-dir" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-dir=DIRECTORY</code></p>
+<p>Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option. Use <a href="#prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a> instead.</p>
 <p>This is the directory where the incremental backup is combined with the full backup to make a new full backup.</p>
 <h3 id="incremental-force-scan">incremental-force-scan<a data-markdown-ignore class="headerlink" href="#incremental-force-scan" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-force-scan</code></p>
@@ -6373,7 +6380,7 @@ that instance.</p>
 recent (highest <code>innodb_to_lsn</code>), successful backup in the series and takes the <code>to_lsn`` value to use as the starting</code>lsn` for the incremental
 backup.</p>
 <p>This options is mutually exclusive with
-<a href="#incremental-history-uuid"><code>--incremental-history-uuid</code></a>, <a href="#incremental-basedir"><code>--incremental-basedir</code></a>, and
+<a href="#incremental-history-uuid"><code>--incremental-history-uuid</code></a>, <a href="#backup-incremental-base"><code>--backup-incremental-base</code></a>, and
 <a href="#incremental-lsn"><code>--incremental-lsn</code></a>.</p>
 <p>If no valid lsn can be found, either no series by that
 name or no successful backups by that name, xtrabackup returns an
@@ -6382,14 +6389,14 @@ error.</p>
 <h3 id="incremental-history-uuid">incremental-history-uuid<a data-markdown-ignore class="headerlink" href="#incremental-history-uuid" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-history-uuid=name</code></p>
 <p>This option specifies the Universal Unique Identifier (UUID) of the history record in <code>PERCONA_SCHEMA.xtrabackup_history</code> used as the base for an incremental backup.</p>
-<p>This options is mutually exclusive with <a href="#incremental-history-name"><code>--incremental-history-name</code></a>, <a href="#incremental-basedir"><code>--incremental-basedir</code></a>, and
+<p>This options is mutually exclusive with <a href="#incremental-history-name"><code>--incremental-history-name</code></a>, <a href="#backup-incremental-base"><code>--backup-incremental-base</code></a>, and
 <a href="#incremental-lsn"><code>--incremental-lsn</code></a>.</p>
 <p>If there is no success record with that UUID, xtrabackup returns an error.</p>
 <p>The option is used with the <code>-–incremental</code> option.</p>
 <h3 id="incremental-lsn">incremental-lsn<a data-markdown-ignore class="headerlink" href="#incremental-lsn" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-lsn=LSN</code></p>
 <p>When creating an incremental backup, you can specify the log sequence number
-(LSN), a single 64-bit integer, instead of the  <a href="#incremental-basedir"><code>--incremental-basedir</code></a>.</p>
+(LSN), a single 64-bit integer, instead of the  <a href="#backup-incremental-base"><code>--backup-incremental-base</code></a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Percona XtraBackup does not detect if an incorrect LSN value is specified; the backup is unusable. Be careful!</p>
@@ -6555,28 +6562,9 @@ a random UUID; no client information is collected or stored.</p>
 <p>Usage: <code>--open-files-limit=#</code></p>
 <p>The maximum number of file descriptors to reserve with <a href="https://man7.org/linux/man-pages/man2/setrlimit.2.html">setrlimit <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>git.</p>
 <h3 id="page-tracking-merge-gap">page-tracking-merge-gap<a data-markdown-ignore class="headerlink" href="#page-tracking-merge-gap" title="Permanent link">&para;</a></h3>
-<p>Controls how Percona XtraBackup combines reads of changed pages during incremental backups with page tracking.</p>
-<p>The default value, auto, measures storage performance at the start of the backup and determines the appropriate gap for each tablespace based on the storage characteristics and page size.</p>
-<p>The option accepts the following values:</p>
-<ul>
-<li>
-<p>auto (default) — automatically determines the appropriate gap for each tablespace. This is the recommended setting for most workloads.</p>
-</li>
-<li>
-<p>A positive integer, such as 8 — combines changed pages separated by up to the specified number of unchanged pages into a single read request. The same value applies to all tablespaces. Use a fixed value only after benchmarking your workload. A value that is too large can cause XtraBackup to read unnecessary data, while a value that is too small can result in more individual read requests.</p>
-<p>For example:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/inc1<span class="w"> </span><span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/full<span class="w"> </span><span class="se">\</span>
---page-tracking<span class="w"> </span><span class="se">\</span>
---page-tracking-merge-gap<span class="o">=</span><span class="m">8</span>
-</code></pre></div>
-</li>
-<li>
-<p>0 — disables merging of non-consecutive changed pages. Only consecutive changed pages are read together.</p>
-</li>
-</ul>
-<p>The backup log reports the storage measurement once and, for each tablespace with at least 1000 changed pages, reports the number of changed pages, the number of read requests before and after combining pages, and the resulting read amplification. Use these messages to evaluate a fixed value against the auto setting.</p>
-<p>Combining reads can cause XtraBackup to read unchanged pages between changed pages. This can increase the amount of data read during the backup. If storage bandwidth is metered or constrained, consider setting <code>--page-tracking-merge-gap=0</code>.</p>
+<p>Usage: <code>--page-tracking-merge-gap=auto|N</code></p>
+<p>Introduced in Percona XtraBackup 8.4.0-7.</p>
+<p>Controls the largest gap between two changed pages that Percona XtraBackup reads in a single request during an incremental backup with page tracking. The option accepts <code>auto</code> or a page count from <code>0</code> to <code>65536</code>. A page count is measured in <code>innodb_page_size</code> pages. The default value is <code>auto</code>. With <code>auto</code>, you do not choose a page count. Percona XtraBackup measures the storage at the start of the backup and selects the gap. Omit the option, or set <code>--page-tracking-merge-gap=auto</code>. For details, see <a href="page-tracking.html#merge-reads-across-gaps">Merge reads across gaps</a>.</p>
 <h3 id="parallel">parallel<a data-markdown-ignore class="headerlink" href="#parallel" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--parallel=#</code></p>
 <p>The <code>--parallel</code> option specifies the number of threads to use to copy multiple data
@@ -6602,6 +6590,11 @@ main thread).</p>
 <p>Usage: <code>--prepare</code></p>
 <p>Makes xtrabackup perform a recovery on a backup created with <code>--backup</code>, so that the backup data is ready to use.</p>
 <p>For details, see <a href="prepare-full-backup.html">Prepare a full backup</a>.</p>
+<h3 id="prepare-incremental-from-dir">prepare-incremental-from-dir<a data-markdown-ignore class="headerlink" href="#prepare-incremental-from-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--prepare-incremental-from-dir=DIRECTORY</code></p>
+<p>Introduced in Percona XtraBackup 8.4.0-8.</p>
+<p>Specifies the directory with the incremental backup that Percona XtraBackup applies to the full backup. Use the option with <code>--prepare</code>.</p>
+<p>The <code>--prepare-incremental-from-dir</code> option replaces the deprecated <a href="#incremental-dir"><code>--incremental-dir</code></a> option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h3 id="print-defaults">print-defaults<a data-markdown-ignore class="headerlink" href="#print-defaults" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--print-defaults</code></p>
 <p>Prints the program argument list and exit and must be the first option on the command line.</p>
@@ -6816,7 +6809,7 @@ mysql –help for details.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 15, 2026 15:45:21 UTC">October 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 23, 2026 11:36:17 UTC">November 23, 2026</span>
   </span>
 
     
@@ -6831,6 +6824,39 @@ mysql –help for details.</p>
 
     
     
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
+        </a>
+      
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
+          
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
     
   </aside>
 

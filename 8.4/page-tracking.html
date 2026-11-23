@@ -12,10 +12,8 @@
       
         <meta name="description" content="To create an incremental backup with page tracking, Percona XtraBackup uses
 the MySQL mysqlbackup component. This component provides a list of pages
-modified since the last backup, and Percona XtraBackup copies only those
-pages. This operation removes the need to scan the pages in the
-database. If the majority of pages have not been modified, the page
-tracking feature can improve the speed of incremental backups.">
+modified since the last backup. Percona XtraBackup copies only those pages.
+This operation removes the need to scan the pages in the database.">
       
       
         <meta name="author" content="Percona LLC">
@@ -34,7 +32,7 @@ tracking feature can improve the speed of incremental backups.">
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.2">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -4393,10 +4391,10 @@ tracking feature can improve the speed of incremental backups.">
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#install-the-component" class="md-nav__link">
+  <a href="#version-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install the component
+        Version changes
       
     </span>
   </a>
@@ -4404,10 +4402,10 @@ tracking feature can improve the speed of incremental backups.">
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-page-tracking" class="md-nav__link">
+  <a href="#install-the-component" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use page tracking
+        Install the component
       
     </span>
   </a>
@@ -4437,6 +4435,28 @@ tracking feature can improve the speed of incremental backups.">
 </li>
       
         <li class="md-nav__item">
+  <a href="#use-page-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use page tracking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reduce-read-requests-for-scattered-changed-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reduce read requests for scattered changed pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stop-page-tracking" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4452,17 +4472,6 @@ tracking feature can improve the speed of incremental backups.">
     <span class="md-ellipsis">
       
         Purge page tracking data
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#known-issue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Known issue
       
     </span>
   </a>
@@ -6050,10 +6059,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#install-the-component" class="md-nav__link">
+  <a href="#version-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install the component
+        Version changes
       
     </span>
   </a>
@@ -6061,10 +6070,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-page-tracking" class="md-nav__link">
+  <a href="#install-the-component" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use page tracking
+        Install the component
       
     </span>
   </a>
@@ -6094,6 +6103,28 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
+  <a href="#use-page-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use page tracking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reduce-read-requests-for-scattered-changed-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reduce read requests for scattered changed pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stop-page-tracking" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6109,17 +6140,6 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     <span class="md-ellipsis">
       
         Purge page tracking data
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#known-issue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Known issue
       
     </span>
   </a>
@@ -6170,13 +6190,24 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h1 id="take-an-incremental-backup-using-page-tracking">Take an incremental backup using page tracking<a data-markdown-ignore class="headerlink" href="#take-an-incremental-backup-using-page-tracking" title="Permanent link">&para;</a></h1>
 <p>To create an incremental backup with page tracking, Percona XtraBackup uses
 the MySQL <code>mysqlbackup</code> component. This component provides a list of pages
-modified since the last backup, and Percona XtraBackup copies only those
-pages. This operation removes the need to scan the pages in the
-database. If the majority of pages have not been modified, the page
-tracking feature can improve the speed of incremental backups.</p>
-<p>Run the following commands as root or use the sudo command.</p>
+modified since the last backup. Percona XtraBackup copies only those pages.
+This operation removes the need to scan the pages in the database.</p>
+<p>Page tracking can improve the speed of incremental backups. The speed depends
+on the number of read requests, not on the number of changed pages. For the
+effect of scattered changed pages, see
+<a href="#reduce-read-requests-for-scattered-changed-pages">Reduce read requests for scattered changed pages</a>.</p>
+<p>Run the following commands as root or use the <code>sudo</code> command.</p>
+<h2 id="version-changes">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to
+<a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a>.
+Percona XtraBackup still accepts <code>--incremental-basedir</code>. Percona XtraBackup
+prints a deprecation warning when you use it. A future release removes
+<code>--incremental-basedir</code>, so update your scripts to use
+<code>--backup-incremental-base</code>.</p>
+<p>If you pass both options in the same command, Percona XtraBackup reports an
+error. Percona XtraBackup does not start the backup.</p>
 <h2 id="install-the-component">Install the component<a data-markdown-ignore class="headerlink" href="#install-the-component" title="Permanent link">&para;</a></h2>
-<p class="power-number">To start using the page tracking functionality, do the following:</p>
+<p class="power-number">To use page tracking, do the following:</p>
 <ol>
 <li>
 <p>Install the <code>mysqlbackup</code> component and enable it on the server:</p>
@@ -6185,24 +6216,57 @@ tracking feature can improve the speed of incremental backups.</p>
 </li>
 <li>
 <p>Check whether the <code>mysqlbackup</code> component is installed successfully:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">component</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">component_urn</span><span class="o">=</span><span class="s1">'file://component_mysqlbackup'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">component</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">component_urn</span><span class="o">=</span><span class="s1">'file://component_mysqlbackup'</span><span class="p">;</span>
 </code></pre></div>
 </li>
 </ol>
+<h2 id="start-page-tracking-manually">Start page tracking manually<a data-markdown-ignore class="headerlink" href="#start-page-tracking-manually" title="Permanent link">&para;</a></h2>
+<p>After the <code>mysqlbackup</code> component is active on the server, start page tracking
+with the following statement:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_set</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</code></pre></div>
+<p>Start page tracking before you take the first backup. This avoids a delay in
+the first full backup that uses page tracking. Without this statement, Percona
+XtraBackup can pause during that backup. The following is an example of the
+message:</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
+to reach to page tracking start lsn 21353759
+</code></pre></div>
+</details>
+<p>Early activation ensures that the page tracking log sequence number (LSN) is
+higher than the server checkpoint LSN.</p>
+<h2 id="check-the-lsn-value">Check the LSN value<a data-markdown-ignore class="headerlink" href="#check-the-lsn-value" title="Permanent link">&para;</a></h2>
+<p>Check the LSN where page tracking starts to track changed pages with the
+following statement:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_get_start_lsn</span><span class="p">();</span>
+</code></pre></div>
 <h2 id="use-page-tracking">Use page tracking<a data-markdown-ignore class="headerlink" href="#use-page-tracking" title="Permanent link">&para;</a></h2>
-<p>You can enable the page tracking functionality for the full and incremental
-backups with the <code>--page-tracking</code> option.</p>
+<p>Enable page tracking for full and incremental backups with the
+<code>--page-tracking</code> option.</p>
 <p>The option has the following benefits:</p>
 <ul>
 <li>
-<p>Resets page tracking to the start of the backup. This reset allows the next incremental backup to use page tracking.</p>
+<p>Resets page tracking to the start of the backup. This reset allows the next
+  incremental backup to use page tracking.</p>
 </li>
 <li>
-<p>Allows the use of page tracking for an incremental backup if the page tracking data is available from the backup’s start checkpoint LSN.</p>
+<p>Allows an incremental backup to use page tracking if tracking data exists
+  from the checkpoint LSN at backup start.</p>
 </li>
 </ul>
-<p>Percona XtraBackup processes a list of all the tracked pages in memory. If Percona XtraBackup does not have enough available memory to process this list, the process throws an error and exits. For example, if an incremental backup uses 200GB, Percona XtraBackup can use an additional 100MB of memory to process and store the page tracking data. </p>
-<p>The examples of creating full and incremental backups using the <code>--page-tracking</code> option:</p>
+<div class="admonition note">
+<p class="admonition-title">Memory requirements</p>
+<p>Percona XtraBackup processes a list of all the tracked pages in memory. If
+Percona XtraBackup does not have enough memory for this list, the process
+throws an error and exits. For example, an incremental backup of 200 GB can
+need an additional 100 MB of memory. The memory holds the page tracking
+data.</p>
+</div>
+<p>The following examples create full and incremental backups with the
+<code>--page-tracking</code> option:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_1_1">Full backup</label><label for="__tabbed_1_2">Incremental backup</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -6210,59 +6274,141 @@ backups with the <code>--page-tracking</code> option.</p>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$INC_BACKUP</span><span class="w">  </span>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_2_1">8.4.0-8 and later</label><label for="__tabbed_2_2">Earlier than 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$INC_BACKUP</span><span class="w"> </span><span class="se">\</span>
+--backup-incremental-base<span class="o">=</span><span class="nv">$FULL_BACKUP</span><span class="w"> </span>--page-tracking
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$INC_BACKUP</span><span class="w"> </span><span class="se">\</span>
 --incremental-basedir<span class="o">=</span><span class="nv">$FULL_BACKUP</span><span class="w"> </span>--page-tracking
 </code></pre></div>
 </div>
 </div>
 </div>
-<p>After enabling the functionality, the next incremental backup finds changed
-pages using page tracking.</p>
-<p>The first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:</p>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
-to reach to page tracking start lsn 21353759
+</div>
+</div>
+</div>
+<p>After you enable page tracking, the next incremental backup finds changed pages
+with page tracking.</p>
+<div class="admonition warning">
+<p class="admonition-title">Known issue</p>
+<p>You may generate a bad incremental backup that uses page tracking. The issue
+occurs when you build an index in place with an exclusive algorithm. The
+issue requires that you add the index to a table after the last LSN
+checkpoint. For details, see
+<a href="https://perconadev.atlassian.net/browse/PS-8032">PS-8032 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
+</div>
+<h2 id="reduce-read-requests-for-scattered-changed-pages">Reduce read requests for scattered changed pages<a data-markdown-ignore class="headerlink" href="#reduce-read-requests-for-scattered-changed-pages" title="Permanent link">&para;</a></h2>
+<p>During an incremental backup with page tracking, Percona XtraBackup reads only
+the pages that the server reports as changed. Percona XtraBackup reads
+consecutive changed pages together. Percona XtraBackup reads each scattered
+changed page on its own.</p>
+<p>Thousands of small reads take far longer than a few large reads. An incremental
+backup of a large tablespace can be slow even when little data changes.</p>
+<h3 id="merge-reads-across-gaps">Merge reads across gaps<a data-markdown-ignore class="headerlink" href="#merge-reads-across-gaps" title="Permanent link">&para;</a></h3>
+<p>Starting with Percona XtraBackup 8.4.0-7, the
+<a href="xtrabackup-option-reference.html#page-tracking-merge-gap"><code>--page-tracking-merge-gap</code></a>
+option lets Percona XtraBackup merge reads.</p>
+<p>When two changed pages are close, a read across the unchanged pages between
+them costs less than another read. Percona XtraBackup merges these reads
+automatically. Percona XtraBackup discards the extra pages when it writes the
+delta. The backup contents and size stay the same. Only the read pattern
+changes.</p>
+<p>With <code>auto</code>, Percona XtraBackup measures the storage once at the start of the
+backup. The measurement covers the time of one read request and the speed of
+sequential reads. From this measurement, Percona XtraBackup chooses the largest
+gap of unchanged pages that costs less to read than another request. The gap
+can differ for each tablespace. The gap depends on the tablespace page size.</p>
+<p>The <code>--page-tracking-merge-gap</code> option accepts the following values:</p>
+<ul>
+<li>
+<p><code>auto</code> (default): Omit the option, or set <code>--page-tracking-merge-gap=auto</code>.
+  Percona XtraBackup measures the storage and selects the gap.</p>
+</li>
+<li>
+<p>A page count, for example <code>8</code>: Percona XtraBackup reads changed pages in one
+  request when up to eight unchanged pages separate them. Percona XtraBackup
+  skips the measurement. For compressed tablespaces, Percona XtraBackup scales
+  the count to the physical page size. The byte limit stays the same. A fixed
+  value does not adapt to the storage. A fixed value can read far more data
+  than necessary. A fixed value can also split the reads into too many small
+  requests. Both cases slow the backup. Check the value again after a hardware
+  change.</p>
+</li>
+<li>
+<p><code>0</code>: Turns off the feature. Percona XtraBackup reads together only strictly
+  consecutive changed pages, as in releases before 8.4.0-7.</p>
+</li>
+</ul>
+<p>Use the <code>auto</code> default. Benchmark your own workload before you set a fixed
+value. Set a fixed value only if <code>auto</code> does not give the best result.</p>
+<p>To set a fixed gap, add the option to the incremental backup command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_3_1">8.4.0-8 and later</label><label for="__tabbed_3_2">Earlier than 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/inc1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--backup-incremental-base<span class="o">=</span>/data/full<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--page-tracking<span class="w"> </span>--page-tracking-merge-gap<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-</details>
-<p>Enable page tracking before creating the first backup to avoid this delay. This method ensures that the page tracking log sequence number (LSN) is higher than the checkpoint LSN of the server.</p>
-<p>See also <a href="xtrabackup-option-reference.html#page-tracking-merge-gap"><code>--page-tracking-merge-gap</code></a>.</p>
-<h2 id="start-page-tracking-manually">Start page tracking manually<a data-markdown-ignore class="headerlink" href="#start-page-tracking-manually" title="Permanent link">&para;</a></h2>
-<p>After the mysqlbackup component is loaded and active on the server, you can
-start page tracking manually with the following option:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_set</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/inc1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--incremental-basedir<span class="o">=</span>/data/full<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--page-tracking<span class="w"> </span>--page-tracking-merge-gap<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-<h2 id="check-the-lsn-value">Check the LSN value<a data-markdown-ignore class="headerlink" href="#check-the-lsn-value" title="Permanent link">&para;</a></h2>
-<p>Check the LSN value starting from which changed pages are tracked with the
-following option:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_get_start_lsn</span><span class="p">();</span>
-</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Merged reads can increase billed reads</p>
+<p>A merged read retrieves more bytes than the changed pages alone. Consider
+this effect if your storage provider charges for reads or limits read
+throughput. To avoid the extra reads, set the option to <code>0</code>.</p>
+</div>
+<h3 id="check-the-read-statistics">Check the read statistics<a data-markdown-ignore class="headerlink" href="#check-the-read-statistics" title="Permanent link">&para;</a></h3>
+<p>The backup log reports the storage measurement once. For each tablespace with
+at least 1000 changed pages, the backup log reports the following values:</p>
+<ul>
+<li>
+<p>Number of changed pages</p>
+</li>
+<li>
+<p>Number of reads before the merge</p>
+</li>
+<li>
+<p>Number of reads after the merge</p>
+</li>
+<li>
+<p>Resulting read amplification</p>
+</li>
+</ul>
+<p>If the typical gap in a table costs too much to merge, the backup log reports
+the gap. The backup log also suggests a value to set. Check these log lines
+when you compare a fixed value with <code>auto</code>.</p>
 <h2 id="stop-page-tracking">Stop page tracking<a data-markdown-ignore class="headerlink" href="#stop-page-tracking" title="Permanent link">&para;</a></h2>
-<p>To stop page tracking, use the following command:</p>
+<p>To stop page tracking, run the following statement:</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_set</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 </code></pre></div>
 <h2 id="purge-page-tracking-data">Purge page tracking data<a data-markdown-ignore class="headerlink" href="#purge-page-tracking-data" title="Permanent link">&para;</a></h2>
-<p>When you start page tracking, it creates a file under the server’s datadir
-to collect data about changed pages. This file grows until you stop the
-page tracking. If you stop the server and then restart it, page tracking
-creates a new file but also keeps the old one. The old file continues to
-grow until you stop the page tracking explicitly.</p>
-<p>If you purge the page tracking data, you should create a full backup
-afterward. To purge the page tracking data, do the following steps:</p>
+<p>Page tracking creates a file in the <code>datadir</code> of the server to collect data
+about changed pages. The file grows until you stop page tracking. If you stop
+and restart the server, page tracking creates another file. Page tracking also
+keeps the old file. The old file grows until you stop page tracking explicitly.</p>
+<p>Create a full backup after you purge the page tracking data. To purge the page
+tracking data, run the following statements:</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_set</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_purge_up_to</span><span class="p">(</span><span class="mi">9223372036854775807</span><span class="p">);</span>
-<span class="cm">/* Specify the LSN up to which you want to purge page tracking data. /</span>
-<span class="cm">9223372036854775807 is the highest possible LSN which purges all page tracking files.*/</span>
+<span class="cm">/* Specify the LSN up to which you want to purge page tracking data.</span>
+<span class="cm">9223372036854775807 is the highest possible LSN which purges all page</span>
+<span class="cm">tracking files. */</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_set</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
 </code></pre></div>
-<h2 id="known-issue">Known issue<a data-markdown-ignore class="headerlink" href="#known-issue" title="Permanent link">&para;</a></h2>
-<p>If the index is built in place using an exclusive algorithm and then is
-added to a table after the last LSN checkpoint, you may generate a bad
-incremental backup using page tracking. For more details
-see <a href="https://perconadev.atlassian.net/browse/PS-8032">PS-8032 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
-<h2 id="uninstall-the-mysqlbackup-component">Uninstall the mysqlbackup component<a data-markdown-ignore class="headerlink" href="#uninstall-the-mysqlbackup-component" title="Permanent link">&para;</a></h2>
-<p>To uninstall the mysqlbackup component, use the following statement:</p>
-<div class="highlight"><pre><span></span><code><span class="n">UNINSTALL</span><span class="w"> </span><span class="n">COMPONENT</span><span class="w"> </span><span class="ss">"file://component_mysqlbackup"</span>
+<h2 id="uninstall-the-mysqlbackup-component">Uninstall the <code>mysqlbackup</code> component<a data-markdown-ignore class="headerlink" href="#uninstall-the-mysqlbackup-component" title="Permanent link">&para;</a></h2>
+<p>To uninstall the <code>mysqlbackup</code> component, run the following statement:</p>
+<div class="highlight"><pre><span></span><code><span class="n">UNINSTALL</span><span class="w"> </span><span class="n">COMPONENT</span><span class="w"> </span><span class="ss">"file://component_mysqlbackup"</span><span class="p">;</span>
 </code></pre></div>
 
 
@@ -6286,7 +6432,7 @@ see <a href="https://perconadev.atlassian.net/browse/PS-8032">PS-8032 <span clas
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 15:52:02 UTC">October 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 23, 2026 11:36:17 UTC">November 23, 2026</span>
   </span>
 
     
@@ -6314,9 +6460,9 @@ see <a href="https://perconadev.atlassian.net/browse/PS-8032">PS-8032 <span clas
     
     <nav>
       
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
           
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
         </a>
       
         <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
@@ -6324,9 +6470,9 @@ see <a href="https://perconadev.atlassian.net/browse/PS-8032">PS-8032 <span clas
           <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
         </a>
       
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
           
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
         </a>
       
       

@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.2">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -9718,6 +9718,8 @@ both data files and their backup copies.</p></section><section class="print-page
 </table>
 <p>A DRP should be tailored to the specific needs of the organization and should be reviewed and tested regularly to ensure it remains effective and up-to-date.</p></section><section class="print-page" id="example-full-incr" heading-number="5.7"><h1 id="example-full-incr-backup-example">Backup example<a class="headerlink" href="#example-full-incr-backup-example" title="Permanent link">&para;</a></h1>
 <p>This example demonstrates how to set up daily full backups and hourly incremental backups using Percona XtraBackup 8.4 with a MySQL 8.4-compatible database server.</p>
+<h2 id="example-full-incr-version-changes">Version changes<a class="headerlink" href="#example-full-incr-version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="example-full-incr-assumptions">Assumptions<a class="headerlink" href="#example-full-incr-assumptions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Percona XtraBackup 8.4 is installed on your system.</li>
@@ -9775,7 +9777,49 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span>
 <div class="highlight"><pre><span></span><code><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/path/to/daily_full_backup.sh
 </code></pre></div>
 <h2 id="example-full-incr-hourly-incremental-backup-script">Hourly incremental backup script<a class="headerlink" href="#example-full-incr-hourly-incremental-backup-script" title="Permanent link">&para;</a></h2>
-<p>This script uses the same server details as the daily script. It retrieves the current date and hour for the incremental backup filename. The core command uses <code>xtrabackup</code> with the <code>--backup</code> and <code>--incremental</code> options for an incremental backup. <code>--target-dir</code> specifies the directory to store the incremental backup. <code>--incremental-basedir</code> must point to the base directory of a completed full or incremental backup. This example uses the <strong>most recent</strong> full backup as the base: <code>ls -t</code> lists full backups by modification time (newest first), and <code>head -n 1</code> selects that newest directory. The script checks that the base directory exists before running and reports success or failure based on the exit code.</p>
+<p>The hourly script uses the same server details as the daily script. The script uses the current date and hour to name the incremental backup directory. The core command runs <code>xtrabackup</code> with the <code>--backup</code> and <code>--incremental</code> options. <code>--target-dir</code> specifies the directory for the incremental backup. <code>--backup-incremental-base</code> must point to the directory of a completed full or incremental backup. The script uses the <strong>most recent</strong> full backup as the base: <code>ls -t</code> lists full backups by modification time (newest first), and <code>head -n 1</code> selects the newest directory. Before the backup, the script checks that the base directory exists. After the backup, the script reports success or failure based on the exit code.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="example-full-incr-__tabbed_1_1" name="example-full-incr-__tabbed_1" type="radio" /><input id="example-full-incr-__tabbed_1_2" name="example-full-incr-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="example-full-incr-__tabbed_1_1">Percona XtraBackup 8.4.0-8 and later</label><label for="example-full-incr-__tabbed_1_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Set server details (same as daily script)</span>
+<span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">"your_server_hostname"</span>
+<span class="nv">SERVER_USER</span><span class="o">=</span><span class="s2">"your_db_username"</span>
+<span class="nv">SERVER_PASSWORD</span><span class="o">=</span><span class="s2">"your_db_password"</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">"/var/lib/mysql"</span><span class="w">          </span><span class="c1"># Replace with your data directory path</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/backups/mysql/incr"</span>
+
+<span class="c1"># Get current date and hour for filename</span>
+<span class="nv">TODAY</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span>
+<span class="nv">HOUR</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%H<span class="k">)</span><span class="w">                  </span><span class="c1"># Get current hour (00-23)</span>
+<span class="nv">INCR_BACKUP_FILENAME</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">TODAY</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">HOUR</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># Set the base directory to the most recent full backup (newest first: ls -t, then head -n 1)</span>
+<span class="nv">LATEST_FULL</span><span class="o">=</span><span class="k">$(</span>ls<span class="w"> </span>-t<span class="w"> </span>/backups/mysql/full<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">LATEST_FULL</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"No full backup found; cannot take incremental backup"</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+<span class="nv">BASE_DIR</span><span class="o">=</span><span class="s2">"/backups/mysql/full/</span><span class="si">${</span><span class="nv">LATEST_FULL</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># Ensure target directory exists</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># Run xtrabackup with incremental backup command</span>
+<span class="k">if</span><span class="w"> </span>xtrabackup<span class="w"> </span>--backup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--incremental<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">INCR_BACKUP_FILENAME</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--backup-incremental-base<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_USER</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--password<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SERVER_PASSWORD</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hourly incremental backup completed at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hourly incremental backup FAILED at </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="c1"># Set server details (same as daily script)</span>
 <span class="nv">SERVER_HOST</span><span class="o">=</span><span class="s2">"your_server_hostname"</span>
@@ -9813,6 +9857,9 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span>
 <span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="k">fi</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Incremental base directory</p>
 <p>For a chain of incremental backups, you can set the base to the most recent incremental backup directory instead of the full backup, so each incremental is based on the previous one. The example above bases each hourly backup on the latest full backup for simplicity.</p>
@@ -9952,6 +9999,8 @@ the warm state after backup is restored.</p>
 <p>Find the information on how to save and restore the buffer pool dump in <a href="https://dev.mysql.com/doc/refman/8.4/en/innodb-preload-buffer-pool.html">Saving and Restoring the Buffer Pool State <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p></section><section class="print-page" id="throttling-backups" heading-number="6.1.2"><h1 id="throttling-backups-throttling-backups">Throttling backups<a class="headerlink" href="#throttling-backups-throttling-backups" title="Permanent link">&para;</a></h1>
 <p>xtrabackup does not block database activity during a backup, but xtrabackup generates additional disk input/output (I/O) activity. On systems with limited I/O capacity, this can affect database performance.</p>
 <p>Use the <a href="#xtrabackup-option-reference-throttle"><code>--throttle</code></a> option to limit the backup rate.</p>
+<h2 id="throttling-backups-version-changes">Version changes<a class="headerlink" href="#throttling-backups-version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="throttling-backups-how-throttling-works">How throttling works<a class="headerlink" href="#throttling-backups-how-throttling-works" title="Permanent link">&para;</a></h2>
 <p>Use the <code>--throttle</code> option to minimize backup impact on system performance. By limiting the number of <strong>10 MB chunks</strong> processed per second, you primarily limit data throughput, which in turn reduces overall I/O pressure on the system.</p>
 <p>When used with the <code>--backup</code> option, <code>--throttle</code> limits the rate of read and write operations performed during the copy process. For incremental backups, the limit applies only to read operations.</p>
@@ -10164,12 +10213,26 @@ xtrabackup: completed OK!
 </details>
 <h3 id="throttling-backups-incremental-backup-with-throttling">Incremental backup with throttling<a class="headerlink" href="#throttling-backups-incremental-backup-with-throttling" title="Permanent link">&para;</a></h3>
 <p>For incremental backups, the limit applies only to read operations. Redo log copying continues independently and may become a bottleneck if the backup is throttled too aggressively.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="throttling-backups-__tabbed_1_1" name="throttling-backups-__tabbed_1" type="radio" /><input id="throttling-backups-__tabbed_1_2" name="throttling-backups-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="throttling-backups-__tabbed_1_1">Percona XtraBackup 8.4.0-8 and later</label><label for="throttling-backups-__tabbed_1_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--backup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-dir<span class="o">=</span>/backups/inc1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--backup-incremental-base<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--throttle<span class="o">=</span><span class="m">5</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--backup<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--target-dir<span class="o">=</span>/backups/inc1<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--incremental-basedir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--throttle<span class="o">=</span><span class="m">5</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <details class="example">
 <summary>Expected output</summary>
 <div class="highlight"><pre><span></span><code>xtrabackup: Starting incremental backup
@@ -10195,7 +10258,7 @@ incremental backup to be made based on a specific history series by
 name. <em>xtrabackup</em> will search the history table looking for the most recent
 (highest <code>to_lsn</code>) backup in the series and take the <code>to_lsn</code> value to use
 as it’s starting lsn. This is mutually exclusive with
-<code>--incremental-history-uuid</code>, <code>--incremental-basedir</code> and
+<code>--incremental-history-uuid</code>, <code>--backup-incremental-base</code> and
 <code>--incremental-lsn</code> options. If no valid LSN can be found
 (no series by that name) <em>xtrabackup</em> will return with an error.</p>
 </li>
@@ -10204,7 +10267,7 @@ as it’s starting lsn. This is mutually exclusive with
 be made based on a specific history record identified by UUID. <em>xtrabackup</em>
 will search the history table looking for the record matching UUID and take
 the <code>to_lsn</code> value to use as it’s starting LSN. This options is mutually
-exclusive with <code>--incremental-basedir</code>, <code>--incremental-lsn</code>
+exclusive with <code>--backup-incremental-base</code>, <code>--incremental-lsn</code>
 and <code>--incremental-history-name</code> options. If no valid LSN can be found
 (no record by that UUID or missing <code>to_lsn</code>), <em>xtrabackup</em> will return
 with an error.</p>
@@ -10221,6 +10284,8 @@ some catastrophic event, you will need to either perform a <code>mysqldump</code
 partial backup or <code>SELECT</code> * on the history table after <em>xtrabackup</em>
 completes and store the results with you backup set.</p>
 <p>For the necessary privileges, see Permissions and Privileges Needed.</p>
+<h3 id="store-backup-history-version-changes">Version changes<a class="headerlink" href="#store-backup-history-version-changes" title="Permanent link">&para;</a></h3>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h3 id="store-backup-history-percona_schemaxtrabackup_history-table">PERCONA_SCHEMA.XTRABACKUP_HISTORY table<a class="headerlink" href="#store-backup-history-percona_schemaxtrabackup_history-table" title="Permanent link">&para;</a></h3>
 <p>This table contains the information about the previous server
 backups. Information about the backups will only be written if the backup was
@@ -11798,6 +11863,8 @@ time between retries.</p>
                         </h1>
                     <section class="print-page" id="binaries-overview" heading-number="7.1"><h1 id="binaries-overview-percona-xtrabackup-binaries-overview">Percona XtraBackup binaries overview<a class="headerlink" href="#binaries-overview-percona-xtrabackup-binaries-overview" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup provides a comprehensive suite of command-line tools for MySQL database backup and recovery operations. This document introduces the four core binaries that form the foundation of Percona XtraBackup&rsquo;s functionality, helping you understand when and how to use each tool effectively.</p>
+<h2 id="binaries-overview-version-changes">Version changes<a class="headerlink" href="#binaries-overview-version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="binaries-overview-prerequisites">Prerequisites<a class="headerlink" href="#binaries-overview-prerequisites" title="Permanent link">&para;</a></h2>
 <p>Before using Percona XtraBackup binaries, ensure you have:</p>
 <ul>
@@ -11846,6 +11913,20 @@ time between retries.</p>
 </ul>
 <p>Basic Syntax:</p>
 <p>Run the following commands as root or use the sudo command.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="binaries-overview-__tabbed_1_1" name="binaries-overview-__tabbed_1" type="radio" /><input id="binaries-overview-__tabbed_1_2" name="binaries-overview-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="binaries-overview-__tabbed_1_1">Percona XtraBackup 8.4.0-8 and later</label><label for="binaries-overview-__tabbed_1_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a full backup</span>
+xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
+
+<span class="c1"># Create an incremental backup</span>
+xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backup/inc1<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/backup/full
+
+<span class="c1"># Prepare a backup for restore</span>
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># Create a full backup</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
 
@@ -11855,6 +11936,9 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<s
 <span class="c1"># Prepare a backup for restore</span>
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>Documentation: <a href="#xtrabackup-binary-overview">xtrabackup Overview</a></p>
 <p>Command Line Options: <a href="#xtrabackup-option-reference">xtrabackup Options</a></p>
 <h3 id="binaries-overview-xbcloud">xbcloud<a class="headerlink" href="#binaries-overview-xbcloud" title="Permanent link">&para;</a></h3>
@@ -12294,6 +12378,11 @@ backup. It is essential for incremental backups.</p>
 <h3 id="xtrabackup-option-reference-backup">backup<a class="headerlink" href="#xtrabackup-option-reference-backup" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup</code></p>
 <p>Make a backup and place it in <code>--target-dir</code>. See <a href="#create-full-backup">Create a full backup</a></p>
+<h3 id="xtrabackup-option-reference-backup-incremental-base">backup-incremental-base<a class="headerlink" href="#xtrabackup-option-reference-backup-incremental-base" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--backup-incremental-base=DIRECTORY</code></p>
+<p>Introduced in Percona XtraBackup 8.4.0-8.</p>
+<p>Specifies the directory with the base backup for an incremental backup. The base backup can be a full backup or an earlier incremental backup. Use the option with <code>--backup</code>.</p>
+<p>The <code>--backup-incremental-base</code> option replaces the deprecated <a href="#xtrabackup-option-reference-incremental-basedir"><code>--incremental-basedir</code></a> option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h3 id="xtrabackup-option-reference-backup-lock-timeout">backup-lock-timeout<a class="headerlink" href="#xtrabackup-option-reference-backup-lock-timeout" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--backup-lock-timeout</code></p>
 <p>The timeout in seconds for attempts to acquire metadata locks.</p>
@@ -12551,9 +12640,11 @@ connecting to the database server with TCP/IP. It is passed to the mysql
 child process without alteration. See mysql &ndash;help for details.</p>
 <h3 id="xtrabackup-option-reference-incremental-basedir">incremental-basedir<a class="headerlink" href="#xtrabackup-option-reference-incremental-basedir" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-basedir=DIRECTORY</code></p>
+<p>Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option. Use <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a> instead.</p>
 <p>This is the directory that contains the full backup, which is the base dataset for the incremental backups.</p>
 <h3 id="xtrabackup-option-reference-incremental-dir">incremental-dir<a class="headerlink" href="#xtrabackup-option-reference-incremental-dir" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-dir=DIRECTORY</code></p>
+<p>Deprecated in Percona XtraBackup 8.4.0-8. A future release will remove the option. Use <a href="#xtrabackup-option-reference-prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a> instead.</p>
 <p>This is the directory where the incremental backup is combined with the full backup to make a new full backup.</p>
 <h3 id="xtrabackup-option-reference-incremental-force-scan">incremental-force-scan<a class="headerlink" href="#xtrabackup-option-reference-incremental-force-scan" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-force-scan</code></p>
@@ -12566,7 +12657,7 @@ that instance.</p>
 recent (highest <code>innodb_to_lsn</code>), successful backup in the series and takes the <code>to_lsn`` value to use as the starting</code>lsn` for the incremental
 backup.</p>
 <p>This options is mutually exclusive with
-<a href="#xtrabackup-option-reference-incremental-history-uuid"><code>--incremental-history-uuid</code></a>, <a href="#xtrabackup-option-reference-incremental-basedir"><code>--incremental-basedir</code></a>, and
+<a href="#xtrabackup-option-reference-incremental-history-uuid"><code>--incremental-history-uuid</code></a>, <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a>, and
 <a href="#xtrabackup-option-reference-incremental-lsn"><code>--incremental-lsn</code></a>.</p>
 <p>If no valid lsn can be found, either no series by that
 name or no successful backups by that name, xtrabackup returns an
@@ -12575,14 +12666,14 @@ error.</p>
 <h3 id="xtrabackup-option-reference-incremental-history-uuid">incremental-history-uuid<a class="headerlink" href="#xtrabackup-option-reference-incremental-history-uuid" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-history-uuid=name</code></p>
 <p>This option specifies the Universal Unique Identifier (UUID) of the history record in <code>PERCONA_SCHEMA.xtrabackup_history</code> used as the base for an incremental backup.</p>
-<p>This options is mutually exclusive with <a href="#xtrabackup-option-reference-incremental-history-name"><code>--incremental-history-name</code></a>, <a href="#xtrabackup-option-reference-incremental-basedir"><code>--incremental-basedir</code></a>, and
+<p>This options is mutually exclusive with <a href="#xtrabackup-option-reference-incremental-history-name"><code>--incremental-history-name</code></a>, <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a>, and
 <a href="#xtrabackup-option-reference-incremental-lsn"><code>--incremental-lsn</code></a>.</p>
 <p>If there is no success record with that UUID, xtrabackup returns an error.</p>
 <p>The option is used with the <code>-–incremental</code> option.</p>
 <h3 id="xtrabackup-option-reference-incremental-lsn">incremental-lsn<a class="headerlink" href="#xtrabackup-option-reference-incremental-lsn" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--incremental-lsn=LSN</code></p>
 <p>When creating an incremental backup, you can specify the log sequence number
-(LSN), a single 64-bit integer, instead of the  <a href="#xtrabackup-option-reference-incremental-basedir"><code>--incremental-basedir</code></a>.</p>
+(LSN), a single 64-bit integer, instead of the  <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Percona XtraBackup does not detect if an incorrect LSN value is specified; the backup is unusable. Be careful!</p>
@@ -12748,28 +12839,9 @@ a random UUID; no client information is collected or stored.</p>
 <p>Usage: <code>--open-files-limit=#</code></p>
 <p>The maximum number of file descriptors to reserve with <a href="https://man7.org/linux/man-pages/man2/setrlimit.2.html">setrlimit <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>git.</p>
 <h3 id="xtrabackup-option-reference-page-tracking-merge-gap">page-tracking-merge-gap<a class="headerlink" href="#xtrabackup-option-reference-page-tracking-merge-gap" title="Permanent link">&para;</a></h3>
-<p>Controls how Percona XtraBackup combines reads of changed pages during incremental backups with page tracking.</p>
-<p>The default value, auto, measures storage performance at the start of the backup and determines the appropriate gap for each tablespace based on the storage characteristics and page size.</p>
-<p>The option accepts the following values:</p>
-<ul>
-<li>
-<p>auto (default) — automatically determines the appropriate gap for each tablespace. This is the recommended setting for most workloads.</p>
-</li>
-<li>
-<p>A positive integer, such as 8 — combines changed pages separated by up to the specified number of unchanged pages into a single read request. The same value applies to all tablespaces. Use a fixed value only after benchmarking your workload. A value that is too large can cause XtraBackup to read unnecessary data, while a value that is too small can result in more individual read requests.</p>
-<p>For example:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/inc1<span class="w"> </span><span class="se">\</span>
---incremental-basedir<span class="o">=</span>/data/full<span class="w"> </span><span class="se">\</span>
---page-tracking<span class="w"> </span><span class="se">\</span>
---page-tracking-merge-gap<span class="o">=</span><span class="m">8</span>
-</code></pre></div>
-</li>
-<li>
-<p>0 — disables merging of non-consecutive changed pages. Only consecutive changed pages are read together.</p>
-</li>
-</ul>
-<p>The backup log reports the storage measurement once and, for each tablespace with at least 1000 changed pages, reports the number of changed pages, the number of read requests before and after combining pages, and the resulting read amplification. Use these messages to evaluate a fixed value against the auto setting.</p>
-<p>Combining reads can cause XtraBackup to read unchanged pages between changed pages. This can increase the amount of data read during the backup. If storage bandwidth is metered or constrained, consider setting <code>--page-tracking-merge-gap=0</code>.</p>
+<p>Usage: <code>--page-tracking-merge-gap=auto|N</code></p>
+<p>Introduced in Percona XtraBackup 8.4.0-7.</p>
+<p>Controls the largest gap between two changed pages that Percona XtraBackup reads in a single request during an incremental backup with page tracking. The option accepts <code>auto</code> or a page count from <code>0</code> to <code>65536</code>. A page count is measured in <code>innodb_page_size</code> pages. The default value is <code>auto</code>. With <code>auto</code>, you do not choose a page count. Percona XtraBackup measures the storage at the start of the backup and selects the gap. Omit the option, or set <code>--page-tracking-merge-gap=auto</code>. For details, see <a href="#page-tracking-merge-reads-across-gaps">Merge reads across gaps</a>.</p>
 <h3 id="xtrabackup-option-reference-parallel">parallel<a class="headerlink" href="#xtrabackup-option-reference-parallel" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--parallel=#</code></p>
 <p>The <code>--parallel</code> option specifies the number of threads to use to copy multiple data
@@ -12795,6 +12867,11 @@ main thread).</p>
 <p>Usage: <code>--prepare</code></p>
 <p>Makes xtrabackup perform a recovery on a backup created with <code>--backup</code>, so that the backup data is ready to use.</p>
 <p>For details, see <a href="#prepare-full-backup">Prepare a full backup</a>.</p>
+<h3 id="xtrabackup-option-reference-prepare-incremental-from-dir">prepare-incremental-from-dir<a class="headerlink" href="#xtrabackup-option-reference-prepare-incremental-from-dir" title="Permanent link">&para;</a></h3>
+<p>Usage: <code>--prepare-incremental-from-dir=DIRECTORY</code></p>
+<p>Introduced in Percona XtraBackup 8.4.0-8.</p>
+<p>Specifies the directory with the incremental backup that Percona XtraBackup applies to the full backup. Use the option with <code>--prepare</code>.</p>
+<p>The <code>--prepare-incremental-from-dir</code> option replaces the deprecated <a href="#xtrabackup-option-reference-incremental-dir"><code>--incremental-dir</code></a> option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h3 id="xtrabackup-option-reference-print-defaults">print-defaults<a class="headerlink" href="#xtrabackup-option-reference-print-defaults" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--print-defaults</code></p>
 <p>Prints the program argument list and exit and must be the first option on the command line.</p>
@@ -13145,6 +13222,9 @@ option</p>
 <h2 id="xbcloud-binary-overview-whats-in-this-document">What&rsquo;s in this document<a class="headerlink" href="#xbcloud-binary-overview-whats-in-this-document" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
+<p><a href="#xbcloud-binary-overview-version-changes">Version changes</a> - Option changes in recent releases</p>
+</li>
+<li>
 <p><a href="#xbcloud-binary-overview-what-xbcloud-does">What xbcloud does</a> - Core operations and capabilities</p>
 </li>
 <li>
@@ -13163,6 +13243,8 @@ option</p>
 <p><a href="#xbcloud-binary-overview-advanced-usage-patterns">Advanced usage patterns</a> - Incremental backups and partial restore</p>
 </li>
 </ul>
+<h2 id="xbcloud-binary-overview-version-changes">Version changes<a class="headerlink" href="#xbcloud-binary-overview-version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a> and the <code>--incremental-dir</code> option to <a href="#xtrabackup-option-reference-prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a>. Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="xbcloud-binary-overview-what-xbcloud-does">What xbcloud does<a class="headerlink" href="#xbcloud-binary-overview-what-xbcloud-does" title="Permanent link">&para;</a></h2>
 <p>xbcloud provides three essential operations:</p>
 <ul>
@@ -13214,10 +13296,22 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 3. Uploads the backup to the S3 bucket with a timestamped name</p>
 <h3 id="xbcloud-binary-overview-creating-an-incremental-backup">Creating an incremental backup<a class="headerlink" href="#xbcloud-binary-overview-creating-an-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="xbcloud-binary-overview-__tabbed_1_1" name="xbcloud-binary-overview-__tabbed_1" type="radio" /><input id="xbcloud-binary-overview-__tabbed_1_2" name="xbcloud-binary-overview-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="xbcloud-binary-overview-__tabbed_1_1">Percona XtraBackup 8.4.0-8 and later</label><label for="xbcloud-binary-overview-__tabbed_1_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/tmp/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>inc_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M<span class="k">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>inc_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M<span class="k">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="xbcloud-binary-overview-restoring-from-cloud-storage">Restoring from cloud storage<a class="headerlink" href="#xbcloud-binary-overview-restoring-from-cloud-storage" title="Permanent link">&para;</a></h3>
 <p>To restore a backup, download it from cloud storage and prepare it:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Download the backup</span>
@@ -13420,13 +13514,47 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 full_backup_20240101
 </code></pre></div>
 <h4 id="xbcloud-binary-overview-step-2-create-incremental-backups">Step 2: Create incremental backups<a class="headerlink" href="#xbcloud-binary-overview-step-2-create-incremental-backups" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="xbcloud-binary-overview-__tabbed_2_1" name="xbcloud-binary-overview-__tabbed_2" type="radio" /><input id="xbcloud-binary-overview-__tabbed_2_2" name="xbcloud-binary-overview-__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="xbcloud-binary-overview-__tabbed_2_1">Percona XtraBackup 8.4.0-8 and later</label><label for="xbcloud-binary-overview-__tabbed_2_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/base<span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+inc_backup_20240101_1200
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/tmp/base<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 inc_backup_20240101_1200
 </code></pre></div>
+</div>
+</div>
+</div>
 <h4 id="xbcloud-binary-overview-step-3-restore-incremental-backups">Step 3: Restore incremental backups<a class="headerlink" href="#xbcloud-binary-overview-step-3-restore-incremental-backups" title="Permanent link">&para;</a></h4>
 <p>To restore from incremental backups, you must download and prepare them in sequence:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="xbcloud-binary-overview-__tabbed_3_1" name="xbcloud-binary-overview-__tabbed_3" type="radio" /><input id="xbcloud-binary-overview-__tabbed_3_2" name="xbcloud-binary-overview-__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="xbcloud-binary-overview-__tabbed_3_1">Percona XtraBackup 8.4.0-8 and later</label><label for="xbcloud-binary-overview-__tabbed_3_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># Download and prepare the full backup</span>
+xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+full_backup_20240101<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/restore
+
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
+
+<span class="c1"># Download and apply the incremental backup</span>
+xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+inc_backup_20240101_1200<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/inc1
+
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/tmp/inc1
+
+<span class="c1"># Final prepare step</span>
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># Download and prepare the full backup</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 full_backup_20240101<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/restore
@@ -13443,15 +13571,32 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-o
 <span class="c1"># Final prepare step</span>
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
 </code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the <code>--parallel</code> option to process delta files concurrently. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="xbcloud-binary-overview-__tabbed_4_1" name="xbcloud-binary-overview-__tabbed_4" type="radio" /><input id="xbcloud-binary-overview-__tabbed_4_2" name="xbcloud-binary-overview-__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="xbcloud-binary-overview-__tabbed_4_1">Percona XtraBackup 8.4.0-8 and later</label><label for="xbcloud-binary-overview-__tabbed_4_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 </div>
 <h3 id="xbcloud-binary-overview-partial-restore_1">Partial restore<a class="headerlink" href="#xbcloud-binary-overview-partial-restore_1" title="Permanent link">&para;</a></h3>
 <p>You can restore specific tables without downloading the entire backup:</p>
@@ -16611,6 +16756,8 @@ number, or LSN. The LSN is the system version number for the
 entire database. Each page’s LSN shows how recently it was changed.</p>
 <p>An incremental backup copies each page which LSN is newer than the
 previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.</p>
+<h2 id="create-incremental-backup-version-changes">Version changes<a class="headerlink" href="#create-incremental-backup-version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a>. Percona XtraBackup still accepts <code>--incremental-basedir</code> but prints a deprecation warning. A future release will remove <code>--incremental-basedir</code>, so update your scripts to use <code>--backup-incremental-base</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="create-incremental-backup-create-an-incremental-backup_1">Create an incremental backup<a class="headerlink" href="#create-incremental-backup-create-an-incremental-backup_1" title="Permanent link">&para;</a></h2>
 <p>To make an incremental backup, begin with a full backup as usual. The
 xtrabackup binary writes a file called <code>xtrabackup_checkpoints</code> into
@@ -16634,9 +16781,20 @@ redo_frames = 0
 </code></pre></div>
 </details>
 <p>Now that you have a full backup, you can make an incremental backup based on it. Use the following command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="create-incremental-backup-__tabbed_1_1" name="create-incremental-backup-__tabbed_1" type="radio" /><input id="create-incremental-backup-__tabbed_1_2" name="create-incremental-backup-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="create-incremental-backup-__tabbed_1_1">Percona XtraBackup 8.4.0-8 and later</label><label for="create-incremental-backup-__tabbed_1_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
+--backup-incremental-base<span class="o">=</span>/data/backups/base
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
 --incremental-basedir<span class="o">=</span>/data/backups/base
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>The <code>/data/backups/inc1/</code> directory should now contain delta files, such
 as <code>ibdata1.delta</code> and <code>test/table1.ibd.delta</code>. These represent the
 changes since the <code>LSN 1626007</code>. If you examine the
@@ -16655,9 +16813,20 @@ redo_frames = 0
 </details>
 <p><code>from_lsn</code> is the starting LSN of the backup and for incremental it has to be the same as <code>to_lsn</code> (if it is the last checkpoint) of the previous/base backup.</p>
 <p>It’s now possible to use this directory as the base for yet another incremental backup:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="create-incremental-backup-__tabbed_2_1" name="create-incremental-backup-__tabbed_2" type="radio" /><input id="create-incremental-backup-__tabbed_2_2" name="create-incremental-backup-__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="create-incremental-backup-__tabbed_2_1">Percona XtraBackup 8.4.0-8 and later</label><label for="create-incremental-backup-__tabbed_2_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
+--backup-incremental-base<span class="o">=</span>/data/backups/inc1
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
 --incremental-basedir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>This folder also contains the <code>xtrabackup_checkpoints</code>:</p>
 <details class="example">
 <summary>Expected output</summary>
@@ -16706,6 +16875,8 @@ redo_frames = 0
 <li>Apply each intermediate incremental backup in order with <code>--apply-log-only</code>.</li>
 <li>Apply the final incremental backup without <code>--apply-log-only</code>.</li>
 </ol>
+<h2 id="prepare-incremental-backup-version-changes">Version changes<a class="headerlink" href="#prepare-incremental-backup-version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-dir</code> option to <a href="#xtrabackup-option-reference-prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a>. Percona XtraBackup still accepts <code>--incremental-dir</code> but prints a deprecation warning. A future release will remove <code>--incremental-dir</code>, so update your scripts to use <code>--prepare-incremental-from-dir</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="prepare-incremental-backup-prepare-the-full-backup">Prepare the full backup<a class="headerlink" href="#prepare-incremental-backup-prepare-the-full-backup" title="Permanent link">&para;</a></h2>
 <p>Start by preparing the full backup with <code>--apply-log-only</code> to prevent the rollback phase:</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
@@ -16731,10 +16902,21 @@ redo_frames = 0
 <p>Percona XtraBackup applies the changes from each incremental backup to <code>/data/backups/base</code>. The incremental directories contain the changes to apply, but the resulting prepared backup remains in the full backup directory.</p>
 <h3 id="prepare-incremental-backup-apply-the-first-incremental-backup">Apply the first incremental backup<a class="headerlink" href="#prepare-incremental-backup-apply-the-first-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>Apply the first incremental backup to the full backup:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="prepare-incremental-backup-__tabbed_1_1" name="prepare-incremental-backup-__tabbed_1" type="radio" /><input id="prepare-incremental-backup-__tabbed_1_2" name="prepare-incremental-backup-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="prepare-incremental-backup-__tabbed_1_1">Percona XtraBackup 8.4.0-8 and later</label><label for="prepare-incremental-backup-__tabbed_1_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc1
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
-<p><code>--target-dir</code> points to the full backup that you are preparing. <code>--incremental-dir</code> points to the incremental backup whose changes you want to apply.</p>
+</div>
+</div>
+</div>
+<p><code>--target-dir</code> points to the full backup that you are preparing. <code>--prepare-incremental-from-dir</code> points to the incremental backup whose changes you want to apply.</p>
 <p>The command applies the delta files from <code>/data/backups/inc1</code> to the files in <code>/data/backups/base</code>, moving the full backup forward to the state of the first incremental backup. Percona XtraBackup then applies the redo log.</p>
 <p>Because another incremental backup follows <code>inc1</code>, use <code>--apply-log-only</code> to prevent the rollback phase.</p>
 <p>The final data remains in <code>/data/backups/base</code>, not in the incremental directory.</p>
@@ -16754,12 +16936,23 @@ redo_frames = 0
 </details>
 <p>The LSN should match the LSN from the first incremental backup. At this point, <code>/data/backups/base</code> contains the state of the database as of the first incremental backup.</p>
 <h3 id="prepare-incremental-backup-apply-the-final-incremental-backup">Apply the final incremental backup<a class="headerlink" href="#prepare-incremental-backup-apply-the-final-incremental-backup" title="Permanent link">&para;</a></h3>
-<p>Percona XtraBackup does not support using the same incremental backup directory to prepare two copies of a backup. Do not run <code>--prepare</code> with the same incremental backup directory (the value of <code>--incremental-dir</code>) more than once.</p>
+<p>Percona XtraBackup does not support using the same incremental backup directory to prepare two copies of a backup. Do not run <code>--prepare</code> with the same incremental backup directory (the value of <code>--prepare-incremental-from-dir</code>) more than once.</p>
 <p>After applying <code>/data/backups/inc1</code>, apply <code>/data/backups/inc2</code> to the same base backup.</p>
 <p>In this example, <code>inc2</code> is the final incremental backup. Apply it without <code>--apply-log-only</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="prepare-incremental-backup-__tabbed_2_1" name="prepare-incremental-backup-__tabbed_2" type="radio" /><input id="prepare-incremental-backup-__tabbed_2_2" name="prepare-incremental-backup-__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="prepare-incremental-backup-__tabbed_2_1">Percona XtraBackup 8.4.0-8 and later</label><label for="prepare-incremental-backup-__tabbed_2_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc2
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>The command applies the changes from <code>inc2</code> to <code>/data/backups/base</code> and completes the prepare process.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -16783,24 +16976,57 @@ inc3    → final incremental, no --apply-log-only
 <p>Note that each thread operates on a single file. If you have a large delta file, there is still only one thread that processes that <code>.delta</code> file. Parallelization occurs at the file level, not within individual files.</p>
 </div>
 <p>To apply an intermediate incremental backup with four worker threads, run:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="prepare-incremental-backup-__tabbed_3_1" name="prepare-incremental-backup-__tabbed_3" type="radio" /><input id="prepare-incremental-backup-__tabbed_3_2" name="prepare-incremental-backup-__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="prepare-incremental-backup-__tabbed_3_1">Percona XtraBackup 8.4.0-8 and later</label><label for="prepare-incremental-backup-__tabbed_3_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc1
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>You can also use <code>--parallel</code> when applying the final incremental backup. Omit <code>--apply-log-only</code> for the final step:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="prepare-incremental-backup-__tabbed_4_1" name="prepare-incremental-backup-__tabbed_4" type="radio" /><input id="prepare-incremental-backup-__tabbed_4_2" name="prepare-incremental-backup-__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="prepare-incremental-backup-__tabbed_4_1">Percona XtraBackup 8.4.0-8 and later</label><label for="prepare-incremental-backup-__tabbed_4_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc2
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="prepare-incremental-backup-next-step">Next step<a class="headerlink" href="#prepare-incremental-backup-next-step" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="#restore-a-backup">Restore the backup</a></p></section><section class="print-page" id="page-tracking" heading-number="9.2.3"><h1 id="page-tracking-take-an-incremental-backup-using-page-tracking">Take an incremental backup using page tracking<a class="headerlink" href="#page-tracking-take-an-incremental-backup-using-page-tracking" title="Permanent link">&para;</a></h1>
 <p>To create an incremental backup with page tracking, Percona XtraBackup uses
 the MySQL <code>mysqlbackup</code> component. This component provides a list of pages
-modified since the last backup, and Percona XtraBackup copies only those
-pages. This operation removes the need to scan the pages in the
-database. If the majority of pages have not been modified, the page
-tracking feature can improve the speed of incremental backups.</p>
-<p>Run the following commands as root or use the sudo command.</p>
+modified since the last backup. Percona XtraBackup copies only those pages.
+This operation removes the need to scan the pages in the database.</p>
+<p>Page tracking can improve the speed of incremental backups. The speed depends
+on the number of read requests, not on the number of changed pages. For the
+effect of scattered changed pages, see
+<a href="#page-tracking-reduce-read-requests-for-scattered-changed-pages">Reduce read requests for scattered changed pages</a>.</p>
+<p>Run the following commands as root or use the <code>sudo</code> command.</p>
+<h2 id="page-tracking-version-changes">Version changes<a class="headerlink" href="#page-tracking-version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to
+<a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a>.
+Percona XtraBackup still accepts <code>--incremental-basedir</code>. Percona XtraBackup
+prints a deprecation warning when you use it. A future release removes
+<code>--incremental-basedir</code>, so update your scripts to use
+<code>--backup-incremental-base</code>.</p>
+<p>If you pass both options in the same command, Percona XtraBackup reports an
+error. Percona XtraBackup does not start the backup.</p>
 <h2 id="page-tracking-install-the-component">Install the component<a class="headerlink" href="#page-tracking-install-the-component" title="Permanent link">&para;</a></h2>
-<p class="power-number">To start using the page tracking functionality, do the following:</p>
+<p class="power-number">To use page tracking, do the following:</p>
 <ol>
 <li>
 <p>Install the <code>mysqlbackup</code> component and enable it on the server:</p>
@@ -16809,24 +17035,57 @@ tracking feature can improve the speed of incremental backups.</p>
 </li>
 <li>
 <p>Check whether the <code>mysqlbackup</code> component is installed successfully:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">component</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">component_urn</span><span class="o">=</span><span class="s1">'file://component_mysqlbackup'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">component</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">component_urn</span><span class="o">=</span><span class="s1">'file://component_mysqlbackup'</span><span class="p">;</span>
 </code></pre></div>
 </li>
 </ol>
+<h2 id="page-tracking-start-page-tracking-manually">Start page tracking manually<a class="headerlink" href="#page-tracking-start-page-tracking-manually" title="Permanent link">&para;</a></h2>
+<p>After the <code>mysqlbackup</code> component is active on the server, start page tracking
+with the following statement:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_set</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</code></pre></div>
+<p>Start page tracking before you take the first backup. This avoids a delay in
+the first full backup that uses page tracking. Without this statement, Percona
+XtraBackup can pause during that backup. The following is an example of the
+message:</p>
+<details class="example">
+<summary>Expected output</summary>
+<div class="no-copy highlight"><pre><span></span><code>xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
+to reach to page tracking start lsn 21353759
+</code></pre></div>
+</details>
+<p>Early activation ensures that the page tracking log sequence number (LSN) is
+higher than the server checkpoint LSN.</p>
+<h2 id="page-tracking-check-the-lsn-value">Check the LSN value<a class="headerlink" href="#page-tracking-check-the-lsn-value" title="Permanent link">&para;</a></h2>
+<p>Check the LSN where page tracking starts to track changed pages with the
+following statement:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_get_start_lsn</span><span class="p">();</span>
+</code></pre></div>
 <h2 id="page-tracking-use-page-tracking">Use page tracking<a class="headerlink" href="#page-tracking-use-page-tracking" title="Permanent link">&para;</a></h2>
-<p>You can enable the page tracking functionality for the full and incremental
-backups with the <code>--page-tracking</code> option.</p>
+<p>Enable page tracking for full and incremental backups with the
+<code>--page-tracking</code> option.</p>
 <p>The option has the following benefits:</p>
 <ul>
 <li>
-<p>Resets page tracking to the start of the backup. This reset allows the next incremental backup to use page tracking.</p>
+<p>Resets page tracking to the start of the backup. This reset allows the next
+  incremental backup to use page tracking.</p>
 </li>
 <li>
-<p>Allows the use of page tracking for an incremental backup if the page tracking data is available from the backup’s start checkpoint LSN.</p>
+<p>Allows an incremental backup to use page tracking if tracking data exists
+  from the checkpoint LSN at backup start.</p>
 </li>
 </ul>
-<p>Percona XtraBackup processes a list of all the tracked pages in memory. If Percona XtraBackup does not have enough available memory to process this list, the process throws an error and exits. For example, if an incremental backup uses 200GB, Percona XtraBackup can use an additional 100MB of memory to process and store the page tracking data. </p>
-<p>The examples of creating full and incremental backups using the <code>--page-tracking</code> option:</p>
+<div class="admonition note">
+<p class="admonition-title">Memory requirements</p>
+<p>Percona XtraBackup processes a list of all the tracked pages in memory. If
+Percona XtraBackup does not have enough memory for this list, the process
+throws an error and exits. For example, an incremental backup of 200 GB can
+need an additional 100 MB of memory. The memory holds the page tracking
+data.</p>
+</div>
+<p>The following examples create full and incremental backups with the
+<code>--page-tracking</code> option:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="page-tracking-__tabbed_1_1" name="page-tracking-__tabbed_1" type="radio" /><input id="page-tracking-__tabbed_1_2" name="page-tracking-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="page-tracking-__tabbed_1_1">Full backup</label><label for="page-tracking-__tabbed_1_2">Incremental backup</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -16834,59 +17093,141 @@ backups with the <code>--page-tracking</code> option.</p>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$INC_BACKUP</span><span class="w">  </span>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="page-tracking-__tabbed_2_1" name="page-tracking-__tabbed_2" type="radio" /><input id="page-tracking-__tabbed_2_2" name="page-tracking-__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="page-tracking-__tabbed_2_1">8.4.0-8 and later</label><label for="page-tracking-__tabbed_2_2">Earlier than 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$INC_BACKUP</span><span class="w"> </span><span class="se">\</span>
+--backup-incremental-base<span class="o">=</span><span class="nv">$FULL_BACKUP</span><span class="w"> </span>--page-tracking
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span><span class="nv">$INC_BACKUP</span><span class="w"> </span><span class="se">\</span>
 --incremental-basedir<span class="o">=</span><span class="nv">$FULL_BACKUP</span><span class="w"> </span>--page-tracking
 </code></pre></div>
 </div>
 </div>
 </div>
-<p>After enabling the functionality, the next incremental backup finds changed
-pages using page tracking.</p>
-<p>The first full backup using page tracking, Percona XtraBackup may have a delay. The following is an example of the message:</p>
-<details class="example">
-<summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: pagetracking: Sleeping for 1 second, waiting for checkpoint lsn 17852922 /
-to reach to page tracking start lsn 21353759
+</div>
+</div>
+</div>
+<p>After you enable page tracking, the next incremental backup finds changed pages
+with page tracking.</p>
+<div class="admonition warning">
+<p class="admonition-title">Known issue</p>
+<p>You may generate a bad incremental backup that uses page tracking. The issue
+occurs when you build an index in place with an exclusive algorithm. The
+issue requires that you add the index to a table after the last LSN
+checkpoint. For details, see
+<a href="https://perconadev.atlassian.net/browse/PS-8032">PS-8032 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
+</div>
+<h2 id="page-tracking-reduce-read-requests-for-scattered-changed-pages">Reduce read requests for scattered changed pages<a class="headerlink" href="#page-tracking-reduce-read-requests-for-scattered-changed-pages" title="Permanent link">&para;</a></h2>
+<p>During an incremental backup with page tracking, Percona XtraBackup reads only
+the pages that the server reports as changed. Percona XtraBackup reads
+consecutive changed pages together. Percona XtraBackup reads each scattered
+changed page on its own.</p>
+<p>Thousands of small reads take far longer than a few large reads. An incremental
+backup of a large tablespace can be slow even when little data changes.</p>
+<h3 id="page-tracking-merge-reads-across-gaps">Merge reads across gaps<a class="headerlink" href="#page-tracking-merge-reads-across-gaps" title="Permanent link">&para;</a></h3>
+<p>Starting with Percona XtraBackup 8.4.0-7, the
+<a href="#xtrabackup-option-reference-page-tracking-merge-gap"><code>--page-tracking-merge-gap</code></a>
+option lets Percona XtraBackup merge reads.</p>
+<p>When two changed pages are close, a read across the unchanged pages between
+them costs less than another read. Percona XtraBackup merges these reads
+automatically. Percona XtraBackup discards the extra pages when it writes the
+delta. The backup contents and size stay the same. Only the read pattern
+changes.</p>
+<p>With <code>auto</code>, Percona XtraBackup measures the storage once at the start of the
+backup. The measurement covers the time of one read request and the speed of
+sequential reads. From this measurement, Percona XtraBackup chooses the largest
+gap of unchanged pages that costs less to read than another request. The gap
+can differ for each tablespace. The gap depends on the tablespace page size.</p>
+<p>The <code>--page-tracking-merge-gap</code> option accepts the following values:</p>
+<ul>
+<li>
+<p><code>auto</code> (default): Omit the option, or set <code>--page-tracking-merge-gap=auto</code>.
+  Percona XtraBackup measures the storage and selects the gap.</p>
+</li>
+<li>
+<p>A page count, for example <code>8</code>: Percona XtraBackup reads changed pages in one
+  request when up to eight unchanged pages separate them. Percona XtraBackup
+  skips the measurement. For compressed tablespaces, Percona XtraBackup scales
+  the count to the physical page size. The byte limit stays the same. A fixed
+  value does not adapt to the storage. A fixed value can read far more data
+  than necessary. A fixed value can also split the reads into too many small
+  requests. Both cases slow the backup. Check the value again after a hardware
+  change.</p>
+</li>
+<li>
+<p><code>0</code>: Turns off the feature. Percona XtraBackup reads together only strictly
+  consecutive changed pages, as in releases before 8.4.0-7.</p>
+</li>
+</ul>
+<p>Use the <code>auto</code> default. Benchmark your own workload before you set a fixed
+value. Set a fixed value only if <code>auto</code> does not give the best result.</p>
+<p>To set a fixed gap, add the option to the incremental backup command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="page-tracking-__tabbed_3_1" name="page-tracking-__tabbed_3" type="radio" /><input id="page-tracking-__tabbed_3_2" name="page-tracking-__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="page-tracking-__tabbed_3_1">8.4.0-8 and later</label><label for="page-tracking-__tabbed_3_2">Earlier than 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/inc1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--backup-incremental-base<span class="o">=</span>/data/full<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--page-tracking<span class="w"> </span>--page-tracking-merge-gap<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-</details>
-<p>Enable page tracking before creating the first backup to avoid this delay. This method ensures that the page tracking log sequence number (LSN) is higher than the checkpoint LSN of the server.</p>
-<p>See also <a href="#xtrabackup-option-reference-page-tracking-merge-gap"><code>--page-tracking-merge-gap</code></a>.</p>
-<h2 id="page-tracking-start-page-tracking-manually">Start page tracking manually<a class="headerlink" href="#page-tracking-start-page-tracking-manually" title="Permanent link">&para;</a></h2>
-<p>After the mysqlbackup component is loaded and active on the server, you can
-start page tracking manually with the following option:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_set</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/inc1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--incremental-basedir<span class="o">=</span>/data/full<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--page-tracking<span class="w"> </span>--page-tracking-merge-gap<span class="o">=</span><span class="m">8</span>
 </code></pre></div>
-<h2 id="page-tracking-check-the-lsn-value">Check the LSN value<a class="headerlink" href="#page-tracking-check-the-lsn-value" title="Permanent link">&para;</a></h2>
-<p>Check the LSN value starting from which changed pages are tracked with the
-following option:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_get_start_lsn</span><span class="p">();</span>
-</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Merged reads can increase billed reads</p>
+<p>A merged read retrieves more bytes than the changed pages alone. Consider
+this effect if your storage provider charges for reads or limits read
+throughput. To avoid the extra reads, set the option to <code>0</code>.</p>
+</div>
+<h3 id="page-tracking-check-the-read-statistics">Check the read statistics<a class="headerlink" href="#page-tracking-check-the-read-statistics" title="Permanent link">&para;</a></h3>
+<p>The backup log reports the storage measurement once. For each tablespace with
+at least 1000 changed pages, the backup log reports the following values:</p>
+<ul>
+<li>
+<p>Number of changed pages</p>
+</li>
+<li>
+<p>Number of reads before the merge</p>
+</li>
+<li>
+<p>Number of reads after the merge</p>
+</li>
+<li>
+<p>Resulting read amplification</p>
+</li>
+</ul>
+<p>If the typical gap in a table costs too much to merge, the backup log reports
+the gap. The backup log also suggests a value to set. Check these log lines
+when you compare a fixed value with <code>auto</code>.</p>
 <h2 id="page-tracking-stop-page-tracking">Stop page tracking<a class="headerlink" href="#page-tracking-stop-page-tracking" title="Permanent link">&para;</a></h2>
-<p>To stop page tracking, use the following command:</p>
+<p>To stop page tracking, run the following statement:</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_set</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 </code></pre></div>
 <h2 id="page-tracking-purge-page-tracking-data">Purge page tracking data<a class="headerlink" href="#page-tracking-purge-page-tracking-data" title="Permanent link">&para;</a></h2>
-<p>When you start page tracking, it creates a file under the server’s datadir
-to collect data about changed pages. This file grows until you stop the
-page tracking. If you stop the server and then restart it, page tracking
-creates a new file but also keeps the old one. The old file continues to
-grow until you stop the page tracking explicitly.</p>
-<p>If you purge the page tracking data, you should create a full backup
-afterward. To purge the page tracking data, do the following steps:</p>
+<p>Page tracking creates a file in the <code>datadir</code> of the server to collect data
+about changed pages. The file grows until you stop page tracking. If you stop
+and restart the server, page tracking creates another file. Page tracking also
+keeps the old file. The old file grows until you stop page tracking explicitly.</p>
+<p>Create a full backup after you purge the page tracking data. To purge the page
+tracking data, run the following statements:</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_set</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_purge_up_to</span><span class="p">(</span><span class="mi">9223372036854775807</span><span class="p">);</span>
-<span class="cm">/* Specify the LSN up to which you want to purge page tracking data. /</span>
-<span class="cm">9223372036854775807 is the highest possible LSN which purges all page tracking files.*/</span>
+<span class="cm">/* Specify the LSN up to which you want to purge page tracking data.</span>
+<span class="cm">9223372036854775807 is the highest possible LSN which purges all page</span>
+<span class="cm">tracking files. */</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">mysqlbackup_page_track_set</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
 </code></pre></div>
-<h2 id="page-tracking-known-issue">Known issue<a class="headerlink" href="#page-tracking-known-issue" title="Permanent link">&para;</a></h2>
-<p>If the index is built in place using an exclusive algorithm and then is
-added to a table after the last LSN checkpoint, you may generate a bad
-incremental backup using page tracking. For more details
-see <a href="https://perconadev.atlassian.net/browse/PS-8032">PS-8032 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
-<h2 id="page-tracking-uninstall-the-mysqlbackup-component">Uninstall the mysqlbackup component<a class="headerlink" href="#page-tracking-uninstall-the-mysqlbackup-component" title="Permanent link">&para;</a></h2>
-<p>To uninstall the mysqlbackup component, use the following statement:</p>
-<div class="highlight"><pre><span></span><code><span class="n">UNINSTALL</span><span class="w"> </span><span class="n">COMPONENT</span><span class="w"> </span><span class="ss">"file://component_mysqlbackup"</span>
+<h2 id="page-tracking-uninstall-the-mysqlbackup-component">Uninstall the <code>mysqlbackup</code> component<a class="headerlink" href="#page-tracking-uninstall-the-mysqlbackup-component" title="Permanent link">&para;</a></h2>
+<p>To uninstall the <code>mysqlbackup</code> component, run the following statement:</p>
+<div class="highlight"><pre><span></span><code><span class="n">UNINSTALL</span><span class="w"> </span><span class="n">COMPONENT</span><span class="w"> </span><span class="ss">"file://component_mysqlbackup"</span><span class="p">;</span>
 </code></pre></div></section></section>
                     <section class='print-page md-section' id='section-9-3' heading-number='9.3'>
                         <h1>Take a compressed backup<a class='headerlink' href='#section-9-3' title='Permanent link'></a>
@@ -17071,6 +17412,8 @@ Remember that when you use the <code>--encrypt-key-file</code> option, your text
 </li>
 </ul>
 <p>These encryption types are independent. You can use them separately or together for enhanced security.</p>
+<h2 id="encrypted-innodb-tablespace-backups-version-changes">Version changes<a class="headerlink" href="#encrypted-innodb-tablespace-backups-version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a> and the <code>--incremental-dir</code> option to <a href="#xtrabackup-option-reference-prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a>. Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="encrypted-innodb-tablespace-backups-innodb-tablespace-encryption">InnoDB tablespace encryption<a class="headerlink" href="#encrypted-innodb-tablespace-backups-innodb-tablespace-encryption" title="Permanent link">&para;</a></h2>
 <p>InnoDB supports <a href="https://dev.mysql.com/doc/refman/8.4/en/innodb-data-encryption.html">data encryption for InnoDB tables <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> in file-per-table tablespaces. When accessing an encrypted tablespace, InnoDB uses the master encryption key to decrypt the tablespace key. InnoDB stores the master encryption key in a keyring.</p>
 <p>Percona XtraBackup supports the following keyring components:</p>
@@ -17221,42 +17564,108 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
 </code></pre></div>
 <p>Make an incremental backup based on the full backup:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="encrypted-innodb-tablespace-backups-__tabbed_1_1" name="encrypted-innodb-tablespace-backups-__tabbed_1" type="radio" /><input id="encrypted-innodb-tablespace-backups-__tabbed_1_2" name="encrypted-innodb-tablespace-backups-__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="encrypted-innodb-tablespace-backups-__tabbed_1_1">Percona XtraBackup 8.4.0-8 and later</label><label for="encrypted-innodb-tablespace-backups-__tabbed_1_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
+--backup-incremental-base<span class="o">=</span>/data/backups/base
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
 --incremental-basedir<span class="o">=</span>/data/backups/base
 </code></pre></div>
-<p>The <a href="#xtrabackup-option-reference-incremental-basedir"><code>--incremental-basedir</code></a> option specifies the base backup directory.</p>
+</div>
+</div>
+</div>
+<p>The <a href="#xtrabackup-option-reference-backup-incremental-base"><code>--backup-incremental-base</code></a> option specifies the base backup directory.</p>
 <p>Use this directory as the base for yet another incremental backup:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="encrypted-innodb-tablespace-backups-__tabbed_2_1" name="encrypted-innodb-tablespace-backups-__tabbed_2" type="radio" /><input id="encrypted-innodb-tablespace-backups-__tabbed_2_2" name="encrypted-innodb-tablespace-backups-__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="encrypted-innodb-tablespace-backups-__tabbed_2_1">Percona XtraBackup 8.4.0-8 and later</label><label for="encrypted-innodb-tablespace-backups-__tabbed_2_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
+--backup-incremental-base<span class="o">=</span>/data/backups/inc1
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
 --incremental-basedir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
+</div>
+</div>
+</div>
 <h4 id="encrypted-innodb-tablespace-backups-phase-2-prepare_1">Phase 2: Prepare<a class="headerlink" href="#encrypted-innodb-tablespace-backups-phase-2-prepare_1" title="Permanent link">&para;</a></h4>
 <p>The <code>--prepare</code> step for incremental backups requires the keyring configuration. Use <a href="#xtrabackup-option-reference-apply-log-only"><code>--apply-log-only</code></a> for all incremental backups except the last one to prevent rolling back transactions that might be committed in subsequent incremental backups.</p>
 <p>Beginning with the full backup, prepare the full backup and then apply the incremental differences. Prepare the base backup with <a href="#xtrabackup-option-reference-apply-log-only"><code>--apply-log-only</code></a>. Use the appropriate configuration file name for your keyring component (see <a href="#encrypted-innodb-tablespace-backups-configuration-file-name-requirements">Configuration file name requirements</a>):</p>
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
 </code></pre></div>
-<p>Apply the first incremental backup to the full backup using <a href="#xtrabackup-option-reference-incremental-dir"><code>--incremental-dir</code></a>:</p>
+<p>Apply the first incremental backup to the full backup using <a href="#xtrabackup-option-reference-prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="encrypted-innodb-tablespace-backups-__tabbed_3_1" name="encrypted-innodb-tablespace-backups-__tabbed_3" type="radio" /><input id="encrypted-innodb-tablespace-backups-__tabbed_3_2" name="encrypted-innodb-tablespace-backups-__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="encrypted-innodb-tablespace-backups-__tabbed_3_1">Percona XtraBackup 8.4.0-8 and later</label><label for="encrypted-innodb-tablespace-backups-__tabbed_3_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc1
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you have many InnoDB Data (IBD) files, speed up the prepare phase for incremental backups  by using the <code>--parallel</code> option. This option lets you process multiple delta files simultaneously. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
 <p>An example of the backup command using the <code>--parallel</code> option:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="encrypted-innodb-tablespace-backups-__tabbed_4_1" name="encrypted-innodb-tablespace-backups-__tabbed_4" type="radio" /><input id="encrypted-innodb-tablespace-backups-__tabbed_4_2" name="encrypted-innodb-tablespace-backups-__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="encrypted-innodb-tablespace-backups-__tabbed_4_1">Percona XtraBackup 8.4.0-8 and later</label><label for="encrypted-innodb-tablespace-backups-__tabbed_4_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 </div>
 <p>Prepare the backup using the same keyring file and type that were used when the backup was created. If the keyring has changed or you upgraded from a plugin to a component between the base and incremental backup, use the keyring from when the first incremental backup was made. If the original keyring is missing or has changed, recover or replace it before restoring. If you cannot recover the keyring, restore from a backup that matches the most recent available keyring.</p>
 <p>Preparing the second incremental backup is a similar process: apply the deltas
 to the (modified) base backup, and you will roll the base backup&rsquo;s data forward in 
 time to the point of the second incremental backup:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="encrypted-innodb-tablespace-backups-__tabbed_5_1" name="encrypted-innodb-tablespace-backups-__tabbed_5" type="radio" /><input id="encrypted-innodb-tablespace-backups-__tabbed_5_2" name="encrypted-innodb-tablespace-backups-__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="encrypted-innodb-tablespace-backups-__tabbed_5_1">Percona XtraBackup 8.4.0-8 and later</label><label for="encrypted-innodb-tablespace-backups-__tabbed_5_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc2
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>You can also use the <code>--parallel</code> option here to speed up the process:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="encrypted-innodb-tablespace-backups-__tabbed_6_1" name="encrypted-innodb-tablespace-backups-__tabbed_6" type="radio" /><input id="encrypted-innodb-tablespace-backups-__tabbed_6_2" name="encrypted-innodb-tablespace-backups-__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="encrypted-innodb-tablespace-backups-__tabbed_6_1">Percona XtraBackup 8.4.0-8 and later</label><label for="encrypted-innodb-tablespace-backups-__tabbed_6_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Use <a href="#xtrabackup-option-reference-apply-log-only"><code>--apply-log-only</code></a> when merging all incremental backups except for the last one. This is why the previous command does not include the <code>--apply-log-only</code> option. If <code>--apply-log-only</code> is used on the last step, backup remains consistent but the server performs the rollback phase.</p>

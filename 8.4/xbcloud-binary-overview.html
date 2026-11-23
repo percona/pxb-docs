@@ -29,7 +29,7 @@
       
       
       <link rel="icon" href="assets/mysql-fav.svg">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.8.2">
     
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -2721,6 +2721,17 @@
     <span class="md-ellipsis">
       
         What&rsquo;s in this document
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
       
     </span>
   </a>
@@ -6056,6 +6067,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
       
         <li class="md-nav__item">
+  <a href="#version-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-xbcloud-does" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6167,6 +6189,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h2 id="whats-in-this-document">What&rsquo;s in this document<a data-markdown-ignore class="headerlink" href="#whats-in-this-document" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
+<p><a href="#version-changes">Version changes</a> - Option changes in recent releases</p>
+</li>
+<li>
 <p><a href="#what-xbcloud-does">What xbcloud does</a> - Core operations and capabilities</p>
 </li>
 <li>
@@ -6185,6 +6210,8 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p><a href="#advanced-usage-patterns">Advanced usage patterns</a> - Incremental backups and partial restore</p>
 </li>
 </ul>
+<h2 id="version-changes">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes" title="Permanent link">&para;</a></h2>
+<p>Percona XtraBackup 8.4.0-8 renames the <code>--incremental-basedir</code> option to <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a> and the <code>--incremental-dir</code> option to <a href="xtrabackup-option-reference.html#prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a>. Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.</p>
 <h2 id="what-xbcloud-does">What xbcloud does<a data-markdown-ignore class="headerlink" href="#what-xbcloud-does" title="Permanent link">&para;</a></h2>
 <p>xbcloud provides three essential operations:</p>
 <ul>
@@ -6236,10 +6263,22 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 3. Uploads the backup to the S3 bucket with a timestamped name</p>
 <h3 id="creating-an-incremental-backup">Creating an incremental backup<a data-markdown-ignore class="headerlink" href="#creating-an-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_1_1">Percona XtraBackup 8.4.0-8 and later</label><label for="__tabbed_1_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/tmp/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>inc_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M<span class="k">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>inc_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M<span class="k">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="restoring-from-cloud-storage">Restoring from cloud storage<a data-markdown-ignore class="headerlink" href="#restoring-from-cloud-storage" title="Permanent link">&para;</a></h3>
 <p>To restore a backup, download it from cloud storage and prepare it:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Download the backup</span>
@@ -6442,13 +6481,47 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 full_backup_20240101
 </code></pre></div>
 <h4 id="step-2-create-incremental-backups">Step 2: Create incremental backups<a data-markdown-ignore class="headerlink" href="#step-2-create-incremental-backups" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_2_1">Percona XtraBackup 8.4.0-8 and later</label><label for="__tabbed_2_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/base<span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+inc_backup_20240101_1200
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--incremental-basedir<span class="o">=</span>/tmp/base<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 inc_backup_20240101_1200
 </code></pre></div>
+</div>
+</div>
+</div>
 <h4 id="step-3-restore-incremental-backups">Step 3: Restore incremental backups<a data-markdown-ignore class="headerlink" href="#step-3-restore-incremental-backups" title="Permanent link">&para;</a></h4>
 <p>To restore from incremental backups, you must download and prepare them in sequence:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_3_1">Percona XtraBackup 8.4.0-8 and later</label><label for="__tabbed_3_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># Download and prepare the full backup</span>
+xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+full_backup_20240101<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/restore
+
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
+
+<span class="c1"># Download and apply the incremental backup</span>
+xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
+inc_backup_20240101_1200<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/inc1
+
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/tmp/inc1
+
+<span class="c1"># Final prepare step</span>
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># Download and prepare the full backup</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 full_backup_20240101<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/restore
@@ -6465,15 +6538,32 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-o
 <span class="c1"># Final prepare step</span>
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore
 </code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the <code>--parallel</code> option to process delta files concurrently. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_4_1">Percona XtraBackup 8.4.0-8 and later</label><label for="__tabbed_4_2">Before Percona XtraBackup 8.4.0-8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
+--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span><span class="se">\</span>
+--prepare-incremental-from-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+
+xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-log-only<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 </div>
 <h3 id="partial-restore_1">Partial restore<a data-markdown-ignore class="headerlink" href="#partial-restore_1" title="Permanent link">&para;</a></h3>
 <p>You can restore specific tables without downloading the entire backup:</p>
@@ -6540,7 +6630,7 @@ xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 20, 2026 16:23:31 UTC">January 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 23, 2026 11:36:17 UTC">November 23, 2026</span>
   </span>
 
     
@@ -6555,6 +6645,44 @@ xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </
 
     
     
+    
+      
+  <span class="md-source-file__fact">
+    
+      
+  <span class="md-icon" title="Contributors">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+  </span>
+  <span>GitHub</span>
+
+    
+    <nav>
+      
+        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
+          
+          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
+        </a>
+      
+        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
+          
+          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
+        </a>
+      
+        <a href="https://github.com/silentred" class="md-author" title="@silentred">
+          
+          <img src="https://avatars.githubusercontent.com/u/3345293?v=4&size=72" alt="silentred">
+        </a>
+      
+      
+      
+    </nav>
+  </span>
+
     
   </aside>
 

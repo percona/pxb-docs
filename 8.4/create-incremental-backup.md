@@ -14,6 +14,10 @@ Incremental backups work because each InnoDB page contains a log sequence number
 
 An incremental backup copies each page which LSN is newer than the previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.
 
+## Version changes
+
+Percona XtraBackup 8.4.0-8 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/8.4/xtrabackup-option-reference.html#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
 ## Create an incremental backup
 
 To make an incremental backup, begin with a full backup as usual. The xtrabackup binary writes a file called `xtrabackup_checkpoints` into the backup’s target directory. This file contains a line showing the `to_lsn`, which is the database’s LSN at the end of the backup.
@@ -42,6 +46,15 @@ redo_frames = 0
 
 Now that you have a full backup, you can make an incremental backup based on it. Use the following command:
 
+**Percona XtraBackup 8.4.0-8 and later**
+
+```
+xtrabackup --backup --target-dir=/data/backups/inc1 \
+--backup-incremental-base=/data/backups/base
+```
+
+**Before Percona XtraBackup 8.4.0-8**
+
 ```
 xtrabackup --backup --target-dir=/data/backups/inc1 \
 --incremental-basedir=/data/backups/base
@@ -64,6 +77,15 @@ redo_frames = 0
 `from_lsn` is the starting LSN of the backup and for incremental it has to be the same as `to_lsn` (if it is the last checkpoint) of the previous/base backup.
 
 It’s now possible to use this directory as the base for yet another incremental backup:
+
+**Percona XtraBackup 8.4.0-8 and later**
+
+```
+xtrabackup --backup --target-dir=/data/backups/inc2 \
+--backup-incremental-base=/data/backups/inc1
+```
+
+**Before Percona XtraBackup 8.4.0-8**
 
 ```
 xtrabackup --backup --target-dir=/data/backups/inc2 \
