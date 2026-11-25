@@ -60,6 +60,18 @@ alteration, see `mysql --help` for details.
     (port, socket, host) must be specified in order for xtrabackup to talk to
     the correct server.
 
+### Connect with OpenID Connect authentication
+
+If the database account uses OpenID Connect (OIDC) authentication, pass an ID token file instead of a password:
+
+```bash
+xtrabackup --user=bkpuser \
+--authentication-openid-connect-client-id-token-file=/root/.oidc/id_token.jwt \
+--backup --target-dir=/data/bkps/
+```
+
+For details, see [OpenID Connect authentication](openid-connect-authentication.md).
+
 ## Privileges needed
 
 Once connected to the server, in order to perform a backup you need

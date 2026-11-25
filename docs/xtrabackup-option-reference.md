@@ -68,6 +68,24 @@ Usage: `--apply-log-only`
 This option causes only the redo stage to be performed when preparing a
 backup. It is essential for incremental backups.
 
+### authentication-openid-connect-client-id-token-file
+
+Usage: `--authentication-openid-connect-client-id-token-file=PATH`
+
+Introduced in Percona XtraBackup 8.4.0-9.
+
+This option sets the file with the OpenID Connect (OIDC) ID token for an account `IDENTIFIED WITH auth_openid_connect`. xtrabackup sends the token instead of a password on every connection to the server.
+
+* You cannot combine this option with [`--password`](#password). `--skip-password` is allowed.
+
+* xtrabackup loads the `authentication_openid_connect_client` plugin from [`--xtrabackup-plugin-dir`](#xtrabackup-plugin-dir).
+
+* A relative path starts from the directory where you start xtrabackup. A path that starts with `~/` starts from your home directory.
+
+* The connection must use a Unix socket or TLS.
+
+For details, see [OpenID Connect authentication](openid-connect-authentication.md).
+
 ### backup
 
 Usage: `--backup`
@@ -831,6 +849,8 @@ Usage: `--password=PASSWORD`
 
 This option accepts a string argument that specifies the password used when connecting to the database.
 
+You cannot combine this option with [`--authentication-openid-connect-client-id-token-file`](#authentication-openid-connect-client-id-token-file).
+
 ### plugin-load
 
 Usage: `--plugin-load`
@@ -1222,4 +1242,6 @@ This option prints xtrabackup version and exits.
 
 Usage: `--xtrabackup-plugin-dir=DIRNAME`
 
-The absolute path to the directory that contains the `keyring` plugin.
+The absolute path to the directory that contains the `keyring` plugin and the `authentication_openid_connect_client` plugin.
+
+The RPM and DEB packages set the default to the xtrabackup plugin directory: `/usr/lib64/xtrabackup/plugin` for RPM and `/usr/lib/xtrabackup/plugin` for DEB. With a binary tarball, set the option to the `lib/plugin` directory of the tarball.

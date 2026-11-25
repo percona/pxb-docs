@@ -18,6 +18,8 @@ The following is a short list of the Percona XtraBackup features:
 
 * Exports individual tables from a full InnoDB backup
 
+* Connects to the server with [OpenID Connect authentication](openid-connect-authentication.md) instead of a password
+
 Percona XtraBackup automatically uses backup locks, a lightweight alternative to `FLUSH TABLES WITH READ LOCK` available in Percona Server, to copy non-InnoDB data. This operation avoids blocking DML queries that modify InnoDB tables.
 
 !!! admonition "See also"
