@@ -1,6 +1,6 @@
 # Percona XtraBackup {{vers}} release notes index
 
-* [Percona XtraBackup 9.7.2-3 (2026-11-xx)](9.7.2-3.md)
+* [Percona XtraBackup 9.7.2-3 (2026-11-26)](9.7.2-3.md)
 
 * [Percona XtraBackup 9.7.2-2 (2026-11-04](9.7.2-2.md)
 
