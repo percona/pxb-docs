@@ -16,7 +16,7 @@ An incremental backup copies each page which LSN is newer than the previous incr
 
 ## Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ## Create an incremental backup
 
@@ -26,7 +26,7 @@ Run the following commands as root or use the sudo command.
 
 Create the full backup with a following command:
 
-```
+```shell
 xtrabackup --backup --target-dir=/data/backups/base
 ```
 
@@ -34,7 +34,7 @@ If you look at the `xtrabackup_checkpoints` file, you should see similar content
 
 Expected output
 
-```
+```text
 backup_type = full-backuped
 from_lsn = 0
 to_lsn = 36621132
@@ -46,7 +46,7 @@ redo_frames = 0
 
 Now that you have a full backup, you can make an incremental backup based on it. Use the following command:
 
-```
+```shell
 xtrabackup --backup --target-dir=/data/backups/inc1 \
 --backup-incremental-base=/data/backups/base
 ```
@@ -55,7 +55,7 @@ The `/data/backups/inc1/` directory should now contain delta files, such as `ibd
 
 Expected output
 
-```
+```text
 backup_type = incremental
 from_lsn = 36621132
 to_lsn = 37463526
@@ -69,7 +69,7 @@ redo_frames = 0
 
 It’s now possible to use this directory as the base for yet another incremental backup:
 
-```
+```shell
 xtrabackup --backup --target-dir=/data/backups/inc2 \
 --backup-incremental-base=/data/backups/inc1
 ```
@@ -78,7 +78,7 @@ This folder also contains the `xtrabackup_checkpoints`:
 
 Expected output
 
-```
+```text
 backup_type = incremental
 from_lsn = 37463526
 to_lsn = 38308481
@@ -94,4 +94,4 @@ In this case you can see that there is a difference between the `to_lsn` (last c
 
 ## Next step
 
-[Prepare the backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.html)
+[Prepare the backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.md)

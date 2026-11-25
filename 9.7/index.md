@@ -2,7 +2,7 @@
 
 # Percona XtraBackup 9.7 Documentation
 
-This documentation is for the latest release: [Percona XtraBackup 9.7.2-2](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/9.7.2-2.html) release notes.
+This documentation is for the latest release: [Percona XtraBackup 9.7.2-2](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/9.7.2-2.md) release notes.
 
 Percona XtraBackup is an open source hot backup utility for MySQL-based servers that keep your database fully available during planned maintenance windows.
 
@@ -16,25 +16,25 @@ Taking your backup with Percona XtraBackup is easy. Follow our documentation gui
 
 Get started quickly with our Quickstart guide.
 
-[Quickstart guide](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.html)
+[Quickstart guide](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.md)
 
 ### Installation guides
 
 Find the best installation solution with our step-by-step installation instructions.
 
-[Installation instructions](https://docs.percona.com/percona-xtrabackup/9.7/installation.html)
+[Installation instructions](https://docs.percona.com/percona-xtrabackup/9.7/installation.md)
 
 ## Binaries
 
 Learn about the Percona XtraBackup binaries: xtrabackup, xbcloud, xbcrypt, and xbstream.
 
-[Binaries](https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.html)
+[Binaries](https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.md)
 
 ### Backup management
 
 Learn about the different types of backups and how to take them.
 
-[Backup management](https://docs.percona.com/percona-xtrabackup/9.7/backup-overview.html)
+[Backup management](https://docs.percona.com/percona-xtrabackup/9.7/backup-overview.md)
 
 ## Supported storage engines
 
@@ -59,4 +59,4 @@ InnoDB tables are locked while copying non-InnoDB data.
 
 See also
 
-[Dependency compatibility and limitations](https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.html)
+[Dependency compatibility and limitations](https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.md)

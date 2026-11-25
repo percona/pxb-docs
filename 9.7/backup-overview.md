@@ -8,15 +8,15 @@ Percona Xtrabackup is a tool that allows you to create backups of MySQL or Maria
 
 You can take and prepare the following types of backups:
 
-- [Full backup](https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.html) - a backup of all the contents of the database
-- [Incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/create-incremental-backup.html) - a backup of only the files that have changed since the last full backup
-- [Compressed backup](https://docs.percona.com/percona-xtrabackup/9.7/create-compressed-backup.html) - a backup of all the contents of the database with applying a compression algorithm that reduces the size of the data to be stored
-- [Partial backup](https://docs.percona.com/percona-xtrabackup/9.7/create-partial-backup.html) - a backup of only the files that have changed in a specific folder or a set of folders, rather than the entire database
-- [Individual partitions backup](https://docs.percona.com/percona-xtrabackup/9.7/create-individual-partition-backup.html) - a backup of an individual partition
+- [Full backup](https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.md) - a backup of all the contents of the database
+- [Incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/create-incremental-backup.md) - a backup of only the files that have changed since the last full backup
+- [Compressed backup](https://docs.percona.com/percona-xtrabackup/9.7/create-compressed-backup.md) - a backup of all the contents of the database with applying a compression algorithm that reduces the size of the data to be stored
+- [Partial backup](https://docs.percona.com/percona-xtrabackup/9.7/create-partial-backup.md) - a backup of only the files that have changed in a specific folder or a set of folders, rather than the entire database
+- [Individual partitions backup](https://docs.percona.com/percona-xtrabackup/9.7/create-individual-partition-backup.md) - a backup of an individual partition
 
 ## Backup restoration
 
-- [Restore full, incremental, compressed backups](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.html)
-- [Restore a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-partial-backup.html)
-- [Restore an individual partitions backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-partitions.html)
-- [Restore individual tables](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.html)
+- [Restore full, incremental, compressed backups](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.md)
+- [Restore a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-partial-backup.md)
+- [Restore an individual partitions backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-partitions.md)
+- [Restore individual tables](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.md)

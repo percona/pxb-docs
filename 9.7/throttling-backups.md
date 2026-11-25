@@ -4,11 +4,11 @@
 
 xtrabackup does not block database activity during a backup, but xtrabackup generates additional disk input/output (I/O) activity. On systems with limited I/O capacity, this can affect database performance.
 
-Use the [`--throttle`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#throttle) option to limit the backup rate.
+Use the [`--throttle`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#throttle) option to limit the backup rate.
 
 ## Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ## How throttling works
 
@@ -48,7 +48,7 @@ Use the following tools to observe disk utilization and validate your throttle s
 
 Use:
 
-```
+```bash
 iostat -xz 1
 ```
 
@@ -66,7 +66,7 @@ Note
 
 `pidstat` requires root privileges (or appropriate capabilities) to display system-wide I/O activity. Without this, output may be incomplete.
 
-```
+```bash
 pidstat -d 1
 ```
 
@@ -81,7 +81,7 @@ Key notes:
 
 For streaming backups, `pv` can display real-time throughput:
 
-```
+```bash
 xtrabackup --backup --throttle=5 --stream=xbstream \
   | pv \
   | gzip > backup.xb.gz
@@ -111,7 +111,7 @@ When using `--throttle`, backups may become too slow to keep up with redo log ge
 
 Because the InnoDB redo log is a circular buffer with limited size, it can wrap around before xtrabackup has finished reading it. When this happens, the backup fails with an error similar to:
 
-```
+```text
 xtrabackup: error: expected log block no. ..., but got no. ...
 xtrabackup: error: it looks like InnoDB log has wrapped around before xtrabackup could process all records
 xtrabackup: Error: xtrabackup_copy_logfile() failed
@@ -123,7 +123,7 @@ There are two primary ways to prevent this issue:
 
 #### Option 1: Increase redo log capacity (recommended)
 
-```
+```sql
 SET GLOBAL innodb_redo_log_capacity = <larger value>;
 ```
 
@@ -188,7 +188,7 @@ This is especially useful on systems with mixed workloads.
 
 Limit the backup speed to approximately **50 MB/s**:
 
-```
+```bash
 xtrabackup --backup --throttle=5 --stream=xbstream \
   | pv \
   | gzip > backup.xb.gz
@@ -198,7 +198,7 @@ xtrabackup --backup --throttle=5 --stream=xbstream \
 
 To measure the effective throughput of `--throttle` without interference from compression or disk writes:
 
-```
+```bash
 xtrabackup --backup --throttle=2 --stream=xbstream 2>/dev/null \
   | pv \
   | cat > /dev/null
@@ -216,13 +216,13 @@ Use this method to validate that the configured throttle produces the expected t
 
 Limit the backup to approximately **100 MB/s**:
 
-```
+```bash
 xtrabackup --backup --target-dir=/backups/full --throttle=10
 ```
 
 Expected output
 
-```
+```text
 xtrabackup: Starting backup
 xtrabackup: Throttling set to 10 chunks per second
 ...
@@ -233,7 +233,7 @@ xtrabackup: completed OK!
 
 For incremental backups, the limit applies only to read operations. Redo log copying continues independently and may become a bottleneck if the backup is throttled too aggressively.
 
-```
+```bash
 xtrabackup \
   --backup \
   --target-dir=/backups/inc1 \
@@ -243,7 +243,7 @@ xtrabackup \
 
 Expected output
 
-```
+```text
 xtrabackup: Starting incremental backup
 xtrabackup: Throttling set to 5 chunks per second
 ...

@@ -18,7 +18,7 @@ The following profile sections should be updated with your system information, s
 
 Expected output
 
-```
+```text
 # enable storing backups only in /backups directory
 # /backups/** rwk,
 
@@ -43,13 +43,13 @@ Expected output
 
 Move the updated file:
 
-```
+```shell
 sudo mv usr.sbin.xtrabackup /etc/apparmor.d/
 ```
 
 Install the profile with the following command:
 
-```
+```shell
 sudo apparmor_parser -r -T -W /etc/apparmor.d/usr.sbin.xtrabackup
 ```
 

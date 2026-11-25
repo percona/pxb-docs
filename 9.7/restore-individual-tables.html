@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5919,9 +5919,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tbody>
 </table>
 <p>The following example shows the export and import process for a table called <code>export_test</code>:</p>
-<div class="highlight"><pre><span></span><code>mysql<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">"CREATE DATABASE create_database_test;"</span>
+<div class="language-bash highlight"><pre><span></span><code>mysql<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">"CREATE DATABASE create_database_test;"</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">export_test</span><span class="w"> </span><span class="p">(</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">export_test</span><span class="w"> </span><span class="p">(</span>
 <span class="n">a</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span>
 <span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span>
 </code></pre></div>
@@ -5932,18 +5932,18 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>By saving schemas ahead of time, you ensure that all the table blueprints are ready when you start restoring from backups, making data recovery go more smoothly.</p>
 <h2 id="export-the-table">Export the table<a data-markdown-ignore class="headerlink" href="#export-the-table" title="Permanent link">&para;</a></h2>
 <p>First, create the table using the <code>innodb_file_per_table</code> setting. This setting tells MySQL to create a separate <code>.ibd</code> file for each table in your source directory. Run this command to find the created file in your system:</p>
-<div class="highlight"><pre><span></span><code>find<span class="w"> </span>/data/backups/mysql/<span class="w"> </span>-name<span class="w"> </span>export_test.*
+<div class="language-shell highlight"><pre><span></span><code>find<span class="w"> </span>/data/backups/mysql/<span class="w"> </span>-name<span class="w"> </span>export_test.*
 /data/backups/mysql/test/export_test.ibd
 </code></pre></div>
 <p>Next, when you run the <code>--prepare</code> phase, add the <a href="xtrabackup-option-reference.html#export">&ndash;export</a> option to your command. This option tells XtraBackup to create any extra files needed for moving the table:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/mysql/
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/mysql/
 </code></pre></div>
 <p>If you&rsquo;re working with encrypted tables (ones that use transparent data encryption), you&rsquo;ll need extra security settings. You must include the keyring file that has the encryption keys:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/table<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--export<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/table<span class="w"> </span><span class="se">\</span>
 --keyring-file-data<span class="o">=</span>/var/lib/mysql-keyring/keyring
 </code></pre></div>
 <p>After these commands finish successfully, you&rsquo;ll need these files for the table import.</p>
-<div class="highlight"><pre><span></span><code>/data/backups/mysql/test/export_test.ibd
+<div class="language-text highlight"><pre><span></span><code>/data/backups/mysql/test/export_test.ibd
 /data/backups/mysql/test/export_test.cfg
 /data/backups/mysql/test/export_test.cfp
 </code></pre></div>
@@ -5961,13 +5961,13 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <ol>
 <li>
 <p>Use the schema and create an empty table copy in the new location on your target server (which must be running Percona Server for MySQL with XtraDB or MySQL 8.0).</p>
-<div class="highlight"><pre><span></span><code>mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/create_database_test.sql<span class="p">;</span>
+<div class="language-shell highlight"><pre><span></span><code>mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/create_database_test.sql<span class="p">;</span>
 mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> </span>./schema_dumps/test/export_test.sql<span class="p">;</span>
 </code></pre></div>
 </li>
 <li>
 <p>Run this SQL command to disconnect the new table from its default tablespace. This command prepares it to receive the imported data:</p>
-<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">export_test</span><span class="w"> </span><span class="n">DISCARD</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">export_test</span><span class="w"> </span><span class="n">DISCARD</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
 </code></pre></div>
 <p>If you see an error like “ERROR 1809 (HY000): Table ‘test/export_test’ in the system tablespace, &rdquo; the <code>innodb_file_per_table</code> setting is disabled on your target server. Enable this in your server setup, then try the steps again.</p>
 </li>
@@ -5976,7 +5976,7 @@ mysql<span class="w"> </span>-uroot<span class="w"> </span>&lt;<span class="w"> 
 </li>
 <li>
 <p>Run this SQL command to attach the restored tablespace to the destination table, finishing the data restore:</p>
-<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">export_test</span><span class="w"> </span><span class="n">IMPORT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">export_test</span><span class="w"> </span><span class="n">IMPORT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
 </code></pre></div>
 </li>
 </ol>

@@ -18,7 +18,7 @@ Run the following commands as root or use the sudo command.
 
 The database user used to connect to the server and its password are specified by the `--user` and `--password` option:
 
-```
+```bash
 xtrabackup --user=DVADER --password=14MY0URF4TH3R --backup \
 --target-dir=/data/bkps/
 ```
@@ -48,7 +48,7 @@ Once connected to the server, in order to perform a backup you need `READ` and `
 The database user needs the following privileges to back up tables or databases:
 
 - `RELOAD` and `FLUSH_TABLES` in order to run `FLUSH TABLES WITH READ LOCK`.
-- The `BACKUP_ADMIN` privilege is needed to query the performance_schema.log_status table, and run `LOCK INSTANCE FOR BACKUP`, `LOCK BINLOG FOR BACKUP`, or `LOCK TABLES FOR BACKUP`. The `BACKUP_ADMIN` privilege is required to use the [Page tracking](https://docs.percona.com/percona-xtrabackup/9.7/page-tracking.html) feature.
+- The `BACKUP_ADMIN` privilege is needed to query the performance_schema.log_status table, and run `LOCK INSTANCE FOR BACKUP`, `LOCK BINLOG FOR BACKUP`, or `LOCK TABLES FOR BACKUP`. The `BACKUP_ADMIN` privilege is required to use the [Page tracking](https://docs.percona.com/percona-xtrabackup/9.7/page-tracking.md) feature.
 - `REPLICATION CLIENT` in order to obtain the binary log position,
 - `CREATE TABLESPACE` in order to import tables (see Restoring Individual Tables),
 - `PROCESS` in order to run `SHOW ENGINE INNODB STATUS` (which is mandatory), and optionally to see all threads which are running on the server (see FLUSH TABLES WITH READ LOCK option),
@@ -62,7 +62,7 @@ The database user needs the following privileges to back up tables or databases:
 
 A SQL example of creating a database user with the minimum privileges required to take full backups would be:
 
-```
+```sql
 CREATE USER 'bkpuser'@'localhost' IDENTIFIED BY 's3cr%T';
 GRANT BACKUP_ADMIN, PROCESS, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'bkpuser'@'localhost';
 GRANT SELECT ON performance_schema.log_status TO 'bkpuser'@'localhost';
@@ -75,13 +75,13 @@ FLUSH PRIVILEGES;
 
 To query the privileges that your database user has been granted at the console of the server execute:
 
-```
+```sql
 SHOW GRANTS;
 ```
 
 or for a particular user with:
 
-```
+```sql
 SHOW GRANTS FOR 'db-user'@'host';
 ```
 
@@ -89,10 +89,10 @@ It will display the privileges using the same format as for the [GRANT statement
 
 Note that privileges may vary across versions of the server. To list the exact list of privileges that your server support (and a brief description of them) execute:
 
-```
+```sql
 SHOW PRIVILEGES;
 ```
 
 See also
 
-[Permissions needed](https://docs.percona.com/percona-xtrabackup/9.7/permissions.html)
+[Permissions needed](https://docs.percona.com/percona-xtrabackup/9.7/permissions.md)

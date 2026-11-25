@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-iam-profile.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-iam-profile.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-iam-profile.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5774,19 +5774,19 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>The IAM instance profile is the &ldquo;who&rdquo; for an EC2 instance and assumes the IAM role, which has permissions. The instance profile has the same name as the IAM role.</p>
 <p>An IAM instance profile does not need the <code>--s3-secret-key</code> nor the <code>--s3-access-key</code> if they are running <code>xbcloud</code> from an Amazon EC2 instance. To configure or attach an instance metadata to an EC2 instance, see <a href="https://aws.amazon.com/premiumsupport/knowledge-center/ec2-instance-access-s3-bucket/">How can I grant my Amazon EC2 instance access to an Amazon S3 bucket <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>. </p>
 <p>An example of the command:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup ... | xbcloud put --storage=s3 --s3-bucket=bucket-name backup-name
+<div class="language-text highlight"><pre><span></span><code>xtrabackup ... | xbcloud put --storage=s3 --s3-bucket=bucket-name backup-name
 </code></pre></div>
 <p>The xbcloud binary outputs a connect message when successful.</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="highlight"><pre><span></span><code>221121 13:16:26 Using instance metadata for access and secret key
+<div class="language-text highlight"><pre><span></span><code>221121 13:16:26 Using instance metadata for access and secret key
 221121 13:16:26 xbcloud: Successfully connected.
 </code></pre></div>
 </details>
 <p>An important consideration is that the instance metadata has a time to live (TTL) of 6 hours. A backup that takes more than that time contains Expired token errors. Use <a href="xbcloud-exbackoff.html">Exponential Backoff</a> to retry the upload after fetching new keys from the instance metadata.</p>
 <details class="example">
 <summary>Output when keys have expired</summary>
-<div class="highlight"><pre><span></span><code>221121 13:04:52 xbcloud: S3 error message: The provided token has expired.
+<div class="language-text highlight"><pre><span></span><code>221121 13:04:52 xbcloud: S3 error message: The provided token has expired.
 221121 13:04:52 xbcloud: Sleeping for 2384 ms before retrying test/mysql.ibd.00000000000000000002 [1]
 221121 13:04:55 xbcloud: S3 error message: The provided token has expired.
 221121 13:04:55 xbcloud: Sleeping for 2887 ms before retrying test/mysql.ibd.00000000000000000003 [1]

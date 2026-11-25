@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6012,7 +6012,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </ul>
 <p>Basic Syntax:</p>
 <p>Run the following commands as root or use the sudo command.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Create a full backup</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="c1"># Create a full backup</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backup/full
 
 <span class="c1"># Create an incremental backup</span>
@@ -6057,7 +6057,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 </ul>
 <p>Basic Syntax:</p>
 <p>Run the following commands as root or use the sudo command.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Upload backup to S3</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="c1"># Upload backup to S3</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-bucket/backup/<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-bucket
 
 <span class="c1"># Download backup from S3</span>
@@ -6099,7 +6099,7 @@ xbcloud<span class="w"> </span>get<span class="w"> </span>s3://my-bucket/backup/
 </ul>
 <p>Basic Syntax:</p>
 <p>Run the following commands as root or use the sudo command.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Encrypt a backup file</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="c1"># Encrypt a backup file</span>
 xbcrypt<span class="w"> </span>--encrypt<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/path/to/keyfile<span class="w"> </span>--input<span class="o">=</span>/backup/backup.xbstream
 
 <span class="c1"># Decrypt a backup file</span>
@@ -6141,7 +6141,7 @@ xbcrypt<span class="w"> </span>--decrypt<span class="w"> </span>--encrypt-key-fi
 </ul>
 <p>Basic Syntax:</p>
 <p>Run the following commands as root or use the sudo command.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Extract a streamed backup</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="c1"># Extract a streamed backup</span>
 xbstream<span class="w"> </span>-x<span class="w"> </span>-C<span class="w"> </span>/restore/directory<span class="w"> </span>&lt;<span class="w"> </span>backup.xbstream
 
 <span class="c1"># Create a streamed backup</span>
@@ -6198,7 +6198,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span 
 <h2 id="code-examples">Code examples<a data-markdown-ignore class="headerlink" href="#code-examples" title="Permanent link">&para;</a></h2>
 <h3 id="complete-backup-and-upload-workflow">Complete backup and upload workflow<a data-markdown-ignore class="headerlink" href="#complete-backup-and-upload-workflow" title="Permanent link">&para;</a></h3>
 <p>Run the following commands as root or use the sudo command.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Create encrypted backup</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="c1"># Create encrypted backup</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/etc/mysql/backup.key
 
 <span class="c1"># Stream and compress backup</span>
@@ -6210,7 +6210,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>s3://my-backup-bucket/
 </code></pre></div>
 <h3 id="restore-from-cloud-storage">Restore from cloud storage<a data-markdown-ignore class="headerlink" href="#restore-from-cloud-storage" title="Permanent link">&para;</a></h3>
 <p>Run the following commands as root or use the sudo command.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Download backup from cloud</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="c1"># Download backup from cloud</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>s3://my-backup-bucket/20241201/<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backup-bucket
 
 <span class="c1"># Decrypt backup</span>

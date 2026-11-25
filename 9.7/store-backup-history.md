@@ -16,7 +16,7 @@ Backup that’s currently being performed will **NOT** exist in the xtrabackup_h
 
 If you want access to backup history outside of your backup set in the case of some catastrophic event, you will need to either perform a `mysqldump`, partial backup or `SELECT` * on the history table after *xtrabackup* completes and store the results with you backup set.
 
-For the necessary privileges, see [Permissions and Privileges Needed](https://docs.percona.com/percona-xtrabackup/9.7/privileges.html).
+For the necessary privileges, see [Permissions and Privileges Needed](https://docs.percona.com/percona-xtrabackup/9.7/privileges.md).
 
 ## Store backup history on a different server
 
@@ -30,18 +30,18 @@ By default, Percona XtraBackup writes the history record to the server you back 
 
 To write the history record to another, writeable server, use the below options to describe the connections parameters of the server:
 
-| Option                                                                                                                        | Description                        | Default                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | --------------------------------------------------------- |
-| [`--history-host`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history-host)             | Host of the history server         | Value of `--host`                                         |
-| [`--history-port`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history-port)             | TCP/IP port of the history server  | Value of `--port`                                         |
-| [`--history-socket`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history-socket)         | UNIX socket of the history server  | Value of `--socket`, if you do not set `--history-host`   |
-| [`--history-user`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history-user)             | User account on the history server | Value of `--user`                                         |
-| [`--history-password`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history-password)     | Password of the history user       | Value of `--password`, if you do not set `--history-user` |
-| [`--history-ssl-mode`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history-ssl-mode)     | Security state of the connection   | Value of `--ssl-mode`                                     |
-| [`--history-ssl-ca`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history-ssl-ca)         | CA file in PEM format              | Value of `--ssl-ca`                                       |
-| [`--history-ssl-capath`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history-ssl-capath) | Directory of CA certificates       | Value of `--ssl-capath`                                   |
-| [`--history-ssl-cert`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history-ssl-cert)     | X509 certificate in PEM format     | Value of `--ssl-cert`                                     |
-| [`--history-ssl-key`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history-ssl-key)       | X509 key in PEM format             | Value of `--ssl-key`                                      |
+| Option                                                                                                                      | Description                        | Default                                                   |
+| --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | --------------------------------------------------------- |
+| [`--history-host`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history-host)             | Host of the history server         | Value of `--host`                                         |
+| [`--history-port`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history-port)             | TCP/IP port of the history server  | Value of `--port`                                         |
+| [`--history-socket`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history-socket)         | UNIX socket of the history server  | Value of `--socket`, if you do not set `--history-host`   |
+| [`--history-user`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history-user)             | User account on the history server | Value of `--user`                                         |
+| [`--history-password`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history-password)     | Password of the history user       | Value of `--password`, if you do not set `--history-user` |
+| [`--history-ssl-mode`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history-ssl-mode)     | Security state of the connection   | Value of `--ssl-mode`                                     |
+| [`--history-ssl-ca`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history-ssl-ca)         | CA file in PEM format              | Value of `--ssl-ca`                                       |
+| [`--history-ssl-capath`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history-ssl-capath) | Directory of CA certificates       | Value of `--ssl-capath`                                   |
+| [`--history-ssl-cert`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history-ssl-cert)     | X509 certificate in PEM format     | Value of `--ssl-cert`                                     |
+| [`--history-ssl-key`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history-ssl-key)       | X509 key in PEM format             | Value of `--ssl-key`                                      |
 
 If you do not set an option, Percona XtraBackup takes the value of the matching connection option for the server you back up, with the following exceptions:
 
@@ -52,7 +52,7 @@ If you do not set an option, Percona XtraBackup takes the value of the matching 
 
 The following example backs up a read-only replica and stores the history record on the source server:
 
-```
+```bash
 xtrabackup --backup --target-dir=/backups/full \
   --user=bkpuser --password=<backup_password> --socket=/var/run/mysqld/mysqld.sock \
   --history=nightly \
@@ -62,9 +62,9 @@ xtrabackup --backup --target-dir=/backups/full \
 
 Percona XtraBackup uses the history server only to store and read the history record. Percona XtraBackup runs all other backup operations, such as locks and redo log copying, on the server you back up.
 
-The [`--incremental-history-name`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#incremental-history-name) and [`--incremental-history-uuid`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#incremental-history-uuid) options also read from the history server. For incremental backups, pass the same `--history-*` options so that Percona XtraBackup reads the base LSN from the server that stores the records:
+The [`--incremental-history-name`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#incremental-history-name) and [`--incremental-history-uuid`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#incremental-history-uuid) options also read from the history server. For incremental backups, pass the same `--history-*` options so that Percona XtraBackup reads the base LSN from the server that stores the records:
 
-```
+```bash
 xtrabackup --backup --incremental --target-dir=/backups/inc1 \
   --user=bkpuser --password=<backup_password> --socket=/var/run/mysqld/mysqld.sock \
   --incremental-history-name=nightly \
@@ -74,7 +74,7 @@ xtrabackup --backup --incremental --target-dir=/backups/inc1 \
 
 ### Requirements and behavior
 
-- The `--history-*` options require [`--history`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#history), [`--incremental-history-name`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#incremental-history-name), or [`--incremental-history-uuid`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#incremental-history-uuid). If you set a `--history-*` option without any of these options, Percona XtraBackup reports an error and does not start the backup.
+- The `--history-*` options require [`--history`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#history), [`--incremental-history-name`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#incremental-history-name), or [`--incremental-history-uuid`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#incremental-history-uuid). If you set a `--history-*` option without any of these options, Percona XtraBackup reports an error and does not start the backup.
 - Percona XtraBackup connects to the history server when the backup starts. If the connection fails, Percona XtraBackup stops the backup before copying any data.
 - If Percona XtraBackup cannot apply the TLS settings to the history connection, Percona XtraBackup does not connect to the history server.
 - If you set `--history-ssl-ca` or `--history-ssl-capath` and set `--history-ssl-mode` lower than `VERIFY_CA`, Percona XtraBackup prints a warning that the certificate of the history server remains unverified.
@@ -92,7 +92,7 @@ The history user needs the following privileges on the history server:
 
 To create a history user with the minimum privileges, run the following statements on the history server:
 
-```
+```sql
 CREATE USER 'history_user'@'%' IDENTIFIED BY '<history_password>';
 GRANT CREATE, ALTER, INSERT, SELECT ON PERCONA_SCHEMA.* TO 'history_user'@'%';
 GRANT SELECT ON performance_schema.replication_group_members TO 'history_user'@'%';
@@ -100,7 +100,7 @@ GRANT SELECT ON performance_schema.replication_group_members TO 'history_user'@'
 
 ### Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ### PERCONA_SCHEMA.XTRABACKUP_HISTORY table
 

@@ -10,7 +10,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentation">
+        <meta name="description" content="Percona XtraBackup 9.7, an open source hot backup utility for MySQL-based servers, with installation, full and incremental backup, restore and reference guides">
       
       
         <meta name="author" content="Percona LLC">
@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5855,7 +5855,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h1 id="create-a-full-backup">Create a full backup<a data-markdown-ignore class="headerlink" href="#create-a-full-backup" title="Permanent link">&para;</a></h1>
 <h2 id="command-reference">Command reference<a data-markdown-ignore class="headerlink" href="#command-reference" title="Permanent link">&para;</a></h2>
 <p>Quick syntax for creating a full backup with common options:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>&lt;path&gt;<span class="w"> </span><span class="o">[</span>--user<span class="o">=</span>&lt;user&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--password<span class="o">=</span>&lt;password&gt;<span class="o">]</span>
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>&lt;path&gt;<span class="w"> </span><span class="o">[</span>--user<span class="o">=</span>&lt;user&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--password<span class="o">=</span>&lt;password&gt;<span class="o">]</span>
 </code></pre></div>
 <table>
 <thead>
@@ -5889,7 +5889,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tbody>
 </table>
 <p>Example with authentication:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span>--user<span class="o">=</span>backup<span class="w"> </span>--password<span class="o">=</span>secret
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span>--user<span class="o">=</span>backup<span class="w"> </span>--password<span class="o">=</span>secret
 </code></pre></div>
 <hr />
 <p>To create a backup, run xtrabackup with the <code>--backup</code>
@@ -5904,7 +5904,7 @@ exist and is empty, xtrabackup succeeds.</p>
 <p>xtrabackup does not overwrite existing files. It will fail with operating
 system error 17, <code>file exists</code>.</p>
 <p>The following command starts the process. Run all the commands as root or use the sudo command.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <p>This operation stores the backup at <code>/data/backups/</code>. If you specify a
 relative path, the target directory is relative to the current directory.</p>
@@ -5914,7 +5914,7 @@ log files.</p>
 <p>The following is an example of the output:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>...
+<div class="language-text no-copy highlight"><pre><span></span><code>...
 2026-10-13T17:23:55.415104-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing FLUSH NO_WRITE_TO_BINLOG ENGINE LOGS...
 2026-10-13T17:23:55.416681-00:00 0 [Note] [MY-011825] [Xtrabackup] The latest check point (for incremental): '36616867'
 2026-10-13T17:23:55.416693-00:00 0 [Note] [MY-011825] [Xtrabackup] Stopping log copying thread at LSN 36617774
@@ -5933,12 +5933,12 @@ log files.</p>
 <p>Log copying thread checks the transactional log every second to see if there were any new log records written that need to be copied, but there is a chance that the log copying thread might not be able to keep up with the amount of writes that go to the transactional logs, and will hit an error when the log records are overwritten before they could be read.</p>
 </div>
 <p>After the backup is finished, the target directory will contain files such as the following, for a server with a <code>test</code> database that contains two InnoDB tables:</p>
-<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-lh<span class="w"> </span>/data/backups/
+<div class="language-shell highlight"><pre><span></span><code>ls<span class="w"> </span>-lh<span class="w"> </span>/data/backups/
 </code></pre></div>
 <p>The result should look like this:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>total 76M
+<div class="language-text no-copy highlight"><pre><span></span><code>total 76M
 -rw-r----- 1 root root  452 Oct 13 17:23 backup-my.cnf
 -rw-r----- 1 root root  198 Oct 13 17:23 binlog.000004
 -rw-r----- 1 root root   16 Oct 13 17:23 binlog.index

@@ -20,7 +20,7 @@ For an encryption key, use a command, such as `openssl rand -base64 24`, to gene
 
 An example of the *xtrabackup* command using the `--encrypt-key`:
 
-```
+```shell
 xtrabackup --backup --encrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup
 ```
 
@@ -30,7 +30,7 @@ The recommended method uses the command line: `echo -n “{randomly-generated-al
 
 An example of using the `--encrypt-key-file` option:
 
-```
+```shell
 xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 ```
 
@@ -48,13 +48,13 @@ You can decrypt backups with the `xbcrypt` binary. The following example encrypt
 
 You can use the `--parallel` option and the `--decrypt` option to decrypt multiple files simultaneously.
 
-```
+```shell
 for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 < $i > $(dirname $i)/$(basename $i .xbcrypt) && rm $i; done
 ```
 
 The following example shows a decryption process.
 
-```
+```shell
 xtrabackup --decrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup/
 ```
 
@@ -64,7 +64,7 @@ Percona XtraBackup doesn’t automatically remove the encrypted files. You must 
 
 After decrypting the backups, prepare the backups with the `--prepare` option:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backup/
 ```
 
@@ -72,7 +72,7 @@ xtrabackup --prepare --target-dir=/data/backup/
 
 *xtrabackup* offers the `--copy-back` option to restore a backup to the server’s datadir:
 
-```
+```shell
 xtrabackup --copy-back --target-dir=/data/backup/
 ```
 
@@ -82,7 +82,7 @@ You should check the last line of the output for a success message:
 
 Expected output
 
-```
+```text
 ...
 2026-10-13T17:25:10.030046-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 ```

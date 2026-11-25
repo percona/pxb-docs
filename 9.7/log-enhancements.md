@@ -8,7 +8,7 @@ The error logs did not have a standard structure and the log statements varied i
 
 - The backup log statement header has the name of the module, `xtrabackup`, which generated the statement but no timestamp:
 
-```
+```shell
 xtrabackup: recognized client arguments: --parallel=4 --target-dir=/data/backups/ --backup=1
 ```
 
@@ -16,19 +16,19 @@ The output should be similar to the following:
 
 Expected output
 
-```
+```text
 ./bin/xtrabackup version 9.7.2-2 based on MySQL server 9.7 Linux (x86_64) (revision id: b0f75188ca3)
 ```
 
 - The copy-back log statement has a timestamp but no module name. The timestamp is a mix of UTC and the local timezone.
 
-```
+```text
 220322 19:05:13 [01] Copying undo_001 to /data/backups/undo_001
 ```
 
 - The following prepare log statements do not have header information, which makes diagnosing an issue more difficult.
 
-```
+```text
 Completed space ID check of 1008 files.
 Initializing buffer pool, total size = 128.000000M, instances = 1, chunk size =128.000000M
 Completed initialization of buffer pool
@@ -51,7 +51,7 @@ An example of a `prepare` log that is generated with the improved structure. The
 
 Expected output
 
-```
+```text
 2026-10-13T17:24:07.116234-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be not prepared yet.
 2026-10-13T17:24:07.130815-00:00 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(36616867)
 2026-10-13T17:24:07.135585-00:00 0 [Note] [MY-011825] [Xtrabackup] using the following InnoDB configuration for recovery:

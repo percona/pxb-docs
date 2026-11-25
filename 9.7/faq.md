@@ -14,7 +14,7 @@ For the required XtraBackup version and setup, see [MySQL backup prerequisites](
 
 ## xtrabackup binary fails with a floating point exception
 
-In most of the cases this is due to not having installed the required libraries (and version) by xtrabackup. Installing the GCC suite with the supporting libraries and recompiling xtrabackup solves the issue. See [Compiling and Installing from Source Code](https://docs.percona.com/percona-xtrabackup/9.7/compile-xtrabackup.html) for instructions on the procedure.
+In most of the cases this is due to not having installed the required libraries (and version) by xtrabackup. Installing the GCC suite with the supporting libraries and recompiling xtrabackup solves the issue. See [Compiling and Installing from Source Code](https://docs.percona.com/percona-xtrabackup/9.7/compile-xtrabackup.md) for instructions on the procedure.
 
 ## How xtrabackup handles the ibdata/ib_log files on restore if they aren’t in mysql datadir?
 
@@ -28,7 +28,7 @@ This usually happens when database being backed up contains large amount of file
 
 To prevent creating corrupted backups when running DDL operations, Percona XtraBackup aborts if it detects that redo logging is disabled. In this case, the following error is printed:
 
-```
+```text
 [FATAL] InnoDB: An optimized (without redo logging) DDL operation has been performed. All modified pages may not have been flushed to the disk yet.
 Percona XtraBackup will not be able to take a consistent backup. Retry the backup operation.
 ```

@@ -2,7 +2,7 @@
 
 # Install using downloaded DEB packages
 
-Download `DEB` packages of the desired series for your architecture from the [Percona Software Downloads](https://www.percona.com/downloads) . If needed, [Percona Software Download instructions](https://docs.percona.com/percona-xtrabackup/9.7/download-instructions.html) are available.
+Download `DEB` packages of the desired series for your architecture from the [Percona Software Downloads](https://www.percona.com/downloads) . If needed, [Percona Software Download instructions](https://docs.percona.com/percona-xtrabackup/9.7/download-instructions.md) are available.
 
 This method requires you to resolve all dependencies and install any missing packages. Always back up your data before making significant system changes.
 
@@ -10,13 +10,13 @@ The following example downloads Percona XtraBackup 9.7.2-2 release package for U
 
 1. Use `wget` to download the `DEB` package:
 
-   ```
+   ```shell
    wget https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.2-2/binary/debian/noble/x86_64/percona-xtrabackup-97_9.7.2~2-1.noble_amd64.deb
    ```
 
 1. Install Percona XtraBackup by using `dpkg`:
 
-   ```
+   ```shell
    sudo dpkg -i percona-xtrabackup-97_9.7.2~2-1.noble_amd64.deb
    ```
 
@@ -33,7 +33,7 @@ The following example downloads Percona XtraBackup 9.7.2-2 release package for U
 
 If there are missing dependencies, `dpkg` shows error messages. Install any missing packages with the following command:
 
-```
+```shell
 sudo apt-get install -f
 ```
 
@@ -43,7 +43,7 @@ Retry the Percona XtraBackup installation.
 
 After installation, verify it by checking the version:
 
-```
+```shell
 xtrabackup --version
 ```
 
@@ -56,4 +56,4 @@ xtrabackup --version
 | Incompatible OS version          | Double-check your OS version matches the package requirements.          |
 | Conflicts with existing packages | Consider removing conflicting packages or use a separate environment.   |
 
-If you encounter persistent issues, consult the Percona XtraBackup documentation or [Get help from Percona](https://docs.percona.com/percona-xtrabackup/9.7/get-help.html).
+If you encounter persistent issues, consult the Percona XtraBackup documentation or [Get help from Percona](https://docs.percona.com/percona-xtrabackup/9.7/get-help.md).

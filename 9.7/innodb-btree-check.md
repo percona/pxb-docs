@@ -4,11 +4,11 @@
 
 ## Overview
 
-The [`--check-tables`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#check-tables) option validates the structural integrity of InnoDB B-tree indexes during the [`--prepare`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#prepare) phase. Validation during `--prepare` helps detect corrupted indexes before restore or production deployment.
+The [`--check-tables`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#check-tables) option validates the structural integrity of InnoDB B-tree indexes during the [`--prepare`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare) phase. Validation during `--prepare` helps detect corrupted indexes before restore or production deployment.
 
 ### Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ## Why checksum validation is not enough
 
@@ -45,7 +45,7 @@ Structural corruption can break B-tree page relationships, page metadata consist
 
 ## How `--check-tables` works
 
-The `--check-tables` option executes `btr_validate_index()` on every index that is present and active in the InnoDB data dictionary for each `.ibd` tablespace, using the number of threads specified by [`--parallel`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#parallel). `--check-tables` detects structural inconsistencies that page checksum verification cannot detect. The option applies only to InnoDB tables.
+The `--check-tables` option executes `btr_validate_index()` on every index that is present and active in the InnoDB data dictionary for each `.ibd` tablespace, using the number of threads specified by [`--parallel`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#parallel). `--check-tables` detects structural inconsistencies that page checksum verification cannot detect. The option applies only to InnoDB tables.
 
 In addition to structural validation, when `--check-tables` is used, XtraBackup verifies page checksums during InnoDB B-tree index traversal and performs additional checksum verification of the system tablespace (`ibdata*`) and undo tablespaces (`undo*.ibu`).
 
@@ -61,9 +61,9 @@ For each tablespace, Percona XtraBackup:
 
 The option also works with:
 
-- [Parallel execution](#parallel-execution) through [`--parallel`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#parallel)
-- Workflows that use [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#apply-redo-only)
-- Transportable tablespace export with [`--export`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#export)
+- [Parallel execution](#parallel-execution) through [`--parallel`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#parallel)
+- Workflows that use [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only)
+- Transportable tablespace export with [`--export`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#export)
 
 ### Detected corruption conditions
 
@@ -120,7 +120,7 @@ The `--check-tables` option uses the thread count specified by `--parallel`. Sta
 
 ### Validate a full backup
 
-```
+```bash
 xtrabackup --prepare --check-tables \
   --target-dir=/backups/full \
   --parallel=8
@@ -130,7 +130,7 @@ xtrabackup --prepare --check-tables \
 
 You can use `--check-tables` together with `--apply-redo-only`. Validation scans all tables and indexes on every run, so use `--check-tables` during the final prepare stage of an incremental backup.
 
-```
+```bash
 xtrabackup --prepare --check-tables \
   --target-dir=/backups/full \
   --parallel=8
@@ -138,7 +138,7 @@ xtrabackup --prepare --check-tables \
 
 ### Validate and export tablespaces
 
-```
+```bash
 xtrabackup --prepare --export --check-tables \
   --target-dir=/backups/full \
   --parallel=8
@@ -148,7 +148,7 @@ xtrabackup --prepare --export --check-tables \
 
 A successful validation operation typically ends with a message similar to:
 
-```
+```text
 2026-05-15T15:41:57.808327+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/replication_group_member_actions
 2026-05-15T15:41:57.808630+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/replication_group_configuration_version
 2026-05-15T15:41:57.808810+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/server_cost
@@ -160,7 +160,7 @@ A successful validation operation typically ends with a message similar to:
 
 A failed validation operation returns a non-zero exit code. During validation, XtraBackup logs each table as it processes it:
 
-```
+```text
 2026-05-15T13:42:23.691691+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: test/t1
 2026-05-15T13:42:23.697349+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: test/t_lob
 2026-05-15T13:42:23.782555+01:00 2 [Note] [MY-011825] [Xtrabackup] Checking: mysql/dd_properties
@@ -170,7 +170,7 @@ A failed validation operation returns a non-zero exit code. During validation, X
 
 If validation detects corruption, XtraBackup reports the affected tables and ends with the following summary message:
 
-```
+```text
 2026-05-15T13:42:24.670469+01:00 0 [ERROR] [MY-011825] [Xtrabackup] Table check failed. The backup may be corrupted.
 ```
 
@@ -182,7 +182,7 @@ The log contains detailed information for each detected inconsistency.
 
    Expected output
 
-   ```
+   ```text
    2026-05-15T13:42:20.270268+01:00 2 [ERROR] [MY-013051] [InnoDB]
    In pages [page id: space=2, page number=5]
    and [page id: space=2, page number=6]
@@ -195,7 +195,7 @@ The log contains detailed information for each detected inconsistency.
 
    Expected output
 
-   ```
+   ```text
    2026-05-15T13:38:12.343921+01:00 2 [ERROR] [MY-011825] [InnoDB]
    B-tree corruption: page 0 is empty but is not the root page
    in index PRIMARY. Possible all-zero (unflushed) page.
@@ -205,7 +205,7 @@ The log contains detailed information for each detected inconsistency.
 
    Expected output
 
-   ```
+   ```text
    2026-05-15T13:38:12.343894+01:00 2 [ERROR] [MY-011866] [InnoDB]
    Page index id 0 != data dictionary index id 204
    ```
@@ -214,7 +214,7 @@ The log contains detailed information for each detected inconsistency.
 
    Expected output
 
-   ```
+   ```text
    2026-05-15T13:42:27.237530+01:00 2 [ERROR] [MY-014011] [InnoDB]
    Minimum record flag is wrongly set to rec on page '4'
    at level '0' for index 'PRIMARY' of table 'sys/sys_config'.
@@ -224,7 +224,7 @@ The log contains detailed information for each detected inconsistency.
 
    Expected output
 
-   ```
+   ```text
    2026-05-15T13:42:34.475996+01:00 2 [ERROR] [MY-011825] [InnoDB] Invalid record! External LOB first page cannot be shared between two records
    2026-05-15T13:42:34.476009+01:00 2 [ERROR] [MY-011825] [InnoDB] The external LOB first page is [page id: space=4294967294, page number=1002]
    2026-05-15T13:42:34.476014+01:00 2 [ERROR] [MY-011825] [InnoDB] The first occurrence of the external LOB first page is in record : page_no: 992 with heap_no: 4

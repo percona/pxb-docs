@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/work-with-selinux.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/work-with-selinux.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/work-with-selinux.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5877,11 +5877,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h1 id="work-with-selinux">Work with SELinux<a data-markdown-ignore class="headerlink" href="#work-with-selinux" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup is installed as an unconfined process running in an undefined domain. SELinux allows unconfined processes almost all access and the processes only use Discretionary Access Control (DAC) rules.</p>
 <p>You find the current state of the Percona XtraBackup file with the following command:</p>
-<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-Z<span class="w"> </span>/usr/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>xtrabackup
+<div class="language-shell highlight"><pre><span></span><code>ls<span class="w"> </span>-Z<span class="w"> </span>/usr/bin<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>xtrabackup
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>-rwxr-xr-x. root root   system_u:object_r:bin_t:s0       xtrabackup
+<div class="language-text no-copy highlight"><pre><span></span><code>-rwxr-xr-x. root root   system_u:object_r:bin_t:s0       xtrabackup
 </code></pre></div>
 </details>
 <p>The SELinux context is the following:</p>
@@ -5915,37 +5915,37 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>The first option opens the entire system to read and write. Select the second option to harden your security.</p>
 <h2 id="install-selinux-tools">Install SELinux tools<a data-markdown-ignore class="headerlink" href="#install-selinux-tools" title="Permanent link">&para;</a></h2>
 <p>To work with policies, you must install the SELinux tools. To find which package provides the <code>semanage</code> command and install the package. The following is an example on CentOS 7.</p>
-<p><div class="highlight"><pre><span></span><code>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
+<p><div class="language-shell highlight"><pre><span></span><code>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
 </code></pre></div>
 The result should list the packages.</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>...
+<div class="language-text no-copy highlight"><pre><span></span><code>...
 policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
 ...
 </code></pre></div>
 </details>
 <p>To install missing packages, run the following:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python
 </code></pre></div>
 <p>The following is an example on CentOS 8:</p>
-<p><div class="highlight"><pre><span></span><code>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
+<p><div class="language-shell highlight"><pre><span></span><code>yum<span class="w"> </span>provides<span class="w"> </span>*bin/semanage
 </code></pre></div>
 The result should list the missing packages.</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>...
+<div class="language-text no-copy highlight"><pre><span></span><code>...
 policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python utilities
 </code></pre></div>
 </details>
 <p>Run the following to install the missing packages: </p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python-utils
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>policycoreutils-python-utils
 </code></pre></div>
 <h2 id="create-a-policy">Create a policy<a data-markdown-ignore class="headerlink" href="#create-a-policy" title="Permanent link">&para;</a></h2>
 <p>Use a modular approach to create an SELinux policy. Create a policy module to manage XtraBackup. You must create a <code>.te</code> file for type enforcement, and an optional <code>.fc</code> file for the file contexts.</p>
 <p>Use <code>$ ps -efZ | grep xtrabackup</code> to verify the service is not confined by SELinux.</p>
 <p>Create the <code>xtrabackup.fc</code> file and add content. This file defines the security contexts.</p>
-<div class="highlight"><pre><span></span><code>/usr/bin/xtrabackup    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
+<div class="language-text highlight"><pre><span></span><code>/usr/bin/xtrabackup    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbcrypt    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbstream    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbcloud    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
@@ -5962,16 +5962,16 @@ policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python ut
 <p>In the file, the sections in bold should be modified for your system. The fc file can also be downloaded from the same location.</p>
 </div>
 <p>Compile the policy module:</p>
-<div class="highlight"><pre><span></span><code>make<span class="w"> </span>-f<span class="w"> </span>/usr/share/selinux/devel/Makefile<span class="w"> </span>xtrabackup.pp
+<div class="language-shell highlight"><pre><span></span><code>make<span class="w"> </span>-f<span class="w"> </span>/usr/share/selinux/devel/Makefile<span class="w"> </span>xtrabackup.pp
 </code></pre></div>
 <p>Install the module:</p>
-<div class="highlight"><pre><span></span><code>semodule<span class="w"> </span>-i<span class="w"> </span>xtrabackup.pp
+<div class="language-shell highlight"><pre><span></span><code>semodule<span class="w"> </span>-i<span class="w"> </span>xtrabackup.pp
 </code></pre></div>
 <p>Tag the PXB binaries with the proper SELinux tags, such as <code>xtrabackup_exec_t</code>.</p>
-<div class="highlight"><pre><span></span><code>restorecon<span class="w"> </span>-v<span class="w"> </span>/usr/bin/*
+<div class="language-shell highlight"><pre><span></span><code>restorecon<span class="w"> </span>-v<span class="w"> </span>/usr/bin/*
 </code></pre></div>
 <p>If you store your backups at <code>/backups</code>, restore the tag in that location:</p>
-<div class="highlight"><pre><span></span><code>restorecon<span class="w"> </span>-v<span class="w"> </span>/backups
+<div class="language-shell highlight"><pre><span></span><code>restorecon<span class="w"> </span>-v<span class="w"> </span>/backups
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

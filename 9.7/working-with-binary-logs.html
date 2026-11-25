@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/working-with-binary-logs.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/working-with-binary-logs.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/working-with-binary-logs.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5878,7 +5878,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>You can find the binary log position corresponding to a backup after the backup has been taken. If your backup is from a server with binary logging enabled, <code>xtrabackup</code> creates a file named <code>xtrabackup_binlog_info</code> in the target directory. This file contains the binary log file name and position of the exact point when the backup was taken.</p>
 <details class="example">
 <summary>Expected output during the backup stage</summary>
-<div class="no-copy highlight"><pre><span></span><code>2026-10-13T17:23:55.425280-00:00 0 [Note] [MY-011825] [Xtrabackup] Backup created in directory '/data/backups/'
+<div class="language-text no-copy highlight"><pre><span></span><code>2026-10-13T17:23:55.425280-00:00 0 [Note] [MY-011825] [Xtrabackup] Backup created in directory '/data/backups/'
 2026-10-13T17:23:55.425295-00:00 0 [Note] [MY-011825] [Xtrabackup] MySQL binlog position: filename 'binlog.000004', position '198', GTID of the last change 'd4193d59-c72a-11f1-90c5-46b9213cf448:1-5'
 ...
 2026-10-13T17:23:56.662202-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!

@@ -10,7 +10,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentation">
+        <meta name="description" content="Percona XtraBackup 9.7, an open source hot backup utility for MySQL-based servers, with installation, full and incremental backup, restore and reference guides">
       
       
         <meta name="author" content="Percona LLC">
@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5900,7 +5900,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
 <h1 id="use-the-xbcloud-binary-with-amazon-s3">Use the xbcloud binary with Amazon S3<a data-markdown-ignore class="headerlink" href="#use-the-xbcloud-binary-with-amazon-s3" title="Permanent link">&para;</a></h1>
 <h2 id="create-a-full-backup-with-amazon-s3">Create a full backup with Amazon S3<a data-markdown-ignore class="headerlink" href="#create-a-full-backup-with-amazon-s3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--extra-lsndir<span class="o">=</span>/tmp<span class="w"> </span>--target-dir<span class="o">=</span>/tmp<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span><span class="se">\</span>
 --s3-endpoint<span class="o">=</span><span class="s1">'s3.amazonaws.com'</span><span class="w"> </span><span class="se">\</span>
 --s3-access-key<span class="o">=</span><span class="s1">'YOUR-ACCESSKEYID'</span><span class="w"> </span><span class="se">\</span>
@@ -5951,7 +5951,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 <h2 id="permissions-setup">Permissions setup<a data-markdown-ignore class="headerlink" href="#permissions-setup" title="Permanent link">&para;</a></h2>
 <p>Following the principle of &ldquo;least-privilege&rdquo;, these are the minimum bucket permissions needed for xbcloud to write backups to S3: <strong><em>LIST/PUT/GET/DELETE</em></strong>.</p>
 <p>The following example shows the policy definition for writing to the <code>xbcloud-testing</code> bucket on the AWS S3 storage.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nt">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
@@ -5996,7 +5996,7 @@ automatically to corresponding parameters applicable to the selected storage.</p
 </li>
 </ul>
 <h2 id="restore-with-s3">Restore with S3<a data-markdown-ignore class="headerlink" href="#restore-with-s3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span><span class="se">\</span>
 --s3-endpoint<span class="o">=</span>https://storage.googleapis.com/<span class="w"> </span><span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="m">2</span>&gt;download.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-x<span class="w"> </span>-C<span class="w"> </span>restore<span class="w"> </span>--parallel<span class="o">=</span><span class="m">8</span>
 </code></pre></div>

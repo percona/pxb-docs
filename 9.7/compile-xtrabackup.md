@@ -10,7 +10,7 @@ Percona uses the [Github](https://github.com/) revision control system for devel
 
 You can now fetch the latest Percona XtraBackup 9.7 sources:
 
-```
+```shell
 git clone https://github.com/percona/percona-xtrabackup.git
 cd percona-xtrabackup
 git checkout 9.7
@@ -29,7 +29,7 @@ This `cmake` version may be available in your distribution as a separate package
 
 **Debian or Ubuntu using apt**
 
-```
+```shell
 sudo apt install bison pkg-config cmake devscripts debconf \
 debhelper automake bison ca-certificates libprocps-dev \
 libcurl4-openssl-dev cmake debhelper libaio-dev \
@@ -41,7 +41,7 @@ liblz4-tool liblz4-1 liblz4-dev zstd python-docutils
 
 To install the man pages, install the python3-sphinx package first:
 
-```
+```shell
 sudo apt install python3-sphinx
 ```
 
@@ -49,7 +49,7 @@ sudo apt install python3-sphinx
 
 Percona Xtrabackup requires GCC version 5.3 or higher. If the version of GCC installed on your system is lower then you may need to install and enable [the Developer Toolset](https://developers.redhat.com/products/developertoolset/overview) on `RPM`-based distributions to make sure that you use the latest GCC compiler and development tools. Then, install `cmake` and other dependencies:
 
-```
+```shell
 sudo yum install cmake openssl-devel libaio libaio-devel automake autoconf \
 bison libtool ncurses-devel libgcrypt-devel libev-devel libcurl-devel zlib-devel \
 zstd vim-common procps-ng-devel
@@ -57,7 +57,7 @@ zstd vim-common procps-ng-devel
 
 To install the man pages, install the python3-sphinx package first:
 
-```
+```shell
 sudo yum install python3-sphinx
 ```
 
@@ -67,13 +67,13 @@ At this step, you have `cmake` run the commands in the `CMakeList.txt` file to g
 
 1. Change to the directory where you cloned the Percona XtraBackup repository
 
-   ```
+   ```shell
    cd percona-xtrabackup
    ```
 
 1. Create a directory to store the compiled files and then change to that directory:
 
-   ```
+   ```shell
    mkdir build
    cd build
    ```
@@ -84,7 +84,7 @@ Note
 
 You can build *Percona XtraBackup* with man pages but this requires `python-sphinx` package which isn’t available from that main repositories for every distribution. If you installed the `python-sphinx` package you need to remove the `-DWITH_MAN_PAGES=OFF` from the following command.
 
-```
+```shell
 cmake -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=OFF ..
 ```
 
@@ -110,13 +110,13 @@ To compile the source code in your `build` directory, use the `make` command.
 
 1. Run the `make` command. This command may take a long time to complete.
 
-   ```
+   ```shell
    make
    ```
 
    To use all CPU threads and make compilation faster please use:
 
-   ```
+   ```shell
    make -j$(nproc --all)
    ```
 
@@ -126,7 +126,7 @@ The following command installs all *Percona XtraBackup* binaries *xtrabackup* an
 
 Run `make install` to install *Percona XtraBackup* to the default location.
 
-```
+```shell
 sudo make install
 ```
 
@@ -134,7 +134,7 @@ sudo make install
 
 You may use the `DESTDIR` parameter with `make install` to install *Percona XtraBackup* to another location. Make sure that the effective user is able to write to the destination you choose.
 
-```
+```shell
 sudo make DESTDIR=<DIR_NAME> install
 ```
 
@@ -150,13 +150,13 @@ See also
 
 After *Percona XtraBackup* is installed on your system, you may run it by using the full path to the `xtrabackup` command:
 
-```
+```shell
 /usr/local/xtrabackup/bin/xtrabackup
 ```
 
 Update your PATH environment variable if you would like to use the command on the command line directly.
 
-```
+```shell
 # Setting $PATH on the command line
 PATH=$PATH:/usr/local/xtrabackup/bin/xtrabackup
 

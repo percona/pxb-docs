@@ -12,13 +12,13 @@ This page contains notes on various internal aspects of the *xtrabackup* tool’
 
 Because *xtrabackup* reads large amounts of data from the filesystem, it uses `posix_fadvise()` where possible, to instruct the operating system not to try to cache the blocks it reads from disk. Without this hint, the operating system would prefer to cache the blocks, assuming that `xtrabackup` is likely to need them again, which is not the case. Caching such large files can place pressure on the operating system’s virtual memory and cause other processes, such as the database server, to be swapped out. The `xtrabackup` tool avoids this with the following hint on both the source and destination files:
 
-```
+```text
 posix_fadvise(file, 0, 0, POSIX_FADV_DONTNEED)
 ```
 
 In addition, xtrabackup asks the operating system to perform more aggressive read-ahead optimizations on the source files:
 
-```
+```text
 posix_fadvise(file, 0, 0, POSIX_FADV_SEQUENTIAL)
 ```
 

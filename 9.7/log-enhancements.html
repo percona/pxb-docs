@@ -126,7 +126,7 @@ provide the progress of an operation or more information about errors.">
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/log-enhancements.md"></head>
   
   
     
@@ -136,7 +136,7 @@ provide the progress of an operation or more information about errors.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/log-enhancements.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/log-enhancements.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5838,25 +5838,25 @@ provide the progress of an operation or more information about errors.</p>
 <ul>
 <li>The backup log statement header has the name of the module, <code>xtrabackup</code>, which generated the statement but no timestamp:</li>
 </ul>
-<p><div class="highlight"><pre><span></span><code>xtrabackup:<span class="w"> </span>recognized<span class="w"> </span>client<span class="w"> </span>arguments:<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span>--backup<span class="o">=</span><span class="m">1</span>
+<p><div class="language-shell highlight"><pre><span></span><code>xtrabackup:<span class="w"> </span>recognized<span class="w"> </span>client<span class="w"> </span>arguments:<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/<span class="w"> </span>--backup<span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 The output should be similar to the following:</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>./bin/xtrabackup version 9.7.2-2 based on MySQL server 9.7 Linux (x86_64) (revision id: b0f75188ca3)
+<div class="language-text no-copy highlight"><pre><span></span><code>./bin/xtrabackup version 9.7.2-2 based on MySQL server 9.7 Linux (x86_64) (revision id: b0f75188ca3)
 </code></pre></div>
 </details>
 <ul>
 <li>The copy-back log statement has a timestamp but no module name. The
   timestamp is a mix of UTC and the local timezone.</li>
 </ul>
-<div class="no-copy highlight"><pre><span></span><code>220322 19:05:13 [01] Copying undo_001 to /data/backups/undo_001
+<div class="language-text no-copy highlight"><pre><span></span><code>220322 19:05:13 [01] Copying undo_001 to /data/backups/undo_001
 </code></pre></div>
 <ul>
 <li>The following prepare log statements do not have header information,
   which makes diagnosing an issue more difficult.</li>
 </ul>
-<div class="no-copy highlight"><pre><span></span><code>Completed space ID check of 1008 files.
+<div class="language-text no-copy highlight"><pre><span></span><code>Completed space ID check of 1008 files.
 Initializing buffer pool, total size = 128.000000M, instances = 1, chunk size =128.000000M
 Completed initialization of buffer pool
 If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
@@ -5887,7 +5887,7 @@ The uniformity of the headers makes it easier to follow an operation’s progres
 or review the log to diagnose issues.</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>2026-10-13T17:24:07.116234-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be not prepared yet.
+<div class="language-text no-copy highlight"><pre><span></span><code>2026-10-13T17:24:07.116234-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be not prepared yet.
 2026-10-13T17:24:07.130815-00:00 0 [Note] [MY-011825] [Xtrabackup] xtrabackup_logfile detected: size=8388608, start_lsn=(36616867)
 2026-10-13T17:24:07.135585-00:00 0 [Note] [MY-011825] [Xtrabackup] using the following InnoDB configuration for recovery:
 2026-10-13T17:24:07.135620-00:00 0 [Note] [MY-011825] [Xtrabackup] innodb_data_home_dir = .
@@ -5941,39 +5941,6 @@ or review the log to diagnose issues.</p>
 
     
     
-    
-      
-  <span class="md-source-file__fact">
-    
-      
-  <span class="md-icon" title="Contributors">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-  </span>
-  <span>GitHub</span>
-
-    
-    <nav>
-      
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
-          
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
-        </a>
-      
-        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
-          
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
-      
-      
-    </nav>
-  </span>
-
     
   </aside>
 

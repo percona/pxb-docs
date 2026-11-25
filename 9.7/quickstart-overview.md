@@ -4,7 +4,7 @@
 
 Percona XtraBackup is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on transactional systems.
 
-To quickly start with Percona XtraBackup, we recommend using Docker. This Quickstart guide focuses on this installation method. You can explore alternative installation options in the [Install](https://docs.percona.com/percona-xtrabackup/9.7/installation.html) section.
+To quickly start with Percona XtraBackup, we recommend using Docker. This Quickstart guide focuses on this installation method. You can explore alternative installation options in the [Install](https://docs.percona.com/percona-xtrabackup/9.7/installation.md) section.
 
 ### Docker containers
 
@@ -60,7 +60,7 @@ Supported Storage Engines:
 
 In this Quickstart, you will learn how to:
 
-1. [Start a Docker container and take a backup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-docker.html)
-1. [Restore a backup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-restore-back.html)
-1. [Clean up](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-exit.html)
-1. [Choose your next steps](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-next-steps.html)
+1. [Start a Docker container and take a backup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-docker.md)
+1. [Restore a backup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-restore-back.md)
+1. [Clean up](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-exit.md)
+1. [Choose your next steps](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-next-steps.md)

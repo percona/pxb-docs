@@ -6,13 +6,13 @@
 
 Quick syntax for restoring a prepared backup:
 
-```
+```bash
 xtrabackup --copy-back --target-dir=<path> [--datadir=<path>]
 ```
 
 Or to move files instead of copying (backup directory will be emptied):
 
-```
+```bash
 xtrabackup --move-back --target-dir=<path> [--datadir=<path>]
 ```
 
@@ -25,13 +25,13 @@ xtrabackup --move-back --target-dir=<path> [--datadir=<path>]
 
 Example (copy back to default datadir):
 
-```
+```bash
 xtrabackup --copy-back --target-dir=/data/backups/
 ```
 
 Example (copy back to a specific datadir):
 
-```
+```bash
 xtrabackup --copy-back --target-dir=/data/backups/ --datadir=/var/lib/mysql
 ```
 
@@ -48,7 +48,7 @@ Ensure you have one of the following before proceeding:
 
 For convenience, *xtrabackup* binary has the `--copy-back` option to copy the backup to the datadir of the server:
 
-```
+```shell
 xtrabackup --copy-back --target-dir=/data/backups/
 ```
 
@@ -62,7 +62,7 @@ The datadir must be empty before restoring the backup. Also, it’s important to
 
 An example of the rsync command to restore the backup:
 
-```
+```shell
 rsync -avrP /data/backup/ /var/lib/mysql/
 ```
 
@@ -70,7 +70,7 @@ You should check that the restored files have the correct ownership and permissi
 
 As files’ attributes are preserved, in most cases you must change the files’ ownership to `mysql` before starting the database server, as the files are owned by the user who created the backup:
 
-```
+```shell
 chown -R mysql:mysql /var/lib/mysql
 ```
 
@@ -88,13 +88,13 @@ After preparing and restoring the backup, do the following steps:
 
 1. Extract the Galera state information from the backup metadata file located in the restored datadir (for example, `/var/lib/mysql`). The extracted information is represented in the `uuid:seqno` format.
 
-   ```
+   ```bash
    cat /var/lib/mysql/xtrabackup_galera_info
    ```
 
    Expected output
 
-   ```
+   ```text
    3f9d1c8e-4a12-11ee-bc3c-8c8590c4abcd:145672
    ```
 
@@ -106,7 +106,7 @@ After preparing and restoring the backup, do the following steps:
 
    Bootstrap node (`safe_to_bootstrap: 1`):
 
-   ```
+   ```bash
    cat > /var/lib/mysql/grastate.dat <<EOF
    # GALERA saved state
    version: 2.1
@@ -118,7 +118,7 @@ After preparing and restoring the backup, do the following steps:
 
    All other nodes (`safe_to_bootstrap: 0`):
 
-   ```
+   ```bash
    cat > /var/lib/mysql/grastate.dat <<EOF
    # GALERA saved state
    version: 2.1
@@ -130,7 +130,7 @@ After preparing and restoring the backup, do the following steps:
 
 1. Ensure the file has the correct ownership:
 
-   ```
+   ```shell
    chown mysql:mysql /var/lib/mysql/grastate.dat
    ```
 

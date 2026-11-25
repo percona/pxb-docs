@@ -12,13 +12,13 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 1. Use the apt package manager to download `percona-release`:
 
-   ```
+   ```shell
    sudo apt update
    ```
 
    Expected output
 
-   ```
+   ```text
    Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease
    Hit:2 http://security.ubuntu.com/ubuntu noble-security InRelease
    Hit:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease
@@ -28,13 +28,13 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 1. Install the `curl` download utility if it’s not installed:
 
-   ```
+   ```shell
    sudo apt install curl
    ```
 
    Expected output
 
-   ```
+   ```text
    Reading package lists... Done
    Building dependency tree... Done
    Reading state information... Done
@@ -48,13 +48,13 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 1. Download the `percona-release` the repository package:
 
-   ```
+   ```shell
    curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
    ```
 
    Expected output
 
-   ```
+   ```text
    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                    Dload  Upload   Total   Spent    Left  Speed
    100 16510  100 16510    0     0  29915      0 --:--:-- --:--:-- --:--:-- 30127
@@ -62,13 +62,13 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 1. Install the downloaded package and its dependencies using `apt`:
 
-   ```
+   ```shell
    sudo apt install gnupg2 lsb-release ./percona-release_latest.generic_all.deb
    ```
 
    Expected output
 
-   ```
+   ```text
    Reading package lists... Done
    Building dependency tree... Done
    Reading state information... Done
@@ -87,13 +87,13 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 1. Refresh the local cache to update the package information:
 
-   ```
+   ```shell
    sudo apt update
    ```
 
    Expected output
 
-   ```
+   ```text
    Hit:1 http://repo.percona.com/prel/apt noble InRelease
    Hit:2 http://repo.percona.com/telemetry/apt noble InRelease
    Hit:3 http://archive.ubuntu.com/ubuntu noble InRelease
@@ -105,13 +105,13 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 1. Enable the specific percona-release product.
 
-   ```
+   ```shell
    sudo percona-release enable pxb-97-lts
    ```
 
    Expected output
 
-   ```
+   ```text
    * Enabling the Percona Packaging Repository repository
    Hit:1 http://repo.percona.com/prel/apt noble InRelease
    Get:2 http://repo.percona.com/pxb-97-lts/apt noble InRelease [12.8 kB]
@@ -128,13 +128,13 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 1. Install Percona XtraBackup.
 
-   ```
+   ```shell
    sudo apt install percona-xtrabackup-97
    ```
 
    Expected output
 
-   ```
+   ```text
    Reading package lists...
    Building dependency tree...
    Reading state information...
@@ -155,13 +155,13 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
 1. Verify the installation.
 
-   ```
+   ```shell
    xtrabackup --version
    ```
 
    Expected output
 
-   ```
+   ```text
    xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
    ```
 
@@ -169,22 +169,22 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
 
    **Install the lz4 package**
 
-   ```
+   ```shell
    sudo apt install lz4
    ```
 
    **Install the zstd package**
 
-   ```
+   ```shell
    sudo apt install zstd
    ```
 
 Note
 
-For AppArmor profile information, see [Working with AppArmor](https://docs.percona.com/percona-xtrabackup/9.7/work-with-apparmor.html).
+For AppArmor profile information, see [Working with AppArmor](https://docs.percona.com/percona-xtrabackup/9.7/work-with-apparmor.md).
 
 See also
 
-To install Percona XtraBackup using downloaded deb packages, see [Install Percona XtraBackup 9.7](https://docs.percona.com/percona-xtrabackup/9.7/apt-download-deb.html).
+To install Percona XtraBackup using downloaded deb packages, see [Install Percona XtraBackup 9.7](https://docs.percona.com/percona-xtrabackup/9.7/apt-download-deb.md).
 
-To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup 9.7](https://docs.percona.com/percona-xtrabackup/9.7/apt-uninstall-xtrabackup.html)
+To uninstall Percona XtraBackup, see [Uninstall Percona XtraBackup 9.7](https://docs.percona.com/percona-xtrabackup/9.7/apt-uninstall-xtrabackup.md)

@@ -44,7 +44,7 @@ The following is an example of a verbose output:
 
 Expected output
 
-```
+```text
 210701 14:34:23 /work/pxb/ins/9.7/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
 210701 14:34:23 /work/pxb/ins/9.7/bin/xbcloud: Curl error (52) Server returned nothing (no headers, no data) is not configured as retriable. You can allow it by adding --curl-retriable-errors=52 parameter
 ```
@@ -53,7 +53,7 @@ Expected output
 
 The following example adjusts the maximum number of retries and the maximum time between retries.
 
-```
+```text
 xbcloud [options] --max-retries=5 --max-backoff=10000
 ```
 
@@ -67,7 +67,7 @@ The following list describes the process using `--max-backoff=10000`:
 
 An example of the output for this setting
 
-```
+```text
 210702 10:07:05 /work/pxb/ins/9.7/bin/xbcloud: Operation failed. Error: Server returned nothing (no headers, no data)
 210702 10:07:05 /work/pxb/ins/9.7/bin/xbcloud: Sleeping for 2384 ms before retrying backup3/xtrabackup_logfile.00000000000000000006
 . . .

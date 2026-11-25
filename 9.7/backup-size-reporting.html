@@ -10,7 +10,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentation">
+        <meta name="description" content="Percona XtraBackup 9.7, an open source hot backup utility for MySQL-based servers, with installation, full and incremental backup, restore and reference guides">
       
       
         <meta name="author" content="Percona LLC">
@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/backup-size-reporting.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/backup-size-reporting.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/backup-size-reporting.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6023,7 +6023,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h2 id="output">Output<a data-markdown-ignore class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
 <h3 id="uncompressed-backup-example">Uncompressed backup example<a data-markdown-ignore class="headerlink" href="#uncompressed-backup-example" title="Permanent link">&para;</a></h3>
 <p>The following example shows <code>xtrabackup_info</code> from a backup created with <code>--target-dir</code>.</p>
-<div class="highlight"><pre><span></span><code>uuid = 122a291d-48b0-11f1-9d76-047bcbcb6b7e
+<div class="language-text highlight"><pre><span></span><code>uuid = 122a291d-48b0-11f1-9d76-047bcbcb6b7e
 name =
 tool_name = xtrabackup
 tool_command = --backup --no-defaults --user=root --socket=/tmp/pxb-folder/mysql.sock --target-dir=/tmp/pxb-folder/backup --extra-lsndir=/tmp/pxb-folder/lsndir --datadir=/tmp/pxb-folder/datadir
@@ -6046,22 +6046,22 @@ lock_ddl_type = ON
 backup_size = 88689086
 </code></pre></div>
 <p>The XtraBackup error log contains the corresponding backup size entry:</p>
-<div class="highlight"><pre><span></span><code>2026-05-05T19:27:28.140024+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 84.58 MiB (88689086 bytes)
+<div class="language-text highlight"><pre><span></span><code>2026-05-05T19:27:28.140024+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 84.58 MiB (88689086 bytes)
 2026-05-05T19:27:29.382428+01:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 </code></pre></div>
 <h3 id="compressed-backup-example">Compressed backup example<a data-markdown-ignore class="headerlink" href="#compressed-backup-example" title="Permanent link">&para;</a></h3>
 <p>Compressed backups additionally report the uncompressed backup size and compression ratio.</p>
 <p>The following example shows the final lines of <code>xtrabackup_info</code> with backup size values reported in bytes:</p>
-<div class="highlight"><pre><span></span><code>backup_size = 1832398
+<div class="language-text highlight"><pre><span></span><code>backup_size = 1832398
 uncompressed_backup_size = 88689148
 </code></pre></div>
 <p>The XtraBackup error log contains the corresponding output:</p>
-<div class="highlight"><pre><span></span><code>2026-05-05T19:27:42.851038+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 1.75 MiB (1832398 bytes)
+<div class="language-text highlight"><pre><span></span><code>2026-05-05T19:27:42.851038+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 1.75 MiB (1832398 bytes)
 2026-05-05T19:27:42.851055+01:00 0 [Note] [MY-011825] [Xtrabackup] Uncompressed backup size: 84.58 MiB (88689148 bytes)
 2026-05-05T19:27:42.851065+01:00 0 [Note] [MY-011825] [Xtrabackup] Compression ratio: 48.40x
 </code></pre></div>
 <p>Percona XtraBackup calculates the compression ratio as:</p>
-<div class="highlight"><pre><span></span><code>uncompressed_backup_size / backup_size
+<div class="language-text highlight"><pre><span></span><code>uncompressed_backup_size / backup_size
 </code></pre></div>
 
 

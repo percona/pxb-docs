@@ -31,7 +31,7 @@ As a result, the content of the sent query is as follows:
 
 Expected output
 
-```
+```text
 85624f3fb5d2af8816178ea1493ed41a;DBD::mysql;4.044
 c2b6d625ef3409164cbf8af4985c48d3;MySQL;MySQL Community Server (GPL) 5.7.22-log
 85624f3fb5d2af8816178ea1493ed41a;OS;Manjaro Linux
@@ -43,20 +43,20 @@ c2b6d625ef3409164cbf8af4985c48d3;MySQL;MySQL Community Server (GPL) 5.7.22-log
 
 Although the *version checking* feature does not collect any personal information, you might prefer to disable this feature, either one time or permanently. To disable it one time, use `--no-version-check` option when invoking the tool from a Percona product which supports it. Here is a simple example which shows running [pt-diskstats](https://docs.percona.com/percona-toolkit/pt-diskstats.html) tool from the *Percona Toolkit* with *version checking* turned off:
 
-```
+```text
 pt-diskstats --no-version-check
 ```
 
 Disabling *version checking* permanently can be done by placing `no-version-check` option into the configuration file of a Percona product (see correspondent documentation for exact file name and syntax). For example, in case of *Percona Toolkit* [this can be done](https://docs.percona.com/percona-toolkit/configuration_files.html) in a global configuration file `/etc/percona-toolkit/percona-toolkit.conf`:
 
-```
+```shell
 # Disable Version Check for all tools:
 no-version-check
 ```
 
-In case of *Percona XtraBackup* this can be done [in its configuration file](https://docs.percona.com/percona-xtrabackup/9.7/configure-xtrabackup.html) in a similar way:
+In case of *Percona XtraBackup* this can be done [in its configuration file](https://docs.percona.com/percona-xtrabackup/9.7/configure-xtrabackup.md) in a similar way:
 
-```
+```text
 [xtrabackup]
 no-version-check
 ```

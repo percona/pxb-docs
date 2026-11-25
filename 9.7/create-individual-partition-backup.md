@@ -14,7 +14,7 @@ If the partition 0 is not backed up, Percona XtraBackup cannot generate a .cfg f
 
 For example, this operation takes a back-up of the partition `p4` from the table `name` located in the database `imdb`. Run the following command as a root user.
 
-```
+```shell
 xtrabackup --tables=^imdb[.]name#p#p4 --backup
 ```
 
@@ -22,7 +22,7 @@ If partition 0 is not backed up, the following errors may occur:
 
 The error message
 
-```
+```text
 xtrabackup: export option not specified
 xtrabackup: error: cannot find dictionary record of table imdb/name#p#p4
 ```
@@ -31,4 +31,4 @@ Note that this option is passed to `xtrabackup --tables` and is matched against 
 
 ## Next step
 
-[Prepare an individual partitions backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-individual-partitions-backup.html)
+[Prepare an individual partitions backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-individual-partitions-backup.md)

@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5923,19 +5923,19 @@ max-retries, and others, can be used. For more information, see the
 <a href="xbcloud-binary-overview.html">xbcloud binary overview</a>.</p>
 <h2 id="examples">Examples<a data-markdown-ignore class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <p>An example of an xbcloud backup.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w">  </span><span class="p">|</span><span class="w"> </span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w">  </span><span class="p">|</span><span class="w"> </span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>backup_name<span class="w"> </span>--azure-storage-account<span class="o">=</span>pxbtesting<span class="w"> </span>--azure-access-key<span class="o">=</span><span class="nv">$AZURE_KEY</span><span class="w"> </span>--azure-container-name<span class="o">=</span><span class="nb">test</span><span class="w"> </span>--storage<span class="o">=</span>azure
 </code></pre></div>
 <p>An example of restoring a backup from xbcloud.</p>
-<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>backup_name<span class="w">  </span>--azure-storage-account<span class="o">=</span>pxbtesting<span class="w"> </span>
+<div class="language-shell highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>backup_name<span class="w">  </span>--azure-storage-account<span class="o">=</span>pxbtesting<span class="w"> </span>
 --azure-access-key<span class="o">=</span><span class="nv">$AZURE_KEY</span><span class="w"> </span>--azure-container-name<span class="o">=</span><span class="nb">test</span><span class="w"> </span>--storage<span class="o">=</span>azure<span class="w"> </span>--parallel<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="m">2</span>&gt;download.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-x<span class="w"> </span>-C<span class="w"> </span>restore
 </code></pre></div>
 <p>An example of deleting a backup from xbcloud.</p>
-<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>delete<span class="w"> </span>backup_name<span class="w"> </span>--azure-storage-account<span class="o">=</span>pxbtesting<span class="w"> </span>
+<div class="language-shell highlight"><pre><span></span><code>xbcloud<span class="w"> </span>delete<span class="w"> </span>backup_name<span class="w"> </span>--azure-storage-account<span class="o">=</span>pxbtesting<span class="w"> </span>
 --azure-access-key<span class="o">=</span><span class="nv">$AZURE_KEY</span><span class="w"> </span>--azure-container-name<span class="o">=</span><span class="nb">test</span><span class="w"> </span>--storage<span class="o">=</span>azure
 </code></pre></div>
 <p>An example of using a shortcut restore.</p>
-<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>azure://operator-testing/bak22<span class="w"> </span>...
+<div class="language-shell highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>azure://operator-testing/bak22<span class="w"> </span>...
 </code></pre></div>
 
 

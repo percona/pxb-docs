@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5868,10 +5868,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </li>
 </ul>
 <p>When you intend to run xtrabackup in any of these modes, use the following syntax:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="o">[</span>--defaults-file<span class="o">=</span><span class="c1">#] --backup|--prepare|--copy-back [OPTIONS]</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="o">[</span>--defaults-file<span class="o">=</span><span class="c1">#] --backup|--prepare|--copy-back [OPTIONS]</span>
 </code></pre></div>
 <p>For example, the <code>--prepare</code> mode is applied as follows:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/mysql/
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup/mysql/
 </code></pre></div>
 <p>For all modes, the default options are read from the xtrabackup and
 mysqld configuration groups from the following files in the given order:</p>
@@ -5953,7 +5953,7 @@ the operation terminates and prints an error message.
 If a privilege is not needed for the current operation but is missing and may be necessary for another XtraBackup operation, the operation is not aborted, and a warning is printed.</p>
 <details class="example">
 <summary>Example output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: Error: missing required privilege LOCK TABLES on *.*
+<div class="language-text no-copy highlight"><pre><span></span><code>xtrabackup: Error: missing required privilege LOCK TABLES on *.*
 xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
 </code></pre></div>
 </details>
@@ -6071,7 +6071,7 @@ option on the command line and cannot be a symbolic link.</p>
 <p>The xtrabackup binary requests the server to start the buffer pool dump. This operation may take time to complete and is done in the background. The
 beginning of a backup with the option reports that the dump has been
 completed.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--dump-innodb-buffer-pool<span class="w"> </span>--target-dir<span class="o">=</span>/home/user/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--dump-innodb-buffer-pool<span class="w"> </span>--target-dir<span class="o">=</span>/home/user/backup
 </code></pre></div>
 <p>By default, this option is set to OFF.</p>
 <p>If <a href="https://dev.mysql.com/doc/refman/9.7/en/server-status-variables.html#statvar_Innodb_buffer_pool_dump_status"><code>innodb_buffer_pool_dump_status</code> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> reports that there is a running dump of the buffer pool, xtrabackup waits for the dump to complete
@@ -6125,9 +6125,9 @@ xtrabackup child process.</p>
 <p>Usage: <code>--estimate-memory=#</code></p>
 <p>The option lets you enable or disable the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The default value is OFF. Enable the feature by setting <code>--estimate-memory=ON</code> in the backup phase and setting the <code>--use-free-memory-pct</code> option in the <code>--prepare</code> phase. If the <code>--estimate-memory</code> setting is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <h3 id="export">export<a data-markdown-ignore class="headerlink" href="#export" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--export</code></p>
@@ -6652,9 +6652,9 @@ specified for the <code>--prepare</code> command.</p>
 <p>This option lets you configure the <a href="smart-memory-estimation.html">Smart memory estimation</a> feature. The option controls the amount of free memory that can be used to <code>--prepare</code> a backup. The default value is 0 (zero), which defines the option as disabled. For example, if you set <code>--use-free-memory-pct=50</code>, then 50% of the free memory is used to <code>prepare</code> a backup. The maximum allowed value is 100.</p>
 <p>This option works only if <code>--estimate-memory</code> option is enabled. If the <code>--estimate-memory</code> option is disabled, the <code>--use-free-memory-pct</code> setting is ignored.</p>
 <p>An example of how to enable the Smart memory estimation feature:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--estimate-memory<span class="o">=</span>ON<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--use-free-memory-pct<span class="o">=</span><span class="m">50</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/
 </code></pre></div>
 <h3 id="use-memory">use-memory<a data-markdown-ignore class="headerlink" href="#use-memory" title="Permanent link">&para;</a></h3>
 <p>Usage: <code>--use-memory</code></p>

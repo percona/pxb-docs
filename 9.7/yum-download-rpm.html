@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/yum-download-rpm.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/yum-download-rpm.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/yum-download-rpm.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5881,17 +5881,17 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <ol>
 <li>
 <p>Install wget</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>wget
+<div class="language-bash highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>wget
 </code></pre></div>
 </li>
 <li>
 <p>Use <code>wget</code> to download the <code>RPM</code> package:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.2-2/binary/redhat/9/x86_64/percona-xtrabackup-97-9.7.2-21.el9.x86_64.rpm
+<div class="language-bash highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.2-2/binary/redhat/9/x86_64/percona-xtrabackup-97-9.7.2-21.el9.x86_64.rpm
 </code></pre></div>
 </li>
 <li>
 <p>Install Percona XtraBackup by running:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>./percona-xtrabackup-97-9.7.2-21.el9.x86_64.rpm
+<div class="language-bash highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>./percona-xtrabackup-97-9.7.2-21.el9.x86_64.rpm
 </code></pre></div>
 </li>
 </ol>
@@ -5927,11 +5927,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </tbody>
 </table>
 <p>If dnf reports missing dependencies, it may offer to install them automatically. If not, you can install these dependencies manually using the following example.</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>libev<span class="w"> </span>libgcrypt<span class="w"> </span>openssl<span class="w"> </span>zlib<span class="w"> </span>libaio
+<div class="language-bash highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>libev<span class="w"> </span>libgcrypt<span class="w"> </span>openssl<span class="w"> </span>zlib<span class="w"> </span>libaio
 </code></pre></div>
 <h2 id="verify-the-installation">Verify the installation<a data-markdown-ignore class="headerlink" href="#verify-the-installation" title="Permanent link">&para;</a></h2>
 <p>After installation, verify it by checking the version:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
 </code></pre></div>
 <h2 id="troubleshoot-the-installation">Troubleshoot the installation<a data-markdown-ignore class="headerlink" href="#troubleshoot-the-installation" title="Permanent link">&para;</a></h2>
 <table>

@@ -6,7 +6,7 @@ Restoring should be done by importing the tables in the partial backup to the se
 
 First step is to create new table in which data will be restored.
 
-```
+```sql
 CREATE TABLE `name_p4` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `name` text NOT NULL,
@@ -25,13 +25,13 @@ Generate a [.cfg metadata file](https://dev.mysql.com/doc/refman/9.7/en/innodb-t
 
 To restore the partition from the backup, the tablespace must be discarded for that table:
 
-```
+```sql
 ALTER TABLE name_p4 DISCARD TABLESPACE;
 ```
 
 The next step is to copy the `.ibd` file from the backup to the MySQL data directory:
 
-```
+```text
 cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 ```
 
@@ -41,6 +41,6 @@ Make sure that the copied files can be accessed by the user running MySQL.
 
 The last step is to import the tablespace:
 
-```
+```sql
 ALTER TABLE name_p4 IMPORT TABLESPACE;
 ```

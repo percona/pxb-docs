@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-overview.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-overview.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-overview.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6076,7 +6076,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>This section shows common xbcloud usage patterns. All examples use Amazon S3 for consistency, but the same principles apply to other storage providers.</p>
 <h3 id="creating-a-full-backup">Creating a full backup<a data-markdown-ignore class="headerlink" href="#creating-a-full-backup" title="Permanent link">&para;</a></h3>
 <p>A full backup captures the entire database at a point in time. The following command creates a full backup and uploads it to S3:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>full_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>
 </code></pre></div>
 <p>This command:
@@ -6085,13 +6085,13 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 3. Uploads the backup to the S3 bucket with a timestamped name</p>
 <h3 id="creating-an-incremental-backup">Creating an incremental backup<a data-markdown-ignore class="headerlink" href="#creating-an-incremental-backup" title="Permanent link">&para;</a></h3>
 <p>An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/backup<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/inc-backup<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>inc_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M<span class="k">)</span>
 </code></pre></div>
 <h3 id="restoring-from-cloud-storage">Restoring from cloud storage<a data-markdown-ignore class="headerlink" href="#restoring-from-cloud-storage" title="Permanent link">&para;</a></h3>
 <p>To restore a backup, download it from cloud storage and prepare it:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Download the backup</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="c1"># Download the backup</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span>full_backup_20240101<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/restore
 
@@ -6100,7 +6100,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 </code></pre></div>
 <h3 id="partial-restore">Partial restore<a data-markdown-ignore class="headerlink" href="#partial-restore" title="Permanent link">&para;</a></h3>
 <p>You can restore specific tables without downloading the entire backup:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Download only specific tables</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="c1"># Download only specific tables</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 full_backup_20240101<span class="w"> </span>ibdata1<span class="w"> </span>sakila/payment.ibd<span class="w"> </span>&gt;<span class="w"> </span>/tmp/partial.xbs
 
@@ -6113,7 +6113,7 @@ xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </
 from the last binary. If you use pipes, the
 ${PIPESTATUS[x]} array parameter returns the exit code for each 
 binary in the pipe string.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/storage/backups/<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>full_backup
 ...
 <span class="si">${</span><span class="nv">PIPESTATUS</span><span class="p">[x]</span><span class="si">}</span>
 <span class="m">0</span><span class="w"> </span><span class="m">0</span>
@@ -6134,7 +6134,7 @@ line, in a configuration file, and via environment variables.</p>
 <p>The parameters the values of which do not change frequently can be stored in
 <code>my.cnf</code> or in a custom configuration file. The following example is a
 template of configuration options under the <code>[xbcloud]</code> group:</p>
-<div class="highlight"><pre><span></span><code>[xbcloud]
+<div class="language-text highlight"><pre><span></span><code>[xbcloud]
 storage=s3
 s3-endpoint=http://localhost:9000/
 s3-access-key=minio
@@ -6166,7 +6166,7 @@ s3-api-version=4
 </ul>
 <h4 id="example-usage">Example usage<a data-markdown-ignore class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h4>
 <p>Set environment variables for your storage provider:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># For Amazon S3</span>
+<div class="language-bash highlight"><pre><span></span><code><span class="c1"># For Amazon S3</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">"your-access-key"</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">"your-secret-key"</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span><span class="s2">"us-west-2"</span>
@@ -6253,10 +6253,10 @@ three distinct parameters (–storage, –s3-bucket, and backup name per se).</p
 <p>Use the following format: <code>storage-type://bucket-name/backup-name</code></p>
 <p>In this example s3 refers to a storage type, operator-testing 
 is a bucket name, and bak22 is the backup name. </p>
-<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span>...
+<div class="language-shell highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span>...
 </code></pre></div>
 <p>This shortcut expands as follows:</p>
-<div class="highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>operator-testing<span class="w"> </span>bak22<span class="w"> </span>...
+<div class="language-shell highlight"><pre><span></span><code>xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>operator-testing<span class="w"> </span>bak22<span class="w"> </span>...
 </code></pre></div>
 </div>
 <p>You can supply the mandatory parameters on the command line,
@@ -6266,14 +6266,14 @@ configuration files, and in environment variables.</p>
 type. The <code>--md5</code> parameter computes the MD5 hash value of the backup
 chunks. The result is stored in files that following the <code>backup_name.md5</code>
 pattern.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="m">2</span>&gt;backup.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbcloud<span class="w"> </span>put<span class="w"> </span>s3://operator-testing/bak22<span class="w"> </span><span class="se">\</span>
 --parallel<span class="o">=</span><span class="m">8</span><span class="w"> </span>--md5<span class="w"> </span><span class="m">2</span>&gt;upload.log
 </code></pre></div>
 <p>You may use the <code>--header</code> parameter to pass an additional HTTP
 header with the server side encryption while specifying a customer key.</p>
 <p>An example of using the <code>--header</code> for AES256 encryption.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>s3://operator-testing/bak-enc/<span class="w"> </span><span class="se">\</span>
 --header<span class="o">=</span><span class="s2">"X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256"</span><span class="w"> </span><span class="se">\</span>
 --header<span class="o">=</span><span class="s2">"X-Amz-Server-Side-Encryption-Customer-Key: CuStoMerKey="</span><span class="w"> </span><span class="se">\</span>
@@ -6286,12 +6286,12 @@ permissions: <code>--header="x-amz-acl: bucket-owner-full-control</code></p>
 <h3 id="incremental-backup-workflow">Incremental backup workflow<a data-markdown-ignore class="headerlink" href="#incremental-backup-workflow" title="Permanent link">&para;</a></h3>
 <p>Incremental backups capture only changes since the last backup, making them faster and more storage-efficient. Here&rsquo;s the complete workflow using S3:</p>
 <h4 id="step-1-create-the-base-full-backup">Step 1: Create the base full backup<a data-markdown-ignore class="headerlink" href="#step-1-create-the-base-full-backup" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/base<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--target-dir<span class="o">=</span>/tmp/base<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 full_backup_20240101
 </code></pre></div>
 <h4 id="step-2-create-incremental-backups">Step 2: Create incremental backups<a data-markdown-ignore class="headerlink" href="#step-2-create-incremental-backups" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/base<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span>--backup-incremental-base<span class="o">=</span>/tmp/base<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 inc_backup_20240101_1200
@@ -6300,7 +6300,7 @@ inc_backup_20240101_1200
 <h5 id="version-changes_1">Version changes<a data-markdown-ignore class="headerlink" href="#version-changes_1" title="Permanent link">&para;</a></h5>
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--apply-log-only</code> option to <a href="xtrabackup-option-reference.html#apply-redo-only"><code>--apply-redo-only</code></a>. Percona XtraBackup still accepts <code>--apply-log-only</code> but prints a deprecation warning. A future Long-Term Support (LTS) release will remove <code>--apply-log-only</code>, so update your scripts to use <code>--apply-redo-only</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <p>To restore from incremental backups, you must download and prepare them in sequence:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Download and prepare the full backup</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="c1"># Download and prepare the full backup</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 full_backup_20240101<span class="w"> </span><span class="p">|</span><span class="w"> </span>xbstream<span class="w"> </span>-xv<span class="w"> </span>-C<span class="w"> </span>/tmp/restore
 
@@ -6319,7 +6319,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the <code>--parallel</code> option to process delta files concurrently. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span><span class="se">\</span>
 --target-dir<span class="o">=</span>/tmp/restore<span class="w"> </span><span class="se">\</span>
 --prepare-incremental-from-dir<span class="o">=</span>/tmp/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 
@@ -6328,7 +6328,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 </div>
 <h3 id="partial-restore_1">Partial restore<a data-markdown-ignore class="headerlink" href="#partial-restore_1" title="Permanent link">&para;</a></h3>
 <p>You can restore specific tables without downloading the entire backup:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Download only specific tables</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="c1"># Download only specific tables</span>
 xbcloud<span class="w"> </span>get<span class="w"> </span>--storage<span class="o">=</span>s3<span class="w"> </span>--s3-bucket<span class="o">=</span>my-backups<span class="w"> </span>--s3-region<span class="o">=</span>us-west-2<span class="w"> </span><span class="se">\</span>
 full_backup_20240101<span class="w"> </span>ibdata1<span class="w"> </span>sakila/payment.ibd<span class="w"> </span>&gt;<span class="w"> </span>/tmp/partial.xbs
 

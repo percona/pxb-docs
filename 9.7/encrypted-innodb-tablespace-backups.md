@@ -11,7 +11,7 @@ These encryption types are independent. You can use them separately or together 
 
 ## Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#backup-incremental-base) and the `--incremental-dir` option to [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#prepare-incremental-from-dir). Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base) and the `--incremental-dir` option to [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare-incremental-from-dir). Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.
 
 ## InnoDB tablespace encryption
 
@@ -30,11 +30,11 @@ Percona XtraBackup 9.7 and later versions support only component versions of the
 
 The backup and restore process for encrypted InnoDB tablespaces has three distinct phases, each with different keyring-config requirements:
 
-| Phase   | Description                                                                                                                                                                                                                                                                                                                                                                                                 | Required | keyring-options                                                                                                          |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Backup  | Run `xtrabackup --backup …`                                                                                                                                                                                                                                                                                                                                                                                 | No       | The backup does not use any keyring options.                                                                             |
-| Prepare | Run `xtrabackup --prepare …`                                                                                                                                                                                                                                                                                                                                                                                | Yes      | You must supply the keyring configuration file matching the keyring component that the MySQL server uses for encryption. |
-| Restore | Run `xtrabackup` [`--copy-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#copy-back) … or `xtrabackup` [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#move-back) … (followed by `--prepare` if using [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#move-back)) | Yes      | You must provide the same keyring-config file.                                                                           |
+| Phase   | Description                                                                                                                                                                                                                                                                                                                                                                                           | Required | keyring-options                                                                                                          |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Backup  | Run `xtrabackup --backup …`                                                                                                                                                                                                                                                                                                                                                                           | No       | The backup does not use any keyring options.                                                                             |
+| Prepare | Run `xtrabackup --prepare …`                                                                                                                                                                                                                                                                                                                                                                          | Yes      | You must supply the keyring configuration file matching the keyring component that the MySQL server uses for encryption. |
+| Restore | Run `xtrabackup` [`--copy-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#copy-back) … or `xtrabackup` [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#move-back) … (followed by `--prepare` if using [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#move-back)) | Yes      | You must provide the same keyring-config file.                                                                           |
 
 Note
 
@@ -59,7 +59,7 @@ Each keyring component requires a configuration file with a specific structure. 
 
 The `component_keyring_vault.cnf` file uses JSON format:
 
-```
+```json
 {
   "vault_url": "${VAULT_URL}",
   "secret_mount_point": "${VAULT_MOUNT_POINT}",
@@ -75,7 +75,7 @@ For information on configuring the keyring vault component on the MySQL server, 
 
 The `component_keyring_file.cnf` file uses JSON format:
 
-```
+```json
 {
   "path": "/var/lib/mysql-keyring/keyring",
   "read_only": false
@@ -90,7 +90,7 @@ XtraBackup does not copy the keyring file into the backup directory. Copy the ke
 
 The `component_keyring_kmip.cnf` file uses JSON format:
 
-```
+```json
 {
   "server_addr": "kmip.example.com",
   "server_port": 5696,
@@ -104,7 +104,7 @@ The `component_keyring_kmip.cnf` file uses JSON format:
 
 The `component_keyring_kms.cnf` file uses JSON format:
 
-```
+```json
 {
   "path": "/var/lib/mysql-keyring/keyring",
   "read_only": false,
@@ -123,7 +123,7 @@ XtraBackup uses the component’s configuration file during prepare and restore 
 
 No keyring configuration is needed:
 
-```
+```shell
 xtrabackup --backup --target-dir=/data/backup --user=root
 ```
 
@@ -135,7 +135,7 @@ File-name restriction
 
 The configuration file name must match exactly the expected name for your keyring component. See [Configuration file name requirements](#configuration-file-name-requirements) for the exact file names required. If the file name does not match exactly, XtraBackup ignores the configuration file.
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backup
 ```
 
@@ -143,22 +143,22 @@ Specify the path to your component’s configuration file (for example, `/etc/co
 
 #### Phase 3: Restore
 
-After you prepare the backup, restore the backup using [`--copy-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#copy-back) or [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#move-back). If you use [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#move-back), run `--prepare` again after moving the files. In both cases, provide the same keyring configuration file.
+After you prepare the backup, restore the backup using [`--copy-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#copy-back) or [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#move-back). If you use [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#move-back), run `--prepare` again after moving the files. In both cases, provide the same keyring configuration file.
 
-```
+```shell
 xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql
 ```
 
 Or using `--move-back`:
 
-```
+```shell
 xtrabackup --move-back --target-dir=/data/backup --datadir=/data/mysql
 xtrabackup --prepare --target-dir=/data/mysql
 ```
 
 ### Incremental encrypted InnoDB tablespace backups
 
-The process of taking incremental backups with InnoDB tablespace encryption is similar to [taking incremental backups with unencrypted tablespace](https://docs.percona.com/percona-xtrabackup/9.7/create-incremental-backup.html). The same three-phase workflow applies, with keyring-config requirements in phases 2 and 3.
+The process of taking incremental backups with InnoDB tablespace encryption is similar to [taking incremental backups with unencrypted tablespace](https://docs.percona.com/percona-xtrabackup/9.7/create-incremental-backup.md). The same three-phase workflow applies, with keyring-config requirements in phases 2 and 3.
 
 #### Phase 1: Backup
 
@@ -166,22 +166,22 @@ Begin with a full backup. The xtrabackup binary writes `xtrabackup_checkpoints` 
 
 Create a full backup (no keyring config needed):
 
-```
+```shell
 xtrabackup --backup --target-dir=/data/backups/base
 ```
 
 Make an incremental backup based on the full backup:
 
-```
+```shell
 xtrabackup --backup --target-dir=/data/backups/inc1 \
 --backup-incremental-base=/data/backups/base
 ```
 
-The [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#backup-incremental-base) option specifies the base backup directory.
+The [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base) option specifies the base backup directory.
 
 Use this directory as the base for yet another incremental backup:
 
-```
+```shell
 xtrabackup --backup --target-dir=/data/backups/inc2 \
 --backup-incremental-base=/data/backups/inc1
 ```
@@ -190,19 +190,19 @@ xtrabackup --backup --target-dir=/data/backups/inc2 \
 
 ##### Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
-The `--prepare` step for incremental backups requires the keyring configuration. Use [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#apply-redo-only) for all incremental backups except the last one. The option prevents the rollback of transactions that a later incremental backup might commit.
+The `--prepare` step for incremental backups requires the keyring configuration. Use [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only) for all incremental backups except the last one. The option prevents the rollback of transactions that a later incremental backup might commit.
 
-Beginning with the full backup, prepare the full backup and then apply the incremental differences. Prepare the base backup with [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#apply-redo-only). Use the appropriate configuration file name for your keyring component (see [Configuration file name requirements](#configuration-file-name-requirements)):
+Beginning with the full backup, prepare the full backup and then apply the incremental differences. Prepare the base backup with [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only). Use the appropriate configuration file name for your keyring component (see [Configuration file name requirements](#configuration-file-name-requirements)):
 
-```
+```shell
 xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base
 ```
 
-Apply the first incremental backup to the full backup using [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#prepare-incremental-from-dir):
+Apply the first incremental backup to the full backup using [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare-incremental-from-dir):
 
-```
+```shell
 xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
@@ -213,7 +213,7 @@ If you have many InnoDB Data (IBD) files, speed up the prepare phase for increme
 
 An example of the backup command using the `--parallel` option:
 
-```
+```shell
 xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1 --parallel=4
 ```
@@ -222,33 +222,33 @@ Prepare the backup using the same keyring file and type that were used when the 
 
 Preparing the second incremental backup is a similar process: apply the deltas to the (modified) base backup, and you will roll the base backup’s data forward in time to the point of the second incremental backup:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backups/base \
 --prepare-incremental-from-dir=/data/backups/inc2
 ```
 
 You can also use the `--parallel` option here to speed up the process:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backups/base \
 --prepare-incremental-from-dir=/data/backups/inc2 --parallel=4
 ```
 
 Note
 
-Use [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#apply-redo-only) for every incremental backup except the last one. The previous command applies the last incremental backup, so the command does not include `--apply-redo-only`. If you use `--apply-redo-only` on the last step, the backup stays consistent, but the server runs the rollback phase.
+Use [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only) for every incremental backup except the last one. The previous command applies the last incremental backup, so the command does not include `--apply-redo-only`. If you use `--apply-redo-only` on the last step, the backup stays consistent, but the server runs the rollback phase.
 
 #### Phase 3: Restore
 
-After you prepare the incremental backups, restore them using [`--copy-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#copy-back) or [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#move-back). If you use [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#move-back), run `--prepare` again after moving the files. In both cases, provide the same keyring configuration file:
+After you prepare the incremental backups, restore them using [`--copy-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#copy-back) or [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#move-back). If you use [`--move-back`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#move-back), run `--prepare` again after moving the files. In both cases, provide the same keyring configuration file:
 
-```
+```shell
 xtrabackup --copy-back --target-dir=/data/backups/base --datadir=/data/mysql
 ```
 
 Or using `--move-back`:
 
-```
+```shell
 xtrabackup --move-back --target-dir=/data/backups/base --datadir=/data/mysql
 xtrabackup --prepare --target-dir=/data/mysql
 ```
@@ -257,22 +257,22 @@ xtrabackup --prepare --target-dir=/data/mysql
 
 The keyring component method requires access to the same keyring that the server uses. This may not be possible if you prepare the backup on a different server, when keys in the keyring are purged, or when the keyring vault server is unavailable.
 
-Use the [`--transition-key=<passphrase>`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#transition-key) option to process the backup without access to the keyring server. The binary derives the AES (Advanced Encryption Standard) encryption key from the specified passphrase and uses the AES encryption key to encrypt tablespace keys.
+Use the [`--transition-key=<passphrase>`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#transition-key) option to process the backup without access to the keyring server. The binary derives the AES (Advanced Encryption Standard) encryption key from the specified passphrase and uses the AES encryption key to encrypt tablespace keys.
 
 #### Create a backup with a passphrase
 
-```
+```shell
 xtrabackup --backup --user=root -p --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
 
-If you specify [`--transition-key`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#transition-key) without a value, xtrabackup asks for the passphrase. xtrabackup hides the passphrase value so that the value is not visible in the `ps` command output.
+If you specify [`--transition-key`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#transition-key) without a value, xtrabackup asks for the passphrase. xtrabackup hides the passphrase value so that the value is not visible in the `ps` command output.
 
 #### Prepare a backup with a passphrase
 
 Specify the same passphrase for the prepare command:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backup \
 --transition-key=MySecretKey
 ```
@@ -281,9 +281,9 @@ You do not need keyring options here, because xtrabackup does not access the key
 
 #### Restore a backup with a generated key
 
-When you restore a backup, generate a new master key using [`--generate-new-master-key`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#generate-new-master-key). The configuration file name must match one of the exact configuration file names listed in [Configuration file name requirements](#configuration-file-name-requirements):
+When you restore a backup, generate a new master key using [`--generate-new-master-key`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#generate-new-master-key). The configuration file name must match one of the exact configuration file names listed in [Configuration file name requirements](#configuration-file-name-requirements):
 
-```
+```shell
 xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 --transition-key=MySecretKey --generate-new-master-key
 ```
@@ -294,22 +294,22 @@ Specify the path to your component’s configuration file. XtraBackup generates 
 
 You can store a transition key in the keyring. In this case, xtrabackup must access the same keyring during prepare and copy-back steps, but xtrabackup does not depend on whether the server keys have been purged. The configuration file name must match one of the exact configuration file names listed in [Configuration file name requirements](#configuration-file-name-requirements):
 
-- Back up using [`--generate-transition-key`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#generate-transition-key):
+- Back up using [`--generate-transition-key`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#generate-transition-key):
 
-```
+```shell
 xtrabackup --backup --user=root -p --target-dir=/data/backup \
 --generate-transition-key
 ```
 
 - Prepare:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backup
 ```
 
 - Copy-back:
 
-```
+```shell
 xtrabackup --copy-back --target-dir=/data/backup --datadir=/data/mysql \
 --generate-new-master-key
 ```
@@ -322,13 +322,13 @@ Backup-level encryption is an additional protection layer that XtraBackup applie
 
 ### Create encrypted backups
 
-To create an encrypted backup, use the [`--encrypt`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#encrypt) option along with either [`--encrypt-key`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#encrypt-key) or [`--encrypt-key-file`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#encrypt-key-file) to specify the encryption key. The `--encrypt-key` and `--encrypt-key-file` options are mutually exclusive. Use one or the other, but do not both. If you specify both options, XtraBackup returns an error and exits.
+To create an encrypted backup, use the [`--encrypt`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#encrypt) option along with either [`--encrypt-key`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#encrypt-key) or [`--encrypt-key-file`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#encrypt-key-file) to specify the encryption key. The `--encrypt-key` and `--encrypt-key-file` options are mutually exclusive. Use one or the other, but do not both. If you specify both options, XtraBackup returns an error and exits.
 
 The `--encrypt` option specifies the encryption algorithm: `AES128`, `AES192`, or `AES256`. To generate an encryption key, use a command such as `openssl rand -base64 24`.
 
 #### Using –encrypt-key
 
-```
+```shell
 xtrabackup --backup --encrypt=AES256 --encrypt-key="{randomly-generated-alphanumeric-string}" --target-dir=/data/backup
 ```
 
@@ -340,7 +340,7 @@ The `--encrypt-key` option exposes the key in process listings. Do not use this 
 
 The recommended method uses `--encrypt-key-file` to read the key from a file:
 
-```
+```shell
 echo -n "{randomly-generated-alphanumeric-string}" > /data/backups/keyfile
 xtrabackup --backup --encrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 ```
@@ -351,30 +351,30 @@ When creating the key file, ensure your text editor does not insert a CRLF (end 
 
 ### Optimize the encryption process
 
-Additional encrypted backup options can speed up the encryption process: [`--encrypt-threads`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#encrypt-threads) (enables parallel encryption with multiple threads) and [`--encrypt-chunk-size`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#encrypt-chunk-size) (specifies the size, in bytes, of the working encryption buffer for each encryption thread; the default value is 64K).
+Additional encrypted backup options can speed up the encryption process: [`--encrypt-threads`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#encrypt-threads) (enables parallel encryption with multiple threads) and [`--encrypt-chunk-size`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#encrypt-chunk-size) (specifies the size, in bytes, of the working encryption buffer for each encryption thread; the default value is 64K).
 
 ### Decrypt encrypted backups
 
-To decrypt an encrypted backup, use the [`--decrypt`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#decrypt) option. The decryption algorithm must match the algorithm that you used during encryption. You can use the [`--parallel`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#parallel) option with `--decrypt` to decrypt multiple files simultaneously.
+To decrypt an encrypted backup, use the [`--decrypt`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#decrypt) option. The decryption algorithm must match the algorithm that you used during encryption. You can use the [`--parallel`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#parallel) option with `--decrypt` to decrypt multiple files simultaneously.
 
-```
+```shell
 xtrabackup --decrypt=AES256 --encrypt-key-file=/data/backups/keyfile --target-dir=/data/backup
 ```
 
 Alternatively, you can use the `xbcrypt` binary directly:
 
-```
+```shell
 for i in `find . -iname "*\.xbcrypt"`; do xbcrypt -d --encrypt-key-file=/root/secret_key --encrypt-algo=AES256 < $i > $(dirname $i)/$(basename $i .xbcrypt) && rm $i; done
 ```
 
 Note
 
-Percona XtraBackup does not automatically remove the encrypted files after decryption. Remove the `*.xbcrypt` files manually, or use the [`--remove-original`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#remove-original) option.
+Percona XtraBackup does not automatically remove the encrypted files after decryption. Remove the `*.xbcrypt` files manually, or use the [`--remove-original`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#remove-original) option.
 
 ### Prepare encrypted backups
 
 After decrypting the backup, prepare the backup with the `--prepare` option:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backup
 ```

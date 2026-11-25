@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/quickstart-restore-back.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/quickstart-restore-back.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/quickstart-restore-back.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5855,11 +5855,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <ol>
 <li>
 <p>Create another Docker volume</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>myvol2
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>myvol2
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>myvol2
+<div class="language-text no-copy highlight"><pre><span></span><code>myvol2
 </code></pre></div>
 </details>
 </li>
@@ -5901,40 +5901,40 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <ul>
 <li>
 <p>Run a Docker container example</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">3307</span>:3306<span class="w"> </span>--name<span class="w"> </span>psmysql2<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>secret<span class="w"> </span>-v<span class="w"> </span>myvol2:/var/lib/mysql<span class="w"> </span>percona/percona-server:9.7
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">3307</span>:3306<span class="w"> </span>--name<span class="w"> </span>psmysql2<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>secret<span class="w"> </span>-v<span class="w"> </span>myvol2:/var/lib/mysql<span class="w"> </span>percona/percona-server:9.7
 </code></pre></div>
 </li>
 </ul>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>4501d5524461b4483d414bd218d49ed4f47599add7d7fb81e157951a7a52f3d1
+<div class="language-text no-copy highlight"><pre><span></span><code>4501d5524461b4483d414bd218d49ed4f47599add7d7fb81e157951a7a52f3d1
 </code></pre></div>
 </details>
 </li>
 <li>
 <p>Stop <code>psmysql2</code> container</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>stop<span class="w"> </span>psmysql2
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>stop<span class="w"> </span>psmysql2
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>psmysql2
+<div class="language-text no-copy highlight"><pre><span></span><code>psmysql2
 </code></pre></div>
 </details>
 </li>
 <li>
 <p>Remove all created files in <code>myvol2</code> to allow xtrabackup restore data to <code>myvol2</code></p>
 <p>The <code>--rm</code> option automatically removes the temporary container created from percona/percona-xtrabackup:9.7.1 image after the container exits. </p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"rm -rf /var/lib/mysql/*"</span>
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"rm -rf /var/lib/mysql/*"</span>
 </code></pre></div>
 <p>If the command executes successfully, the expected output is empty.</p>
 </li>
 <li>
 <p>Restore backup of <code>psmysql</code> from <code>backupvol</code> to a new <code>psmysql2</code> instance.</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_97"</span><span class="w"> </span>
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--platform<span class="w"> </span>linux/amd64<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_97"</span><span class="w"> </span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
+<div class="language-text no-copy highlight"><pre><span></span><code>2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
 2024-10-07T14:08:59.128951-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --copy-back=1 --target-dir=/backup_97
 xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /backup_97/
@@ -5955,17 +5955,17 @@ xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision 
 <li>
 <p>Change the owner of the files in <code>myvol2</code> from <code>root</code> to <code>mysql</code></p>
 <p>To avoid permission issues when running <code>psmysql2</code> container, you need to change the owner because the files were restored by <code>root</code> user and <code>psmysql2</code> will use <code>mysql</code> user.</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"chown -R mysql:mysql /var/lib/mysql/"</span><span class="w"> </span>
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--volumes-from<span class="w"> </span>psmysql2<span class="w"> </span>-v<span class="w"> </span>backupvol:/backup_97<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>percona/percona-xtrabackup:9.7<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"chown -R mysql:mysql /var/lib/mysql/"</span><span class="w"> </span>
 </code></pre></div>
 <p>If the command executes successfully, the expected output is empty.</p>
 </li>
 <li>
 <p>Start the <code>psmysql2</code> container</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>start<span class="w"> </span>psmysql2
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>start<span class="w"> </span>psmysql2
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>psmysql2
+<div class="language-text no-copy highlight"><pre><span></span><code>psmysql2
 </code></pre></div>
 </details>
 </li>
@@ -6005,15 +6005,15 @@ xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision 
 <ul>
 <li>
 <p>Connect to the database instance example</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>psmysql2<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>psmysql2<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p
 </code></pre></div>
 <p>You are prompted to enter the password, which is <code>secret</code>.</p>
-<div class="no-copy highlight"><pre><span></span><code>Enter password:
+<div class="language-text no-copy highlight"><pre><span></span><code>Enter password:
 </code></pre></div>
 <p>You should see the following result.</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Welcome to the MySQL monitor.  Commands end with ; or \g.
+<div class="language-text no-copy highlight"><pre><span></span><code>Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 10
 Server version: 9.7.0-1 Percona Server (GPL), Release 1, Revision 238b3c02
 
@@ -6032,11 +6032,11 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 </li>
 <li>
 <p>Check the list of databases to make sure, the backed up, <code>mydb</code> database is in the list.</p>
-<div class="highlight"><pre><span></span><code><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span><span class="w"> </span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>+--------------------+ 
+<div class="language-text no-copy highlight"><pre><span></span><code>+--------------------+ 
 
 | Database           | 
 
@@ -6060,21 +6060,21 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 </li>
 <li>
 <p>Use the <code>mydb</code> database.</p>
-<div class="highlight"><pre><span></span><code><span class="n">use</span><span class="w"> </span><span class="n">mydb</span><span class="p">;</span><span class="w"> </span>
+<div class="language-sql highlight"><pre><span></span><code><span class="n">use</span><span class="w"> </span><span class="n">mydb</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Database changed
+<div class="language-text no-copy highlight"><pre><span></span><code>Database changed
 </code></pre></div>
 </details>
 </li>
 <li>
 <p>Check that your table contains data</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span><span class="w"> </span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span><span class="w"> </span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>+----+--------------------+-----------------------------------+-------------+ 
+<div class="language-text no-copy highlight"><pre><span></span><code>+----+--------------------+-----------------------------------+-------------+ 
 
 | id | name               | email                             | country     | 
 
@@ -6146,39 +6146,6 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
     
     
-    
-      
-  <span class="md-source-file__fact">
-    
-      
-  <span class="md-icon" title="Contributors">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-  </span>
-  <span>GitHub</span>
-
-    
-    <nav>
-      
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
-          
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
-        </a>
-      
-        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
-          
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
-      
-      
-    </nav>
-  </span>
-
     
   </aside>
 

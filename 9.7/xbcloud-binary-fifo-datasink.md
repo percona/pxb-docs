@@ -18,17 +18,17 @@ To use FIFO data sink, you can either run two commands in separate terminal sess
 
 For example, run the following commands in separate terminal sessions:
 
-```
+```shell
 xtrabackup --backup --stream --fifo-streams=2 --fifo-dir=/tmp/fifo
 ```
 
-```
+```shell
 xbcloud put --fifo-streams=2 --fifo-dir=/tmp/fifo full
 ```
 
 Run xtrabackup in the background with the following commands:
 
-```
+```shell
 xtrabackup --backup --stream --fifo-streams=2 --fifo-dir=/tmp/fifo &
 xbcloud put --fifo-streams=2 --fifo-dir=/tmp/fifo full
 ```
@@ -40,6 +40,8 @@ When taking a backup, you can save the files locally or stream the files to eith
 When you stream backups to Amazon S3 compatible storage using LAN with a streaming capacity of 10Gbps, XtraBackup can use multiple FIFO streams to stream the backups faster.
 
 XtraBackup spawns multiple copy threads and each copy thread reads a data chunk from a specific file. Then multiple FIFO files are created to store the data from XtraBackup. Each XtraBackup copy thread writes the data chunks to a specific FIFO file. Xbcloud reads from the FIFO streams and uploads data to an object storage using an async request. The xbcloud event handler executes the callback depending on the response from the object storage (success or failure).
+
+*Image: Diagram: parallel XtraBackup copy threads write data chunks to FIFO files; xbcloud read threads and event handlers upload them to object storage with asynchronous PUT operations*
 
 ## Performance improvement
 

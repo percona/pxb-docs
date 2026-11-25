@@ -6,7 +6,7 @@ A MySQL change to a feature, such as the structure of a redo log record, can cau
 
 See also
 
-[How XtraBackup works](https://docs.percona.com/percona-xtrabackup/9.7/how-xtrabackup-works.html)
+[How XtraBackup works](https://docs.percona.com/percona-xtrabackup/9.7/how-xtrabackup-works.md)
 
 The `--no-server-version-check` option performs the following test. Before the backup/prepare starts, XtraBackup compares the source server version to the Percona XtraBackup version. If the source server version is greater than the XtraBackup major version, XtraBackup stops the backup and returns an error message. This comparison prevents a failed backup or a corrupted backup due to source server changes.
 
@@ -19,7 +19,7 @@ The parameter checks for the following scenarios:
 
 Explicitly adding the `--no-server-version-check` parameter, like the example, overrides the parameter and the backup proceeds.
 
-```
+```shell
 xtrabackup --backup --no-server-version-check --target-dir=$mysql/backup1
 ```
 

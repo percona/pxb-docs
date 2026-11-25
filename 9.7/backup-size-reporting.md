@@ -16,8 +16,8 @@ Backup size often differs from the MySQL datadir size because Percona XtraBackup
 
 Several backup features further change the final output size:
 
-- [`--stream=xbstream`](https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.html#xbstream) adds xbstream metadata
-- [`--compress`](https://docs.percona.com/percona-xtrabackup/9.7/create-compressed-backup.html) reduces the final backup size according to data compressibility
+- [`--stream=xbstream`](https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.md#xbstream) adds xbstream metadata
+- [`--compress`](https://docs.percona.com/percona-xtrabackup/9.7/create-compressed-backup.md) reduces the final backup size according to data compressibility
 - Sparse InnoDB tablespaces affect filesystem size reporting
 - Streaming and cloud uploads may not produce local backup files for measurement
 - Compression, encryption, and streaming pipelines prevent external tools from accurately calculating final backup size
@@ -94,7 +94,7 @@ The log output includes:
 
 The following example shows `xtrabackup_info` from a backup created with `--target-dir`.
 
-```
+```text
 uuid = 122a291d-48b0-11f1-9d76-047bcbcb6b7e
 name =
 tool_name = xtrabackup
@@ -120,7 +120,7 @@ backup_size = 88689086
 
 The XtraBackup error log contains the corresponding backup size entry:
 
-```
+```text
 2026-05-05T19:27:28.140024+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 84.58 MiB (88689086 bytes)
 2026-05-05T19:27:29.382428+01:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
 ```
@@ -131,14 +131,14 @@ Compressed backups additionally report the uncompressed backup size and compress
 
 The following example shows the final lines of `xtrabackup_info` with backup size values reported in bytes:
 
-```
+```text
 backup_size = 1832398
 uncompressed_backup_size = 88689148
 ```
 
 The XtraBackup error log contains the corresponding output:
 
-```
+```text
 2026-05-05T19:27:42.851038+01:00 0 [Note] [MY-011825] [Xtrabackup] Backup size: 1.75 MiB (1832398 bytes)
 2026-05-05T19:27:42.851055+01:00 0 [Note] [MY-011825] [Xtrabackup] Uncompressed backup size: 84.58 MiB (88689148 bytes)
 2026-05-05T19:27:42.851065+01:00 0 [Note] [MY-011825] [Xtrabackup] Compression ratio: 48.40x
@@ -146,6 +146,6 @@ The XtraBackup error log contains the corresponding output:
 
 Percona XtraBackup calculates the compression ratio as:
 
-```
+```text
 uncompressed_backup_size / backup_size
 ```

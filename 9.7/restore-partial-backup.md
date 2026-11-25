@@ -10,9 +10,9 @@ Do not start incremental backups from a partial backup. Incremental backups rely
 
 ## Restore individual tables
 
-Restore partial backups by restoring individual tables in the partial backup to the server. Use XtraBackup’s `--export` option during prepare, then import the tables using `IMPORT TABLESPACE`. For more information, see [Restore individual tables](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.html).
+Restore partial backups by restoring individual tables in the partial backup to the server. Use XtraBackup’s `--export` option during prepare, then import the tables using `IMPORT TABLESPACE`. For more information, see [Restore individual tables](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.md).
 
 ## Related topics
 
-- [Create a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/create-partial-backup.html)
-- [Prepare a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-partial-backup.html)
+- [Create a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/create-partial-backup.md)
+- [Prepare a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-partial-backup.md)

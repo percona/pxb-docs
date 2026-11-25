@@ -6,13 +6,13 @@ Percona XtraBackup is installed as an unconfined process running in an undefined
 
 You find the current state of the Percona XtraBackup file with the following command:
 
-```
+```shell
 ls -Z /usr/bin | grep xtrabackup
 ```
 
 Expected output
 
-```
+```text
 -rwxr-xr-x. root root   system_u:object_r:bin_t:s0       xtrabackup
 ```
 
@@ -42,7 +42,7 @@ The first option opens the entire system to read and write. Select the second op
 
 To work with policies, you must install the SELinux tools. To find which package provides the `semanage` command and install the package. The following is an example on CentOS 7.
 
-```
+```shell
 yum provides *bin/semanage
 ```
 
@@ -50,7 +50,7 @@ The result should list the packages.
 
 Expected output
 
-```
+```text
 ...
 policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
 ...
@@ -58,13 +58,13 @@ policycoreutils-python-2.5-34.el7.x86_64 : SELinux policy core python utilities
 
 To install missing packages, run the following:
 
-```
+```shell
 sudo yum install -y policycoreutils-python
 ```
 
 The following is an example on CentOS 8:
 
-```
+```shell
 yum provides *bin/semanage
 ```
 
@@ -72,14 +72,14 @@ The result should list the missing packages.
 
 Expected output
 
-```
+```text
 ...
 policycoreutils-python-utils-2.8-16.1.el8.noarch : SELinux policy core python utilities
 ```
 
 Run the following to install the missing packages:
 
-```
+```shell
 sudo yum install -y policycoreutils-python-utils
 ```
 
@@ -91,7 +91,7 @@ Use `$ ps -efZ | grep xtrabackup` to verify the service is not confined by SELin
 
 Create the `xtrabackup.fc` file and add content. This file defines the security contexts.
 
-```
+```text
 /usr/bin/xtrabackup    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbcrypt    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
 /usr/bin/xbstream    -- gen_context(system_u:object_r:xtrabackup_exec_t,s0)
@@ -113,25 +113,25 @@ In the file, the sections in bold should be modified for your system. The fc fil
 
 Compile the policy module:
 
-```
+```shell
 make -f /usr/share/selinux/devel/Makefile xtrabackup.pp
 ```
 
 Install the module:
 
-```
+```shell
 semodule -i xtrabackup.pp
 ```
 
 Tag the PXB binaries with the proper SELinux tags, such as `xtrabackup_exec_t`.
 
-```
+```shell
 restorecon -v /usr/bin/*
 ```
 
 If you store your backups at `/backups`, restore the tag in that location:
 
-```
+```shell
 restorecon -v /backups
 ```
 

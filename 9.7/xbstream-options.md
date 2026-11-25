@@ -2,7 +2,7 @@
 
 # The xbstream command-line options
 
-```
+```shell
 xbstream -c [OPTIONS]
 xbstream -x [OPTIONS]
 ```

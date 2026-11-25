@@ -20,19 +20,19 @@ Percona XtraBackup performs the backup procedure in two steps:
 
 ## How does Smart memory estimation work
 
-To run `prepare`, Percona XtraBackup checks the server’s available free memory and uses that memory up to the limit specified in the [`--use-free-memory-pct`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#use-free-memory-pct) option. Due to backward compatibility, the default value for the `--use-free-memory-pct` option is 0 (zero), which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup.
+To run `prepare`, Percona XtraBackup checks the server’s available free memory and uses that memory up to the limit specified in the [`--use-free-memory-pct`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#use-free-memory-pct) option. Due to backward compatibility, the default value for the `--use-free-memory-pct` option is 0 (zero), which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup.
 
-You can enable or disable the memory estimation during the `backup` phase with the [`--estimate-memory`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#estimate-memory) option. The default value is `OFF`. Enable the memory estimation with `--estimate-memory=ON`:
+You can enable or disable the memory estimation during the `backup` phase with the [`--estimate-memory`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#estimate-memory) option. The default value is `OFF`. Enable the memory estimation with `--estimate-memory=ON`:
 
-```
+```shell
 xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
-In the `prepare` phase, enable the [`--use-free-memory-pct`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#use-free-memory-pct) option by specifying the percentage of free memory to be used to `prepare` a backup. The `--use-free-memory-pct` value must be larger than 0.
+In the `prepare` phase, enable the [`--use-free-memory-pct`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#use-free-memory-pct) option by specifying the percentage of free memory to be used to `prepare` a backup. The `--use-free-memory-pct` value must be larger than 0.
 
 For example:
 
-```
+```shell
 xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 
@@ -44,7 +44,7 @@ We back up 16, 32, and 64 tables using sysbench. Each set contains 1M rows. In t
 
 During each `--backup`, the following sysbench is run:
 
-```
+```text
 sysbench --db-driver=mysql --db-ps-mode=disable --mysql-user=sysbench --mysql-password=sysbench --table_size=1000000 --tables=${NUM_OF_TABLES} --threads=24 --time=0 --report-interval=1 /usr/share/sysbench/oltp_write_only.lua run
 ```
 
@@ -67,6 +67,8 @@ The results are the following:
 Note
 
 The following results are based on tests in a specific environment. Your results may vary.
+
+*Image: Time to run --prepare*
 
 - 16 tables result - prepare time dropped to ~5.7% of the original time. An improvement in recovery time of about 17x.
 - 32 tables result - prepare time dropped to ~8,2% of the original time. An improvement in recovery time of about 12x.

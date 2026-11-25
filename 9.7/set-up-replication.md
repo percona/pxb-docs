@@ -36,7 +36,7 @@ It is not recommended to mix MySQL variants (Percona Server, MySQL) in your repl
 
 At the `Source`, issue the following to a shell:
 
-```
+```shell
 xtrabackup --backup --user=yourDBuser --password=MaGiCdB1 --target-dir=/path/to/backupdir
 ```
 
@@ -44,7 +44,7 @@ After this is finished you should get:
 
 Expected output
 
-```
+```text
 xtrabackup: completed OK!
 ```
 
@@ -52,7 +52,7 @@ This operation makes a copy of your *MySQL* data dir to the `/path/to/backupdir`
 
 In order for snapshot to be consistent, prepare the data on the source:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/path/to/backupdir
 ```
 
@@ -62,7 +62,7 @@ Percona XtraBackup reads the my.cnf file to locate your data. If you have your c
 
 If you want to skip writing the username and password every time you want to access *MySQL*, you can set it up in `.mylogin.cnf` as follows:
 
-```
+```text
 mysql_config_editor set --login-path=client --host=localhost --user=root --password
 ```
 
@@ -74,7 +74,7 @@ This statement provides root access to MySQL.
 
 On the Source, use rsync or scp to copy the data from the Source to the Replica. If you are syncing the data directly to replica’s data directory, we recommend that you stop the `mysqld` there.
 
-```
+```shell
 rsync -avpP -e ssh /path/to/backupdir Replica:/path/to/mysql/
 ```
 
@@ -86,19 +86,19 @@ Make sure mysqld is shut down before you move the contents of its datadir, or mo
 
 Run the following commands on the Replica:
 
-```
+```shell
 mv /path/to/mysql/datadir /path/to/mysql/datadir_bak
 ```
 
 and move the snapshot from the `Source` in its place:
 
-```
+```shell
 xtrabackup --move-back --target-dir=/path/to/mysql/backupdir
 ```
 
 After you copy data over, make sure the Replica *MySQL* has the proper permissions to access them.
 
-```
+```shell
 chown mysql:mysql /path/to/mysql/datadir
 ```
 
@@ -108,31 +108,31 @@ If the ibdata and iblog files are located in directories outside the datadir, yo
 
 On the source, create a user specifically for replication tasks. Use the following command to define the user and set a secure password:
 
-```
+```sql
 CREATE USER 'repl'@'$replicaip' IDENTIFIED BY '$replicapass';
 ```
 
 Grant the replication privileges to the newly created user to allow the replica to connect to the source server:
 
-```
+```sql
 GRANT REPLICATION SLAVE ON *.* TO 'repl'@'$replicaip';
 ```
 
 Apply the changes:
 
-```
+```sql
 FLUSH PRIVILEGES;
 ```
 
 Also make sure that firewall rules are correct and that the `Replica` can connect to the `Source`. Run the following command on the Replica to test that you can run the mysql client on `Replica`, connect to the `Source`, and authenticate.
 
-```
+```sql
 mysql --host=Source --user=repl --password=$replicapass
 ```
 
 Verify the privileges.
 
-```
+```sql
 SHOW GRANTS;
 ```
 
@@ -140,13 +140,13 @@ SHOW GRANTS;
 
 Copy the `my.cnf` file from the `Source` to the `Replica`:
 
-```
+```shell
 scp user@Source:/etc/mysql/my.cnf /etc/mysql/my.cnf
 ```
 
 and change the following options in /etc/mysql/my.cnf:
 
-```
+```text
 server-id=2
 ```
 
@@ -158,7 +158,7 @@ In case you’re using init script on Debian-based system to start mysqld, be su
 
 On the `Replica`, review the content of the `xtrabackup_binlog_info` file:
 
-```
+```shell
 cat /var/lib/mysql/xtrabackup_binlog_info
 ```
 
@@ -166,7 +166,7 @@ The results should resemble the following:
 
 Expected output
 
-```
+```text
 Source-bin.000001     481
 ```
 
@@ -174,7 +174,7 @@ Do the following on a MySQL console and use the username and password you’ve s
 
 Use the `CHANGE_REPLICATION_SOURCE_TO` statement
 
-```
+```sql
 CHANGE REPLICATION SOURCE TO
     SOURCE_HOST='$sourceip',
     SOURCE_USER='repl',
@@ -185,7 +185,7 @@ CHANGE REPLICATION SOURCE TO
 
 Start the replica:
 
-```
+```sql
 START REPLICA;
 ```
 
@@ -193,7 +193,7 @@ START REPLICA;
 
 On the `Replica`, check that everything went OK with:
 
-```
+```sql
 SHOW REPLICA STATUS\G
 ```
 
@@ -201,7 +201,7 @@ The result shows the status:
 
 Expected output
 
-```
+```text
 Replica_IO_Running: Yes
 Replica_SQL_Running: Yes
 Seconds_Behind_Source: 13
@@ -215,7 +215,7 @@ You can use this procedure with slight variation to add new replicas to a source
 
 At the `Replica`, do a full backup:
 
-```
+```shell
 xtrabackup --user=yourDBuser --password=MaGiCiGaM \
    --backup --slave-info --target-dir=/path/to/backupdir
 ```
@@ -224,7 +224,7 @@ By using the `--slave-info` *Percona XtraBackup* creates additional file called 
 
 Apply the logs:
 
-```
+```shell
 xtrabackup --prepare --use-memory=2G --target-dir=/path/to/backupdir/
 ```
 
@@ -238,26 +238,26 @@ Note
 
 Make sure mysqld is shut down on the `NewReplica` before you copy the contents the snapshot into its datadir.
 
-```
+```text
 rsync -avprP -e ssh /path/to/backupdir NewReplica:/path/to/mysql/datadir
 ```
 
 For example, to set up a new user, `user2`, you add another grant on the Source:
 
-```
+```sql
 GRANT REPLICATION REPLICA ON *.*  TO 'user2'@'$newreplicaip'
  IDENTIFIED BY '$replicapass';
 ```
 
 On the `NewReplica`, copy the configuration file from the `Replica`:
 
-```
+```shell
 scp user@Replica:/etc/mysql/my.cnf /etc/mysql/my.cnf
 ```
 
 Make sure you change the server-id variable in `/etc/mysql/my.cnf` to 3 and disable the replication on start:
 
-```
+```text
 skip-slave-start
 server-id=3
 ```
@@ -266,7 +266,7 @@ After setting `server_id`, start mysqld.
 
 Fetch the source_log_file and source_log_pos from the file `xtrabackup_slave_info`, execute the statement for setting up the source and the log file for the NewReplica:
 
-```
+```sql
 CHANGE REPLICATION SOURCE TO
     SOURCE_HOST='$sourceip',
     SOURCE_USER='repl',
@@ -277,7 +277,7 @@ CHANGE REPLICATION SOURCE TO
 
 Start the replica:
 
-```
+```sql
 START REPLICA;
 ```
 
@@ -285,4 +285,4 @@ If both IO and SQL threads are running when you check the `NewReplica`, server i
 
 See also
 
-[How to create a new (or repair a broken) GTID based replica](https://docs.percona.com/percona-xtrabackup/9.7/create-gtid-replica.html)
+[How to create a new (or repair a broken) GTID based replica](https://docs.percona.com/percona-xtrabackup/9.7/create-gtid-replica.md)

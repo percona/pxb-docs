@@ -14,13 +14,13 @@ You invoke xtrabackup in one of the following modes:
 
 When you intend to run xtrabackup in any of these modes, use the following syntax:
 
-```
+```shell
 xtrabackup [--defaults-file=#] --backup|--prepare|--copy-back [OPTIONS]
 ```
 
 For example, the `--prepare` mode is applied as follows:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backup/mysql/
 ```
 
@@ -64,13 +64,13 @@ During the `--prepare` phase, Percona XtraBackup applies the redo log and does n
 
 The `--apply-redo-only` option replaces the deprecated [`--apply-log-only`](#apply-log-only) option. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
-For details, see [Prepare an incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.html).
+For details, see [Prepare an incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.md).
 
 ### backup
 
 Usage: `--backup`
 
-Make a backup and place it in `--target-dir`. See [Create a full backup](https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.html)
+Make a backup and place it in `--target-dir`. See [Create a full backup](https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.md)
 
 ### backup-incremental-base
 
@@ -108,7 +108,7 @@ This option checks if Percona XtraBackup has all the required privileges. If a r
 
 Example output
 
-```
+```text
 xtrabackup: Error: missing required privilege LOCK TABLES on *.*
 xtrabackup: Warning: missing required privilege REPLICATION CLIENT on *.*
 ```
@@ -125,7 +125,7 @@ Percona XtraBackup runs validation in read-only mode and does not modify backup 
 
 If validation detects corruption, xtrabackup reports the affected tables and returns a non-zero exit code after completing all checks.
 
-For more information, see [InnoDB B-tree integrity validation during prepare](https://docs.percona.com/percona-xtrabackup/9.7/innodb-btree-check.html).
+For more information, see [InnoDB B-tree integrity validation during prepare](https://docs.percona.com/percona-xtrabackup/9.7/innodb-btree-check.md).
 
 ### close-files
 
@@ -279,7 +279,7 @@ This option controls creating a new dump of the buffer pool content.
 
 The xtrabackup binary requests the server to start the buffer pool dump. This operation may take time to complete and is done in the background. The beginning of a backup with the option reports that the dump has been completed.
 
-```
+```shell
 xtrabackup --backup --dump-innodb-buffer-pool --target-dir=/home/user/backup
 ```
 
@@ -343,15 +343,15 @@ To adjust the chunk size for encrypted files, use [`--read-buffer-size`](#read-b
 
 Usage: `--estimate-memory=#`
 
-The option lets you enable or disable the [Smart memory estimation](https://docs.percona.com/percona-xtrabackup/9.7/smart-memory-estimation.html) feature. The default value is OFF. Enable the feature by setting `--estimate-memory=ON` in the backup phase and setting the `--use-free-memory-pct` option in the `--prepare` phase. If the `--estimate-memory` setting is disabled, the `--use-free-memory-pct` setting is ignored.
+The option lets you enable or disable the [Smart memory estimation](https://docs.percona.com/percona-xtrabackup/9.7/smart-memory-estimation.md) feature. The default value is OFF. Enable the feature by setting `--estimate-memory=ON` in the backup phase and setting the `--use-free-memory-pct` option in the `--prepare` phase. If the `--estimate-memory` setting is disabled, the `--use-free-memory-pct` setting is ignored.
 
 An example of how to enable the Smart memory estimation feature:
 
-```
+```shell
 xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
-```
+```shell
 xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 
@@ -359,7 +359,7 @@ xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 
 Usage: `--export`
 
-Create files necessary for exporting tables. For more details, see [Restore individual tables](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.html).
+Create files necessary for exporting tables. For more details, see [Restore individual tables](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.md).
 
 ### extra-lsndir
 
@@ -431,7 +431,7 @@ Usage: `--history=NAME`
 
 This option enables the tracking of backup history in the `PERCONA_SCHEMA.xtrabackup_history` table. You can specify a history series name placed with the current backup’s history record.
 
-By default, Percona XtraBackup writes the history record to the server you back up. To write the record to a different server, use the `--history-*` options. See [Store backup history on a different server](https://docs.percona.com/percona-xtrabackup/9.7/store-backup-history.html#store-backup-history-on-a-different-server).
+By default, Percona XtraBackup writes the history record to the server you back up. To write the record to a different server, use the `--history-*` options. See [Store backup history on a different server](https://docs.percona.com/percona-xtrabackup/9.7/store-backup-history.md#store-backup-history-on-a-different-server).
 
 ### history-host
 
@@ -651,7 +651,7 @@ With the `--lock-ddl=ON` option the backup process is as follows:
 1. Stop the redo thread once it copies at least up to sync point.
 1. Release the backup lock on the server.
 
-If the backup lock is disabled with the [`--lock-ddl=OFF`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#lock-ddl) option, a backup continues while concurrent DDL operations are executed. These backups may be invalid and may fail at either the `backup` or the `--prepare` step.
+If the backup lock is disabled with the [`--lock-ddl=OFF`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#lock-ddl) option, a backup continues while concurrent DDL operations are executed. These backups may be invalid and may fail at either the `backup` or the `--prepare` step.
 
 Use a [safe-slave-backup](#safe-slave-backup) option to stop a SQL replica thread before copying the InnoDB files.
 
@@ -733,7 +733,7 @@ The default behavior runs a check that compares the source system version to the
 
 Adding the option overrides this check, and the backup proceeds, but there may be issues with the backup.
 
-See [Server Version and Backup Version Comparison](https://docs.percona.com/percona-xtrabackup/9.7/server-backup-version-comparison.html) for more information.
+See [Server Version and Backup Version Comparison](https://docs.percona.com/percona-xtrabackup/9.7/server-backup-version-comparison.md) for more information.
 
 ### no-version-check
 
@@ -768,7 +768,7 @@ Usage: `--page-tracking-merge-gap=auto|N`
 
 Introduced in Percona XtraBackup 9.7.2-2.
 
-Controls the largest gap between two changed pages that Percona XtraBackup reads in a single request during an incremental backup with page tracking. The option accepts a string or an integer. The default value is `auto`. Keep the default value. For details, see [Read scattered changed pages](https://docs.percona.com/percona-xtrabackup/9.7/page-tracking.html#read-scattered-changed-pages).
+Controls the largest gap between two changed pages that Percona XtraBackup reads in a single request during an incremental backup with page tracking. The option accepts a string or an integer. The default value is `auto`. Keep the default value. For details, see [Read scattered changed pages](https://docs.percona.com/percona-xtrabackup/9.7/page-tracking.md#read-scattered-changed-pages).
 
 ### parallel
 
@@ -806,7 +806,7 @@ Usage: `--prepare`
 
 Makes xtrabackup perform a recovery on a backup created with `--backup`, so that the backup data is ready to use.
 
-For details, see [Prepare a full backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-full-backup.html).
+For details, see [Prepare a full backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-full-backup.md).
 
 ### prepare-incremental-from-dir
 
@@ -1036,7 +1036,7 @@ If this option is specified, xtrabackup fails with an error when invalid paramet
 
 Usage: `--tables=name`
 
-A regular expression against which the full table name in the `databasename.tablename` format is matched. If the name matches, the table is backed up. See [Create a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/create-partial-backup.html).
+A regular expression against which the full table name in the `databasename.tablename` format is matched. If the name matches, the table is backed up. See [Create a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/create-partial-backup.md).
 
 ### tables-compatibility-check
 
@@ -1110,17 +1110,17 @@ If `--transition-key` does not have any value, xtrabackup will ask for it. The s
 
 Usage: `--use-free-memory-pct`
 
-This option lets you configure the [Smart memory estimation](https://docs.percona.com/percona-xtrabackup/9.7/smart-memory-estimation.html) feature. The option controls the amount of free memory that can be used to `--prepare` a backup. The default value is 0 (zero), which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup. The maximum allowed value is 100.
+This option lets you configure the [Smart memory estimation](https://docs.percona.com/percona-xtrabackup/9.7/smart-memory-estimation.md) feature. The option controls the amount of free memory that can be used to `--prepare` a backup. The default value is 0 (zero), which defines the option as disabled. For example, if you set `--use-free-memory-pct=50`, then 50% of the free memory is used to `prepare` a backup. The maximum allowed value is 100.
 
 This option works only if `--estimate-memory` option is enabled. If the `--estimate-memory` option is disabled, the `--use-free-memory-pct` setting is ignored.
 
 An example of how to enable the Smart memory estimation feature:
 
-```
+```shell
 xtrabackup --backup --estimate-memory=ON --target-dir=/data/backups/
 ```
 
-```
+```shell
 xtrabackup --prepare --use-free-memory-pct=50 --target-dir=/data/backups/
 ```
 

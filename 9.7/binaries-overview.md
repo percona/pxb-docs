@@ -6,7 +6,7 @@ Percona XtraBackup provides a comprehensive suite of command-line tools for MySQ
 
 ## Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Basic Syntax:
 
 Run the following commands as root or use the sudo command.
 
-```
+```shell
 # Create a full backup
 xtrabackup --backup --target-dir=/backup/full
 
@@ -51,9 +51,9 @@ xtrabackup --backup --target-dir=/backup/inc1 --backup-incremental-base=/backup/
 xtrabackup --prepare --target-dir=/backup/full
 ```
 
-Documentation: [xtrabackup Overview](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-binary-overview.html)
+Documentation: [xtrabackup Overview](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-binary-overview.md)
 
-Command Line Options: [xtrabackup Options](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html)
+Command Line Options: [xtrabackup Options](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md)
 
 ### xbcloud
 
@@ -77,7 +77,7 @@ Basic Syntax:
 
 Run the following commands as root or use the sudo command.
 
-```
+```shell
 # Upload backup to S3
 xbcloud put s3://my-bucket/backup/ --storage=s3 --s3-bucket=my-bucket
 
@@ -85,9 +85,9 @@ xbcloud put s3://my-bucket/backup/ --storage=s3 --s3-bucket=my-bucket
 xbcloud get s3://my-bucket/backup/ --storage=s3 --s3-bucket=my-bucket
 ```
 
-Documentation: [xbcloud Overview](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-overview.html)
+Documentation: [xbcloud Overview](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-overview.md)
 
-Command Line Options: [xbcloud Options](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-options.html)
+Command Line Options: [xbcloud Options](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-options.md)
 
 ### xbcrypt
 
@@ -111,7 +111,7 @@ Basic Syntax:
 
 Run the following commands as root or use the sudo command.
 
-```
+```shell
 # Encrypt a backup file
 xbcrypt --encrypt --encrypt-key-file=/path/to/keyfile --input=/backup/backup.xbstream
 
@@ -119,9 +119,9 @@ xbcrypt --encrypt --encrypt-key-file=/path/to/keyfile --input=/backup/backup.xbs
 xbcrypt --decrypt --encrypt-key-file=/path/to/keyfile --input=/backup/backup.xbstream.encrypted
 ```
 
-Documentation: [xbcrypt Overview](https://docs.percona.com/percona-xtrabackup/9.7/xbcrypt-binary-overview.html)
+Documentation: [xbcrypt Overview](https://docs.percona.com/percona-xtrabackup/9.7/xbcrypt-binary-overview.md)
 
-Command Line Options: [xbcrypt Options](https://docs.percona.com/percona-xtrabackup/9.7/xbcrypt-options.html)
+Command Line Options: [xbcrypt Options](https://docs.percona.com/percona-xtrabackup/9.7/xbcrypt-options.md)
 
 ### xbstream
 
@@ -145,7 +145,7 @@ Basic Syntax:
 
 Run the following commands as root or use the sudo command.
 
-```
+```shell
 # Extract a streamed backup
 xbstream -x -C /restore/directory < backup.xbstream
 
@@ -155,7 +155,7 @@ xtrabackup --backup --stream=xbstream | xbstream -c -C /backup/directory
 
 Documentation: [xbstream Overview](https://docs.percona.com/percona-xtrabackup/9.7/xbstream-binary-overview.html)
 
-Command Line Options: [xbstream Options](https://docs.percona.com/percona-xtrabackup/9.7/xbstream-options.html)
+Command Line Options: [xbstream Options](https://docs.percona.com/percona-xtrabackup/9.7/xbstream-options.md)
 
 ## Common workflows
 
@@ -186,7 +186,7 @@ Command Line Options: [xbstream Options](https://docs.percona.com/percona-xtraba
 
 Run the following commands as root or use the sudo command.
 
-```
+```shell
 # Create encrypted backup
 xtrabackup --backup --target-dir=/tmp/backup --encrypt=AES256 --encrypt-key-file=/etc/mysql/backup.key
 
@@ -202,7 +202,7 @@ xbcloud put s3://my-backup-bucket/$(date +%Y%m%d)/ --storage=s3 --s3-bucket=my-b
 
 Run the following commands as root or use the sudo command.
 
-```
+```shell
 # Download backup from cloud
 xbcloud get s3://my-backup-bucket/20241201/ --storage=s3 --s3-bucket=my-backup-bucket
 
@@ -218,12 +218,12 @@ xtrabackup --copy-back --target-dir=/tmp/backup
 
 Now that you understand the core binaries, consider these next steps:
 
-1. Installation: Follow the [installation guide](https://docs.percona.com/percona-xtrabackup/9.7/installation.html) for your operating system
-1. Configuration: Review [configuration options](https://docs.percona.com/percona-xtrabackup/9.7/configure-xtrabackup.html) for your environment
-1. Quick Start: Try the [quickstart guide](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.html) for hands-on experience
-1. Advanced Topics: Explore [point-in-time recovery](https://docs.percona.com/percona-xtrabackup/9.7/point-in-time-recovery.html) and [replication setup](https://docs.percona.com/percona-xtrabackup/9.7/set-up-replication.html)
+1. Installation: Follow the [installation guide](https://docs.percona.com/percona-xtrabackup/9.7/installation.md) for your operating system
+1. Configuration: Review [configuration options](https://docs.percona.com/percona-xtrabackup/9.7/configure-xtrabackup.md) for your environment
+1. Quick Start: Try the [quickstart guide](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.md) for hands-on experience
+1. Advanced Topics: Explore [point-in-time recovery](https://docs.percona.com/percona-xtrabackup/9.7/point-in-time-recovery.md) and [replication setup](https://docs.percona.com/percona-xtrabackup/9.7/set-up-replication.md)
 
 ## Related documentation
 
-- [Backup and Restore overview](https://docs.percona.com/percona-xtrabackup/9.7/backup-overview.html)
-- [Get help](https://docs.percona.com/percona-xtrabackup/9.7/get-help.html)
+- [Backup and Restore overview](https://docs.percona.com/percona-xtrabackup/9.7/backup-overview.md)
+- [Get help](https://docs.percona.com/percona-xtrabackup/9.7/get-help.md)

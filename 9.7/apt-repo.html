@@ -125,7 +125,7 @@ repositories and the Percona Software Downloads .">
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/apt-repo.md"></head>
   
   
     
@@ -135,7 +135,7 @@ repositories and the Percona Software Downloads .">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/apt-repo.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/apt-repo.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5841,11 +5841,11 @@ described in <a href="https://www.percona.com/release-lifecycle-overview/">Perco
 <ol>
 <li>
 <p>Use the apt package manager to download <code>percona-release</code>:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease
+<div class="language-text no-copy highlight"><pre><span></span><code>Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease
 Hit:2 http://security.ubuntu.com/ubuntu noble-security InRelease
 Hit:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease
 Hit:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease
@@ -5855,11 +5855,11 @@ Reading package lists... Done
 </li>
 <li>
 <p>Install the <code>curl</code> download utility if it&rsquo;s not installed:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Reading package lists... Done
+<div class="language-text no-copy highlight"><pre><span></span><code>Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
 The following additional packages will be installed:
@@ -5873,11 +5873,11 @@ done.
 </li>
 <li>
 <p>Download the <code>percona-release</code> the repository package:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+<div class="language-shell highlight"><pre><span></span><code>curl<span class="w"> </span>-O<span class="w"> </span>https://repo.percona.com/apt/percona-release_latest.generic_all.deb
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+<div class="language-text no-copy highlight"><pre><span></span><code>% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                 Dload  Upload   Total   Spent    Left  Speed
 100 16510  100 16510    0     0  29915      0 --:--:-- --:--:-- --:--:-- 30127
 </code></pre></div>
@@ -5885,11 +5885,11 @@ done.
 </li>
 <li>
 <p>Install the downloaded package and its dependencies using <code>apt</code>:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg2<span class="w"> </span>lsb-release<span class="w"> </span>./percona-release_latest.generic_all.deb
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg2<span class="w"> </span>lsb-release<span class="w"> </span>./percona-release_latest.generic_all.deb
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Reading package lists... Done
+<div class="language-text no-copy highlight"><pre><span></span><code>Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
 ...
@@ -5908,11 +5908,11 @@ Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
 </li>
 <li>
 <p>Refresh the local cache to update the package information:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Hit:1 http://repo.percona.com/prel/apt noble InRelease
+<div class="language-text no-copy highlight"><pre><span></span><code>Hit:1 http://repo.percona.com/prel/apt noble InRelease
 Hit:2 http://repo.percona.com/telemetry/apt noble InRelease
 Hit:3 http://archive.ubuntu.com/ubuntu noble InRelease
 Hit:4 http://security.ubuntu.com/ubuntu noble-security InRelease
@@ -5924,11 +5924,11 @@ Reading package lists... Done
 </li>
 <li>
 <p>Enable the specific percona-release product.</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>pxb-97-lts
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>percona-release<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>pxb-97-lts
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>* Enabling the Percona Packaging Repository repository
+<div class="language-text no-copy highlight"><pre><span></span><code>* Enabling the Percona Packaging Repository repository
 Hit:1 http://repo.percona.com/prel/apt noble InRelease
 Get:2 http://repo.percona.com/pxb-97-lts/apt noble InRelease [12.8 kB]
 Hit:3 http://repo.percona.com/telemetry/apt noble InRelease
@@ -5945,11 +5945,11 @@ Reading package lists...
 </li>
 <li>
 <p>Install Percona XtraBackup.</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-97
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>percona-xtrabackup-97
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Reading package lists...
+<div class="language-text no-copy highlight"><pre><span></span><code>Reading package lists...
 Building dependency tree...
 Reading state information...
 The following additional packages will be installed:
@@ -5970,11 +5970,11 @@ Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
 </li>
 <li>
 <p>Verify the installation.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--version
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
+<div class="language-text no-copy highlight"><pre><span></span><code>xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 </code></pre></div>
 </details>
 </li>
@@ -5983,11 +5983,11 @@ Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div data-markdown-ignore class="tabbed-labels"><label for="__tabbed_1_1">Install the <code>lz4</code> package</label><label for="__tabbed_1_2">Install the <code>zstd</code> package</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lz4
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lz4
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstd
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zstd
 </code></pre></div>
 </div>
 </div>

@@ -125,7 +125,7 @@ container.">
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/docker.md"></head>
   
   
     
@@ -135,7 +135,7 @@ container.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/docker.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/docker.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5887,7 +5887,7 @@ another. Docker images offer a range of options.</p>
 <p>Create a Docker container based on a Docker image. Docker images for
 Percona XtraBackup are hosted publicly on <a href="https://hub.docker.com/r/percona/percona-xtrabackup">Docker Hub <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <p>Run all the commands as root or use the sudo command.</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>...<span class="w"> </span>percona/percona-xtrabackup<span class="w"> </span>--name<span class="w"> </span>xtrabackup<span class="w"> </span>...
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>...<span class="w"> </span>percona/percona-xtrabackup<span class="w"> </span>--name<span class="w"> </span>xtrabackup<span class="w"> </span>...
 </code></pre></div>
 <h3 id="scope-of-this-section">Scope of this section<a data-markdown-ignore class="headerlink" href="#scope-of-this-section" title="Permanent link">&para;</a></h3>
 <p>This section demonstrates how to back up data
@@ -5911,7 +5911,7 @@ intend to use with Percona XtraBackup.</p>
 <p><a href="https://docs.docker.com/storage/volumes/">Docker volumes as container persistent data storage <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
 <p><a href="https://docs.docker.com/config/containers/start-containers-automatically">More information about containers <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a></p>
 </div>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
 -e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root<span class="w"> </span>percona/percona-server:9.7
 </code></pre></div>
 <p>As soon as Percona Server for MySQL runs, add some data to it. Now, you are
@@ -5929,7 +5929,7 @@ creates a Docker container and makes it available for starting later.</p>
 <p>Docker downloads the Percona XtraBackup image from the Docker Hub. If it
 is not the first time you use the selected image, Docker uses the image
 available locally.</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
 percona/percona-xtrabackup<span class="w">  </span><span class="se">\</span>
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--datadir<span class="o">=</span>/var/lib/mysql/<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span><span class="se">\</span>
 --user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>mysql
@@ -5940,13 +5940,13 @@ so that you could easily locate it among your other containers.</p>
 that you intend to use the same data as the Percona Server for MySQL container.</p>
 <p>Run the container with exactly the same parameters that were used when the
 container was created:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>percona-xtrabackup
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>-ai<span class="w"> </span>percona-xtrabackup
 </code></pre></div>
 <p>This command starts the percona-xtrabackup container, attaches to its
 input/output streams, and opens an interactive shell.</p>
 <p>The <code>docker run</code> is a shortcut command that creates a Docker container and
 then immediately runs it.</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>percona-xtrabackup<span class="w"> </span>--volumes-from<span class="w"> </span>percona-server-mysql<span class="w"> </span><span class="se">\</span>
 percona/percona-xtrabackup
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--data-dir<span class="o">=</span>/var/lib/mysql<span class="w"> </span>--target-dir<span class="o">=</span>/backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>--password<span class="o">=</span>mysql
 </code></pre></div>
@@ -5987,39 +5987,6 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--data-dir<spa
 
     
     
-    
-      
-  <span class="md-source-file__fact">
-    
-      
-  <span class="md-icon" title="Contributors">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-  </span>
-  <span>GitHub</span>
-
-    
-    <nav>
-      
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
-          
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
-        </a>
-      
-        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
-          
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
-      
-      
-    </nav>
-  </span>
-
     
   </aside>
 

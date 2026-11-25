@@ -4,13 +4,13 @@
 
 ## Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ## Command reference
 
 Quick syntax for preparing a full backup:
 
-```
+```bash
 xtrabackup --prepare --target-dir=<path> [--apply-redo-only] [--parallel=<N>]
 ```
 
@@ -23,19 +23,19 @@ xtrabackup --prepare --target-dir=<path> [--apply-redo-only] [--parallel=<N>]
 
 Example (full backup, then restore):
 
-```
+```bash
 xtrabackup --prepare --target-dir=/data/backups/
 ```
 
 Example (base for incremental backups):
 
-```
+```bash
 xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/
 ```
 
 ______________________________________________________________________
 
-After creating a backup with the `--backup` option, you need to prepare the backup and then [restore](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.html) it. Data files are not point-in-time consistent until they are prepared, because they were copied at different times as the program ran, and they might have been changed while this was happening.
+After creating a backup with the `--backup` option, you need to prepare the backup and then [restore](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.md) it. Data files are not point-in-time consistent until they are prepared, because they were copied at different times as the program ran, and they might have been changed while this was happening.
 
 If you try to start InnoDB with these data files, it will detect corruption and stop working to avoid running on damaged data. The `--prepare` step makes the files perfectly consistent at a single instant in time, so you can run InnoDB on them.
 
@@ -47,7 +47,7 @@ During the prepare operation, xtrabackup boots up a kind of modified embedded In
 
 The prepare step uses this “embedded InnoDB” to perform crash recovery on the copied data files, using the copied log file. The `prepare` step is very simple to use: you simply run xtrabackup with the `--prepare` option and tell it which directory to prepare, for example, to prepare the previously taken backup run:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backups/
 ```
 
@@ -55,7 +55,7 @@ When this finishes, you should see an `InnoDB shutdown` with a message such as t
 
 Expected output
 
-```
+```text
 ...
 2026-10-13T17:24:08.568744-00:00 0 [Note] [MY-012980] [InnoDB] Shutdown completed; log sequence number 36618262
 2026-10-13T17:24:08.576103-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
@@ -65,7 +65,7 @@ All following prepares will not change the already prepared data files, you’ll
 
 Expected output
 
-```
+```text
 xtrabackup: This target seems to be already prepared.
 xtrabackup: notice: xtrabackup_logfile was already used to '--prepare'.
 ```
@@ -74,8 +74,8 @@ It is not recommended to interrupt xtrabackup process while preparing backup bec
 
 Note
 
-If you plan to apply incremental backups to the backup, use the `--apply-redo-only` option when you prepare the backup. Without the option, you cannot apply incremental backups. For details, see [Prepare an incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.html).
+If you plan to apply incremental backups to the backup, use the `--apply-redo-only` option when you prepare the backup. Without the option, you cannot apply incremental backups. For details, see [Prepare an incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.md).
 
 ## Next step
 
-[Restore the backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.html)
+[Restore the backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.md)

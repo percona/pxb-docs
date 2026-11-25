@@ -127,7 +127,7 @@ PERCONA_SCHEMA.XTRABACKUP_HISTORY table.">
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/store-backup-history.md"></head>
   
   
     
@@ -137,7 +137,7 @@ PERCONA_SCHEMA.XTRABACKUP_HISTORY table.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/store-backup-history.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/store-backup-history.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5960,7 +5960,7 @@ completes and store the results with you backup set.</p>
 </li>
 </ul>
 <p>The following example backs up a read-only replica and stores the history record on the source server:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--user<span class="o">=</span>bkpuser<span class="w"> </span>--password<span class="o">=</span>&lt;backup_password&gt;<span class="w"> </span>--socket<span class="o">=</span>/var/run/mysqld/mysqld.sock<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--history<span class="o">=</span>nightly<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--history-host<span class="o">=</span>source.example.com<span class="w"> </span>--history-port<span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="se">\</span>
@@ -5968,7 +5968,7 @@ completes and store the results with you backup set.</p>
 </code></pre></div>
 <p>Percona XtraBackup uses the history server only to store and read the history record. Percona XtraBackup runs all other backup operations, such as locks and redo log copying, on the server you back up.</p>
 <p>The <a href="xtrabackup-option-reference.html#incremental-history-name"><code>--incremental-history-name</code></a> and <a href="xtrabackup-option-reference.html#incremental-history-uuid"><code>--incremental-history-uuid</code></a> options also read from the history server. For incremental backups, pass the same <code>--history-*</code> options so that Percona XtraBackup reads the base LSN from the server that stores the records:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--incremental<span class="w"> </span>--target-dir<span class="o">=</span>/backups/inc1<span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--incremental<span class="w"> </span>--target-dir<span class="o">=</span>/backups/inc1<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--user<span class="o">=</span>bkpuser<span class="w"> </span>--password<span class="o">=</span>&lt;backup_password&gt;<span class="w"> </span>--socket<span class="o">=</span>/var/run/mysqld/mysqld.sock<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--incremental-history-name<span class="o">=</span>nightly<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--history-host<span class="o">=</span>source.example.com<span class="w"> </span>--history-port<span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="se">\</span>
@@ -6007,7 +6007,7 @@ completes and store the results with you backup set.</p>
 </li>
 </ul>
 <p>To create a history user with the minimum privileges, run the following statements on the history server:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">'history_user'</span><span class="o">@</span><span class="s1">'%'</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">'&lt;history_password&gt;'</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">'history_user'</span><span class="o">@</span><span class="s1">'%'</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">'&lt;history_password&gt;'</span><span class="p">;</span>
 <span class="k">GRANT</span><span class="w"> </span><span class="k">CREATE</span><span class="p">,</span><span class="w"> </span><span class="k">ALTER</span><span class="p">,</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">PERCONA_SCHEMA</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">'history_user'</span><span class="o">@</span><span class="s1">'%'</span><span class="p">;</span>
 <span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">performance_schema</span><span class="p">.</span><span class="n">replication_group_members</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">'history_user'</span><span class="o">@</span><span class="s1">'%'</span><span class="p">;</span>
 </code></pre></div>

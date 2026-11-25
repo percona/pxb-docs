@@ -10,7 +10,7 @@ You don’t need to put any configuration in your `my.cnf`. You can specify the 
 
 The following is an example:
 
-```
+```text
 [xtrabackup]
 target_dir = /data/backups/
 ```

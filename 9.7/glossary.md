@@ -12,7 +12,7 @@ Each table with the CSV Storage engine has `.CSV` file which contains the data o
 
 ## .exp
 
-Files with the `.exp` extension are created by Percona XtraBackup per each InnoDB tablespace when the [`--export`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#export) option is used on prepare. See [restore individual tables](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.html).
+Files with the `.exp` extension are created by Percona XtraBackup per each InnoDB tablespace when the [`--export`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#export) option is used on prepare. See [restore individual tables](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.md).
 
 ## .frm
 
@@ -102,7 +102,7 @@ Storage engine which provides ACID-compliant transactions and foreign key suppor
 
 The size in bytes of the memory buffer to cache data and indexes of InnoDB’s tables. This aims to reduce disk access to provide better performance.
 
-```
+```ini
 [mysqld]
 innodb_buffer_pool_size=8MB
 ```
@@ -111,7 +111,7 @@ innodb_buffer_pool_size=8MB
 
 The directory (relative to `datadir`) where the database server stores the files in a shared tablespace setup. This option does not affect the location of `innodb\_file\_per\_table`. For example:
 
-```
+```ini
 [mysqld]
 innodb_data_home_dir = ./
 ```
@@ -120,7 +120,7 @@ innodb_data_home_dir = ./
 
 Specifies the names, sizes and location of shared tablespace files:
 
-```
+```ini
 [mysqld]
 innodb_data_file_path=ibdata1:50M;ibdata2:50M:autoextend
 ```
@@ -129,7 +129,7 @@ innodb_data_file_path=ibdata1:50M;ibdata2:50M:autoextend
 
 By default, InnoDB creates tables and indexes in a [file-per-tablespace](https://dev.mysql.com/doc/refman/9.7/en/innodb-file-per-table-tablespaces.html) . If the `innodb_file_per_table` variable is disabled, you can enable the variable in your configuration file:
 
-```
+```ini
 [mysqld]
 innodb_file_per_table
 ```
@@ -140,7 +140,7 @@ Alternatively, start the server with `--innodb_file_per_table`.
 
 Specifies the location of the InnoDB log files:
 
-```
+```ini
 [mysqld]
 innodb_log_group_home=/var/lib/mysql
 ```
@@ -187,7 +187,7 @@ To support the encryption and the decryption of the backups. This utility has be
 
 ## xbstream
 
-To support simultaneous compression and streaming, Percona XtraBackup uses the xbstream format. For more information see [xbstream](https://docs.percona.com/percona-xtrabackup/9.7/xbstream-binary-overview.html)
+To support simultaneous compression and streaming, Percona XtraBackup uses the xbstream format. For more information see [xbstream](https://docs.percona.com/percona-xtrabackup/9.7/xbstream-binary-overview.md)
 
 ## XtraDB
 

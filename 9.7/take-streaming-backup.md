@@ -8,7 +8,7 @@ This method allows you to use other programs to filter the output of the backup,
 
 To use the streaming feature, run the `--stream` option.
 
-```
+```shell
 xtrabackup --stream
 ```
 
@@ -22,15 +22,15 @@ The Zstandard (ZSTD) is a fast lossless compression algorithm that targets real-
 
 To compress files using the `ZSTD` compression algorithm, use the `--compress` option:
 
-```
+```shell
 xtrabackup --backup --compress --target-dir=/data/backup
 ```
 
 The resulting files have the `\*.zst` format.
 
-You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#compress-zstd-level) option. The default value is `1`.
+You can specify `ZSTD` compression level with the [`--compress-zstd-level(=#)`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#compress-zstd-level) option. The default value is `1`.
 
-```
+```shell
 xtrabackup –backup –compress –compress-zstd-level=1 –target-dir=/data/backup
 ```
 
@@ -38,7 +38,7 @@ xtrabackup –backup –compress –compress-zstd-level=1 –target-dir=/data/ba
 
 To compress files using the `lz4` compression algorithm, set the `--compress` option to `lz4`:
 
-```
+```shell
 xtrabackup --backup --compress=lz4 --target-dir=/data/backup
 ```
 

@@ -12,13 +12,13 @@ Before you can prepare the backup you need to decompress all the files. Run the 
 
   **Install the lz4 package**
 
-  ```
+  ```shell
   sudo apt install lz4
   ```
 
   **Install the zstd package**
 
-  ```
+  ```shell
   sudo apt install zstd
   ```
 
@@ -26,19 +26,19 @@ Before you can prepare the backup you need to decompress all the files. Run the 
 
   **Install the lz4 package**
 
-  ```
+  ```shell
   sudo yum install lz4
   ```
 
   **Install the zstd package**
 
-  ```
+  ```shell
   sudo yum install zstd
   ```
 
 - Use the `--decompress` option to decompress the backup.
 
-  ```
+  ```shell
   xtrabackup --decompress --target-dir=/data/compressed/
   ```
 
@@ -52,13 +52,13 @@ Before you can prepare the backup you need to decompress all the files. Run the 
 
 When the files are decompressed you can prepare the backup with the `--prepare` option.
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/compressed/
 ```
 
 Confirmation message
 
-```
+```text
 ...
 2026-10-13T17:25:02.032550-00:00 0 [Note] [MY-012980] [InnoDB] Shutdown completed; log sequence number 38309910
 2026-10-13T17:25:02.039421-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
@@ -68,4 +68,4 @@ Now the files in `/data/compressed/` are ready to be used by the server.
 
 ## Next step
 
-[Restore the backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.html)
+[Restore the backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.md)

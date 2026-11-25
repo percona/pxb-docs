@@ -26,11 +26,11 @@ A backup plan, based on the backup strategy and the backup policy, is a detailed
 
 ## Types of backup
 
-A [full backup](https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.html) copies all data to a storage location. This type of backup creates a complete copy of the data set. The benefit of a full backup is a quick recovery since the data is stored in one place. However, this type of backup is also the most time-consuming and storage-intensive; it duplicates all data regardless of whether it has changed since the last backup.
+A [full backup](https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.md) copies all data to a storage location. This type of backup creates a complete copy of the data set. The benefit of a full backup is a quick recovery since the data is stored in one place. However, this type of backup is also the most time-consuming and storage-intensive; it duplicates all data regardless of whether it has changed since the last backup.
 
-An [incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/create-incremental-backup.html) only copies data that has changed since the last backup, whether that was a full or another incremental backup. This method is faster and more storage-efficient than a full backup. However, the recovery can be slower because you must restore each set of changes in sequence.
+An [incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/create-incremental-backup.md) only copies data that has changed since the last backup, whether that was a full or another incremental backup. This method is faster and more storage-efficient than a full backup. However, the recovery can be slower because you must restore each set of changes in sequence.
 
-For more information, see the [example of using a full backup with incremental backups](https://docs.percona.com/percona-xtrabackup/9.7/example-full-incr.html).
+For more information, see the [example of using a full backup with incremental backups](https://docs.percona.com/percona-xtrabackup/9.7/example-full-incr.md).
 
 ## Backup policy defined
 

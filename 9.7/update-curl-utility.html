@@ -125,7 +125,7 @@ unstable behavior and are therefore not supported.">
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.md"></head>
   
   
     
@@ -135,7 +135,7 @@ unstable behavior and are therefore not supported.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5868,33 +5868,33 @@ reuse issues in <code>xbcloud</code>. The following versions are not supported.<
 </ul>
 <h3 id="check-the-installed-libcurl-version">Check the installed libcurl version<a data-markdown-ignore class="headerlink" href="#check-the-installed-libcurl-version" title="Permanent link">&para;</a></h3>
 <p>To check the installed libcurl version, run:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--version
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>--version
 </code></pre></div>
 <h3 id="upgrade-libcurl-recommended">Upgrade libcurl - Recommended<a data-markdown-ignore class="headerlink" href="#upgrade-libcurl-recommended" title="Permanent link">&para;</a></h3>
 <p class="power-number">The following steps show how to update the libcurl to version 8.12.0 on Debian 12. Administrator privileges are necessary for installing packages and configuring system services.</p>
 <ol>
 <li>
 <p>Edit the <code>/etc/apt/sources.list</code> to add the following:</p>
-<div class="highlight"><pre><span></span><code>deb http://deb.debian.org/debian bookworm-backports main
+<div class="language-text highlight"><pre><span></span><code>deb http://deb.debian.org/debian bookworm-backports main
 </code></pre></div>
 </li>
 <li>
 <p>Refresh the <code>apt</code> sources:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<div class="language-bash highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
 </li>
 <li>
 <p>Install the version from <code>bookworm-backports</code>:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-t<span class="w"> </span>bookworm-backports<span class="w"> </span>libcurl4<span class="w"> </span>curl
+<div class="language-bash highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-t<span class="w"> </span>bookworm-backports<span class="w"> </span>libcurl4<span class="w"> </span>curl
 </code></pre></div>
 </li>
 <li>
 <p>Verify the version number:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--version
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>--version
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>curl 8.12.0 (x86_64-pc-linux-gnu) libcurl/8.12.0
+<div class="language-text no-copy highlight"><pre><span></span><code>curl 8.12.0 (x86_64-pc-linux-gnu) libcurl/8.12.0
 </code></pre></div>
 </details>
 </li>
@@ -5904,21 +5904,21 @@ reuse issues in <code>xbcloud</code>. The following versions are not supported.<
 <ol>
 <li>
 <p>Update the package list:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<div class="language-bash highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
 </li>
 <li>
 <p>Reinstall the default system version of libcurl and curl:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>--reinstall<span class="w"> </span>libcurl4<span class="w"> </span>curl
+<div class="language-bash highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>--reinstall<span class="w"> </span>libcurl4<span class="w"> </span>curl
 </code></pre></div>
 </li>
 <li>
 <p>Verify the version number:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--version
+<div class="language-bash highlight"><pre><span></span><code>curl<span class="w"> </span>--version
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>curl 7.88.1 (x86_64-pc-linux-gnu) libcurl/7.88.1 OpenSSL/3.0.9 zlib/1.2.13 libidn2/2.3.4 libssh/0.10.5
+<div class="language-text no-copy highlight"><pre><span></span><code>curl 7.88.1 (x86_64-pc-linux-gnu) libcurl/7.88.1 OpenSSL/3.0.9 zlib/1.2.13 libidn2/2.3.4 libssh/0.10.5
 Release-Date: 2023-08-02
 Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps mqtt pop3 pop3s rtsp smb smbs smtp smtps telnet tftp 
 Features: AsynchDNS IDN IPv6 Largefile NTLM NTLM_WB SSL libz TLS-SRP HTTP2 HSTS HTTPS-proxy Metalink

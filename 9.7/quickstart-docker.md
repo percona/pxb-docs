@@ -13,13 +13,13 @@ The benefits of using a Docker volume are the following:
 - You can keep your data safe and accessible across different containers. For example, if you want to upgrade your database image to a newer version, you can stop the old container and start a new one with the same volume attached without losing any data.
 - You can quickly backup and restore your data using the `docker cp` command or mount the volume to another container.
 
-```
+```shell
 docker volume create backupvol
 ```
 
 Expected output
 
-```
+```text
  backupvol
 ```
 
@@ -42,7 +42,7 @@ In our example, the command has the following options:
 | `--password`     | Prompts the user to enter the password for the root user. For convenience you can add the password for the root user to this option, for example, `--password=secret`. Then the password will be passed automatically when running the command. Note that if you specify the password with `--password=secret`, the password is visible in `docker ps`, `docker ps -a` (docker history) and regular ps command. |
 | `9.7`            | Use this tag to specify a specific version. Avoid using the `latest` tag. In our example, we use the `9.7` tag. In Docker, a tag is a label assigned to an image and is used to maintain different versions of an image.                                                                                                                                                                                        |
 
-If you do not add a tag, Docker uses `latest` as the default tag and downloads the newest image from [percona/percona-xtrabackup on the Docker Hub](https://hub.docker.com/r/percona/percona-xtrabackup) . This image can be in a different series or version from what you expect since the latest image changes over time. If you are using Percona XtraBackup version prior to 9.7, use tags to ensure that you use [compatible versions](https://docs.percona.com/percona-xtrabackup/9.7/server-backup-version-comparison.html) of Percona Server for MySQL and Percona XtraBackup.
+If you do not add a tag, Docker uses `latest` as the default tag and downloads the newest image from [percona/percona-xtrabackup on the Docker Hub](https://hub.docker.com/r/percona/percona-xtrabackup) . This image can be in a different series or version from what you expect since the latest image changes over time. If you are using Percona XtraBackup version prior to 9.7, use tags to ensure that you use [compatible versions](https://docs.percona.com/percona-xtrabackup/9.7/server-backup-version-comparison.md) of Percona Server for MySQL and Percona XtraBackup.
 
 The CPU architecture or platform for Percona Server for MySQL and Percona XtraBackup should be the same. If you want to use a different platform, you can add the following command:
 
@@ -57,13 +57,13 @@ You can run the Docker ARM64 version of Percona XtraBackup. Use the `9.7-aarch64
 
 We recommend using the `–-user root` option in the Docker command. Run a Docker container example
 
-```
+```shell
 docker run --name pxb --volumes-from psmysql -v backupvol:/backup_97 -it --user root percona/percona-xtrabackup:9.7 /bin/bash -c "xtrabackup --backup --datadir=/var/lib/mysql/ --target-dir=/backup_97 --user=root --password; xtrabackup --prepare --target-dir=/backup_97"
 ```
 
 You are prompted to enter the password. In our example, the password is `secret`.
 
-```
+```text
 2024-10-07T13:55:47.640100-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
 2024-10-07T13:55:47.641887-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --backup=1 --target-dir=/backup_97 --user=root --password
 Enter password:
@@ -73,7 +73,7 @@ In this example of expected output, we provide the first and last section of the
 
 Expected output
 
-```
+```text
 xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
 2024-10-07T13:55:51.256080-00:00 0 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set
 2024-10-07T13:55:51.270222-00:00 0 [Note] [MY-011825] [Xtrabackup] Using server version 9.7.1-1
@@ -95,10 +95,10 @@ You can check the Xtrabackup logs with the `docker container logs <container-nam
 
 For example:
 
-```
+```shell
 docker container logs pxb
 ```
 
 ## Next steps
 
-[Restore the backup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-restore-back.html)
+[Restore the backup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-restore-back.md)

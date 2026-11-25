@@ -39,7 +39,7 @@ Before enabling redo log archiving, create a directory to store archived redo lo
 
 Use the following commands to create and secure the directory:
 
-```
+```shell
 sudo mkdir -p /var/lib/mysql-redo-archive/backup1
 sudo chown -R mysql:mysql /var/lib/mysql-redo-archive
 sudo chmod -R 700 /var/lib/mysql-redo-archive/
@@ -59,19 +59,19 @@ The `innodb_redo_log_archive_dirs` variable defines labeled archive paths. Use a
 
 Set and persist the variable:
 
-```
+```sql
 SET PERSIST innodb_redo_log_archive_dirs='backup1:/var/lib/mysql-redo-archive/';
 ```
 
 Verify the configuration:
 
-```
+```sql
 SHOW GLOBAL VARIABLES LIKE 'innodb_redo_log_ar%';
 ```
 
 Expected output
 
-```
+```text
 +------------------------------+--------------------------------------+
 | Variable_name                | Value                                |
 +------------------------------+--------------------------------------+
@@ -93,7 +93,7 @@ To begin archiving redo logs, call `innodb_redo_log_archive_start()`. This funct
 
 Use the same label defined in the `innodb_redo_log_archive_dirs` variable. The function requires the `INNODB_REDO_LOG_ARCHIVE` privilege.
 
-```
+```sql
 SELECT innodb_redo_log_archive_start('backup1','backup1');
 ```
 
@@ -108,7 +108,7 @@ To stop redo log archiving, call `innodb_redo_log_archive_stop()`. This function
 
 You must use the same label as when you started archiving. The function requires the `INNODB_REDO_LOG_ARCHIVE` privilege.
 
-```
+```sql
 SELECT innodb_redo_log_archive_stop('backup1');
 ```
 
@@ -136,7 +136,7 @@ Percona XtraBackup supports redo log archiving. If the archive directory is not 
 
 Run XtraBackup as the mysql user:
 
-```
+```shell
 sudo -H -u mysql bash
 xtrabackup --no-lock=1 --compress --parallel=4 \
   --host=localhost --user=root --password='password_string' \
@@ -146,13 +146,13 @@ xtrabackup --no-lock=1 --compress --parallel=4 \
 
 Use the following command to verify that archiving has occurred:
 
-```
+```shell
 cat /tmp/b0-with-redo-archiving-as-mysql-os-user.log
 ```
 
 Expected output
 
-```
+```text
 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql
 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --no-lock=1 --compress --parallel=4 --host=localhost --user=root --password=* --backup=1 --target-dir=/Backup/22Aug  xtrabackup version 9.7.1-rc1 based on MySQL server 9.7.1-1 Linux (aarch64) (revision id: cccec763) 250721 13:36:02  version_check Connecting to MySQL server with DSN 'dbi:mysql:;mysql_read_default_group=xtrabackup;host=localhost' as 'root'  (using password: YES). 250721 13:36:02  version_check Connected to MySQL server 250721 13:36:02  version_check Executing a version check against the server... 250721 13:36:02  version_check Done. 
    [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: not set 

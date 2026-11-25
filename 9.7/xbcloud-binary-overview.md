@@ -16,7 +16,7 @@ xbcloud is a cloud storage utility that works with Percona XtraBackup to upload,
 
 ## Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#backup-incremental-base) and the `--incremental-dir` option to [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#prepare-incremental-from-dir). Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base) and the `--incremental-dir` option to [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare-incremental-from-dir). Percona XtraBackup still accepts the old names but prints a deprecation warning. A future release will remove the old names, so update your scripts to use the new names. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.
 
 ## What xbcloud does
 
@@ -39,11 +39,11 @@ xbcloud supports multiple cloud storage providers:
 
 For detailed configuration instructions, see the individual provider guides:
 
-- [Using the xbcloud binary with Amazon S3](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.html)
-- [Using the xbcloud binary with Swift](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-swift.html)
-- [Using the xbcloud binary with Google Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-gcs.html)
-- [Using the xbcloud binary with Microsoft Azure Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.html)
-- [Using the xbcloud binary with MinIO](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-minio.html)
+- [Using the xbcloud binary with Amazon S3](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.md)
+- [Using the xbcloud binary with Swift](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-swift.md)
+- [Using the xbcloud binary with Google Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-gcs.md)
+- [Using the xbcloud binary with Microsoft Azure Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.md)
+- [Using the xbcloud binary with MinIO](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-minio.md)
 
 ## Key features
 
@@ -53,16 +53,16 @@ xbcloud accepts input via pipes from xbstream, enabling direct streaming from xt
 
 ### Chunked storage
 
-Backups are stored as separate objects with names like `backup_name/database/table.ibd.NNN...`, where `NNN...` is a zero-padded serial number. The default chunk size is 10MB, which you can adjust using [`--read-buffer-size`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#read-buffer-size).
+Backups are stored as separate objects with names like `backup_name/database/table.ibd.NNN...`, where `NNN...` is a zero-padded serial number. The default chunk size is 10MB, which you can adjust using [`--read-buffer-size`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#read-buffer-size).
 
 ### Advanced features
 
-- [Exponential Backoff](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-exbackoff.html) - Automatically retries failed operations with increasing delays
-- [FIFO data sink](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-fifo-datasink.html) - Enables parallel streaming for high-bandwidth networks (10Gbps+)
+- [Exponential Backoff](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-exbackoff.md) - Automatically retries failed operations with increasing delays
+- [FIFO data sink](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-fifo-datasink.md) - Enables parallel streaming for high-bandwidth networks (10Gbps+)
 
 Important
 
-To prevent intermittent backup failures, [update the curl utility](https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.html).
+To prevent intermittent backup failures, [update the curl utility](https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.md).
 
 ## Usage
 
@@ -72,7 +72,7 @@ This section shows common xbcloud usage patterns. All examples use Amazon S3 for
 
 A full backup captures the entire database at a point in time. The following command creates a full backup and uploads it to S3:
 
-```
+```shell
 xtrabackup --backup --stream=xbstream --target-dir=/tmp/backup | \
 xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 full_backup_$(date +%Y%m%d)
 ```
@@ -87,7 +87,7 @@ This command:
 
 An incremental backup only includes changes since the last backup (full or incremental). First, create the incremental backup:
 
-```
+```shell
 xtrabackup --backup --stream=xbstream --backup-incremental-base=/tmp/backup \
 --target-dir=/tmp/inc-backup | \
 xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 inc_backup_$(date +%Y%m%d_%H%M)
@@ -97,7 +97,7 @@ xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 inc_backup
 
 To restore a backup, download it from cloud storage and prepare it:
 
-```
+```shell
 # Download the backup
 xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 full_backup_20240101 | \
 xbstream -xv -C /tmp/restore
@@ -110,7 +110,7 @@ xtrabackup --prepare --target-dir=/tmp/restore
 
 You can restore specific tables without downloading the entire backup:
 
-```
+```shell
 # Download only specific tables
 xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 full_backup_20240101 ibdata1 sakila/payment.ibd > /tmp/partial.xbs
@@ -123,7 +123,7 @@ Note
 
 In a Bash shell, the `$?` parameter returns the exit code from the last binary. If you use pipes, the ${PIPESTATUS[x]} array parameter returns the exit code for each binary in the pipe string.
 
-```
+```shell
 xtrabackup --backup --stream=xbstream --target-dir=/storage/backups/ | xbcloud put [options] full_backup
 ...
 ${PIPESTATUS[x]}
@@ -146,7 +146,7 @@ Each storage type has mandatory parameters that you can supply on the command li
 
 The parameters the values of which do not change frequently can be stored in `my.cnf` or in a custom configuration file. The following example is a template of configuration options under the `[xbcloud]` group:
 
-```
+```text
 [xbcloud]
 storage=s3
 s3-endpoint=http://localhost:9000/
@@ -186,7 +186,7 @@ Each storage provider uses different environment variable names:
 
 Set environment variables for your storage provider:
 
-```
+```bash
 # For Amazon S3
 export AWS_ACCESS_KEY_ID="your-access-key"
 export AWS_SECRET_ACCESS_KEY="your-secret-key"
@@ -196,13 +196,13 @@ export AWS_DEFAULT_REGION="us-west-2"
 xtrabackup --backup --stream=xbstream | xbcloud put s3://my-bucket/backup-$(date +%Y%m%d)
 ```
 
-For complete environment variable reference and advanced usage patterns, see [Using environment variable files (.env) with xbcloud](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-env.html).
+For complete environment variable reference and advanced usage patterns, see [Using environment variable files (.env) with xbcloud](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-env.md).
 
 #### Security best practices
 
 Environment variable files (`.env`) provide a secure way to manage xbcloud credentials without exposing sensitive information in command lines or scripts. These files store your cloud storage credentials and configuration settings, making them easy to manage and share across different environments while keeping them out of version control.
 
-For detailed guidance on using `.env` files with xbcloud, including setup instructions, security best practices, and troubleshooting tips, see [Using environment variable files (.env) with xbcloud](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-env.html).
+For detailed guidance on using `.env` files with xbcloud, including setup instructions, security best practices, and troubleshooting tips, see [Using environment variable files (.env) with xbcloud](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-env.md).
 
 - Never commit environment variables to version control
 - Use environment variable files (`.env`) that are excluded from version control
@@ -228,11 +228,11 @@ Common issues:
 
 For detailed examples and storage-specific configuration, see the individual storage provider documentation:
 
-- [Using the xbcloud binary with Amazon S3](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.html#environment-variables)
-- [Using the xbcloud binary with Swift](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-swift.html#create-a-full-backup-with-swift)
-- [Using the xbcloud binary with Microsoft Azure Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.html#options)
-- [Using the xbcloud binary with Google Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-gcs.html)
-- [Using the xbcloud binary with MinIO](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-minio.html)
+- [Using the xbcloud binary with Amazon S3](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.md#environment-variables)
+- [Using the xbcloud binary with Swift](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-swift.md#create-a-full-backup-with-swift)
+- [Using the xbcloud binary with Microsoft Azure Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.md#options)
+- [Using the xbcloud binary with Google Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-gcs.md)
+- [Using the xbcloud binary with MinIO](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-minio.md)
 
 ### Shortcuts
 
@@ -244,13 +244,13 @@ Use the following format: `storage-type://bucket-name/backup-name`
 
 In this example s3 refers to a storage type, operator-testing is a bucket name, and bak22 is the backup name.
 
-```
+```shell
 xbcloud get s3://operator-testing/bak22 ...
 ```
 
 This shortcut expands as follows:
 
-```
+```shell
 xbcloud get --storage=s3 --s3-bucket=operator-testing bak22 ...
 ```
 
@@ -260,7 +260,7 @@ You can supply the mandatory parameters on the command line, configuration files
 
 xbcloud accepts additional parameters that you can use with any storage type. The `--md5` parameter computes the MD5 hash value of the backup chunks. The result is stored in files that following the `backup_name.md5` pattern.
 
-```
+```shell
 xtrabackup --backup --stream=xbstream \
 --parallel=8 2>backup.log | xbcloud put s3://operator-testing/bak22 \
 --parallel=8 --md5 2>upload.log
@@ -270,7 +270,7 @@ You may use the `--header` parameter to pass an additional HTTP header with the 
 
 An example of using the `--header` for AES256 encryption.
 
-```
+```shell
 xtrabackup --backup --stream=xbstream --parallel=4 | \
 xbcloud put s3://operator-testing/bak-enc/ \
 --header="X-Amz-Server-Side-Encryption-Customer-Algorithm: AES256" \
@@ -289,7 +289,7 @@ Incremental backups capture only changes since the last backup, making them fast
 
 #### Step 1: Create the base full backup
 
-```
+```shell
 xtrabackup --backup --stream=xbstream --target-dir=/tmp/base | \
 xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 full_backup_20240101
@@ -297,7 +297,7 @@ full_backup_20240101
 
 #### Step 2: Create incremental backups
 
-```
+```shell
 xtrabackup --backup --stream=xbstream --backup-incremental-base=/tmp/base \
 --target-dir=/tmp/inc1 | \
 xbcloud put --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
@@ -308,11 +308,11 @@ inc_backup_20240101_1200
 
 ##### Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 To restore from incremental backups, you must download and prepare them in sequence:
 
-```
+```shell
 # Download and prepare the full backup
 xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 full_backup_20240101 | xbstream -xv -C /tmp/restore
@@ -334,7 +334,7 @@ Note
 
 Accelerate the prepare phase for incremental backups with many InnoDB Data (IBD) files by using the `--parallel` option to process delta files concurrently. When using `--parallel` in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, `--parallel=4`).
 
-```
+```shell
 xtrabackup --prepare --apply-redo-only \
 --target-dir=/tmp/restore \
 --prepare-incremental-from-dir=/tmp/inc1 --parallel=4
@@ -346,7 +346,7 @@ xtrabackup --prepare --target-dir=/tmp/restore --parallel=4
 
 You can restore specific tables without downloading the entire backup:
 
-```
+```shell
 # Download only specific tables
 xbcloud get --storage=s3 --s3-bucket=my-backups --s3-region=us-west-2 \
 full_backup_20240101 ibdata1 sakila/payment.ibd > /tmp/partial.xbs
@@ -361,13 +361,13 @@ Now that you understand the basics of xbcloud, here are the recommended next ste
 
 - Choose your storage provider Review the [supported cloud storage providers](#supported-cloud-storage-providers) and select the one that best fits your needs
 - Set up authentication Follow the provider-specific guide to configure credentials:
-- [Using the xbcloud binary with Amazon S3](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.html)
-- [Using the xbcloud binary with Swift](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-swift.html)
-- [Using the xbcloud binary with Google Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-gcs.html)
-- [Using the xbcloud binary with Microsoft Azure Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.html)
-- [Using the xbcloud binary with MinIO](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-minio.html)
-- Configure security Learn about secure credential management with [Using environment variable files (.env) with xbcloud](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-env.html)
-- Explore advanced features Review the [xbcloud command-line options](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-options.html) for detailed parameter reference
+- [Using the xbcloud binary with Amazon S3](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.md)
+- [Using the xbcloud binary with Swift](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-swift.md)
+- [Using the xbcloud binary with Google Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-gcs.md)
+- [Using the xbcloud binary with Microsoft Azure Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.md)
+- [Using the xbcloud binary with MinIO](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-minio.md)
+- Configure security Learn about secure credential management with [Using environment variable files (.env) with xbcloud](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-env.md)
+- Explore advanced features Review the [xbcloud command-line options](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-options.md) for detailed parameter reference
 - Test your setup Start with a simple full backup using the examples in the [Usage](#usage) section
 
-For troubleshooting and additional help, see the [Troubleshooting](#troubleshooting) section or contact [Percona support](https://docs.percona.com/percona-xtrabackup/9.7/get-help.html).
+For troubleshooting and additional help, see the [Troubleshooting](#troubleshooting) section or contact [Percona support](https://docs.percona.com/percona-xtrabackup/9.7/get-help.md).

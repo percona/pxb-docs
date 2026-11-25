@@ -17,4 +17,4 @@ Percona XtraBackup automatically uses backup locks, a lightweight alternative to
 
 See also
 
-[How Percona XtraBackup works](https://docs.percona.com/percona-xtrabackup/9.7/how-xtrabackup-works.html)
+[How Percona XtraBackup works](https://docs.percona.com/percona-xtrabackup/9.7/how-xtrabackup-works.md)

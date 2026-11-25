@@ -17,7 +17,7 @@ An IAM instance profile does not need the `--s3-secret-key` nor the `--s3-access
 
 An example of the command:
 
-```
+```text
 xtrabackup ... | xbcloud put --storage=s3 --s3-bucket=bucket-name backup-name
 ```
 
@@ -25,16 +25,16 @@ The xbcloud binary outputs a connect message when successful.
 
 Expected output
 
-```
+```text
 221121 13:16:26 Using instance metadata for access and secret key
 221121 13:16:26 xbcloud: Successfully connected.
 ```
 
-An important consideration is that the instance metadata has a time to live (TTL) of 6 hours. A backup that takes more than that time contains Expired token errors. Use [Exponential Backoff](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-exbackoff.html) to retry the upload after fetching new keys from the instance metadata.
+An important consideration is that the instance metadata has a time to live (TTL) of 6 hours. A backup that takes more than that time contains Expired token errors. Use [Exponential Backoff](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-exbackoff.md) to retry the upload after fetching new keys from the instance metadata.
 
 Output when keys have expired
 
-```
+```text
 221121 13:04:52 xbcloud: S3 error message: The provided token has expired.
 221121 13:04:52 xbcloud: Sleeping for 2384 ms before retrying test/mysql.ibd.00000000000000000002 [1]
 221121 13:04:55 xbcloud: S3 error message: The provided token has expired.

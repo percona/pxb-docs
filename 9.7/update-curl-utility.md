@@ -35,7 +35,7 @@ If the installed `libcurl` version is not supported, update it depending on the 
 
 To check the installed libcurl version, run:
 
-```
+```bash
 curl --version
 ```
 
@@ -45,31 +45,31 @@ The following steps show how to update the libcurl to version 8.12.0 on Debian 1
 
 1. Edit the `/etc/apt/sources.list` to add the following:
 
-   ```
+   ```text
    deb http://deb.debian.org/debian bookworm-backports main
    ```
 
 1. Refresh the `apt` sources:
 
-   ```
+   ```bash
    sudo apt update
    ```
 
 1. Install the version from `bookworm-backports`:
 
-   ```
+   ```bash
    sudo apt install -t bookworm-backports libcurl4 curl
    ```
 
 1. Verify the version number:
 
-   ```
+   ```bash
    curl --version
    ```
 
    Expected output
 
-   ```
+   ```text
    curl 8.12.0 (x86_64-pc-linux-gnu) libcurl/8.12.0
    ```
 
@@ -79,25 +79,25 @@ The following steps show how to downgrade the libcurl to the default Debian 12 v
 
 1. Update the package list:
 
-   ```
+   ```bash
    sudo apt update
    ```
 
 1. Reinstall the default system version of libcurl and curl:
 
-   ```
+   ```bash
    sudo apt install --reinstall libcurl4 curl
    ```
 
 1. Verify the version number:
 
-   ```
+   ```bash
    curl --version
    ```
 
    Expected output
 
-   ```
+   ```text
    curl 7.88.1 (x86_64-pc-linux-gnu) libcurl/7.88.1 OpenSSL/3.0.9 zlib/1.2.13 libidn2/2.3.4 libssh/0.10.5
    Release-Date: 2023-08-02
    Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps mqtt pop3 pop3s rtsp smb smbs smtp smtps telnet tftp 

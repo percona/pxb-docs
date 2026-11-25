@@ -6,7 +6,7 @@ xtrabackup supports taking partial backups when the `innodb_file_per_table` opti
 
 Note
 
-Partial backups should be restored by importing tables, not using `--copy-back` or `--move-back`. Do not start incremental backups from a partial backup. See [Restore a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-partial-backup.html) for details.
+Partial backups should be restored by importing tables, not using `--copy-back` or `--move-back`. Do not start incremental backups from a partial backup. See [Restore a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-partial-backup.md) for details.
 
 The xtrabackup binary fails if you delete any of the matched or listed tables during the backup.
 
@@ -25,14 +25,14 @@ The first method involves the xtrabackup `–tables` option. The option’s valu
 
 To back up only tables in the `test` database, use the following command:
 
-```
+```shell
 xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 --tables="^test[.].*"
 ```
 
 To back up only the `test.t1` table, use the following command:
 
-```
+```shell
 xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 --tables="^test[.]t1"
 ```
@@ -41,7 +41,7 @@ xtrabackup --backup --datadir=/var/lib/mysql --target-dir=/data/backups/ \
 
 The `--tables-file` option specifies a file that can contain multiple table names, one table name per line in the file. Only the tables named in the file will be backed up. Names are matched exactly, case-sensitive, with no pattern or regular expression matching. The table names must be fully-qualified in `databasename.tablename` format.
 
-```
+```shell
 echo "mydatabase.mytable" > /tmp/tables.txt
 xtrabackup --backup --tables-file=/tmp/tables.txt
 ```
@@ -56,7 +56,7 @@ Note
 
 Tables processed during the –prepare step may also be added to the backup even if they are not explicitly listed by the parameter if they were created after the backup started.
 
-```
+```shell
 xtrabackup --databases='mysql sys performance_schema test ...'
 ```
 
@@ -70,4 +70,4 @@ Tables processed during the –prepare step may also be added to the backup even
 
 ## Next step
 
-[Prepare the backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-partial-backup.html)
+[Prepare the backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-partial-backup.md)

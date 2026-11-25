@@ -4,7 +4,7 @@
 
 Usage:
 
-```
+```text
 $ xbcloud put [OPTIONS]
 $ xbcloud get [OPTIONS]
 $ xbcloud delete [OPTIONS]

@@ -8,7 +8,7 @@ By privileges, we refer to the abilities of a database user to perform different
 
 There are many ways for checking the permission on a file or directory. For example, `ls -ls /path/to/file` or `stat /path/to/file | grep Access` will do the job:
 
-```
+```shell
 stat /etc/mysql | grep Access
 ```
 
@@ -16,7 +16,7 @@ The result could look like this:
 
 Expected output
 
-```
+```text
 Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
 Access: 2011-05-12 21:19:07.129850437 -0300
 $ ls -ld /etc/mysql/my.cnf
@@ -25,7 +25,7 @@ $ ls -ld /etc/mysql/my.cnf
 
 As in this example, `my.cnf` is owned by `root` and not writable for anyone else. Assuming that you do not have `root`‘s password, you can check what permissions you have on these types of files with `sudo -l`:
 
-```
+```shell
 sudo -l
 ```
 
@@ -33,7 +33,7 @@ The results could look like this:
 
 Expected output
 
-```
+```text
 Password:
 You may run the following commands on this host:
 (root) /usr/bin/
@@ -52,4 +52,4 @@ There are other ways for managing permissions, such as using PolicyKit, Extended
 
 See also
 
-[Connection and privileges needed](https://docs.percona.com/percona-xtrabackup/9.7/privileges.html)
+[Connection and privileges needed](https://docs.percona.com/percona-xtrabackup/9.7/privileges.md)

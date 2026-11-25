@@ -6,7 +6,7 @@ This script is designed to dump the schemas of all tables from each database in 
 
 The script should be modified for your specific use case before you run it. For example, you may want to exclude certain tables or databases, or specify a different output directory.
 
-```
+```shell
 print_usage() {
     echo "Usage: $0 [--defaults-file=<file>] [--destination-dir=<directory>]"
     echo "  --defaults-file=<file>      (Optional) Path to MySQL defaults file (e.g., /etc/my.cnf)"
@@ -99,7 +99,7 @@ To use this script, follow these steps. Run all the commands as root or use the 
 
    - Run the following command to make the script executable:
 
-   ```
+   ```shell
    chmod +x dump_schemas.sh
    ```
 
@@ -107,13 +107,13 @@ To use this script, follow these steps. Run all the commands as root or use the 
 
    - Check if `mysqldump` is installed by running:
 
-   ```
+   ```shell
    which mysqldump
    ```
 
    - If `mysqldump` is not installed or not available in your PATH, install it using:
 
-   ```
+   ```shell
    sudo apt install mysql-client
    ```
 
@@ -121,25 +121,25 @@ To use this script, follow these steps. Run all the commands as root or use the 
 
    - See the usage instructions, run:
 
-     ```
+     ```shell
      ./dump_schemas.sh --help
      ```
 
    - Specify a MySQL defaults file (for example, `~/.my.cnf`) and destination directory for the schema dumps, run:
 
-     ```
+     ```shell
      ./dump_schemas.sh --defaults-file=/path/to/my.cnf --destination-dir=/path/to/output
      ```
 
    - If you do not have a `defaults-file`, use the script defaults of a hardcoded password or an environment variable, if set. Specify only the destination directory:
 
-     ```
+     ```shell
      ./dump_schemas.sh --destination-dir=/path/to/output
      ```
 
    - To use the hardcoded password and default destination directory, `schema_dumps`, use:
 
-     ```
+     ```shell
      ./dump_schemas.sh
      ```
 
@@ -149,13 +149,13 @@ To use this script, follow these steps. Run all the commands as root or use the 
 
    - The dumped schemas are organized as follows:
 
-     ```
+     ```shell
      find .
      ```
 
      Expected output
 
-     ```
+     ```text
      .
      ./test
      ./test/t4.sql

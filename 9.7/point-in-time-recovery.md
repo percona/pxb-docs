@@ -8,7 +8,7 @@ Note that the binary log contains the operations that modified the database from
 
 Run the following commands as root or use the sudo command.
 
-```
+```shell
 xtrabackup --backup --target-dir=/path/to/backup
 xtrabackup --prepare --target-dir=/path/to/backup
 ```
@@ -19,13 +19,13 @@ Now, suppose that some time has passed, and you want to restore the database to 
 
 To find out what is the situation of binary logging in the server, execute the following queries:
 
-```
+```sql
 SHOW BINARY LOGS;
 ```
 
 Expected output
 
-```
+```text
 +------------------+-----------+
 | Log_name         | File_size |
 +------------------+-----------+
@@ -38,13 +38,13 @@ Expected output
 
 and
 
-```
+```sql
 SHOW MASTER STATUS;
 ```
 
 Expected output
 
-```
+```text
 +------------------+----------+--------------+------------------+
 | File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
 +------------------+----------+--------------+------------------+
@@ -56,25 +56,25 @@ The first query will tell you which files contain the binary log and the second 
 
 To find out the position of the snapshot taken, see the `xtrabackup_binlog_info` at the backup’s directory:
 
-```
+```shell
 cat /path/to/backup/xtrabackup_binlog_info
 ```
 
 Expected output
 
-```
+```text
 mysql-bin.000003      57
 ```
 
 This will tell you which file was used at moment of the backup for the binary log and its position. That position will be the effective one when you restore the backup:
 
-```
+```shell
 xtrabackup --copy-back --target-dir=/path/to/backup
 ```
 
 As the restoration will not affect the binary log files (you may need to adjust file permissions, see Restoring a Backup), the next step is extracting the queries from the binary log with mysqlbinlog starting from the position of the snapshot and redirecting it to a file
 
-```
+```shell
 mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 \
     --start-position=57 > mybinlog.sql
 ```
@@ -83,7 +83,7 @@ Note that if you have multiple files for the binary log, as in the example, you 
 
 Inspect the file with the queries to determine which position or date corresponds to the point-in-time wanted. Once determined, pipe it to the server. Assuming the point is `11-12-25 01:00:00`:
 
-```
+```shell
 mysqlbinlog /path/to/datadir/mysql-bin.000003 /path/to/datadir/mysql-bin.000004 \
     --start-position=57 --stop-datetime="11-12-25 01:00:00" | mysql -u root -p
 ```

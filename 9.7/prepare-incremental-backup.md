@@ -8,7 +8,7 @@ An incremental backup contains the changes made after its base backup. When you 
 
 For example, you could have the following backups:
 
-```
+```text
 /data/backups/base
 /data/backups/inc1
 /data/backups/inc2
@@ -16,7 +16,7 @@ For example, you could have the following backups:
 
 These backups form the following chain:
 
-```
+```text
 base → inc1 → inc2
 ```
 
@@ -34,7 +34,7 @@ When preparing an incremental chain, you must delay the rollback of uncommitted 
 
 ### Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--apply-log-only` option to [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only). Percona XtraBackup still accepts `--apply-log-only` but prints a deprecation warning. A future Long-Term Support (LTS) release will remove `--apply-log-only`, so update your scripts to use `--apply-redo-only`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 Use `--apply-redo-only` to apply the redo log without rolling back uncommitted transactions.
 
@@ -50,13 +50,13 @@ Prepare an incremental backup chain in the following order:
 
 ## Version changes
 
-Percona XtraBackup 9.7.2-2 renames the `--incremental-dir` option to [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#prepare-incremental-from-dir). Percona XtraBackup still accepts `--incremental-dir` but prints a deprecation warning. A future release will remove `--incremental-dir`, so update your scripts to use `--prepare-incremental-from-dir`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+Percona XtraBackup 9.7.2-2 renames the `--incremental-dir` option to [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare-incremental-from-dir). Percona XtraBackup still accepts `--incremental-dir` but prints a deprecation warning. A future release will remove `--incremental-dir`, so update your scripts to use `--prepare-incremental-from-dir`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
 
 ## Prepare the full backup
 
 Start by preparing the full backup with `--apply-redo-only` to prevent the rollback phase:
 
-```
+```shell
 xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base
 ```
 
@@ -66,7 +66,7 @@ The log sequence number in the output should match the `to_lsn` value of the bas
 
 Expected output
 
-```
+```text
 ...
 2026-10-13T17:24:33.641122-00:00 0 [Note] [MY-012980] [InnoDB] Shutdown completed; log sequence number 36621142
 2026-10-13T17:24:33.649010-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
@@ -82,7 +82,7 @@ Apply incremental backups to the prepared full backup in the same order in which
 
 For the example chain, apply `inc1` first and `inc2` last:
 
-```
+```text
 base → inc1 → inc2
 ```
 
@@ -92,7 +92,7 @@ Percona XtraBackup applies the changes from each incremental backup to `/data/ba
 
 Apply the first incremental backup to the full backup:
 
-```
+```shell
 xtrabackup --prepare --apply-redo-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
@@ -109,7 +109,7 @@ You should see output similar to the following:
 
 Expected output
 
-```
+```text
 2026-10-13T17:24:35.387201-00:00 0 [Note] [MY-011825] [Xtrabackup] incremental backup from 36621132 is enabled.
 2026-10-13T17:24:35.387458-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /data/backups/base/
 2026-10-13T17:24:35.388208-00:00 0 [Note] [MY-011825] [Xtrabackup] This target seems to be already prepared with --apply-redo-only.
@@ -131,7 +131,7 @@ After applying `/data/backups/inc1`, apply `/data/backups/inc2` to the same base
 
 In this example, `inc2` is the final incremental backup. Apply it without `--apply-redo-only`:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backups/base \
 --prepare-incremental-from-dir=/data/backups/inc2
 ```
@@ -148,7 +148,7 @@ If your backup chain contains more incremental backups, apply them in order. Use
 
 For example:
 
-```
+```text
 base    → --apply-redo-only
 inc1    → --apply-redo-only
 inc2    → --apply-redo-only
@@ -163,18 +163,18 @@ Using `--parallel=X` has effect on the prepare phase. It will use X threads to a
 
 To apply an intermediate incremental backup with four worker threads, run:
 
-```
+```shell
 xtrabackup --prepare --parallel=4 --apply-redo-only --target-dir=/data/backups/base \
 --incremental-dir=/data/backups/inc1
 ```
 
 You can also use `--parallel` when applying the final incremental backup. Omit `--apply-redo-only` for the final step:
 
-```
+```shell
 xtrabackup --prepare --parallel=4 --target-dir=/data/backups/base \
 --prepare-incremental-from-dir=/data/backups/inc2
 ```
 
 ## Next step
 
-[Restore the backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.html)
+[Restore the backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.md)

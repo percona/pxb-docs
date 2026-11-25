@@ -8,7 +8,7 @@ Download the binary tarballs from the `Linux - Generic` section on [Percona Soft
 
 The following example downloads the tarball. Run the following command as root or use the sudo command.
 
-```
+```shell
 wget https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.1-rc1/binary/tarball/percona-xtrabackup-9.7.1-rc1Linux-x86_64.glibc2.28.tar.gz
 ```
 
@@ -16,7 +16,7 @@ The output displays the following information:
 
 Expected output
 
-```
+```text
 --2024-10-09 04:44:36--  https://downloads.percona.com/downloads/Percona-XtraBackup-9.7/Percona-XtraBackup-9.7.1-rc1       1/binary/tarball/percona-xtrabackup-9.7.1-rc1-Linux-x86_64.glibc2.28.tar.gz
 Resolving downloads.percona.com (downloads.percona.com)... 147.135.54.159, 2604:2dc0:200:69f::2
 Connecting to downloads.percona.com (downloads.percona.com)|147.135.54.159|:443... connected.

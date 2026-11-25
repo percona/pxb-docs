@@ -6,7 +6,7 @@
 
 Quick syntax for creating a full backup with common options:
 
-```
+```bash
 xtrabackup --backup --target-dir=<path> [--user=<user>] [--password=<password>]
 ```
 
@@ -19,7 +19,7 @@ xtrabackup --backup --target-dir=<path> [--user=<user>] [--password=<password>]
 
 Example with authentication:
 
-```
+```bash
 xtrabackup --backup --target-dir=/data/backups/ --user=backup --password=secret
 ```
 
@@ -31,7 +31,7 @@ xtrabackup does not overwrite existing files. It will fail with operating system
 
 The following command starts the process. Run all the commands as root or use the sudo command.
 
-```
+```bash
 xtrabackup --backup --target-dir=/data/backups/
 ```
 
@@ -43,7 +43,7 @@ The following is an example of the output:
 
 Expected output
 
-```
+```text
 ...
 2026-10-13T17:23:55.415104-00:00 0 [Note] [MY-011825] [Xtrabackup] Executing FLUSH NO_WRITE_TO_BINLOG ENGINE LOGS...
 2026-10-13T17:23:55.416681-00:00 0 [Note] [MY-011825] [Xtrabackup] The latest check point (for incremental): '36616867'
@@ -65,7 +65,7 @@ Log copying thread checks the transactional log every second to see if there wer
 
 After the backup is finished, the target directory will contain files such as the following, for a server with a `test` database that contains two InnoDB tables:
 
-```
+```shell
 ls -lh /data/backups/
 ```
 
@@ -73,7 +73,7 @@ The result should look like this:
 
 Expected output
 
-```
+```text
 total 76M
 -rw-r----- 1 root root  452 Oct 13 17:23 backup-my.cnf
 -rw-r----- 1 root root  198 Oct 13 17:23 binlog.000004
@@ -98,4 +98,4 @@ The backup can take a long time, depending on how large the database is. It is s
 
 ## Next step
 
-[Prepare the backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-full-backup.html)
+[Prepare the backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-full-backup.md)

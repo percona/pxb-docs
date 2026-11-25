@@ -4,11 +4,11 @@
 
 Note
 
-Before preparing, make sure you have [created a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/create-partial-backup.html).
+Before preparing, make sure you have [created a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/create-partial-backup.md).
 
 The procedure is analogous to restoring individual tables: apply the logs and use the `--export` option:
 
-```
+```shell
 xtrabackup --prepare --export --target-dir=/path/to/partial/backup
 ```
 
@@ -20,4 +20,4 @@ Use `--innodb-directories` to find the tablespace files. If that fails then use 
 
 ## Next step
 
-[Restore a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-partial-backup.html)
+[Restore a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-partial-backup.md)

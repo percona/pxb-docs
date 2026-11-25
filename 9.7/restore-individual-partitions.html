@@ -125,7 +125,7 @@ server.">
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-partitions.md"></head>
   
   
     
@@ -135,7 +135,7 @@ server.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-partitions.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-partitions.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5766,7 +5766,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Restoring should be done by importing the tables in the partial backup to the
 server.</p>
 <p>First step is to create new table in which data will be restored.</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">name_p4</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">name_p4</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
 <span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
 <span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="o">`</span><span class="n">imdb_index</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
@@ -5784,17 +5784,17 @@ The file is located in the table schema directory and is used for schema verific
 </div>
 <p>To restore the partition from the backup, the tablespace must be discarded for
 that table:</p>
-<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="n">DISCARD</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="n">DISCARD</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
 </code></pre></div>
 <p>The next step is to copy the <code>.ibd</code> file from the backup to the MySQL data directory:</p>
-<div class="highlight"><pre><span></span><code>cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
+<div class="language-text highlight"><pre><span></span><code>cp /mnt/backup/2012-08-28_10-29-09/imdb/name#P#p4.ibd /var/lib/mysql/imdb/name_p4.ibd
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Make sure that the copied files can be accessed by the user running MySQL. </p>
 </div>
 <p>The last step is to import the tablespace:</p>
-<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="n">IMPORT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">name_p4</span><span class="w"> </span><span class="n">IMPORT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="p">;</span>
 </code></pre></div>
 
 

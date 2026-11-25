@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/quickstart-exit.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/quickstart-exit.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/quickstart-exit.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5845,11 +5845,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <ol>
 <li>
 <p>To exit the MySQL command client shell in <code>psmysql2</code> container, we use <code>exit</code>. You can also use the <code>\q</code> or <code>quit</code> commands. The execution of the statement also closes the connection.</p>
-<div class="highlight"><pre><span></span><code><span class="n">exit</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="n">exit</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Bye
+<div class="language-text no-copy highlight"><pre><span></span><code>Bye
 </code></pre></div>
 </details>
 </li>
@@ -5858,42 +5858,42 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <ul>
 <li>
 <p>Remove <code>psmysql2</code>, <code>psmysql</code> and <code>pxb</code> Docker containers:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>psmysql2<span class="w"> </span>-f
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>psmysql2<span class="w"> </span>-f
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>psmysql2
+<div class="language-text no-copy highlight"><pre><span></span><code>psmysql2
 </code></pre></div>
 </details>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>psmysql<span class="w"> </span>-f
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>psmysql<span class="w"> </span>-f
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>psmysql
+<div class="language-text no-copy highlight"><pre><span></span><code>psmysql
 </code></pre></div>
 </details>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>pxb<span class="w"> </span>-f
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>pxb<span class="w"> </span>-f
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>pxb
+<div class="language-text no-copy highlight"><pre><span></span><code>pxb
 </code></pre></div>
 </details>
 </li>
 <li>
 <p>Remove <code>percona/percona-server:9.7.1</code> and <code>percona/percona-xtrabackup:9.7.1</code> Docker images</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>image<span class="w"> </span>rmi<span class="w"> </span>percona/percona-server:9.7.1
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>image<span class="w"> </span>rmi<span class="w"> </span>percona/percona-server:9.7.1
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Untagged: percona/percona-server:9.7.1
+<div class="language-text no-copy highlight"><pre><span></span><code>Untagged: percona/percona-server:9.7.1
 </code></pre></div>
 </details>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>image<span class="w"> </span>rmi<span class="w"> </span>percona/percona-xtrabackup:9.7.1
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>image<span class="w"> </span>rmi<span class="w"> </span>percona/percona-xtrabackup:9.7.1
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>Untagged: percona/percona-server:9.7.1
+<div class="language-text no-copy highlight"><pre><span></span><code>Untagged: percona/percona-server:9.7.1
 Untagged: percona/percona-server@sha256:4944f9b365e0dc88f41b3b704ff2a02d1459fd07763d7d1a444b263db8498e1f
 Deleted: sha256:b2588da614b1f382468fc9f44600863e324067a9cae57c204a30a2105d61d9d9
 Deleted: sha256:1ceaa6dc89e328281b426854a3b00509b5df13826a9618a09e819a830b752ebd
@@ -5910,18 +5910,18 @@ Deleted: sha256:db9672f7e12e374d5e9016b758a29d5444e8b0fd1246a6f1fc5c2b3c847dddcf
 <li>
 <p>Remove docker volume if a container does not use the volume, and you no longer need it</p>
 <p>Remove <code>backupvol</code> and <code>myvol2</code> Docker volumes:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>backupvol
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>backupvol
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>backupvol
+<div class="language-text no-copy highlight"><pre><span></span><code>backupvol
 </code></pre></div>
 </details>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>myvol2
+<div class="language-shell highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>myvol2
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>myvol2
+<div class="language-text no-copy highlight"><pre><span></span><code>myvol2
 </code></pre></div>
 </details>
 </li>
@@ -5965,39 +5965,6 @@ Deleted: sha256:db9672f7e12e374d5e9016b758a29d5444e8b0fd1246a6f1fc5c2b3c847dddcf
 
     
     
-    
-      
-  <span class="md-source-file__fact">
-    
-      
-  <span class="md-icon" title="Contributors">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-  </span>
-  <span>GitHub</span>
-
-    
-    <nav>
-      
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
-          
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
-        </a>
-      
-        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
-          
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
-      
-      
-    </nav>
-  </span>
-
     
   </aside>
 

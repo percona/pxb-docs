@@ -14,7 +14,7 @@ If the data is stored on a single file, this option has no effect.
 
 To use this feature, simply add the option to a local backup, for example:
 
-```
+```shell
 xtrabackup --backup --parallel=4 --target-dir=/path/to/backup
 ```
 
@@ -22,7 +22,7 @@ By using the xbstream in streaming backups, you can additionally speed up the co
 
 To use this feature, simply add the option to a local backup, for example:
 
-```
+```shell
 xtrabackup --backup --stream=xbstream --compress --compress-threads=4 --target-dir=./ > backup.xbstream
 ```
 
@@ -32,12 +32,12 @@ Before applying logs, compressed files will need to be uncompressed.
 
 ### Version changes
 
-Percona XtraBackup 9.7.2-2 deprecates the [`--rsync`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#rsync) option. A future release will remove the option. Use [`--lock-ddl=REDUCED`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html#lock-ddl) instead.
+Percona XtraBackup 9.7.2-2 deprecates the [`--rsync`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#rsync) option. A future release will remove the option. Use [`--lock-ddl=REDUCED`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#lock-ddl) instead.
 
 Note
 
 You cannot use `--rsync` with the `--stream` option. If you pass both options, Percona XtraBackup reports the following error and does not start the backup:
 
-```
+```text
 --rsync doesn't work with --stream
 ```

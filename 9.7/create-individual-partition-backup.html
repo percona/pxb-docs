@@ -126,7 +126,7 @@ on the server.">
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/create-individual-partition-backup.md"></head>
   
   
     
@@ -136,7 +136,7 @@ on the server.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/create-individual-partition-backup.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/create-individual-partition-backup.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5849,12 +5849,12 @@ qualified database name and table name, in the form of
 <p>If the partition 0 is not backed up, Percona XtraBackup cannot generate a .cfg file. MySQL 8.0 stores the table metadata in partition 0.</p>
 <p>For example, this operation takes a back-up of the partition <code>p4</code> from 
 the table <code>name</code> located in the database <code>imdb</code>. Run the following command as a root user.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--tables<span class="o">=</span>^imdb<span class="o">[</span>.<span class="o">]</span>name#p#p4<span class="w"> </span>--backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--tables<span class="o">=</span>^imdb<span class="o">[</span>.<span class="o">]</span>name#p#p4<span class="w"> </span>--backup
 </code></pre></div>
 <p>If partition 0 is not backed up, the following errors may occur:</p>
 <details class="example">
 <summary>The error message</summary>
-<div class="no-copy highlight"><pre><span></span><code>xtrabackup: export option not specified
+<div class="language-text no-copy highlight"><pre><span></span><code>xtrabackup: export option not specified
 xtrabackup: error: cannot find dictionary record of table imdb/name#p#p4
 </code></pre></div>
 </details>

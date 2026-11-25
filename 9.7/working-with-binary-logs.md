@@ -10,7 +10,7 @@ You can find the binary log position corresponding to a backup after the backup 
 
 Expected output during the backup stage
 
-```
+```text
 2026-10-13T17:23:55.425280-00:00 0 [Note] [MY-011825] [Xtrabackup] Backup created in directory '/data/backups/'
 2026-10-13T17:23:55.425295-00:00 0 [Note] [MY-011825] [Xtrabackup] MySQL binlog position: filename 'binlog.000004', position '198', GTID of the last change 'd4193d59-c72a-11f1-90c5-46b9213cf448:1-5'
 ...
@@ -21,10 +21,10 @@ Expected output during the backup stage
 
 To perform a point-in-time recovery from an `xtrabackup` backup, you should prepare and restore the backup, and then replay binary logs from the point shown in the `xtrabackup_binlog_info` file.
 
-Find a more detailed procedure in the [Point-in-time recovery](https://docs.percona.com/percona-xtrabackup/9.7/point-in-time-recovery.html) document.
+Find a more detailed procedure in the [Point-in-time recovery](https://docs.percona.com/percona-xtrabackup/9.7/point-in-time-recovery.md) document.
 
 ## Set up a new replication replica
 
 To set up a new replica, you should prepare the backup, and restore it to the data directory of your new replication replica. In the [CHANGE_REPLICATION_SOURCE_TO with the appropriate options](https://dev.mysql.com/doc/refman/9.7/en/change-replication-source-to.html) command, use the binary log filename and position shown in the `xtrabackup_binlog_info` file to start replication.
 
-A more detailed procedure is found in [How to setup a replica for replication in 6 simple steps with Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/set-up-replication.html).
+A more detailed procedure is found in [How to setup a replica for replication in 6 simple steps with Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/set-up-replication.md).

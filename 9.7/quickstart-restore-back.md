@@ -6,13 +6,13 @@ The following steps describe how to restore your backup to another Percona Serve
 
 1. Create another Docker volume
 
-   ```
+   ```shell
    docker volume create myvol2
    ```
 
    Expected output
 
-   ```
+   ```text
    myvol2
    ```
 
@@ -34,25 +34,25 @@ The following steps describe how to restore your backup to another Percona Serve
 
    - Run a Docker container example
 
-     ```
+     ```shell
      docker run -d -p 3307:3306 --name psmysql2 -e MYSQL_ROOT_PASSWORD=secret -v myvol2:/var/lib/mysql percona/percona-server:9.7
      ```
 
    Expected output
 
-   ```
+   ```text
    4501d5524461b4483d414bd218d49ed4f47599add7d7fb81e157951a7a52f3d1
    ```
 
 1. Stop `psmysql2` container
 
-   ```
+   ```shell
    docker stop psmysql2
    ```
 
    Expected output
 
-   ```
+   ```text
    psmysql2
    ```
 
@@ -60,7 +60,7 @@ The following steps describe how to restore your backup to another Percona Serve
 
    The `--rm` option automatically removes the temporary container created from percona/percona-xtrabackup:9.7.1 image after the container exits.
 
-   ```
+   ```shell
    docker run --volumes-from psmysql2 -v backupvol:/backup_97 -it --rm --user root percona/percona-xtrabackup:9.7 /bin/bash -c "rm -rf /var/lib/mysql/*"
    ```
 
@@ -68,13 +68,13 @@ The following steps describe how to restore your backup to another Percona Serve
 
 1. Restore backup of `psmysql` from `backupvol` to a new `psmysql2` instance.
 
-   ```
+   ```shell
    docker run --platform linux/amd64 --volumes-from psmysql2 -v backupvol:/backup_97 -it --rm --user root percona/percona-xtrabackup:9.7 /bin/bash -c "xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_97"
    ```
 
    Expected output
 
-   ```
+   ```text
    2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
    2024-10-07T14:08:59.128951-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --copy-back=1 --target-dir=/backup_97
    xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
@@ -97,7 +97,7 @@ This section describes the backup validation steps assuming that you backed up `
 
    To avoid permission issues when running `psmysql2` container, you need to change the owner because the files were restored by `root` user and `psmysql2` will use `mysql` user.
 
-   ```
+   ```shell
    docker run --volumes-from psmysql2 -v backupvol:/backup_97 -it --rm --user root percona/percona-xtrabackup:9.7 /bin/bash -c "chown -R mysql:mysql /var/lib/mysql/"
    ```
 
@@ -105,13 +105,13 @@ This section describes the backup validation steps assuming that you backed up `
 
 1. Start the `psmysql2` container
 
-   ```
+   ```shell
    docker start psmysql2
    ```
 
    Expected output
 
-   ```
+   ```text
    psmysql2
    ```
 
@@ -129,13 +129,13 @@ This section describes the backup validation steps assuming that you backed up `
 
    - Connect to the database instance example
 
-     ```
+     ```shell
      docker exec -it psmysql2 mysql -uroot -p
      ```
 
      You are prompted to enter the password, which is `secret`.
 
-     ```
+     ```text
      Enter password:
      ```
 
@@ -143,7 +143,7 @@ This section describes the backup validation steps assuming that you backed up `
 
      Expected output
 
-     ```
+     ```text
      Welcome to the MySQL monitor.  Commands end with ; or \g.
      Your MySQL connection id is 10
      Server version: 9.7.0-1 Percona Server (GPL), Release 1, Revision 238b3c02
@@ -160,13 +160,13 @@ This section describes the backup validation steps assuming that you backed up `
 
 1. Check the list of databases to make sure, the backed up, `mydb` database is in the list.
 
-   ```
+   ```sql
    show databases;
    ```
 
    Expected output
 
-   ```
+   ```text
    +--------------------+ 
 
    | Database           | 
@@ -190,25 +190,25 @@ This section describes the backup validation steps assuming that you backed up `
 
 1. Use the `mydb` database.
 
-   ```
+   ```sql
    use mydb;
    ```
 
    Expected output
 
-   ```
+   ```text
    Database changed
    ```
 
 1. Check that your table contains data
 
-   ```
+   ```sql
    SELECT * FROM employees;
    ```
 
    Expected output
 
-   ```
+   ```text
    +----+--------------------+-----------------------------------+-------------+ 
 
    | id | name               | email                             | country     | 
@@ -242,4 +242,4 @@ This section describes the backup validation steps assuming that you backed up `
 
 ## Next steps
 
-[Clean up](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-exit.html)
+[Clean up](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-exit.md)

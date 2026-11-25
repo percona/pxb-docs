@@ -125,7 +125,7 @@ xtrabackup and the binary logs of the server.">
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/point-in-time-recovery.md"></head>
   
   
     
@@ -135,7 +135,7 @@ xtrabackup and the binary logs of the server.">
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/point-in-time-recovery.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/point-in-time-recovery.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5770,7 +5770,7 @@ a point in the past. You need a full datadir as a base, and then you can
 apply a series of operations from the binary log to make the data match what it
 was at the point in time you want.</p>
 <p>Run the following commands as root or use the sudo command.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
 </code></pre></div>
 <p>For more details on these procedures, see Creating a backup and Preparing a backup.</p>
@@ -5779,11 +5779,11 @@ certain point in the past, having in mind that there is the constraint of the
 point where the snapshot was taken.</p>
 <p>To find out what is the situation of binary logging in the server, execute the
 following queries:</p>
-<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="nb">BINARY</span><span class="w"> </span><span class="n">LOGS</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="nb">BINARY</span><span class="w"> </span><span class="n">LOGS</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>+------------------+-----------+
+<div class="language-text no-copy highlight"><pre><span></span><code>+------------------+-----------+
 | Log_name         | File_size |
 +------------------+-----------+
 | mysql-bin.000001 |       126 |
@@ -5794,11 +5794,11 @@ following queries:</p>
 </code></pre></div>
 </details>
 <p>and</p>
-<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="n">STATUS</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="n">STATUS</span><span class="p">;</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>+------------------+----------+--------------+------------------+
+<div class="language-text no-copy highlight"><pre><span></span><code>+------------------+----------+--------------+------------------+
 | File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
 +------------------+----------+--------------+------------------+
 | mysql-bin.000004 |      497 |              |                  |
@@ -5812,23 +5812,23 @@ position within it. Those files are stored usually in the datadir
 <code>--log-bin=</code> option).</p>
 <p>To find out the position of the snapshot taken, see the
 <code>xtrabackup_binlog_info</code> at the backup’s directory:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/path/to/backup/xtrabackup_binlog_info
+<div class="language-shell highlight"><pre><span></span><code>cat<span class="w"> </span>/path/to/backup/xtrabackup_binlog_info
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code>mysql-bin.000003      57
+<div class="language-text no-copy highlight"><pre><span></span><code>mysql-bin.000003      57
 </code></pre></div>
 </details>
 <p>This will tell you which file was used at moment of the backup for the binary
 log and its position. That position will be the effective one when you restore
 the backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/path/to/backup
 </code></pre></div>
 <p>As the restoration will not affect the binary log files (you may need to adjust
 file permissions, see Restoring a Backup), the next step is
 extracting the queries from the binary log with mysqlbinlog starting
 from the position of the snapshot and redirecting it to a file</p>
-<div class="highlight"><pre><span></span><code>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--start-position<span class="o">=</span><span class="m">57</span><span class="w"> </span>&gt;<span class="w"> </span>mybinlog.sql
 </code></pre></div>
 <p>Note that if you have multiple files for the binary log, as in the example, you
@@ -5836,7 +5836,7 @@ have to extract the queries with one process, as shown above.</p>
 <p>Inspect the file with the queries to determine which position or date
 corresponds to the point-in-time wanted. Once determined, pipe it to the
 server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
-<div class="highlight"><pre><span></span><code>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>mysqlbinlog<span class="w"> </span>/path/to/datadir/mysql-bin.000003<span class="w"> </span>/path/to/datadir/mysql-bin.000004<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--start-position<span class="o">=</span><span class="m">57</span><span class="w"> </span>--stop-datetime<span class="o">=</span><span class="s2">"11-12-25 01:00:00"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
 </code></pre></div>
 <p>and the database will be rolled forward up to that Point-In-Time.</p>
@@ -5877,39 +5877,6 @@ server. Assuming the point is <code>11-12-25 01:00:00</code>:</p>
 
     
     
-    
-      
-  <span class="md-source-file__fact">
-    
-      
-  <span class="md-icon" title="Contributors">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-  </span>
-  <span>GitHub</span>
-
-    
-    <nav>
-      
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
-          
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
-        </a>
-      
-        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
-          
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
-      
-      
-    </nav>
-  </span>
-
     
   </aside>
 

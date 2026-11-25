@@ -20,33 +20,33 @@ Test your Azure applications with the [Azurite open-source emulator](https://lea
 
 ## Usage
 
-All the available options for xbcloud, such as parallel, max-retries, and others, can be used. For more information, see the [xbcloud binary overview](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-overview.html).
+All the available options for xbcloud, such as parallel, max-retries, and others, can be used. For more information, see the [xbcloud binary overview](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-overview.md).
 
 ## Examples
 
 An example of an xbcloud backup.
 
-```
+```shell
 xtrabackup --backup --stream=xbstream  | 
 xbcloud put backup_name --azure-storage-account=pxbtesting --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure
 ```
 
 An example of restoring a backup from xbcloud.
 
-```
+```shell
 xbcloud get backup_name  --azure-storage-account=pxbtesting 
 --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure --parallel=10 2>download.log | xbstream -x -C restore
 ```
 
 An example of deleting a backup from xbcloud.
 
-```
+```shell
 xbcloud delete backup_name --azure-storage-account=pxbtesting 
 --azure-access-key=$AZURE_KEY --azure-container-name=test --storage=azure
 ```
 
 An example of using a shortcut restore.
 
-```
+```shell
 xbcloud get azure://operator-testing/bak22 ...
 ```

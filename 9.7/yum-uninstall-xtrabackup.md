@@ -4,6 +4,6 @@
 
 To completely uninstall Percona XtraBackup, remove all the installed packages:
 
-```
+```shell
 yum remove percona-xtrabackup
 ```

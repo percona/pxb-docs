@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/work-with-apparmor.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/work-with-apparmor.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/work-with-apparmor.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5840,7 +5840,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>The following profile sections should be updated with your system information, such as location of the backup destination directory.</p>
 <details class="example">
 <summary>Expected output</summary>
-<div class="no-copy highlight"><pre><span></span><code># enable storing backups only in /backups directory
+<div class="language-text no-copy highlight"><pre><span></span><code># enable storing backups only in /backups directory
 # /backups/** rwk,
 
 # enable storing backups anywhere in caller user home directory
@@ -5863,10 +5863,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </code></pre></div>
 </details>
 <p>Move the updated file:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mv<span class="w"> </span>usr.sbin.xtrabackup<span class="w"> </span>/etc/apparmor.d/
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>mv<span class="w"> </span>usr.sbin.xtrabackup<span class="w"> </span>/etc/apparmor.d/
 </code></pre></div>
 <p>Install the profile with the following command:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apparmor_parser<span class="w"> </span>-r<span class="w"> </span>-T<span class="w"> </span>-W<span class="w"> </span>/etc/apparmor.d/usr.sbin.xtrabackup
+<div class="language-shell highlight"><pre><span></span><code>sudo<span class="w"> </span>apparmor_parser<span class="w"> </span>-r<span class="w"> </span>-T<span class="w"> </span>-W<span class="w"> </span>/etc/apparmor.d/usr.sbin.xtrabackup
 </code></pre></div>
 <p>Run the backup as usual.</p>
 <p>No additional AppArmor-related actions are required to restore a backup.</p>

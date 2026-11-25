@@ -31,10 +31,10 @@ Percona XtraBackup supports the MyRocks storage engine. Percona XtraBackup copie
 
 ## Where to go next
 
-| If you want to…                                               | Go to                                                                                                     |
-| ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| Get running quickly                                           | [Quickstart guide](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.html)              |
-| Install on your system                                        | [Installation](https://docs.percona.com/percona-xtrabackup/9.7/installation.html)                         |
-| Understand how backups work                                   | [How Percona XtraBackup works](https://docs.percona.com/percona-xtrabackup/9.7/how-xtrabackup-works.html) |
-| See backup types and workflows                                | [Backup overview](https://docs.percona.com/percona-xtrabackup/9.7/backup-overview.html)                   |
-| Use the backup tools (xtrabackup, xbcloud, xbcrypt, xbstream) | [Binaries overview](https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.html)               |
+| If you want to…                                               | Go to                                                                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Get running quickly                                           | [Quickstart guide](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.md)              |
+| Install on your system                                        | [Installation](https://docs.percona.com/percona-xtrabackup/9.7/installation.md)                         |
+| Understand how backups work                                   | [How Percona XtraBackup works](https://docs.percona.com/percona-xtrabackup/9.7/how-xtrabackup-works.md) |
+| See backup types and workflows                                | [Backup overview](https://docs.percona.com/percona-xtrabackup/9.7/backup-overview.md)                   |
+| Use the backup tools (xtrabackup, xbcloud, xbcrypt, xbstream) | [Binaries overview](https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.md)               |

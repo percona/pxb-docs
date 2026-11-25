@@ -10,13 +10,13 @@ Run all the commands as root or use the sudo command.
 
 The following command takes a backup and saves it in the `/data/backups/$TIMESTAMP` folder:
 
-```
+```shell
 xtrabackup --backup --target-dir=/data/backups/
 ```
 
 In the destination folder, there will be a file with the name `xtrabackup_binlog_info`. This file contains both binary log coordinates and the `GTID` information.
 
-```
+```shell
 cat xtrabackup_binlog_info
 ```
 
@@ -24,7 +24,7 @@ The result could look like this:
 
 Expected output
 
-```
+```text
 mysql-bin.000002    1232        c777888a-b6df-11e2-a604-080027635ef5:1-4
 ```
 
@@ -32,7 +32,7 @@ That information is also printed by xtrabackup after taking the backup:
 
 Expected output
 
-```
+```text
 xtrabackup: MySQL binlog position: filename 'mysql-bin.000002', position 1232, GTID of the last change 'c777888a-b6df-11e2-a604-080027635ef5:1-4'
 ```
 
@@ -40,7 +40,7 @@ xtrabackup: MySQL binlog position: filename 'mysql-bin.000002', position 1232, G
 
 The backup will be prepared with the following command on the Source:
 
-```
+```shell
 xtrabackup --prepare --target-dir=/data/backup
 ```
 
@@ -50,13 +50,13 @@ You need to select the path where your snapshot has been taken, for example `/da
 
 Use rsync or scp to copy the data to the destination server. If you are synchronizing the data directly to the already running replica’s data directory it is advised to stop the MySQL server there.
 
-```
+```shell
 rsync -avprP -e ssh /path/to/backupdir/$TIMESTAMP NewReplica:/path/to/mysql/
 ```
 
 After you copy the data over, make sure MySQL has proper permissions to access them.
 
-```
+```shell
 chown mysql:mysql /path/to/mysql/datadir
 ```
 
@@ -68,7 +68,7 @@ Note
 
 The example above is applicable to Percona XtraDB Cluster. The `wsrep_on` variable is set to 0 before resetting the source (`RESET BINARY LOGS AND GTIDS`). The reason is that Percona XtraDB Cluster will not allow resetting the source if `wsrep_on=1`.
 
-```
+```sql
 # Using the mysql shell
  > SET SESSION wsrep_on = 0;
  > RESET BINARY LOGS AND GTIDS;
@@ -86,7 +86,7 @@ The example above is applicable to Percona XtraDB Cluster. The `wsrep_on` variab
 
 The following command returns the replica status:
 
-```
+```sql
 SHOW REPLICA STATUS\G
 ```
 
@@ -94,7 +94,7 @@ The results should be similar to the following:
 
 Expected output
 
-```
+```text
 [..]
 Replica_IO_Running: Yes
 Replica_SQL_Running: Yes

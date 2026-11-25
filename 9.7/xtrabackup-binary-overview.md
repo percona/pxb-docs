@@ -57,6 +57,6 @@ Users engage with the Percona community to share tips, ask questions, and exchan
 
 Explore the following sections for more guidance:
 
-- Configuration options appear on [configure xtrabackup](https://docs.percona.com/percona-xtrabackup/9.7/configure-xtrabackup.html)
-- Command-line options: A comprehensive list of command-line options is available on [xtrabackup option reference](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.html)
-- Implementation details: Review technical insights and architecture on [xtrabackup implementation details](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-implementation-details.html)
+- Configuration options appear on [configure xtrabackup](https://docs.percona.com/percona-xtrabackup/9.7/configure-xtrabackup.md)
+- Command-line options: A comprehensive list of command-line options is available on [xtrabackup option reference](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md)
+- Implementation details: Review technical insights and architecture on [xtrabackup implementation details](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-implementation-details.md)

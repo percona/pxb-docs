@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/take-streaming-backup.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/take-streaming-backup.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/take-streaming-backup.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5862,7 +5862,7 @@ compression is achieved by piping the output to a compression utility. One of
 the benefits of streaming backups and using Unix pipes is that the backups can
 be automatically encrypted.</p>
 <p>To use the streaming feature, run the <code>--stream</code> option.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--stream
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--stream
 </code></pre></div>
 <p>xtrabackup uses xbstream to stream all of the data files to <code>STDOUT</code>, in a
 special <code>xbstream</code> format. After it finishes streaming all of the data files
@@ -5871,15 +5871,15 @@ to <code>STDOUT</code>, it stops xtrabackup and streams the saved log file too.<
 <h2 id="zstandard-zstd">Zstandard (ZSTD)<a data-markdown-ignore class="headerlink" href="#zstandard-zstd" title="Permanent link">&para;</a></h2>
 <p>The Zstandard (ZSTD) is a fast lossless compression algorithm that targets real-time compression scenarios and better compression ratios. <code>ZSTD</code> is the default compression algorithm for the <code>--compress</code> option.</p>
 <p>To compress files using the <code>ZSTD</code> compression algorithm, use the <code>--compress</code> option:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>The resulting files have the <code>\*.zst</code> format.</p>
 <p>You can specify <code>ZSTD</code> compression level with the <a href="xtrabackup-option-reference.html#compress-zstd-level"><code>--compress-zstd-level(=#)</code></a> option. The default value is <code>1</code>.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>–backup<span class="w"> </span>–compress<span class="w"> </span>–compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>–target-dir<span class="o">=</span>/data/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>–backup<span class="w"> </span>–compress<span class="w"> </span>–compress-zstd-level<span class="o">=</span><span class="m">1</span><span class="w"> </span>–target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <h2 id="lz4">lz4<a data-markdown-ignore class="headerlink" href="#lz4" title="Permanent link">&para;</a></h2>
 <p>To compress files using the <code>lz4</code> compression algorithm, set the <code>--compress</code> option to <code>lz4</code>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>lz4<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--compress<span class="o">=</span>lz4<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>The resulting files have the <code>\*.lz4</code> format. </p>
 <p>To decompress files, use the <code>--decompress</code> option.</p>

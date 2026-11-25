@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/encrypted-innodb-tablespace-backups.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/encrypted-innodb-tablespace-backups.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/encrypted-innodb-tablespace-backups.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -5987,7 +5987,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Each keyring component requires a configuration file with a specific structure. The following examples show the format for each component type.</p>
 <h4 id="keyring_vault-configuration">keyring_vault configuration<a data-markdown-ignore class="headerlink" href="#keyring_vault-configuration" title="Permanent link">&para;</a></h4>
 <p>The <code>component_keyring_vault.cnf</code> file uses JSON format:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"vault_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${VAULT_URL}"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"secret_mount_point"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${VAULT_MOUNT_POINT}"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"secret_mount_point_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${VAULT_CONFIG_VERSION}"</span><span class="p">,</span>
@@ -5998,7 +5998,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>For information on configuring the keyring vault component on the MySQL server, see <a href="https://docs.percona.com/percona-server/8.4/use-keyring-vault-component.html">Use the keyring vault component <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <h4 id="keyring_file-configuration">keyring_file configuration<a data-markdown-ignore class="headerlink" href="#keyring_file-configuration" title="Permanent link">&para;</a></h4>
 <p>The <code>component_keyring_file.cnf</code> file uses JSON format:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/var/lib/mysql-keyring/keyring"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"read_only"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">}</span>
@@ -6009,7 +6009,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </div>
 <h4 id="keyring_kmip-configuration">keyring_kmip configuration<a data-markdown-ignore class="headerlink" href="#keyring_kmip-configuration" title="Permanent link">&para;</a></h4>
 <p>The <code>component_keyring_kmip.cnf</code> file uses JSON format:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"server_addr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kmip.example.com"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"server_port"</span><span class="p">:</span><span class="w"> </span><span class="mi">5696</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"client_ca"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/path/to/client/ca.pem"</span><span class="p">,</span>
@@ -6019,7 +6019,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </code></pre></div>
 <h4 id="keyring_kms-configuration">keyring_kms configuration<a data-markdown-ignore class="headerlink" href="#keyring_kms-configuration" title="Permanent link">&para;</a></h4>
 <p>The <code>component_keyring_kms.cnf</code> file uses JSON format:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<div class="language-json highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/var/lib/mysql-keyring/keyring"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"read_only"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-east-1"</span><span class="p">,</span>
@@ -6032,7 +6032,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>XtraBackup uses the component&rsquo;s configuration file during prepare and restore operations. The MySQL server must use one of the supported keyring components for encryption.</p>
 <h4 id="phase-1-backup">Phase 1: Backup<a data-markdown-ignore class="headerlink" href="#phase-1-backup" title="Permanent link">&para;</a></h4>
 <p>No keyring configuration is needed:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--user<span class="o">=</span>root
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--user<span class="o">=</span>root
 </code></pre></div>
 <h4 id="phase-2-prepare">Phase 2: Prepare<a data-markdown-ignore class="headerlink" href="#phase-2-prepare" title="Permanent link">&para;</a></h4>
 <p>To prepare the backup, you must provide access to the keyring. The xtrabackup binary does not communicate with the MySQL server or read the default <code>my.cnf</code> configuration file. Specify the keyring configuration file.</p>
@@ -6040,15 +6040,15 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p class="admonition-title">File-name restriction</p>
 <p>The configuration file name must match exactly the expected name for your keyring component. See <a href="#configuration-file-name-requirements">Configuration file name requirements</a> for the exact file names required. If the file name does not match exactly, XtraBackup ignores the configuration file.</p>
 </div>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>Specify the path to your component&rsquo;s configuration file (for example, <code>/etc/component_keyring_vault.cnf</code> or <code>/var/lib/mysql-keyring/component_keyring_file.cnf</code>).</p>
 <h4 id="phase-3-restore">Phase 3: Restore<a data-markdown-ignore class="headerlink" href="#phase-3-restore" title="Permanent link">&para;</a></h4>
 <p>After you prepare the backup, restore the backup using <a href="xtrabackup-option-reference.html#copy-back"><code>--copy-back</code></a> or <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>. If you use <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>, run <code>--prepare</code> again after moving the files. In both cases, provide the same keyring configuration file.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
 </code></pre></div>
 <p>Or using <code>--move-back</code>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/mysql
 </code></pre></div>
 <h3 id="incremental-encrypted-innodb-tablespace-backups">Incremental encrypted InnoDB tablespace backups<a data-markdown-ignore class="headerlink" href="#incremental-encrypted-innodb-tablespace-backups" title="Permanent link">&para;</a></h3>
@@ -6056,15 +6056,15 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 <h4 id="phase-1-backup_1">Phase 1: Backup<a data-markdown-ignore class="headerlink" href="#phase-1-backup_1" title="Permanent link">&para;</a></h4>
 <p>Begin with a full backup. The xtrabackup binary writes <code>xtrabackup_checkpoints</code> into the backup&rsquo;s target directory, which contains the <code>to_lsn</code> (the LSN of the database at the end of the backup).</p>
 <p>Create a full backup (no keyring config needed):</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
 </code></pre></div>
 <p>Make an incremental backup based on the full backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span><span class="se">\</span>
 --backup-incremental-base<span class="o">=</span>/data/backups/base
 </code></pre></div>
 <p>The <a href="xtrabackup-option-reference.html#backup-incremental-base"><code>--backup-incremental-base</code></a> option specifies the base backup directory.</p>
 <p>Use this directory as the base for yet another incremental backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span><span class="se">\</span>
 --backup-incremental-base<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
 <h4 id="phase-2-prepare_1">Phase 2: Prepare<a data-markdown-ignore class="headerlink" href="#phase-2-prepare_1" title="Permanent link">&para;</a></h4>
@@ -6072,17 +6072,17 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 <p>Percona XtraBackup 9.7.2-2 renames the <code>--apply-log-only</code> option to <a href="xtrabackup-option-reference.html#apply-redo-only"><code>--apply-redo-only</code></a>. Percona XtraBackup still accepts <code>--apply-log-only</code> but prints a deprecation warning. A future Long-Term Support (LTS) release will remove <code>--apply-log-only</code>, so update your scripts to use <code>--apply-redo-only</code>. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.</p>
 <p>The <code>--prepare</code> step for incremental backups requires the keyring configuration. Use <a href="xtrabackup-option-reference.html#apply-redo-only"><code>--apply-redo-only</code></a> for all incremental backups except the last one. The option prevents the rollback of transactions that a later incremental backup might commit.</p>
 <p>Beginning with the full backup, prepare the full backup and then apply the incremental differences. Prepare the base backup with <a href="xtrabackup-option-reference.html#apply-redo-only"><code>--apply-redo-only</code></a>. Use the appropriate configuration file name for your keyring component (see <a href="#configuration-file-name-requirements">Configuration file name requirements</a>):</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base
 </code></pre></div>
 <p>Apply the first incremental backup to the full backup using <a href="xtrabackup-option-reference.html#prepare-incremental-from-dir"><code>--prepare-incremental-from-dir</code></a>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you have many InnoDB Data (IBD) files, speed up the prepare phase for incremental backups  by using the <code>--parallel</code> option. This option lets you process multiple delta files simultaneously. When using <code>--parallel</code> in the prepare phase, always specify a numeric value. The recommended minimum value is 4 (for example, <code>--parallel=4</code>).</p>
 <p>An example of the backup command using the <code>--parallel</code> option:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--apply-redo-only<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --incremental-dir<span class="o">=</span>/data/backups/inc1<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 </code></pre></div>
 </div>
@@ -6090,11 +6090,11 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 <p>Preparing the second incremental backup is a similar process: apply the deltas
 to the (modified) base backup, and you will roll the base backup&rsquo;s data forward in 
 time to the point of the second incremental backup:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc2
 </code></pre></div>
 <p>You can also use the <code>--parallel</code> option here to speed up the process:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span><span class="se">\</span>
 --prepare-incremental-from-dir<span class="o">=</span>/data/backups/inc2<span class="w"> </span>--parallel<span class="o">=</span><span class="m">4</span>
 </code></pre></div>
 <div class="admonition note">
@@ -6103,29 +6103,29 @@ time to the point of the second incremental backup:</p>
 </div>
 <h4 id="phase-3-restore_1">Phase 3: Restore<a data-markdown-ignore class="headerlink" href="#phase-3-restore_1" title="Permanent link">&para;</a></h4>
 <p>After you prepare the incremental backups, restore them using <a href="xtrabackup-option-reference.html#copy-back"><code>--copy-back</code></a> or <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>. If you use <a href="xtrabackup-option-reference.html#move-back"><code>--move-back</code></a>, run <code>--prepare</code> again after moving the files. In both cases, provide the same keyring configuration file:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
 </code></pre></div>
 <p>Or using <code>--move-back</code>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--move-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backups/base<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql
 xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/mysql
 </code></pre></div>
 <h3 id="restore-a-backup-when-the-keyring-is-not-available">Restore a backup when the keyring is not available<a data-markdown-ignore class="headerlink" href="#restore-a-backup-when-the-keyring-is-not-available" title="Permanent link">&para;</a></h3>
 <p>The keyring component method requires access to the same keyring that the server uses. This may not be possible if you prepare the backup on a different server, when keys in the keyring are purged, or when the keyring vault server is unavailable.</p>
 <p>Use the <a href="xtrabackup-option-reference.html#transition-key"><code>--transition-key=&lt;passphrase&gt;</code></a> option to process the backup without access to the keyring server. The binary derives the AES (Advanced Encryption Standard) encryption key from the specified passphrase and uses the AES encryption key to encrypt tablespace keys.</p>
 <h4 id="create-a-backup-with-a-passphrase">Create a backup with a passphrase<a data-markdown-ignore class="headerlink" href="#create-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey
 </code></pre></div>
 <p>If you specify <a href="xtrabackup-option-reference.html#transition-key"><code>--transition-key</code></a> without a value, xtrabackup asks for the passphrase. xtrabackup hides the passphrase value so that the value is not visible in the <code>ps</code> command output.</p>
 <h4 id="prepare-a-backup-with-a-passphrase">Prepare a backup with a passphrase<a data-markdown-ignore class="headerlink" href="#prepare-a-backup-with-a-passphrase" title="Permanent link">&para;</a></h4>
 <p>Specify the same passphrase for the prepare command:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey
 </code></pre></div>
 <p>You do not need keyring options here, because xtrabackup does not access the keyring in this case.</p>
 <h4 id="restore-a-backup-with-a-generated-key">Restore a backup with a generated key<a data-markdown-ignore class="headerlink" href="#restore-a-backup-with-a-generated-key" title="Permanent link">&para;</a></h4>
 <p>When you restore a backup, generate a new master key using <a href="xtrabackup-option-reference.html#generate-new-master-key"><code>--generate-new-master-key</code></a>. The configuration file name must match one of the exact configuration file names listed in <a href="#configuration-file-name-requirements">Configuration file name requirements</a>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
 --transition-key<span class="o">=</span>MySecretKey<span class="w"> </span>--generate-new-master-key
 </code></pre></div>
 <p>Specify the path to your component&rsquo;s configuration file. XtraBackup generates a new master key, stores the new master key in the target keyring, and re-encrypts the tablespace keys using the new master key.</p>
@@ -6134,18 +6134,18 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 <ul>
 <li>Back up using <a href="xtrabackup-option-reference.html#generate-transition-key"><code>--generate-transition-key</code></a>:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--user<span class="o">=</span>root<span class="w"> </span>-p<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span><span class="se">\</span>
 --generate-transition-key
 </code></pre></div>
 <ul>
 <li>Prepare:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <ul>
 <li>Copy-back:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--copy-back<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup<span class="w"> </span>--datadir<span class="o">=</span>/data/mysql<span class="w"> </span><span class="se">\</span>
 --generate-new-master-key
 </code></pre></div>
 <p>Specify the path to your component&rsquo;s configuration file.</p>
@@ -6155,7 +6155,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 <p>To create an encrypted backup, use the <a href="xtrabackup-option-reference.html#encrypt"><code>--encrypt</code></a> option along with either <a href="xtrabackup-option-reference.html#encrypt-key"><code>--encrypt-key</code></a> or <a href="xtrabackup-option-reference.html#encrypt-key-file"><code>--encrypt-key-file</code></a> to specify the encryption key. The <code>--encrypt-key</code> and <code>--encrypt-key-file</code> options are mutually exclusive. Use one or the other, but do not both. If you specify both options, XtraBackup returns an error and exits.</p>
 <p>The <code>--encrypt</code> option specifies the encryption algorithm: <code>AES128</code>, <code>AES192</code>, or <code>AES256</code>. To generate an encryption key, use a command such as <code>openssl rand -base64 24</code>.</p>
 <h4 id="using-encrypt-key">Using &ndash;encrypt-key<a data-markdown-ignore class="headerlink" href="#using-encrypt-key" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">"{randomly-generated-alphanumeric-string}"</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key<span class="o">=</span><span class="s2">"{randomly-generated-alphanumeric-string}"</span><span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -6163,7 +6163,7 @@ xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<
 </div>
 <h4 id="using-encrypt-key-file">Using &ndash;encrypt-key-file<a data-markdown-ignore class="headerlink" href="#using-encrypt-key-file" title="Permanent link">&para;</a></h4>
 <p>The recommended method uses <code>--encrypt-key-file</code> to read the key from a file:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"{randomly-generated-alphanumeric-string}"</span><span class="w"> </span>&gt;<span class="w"> </span>/data/backups/keyfile
+<div class="language-shell highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"{randomly-generated-alphanumeric-string}"</span><span class="w"> </span>&gt;<span class="w"> </span>/data/backups/keyfile
 xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <div class="admonition warning">
@@ -6174,10 +6174,10 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span
 <p>Additional encrypted backup options can speed up the encryption process: <a href="xtrabackup-option-reference.html#encrypt-threads"><code>--encrypt-threads</code></a> (enables parallel encryption with multiple threads) and <a href="xtrabackup-option-reference.html#encrypt-chunk-size"><code>--encrypt-chunk-size</code></a> (specifies the size, in bytes, of the working encryption buffer for each encryption thread; the default value is 64K).</p>
 <h3 id="decrypt-encrypted-backups">Decrypt encrypted backups<a data-markdown-ignore class="headerlink" href="#decrypt-encrypted-backups" title="Permanent link">&para;</a></h3>
 <p>To decrypt an encrypted backup, use the <a href="xtrabackup-option-reference.html#decrypt"><code>--decrypt</code></a> option. The decryption algorithm must match the algorithm that you used during encryption. You can use the <a href="xtrabackup-option-reference.html#parallel"><code>--parallel</code></a> option with <code>--decrypt</code> to decrypt multiple files simultaneously.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--decrypt<span class="o">=</span>AES256<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/data/backups/keyfile<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 <p>Alternatively, you can use the <code>xbcrypt</code> binary directly:</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">"*\.xbcrypt"</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<div class="language-shell highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">"*\.xbcrypt"</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>xbcrypt<span class="w"> </span>-d<span class="w"> </span>--encrypt-key-file<span class="o">=</span>/root/secret_key<span class="w"> </span>--encrypt-algo<span class="o">=</span>AES256<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$i</span><span class="k">)</span>/<span class="k">$(</span>basename<span class="w"> </span><span class="nv">$i</span><span class="w"> </span>.xbcrypt<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -6185,7 +6185,7 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span
 </div>
 <h3 id="prepare-encrypted-backups">Prepare encrypted backups<a data-markdown-ignore class="headerlink" href="#prepare-encrypted-backups" title="Permanent link">&para;</a></h3>
 <p>After decrypting the backup, prepare the backup with the <code>--prepare</code> option:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
+<div class="language-shell highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--prepare<span class="w"> </span>--target-dir<span class="o">=</span>/data/backup
 </code></pre></div>
 
 
@@ -6224,39 +6224,6 @@ xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--encrypt<span
 
     
     
-    
-      
-  <span class="md-source-file__fact">
-    
-      
-  <span class="md-icon" title="Contributors">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-  </span>
-  <span>GitHub</span>
-
-    
-    <nav>
-      
-        <a href="https://github.com/alina-derkach-oaza" class="md-author" title="@alina-derkach-oaza">
-          
-          <img src="https://avatars.githubusercontent.com/u/81975178?v=4&size=72" alt="alina-derkach-oaza">
-        </a>
-      
-        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
-          
-          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
-        </a>
-      
-        <a href="https://github.com/patrickbirch" class="md-author" title="@patrickbirch">
-          
-          <img src="https://avatars.githubusercontent.com/u/48594400?v=4&size=72" alt="patrickbirch">
-        </a>
-      
-      
-      
-    </nav>
-  </span>
-
     
   </aside>
 

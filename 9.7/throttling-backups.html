@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://docs.percona.com/percona-xtrabackup/9.7/_static/percona-mysql-logo.png">
 <meta property="og:url" content="https://docs.percona.com/percona-xtrabackup/">
 
-  </head>
+  <link rel="alternate" type="text/markdown" href="https://docs.percona.com/percona-xtrabackup/9.7/throttling-backups.md"></head>
   
   
     
@@ -134,7 +134,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>.</div>
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"><div class="agent-hint" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap">For AI agents: an index of this documentation is at <a href="https://docs.percona.com/percona-xtrabackup/9.7/llms.txt" tabindex="-1">llms.txt</a>. This page as markdown: <a href="https://docs.percona.com/percona-xtrabackup/9.7/throttling-backups.md" tabindex="-1">https://docs.percona.com/percona-xtrabackup/9.7/throttling-backups.md</a>.</div>
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -6002,7 +6002,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p>Use the following tools to observe disk utilization and validate your throttle settings.</p>
 <h3 id="iostat-sysstat">iostat (sysstat)<a data-markdown-ignore class="headerlink" href="#iostat-sysstat" title="Permanent link">&para;</a></h3>
 <p>Use:</p>
-<div class="highlight"><pre><span></span><code>iostat<span class="w"> </span>-xz<span class="w"> </span><span class="m">1</span>
+<div class="language-bash highlight"><pre><span></span><code>iostat<span class="w"> </span>-xz<span class="w"> </span><span class="m">1</span>
 </code></pre></div>
 <p>Key metrics:</p>
 <ul>
@@ -6022,7 +6022,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <p class="admonition-title">Note</p>
 <p><code>pidstat</code> requires root privileges (or appropriate capabilities) to display system-wide I/O activity. Without this, output may be incomplete.</p>
 </div>
-<div class="highlight"><pre><span></span><code>pidstat<span class="w"> </span>-d<span class="w"> </span><span class="m">1</span>
+<div class="language-bash highlight"><pre><span></span><code>pidstat<span class="w"> </span>-d<span class="w"> </span><span class="m">1</span>
 </code></pre></div>
 <p>Key notes:</p>
 <ul>
@@ -6041,7 +6041,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 </ul>
 <h3 id="pv-pipe-viewer">pv (Pipe Viewer)<a data-markdown-ignore class="headerlink" href="#pv-pipe-viewer" title="Permanent link">&para;</a></h3>
 <p>For streaming backups, <code>pv</code> can display real-time throughput:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">5</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">5</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span>backup.xb.gz
 </code></pre></div>
@@ -6068,14 +6068,14 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 <h3 id="redo-log-wraparound-risk-important">Redo log wraparound risk (important)<a data-markdown-ignore class="headerlink" href="#redo-log-wraparound-risk-important" title="Permanent link">&para;</a></h3>
 <p>When using <code>--throttle</code>, backups may become too slow to keep up with redo log generation rate on busy systems.</p>
 <p>Because the InnoDB redo log is a circular buffer with limited size, it can wrap around before xtrabackup has finished reading it. When this happens, the backup fails with an error similar to:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup: error: expected log block no. ..., but got no. ...
+<div class="language-text highlight"><pre><span></span><code>xtrabackup: error: expected log block no. ..., but got no. ...
 xtrabackup: error: it looks like InnoDB log has wrapped around before xtrabackup could process all records
 xtrabackup: Error: xtrabackup_copy_logfile() failed
 </code></pre></div>
 <p>This issue is more likely on write-heavy systems or when using very low throttle values.</p>
 <p>There are two primary ways to prevent this issue:</p>
 <h4 id="option-1-increase-redo-log-capacity-recommended">Option 1: Increase redo log capacity (recommended)<a data-markdown-ignore class="headerlink" href="#option-1-increase-redo-log-capacity-recommended" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">innodb_redo_log_capacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">larger</span><span class="w"> </span><span class="n">value</span><span class="o">&gt;</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">innodb_redo_log_capacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">larger</span><span class="w"> </span><span class="n">value</span><span class="o">&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p>Increasing redo log size:</p>
 <ul>
@@ -6142,13 +6142,13 @@ xtrabackup: Error: xtrabackup_copy_logfile() failed
 <h2 id="example-usage">Example usage<a data-markdown-ignore class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
 <h3 id="a-streaming-backup-with-throttling">A) Streaming backup with throttling<a data-markdown-ignore class="headerlink" href="#a-streaming-backup-with-throttling" title="Permanent link">&para;</a></h3>
 <p>Limit the backup speed to approximately <strong>50 MB/s</strong>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">5</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">5</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span>backup.xb.gz
 </code></pre></div>
 <h3 id="b-testing-throttling-behavior">B) Testing throttling behavior<a data-markdown-ignore class="headerlink" href="#b-testing-throttling-behavior" title="Permanent link">&para;</a></h3>
 <p>To measure the effective throughput of <code>--throttle</code> without interference from compression or disk writes:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">2</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--throttle<span class="o">=</span><span class="m">2</span><span class="w"> </span>--stream<span class="o">=</span>xbstream<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 </code></pre></div>
@@ -6167,11 +6167,11 @@ xtrabackup: Error: xtrabackup_copy_logfile() failed
 <p>Use this method to validate that the configured throttle produces the expected throughput.</p>
 <h3 id="local-backup-with-throttling">Local backup with throttling<a data-markdown-ignore class="headerlink" href="#local-backup-with-throttling" title="Permanent link">&para;</a></h3>
 <p>Limit the backup to approximately <strong>100 MB/s</strong>:</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span>--throttle<span class="o">=</span><span class="m">10</span>
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span>--backup<span class="w"> </span>--target-dir<span class="o">=</span>/backups/full<span class="w"> </span>--throttle<span class="o">=</span><span class="m">10</span>
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="highlight"><pre><span></span><code>xtrabackup: Starting backup
+<div class="language-text highlight"><pre><span></span><code>xtrabackup: Starting backup
 xtrabackup: Throttling set to 10 chunks per second
 ...
 xtrabackup: completed OK!
@@ -6179,7 +6179,7 @@ xtrabackup: completed OK!
 </details>
 <h3 id="incremental-backup-with-throttling">Incremental backup with throttling<a data-markdown-ignore class="headerlink" href="#incremental-backup-with-throttling" title="Permanent link">&para;</a></h3>
 <p>For incremental backups, the limit applies only to read operations. Redo log copying continues independently and may become a bottleneck if the backup is throttled too aggressively.</p>
-<div class="highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code>xtrabackup<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--backup<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--target-dir<span class="o">=</span>/backups/inc1<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--backup-incremental-base<span class="o">=</span>/backups/full<span class="w"> </span><span class="se">\</span>
@@ -6187,7 +6187,7 @@ xtrabackup: completed OK!
 </code></pre></div>
 <details class="example">
 <summary>Expected output</summary>
-<div class="highlight"><pre><span></span><code>xtrabackup: Starting incremental backup
+<div class="language-text highlight"><pre><span></span><code>xtrabackup: Starting incremental backup
 xtrabackup: Throttling set to 5 chunks per second
 ...
 xtrabackup: completed OK!
