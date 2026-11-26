@@ -149,7 +149,7 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
      rsync zstd
    0 upgraded, 8 newly installed, 0 to remove and 2 not upgraded.
    ...
-   Setting up percona-xtrabackup-97 (9.7.2~2-1.noble) ...
+   Setting up percona-xtrabackup-97 (9.7.2~3-1.noble) ...
    Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
    ```
 
@@ -162,7 +162,7 @@ Install Percona XtraBackup, like many other Percona products, with the `percona-
    Expected output
 
    ```text
-   xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
+   xtrabackup version 9.7.2-3 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
    ```
 
 1. To decompress backups made using `LZ4` or `ZSTD` compression algorithm, install the corresponding package:

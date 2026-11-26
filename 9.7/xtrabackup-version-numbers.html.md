@@ -14,7 +14,7 @@ Any Percona XtraBackup 9.7 release can work with any Percona Server for MySQL 9.
 
 Percona uses semantic version numbering, which follows the pattern of base version and build version. Percona assigns unique, non-negative integers in increasing order for each version release. The version number combines the base [MySQL 9.7](https://dev.mysql.com/doc/relnotes/mysql/9.7/en/) version number and the minor build version.
 
-The version numbers for Percona XtraBackup 9.7.2-2 define the following information:
+The version numbers for Percona XtraBackup 9.7.2-3 define the following information:
 
 - Base version - the leftmost numbers indicate the [MySQL 9.7](https://dev.mysql.com/doc/relnotes/mysql/9.7/en/) version used as a base. An increase in base version resets the minor build version to 0.
 - Minor build version - an internal number that denotes the version of the software. A build version increases by one each time the Percona XtraBackup is released.
