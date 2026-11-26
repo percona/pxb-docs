@@ -1,0 +1,245 @@
+> For the complete documentation index, see [llms.txt](https://docs.percona.com/percona-xtrabackup/9.7/llms.txt).
+
+# Restore the backup
+
+The following steps describe how to restore your backup to another Percona Server container and check whether the data is available.
+
+1. Create another Docker volume
+
+   ```shell
+   docker volume create myvol2
+   ```
+
+   Expected output
+
+   ```text
+   myvol2
+   ```
+
+1. Run another Percona Server container to restore the backup to
+
+   | Option   | Description                                                                                                                                                                                                           |
+   | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | `--name` | Provides a name to the container. If you do not use this option, Docker adds a random name.                                                                                                                           |
+   | `-d`     | Detaches the container. The container runs in the background.                                                                                                                                                         |
+   | `-e`     | Adds an environmental variable. This example adds the `MYSQL_ROOT_PASSWORD` environment variable. The instance refuses to initialize if no environmental variable is added. Choose a more secure password, if needed. |
+   | `myvol2` | Indicates the persistent storage for the database.                                                                                                                                                                    |
+   | `9.7`    | Use this tag to specify a specific version.                                                                                                                                                                           |
+
+   You must provide at least one environment variable to access the database, such as `MYSQL_ROOT_PASSWORD`, `MYSQL_DATABASE`, `MYSQL_USER`, and `MYSQL_PASSWORD` or the instance refuses to initialize.
+
+   For this document, we are using the `9.7` tag. In Docker, a tag is a label assigned to an image. Tags are used to maintain different versions of an image. If we did not add a tag, Docker uses `latest` as the default tag and downloads the latest image from [percona/percona-server on Docker Hub](https://hub.docker.com/r/percona/percona-server) .
+
+   To use a Docker volume for persistent storage with a database, specify the path where the database stores its data inside the container, usually `/var/lib/mysql`.
+
+   - Run a Docker container example
+
+     ```shell
+     docker run -d -p 3307:3306 --name psmysql2 -e MYSQL_ROOT_PASSWORD=secret -v myvol2:/var/lib/mysql percona/percona-server:9.7
+     ```
+
+   Expected output
+
+   ```text
+   4501d5524461b4483d414bd218d49ed4f47599add7d7fb81e157951a7a52f3d1
+   ```
+
+1. Stop `psmysql2` container
+
+   ```shell
+   docker stop psmysql2
+   ```
+
+   Expected output
+
+   ```text
+   psmysql2
+   ```
+
+1. Remove all created files in `myvol2` to allow xtrabackup restore data to `myvol2`
+
+   The `--rm` option automatically removes the temporary container created from percona/percona-xtrabackup:9.7.1 image after the container exits.
+
+   ```shell
+   docker run --volumes-from psmysql2 -v backupvol:/backup_97 -it --rm --user root percona/percona-xtrabackup:9.7 /bin/bash -c "rm -rf /var/lib/mysql/*"
+   ```
+
+   If the command executes successfully, the expected output is empty.
+
+1. Restore backup of `psmysql` from `backupvol` to a new `psmysql2` instance.
+
+   ```shell
+   docker run --platform linux/amd64 --volumes-from psmysql2 -v backupvol:/backup_97 -it --rm --user root percona/percona-xtrabackup:9.7 /bin/bash -c "xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backup_97"
+   ```
+
+   Expected output
+
+   ```text
+   2024-10-07T14:08:59.127166-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql/
+   2024-10-07T14:08:59.128951-00:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --copy-back=1 --target-dir=/backup_97
+   xtrabackup version 9.7.2-2 based on MySQL server 9.7.1 Linux (x86_64) (revision id: b1c9c341)
+   2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] cd to /backup_97/
+
+   ...
+
+   2024-10-07T14:08:59.129407-00:00 0 1 [Note] [MY-011825] [Xtrabackup] Done: Copying ./ibtmp1 to /var/lib/mysql/ibtmp1 
+
+   2024-10-07T14:08:59.129407-00:00 0 [Note] [MY-011825] [Xtrabackup] completed OK!
+   ```
+
+   This command restores the backup files from the `backup_9711` volume to the `psmysql2` container. It uses the `percona/percona-xtrabackup:9.7.1` image to run a temporary container with root privileges. It executes the xtrabackup tool with the `--copy-back` option, which copies the files from the `backup_9711` volume to the /`var/lib/mysql/` directory in the `psmysql2` container. The command uses –rm option to delete the temporary container after it exits.
+
+## Validate the backup
+
+This section describes the backup validation steps assuming that you backed up `mydb` database with the `employees` table as we have in our example. The validation steps may vary depending on your data set.
+
+1. Change the owner of the files in `myvol2` from `root` to `mysql`
+
+   To avoid permission issues when running `psmysql2` container, you need to change the owner because the files were restored by `root` user and `psmysql2` will use `mysql` user.
+
+   ```shell
+   docker run --volumes-from psmysql2 -v backupvol:/backup_97 -it --rm --user root percona/percona-xtrabackup:9.7 /bin/bash -c "chown -R mysql:mysql /var/lib/mysql/"
+   ```
+
+   If the command executes successfully, the expected output is empty.
+
+1. Start the `psmysql2` container
+
+   ```shell
+   docker start psmysql2
+   ```
+
+   Expected output
+
+   ```text
+   psmysql2
+   ```
+
+1. Connect to the database instance.
+
+   For this example, we have the following options:
+
+   | Option     | Description                                          |
+   | ---------- | ---------------------------------------------------- |
+   | `it`       | Interact with the container and be a pseudo-terminal |
+   | `psmysql2` | Running container name                               |
+   | `mysql`    | Connects to a database instance                      |
+   | `-u`       | Specifies the user account used to connect           |
+   | `-p`       | Use this password when connecting                    |
+
+   - Connect to the database instance example
+
+     ```shell
+     docker exec -it psmysql2 mysql -uroot -p
+     ```
+
+     You are prompted to enter the password, which is `secret`.
+
+     ```text
+     Enter password:
+     ```
+
+     You should see the following result.
+
+     Expected output
+
+     ```text
+     Welcome to the MySQL monitor.  Commands end with ; or \g.
+     Your MySQL connection id is 10
+     Server version: 9.7.0-1 Percona Server (GPL), Release 1, Revision 238b3c02
+
+     Copyright (c) 2009-2024 Percona LLC and/or its affiliates
+     Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+     Oracle is a registered trademark of Oracle Corporation and/or its
+     affiliates. Other names may be trademarks of their respective
+     owners.
+
+     Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+     ```
+
+1. Check the list of databases to make sure, the backed up, `mydb` database is in the list.
+
+   ```sql
+   show databases;
+   ```
+
+   Expected output
+
+   ```text
+   +--------------------+ 
+
+   | Database           | 
+
+   +--------------------+ 
+
+   | information_schema | 
+
+   | mydb               | 
+
+   | mysql              | 
+
+   | performance_schema | 
+
+   | sys                | 
+
+   +--------------------+ 
+
+   5 rows in set (0.03 sec)
+   ```
+
+1. Use the `mydb` database.
+
+   ```sql
+   use mydb;
+   ```
+
+   Expected output
+
+   ```text
+   Database changed
+   ```
+
+1. Check that your table contains data
+
+   ```sql
+   SELECT * FROM employees;
+   ```
+
+   Expected output
+
+   ```text
+   +----+--------------------+-----------------------------------+-------------+ 
+
+   | id | name               | email                             | country     | 
+
+   +----+--------------------+-----------------------------------+-------------+ 
+
+   |  1 | Erasmus Richardson | posuere.cubilia.curae@outlook.net | England     | 
+
+   |  2 | Jenna French       | rhoncus.donec@hotmail.couk        | Canada      | 
+
+   |  3 | Alfred Dejesus     | interdum@aol.org                  | Austria     | 
+
+   |  4 | Hamilton Puckett   | dapibus.quam@outlook.com          | Canada      | 
+
+   |  5 | Michal Brzezinski  | magna@icloud.pl                   | Poland      | 
+
+   |  6 | Zofia Lis          | zofial00@hotmail.pl               | Poland      | 
+
+   |  7 | Aisha Yakubu       | ayakubu80@outlook.com             | Nigeria     | 
+
+   |  8 | Miguel Cardenas    | euismod@yahoo.com                 | Peru        | 
+
+   |  9 | Luke Jansen        | nibh@hotmail.edu                  | Netherlands | 
+
+   | 10 | Roger Pettersen    | nunc@protonmail.no                | Norway      | 
+
+   +----+--------------------+-----------------------------------+-------------+ 
+
+   10 rows in set (0.00 sec)
+   ```
+
+## Next steps
+
+[Clean up](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-exit.md)

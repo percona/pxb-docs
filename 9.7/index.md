@@ -57,6 +57,10 @@ Incremental backups for MyRocks are not optimized. Each time you run an incremen
 
 InnoDB tables are locked while copying non-InnoDB data.
 
+Percona XtraBackup 9.7.2-2 creates invalid backups of Percona Server for MySQL 9.7.4-4 databases with vector indexes. Use Percona XtraBackup 9.7.2-3 or higher.
+
 See also
 
 [Dependency compatibility and limitations](https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.md)
+
+[Server version and backup version comparison](https://docs.percona.com/percona-xtrabackup/9.7/server-backup-version-comparison.md)

@@ -3001,6 +3001,24 @@ XtraBackup version that is equal to your source server major version. This means
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server version and backup version comparison
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="server-backup-version-comparison.html" class="md-nav__link md-nav__link--active">
         
   
@@ -3017,6 +3035,38 @@ XtraBackup version that is equal to your source server major version. This means
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-percona-xtrabackup-version-for-server-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum Percona XtraBackup version for server features
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -5734,6 +5784,25 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-percona-xtrabackup-version-for-server-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum Percona XtraBackup version for server features
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
       </div>
     </div>
@@ -5769,6 +5838,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 record, can cause older versions of Percona XtraBackup to fail. To
 ensure that you can back up and restore your data, use a Percona
 XtraBackup version that is equal to your source server major version. This means if you use Percona XtraBackup 9.7.x, you can safely back up the source server from 9.7.x to 9.7.xx.</p>
+<p>Some server features require a minimum Percona XtraBackup patch version. See <a href="#minimum-percona-xtrabackup-version-for-server-features">Minimum Percona XtraBackup version for server features</a>.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
 <p><a href="how-xtrabackup-works.html">How XtraBackup works</a></p>
@@ -5811,6 +5881,40 @@ example, overrides the parameter and the backup proceeds.</p>
 <p>Backup successful</p>
 </li>
 </ul>
+<h2 id="minimum-percona-xtrabackup-version-for-server-features">Minimum Percona XtraBackup version for server features<a data-markdown-ignore class="headerlink" href="#minimum-percona-xtrabackup-version-for-server-features" title="Permanent link">&para;</a></h2>
+<p>Some server features add redo log record types. A Percona XtraBackup version without support for the record type cannot create a backup of a database with the feature.</p>
+<table>
+<thead>
+<tr>
+<th>Server version</th>
+<th>Feature</th>
+<th>Minimum Percona XtraBackup version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Percona Server for MySQL 9.7.4-4</td>
+<td>Vector index</td>
+<td>9.7.2-3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vector-index">Vector index<a data-markdown-ignore class="headerlink" href="#vector-index" title="Permanent link">&para;</a></h3>
+<p>Percona Server for MySQL 9.7.4-4 adds the vector (HNSW) index. Starting with Percona XtraBackup 9.7.2-3, Percona XtraBackup handles vector indexes. To back up a Percona Server for MySQL 9.7.4-4 database with vector indexes, use Percona XtraBackup 9.7.2-3 or higher.</p>
+<p>The <code>VECTOR</code> data type is available in all Percona Server for MySQL 9.7 releases. Percona XtraBackup backs up and restores tables with <code>VECTOR</code> columns and no vector index.</p>
+<p>The export and import of tablespaces depend on the table:</p>
+<ul>
+<li>
+<p>For a table with <code>VECTOR</code> columns and no vector index, <code>--prepare --export</code> and the import of the exported tablespace work starting with Percona XtraBackup 9.7.2-3.</p>
+</li>
+<li>
+<p>For a table with a vector index, <code>--prepare --export</code> succeeds and creates the <code>.cfg</code> file. You cannot import the tablespace because vector index support is at the minimum viable product (MVP) stage.</p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the server has vector indexes, do not trust backups taken with Percona XtraBackup 9.7.2-2. These backups are invalid. The backup and prepare steps can still succeed. To get a valid backup, upgrade Percona XtraBackup to 9.7.2-3 or higher and take the backup again.</p>
+</div>
 
 
 
@@ -5833,7 +5937,7 @@ example, overrides the parameter and the backup proceeds.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 9, 2026 15:11:49 UTC">April 9, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 26, 2026 13:45:46 UTC">November 26, 2026</span>
   </span>
 
     

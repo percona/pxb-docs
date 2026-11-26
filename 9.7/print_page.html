@@ -7527,9 +7527,11 @@ created in versions before 9.7 of MySQL, Percona Server for MySQL or
 Percona XtraDB Cluster.</p>
 <p>Incremental backups for MyRocks are not optimized. Each time you run an incremental backup, all MyRocks files are copied, even if they haven’t changed since the previous backup.</p>
 <p>InnoDB tables are locked while copying non-InnoDB data.</p>
+<p>Percona XtraBackup 9.7.2-2 creates invalid backups of Percona Server for MySQL 9.7.4-4 databases with vector indexes. Use Percona XtraBackup 9.7.2-3 or higher.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
 <p><a href="#update-curl-utility">Dependency compatibility and limitations</a></p>
+<p><a href="#server-backup-version-comparison">Server version and backup version comparison</a></p>
 </div></section><section class="print-page" id="get-help" heading-number="2"><h1 id="get-help-get-help-from-percona">Get help from Percona<a class="headerlink" href="#get-help-get-help-from-percona" title="Permanent link">&para;</a></h1>
 <p>Our documentation guides are packed with information, but they can’t cover everything you need to know about Percona XtraBackup. They also won’t cover every scenario you might come across. Don’t be afraid to try things out and ask questions when you get stuck.</p>
 <h2 id="get-help-perconas-community-forum">Percona&rsquo;s Community Forum<a class="headerlink" href="#get-help-perconas-community-forum" title="Permanent link">&para;</a></h2>
@@ -8332,6 +8334,7 @@ databases.</p>
 <p>Percona’s enterprise-grade commercial <a href="https://www.percona.com/services/expert-support/">MySQL Support <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> contracts include support for Percona XtraBackup. We recommend support for critical production deployments.</p>
 <h2 id="about-xtrabackup-supported-storage-engines">Supported storage engines<a class="headerlink" href="#about-xtrabackup-supported-storage-engines" title="Permanent link">&para;</a></h2>
 <p>Percona XtraBackup can back up data from InnoDB, XtraDB, MyISAM, and MyRocks tables on MySQL 9.7 servers as well as Percona Server for MySQL 9.7.</p>
+<p>To create a backup of Percona Server for MySQL 9.7.4-4 databases with vector indexes, use Percona XtraBackup 9.7.2-3 or higher. For details, see <a href="#server-backup-version-comparison-minimum-percona-xtrabackup-version-for-server-features">Minimum Percona XtraBackup version for server features</a>.</p>
 <p>Percona XtraBackup supports the MyRocks storage engine. Percona XtraBackup copies all MyRocks files on every backup. Incremental backups for MyRocks are not truly incremental: each one copies all MyRocks files, whether or not those files were already in a full or earlier incremental backup.</p>
 <h2 id="about-xtrabackup-where-to-go-next">Where to go next<a class="headerlink" href="#about-xtrabackup-where-to-go-next" title="Permanent link">&para;</a></h2>
 <table>
@@ -13676,6 +13679,7 @@ xbcloud<span class="w"> </span>put<span class="w"> </span>--storage<span class="
 record, can cause older versions of Percona XtraBackup to fail. To
 ensure that you can back up and restore your data, use a Percona
 XtraBackup version that is equal to your source server major version. This means if you use Percona XtraBackup 9.7.x, you can safely back up the source server from 9.7.x to 9.7.xx.</p>
+<p>Some server features require a minimum Percona XtraBackup patch version. See <a href="#server-backup-version-comparison-minimum-percona-xtrabackup-version-for-server-features">Minimum Percona XtraBackup version for server features</a>.</p>
 <div class="admonition admonition">
 <p class="admonition-title">See also</p>
 <p><a href="#how-xtrabackup-works">How XtraBackup works</a></p>
@@ -13717,7 +13721,41 @@ example, overrides the parameter and the backup proceeds.</p>
 <li>
 <p>Backup successful</p>
 </li>
-</ul></section><section class="print-page" id="privileges" heading-number="8.2.2"><h1 id="privileges-connection-and-privileges-needed">Connection and privileges needed<a class="headerlink" href="#privileges-connection-and-privileges-needed" title="Permanent link">&para;</a></h1>
+</ul>
+<h2 id="server-backup-version-comparison-minimum-percona-xtrabackup-version-for-server-features">Minimum Percona XtraBackup version for server features<a class="headerlink" href="#server-backup-version-comparison-minimum-percona-xtrabackup-version-for-server-features" title="Permanent link">&para;</a></h2>
+<p>Some server features add redo log record types. A Percona XtraBackup version without support for the record type cannot create a backup of a database with the feature.</p>
+<table>
+<thead>
+<tr>
+<th>Server version</th>
+<th>Feature</th>
+<th>Minimum Percona XtraBackup version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Percona Server for MySQL 9.7.4-4</td>
+<td>Vector index</td>
+<td>9.7.2-3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="server-backup-version-comparison-vector-index">Vector index<a class="headerlink" href="#server-backup-version-comparison-vector-index" title="Permanent link">&para;</a></h3>
+<p>Percona Server for MySQL 9.7.4-4 adds the vector (HNSW) index. Starting with Percona XtraBackup 9.7.2-3, Percona XtraBackup handles vector indexes. To back up a Percona Server for MySQL 9.7.4-4 database with vector indexes, use Percona XtraBackup 9.7.2-3 or higher.</p>
+<p>The <code>VECTOR</code> data type is available in all Percona Server for MySQL 9.7 releases. Percona XtraBackup backs up and restores tables with <code>VECTOR</code> columns and no vector index.</p>
+<p>The export and import of tablespaces depend on the table:</p>
+<ul>
+<li>
+<p>For a table with <code>VECTOR</code> columns and no vector index, <code>--prepare --export</code> and the import of the exported tablespace work starting with Percona XtraBackup 9.7.2-3.</p>
+</li>
+<li>
+<p>For a table with a vector index, <code>--prepare --export</code> succeeds and creates the <code>.cfg</code> file. You cannot import the tablespace because vector index support is at the minimum viable product (MVP) stage.</p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the server has vector indexes, do not trust backups taken with Percona XtraBackup 9.7.2-2. These backups are invalid. The backup and prepare steps can still succeed. To get a valid backup, upgrade Percona XtraBackup to 9.7.2-3 or higher and take the backup again.</p>
+</div></section><section class="print-page" id="privileges" heading-number="8.2.2"><h1 id="privileges-connection-and-privileges-needed">Connection and privileges needed<a class="headerlink" href="#privileges-connection-and-privileges-needed" title="Permanent link">&para;</a></h1>
 <p>Percona XtraBackup needs to be able to connect to the database server and
 perform operations on the server and the datadir when creating a
 backup, when preparing in some scenarios and when restoring it. In order to do
@@ -16837,8 +16875,8 @@ be found in the <em>pt-table-checksum</em> <a href="https://docs.percona.com/per
                         <h1>Troubleshoot<a class='headerlink' href='#section-10' title='Permanent link'></a>
                         </h1>
                     <section class="print-page" id="xtrabackup-exit-codes" heading-number="10.1"><h1 id="xtrabackup-exit-codes-xtrabackup-exit-codes">xtrabackup exit codes<a class="headerlink" href="#xtrabackup-exit-codes-xtrabackup-exit-codes" title="Permanent link">&para;</a></h1>
-<p>The <em>xtrabackup</em> binary exits with the traditional success value of 0 after a backup when no error occurs. If an error occurs during the backup, the exit value is 1.</p>
-<p>In certain cases, the exit value can be something other than 0 or 1, due to the command-line option code included from the <em>MySQL</em> libraries. An unknown command-line option, for example, will cause an exit code of 255.</p></section><section class="print-page" id="update-curl-utility" heading-number="10.2"><h1 id="update-curl-utility-dependency-compatibility-and-limitations">Dependency compatibility and limitations<a class="headerlink" href="#update-curl-utility-dependency-compatibility-and-limitations" title="Permanent link">&para;</a></h1>
+<p>The <em>xtrabackup</em> binary exits with the traditional success value of 0 after a backup when no error occurs. Any non-zero exit value means that an error occurred.</p>
+<p>The exact non-zero value depends on the error. The command-line option code from the <em>MySQL</em> libraries sets some of these values. For example, an unknown command-line option causes an exit code of 255.</p></section><section class="print-page" id="update-curl-utility" heading-number="10.2"><h1 id="update-curl-utility-dependency-compatibility-and-limitations">Dependency compatibility and limitations<a class="headerlink" href="#update-curl-utility-dependency-compatibility-and-limitations" title="Permanent link">&para;</a></h1>
 <p>xbcloud depends on several system libraries for correct operation. Some versions of these dependencies are known to cause unexpected terminations or
 unstable behavior and are therefore not supported.</p>
 <p>If you are experiencing unexpected terminations or intermittent failures, verify that your environment does not use any of the versions listed below.</p>
@@ -17063,7 +17101,13 @@ Percona XtraBackup will not be able to take a consistent backup. Retry the backu
 <p>To block all DDL operations, use the <code>--lock-ddl</code> option that issues <code>LOCK TABLES FOR BACKUP</code>.</p>
 </li>
 </ul>
-</div></section><section class="print-page" id="glossary" heading-number="11.4"><h1 id="glossary-glossary">Glossary<a class="headerlink" href="#glossary-glossary" title="Permanent link">&para;</a></h1>
+</div>
+<h2 id="faq-are-backups-of-a-database-with-vector-indexes-taken-with-percona-xtrabackup-972-2-valid">Are backups of a database with vector indexes taken with Percona XtraBackup 9.7.2-2 valid?<a class="headerlink" href="#faq-are-backups-of-a-database-with-vector-indexes-taken-with-percona-xtrabackup-972-2-valid" title="Permanent link">&para;</a></h2>
+<p>No. Percona Server for MySQL 9.7.4-4 adds the vector (HNSW) index. If the server has vector indexes, Percona XtraBackup 9.7.2-2 creates invalid backups. The backup and prepare steps can still succeed, so do not trust these backups.</p>
+<p>To get a valid backup, upgrade Percona XtraBackup to 9.7.2-3 or higher and take the backup again. For details, see <a href="#server-backup-version-comparison-minimum-percona-xtrabackup-version-for-server-features">Minimum Percona XtraBackup version for server features</a>.</p>
+<h2 id="faq-can-i-import-an-exported-tablespace-of-a-table-with-a-vector-index">Can I import an exported tablespace of a table with a vector index?<a class="headerlink" href="#faq-can-i-import-an-exported-tablespace-of-a-table-with-a-vector-index" title="Permanent link">&para;</a></h2>
+<p>No. With Percona XtraBackup 9.7.2-3 or higher, <code>--prepare --export</code> succeeds and creates the <code>.cfg</code> file. You cannot import the tablespace because vector index support is at the minimum viable product (MVP) stage.</p>
+<p>For a table with <code>VECTOR</code> columns and no vector index, <code>--prepare --export</code> and the import of the exported tablespace work starting with Percona XtraBackup 9.7.2-3.</p></section><section class="print-page" id="glossary" heading-number="11.4"><h1 id="glossary-glossary">Glossary<a class="headerlink" href="#glossary-glossary" title="Permanent link">&para;</a></h1>
 <h2 id="glossary-csm">.CSM<a class="headerlink" href="#glossary-csm" title="Permanent link">&para;</a></h2>
 <p>Each table with the CSV Storage Engine has <code>.CSM</code> file which contains the metadata of it.</p>
 <h2 id="glossary-csv">.CSV<a class="headerlink" href="#glossary-csv" title="Permanent link">&para;</a></h2>

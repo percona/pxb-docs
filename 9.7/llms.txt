@@ -6,139 +6,136 @@ Each page below is also available as markdown. For the documentation of all Perc
 
 ## Overview
 
-- [Home](https://docs.percona.com/percona-xtrabackup/9.7/index.md)
-- [Get help from Percona](https://docs.percona.com/percona-xtrabackup/9.7/get-help.md)
+- [Home](https://docs.percona.com/percona-xtrabackup/9.7/index.md): Percona XtraBackup is an open source hot backup utility for MySQL-based servers that keep your database fully available during planned maintenance windows.
+- [Get help from Percona](https://docs.percona.com/percona-xtrabackup/9.7/get-help.md): Our documentation guides are packed with information, but they can’t cover everything you need to know about Percona XtraBackup. They also won’t cover every scenario you might come across. Don’t be…
 - [Topic Index](https://docs.percona.com/percona-xtrabackup/9.7/index-contents.md)
-
-## Release notes
-
-- [Release notes index](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/release-notes.md)
-- [Percona XtraBackup 9.7.2-2 (2026-11-04)](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/9.7.2-2.md)
-- [Percona XtraBackup 9.7.1-rc1 (2026-07-15)](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/9.7.1-rc1.md)
 
 ## Quickstart Guide
 
-- [Quickstart Overview](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.md)
-- [Start a Docker container and take a backup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-docker.md)
-- [Restore the backup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-restore-back.md)
-- [Clean up](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-exit.md)
-- [Next steps](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-next-steps.md)
+- [Quickstart Overview](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.md): Percona XtraBackup is a 100% open source backup solution for all versions of Percona Server for MySQL and MySQL® that performs online non-blocking, tightly compressed, highly secure full backups on…
+- [Start a Docker container and take a backup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-docker.md): In this scenario, Percona XtraBackup works in combination with a MySQL-compatible database instance. To use the tool, you must run Percona XtraBackup in a separate Docker container and then connect…
+- [Restore the backup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-restore-back.md): The following steps describe how to restore your backup to another Percona Server container and check whether the data is available.
+- [Clean up](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-exit.md): In this document you’ll learn how to:
+- [Next steps](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-next-steps.md): After you take your first backup with Percona Xtrabackup, it’s high time to expand your knowledge and skills in using Percona Xtrabackup.
 
 ## How Percona XtraBackup works
 
-- [About Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/about-xtrabackup.md)
-- [Percona XtraBackup features](https://docs.percona.com/percona-xtrabackup/9.7/features.md)
-- [How Percona XtraBackup works](https://docs.percona.com/percona-xtrabackup/9.7/how-xtrabackup-works.md)
-- [Differences between a logical backup and Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/differences-logical-backup.md)
-- [Backup process overview](https://docs.percona.com/percona-xtrabackup/9.7/backup-overview.md)
-- [Backup strategy and backup policy](https://docs.percona.com/percona-xtrabackup/9.7/backup-strategy.md)
-- [Backup example](https://docs.percona.com/percona-xtrabackup/9.7/example-full-incr.md)
-- [XtraBackup backup files](https://docs.percona.com/percona-xtrabackup/9.7/generated-files.md)
+- [About Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/about-xtrabackup.md): This page gives a short overview of Percona XtraBackup: what it is, why use it, and where to go next in the docs.
+- [Percona XtraBackup features](https://docs.percona.com/percona-xtrabackup/9.7/features.md): The following is a short list of the Percona XtraBackup features:
+- [How Percona XtraBackup works](https://docs.percona.com/percona-xtrabackup/9.7/how-xtrabackup-works.md): Percona XtraBackup is based on InnoDB’s crash-recovery functionality. It copies your InnoDB data files, which results in data that is internally inconsistent; but then it performs crash recovery on…
+- [Differences between a logical backup and Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/differences-logical-backup.md): You’ll notice several key differences when transitioning from a logical database backup to Percona XtraBackup. A logical backup contains the database contents as SQL or similar logical data (tables…
+- [Backup process overview](https://docs.percona.com/percona-xtrabackup/9.7/backup-overview.md): Percona Xtrabackup is a tool that allows you to create backups of MySQL or MariaDB databases. It works by copying the data files and the binary log files of the server, while ensuring that the data…
+- [Backup strategy and backup policy](https://docs.percona.com/percona-xtrabackup/9.7/backup-strategy.md): In conversation, “backup strategy,” “backup policy,” and “backup plan” are used interchangeably, but the terms have distinct meanings.
+- [Backup example](https://docs.percona.com/percona-xtrabackup/9.7/example-full-incr.md): This example demonstrates how to set up daily full backups and hourly incremental backups using Percona XtraBackup 9.7 with a MySQL 9.7-compatible database server.
+- [XtraBackup backup files](https://docs.percona.com/percona-xtrabackup/9.7/generated-files.md): This document provides a guide to the files and directory structure generated by the Xtrabackup tool. This information is essential for system administrators and database professionals who need to…
 
 ## Features
 
-- [LRU dump backup](https://docs.percona.com/percona-xtrabackup/9.7/lru-dump-backup.md)
-- [Throttling backups](https://docs.percona.com/percona-xtrabackup/9.7/throttling-backups.md)
-- [Store backup history on the server](https://docs.percona.com/percona-xtrabackup/9.7/store-backup-history.md)
-- [Backup size reporting](https://docs.percona.com/percona-xtrabackup/9.7/backup-size-reporting.md)
-- [Take a streaming backup](https://docs.percona.com/percona-xtrabackup/9.7/take-streaming-backup.md)
-- [Accelerate backup process](https://docs.percona.com/percona-xtrabackup/9.7/accelerate-backup-process.md)
-- [InnoDB B-tree integrity validation during prepare](https://docs.percona.com/percona-xtrabackup/9.7/innodb-btree-check.md)
-- [Point-in-time recovery](https://docs.percona.com/percona-xtrabackup/9.7/point-in-time-recovery.md)
-- [FLUSH TABLES WITH READ LOCK option](https://docs.percona.com/percona-xtrabackup/9.7/flush-tables-with-read-lock.md)
-- [Improved log statements](https://docs.percona.com/percona-xtrabackup/9.7/log-enhancements.md)
-- [InnoDB Redo Log Archiving](https://docs.percona.com/percona-xtrabackup/9.7/redo-log-archiving.md)
-- [Reduced backup lock time](https://docs.percona.com/percona-xtrabackup/9.7/reduction-in-locks.md)
-- [Smart memory estimation](https://docs.percona.com/percona-xtrabackup/9.7/smart-memory-estimation.md)
-- [Work with binary logs](https://docs.percona.com/percona-xtrabackup/9.7/working-with-binary-logs.md)
-- [FIFO data sink](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-fifo-datasink.md)
-- [Exponential backoff](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-exbackoff.md)
+- [LRU dump backup](https://docs.percona.com/percona-xtrabackup/9.7/lru-dump-backup.md): Percona XtraBackup includes a saved buffer pool dump into a backup to enable reducing the warm up time. It restores the buffer pool state from ib_buffer_pool file after restart. Percona XtraBackup…
+- [Throttling backups](https://docs.percona.com/percona-xtrabackup/9.7/throttling-backups.md): xtrabackup does not block database activity during a backup, but xtrabackup generates additional disk input/output (I/O) activity. On systems with limited I/O capacity, this can affect database…
+- [Store backup history on the server](https://docs.percona.com/percona-xtrabackup/9.7/store-backup-history.md): Percona XtraBackup supports storing the backups history on the server. Storing backup history on the server was implemented to provide users with additional information about backups that are being…
+- [Backup size reporting](https://docs.percona.com/percona-xtrabackup/9.7/backup-size-reporting.md): Percona XtraBackup reports the size of every successful backup in xtrabackup_info and reports the same values in the XtraBackup error log.
+- [Take a streaming backup](https://docs.percona.com/percona-xtrabackup/9.7/take-streaming-backup.md): Percona XtraBackup supports streaming mode. Streaming mode sends a backup to STDOUT in the xbstream format instead of copying the files to the backup directory.
+- [Accelerate backup process](https://docs.percona.com/percona-xtrabackup/9.7/accelerate-backup-process.md): When making a local or streaming backup with xbstream binary, multiple files can be copied at the same time when using the --parallel option.
+- [InnoDB B-tree integrity validation during prepare](https://docs.percona.com/percona-xtrabackup/9.7/innodb-btree-check.md): The --check-tables option validates the structural integrity of InnoDB B-tree indexes during the --prepare phase.
+- [Point-in-time recovery](https://docs.percona.com/percona-xtrabackup/9.7/point-in-time-recovery.md): Recovering up to particular moment in database’s history can be done with xtrabackup and the binary logs of the server.
+- [FLUSH TABLES WITH READ LOCK option](https://docs.percona.com/percona-xtrabackup/9.7/flush-tables-with-read-lock.md): The FLUSH TABLES WITH READ LOCK option does the following with a global read lock:
+- [Improved log statements](https://docs.percona.com/percona-xtrabackup/9.7/log-enhancements.md): Percona XtraBackup is an open-source command-line utility. Command-line tools have limited interaction with the background operations and the logs provide the progress of an operation or more…
+- [InnoDB Redo Log Archiving](https://docs.percona.com/percona-xtrabackup/9.7/redo-log-archiving.md): A physical backup includes raw copies of database contents and related files, such as configuration files and logs. During crash recovery, InnoDB uses the redo log to correct data from incomplete…
+- [Reduced backup lock time](https://docs.percona.com/percona-xtrabackup/9.7/reduction-in-locks.md): The --lock-ddl=REDUCED option reduces the time the server remains locked by xtrabackup during full and incremental backups. This allows you to perform Data Definition Language (DDL) operations while…
+- [Smart memory estimation](https://docs.percona.com/percona-xtrabackup/9.7/smart-memory-estimation.md): Percona XtraBackup supports the Smart memory estimation feature. With this feature, Percona XtraBackup computes the memory required for prepare phase, while copying redo log entries during the backup…
+- [Work with binary logs](https://docs.percona.com/percona-xtrabackup/9.7/working-with-binary-logs.md): The xtrabackup binary integrates with the log_status table. This integration enables xtrabackup to print out the backup’s corresponding binary log position, so that you can use this binary log…
+- [FIFO data sink](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-fifo-datasink.md): Percona XtraBackup implements a data sink that uses the first in, first out (FIFO) method. With the FIFO data sink feature, users with a streaming capacity of 10Gbps (typically on a Local Area…
+- [Exponential backoff](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-exbackoff.md): Exponential backoff increases the chances for the completion of a backup or a restore operation. For example, a chunk upload or download may fail if you have an unstable network connection or other…
 
 ## Binaries
 
-- [Overview](https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.md)
-- [Overview of the xtrabackup binary](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-binary-overview.md)
-- [xtrabackup implementation details](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-implementation-details.md)
-- [The xtrabackup command-line options](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md)
-- [Configure xtrabackup](https://docs.percona.com/percona-xtrabackup/9.7/configure-xtrabackup.md)
-- [The xbcrypt binary overview](https://docs.percona.com/percona-xtrabackup/9.7/xbcrypt-binary-overview.md)
+- [Overview](https://docs.percona.com/percona-xtrabackup/9.7/binaries-overview.md): Percona XtraBackup provides a comprehensive suite of command-line tools for MySQL database backup and recovery operations. This document introduces the four core binaries that form the foundation of…
+- [Overview of the xtrabackup binary](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-binary-overview.md): The xtrabackup binary compiles in C and connects directly to InnoDB libraries and standard MySQL client libraries. The tool performs point-in-time backups for InnoDB and XtraDB tables and captures…
+- [xtrabackup implementation details](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-implementation-details.md): This page contains notes on various internal aspects of the xtrabackup tool’s operation.
+- [The xtrabackup command-line options](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md): Here you can find all of the command-line options for the xtrabackup binary.
+- [Configure xtrabackup](https://docs.percona.com/percona-xtrabackup/9.7/configure-xtrabackup.md): All the xtrabackup configuration is done through options, which behave exactly like standard MySQL program options: they can be specified either at the command-line, or through a file such as…
+- [The xbcrypt binary overview](https://docs.percona.com/percona-xtrabackup/9.7/xbcrypt-binary-overview.md): To support encryption and decryption of the backups, a new tool xbcrypt was introduced to Percona XtraBackup.
 - [The xbcrypt command-line options](https://docs.percona.com/percona-xtrabackup/9.7/xbcrypt-options.md)
-- [The xbstream binary overview](https://docs.percona.com/percona-xtrabackup/9.7/xbstream-binary-overview.md)
-- [The xbstream command-line options](https://docs.percona.com/percona-xtrabackup/9.7/xbstream-options.md)
-- [The xbcloud binary overview](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-overview.md)
-- [Using environment variable files (.env) with xbcloud](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-env.md)
+- [The xbstream binary overview](https://docs.percona.com/percona-xtrabackup/9.7/xbstream-binary-overview.md): To support simultaneous compression and streaming, the xbstream binary was added to Percona XtraBackup, along with the xbstream format and tar format. These additions were required to overcome some…
+- [The xbstream command-line options](https://docs.percona.com/percona-xtrabackup/9.7/xbstream-options.md): This utility has a tar-like interface.
+- [The xbcloud binary overview](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-binary-overview.md): xbcloud is a cloud storage utility that works with Percona XtraBackup to upload, download, and manage database backups in cloud storage. It enables you to stream backups directly to cloud storage…
+- [Using environment variable files (.env) with xbcloud](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-env.md): Environment variable files (.env) are a common way to manage configuration settings and sensitive credentials. Here’s how to use them with xbcloud:
 - [The xbcloud command-line options](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-options.md)
-- [Use the xbcloud binary with Amazon S3](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.md)
-- [Use the xbcloud binary with an IAM instance profile](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-iam-profile.md)
-- [Use the xbcloud binary with Swift](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-swift.md)
-- [Use the xbcloud binary with Google Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-gcs.md)
-- [Use the xbcloud binary with Microsoft Azure Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.md)
+- [Use the xbcloud binary with Amazon S3](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-s3.md): The following options are available when using Amazon S3:
+- [Use the xbcloud binary with an IAM instance profile](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-iam-profile.md): You can use the IAM instance profile when running xbcloud from an EC2 instance.
+- [Use the xbcloud binary with Swift](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-swift.md): The following example shows how to make a full backup and upload it to Swift.
+- [Use the xbcloud binary with Google Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-gcs.md): The support for Google Cloud Storage is implemented using the interoperability mode.
+- [Use the xbcloud binary with Microsoft Azure Cloud Storage](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-azure.md): The xbcloud binary adds support for the Microsoft Azure Cloud Storage using the REST API.
 - [Use the xbcloud binary with MinIO](https://docs.percona.com/percona-xtrabackup/9.7/xbcloud-minio.md)
 
 ## Install
 
-- [Install overview](https://docs.percona.com/percona-xtrabackup/9.7/installation.md)
-- [Server version and backup version comparison](https://docs.percona.com/percona-xtrabackup/9.7/server-backup-version-comparison.md)
-- [Connection and privileges needed](https://docs.percona.com/percona-xtrabackup/9.7/privileges.md)
-- [Permissions needed](https://docs.percona.com/percona-xtrabackup/9.7/permissions.md)
-- [Percona Software Download instructions](https://docs.percona.com/percona-xtrabackup/9.7/download-instructions.md)
-- [Use APT: Use APT repositories](https://docs.percona.com/percona-xtrabackup/9.7/apt-repo.md)
-- [Use APT: Files in DEB package](https://docs.percona.com/percona-xtrabackup/9.7/apt-files.md)
-- [Use APT: Downloaded DEB packages](https://docs.percona.com/percona-xtrabackup/9.7/apt-download-deb.md)
-- [Use APT: Apt pinning](https://docs.percona.com/percona-xtrabackup/9.7/apt-pinning.md)
-- [Work with AppArmor](https://docs.percona.com/percona-xtrabackup/9.7/work-with-apparmor.md)
-- [Use APT: Uninstall](https://docs.percona.com/percona-xtrabackup/9.7/apt-uninstall-xtrabackup.md)
-- [Use YUM: Use RPM repositories](https://docs.percona.com/percona-xtrabackup/9.7/yum-repo.md)
-- [Use YUM: Files in RPM package](https://docs.percona.com/percona-xtrabackup/9.7/yum-files.md)
-- [Use YUM: Downloaded RPM packages](https://docs.percona.com/percona-xtrabackup/9.7/yum-download-rpm.md)
-- [Work with SELinux](https://docs.percona.com/percona-xtrabackup/9.7/work-with-selinux.md)
-- [Use YUM: Uninstall](https://docs.percona.com/percona-xtrabackup/9.7/yum-uninstall-xtrabackup.md)
-- [Use binary tarballs: Install with binary tarballs](https://docs.percona.com/percona-xtrabackup/9.7/binary-tarball.md)
-- [Use binary tarballs: Binary tarballs available](https://docs.percona.com/percona-xtrabackup/9.7/binary-tarball-names.md)
-- [Compile and install from source](https://docs.percona.com/percona-xtrabackup/9.7/compile-xtrabackup.md)
-- [Run a Docker container](https://docs.percona.com/percona-xtrabackup/9.7/docker.md)
+- [Install overview](https://docs.percona.com/percona-xtrabackup/9.7/installation.md): We recommend that you install Percona XtraBackup 9.7 from the official Percona software repositories using the appropriate package manager for your system:
+- [Server version and backup version comparison](https://docs.percona.com/percona-xtrabackup/9.7/server-backup-version-comparison.md): A MySQL change to a feature, such as the structure of a redo log record, can cause older versions of Percona XtraBackup to fail. To ensure that you can back up and restore your data, use a Percona…
+- [Connection and privileges needed](https://docs.percona.com/percona-xtrabackup/9.7/privileges.md): Percona XtraBackup needs to be able to connect to the database server and perform operations on the server and the datadir when creating a backup, when preparing in some scenarios and when restoring…
+- [Permissions needed](https://docs.percona.com/percona-xtrabackup/9.7/permissions.md): We will be referring to permissions to the ability of a user to access and perform changes on the relevant parts of the host’s filesystem, starting/stopping services and installing software.
+- [Percona Software Download instructions](https://docs.percona.com/percona-xtrabackup/9.7/download-instructions.md): Do the following steps to select the software:
+- [Use APT: Use APT repositories](https://docs.percona.com/percona-xtrabackup/9.7/apt-repo.md): Ready-to-use packages are available from the Percona XtraBackup software repositories and the Percona Software Downloads.
+- [Use APT: Files in DEB package](https://docs.percona.com/percona-xtrabackup/9.7/apt-files.md): The following tables show what data each DEB package contains.
+- [Use APT: Downloaded DEB packages](https://docs.percona.com/percona-xtrabackup/9.7/apt-download-deb.md): Download DEB packages of the desired series for your architecture from the Percona Software Downloads. If needed, Percona Software Download instructions are available.
+- [Use APT: Apt pinning](https://docs.percona.com/percona-xtrabackup/9.7/apt-pinning.md): In some cases you might need to pin the selected packages to avoid the upgrades from the distribution repositories.
+- [Work with AppArmor](https://docs.percona.com/percona-xtrabackup/9.7/work-with-apparmor.md): The Linux Security Module implements mandatory access controls (MAC) with AppArmor. Debian and Ubuntu systems install AppArmor by default. AppArmor uses profiles which define which files and…
+- [Use APT: Uninstall](https://docs.percona.com/percona-xtrabackup/9.7/apt-uninstall-xtrabackup.md): To completely uninstall Percona XtraBackup, remove all the installed packages. Run the following command as root or use the sudo command.
+- [Use YUM: Use RPM repositories](https://docs.percona.com/percona-xtrabackup/9.7/yum-repo.md): Ready-to-use packages are available from the Percona XtraBackup software repositories and the Percona Software Downloads. The Percona yum repository supports popular RPM-based operating systems…
+- [Use YUM: Files in RPM package](https://docs.percona.com/percona-xtrabackup/9.7/yum-files.md): The following tables show what data each RPM package contains:
+- [Use YUM: Downloaded RPM packages](https://docs.percona.com/percona-xtrabackup/9.7/yum-download-rpm.md): Download RPM packages of the desired series for your architecture from the Percona Software Downloads. If needed, Percona Software Download instructions are available.
+- [Work with SELinux](https://docs.percona.com/percona-xtrabackup/9.7/work-with-selinux.md): Percona XtraBackup is installed as an unconfined process running in an undefined domain. SELinux allows unconfined processes almost all access and the processes only use Discretionary Access Control…
+- [Use YUM: Uninstall](https://docs.percona.com/percona-xtrabackup/9.7/yum-uninstall-xtrabackup.md): To completely uninstall Percona XtraBackup, remove all the installed packages:
+- [Use binary tarballs: Install with binary tarballs](https://docs.percona.com/percona-xtrabackup/9.7/binary-tarball.md): Binary tarballs are compressed tar archives that contain precompiled executable files, libraries, and other dependencies. You can extract the binary tarballs to any path.
+- [Use binary tarballs: Binary tarballs available](https://docs.percona.com/percona-xtrabackup/9.7/binary-tarball-names.md): For recent versions of Percona XtraBackup, the tar files are organized by the glibc2 version. You can find this version on your operating system with the following command:
+- [Compile and install from source](https://docs.percona.com/percona-xtrabackup/9.7/compile-xtrabackup.md): The following instructions install Percona XtraBackup 9.7. Run the following command as root or use the sudo command.
+- [Run a Docker container](https://docs.percona.com/percona-xtrabackup/9.7/docker.md): Docker allows you to run applications in a lightweight unit called a container.
 
 ## How to
 
-- [Create a full backup](https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.md)
-- [Prepare a full backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-full-backup.md)
-- [Create an incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/create-incremental-backup.md)
-- [Prepare an incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.md)
-- [Take an incremental backup using page tracking](https://docs.percona.com/percona-xtrabackup/9.7/page-tracking.md)
-- [Create a compressed backup](https://docs.percona.com/percona-xtrabackup/9.7/create-compressed-backup.md)
-- [Decompress and prepare a backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-compressed-backup.md)
-- [Encrypt backups](https://docs.percona.com/percona-xtrabackup/9.7/encrypt-backups.md)
-- [Encrypted InnoDB tablespace backups](https://docs.percona.com/percona-xtrabackup/9.7/encrypted-innodb-tablespace-backups.md)
-- [Create a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/create-partial-backup.md)
-- [Prepare a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-partial-backup.md)
-- [Create an individual partitions backup](https://docs.percona.com/percona-xtrabackup/9.7/create-individual-partition-backup.md)
-- [Prepare an individual partitions backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-individual-partitions-backup.md)
-- [Restore a backup: Restore full, incremental, compressed backups](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.md)
-- [Restore a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-partial-backup.md)
-- [Restore a backup: Restore an individual partition's backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-partitions.md)
-- [Restore individual tables](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.md)
-- [How to set up a replica for replication in 6 simple steps with Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/set-up-replication.md)
-- [How to create a new (or repair a broken) GTID-based replica](https://docs.percona.com/percona-xtrabackup/9.7/create-gtid-replica.md)
-- [Make backups in replication environments](https://docs.percona.com/percona-xtrabackup/9.7/make-backup-in-replication-env.md)
-- [Verify backups with replication and pt-checksum](https://docs.percona.com/percona-xtrabackup/9.7/verify-backup.md)
+- [Create a full backup](https://docs.percona.com/percona-xtrabackup/9.7/create-full-backup.md): Quick syntax for creating a full backup with common options:
+- [Prepare a full backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-full-backup.md): Percona XtraBackup 9.7.2-2 renames the --apply-log-only option to --apply-redo-only.
+- [Create an incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/create-incremental-backup.md): xtrabackup supports incremental backups, which means that they can copy only all the data that has changed since the last backup.
+- [Prepare an incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.md): Preparing an incremental backup combines a full backup with one or more incremental backups to create a consistent backup that you can restore.
+- [Take an incremental backup using page tracking](https://docs.percona.com/percona-xtrabackup/9.7/page-tracking.md): To create an incremental backup with page tracking, Percona XtraBackup uses the MySQL mysqlbackup component. This component provides a list of pages modified since the last backup, and Percona…
+- [Create a compressed backup](https://docs.percona.com/percona-xtrabackup/9.7/create-compressed-backup.md): Percona XtraBackup supports compressed backups. To make a compressed backup, use the --compress option along with the --backup and --target-dir options. A local or streaming backup can be compressed…
+- [Decompress and prepare a backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-compressed-backup.md): Before you can prepare the backup you need to decompress all the files. Run the following commands as root or use the sudo command.
+- [Encrypt backups](https://docs.percona.com/percona-xtrabackup/9.7/encrypt-backups.md): Percona XtraBackup supports encrypting and decrypting local and streaming backups with the upstream option, adding another protection layer. The encryption is implemented using the libgcrypt library…
+- [Encrypted InnoDB tablespace backups](https://docs.percona.com/percona-xtrabackup/9.7/encrypted-innodb-tablespace-backups.md): Percona XtraBackup supports two distinct types of encryption:
+- [Create a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/create-partial-backup.md): xtrabackup supports taking partial backups when the innodb_file_per_table option is enabled.
+- [Prepare a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-partial-backup.md): The procedure is analogous to restoring individual tables: apply the logs and use the --export option:
+- [Create an individual partitions backup](https://docs.percona.com/percona-xtrabackup/9.7/create-individual-partition-backup.md): Percona XtraBackup lets you back up individual partitions because partitions are regular tables with specially formatted names. The only requirement for this feature is to enable the…
+- [Prepare an individual partitions backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-individual-partitions-backup.md): To prepare partial backups, follow a procedure similar to restoring individual tables. Apply the logs and use the --export option:
+- [Restore a backup: Restore full, incremental, compressed backups](https://docs.percona.com/percona-xtrabackup/9.7/restore-a-backup.md): Quick syntax for restoring a prepared backup:
+- [Restore a partial backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-partial-backup.md): Warning – Do Not Use –copy-back for Partial Restores
+- [Restore a backup: Restore an individual partition's backup](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-partitions.md): Restoring should be done by importing the tables in the partial backup to the server.
+- [Restore individual tables](https://docs.percona.com/percona-xtrabackup/9.7/restore-individual-tables.md): Sometimes, you must restore just one table instead of a whole database. Percona XtraBackup helps you do this. This guide shows you how to restore specific tables between different database systems…
+- [How to set up a replica for replication in 6 simple steps with Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/set-up-replication.md): Data is, by far, the most valuable part of a system. Having a backup done systematically and available for a rapid recovery in case of failure is admittedly essential to a system. However, it is not…
+- [How to create a new (or repair a broken) GTID-based replica](https://docs.percona.com/percona-xtrabackup/9.7/create-gtid-replica.md): Percona XtraBackup automatically stores the GTID value in the xtrabackup_binlog_info when doing the backup of MySQL and Percona Server for MySQL 9.7 with the GTID mode enabled. This information can…
+- [Make backups in replication environments](https://docs.percona.com/percona-xtrabackup/9.7/make-backup-in-replication-env.md): There are options specific to back up from a replication replica.
+- [Verify backups with replication and pt-checksum](https://docs.percona.com/percona-xtrabackup/9.7/verify-backup.md): One way to verify if the backup is consistent is by setting up the replication and running pt-table-checksum. This can be used to verify any type of backups, but before setting up replication, backup…
 
 ## Troubleshoot
 
-- [xtrabackup exit codes](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-exit-codes.md)
-- [Dependency compatibility and limitations](https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.md)
+- [xtrabackup exit codes](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-exit-codes.md): The xtrabackup binary exits with the traditional success value of 0 after a backup when no error occurs. Any non-zero exit value means that an error occurred.
+- [Dependency compatibility and limitations](https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.md): xbcloud depends on several system libraries for correct operation. Some versions of these dependencies are known to cause unexpected terminations or unstable behavior and are therefore not supported.
 
 ## Reference
 
-- [Index of files created by Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-files.md)
-- [Understand version numbers](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-version-numbers.md)
-- [FAQ](https://docs.percona.com/percona-xtrabackup/9.7/faq.md)
-- [Glossary](https://docs.percona.com/percona-xtrabackup/9.7/glossary.md)
-- [Percona Toolkit version checking](https://docs.percona.com/percona-xtrabackup/9.7/toolkit-version-check.md)
-- [Dump schema for all tables](https://docs.percona.com/percona-xtrabackup/9.7/dump-schema.md)
-- [Trademark policy](https://docs.percona.com/percona-xtrabackup/9.7/trademark-policy.md)
-- [Copyright and licensing information](https://docs.percona.com/percona-xtrabackup/9.7/copyright-and-licensing-information.md)
+- [Index of files created by Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-files.md): Information related to the replication environment (if using the--slave-info option):
+- [Understand version numbers](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-version-numbers.md): A version number identifies the product release. The product contains the latest features, improvements, and bug fixes at the time of that release.
+- [FAQ](https://docs.percona.com/percona-xtrabackup/9.7/faq.md): Percona XtraBackup 9.7 does not support making backups of databases created in versions prior to 9.7 of MySQL, Percona Server for MySQL or Percona XtraDB Cluster.
+- [Glossary](https://docs.percona.com/percona-xtrabackup/9.7/glossary.md): Each table with the CSV Storage Engine has .CSM file which contains the metadata of it.
+- [Percona Toolkit version checking](https://docs.percona.com/percona-xtrabackup/9.7/toolkit-version-check.md): Some Percona software contains “version checking” functionality which is a feature that enables Percona software users to be notified of available software updates to improve your environment…
+- [Dump schema for all tables](https://docs.percona.com/percona-xtrabackup/9.7/dump-schema.md): This script is designed to dump the schemas of all tables from each database in a MySQL server instance, excluding the system databases, into separate files.
+- [Trademark policy](https://docs.percona.com/percona-xtrabackup/9.7/trademark-policy.md): This Trademark Policy is to ensure that users of Percona-branded products or services know that what they receive has really been developed, approved, tested and maintained by Percona. Trademarks…
+- [Copyright and licensing information](https://docs.percona.com/percona-xtrabackup/9.7/copyright-and-licensing-information.md): Percona XtraBackup documentation is (C)2009-2026 Percona LLC and/or its affiliates and is distributed under the Creative Commons Attribution 4.0 International License.
 
 ## Optional
 
-- [Legal Notice](https://docs.percona.com/percona-xtrabackup/9.7/legal-notice.md)
+- [Release notes: Release notes index](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/release-notes.md): Percona XtraBackup 9.7.2-2 (2026-11-04
+- [Percona XtraBackup 9.7.2-2 (2026-11-04)](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/9.7.2-2.md): Get started with Quickstart Guide for Percona XtraBackup.
+- [Percona XtraBackup 9.7.1-rc1 (2026-07-15)](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/9.7.1-rc1.md): Get started with Quickstart Guide for Percona XtraBackup.
+- [Legal Notice](https://docs.percona.com/percona-xtrabackup/9.7/legal-notice.md): You are interacting with an AI-powered chatbot that provides automated responses for general information about our IT services and software. Responses may be inaccurate or incomplete and do not…
 

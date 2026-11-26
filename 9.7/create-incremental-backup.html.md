@@ -1,0 +1,97 @@
+> For the complete documentation index, see [llms.txt](https://docs.percona.com/percona-xtrabackup/9.7/llms.txt).
+
+# Create an incremental backup
+
+xtrabackup supports incremental backups, which means that they can copy only all the data that has changed since the last backup.
+
+Note
+
+Incremental backups on the MyRocks storage engine do not determine if an earlier full backup or incremental backup contains the same files. Percona XtraBackup copies all the MyRocks files each time it takes a backup.
+
+You can perform many incremental backups between each full backup, so you can set up a backup process such as a full backup once a week and an incremental backup every day, or full backups every day and incremental backups every hour.
+
+Incremental backups work because each InnoDB page contains a log sequence number, or LSN. The LSN is the system version number for the entire database. Each page’s LSN shows how recently it was changed.
+
+An incremental backup copies each page which LSN is newer than the previous incremental or full backup’s LSN. An algorithm finds the pages that match the criteria. The algorithm reads the data pages and checks the page LSN.
+
+## Version changes
+
+Percona XtraBackup 9.7.2-2 renames the `--incremental-basedir` option to [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base). Percona XtraBackup still accepts `--incremental-basedir` but prints a deprecation warning. A future release will remove `--incremental-basedir`, so update your scripts to use `--backup-incremental-base`. If you pass both options in the same command, Percona XtraBackup reports an error and does not start.
+
+## Create an incremental backup
+
+To make an incremental backup, begin with a full backup as usual. The xtrabackup binary writes a file called `xtrabackup_checkpoints` into the backup’s target directory. This file contains a line showing the `to_lsn`, which is the database’s LSN at the end of the backup.
+
+Run the following commands as root or use the sudo command.
+
+Create the full backup with a following command:
+
+```shell
+xtrabackup --backup --target-dir=/data/backups/base
+```
+
+If you look at the `xtrabackup_checkpoints` file, you should see similar content depending on your LSN number:
+
+Expected output
+
+```text
+backup_type = full-backuped
+from_lsn = 0
+to_lsn = 36621132
+last_lsn = 36621132
+flushed_lsn = 36621122
+redo_memory = 0
+redo_frames = 0
+```
+
+Now that you have a full backup, you can make an incremental backup based on it. Use the following command:
+
+```shell
+xtrabackup --backup --target-dir=/data/backups/inc1 \
+--backup-incremental-base=/data/backups/base
+```
+
+The `/data/backups/inc1/` directory should now contain delta files, such as `ibdata1.delta` and `test/table1.ibd.delta`. These represent the changes since the `LSN 1626007`. If you examine the `xtrabackup_checkpoints` file in this directory, you should see similar content to the following:
+
+Expected output
+
+```text
+backup_type = incremental
+from_lsn = 36621132
+to_lsn = 37463526
+last_lsn = 37464185
+flushed_lsn = 37464150
+redo_memory = 0
+redo_frames = 0
+```
+
+`from_lsn` is the starting LSN of the backup and for incremental it has to be the same as `to_lsn` (if it is the last checkpoint) of the previous/base backup.
+
+It’s now possible to use this directory as the base for yet another incremental backup:
+
+```shell
+xtrabackup --backup --target-dir=/data/backups/inc2 \
+--backup-incremental-base=/data/backups/inc1
+```
+
+This folder also contains the `xtrabackup_checkpoints`:
+
+Expected output
+
+```text
+backup_type = incremental
+from_lsn = 37463526
+to_lsn = 38308481
+last_lsn = 38308481
+flushed_lsn = 38308446
+redo_memory = 0
+redo_frames = 0
+```
+
+Note
+
+In this case you can see that there is a difference between the `to_lsn` (last checkpoint LSN) and `last_lsn` (last copied LSN), this means that there was some traffic on the server during the backup process.
+
+## Next step
+
+[Prepare the backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.md)

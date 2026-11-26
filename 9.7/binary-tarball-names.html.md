@@ -1,0 +1,60 @@
+> For the complete documentation index, see [llms.txt](https://docs.percona.com/percona-xtrabackup/9.7/llms.txt).
+
+# Binary tarball file names available
+
+For recent versions of Percona XtraBackup, the tar files are organized by the `glibc2` version. You can find this version on your operating system with the following command:
+
+```shell
+ldd --version
+```
+
+Expected output
+
+```text
+ldd (Ubuntu GLIBC 2.35-0ubuntu3.1) 2.35
+Copyright (C) 2022 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+Written by Roland McGrath and Ulrich Drepper.
+```
+
+If the `glibc2` version from your operating system is not listed, then this Percona Server for MySQL version does not support that operating system.
+
+## Binary tarball file name organization
+
+The following lists the platform and the associated full binary file name used by Percona Server for MySQL tar files 9.7.2-2.
+
+| Platform             | Percona XtraBackup tarball name                          | glibc2 version |
+| -------------------- | -------------------------------------------------------- | -------------- |
+| Ubuntu 24.04         | Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.39.tar.gz | glibc2.39      |
+| Ubuntu 22.04         | Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.35.tar.gz | glibc2.35      |
+| Ubuntu 20.04         | Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.31.tar.gz | glibc2.31      |
+| Debian 12            | Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.36.tar.gz | glibc2.36      |
+| Debian 11            | Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.31.tar.gz | glibc2.31      |
+| Red Hat Enterprise 9 | Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.34.tar.gz | glibc2.34      |
+| Red Hat Enterprise 8 | Percona-XtraBackup-9.7.2-2-Linux.x86_64.glibc2.28.tar.gz | glibc2.28      |
+
+Download the binary tarballs from [Percona Software Downloads](https://www.percona.com/downloads) .
+
+The following table lists the tarball types in `Linux - Generic`. Select the *Percona XtraBackup* 9.7 version, the software or the operating system, and the tarball type for your installation. Binary tarballs support all distributions.
+
+After you have downloaded the binary tarballs, extract the tarball in the file location of your choice. The minimal version contains binary files and libraries but does not include test files or debug symbols. The full version contains binary files, libraries, test files, and debug symbols.
+
+| Type    | Name                                                             |
+| ------- | ---------------------------------------------------------------- |
+| Minimal | percona-xtrabackup-9.7.2-2-Linux.x86_64.glibc2.17-minimal.tar.gz |
+| Full    | percona-xtrabackup-9.7.2-2-Linux.x86_64.glibc2.17.tar.gz         |
+| Minimal | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.28-minimal.tar.gz |
+| Full    | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.28.tar.gz         |
+| Minimal | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.31-minimal.tar.gz |
+| Full    | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.31.tar.gz         |
+| Minimal | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.34-minimal.tar.gz |
+| Full    | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.34.tar.gz         |
+| Minimal | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.35-minimal.tar.gz |
+| Full    | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.35.tar.gz         |
+| Minimal | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.36-minimal.tar.gz |
+| Full    | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.36.tar.gz         |
+| Minimal | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.39-minimal.tar.gz |
+| Full    | percona-xtrabackup-9.7.2-2-Linux-x86_64.glibc2.39.tar.gz         |
+
+Select a different software, such as Ubuntu 20.04 (Focal Fossa), for a tarball for that operating system. You can download the packages together or separately.

@@ -63,9 +63,13 @@ Incremental backups for MyRocks are not optimized. Each time you run an incremen
 
 InnoDB tables are locked while copying non-InnoDB data.
 
+Percona XtraBackup 9.7.2-2 creates invalid backups of Percona Server for MySQL 9.7.4-4 databases with vector indexes. Use Percona XtraBackup 9.7.2-3 or higher.
+
 See also
 
 [Dependency compatibility and limitations](https://docs.percona.com/percona-xtrabackup/9.7/update-curl-utility.md)
+
+[Server version and backup version comparison](https://docs.percona.com/percona-xtrabackup/9.7/server-backup-version-comparison.md)
 
 # Get help from Percona
 
@@ -189,128 +193,6 @@ We’re here to help you every step of the way. Whether you need a quick fix or 
 - [xtrabackup implementation details](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-implementation-details.md)
 - Release notes/
 - [Percona XtraBackup 9.7 release notes index](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/release-notes.md)
-# Release notes
-
-# Percona XtraBackup 9.7 release notes index
-
-- [Percona XtraBackup 9.7.2-2 (2026-11-04](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/9.7.2-2.md)
-- [Percona XtraBackup 9.7.1-rc1 (2026-07-15)](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/9.7.1-rc1.md)
-
-# Percona XtraBackup 9.7.2-2 (2026-11-04)
-
-Get started with [Quickstart Guide for Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.md).
-
-## Release Highlights
-
-Percona XtraBackup 9.7.2-2 supports backing up Percona Server for MySQL 9.7.x and MySQL 9.7.x.
-
-Use the Percona XtraBackup 8.4 series to take backups of Percona Server for MySQL 8.4.x and MySQL 8.4.x series.
-
-We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.
-
-Percona XtraBackup 9.7.2-2 release includes new features, improvements, deprecations, and bug fixes.
-
-### Renamed options
-
-Percona XtraBackup 9.7.2-2 renames the following options. The new names describe the phase or the action of each option more clearly.
-
-| Deprecated name         | New name                                                                                                                                        | Used with   |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `--apply-log-only`      | [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only)                           | `--prepare` |
-| `--incremental-basedir` | [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base)           | `--backup`  |
-| `--incremental-dir`     | [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare-incremental-from-dir) | `--prepare` |
-
-Percona XtraBackup still accepts the old names but prints a deprecation warning at startup. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start. A future Long-Term Support (LTS) release will remove `--apply-log-only`, `--incremental-basedir` and `--incremental-dir`.
-
-### Deprecated options
-
-Percona XtraBackup 9.7.2-2 deprecates the following options.
-
-| Option                                                                                                                    | Use instead                                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [`--create-ib-logfile`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#create-ib-logfile) | No replacement. The option has no effect.                                                                       |
-| [`--innodb`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#innodb)                       | No replacement. The option has no effect.                                                                       |
-| [`--log`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#log)                             | No replacement. The option has no effect.                                                                       |
-| [`--no-version-check`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#no-version-check)   | No replacement. The option has no effect.                                                                       |
-| [`--rebuild-threads`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#rebuild-threads)     | No replacement. The option has no effect.                                                                       |
-| [`--rsync`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#rsync)                         | [`--lock-ddl=REDUCED`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#lock-ddl) |
-
-Percona XtraBackup still accepts the options but prints a deprecation warning at startup. A future release will remove the options.
-
-## New features
-
-- [PXB-2559](https://perconadev.atlassian.net/browse/PXB-2559): Adds the `--history-host`, `--history-port`, `--history-socket`, `--history-user`, `--history-password`, and `--history-ssl-*` options to [store the backup history on a different server](https://docs.percona.com/percona-xtrabackup/9.7/store-backup-history.md#store-backup-history-on-a-different-server). Before, Percona XtraBackup always wrote the history record to the server you back up. The write failed when that server ran with `super_read_only` enabled, for example, a replica or a secondary member of a single-primary Group Replication cluster. The `--incremental-history-name` and `--incremental-history-uuid` options also read the base LSN from the history server.
-
-## Improvements
-
-- [PXB-3502](https://perconadev.atlassian.net/browse/PXB-3502): Improves parallel processing performance. With `--parallel`, Percona XtraBackup now processes files in largest-first order instead of discovery order. Large tables and partitions start processing earlier, so you spend less time waiting for large files after other parallel tasks complete. The improvement applies to `--backup`, `--prepare --prepare-incremental-from-dir`, `--copy-back`, `--move-back`, and `--decompress`.
-- [PXB-3758](https://perconadev.atlassian.net/browse/PXB-3758): Adds the [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only) option as the new name for `--apply-log-only`. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start. For details, see [Prepare an incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.md).
-- [PXB-3840](https://perconadev.atlassian.net/browse/PXB-3840): Adds phase-specific names for the incremental backup options. Use [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base) instead of `--incremental-basedir` with `--backup`. Use [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare-incremental-from-dir) instead of `--incremental-dir` with `--prepare`. The old and new names work the same way. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.
-- [PXB-3853](https://perconadev.atlassian.net/browse/PXB-3853): Fixed an issue where incremental backups with page tracking read the unchanged pages between blocks of changed pages. On large tablespaces, the incremental backup could read nearly the whole file. Percona XtraBackup now skips the unchanged page ranges between blocks of changed pages. (Thank you to Reto Giezendanner for your contribution)
-- [PXB-3862](https://perconadev.atlassian.net/browse/PXB-3862): Fixed an issue where incremental backups with page tracking were slow when a tablespace had scattered changed pages. Percona XtraBackup read each scattered changed page on its own, and thousands of small reads take much longer than a few large reads. Percona XtraBackup now reads nearby changed pages together when reading the unchanged pages between them costs less than another read. Percona XtraBackup measures your storage at the start of the backup, so you do not need to change the configuration. The backup contents and size stay the same. Use the new [`--page-tracking-merge-gap`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#page-tracking-merge-gap) option to set a fixed gap, or set the option to `0` to turn off the behavior. For details, see [Read scattered changed pages](https://docs.percona.com/percona-xtrabackup/9.7/page-tracking.md#read-scattered-changed-pages).
-
-## Bug fixes
-
-- [PXB-3609](https://perconadev.atlassian.net/browse/PXB-3609): Fixed an issue where `xbcloud delete` did not remove the `.md5` checksum files for backups uploaded with `xbcloud put --md5`.
-- [PXB-3800](https://perconadev.atlassian.net/browse/PXB-3800): Fixed an issue where `xtrabackup` terminated unexpectedly with an assertion failure in `fil_tablespace_redo_extend()` when the redo log contained an `MLOG_FILE_EXTEND` record for the system tablespace.
-- [PXB-3863](https://perconadev.atlassian.net/browse/PXB-3863): Fixed an issue where `xbcloud put`, `xbcloud get`, and `xbcloud delete` could fail on Azure Blob Storage containers with hierarchical namespace enabled when the backup name began with a slash, for example, `xbcloud put /db/hns`. Percona XtraBackup now handles leading slashes correctly.
-- [PXB-3885](https://perconadev.atlassian.net/browse/PXB-3885): Fixed an issue where `xbcloud` ran the retry waits of parallel requests one after another when the network was slow or unavailable. As a result, several failed requests took the sum of their backoff delays instead of the longest delay. The waits now run at the same time.
-- [PXB-3882](https://perconadev.atlassian.net/browse/PXB-3882): Fixed an issue where the debug build did not compile with gcc 15.2.
-
-## Additional resources
-
-Install [Percona XtraBackup 9.7.2-2](https://docs.percona.com/percona-xtrabackup/9.7/installation.md)
-
-The [Percona XtraBackup GitHub repository](https://github.com/percona/percona-xtrabackup)
-
-Download product binaries, packages, and tarballs at [Percona Product Downloads](https://www.percona.com/downloads/)
-
-# Percona XtraBackup 9.7.1-rc1 (2026-07-15)
-
-Get started with [Quickstart Guide for Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.md).
-
-## Release Highlights
-
-Percona XtraBackup 9.7.1-rc1 is based on the MySQL 9.7 Long-Term Supported (LTS) release. Percona XtraBackup 9.7.1-rc1 is a Release Candidate. Interfaces and behavior are subject to change before the General Availability (GA) release.
-
-Percona XtraBackup 9.7.1-rc1 supports backing up Percona Server for MySQL 9.7.x and MySQL 9.7.x.
-
-Use the Percona XtraBackup 8.4 series to take backups of Percona Server for MySQL 8.4.x and MySQL 8.4.x series.
-
-Percona XtraBackup 9.7.1-rc1 release includes new features, improvements and bug fixes.
-
-- Percona XtraBackup introduces the [`--check-tables`](https://docs.percona.com/percona-xtrabackup/9.7/innodb-btree-check.md) option to validate the structural integrity of InnoDB B-tree indexes during the [`--prepare`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare) phase. Validation during `--prepare` helps detect corrupted indexes before restore or production deployment.
-- Percona XtraBackup introduces [backup size reporting](https://docs.percona.com/percona-xtrabackup/9.7/backup-size-reporting.md) for successful backups. Percona XtraBackup now records backup size in `xtrabackup_info` and reports the same information in the XtraBackup error log. Backup size reporting helps estimate storage requirements, check that backups work correctly, and plan restores for compressed and streamed backups.
-- Percona XtraBackup improves sparse file handling efficiency by removing redundant `fallocate(PUNCH_HOLE)` calls from `local_write_sparse`.
-
-We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.
-
-## New features
-
-- [PXB-3328](https://perconadev.atlassian.net/browse/PXB-3328): Adds the `--check-tables` option to validate InnoDB B-tree index integrity during the `--prepare` phase. The option detects structural corruption in backup files before restore or deployment.
-- [PXB-3747](https://perconadev.atlassian.net/browse/PXB-3747): Adds backup size reporting for successful backups. Percona XtraBackup now records backup size in `xtrabackup_info` and reports the same information in the XtraBackup error log.
-
-## Improvements
-
-- [PXB-3658](https://perconadev.atlassian.net/browse/PXB-3658): Improves sparse file handling efficiency by removing redundant `fallocate(PUNCH_HOLE)` calls from `local_write_sparse`.
-
-## Bug fixes
-
-- [PXB-3568](https://perconadev.atlassian.net/browse/PXB-3568): Fixed an issue where `xtrabackup` terminated unexpectedly on RHEL 9 when using `--compress=lz4`.
-- [PXB-3759](https://perconadev.atlassian.net/browse/PXB-3759): Fixed an issue where `xtrabackup` terminated unexpectedly when redo log encryption was enabled and `innodb_log_buffer_size` exceeded 16 MB.
-- [PXB-3762](https://perconadev.atlassian.net/browse/PXB-3762): Fixed an issue where `xtrabackup --backup --transition-key` terminated unexpectedly on servers where undo tablespace encryption keys existed only in redo logs.
-
-## Packaging notes
-
-Percona XtraBackup 9.7 adds support for Ubuntu 26.04.
-
-## Additional resources
-
-Install [Percona XtraBackup 9.7.1-rc1](https://docs.percona.com/percona-xtrabackup/9.7/installation.md)
-
-The [Percona XtraBackup GitHub repository](https://github.com/percona/percona-xtrabackup)
-
-Download product binaries, packages, and tarballs at [Percona Product Downloads](https://www.percona.com/downloads/)
 # Quickstart Guide
 
 # Quickstart Overview
@@ -898,6 +780,8 @@ Percona’s enterprise-grade commercial [MySQL Support](https://www.percona.com/
 ## Supported storage engines
 
 Percona XtraBackup can back up data from InnoDB, XtraDB, MyISAM, and MyRocks tables on MySQL 9.7 servers as well as Percona Server for MySQL 9.7.
+
+To create a backup of Percona Server for MySQL 9.7.4-4 databases with vector indexes, use Percona XtraBackup 9.7.2-3 or higher. For details, see [Minimum Percona XtraBackup version for server features](https://docs.percona.com/percona-xtrabackup/9.7/server-backup-version-comparison.md#minimum-percona-xtrabackup-version-for-server-features).
 
 Percona XtraBackup supports the MyRocks storage engine. Percona XtraBackup copies all MyRocks files on every backup. Incremental backups for MyRocks are not truly incremental: each one copies all MyRocks files, whether or not those files were already in a full or earlier incremental backup.
 
@@ -6097,6 +5981,8 @@ Before installing Percona XtraBackup with any of these methods, we recommend tha
 
 A MySQL change to a feature, such as the structure of a redo log record, can cause older versions of Percona XtraBackup to fail. To ensure that you can back up and restore your data, use a Percona XtraBackup version that is equal to your source server major version. This means if you use Percona XtraBackup 9.7.x, you can safely back up the source server from 9.7.x to 9.7.xx.
 
+Some server features require a minimum Percona XtraBackup patch version. See [Minimum Percona XtraBackup version for server features](#minimum-percona-xtrabackup-version-for-server-features).
+
 See also
 
 [How XtraBackup works](https://docs.percona.com/percona-xtrabackup/9.7/how-xtrabackup-works.md)
@@ -6123,6 +6009,29 @@ When you override the parameter, the following events can happen:
 - Backup fails
 - Creates a corrupted backup
 - Backup successful
+
+## Minimum Percona XtraBackup version for server features
+
+Some server features add redo log record types. A Percona XtraBackup version without support for the record type cannot create a backup of a database with the feature.
+
+| Server version                   | Feature      | Minimum Percona XtraBackup version |
+| -------------------------------- | ------------ | ---------------------------------- |
+| Percona Server for MySQL 9.7.4-4 | Vector index | 9.7.2-3                            |
+
+### Vector index
+
+Percona Server for MySQL 9.7.4-4 adds the vector (HNSW) index. Starting with Percona XtraBackup 9.7.2-3, Percona XtraBackup handles vector indexes. To back up a Percona Server for MySQL 9.7.4-4 database with vector indexes, use Percona XtraBackup 9.7.2-3 or higher.
+
+The `VECTOR` data type is available in all Percona Server for MySQL 9.7 releases. Percona XtraBackup backs up and restores tables with `VECTOR` columns and no vector index.
+
+The export and import of tablespaces depend on the table:
+
+- For a table with `VECTOR` columns and no vector index, `--prepare --export` and the import of the exported tablespace work starting with Percona XtraBackup 9.7.2-3.
+- For a table with a vector index, `--prepare --export` succeeds and creates the `.cfg` file. You cannot import the tablespace because vector index support is at the minimum viable product (MVP) stage.
+
+Warning
+
+If the server has vector indexes, do not trust backups taken with Percona XtraBackup 9.7.2-2. These backups are invalid. The backup and prepare steps can still succeed. To get a valid backup, upgrade Percona XtraBackup to 9.7.2-3 or higher and take the backup again.
 
 # Connection and privileges needed
 
@@ -9466,9 +9375,9 @@ More information on different options that pt-table-checksum provides can be fou
 
 # xtrabackup exit codes
 
-The *xtrabackup* binary exits with the traditional success value of 0 after a backup when no error occurs. If an error occurs during the backup, the exit value is 1.
+The *xtrabackup* binary exits with the traditional success value of 0 after a backup when no error occurs. Any non-zero exit value means that an error occurred.
 
-In certain cases, the exit value can be something other than 0 or 1, due to the command-line option code included from the *MySQL* libraries. An unknown command-line option, for example, will cause an exit code of 255.
+The exact non-zero value depends on the error. The command-line option code from the *MySQL* libraries sets some of these values. For example, an unknown command-line option causes an exit code of 255.
 
 # Dependency compatibility and limitations
 
@@ -9656,6 +9565,18 @@ Note
 
 - Redo logging is disabled during a [sorted index build](https://dev.mysql.com/doc/refman/9.7/en/sorted-index-builds.html) . To avoid this error, Percona XtraBackup can use metadata locks on tables while they are copied:
 - To block all DDL operations, use the `--lock-ddl` option that issues `LOCK TABLES FOR BACKUP`.
+
+## Are backups of a database with vector indexes taken with Percona XtraBackup 9.7.2-2 valid?
+
+No. Percona Server for MySQL 9.7.4-4 adds the vector (HNSW) index. If the server has vector indexes, Percona XtraBackup 9.7.2-2 creates invalid backups. The backup and prepare steps can still succeed, so do not trust these backups.
+
+To get a valid backup, upgrade Percona XtraBackup to 9.7.2-3 or higher and take the backup again. For details, see [Minimum Percona XtraBackup version for server features](https://docs.percona.com/percona-xtrabackup/9.7/server-backup-version-comparison.md#minimum-percona-xtrabackup-version-for-server-features).
+
+## Can I import an exported tablespace of a table with a vector index?
+
+No. With Percona XtraBackup 9.7.2-3 or higher, `--prepare --export` succeeds and creates the `.cfg` file. You cannot import the tablespace because vector index support is at the minimum viable product (MVP) stage.
+
+For a table with `VECTOR` columns and no vector index, `--prepare --export` and the import of the exported tablespace work starting with Percona XtraBackup 9.7.2-3.
 
 # Glossary
 
@@ -10139,6 +10060,127 @@ In the event of doubt as to any of the conditions or exceptions outlined in this
 
 Percona XtraBackup documentation is (C)2009-2026 Percona LLC and/or its affiliates and is distributed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/) .
 # Optional
+
+# Percona XtraBackup 9.7 release notes index
+
+- [Percona XtraBackup 9.7.2-2 (2026-11-04](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/9.7.2-2.md)
+- [Percona XtraBackup 9.7.1-rc1 (2026-07-15)](https://docs.percona.com/percona-xtrabackup/9.7/release-notes/9.7.1-rc1.md)
+
+# Percona XtraBackup 9.7.2-2 (2026-11-04)
+
+Get started with [Quickstart Guide for Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.md).
+
+## Release Highlights
+
+Percona XtraBackup 9.7.2-2 supports backing up Percona Server for MySQL 9.7.x and MySQL 9.7.x.
+
+Use the Percona XtraBackup 8.4 series to take backups of Percona Server for MySQL 8.4.x and MySQL 8.4.x series.
+
+We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.
+
+Percona XtraBackup 9.7.2-2 release includes new features, improvements, deprecations, and bug fixes.
+
+### Renamed options
+
+Percona XtraBackup 9.7.2-2 renames the following options. The new names describe the phase or the action of each option more clearly.
+
+| Deprecated name         | New name                                                                                                                                        | Used with   |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `--apply-log-only`      | [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only)                           | `--prepare` |
+| `--incremental-basedir` | [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base)           | `--backup`  |
+| `--incremental-dir`     | [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare-incremental-from-dir) | `--prepare` |
+
+Percona XtraBackup still accepts the old names but prints a deprecation warning at startup. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start. A future Long-Term Support (LTS) release will remove `--apply-log-only`, `--incremental-basedir` and `--incremental-dir`.
+
+### Deprecated options
+
+Percona XtraBackup 9.7.2-2 deprecates the following options.
+
+| Option                                                                                                                    | Use instead                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [`--create-ib-logfile`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#create-ib-logfile) | No replacement. The option has no effect.                                                                       |
+| [`--innodb`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#innodb)                       | No replacement. The option has no effect.                                                                       |
+| [`--log`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#log)                             | No replacement. The option has no effect.                                                                       |
+| [`--no-version-check`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#no-version-check)   | No replacement. The option has no effect.                                                                       |
+| [`--rebuild-threads`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#rebuild-threads)     | No replacement. The option has no effect.                                                                       |
+| [`--rsync`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#rsync)                         | [`--lock-ddl=REDUCED`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#lock-ddl) |
+
+Percona XtraBackup still accepts the options but prints a deprecation warning at startup. A future release will remove the options.
+
+## New features
+
+- [PXB-2559](https://perconadev.atlassian.net/browse/PXB-2559): Adds the `--history-host`, `--history-port`, `--history-socket`, `--history-user`, `--history-password`, and `--history-ssl-*` options to [store the backup history on a different server](https://docs.percona.com/percona-xtrabackup/9.7/store-backup-history.md#store-backup-history-on-a-different-server). Before, Percona XtraBackup always wrote the history record to the server you back up. The write failed when that server ran with `super_read_only` enabled, for example, a replica or a secondary member of a single-primary Group Replication cluster. The `--incremental-history-name` and `--incremental-history-uuid` options also read the base LSN from the history server.
+
+## Improvements
+
+- [PXB-3502](https://perconadev.atlassian.net/browse/PXB-3502): Improves parallel processing performance. With `--parallel`, Percona XtraBackup now processes files in largest-first order instead of discovery order. Large tables and partitions start processing earlier, so you spend less time waiting for large files after other parallel tasks complete. The improvement applies to `--backup`, `--prepare --prepare-incremental-from-dir`, `--copy-back`, `--move-back`, and `--decompress`.
+- [PXB-3758](https://perconadev.atlassian.net/browse/PXB-3758): Adds the [`--apply-redo-only`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#apply-redo-only) option as the new name for `--apply-log-only`. Both names work the same way. If you pass both options in the same command, Percona XtraBackup reports an error and does not start. For details, see [Prepare an incremental backup](https://docs.percona.com/percona-xtrabackup/9.7/prepare-incremental-backup.md).
+- [PXB-3840](https://perconadev.atlassian.net/browse/PXB-3840): Adds phase-specific names for the incremental backup options. Use [`--backup-incremental-base`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#backup-incremental-base) instead of `--incremental-basedir` with `--backup`. Use [`--prepare-incremental-from-dir`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare-incremental-from-dir) instead of `--incremental-dir` with `--prepare`. The old and new names work the same way. If you pass an old name and its new name in the same command, Percona XtraBackup reports an error and does not start.
+- [PXB-3853](https://perconadev.atlassian.net/browse/PXB-3853): Fixed an issue where incremental backups with page tracking read the unchanged pages between blocks of changed pages. On large tablespaces, the incremental backup could read nearly the whole file. Percona XtraBackup now skips the unchanged page ranges between blocks of changed pages. (Thank you to Reto Giezendanner for your contribution)
+- [PXB-3862](https://perconadev.atlassian.net/browse/PXB-3862): Fixed an issue where incremental backups with page tracking were slow when a tablespace had scattered changed pages. Percona XtraBackup read each scattered changed page on its own, and thousands of small reads take much longer than a few large reads. Percona XtraBackup now reads nearby changed pages together when reading the unchanged pages between them costs less than another read. Percona XtraBackup measures your storage at the start of the backup, so you do not need to change the configuration. The backup contents and size stay the same. Use the new [`--page-tracking-merge-gap`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#page-tracking-merge-gap) option to set a fixed gap, or set the option to `0` to turn off the behavior. For details, see [Read scattered changed pages](https://docs.percona.com/percona-xtrabackup/9.7/page-tracking.md#read-scattered-changed-pages).
+
+## Bug fixes
+
+- [PXB-3609](https://perconadev.atlassian.net/browse/PXB-3609): Fixed an issue where `xbcloud delete` did not remove the `.md5` checksum files for backups uploaded with `xbcloud put --md5`.
+- [PXB-3800](https://perconadev.atlassian.net/browse/PXB-3800): Fixed an issue where `xtrabackup` terminated unexpectedly with an assertion failure in `fil_tablespace_redo_extend()` when the redo log contained an `MLOG_FILE_EXTEND` record for the system tablespace.
+- [PXB-3863](https://perconadev.atlassian.net/browse/PXB-3863): Fixed an issue where `xbcloud put`, `xbcloud get`, and `xbcloud delete` could fail on Azure Blob Storage containers with hierarchical namespace enabled when the backup name began with a slash, for example, `xbcloud put /db/hns`. Percona XtraBackup now handles leading slashes correctly.
+- [PXB-3885](https://perconadev.atlassian.net/browse/PXB-3885): Fixed an issue where `xbcloud` ran the retry waits of parallel requests one after another when the network was slow or unavailable. As a result, several failed requests took the sum of their backoff delays instead of the longest delay. The waits now run at the same time.
+- [PXB-3882](https://perconadev.atlassian.net/browse/PXB-3882): Fixed an issue where the debug build did not compile with gcc 15.2.
+
+## Additional resources
+
+Install [Percona XtraBackup 9.7.2-2](https://docs.percona.com/percona-xtrabackup/9.7/installation.md)
+
+The [Percona XtraBackup GitHub repository](https://github.com/percona/percona-xtrabackup)
+
+Download product binaries, packages, and tarballs at [Percona Product Downloads](https://www.percona.com/downloads/)
+
+# Percona XtraBackup 9.7.1-rc1 (2026-07-15)
+
+Get started with [Quickstart Guide for Percona XtraBackup](https://docs.percona.com/percona-xtrabackup/9.7/quickstart-overview.md).
+
+## Release Highlights
+
+Percona XtraBackup 9.7.1-rc1 is based on the MySQL 9.7 Long-Term Supported (LTS) release. Percona XtraBackup 9.7.1-rc1 is a Release Candidate. Interfaces and behavior are subject to change before the General Availability (GA) release.
+
+Percona XtraBackup 9.7.1-rc1 supports backing up Percona Server for MySQL 9.7.x and MySQL 9.7.x.
+
+Use the Percona XtraBackup 8.4 series to take backups of Percona Server for MySQL 8.4.x and MySQL 8.4.x series.
+
+Percona XtraBackup 9.7.1-rc1 release includes new features, improvements and bug fixes.
+
+- Percona XtraBackup introduces the [`--check-tables`](https://docs.percona.com/percona-xtrabackup/9.7/innodb-btree-check.md) option to validate the structural integrity of InnoDB B-tree indexes during the [`--prepare`](https://docs.percona.com/percona-xtrabackup/9.7/xtrabackup-option-reference.md#prepare) phase. Validation during `--prepare` helps detect corrupted indexes before restore or production deployment.
+- Percona XtraBackup introduces [backup size reporting](https://docs.percona.com/percona-xtrabackup/9.7/backup-size-reporting.md) for successful backups. Percona XtraBackup now records backup size in `xtrabackup_info` and reports the same information in the XtraBackup error log. Backup size reporting helps estimate storage requirements, check that backups work correctly, and plan restores for compressed and streamed backups.
+- Percona XtraBackup improves sparse file handling efficiency by removing redundant `fallocate(PUNCH_HOLE)` calls from `local_write_sparse`.
+
+We recommend that you download the Percona XtraBackup for the same platform as the MySQL-compatible server. For example, if your server is on an ARM64 platform, you should download and use the Percona XtraBackup for ARM64 for that operating system.
+
+## New features
+
+- [PXB-3328](https://perconadev.atlassian.net/browse/PXB-3328): Adds the `--check-tables` option to validate InnoDB B-tree index integrity during the `--prepare` phase. The option detects structural corruption in backup files before restore or deployment.
+- [PXB-3747](https://perconadev.atlassian.net/browse/PXB-3747): Adds backup size reporting for successful backups. Percona XtraBackup now records backup size in `xtrabackup_info` and reports the same information in the XtraBackup error log.
+
+## Improvements
+
+- [PXB-3658](https://perconadev.atlassian.net/browse/PXB-3658): Improves sparse file handling efficiency by removing redundant `fallocate(PUNCH_HOLE)` calls from `local_write_sparse`.
+
+## Bug fixes
+
+- [PXB-3568](https://perconadev.atlassian.net/browse/PXB-3568): Fixed an issue where `xtrabackup` terminated unexpectedly on RHEL 9 when using `--compress=lz4`.
+- [PXB-3759](https://perconadev.atlassian.net/browse/PXB-3759): Fixed an issue where `xtrabackup` terminated unexpectedly when redo log encryption was enabled and `innodb_log_buffer_size` exceeded 16 MB.
+- [PXB-3762](https://perconadev.atlassian.net/browse/PXB-3762): Fixed an issue where `xtrabackup --backup --transition-key` terminated unexpectedly on servers where undo tablespace encryption keys existed only in redo logs.
+
+## Packaging notes
+
+Percona XtraBackup 9.7 adds support for Ubuntu 26.04.
+
+## Additional resources
+
+Install [Percona XtraBackup 9.7.1-rc1](https://docs.percona.com/percona-xtrabackup/9.7/installation.md)
+
+The [Percona XtraBackup GitHub repository](https://github.com/percona/percona-xtrabackup)
+
+Download product binaries, packages, and tarballs at [Percona Product Downloads](https://www.percona.com/downloads/)
 
 # Legal Notice
 
