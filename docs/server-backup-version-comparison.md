@@ -5,6 +5,8 @@ record, can cause older versions of Percona XtraBackup to fail. To
 ensure that you can back up and restore your data, use a Percona
 XtraBackup version that is equal to your source server major version. This means if you use Percona XtraBackup {{vers}}.x, you can safely back up the source server from {{vers}}.x to {{vers}}.xx.
 
+Some server features require a minimum Percona XtraBackup patch version. See [Minimum Percona XtraBackup version for server features](#minimum-percona-xtrabackup-version-for-server-features).
+
 !!! admonition "See also"
    
     [How XtraBackup works](how-xtrabackup-works.md)
@@ -42,3 +44,27 @@ When you override the parameter, the following events can happen:
 * Creates a corrupted backup
 
 * Backup successful
+
+## Minimum Percona XtraBackup version for server features
+
+Some server features add redo log record types. A Percona XtraBackup version without support for the record type cannot create a backup of a database with the feature.
+
+| Server version | Feature | Minimum Percona XtraBackup version |
+| -------------- | ------- | ---------------------------------- |
+| Percona Server for MySQL 9.7.4-4 | Vector index | 9.7.2-3 |
+
+### Vector index
+
+Percona Server for MySQL 9.7.4-4 adds the vector (HNSW) index. Starting with Percona XtraBackup 9.7.2-3, Percona XtraBackup handles vector indexes. To back up a Percona Server for MySQL 9.7.4-4 database with vector indexes, use Percona XtraBackup 9.7.2-3 or higher.
+
+The `VECTOR` data type is available in all Percona Server for MySQL 9.7 releases. Percona XtraBackup backs up and restores tables with `VECTOR` columns and no vector index.
+
+The export and import of tablespaces depend on the table:
+
+* For a table with `VECTOR` columns and no vector index, `--prepare --export` and the import of the exported tablespace work starting with Percona XtraBackup 9.7.2-3.
+
+* For a table with a vector index, `--prepare --export` succeeds and creates the `.cfg` file. You cannot import the tablespace because vector index support is at the minimum viable product (MVP) stage.
+
+!!! warning
+
+    If the server has vector indexes, do not trust backups taken with Percona XtraBackup 9.7.2-2. These backups are invalid. The backup and prepare steps can still succeed. To get a valid backup, upgrade Percona XtraBackup to 9.7.2-3 or higher and take the backup again.

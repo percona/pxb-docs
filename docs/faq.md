@@ -60,3 +60,14 @@ Percona XtraBackup will not be able to take a consistent backup. Retry the backu
 
     * To block all DDL operations, use the `--lock-ddl` option that issues `LOCK TABLES FOR BACKUP`.
 
+## Are backups of a database with vector indexes taken with Percona XtraBackup 9.7.2-2 valid?
+
+No. Percona Server for MySQL 9.7.4-4 adds the vector (HNSW) index. If the server has vector indexes, Percona XtraBackup 9.7.2-2 creates invalid backups. The backup and prepare steps can still succeed, so do not trust these backups.
+
+To get a valid backup, upgrade Percona XtraBackup to 9.7.2-3 or higher and take the backup again. For details, see [Minimum Percona XtraBackup version for server features](server-backup-version-comparison.md#minimum-percona-xtrabackup-version-for-server-features).
+
+## Can I import an exported tablespace of a table with a vector index?
+
+No. With Percona XtraBackup 9.7.2-3 or higher, `--prepare --export` succeeds and creates the `.cfg` file. You cannot import the tablespace because vector index support is at the minimum viable product (MVP) stage.
+
+For a table with `VECTOR` columns and no vector index, `--prepare --export` and the import of the exported tablespace work starting with Percona XtraBackup 9.7.2-3.
